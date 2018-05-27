@@ -1,7 +1,7 @@
 <template>
-	  <el-header style="text-align: right; font-size: 12px">
-			<span>王小虎</span>
-		</el-header>
+	<el-header style="text-align: right; font-size: 12px">
+		<span>王小虎</span>
+	</el-header>
 </template>
 
 <script>
