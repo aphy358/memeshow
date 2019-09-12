@@ -1,8 +1,6 @@
 <View class="swiper" >
   <comp
     templateName="hSwiperItem"
-    moveTo="{{moveTo}}"
-    animationType="ease-out"
     dataList="{{dataList}}"
     bind:customevent="getRef"
     bind:firstView="firstView"
@@ -16,9 +14,11 @@
 
 <!-- 
   recycle="{{true}}"
+  moveTo="{{moveTo}}"
   padding="{{30}}"
   width="{{320}}"
   height="{{500}}" 
+  animationType="ease-out"
   animationDuration="300"
   vertical="{{true}}"
   initIndex="{{2}}"

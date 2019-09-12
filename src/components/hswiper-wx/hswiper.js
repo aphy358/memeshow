@@ -1,5 +1,6 @@
 import {parseStyle, styleStringify} from './libs/utils'
 import HTouch from './libs/hTouch'
+import { SSL_OP_LEGACY_SERVER_CONNECT } from 'constants';
 const touchHandle = new HTouch()
 
 // 获取屏幕宽高
@@ -9,7 +10,7 @@ const SCREEN_HEIGHT = systemInfo.screenHeight
 
 // 动画过渡时间
 let DURATION = 300
-let TIMEING_FUNCTION = 'ease'
+let TIMEING_FUNCTION = 'ease-out'
 const TIMEING_FUNCTION_ARRAY = ['linear', 'ease-in', 'ease-in-out', 'ease-out', 'step-start', 'step-end']
 
 // 视图过度动画实例
@@ -39,7 +40,7 @@ Component({
     itemWidth: SCREEN_WIDTH,
     /* 每个元素的高度 */
     itemHeight: SCREEN_HEIGHT,
-    swiperAnmiation: {},
+    swiperAnimation: {},
     wrapperStyle: '',
     itemStyle: '',
     // 当前显示的数据所在数组的下标
@@ -47,7 +48,7 @@ Component({
     nowTranX: 0,
     nowTranY: 0,
     visibleDataList: [],
-    /* 最外层可是区域盒子的样式 */
+    /* 最外层可视区域盒子的样式 */
     viewBoxStyle: '',
     /* 是否过渡中 */
     tranforming: false
@@ -60,6 +61,10 @@ Component({
       observer(newVal) {
         if(newVal.length > 0){
           this.setVisibleDOM()
+        }else{
+          if(this.data.visibleDataList.length){
+            console.warn('dataList不能为空')
+          }
         }
       }
     },
@@ -82,7 +87,7 @@ Component({
     // 动画类型
     animationType: {
       type: String,
-      value: 'ease',
+      value: 'ease-out',
       observer(newVal) {
         if (TIMEING_FUNCTION_ARRAY.indexOf(newVal) < 0) {
           return
@@ -321,8 +326,15 @@ Component({
         res[len - 2] = emptyElement
         res[len - 1] = emptyElement
       }
+      
+      const styleObj = {
+        width: '375px',
+        height: '4669px',
+        transform: 'translateY(-2001px) translate3d(0px, 0px, 0px)'
+      }
       this.setData({
-        visibleDataList: res
+        visibleDataList: res,
+        // wrapperStyle: styleStringify(styleObj)
       })
     },
     /**
@@ -344,35 +356,36 @@ Component({
         domIndex = Math.min(domIndex, len - 2)
       }
       let pos = 0
-      let attr = 'translateX'
+      let attr = 'translateY'
+      let posType = 'nowTranY'
       /* 垂直方向 */
       if (vertical) {
         pos = -domIndex * itemHeight + padding + paddingX
-        attr = 'translateY'
-        this.setData({
-          nowTranY: pos
-        })
       } else {
         /* 水平方向 */
         pos = -domIndex * itemWidth + padding + paddingY
         attr = 'translateX'
-        this.setData({
-          nowTranX: pos
-        })
+        posType = 'nowTranX'
       }
 
       /* 是否启用动画过渡 */
+      let _this = this
       if (useAnimation) {
         VIEW_ANIMATION[attr](pos).translate3d(0).step()
-        this.setData({
-          swiperAnmiation: VIEW_ANIMATION.export()
+        _this.setData({
+          swiperAnimation: VIEW_ANIMATION.export(),
+          [posType]: pos
         })
       } else {
         MOVE_ANIMATION[attr](pos).translate3d(0).step()
-        this.setData({
-          swiperAnmiation: MOVE_ANIMATION.export()
+        _this.setData({
+          swiperAnimation: MOVE_ANIMATION.export(),
+          [posType]: pos
         })
       }
+      setTimeout(() => {
+        
+      }, 5);
 
       let p = new Promise((resolve) => {
         setTimeout(() => {
@@ -445,7 +458,7 @@ Component({
         to: nextIndex,
         item: dataList[nowViewDataIndex]
       })
-
+      
       return this.moveViewTo(originNextIndex, useAnimation).then(() => {
         let isReset = false
         if ((originNextIndex) < 0) {
@@ -526,7 +539,7 @@ Component({
       }
       MOVE_ANIMATION[type](nowTran).translate3d(0).step()
       this.setData({
-        swiperAnmiation: MOVE_ANIMATION.export()
+        swiperAnimation: MOVE_ANIMATION.export()
       })
     },
     onTap(e) {
@@ -539,9 +552,24 @@ Component({
     // 渲染无限列表 DOM
     setVisibleDOM(){
       if(this.data.dataList && this.data.dataList.length){
+        let {nowViewDataIndex, visibleDataList, dataList} = this.data
+        let isFirstTime = visibleDataList.length === 0
         this.calVisibleDataList()
-        this.initStruct()
-        this.moveViewTo(1)   // this.data.nowViewDataIndex
+        
+        if(isFirstTime){
+          this.initStruct() // 应该只要初始化一次 DOM 结构就可以
+        }
+
+        // 每次 dataList 变更的时候，始终让列表显示第二项数据，也就是第二屏数据
+        // this.data.nowViewDataIndex
+        console.log('nowViewDataIndex: ' + nowViewDataIndex);
+        
+        let _this = this
+        this.moveViewTo(1).then(() => {
+          _this.setData({
+            nowViewDataIndex: 1
+          })
+        })
       }
     }
   },
