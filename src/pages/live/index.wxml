@@ -1,0 +1,82 @@
+<!--pages/live/play.wxml-->
+ <!-- <live-player id="player" class="container" src="{{item.playUrl}}" 
+ mode="live" autoplay bindstatechange="statechange" binderror="error" bindnetstatus="status"
+ object-fit="{{videoObjectFit}}"> -->
+  <!--video
+    class="live-view"
+    id="myVideo"
+src="https://cloudbrain-docs.oss-cn-shenzhen.aliyuncs.com/49be44dd00be2189ca6cb0c857af1dc7-1544608634730.mp4"
+    autoplay
+    muted="{{false}}"
+    loop="{{true}}"
+    controls="{{false}}"
+    bindwaiting="buffer"
+    style="width: {{liveWidth}}px; height: {{liveHeight}}px"
+    objectFit="cover"-->
+
+  <live-player
+    src="rtmp://pili-live-rtmp.mofanbaby.tv/mofanbaby/test1"
+    mode="RTC"
+    autoplay
+    bindstatechange="statechange"
+    binderror="error"
+    bindnetstatus="status"
+    style="width: {{liveWidth}}px; height: {{liveHeight}}px"
+    objectFit="cover">
+
+    <cover-view class="protect-cover" wx:if="{{showVideoCom}}">
+      <cover-view class="header-container" style=" {{'top:'+barHeight+';'}}">
+          <cover-view class="top-area">
+              <cover-view catchtap="goBack" class="back-btn" data-comkey="{{$k}}">
+                  <cover-image class="img" src="/assets/images/icon-back.png"></cover-image>
+              </cover-view>
+              <cover-view bindtap="handleProxy" class="_cover-view data-v-7cd99095 {{['avatar-container',!isListen?'attend_show':'']}}">
+                <cover-view class="avatar icon-avatar">
+                    <cover-image class="avator-image" src="{{avatar}}"></cover-image>
+                </cover-view>
+                <cover-view class="content">
+                    <cover-view class="name">
+                    {{anchorInfo.anchorName||''}}
+                </cover-view>
+                    <cover-view class="online">
+                    {{anchorInfo.roomOnlineNum||0}}人
+                </cover-view>
+                </cover-view>
+                <block wx:if="{{showNativeAttend}}">
+                    <cover-view catchtap="handleProxy" class="attend"> +关注 </cover-view>
+                </block>
+                <cover-view catchtap="handleProxy" class="attend" wx:else> +关注 </cover-view>
+              </cover-view>
+              <cover-view class="members-container">
+                <cover-view bindtap="handleProxy" wx:if="topList.length>0" wx:for="{{topList}}" wx:key="index" class="item icon-avatar item-{{index}}" style="z-index: {{topList.length-index}}">
+                    <cover-image class="icon-image" src="{{item.src}}"></cover-image>
+                </cover-view>
+              </cover-view>
+          </cover-view>
+      </cover-view>
+      <canvas canvasId="message-list" class="message-ctx" disableScroll="true" style="height: 144px !important;width: 276px !important;" wx:if="{{shouldCanvas}}"></canvas>
+      <cover-view class="live-bottom-box" style=" {{'bottom:'+(isIphoneX?'30rpx':'0rpx')+';'}}" wx:if="{{isBottomView}}">
+        <cover-view class="comments-btn" bindtap="bindOpenMessage">
+          <cover-image src="/assets/images/icon-comment.png"></cover-image>
+          <cover-view>说点什么...</cover-view>
+        </cover-view>
+        <cover-view class="btn-view">
+          <cover-image class="share btn" src="/assets/images/share2.png"></cover-image>
+          <cover-image class="lihe btn" src="/assets/images/gift.png"></cover-image>
+          <cover-image class="douyin btn" src="/assets/images/order1.png"></cover-image>
+          <cover-image class="emotion btn" src="/assets/images/shop1.png"></cover-image>
+        </cover-view>
+      </cover-view>
+    </cover-view>
+    <!-- <cover-image class="{{[!firstShowCover&&!isVideoReady&&isPreBg?'vShow':'vHide','mask-loading-wrapper','cover-bg']}}" src="{{preRoomCover}}" style=" {{'width:'+667*rateY+'px'+';'+'height:'+667*rateY+'px'+';'}}"></cover-image> -->
+                    <cover-image class="{{[!isVideoReady&&isNextBg?'vShow':'vHide','mask-loading-wrapper','cover-bg']}}" src="{{nextRoomCover}}" style=" {{'width:'+667*rateY+'px'+';'+'height:'+667*rateY+'px'+';'}}"></cover-image>
+                    <!-- <cover-image class="{{[!firstShowCover&&!isVideoReady&&(isPreBg||isNextBg)?'vShow':'vHide','blurFilter']}}" src="/assets/images/room-cover.png" style=" {{'opacity:'+(isAndroid?0.75:1)+';'}}"></cover-image> -->
+<!--/video-->
+</live-player>
+<view class="chat-component" hidden="{{isMessageView}}">
+  <view class="hack-ipt">
+    <input class="ipt" focus="{{isfoucs}}"  confirmType="send" cursorSpacing="4" id="messageIpt" type="text" />
+  </view>
+  <view class="btn-border-l"></view>
+  <view class="btn" bindtap="sendMessage" size="40" type="primary">发送</view>
+</view>

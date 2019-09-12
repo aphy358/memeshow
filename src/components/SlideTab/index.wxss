@@ -1,0 +1,22 @@
+.scroll-view-wrap{
+  white-space: nowrap;
+  display: flex;
+  flex-direction: row;
+  justify-content:space-around;
+  align-items: center;
+}
+
+.scroll-view-x{
+   font-size:30rpx;
+  color:#fff;
+}
+.scroll-view-x view{
+  line-height: 30px;
+  width: 33.333%;
+  display: inline-block;
+  text-align: center
+}
+.on{
+  border-bottom: 6rpx solid #f7d131;
+  color: #fff;
+}

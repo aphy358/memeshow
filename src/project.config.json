@@ -1,0 +1,169 @@
+{
+	"description": "项目配置文件。",
+	"setting": {
+		"urlCheck": false,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true,
+		"nodeModules": true,
+		"uglifyFileName": false,
+		"enablePullDownRefresh": true
+	},
+	"compileType": "miniprogram",
+	"libVersion": "2.7.3",
+	"appid": "wx8760d3300ed27e7d",
+	"projectname": "mofanshow",
+	"isGameTourist": false,
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"currentL": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": 20,
+			"list": [
+				{
+					"id": -1,
+					"name": "图说说",
+					"pathName": "pages/video/subject",
+					"query": ""
+				},
+				{
+					"id": 1,
+					"name": "新版首页",
+					"pathName": "pages/index/index",
+					"query": ""
+				},
+				{
+					"id": 2,
+					"name": "详细",
+					"pathName": "pages/video/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "商城模式",
+					"pathName": "pages/index/index",
+					"query": ""
+				},
+				{
+					"id": 4,
+					"name": "测试",
+					"pathName": "pages/index/index",
+					"query": ""
+				},
+				{
+					"id": 6,
+					"name": "play",
+					"pathName": "pages/live/play",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "push",
+					"pathName": "pages/live/push",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "test",
+					"pathName": "pages/test-video/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "push",
+					"pathName": "pages/push/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "live",
+					"pathName": "pages/live/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "live",
+					"pathName": "pages/live/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "create",
+					"pathName": "pages/create/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "my",
+					"pathName": "pages/my/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "create",
+					"pathName": "pages/create/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "push",
+					"pathName": "pages/video/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "store",
+					"pathName": "pages/store/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "store-products",
+					"pathName": "pages/store/products/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "article",
+					"pathName": "pages/article/detail",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "articlecreate",
+					"pathName": "pages/create/editor",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "comments",
+					"pathName": "pages/article/comments",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "index?",
+					"pathName": "pages/index/index",
+					"query": "pagename=article"
+				}
+			]
+		}
+	}
+}

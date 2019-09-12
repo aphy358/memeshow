@@ -1,0 +1,10 @@
+{
+  "window": {
+    "navigationStyle": "custom"
+  },
+  "usingComponents": {
+    "nav-bar": "../../components/navbar/index",
+    "slide-tab": "../../components/SlideTab/index",
+    "navigation": "../../components/navigation/navigation"
+  }
+}

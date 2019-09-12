@@ -1,0 +1,86 @@
+<!--/pages/create/index.wxml-->
+<nav-tab iconStyle="icon-style" titleStyle="title-style" innerTitle="{{length}}条评论" navbar-data='{{nvabarData}}'></nav-tab>
+
+
+<scroll-view class="container">
+
+  <view class='content'>
+    <!-- 评论 -->
+    <view class="comments-area" style="padding-bottom:{{isIphoneX?168:100}}rpx">
+    
+     
+    <view class='comments-list'>
+        <view wx:for="{{comments}}" wx:key="{{index}}" class='flex-row comments-item'>
+            <view>
+              <image class="comments-avatar icon70-radius" src="{{item.avatar}}"></image>
+            </view>
+            <view class="comments-content">
+              <view class=' comments-item-top'>
+                <view>{{item.publisher}}</view>
+                <view class="time">
+                   <text>{{item.ctime}}</text>
+
+                   <view class="recomment-btn-area">
+                    <view class="mr32 recom-btn"  bindtap='tabInputHandle'>
+                      <i  class="iconfont icon-article-reply"></i>
+                    </view>
+                    <!-- <text class="mr32" ></text> -->
+                    <view  class="like-area flex-row-end" bindtab="commentLikeHandle">
+                      <text class="mr8">{{commentLikes}}</text>
+                      <i  class="iconfont icon-article-like"></i>
+                    
+                    </view>
+                   </view>
+                </view>
+              </view>
+              <text class="sloga-text line2ellipsis fz30 fc1">{{item.content}}</text>        
+              <view class="recomment">
+                <view class="mt16" wx:if="{{item.replys.length>1}}" wx:for="{{item.replys}}" wx:for-item="reply" wx:for:index="key" wx:key="reply_{{key}}">
+                 <text class="">{{reply.publisher}} 回复 {{item.publisher}} :</text>
+                 <text class="recomment-content">{{reply.content}}</text>         
+                 </view>   
+
+                 <view class="mt24 recomment-more">
+                 <text>查看 {{item.replys.length}} 条回复</text>
+                 <i class="iconfont icon-right-arrow"></i>
+                 </view>       
+              </view>
+
+              
+            </view>
+
+            
+        </view>
+     
+     </view>
+
+     
+
+     
+
+    </view>
+
+
+  </view>
+
+  <view class="footer {{isIphoneX?'fix-iphonex':''}}" style="bottom:{{keyboardHeight}}px">
+  
+
+    <view class="input-area">
+   <input 
+   class='bg1 fz26 input'
+   bindblur='blurInputHandle' 
+   bindconfirm="confirmInputHandle"
+   bindfocus="focusInputHandle"
+   confirm-type="send" 
+   type='text' 
+   adjust-position="{{false}}" 
+   focus="true" />
+   <view class="send-btn fcs1 fz26" bindtap='submitHandle'>发送</view>
+  </view>
+  </view>
+
+  
+
+</scroll-view>
+

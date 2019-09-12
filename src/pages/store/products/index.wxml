@@ -1,0 +1,139 @@
+
+  <view class="navigation-top-box flex-row" bindtap='goBack'>
+      <i class="iconfont icon-left-arrow"></i>
+  </view>
+
+
+<view class="container">
+    <view  class="header">
+      <image mode="heightFix"  class="header-bg" src="https://thumbnail10.baidupcs.com/thumbnail/f631e3c02d586a3d07e76497b2af5e89?fid=573652283-250528-1041419632870567&rt=pr&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-w12rAsaVYNySWqxFVKkK75MGlOw%3d&expires=8h&chkbd=0&chkv=0&dp-logid=8021257854320739022&dp-callid=0&time=1544616000&size=c1440_u900&quality=90&vuk=573652283&ft=image&autopolicy=1"></image>
+      <view class="wrapper">
+        <view class="avatar-area">
+          <image class="avatar" src="/assets/images/store/page2.png" background-size="cover"></image>
+          <view class="store-nickname ml16">
+            <view class="store-label fz30">我叫小姐姐</view>
+            <view class="store-label fz26 mt10">全部商品 16</view>
+          </view>
+        </view>
+      
+
+      <view class="card row mt40 head-card">
+        <view class="head">
+          <image  mode="widthFix" src="https://thumbnail10.baidupcs.com/thumbnail/fe2055948c3b1704db51178e5afc535a?fid=573652283-250528-466329825243124&rt=pr&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-iDPpXvedErVDC4AIHP0zS6I7CE8%3d&expires=8h&chkbd=0&chkv=0&dp-logid=8021257854320739022&dp-callid=0&time=1544616000&size=c1440_u900&quality=90&vuk=573652283&ft=image&autopolicy=1"></image>
+          <view class="tag commend">推荐</view>
+        </view>
+        <view class="content">
+          <view class="wrap">
+            <view class="title fz28" >潮流时尚男女墨镜</view>
+            <view class="card-label mt16">
+              <view class="head-icon-wrap">
+                <image src="https://thumbnail10.baidupcs.com/thumbnail/fe2055948c3b1704db51178e5afc535a?fid=573652283-250528-466329825243124&rt=pr&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-iDPpXvedErVDC4AIHP0zS6I7CE8%3d&expires=8h&chkbd=0&chkv=0&dp-logid=8021257854320739022&dp-callid=0&time=1544616000&size=c1440_u900&quality=90&vuk=573652283&ft=image&autopolicy=1"></image>
+                <image src="https://thumbnail10.baidupcs.com/thumbnail/67397327047a682781512480a5ffc233?fid=573652283-250528-681478203237485&rt=pr&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-W2Zpob6%2bkYW2K3qptrJ2FXeLF6Q%3d&expires=8h&chkbd=0&chkv=0&dp-logid=8021257854320739022&dp-callid=0&time=1544616000&size=c1440_u900&quality=90&vuk=573652283&ft=image&autopolicy=1"></image>
+                <image src="https://thumbnail10.baidupcs.com/thumbnail/29a78209ffc681e0d64ba502629f1d7b?fid=573652283-250528-558539416314772&rt=pr&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-kcnfGjXaYKnIg4KwowK3fO%2b95Ks%3d&expires=8h&chkbd=0&chkv=0&dp-logid=8021257854320739022&dp-callid=0&time=1544616000&size=c1440_u900&quality=90&vuk=573652283&ft=image&autopolicy=1"></image>
+              </view>
+              <text class="fz24 ml24">172 人看过</text>
+            </view>
+            <view class="foot fz28">
+              <view class="tag">
+                <text class="fz24">￥</text>
+                <text class="fz40">680</text>
+              </view>
+              <view class="btn fz24" >
+              <navigator url="/pages/video/index?id"><text class="text">看视频</text>
+              <i class="iconfont icon-right-arrow red"></i>
+              </navigator>
+              </view>
+            </view>
+          </view>
+        </view>
+        
+        
+      </view>
+      </view>
+    </view>
+  
+    <view class='main'>
+    <view class='main-wrap'>
+      <scroll-view scroll-y="true" class="card-list" scroll-with-animation="true" lower-threshold="1" bindscrolltolower="scrolltolower" style="" >
+      <!-- <view class="card-wrap"> -->
+          <view class="card">
+            <navigator hover-class="item-hover" url="/pages/video/index?id">
+                <view class="head">
+                  <image  mode="widthFix" src="https://thumbnail10.baidupcs.com/thumbnail/67397327047a682781512480a5ffc233?fid=573652283-250528-681478203237485&rt=pr&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-W2Zpob6%2bkYW2K3qptrJ2FXeLF6Q%3d&expires=8h&chkbd=0&chkv=0&dp-logid=8021257854320739022&dp-callid=0&time=1544616000&size=c1440_u900&quality=90&vuk=573652283&ft=image&autopolicy=1"></image>
+                  <view class="tag new">上新</view>
+                </view>
+                <view class="content">
+                  <view class="title fz28" >韩版条纹情侣针织毛衣</view>
+                  <view class="foot fz28">
+                      <view class="tag">
+                <text class="fz24">￥</text>
+                <text class="fz36">180</text>
+              </view>
+                  </view>
+                </view>
+            </navigator>
+          </view>
+
+          <view class="card">
+            <navigator hover-class="item-hover" url="/pages/video/index?id">
+                <view class="head">
+                  <image  mode="widthFix" src="https://thumbnail10.baidupcs.com/thumbnail/29a78209ffc681e0d64ba502629f1d7b?fid=573652283-250528-558539416314772&rt=pr&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-kcnfGjXaYKnIg4KwowK3fO%2b95Ks%3d&expires=8h&chkbd=0&chkv=0&dp-logid=8021257854320739022&dp-callid=0&time=1544616000&size=c1440_u900&quality=90&vuk=573652283&ft=image&autopolicy=1"></image>
+                  <view class="tag new">上新</view>
+                </view>
+                <view class="content">
+                  <view class="title fz28" >韩版学院风圆领情侣卫衣</view>
+                  <view class="foot fz28">
+                      <view class="tag">
+                <text class="fz24">￥</text>
+                <text class="fz36">119</text>
+              </view>
+                  </view>
+                </view>
+            </navigator>
+          </view>
+          <view class="card">
+            <navigator hover-class="item-hover" url="/pages/video/index?id">
+                <view class="head">
+                  <image  mode="widthFix" src="https://thumbnail10.baidupcs.com/thumbnail/8ddd99beb1ff76ad28258b5a40679a43?fid=573652283-250528-68108891953479&rt=pr&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-4608dSgft5ECx61QL0DEc26CZt0%3d&expires=8h&chkbd=0&chkv=0&dp-logid=8021257854320739022&dp-callid=0&time=1544616000&size=c1440_u900&quality=90&vuk=573652283&ft=image&autopolicy=1"></image>
+                  <view class="tag new">上新</view>
+                </view>
+                <view class="content">
+                  <view class="title fz28" >时尚男女潮T</view>
+                  <view class="foot fz28">
+                      <view class="tag">
+                <text class="fz24">￥</text>
+                <text class="fz36">108</text>
+              </view>
+                  </view>
+                </view>
+            </navigator>
+          </view>
+
+          <view class="card">
+            <navigator hover-class="item-hover" url="/pages/video/index?id">
+                <view class="head">
+                  <image  mode="widthFix" src="https://thumbnail10.baidupcs.com/thumbnail/848adc1fed622b630599c05e0516be07?fid=573652283-250528-41470041078003&rt=pr&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-qdj7OtYW8TeYb9GdTuSmNwA0DJw%3d&expires=8h&chkbd=0&chkv=0&dp-logid=8021257854320739022&dp-callid=0&time=1544616000&size=c1440_u900&quality=90&vuk=573652283&ft=image&autopolicy=1"></image>
+                  <view class="tag new">上新</view>
+                </view>
+                <view class="content">
+                  <view class="title fz28" >潮流时尚男女卫衣</view>
+                  <view class="foot fz28">
+                      <view class="tag">
+                <text class="fz24">￥</text>
+                <text class="fz36">118</text>
+              </view>
+                  </view>
+                </view>
+            </navigator>
+          </view>
+      <!-- </view> -->
+      </scroll-view>
+      <view class="no-item">
+        <view class="no-more-tips">暂时没有更多了</view>
+      </view>
+        
+    </view>
+</view>
+</view>
+
+

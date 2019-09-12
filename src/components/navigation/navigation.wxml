@@ -1,0 +1,16 @@
+<!--components/navigation.wxml-->
+
+<view class="navigation-temp" style="height: {{height}}px; padding-top: {{barHeight}}px; {{navBgStyle}} {{bgStyle}}"></view>
+<view class="navigation" style="height: {{height}}px; padding-top: {{barHeight}}px; {{navBgStyle}} {{bgStyle}}">
+    <view class="slot" style="top: {{barHeight}}px" wx:if="{{custom}}">
+        <slot></slot>
+    </view>
+    <block wx:else>
+        <view catch:tap="onBack" class="back-btn" hoverClass="hover" style="top: {{barHeight}}px" wx:if="{{showBackButton}}">
+            <image class="nav-icon" mode="aspectFit" src="{{navIconUrl}}"></image>
+        </view>
+        <view class="title {{titleClass}}" style="{{navTitleStyle}} {{titleStyle}}">
+            <image class="loading-icon" wx:if="{{showLoading}}"></image>{{title}}
+    </view>
+    </block>
+</view>

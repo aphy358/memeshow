@@ -1,0 +1,23 @@
+<view  class="cover-box" disable-scroll="" style="" id="message-list">
+  <view class="cover-bg">
+  <image class="cover-bg-img" src="/assets/images/background/blurBackgrond.jpg"></image>
+  
+  
+  </view>
+  <view  class="cover-area flex-row-around">
+    <view bindtap="addArticle" animation="{{animation0}}" class="text icon {{isIn?'animated bounce':''}}">
+
+      <image class="image" src="/assets/images/background/text.png"></image>
+      <view class="text">文章创作</view>
+    </view>
+   <view bindtap="addVideo" animation="{{animation1}}" class="video icon {{isIn?'animated bounce':''}}"> 
+     <image class="image" src="/assets/images/background/video.png"></image>      
+      <view class="text">视频创作</view>
+   </view>
+   <view bindtap="addLive" animation="{{animation2}}" class="live icon {{isIn?'animated bounce':''}}"> 
+      <image class="image" src="/assets/images/background/live.png"></image>          
+    <view class="text">直播创作</view>
+  </view>
+  </view>
+
+</view>

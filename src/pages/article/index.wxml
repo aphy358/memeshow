@@ -1,0 +1,41 @@
+<!--pages/create/index.wxml-->
+<!-- <nav-bar navbar-data='{{nvabarData}}'></nav-bar> -->
+ <view class="container" style="margin-top: {{height*2+60}}rpx">
+       <slide-tab scroll-view-x-class="scroll-view-x" active-class="active" class="slide-tab" tList="{{tList}}"   bind:changeCurrent="swichNav" currentTab="{{currentTab}}" >
+
+        <swiper current="{{currentTab}}" duration="300" bindchange="bindChange" style="height:{{(currentItemNum)*502+(currentItemNum-1)*32}}rpx;margin-top:30rpx">
+        <block wx:for="{{list}}" wx:key="index">
+            <swiper-item>
+              
+              <view scroll-y="true" class="card-list" scroll-with-animation="true" lower-threshold="1" bindscrolltolower="scrolltolower" style="" hidden="{{item ? flase : true}}">
+                 <view class="card-item" wx:for="{{item}}" wx:key="index">
+                 <navigator url="/pages/create/detail">
+                 <view class="card-item-wrap">
+                 <view class="title-area ellipsis">
+                 走着走着，人就老了。看完流泪了，也懂事了
+                 </view>
+                 <view class="img-area">
+                 <image style='width:100%' mode="widthFix" src="https://wx4.sinaimg.cn/mw690/5eef6257gy1fwx82b34ivg206w09znpd.gif" ></image>
+                 </view>
+                 <view class="card-label">
+                  <view class="headimg-area"><image src="{{userInfo.avatarUrl}}"></image>
+                  <text>云中燕</text>
+                  </view>
+                  <view class="state-area">
+                    <text>22230 阅读</text>
+                    <text>206 评论</text>
+                    <text>1087 点赞</text>
+                  </view>
+                  </view>
+                </view>
+                </navigator>
+              </view>
+              <!-- <view class="no-item">
+                <view class="no-more-tips">暂时没有更多了</view>
+              </view> -->
+            </view>
+            </swiper-item>
+          </block>
+        </swiper>
+      </slide-tab>
+    </view>

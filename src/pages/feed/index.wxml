@@ -1,0 +1,175 @@
+<view class="mod-wrapper">
+    <view animation="{{transform}}" bindtransitionend="end" class="mod-wrap" style="will-change:transform;">
+        <view class="mod-box mod-box-player" wx:for="{{feedList}}" wx:for-item="feed" wx:key="index">
+            <image class="video" mode="{{feed.isVertical?'aspectFill':'aspectFit'}}" src="{{feed.coverUrl}}" wx:if="{{index<=preloadedIndex}}"></image>
+        </view>
+    </view>
+    <view class="mod-box mod-box-player-cus" wx:if="{{feedList.length>0}}">
+        <video loop autoplay="{{true}}" bindended="{{feedIndex!==batchFeedIndex[0]?'nil':'videoStop'}}" bindplay="startPlay" bindprogress="prograss" bindtimeupdate="timeupdate" class="video" controls="{{false}}" customCache="{{false}}" data-index="{{batchFeedIndex[0]}}" id="video-0" objectFit="{{feedList[ batchFeedIndex[0] ].isVertical?'cover':'contain'}}" poster="{{feedList[ batchFeedIndex[0] ].coverUrl}}" showCenterPlayBtn="{{false}}" showProgress="{{false}}" src="{{feedList[ batchFeedIndex[0] ].videoUrl}}" style="will-change:transform;transform: translateX({{videoHidden||feedIndex!==batchFeedIndex[0]?'-100%':0}})"></video>
+        <video loop bindended="{{feedIndex!==batchFeedIndex[1]?'nil':'videoStop'}}" bindplay="startPlay" bindprogress="prograss" bindtimeupdate="timeupdate" class="video" controls="{{false}}" customCache="{{false}}" data-index="{{batchFeedIndex[1]}}" id="video-1" objectFit="{{feedList[ batchFeedIndex[1] ].isVertical?'cover':'contain'}}" poster="{{feedList[ batchFeedIndex[1] ].coverUrl}}" showCenterPlayBtn="{{false}}" showProgress="{{false}}" src="{{feedList[ batchFeedIndex[1] ].videoUrl}}" style="will-change:transform;transform: translateX({{videoHidden||feedIndex!==batchFeedIndex[1]?'-100%':0}})"></video>
+        <video loop bindended="{{feedIndex!==batchFeedIndex[2]?'nil':'videoStop'}}" bindplay="startPlay" bindprogress="prograss" bindtimeupdate="timeupdate" class="video" controls="{{false}}" customCache="{{false}}" data-index="{{batchFeedIndex[2]}}" id="video-2" objectFit="{{feedList[ batchFeedIndex[2] ].isVertical?'cover':'contain'}}" poster="{{feedList[ batchFeedIndex[2] ].coverUrl}}" showCenterPlayBtn="{{false}}" showProgress="{{false}}" src="{{feedList[ batchFeedIndex[2] ].videoUrl}}" style="will-change:transform;transform: translateX({{videoHidden||feedIndex!==batchFeedIndex[2]?'-100%':0}})"></video>
+        <cover-view useTouchEvent bindtouchcancel="touchCancel" bindtouchend="touchEnd" bindtouchstart="touchStart" class="video-action" style="display: {{animation?'none':''}};">
+            <cover-view useTouchEvent bindtap="bindClickVideo" class="box-wrapper">
+                <cover-image class="mask-top" src="https://qzonestyle.gtimg.cn/qz-proj/weishi-miniprogram/img/common/control-v2/mask-top@2x.png"></cover-image>
+                <cover-image class="mask-bottom" src="https://qzonestyle.gtimg.cn/qz-proj/weishi-miniprogram/img/common/control-v2/mask-bottom@2x.png"></cover-image>
+                <cover-view class="box-bd">
+                    <cover-view class="mod-player mod-player-b">
+                        <cover-view class="player-status" style="display: {{isPlaying?'none':''}};">
+                            <cover-view class="start-wrap">
+                                <cover-view class="btn-play">
+                                    <cover-image class="icon icon-play" src="https://qzonestyle.gtimg.cn/qz-proj/weishi-miniprogram/img/common/player-v2/icon_time_out.png"></cover-image>
+                                </cover-view>
+                            </cover-view>
+                            <cover-view class="delete-wrap" style="display:none;">
+                                <cover-view class="txt">
+                                    <cover-view>oh～该作品已被删除了，还有更多有趣的视频哦～</cover-view>
+                                </cover-view>
+                            </cover-view>
+                        </cover-view>
+                    </cover-view>
+                </cover-view>
+                <cover-view class="box-ft">
+                    <cover-view catchtap="gotoPersonal" class="mod-figure" data-personid="{{feedList[feedIndex].posterId}}">
+                        <cover-view class="figure-img">
+                            <cover-image class="img" mode="aspectFit" src="{{feedList[feedIndex].poster.avatar}}"></cover-image>
+                        </cover-view>
+                        <cover-view class="figure-txt">
+                            <cover-view class="figure-txt-con">
+                                <cover-view class="tit">{{feedList[feedIndex].poster.nick}}</cover-view>
+                            </cover-view>
+                        </cover-view>
+                        <cover-view useTouchEvent catchtap="bindShowModal" class="figure-act">
+                            <cover-view useTouchEvent class="btn btn-follow" title="关注">
+                                <cover-image useTouchEvent class="icon icon-follow" mode="aspectFit" src="https://qzonestyle.gtimg.cn/qz-proj/weishi-miniprogram/img/common/figure/icon-follow.png"></cover-image>
+                            </cover-view>
+                        </cover-view>
+                    </cover-view>
+                    <cover-view class="mod-figure-content">
+                        <cover-view class="desc">{{feedList[feedIndex].feedDesc}}</cover-view>
+                        <cover-view useTouchEvent catchtap="bindTopicTap" class="topic" data-topic-id="{{feedList[feedIndex].topicId}}" wx:if="{{feedList[feedIndex].topicId}}">
+                            <cover-image useTouchEvent class="before" mode="aspectFill" src="https://qzonestyle.gtimg.cn/qz-proj/weishi-miniprogram/img/common/player-v2/icon-topic@2x.png"></cover-image>
+                            <cover-view class="text">{{feedList[feedIndex].topicName}}</cover-view>
+                        </cover-view>
+                        <cover-view class="music" wx:if="{{feedList[feedIndex].materialDesc}}">
+                            <cover-image class="before" src="https://qzonestyle.gtimg.cn/qz-proj/weishi-miniprogram/img/common/player-v2/icon-music@2x.png"></cover-image>
+                            <cover-view class="text">{{feedList[feedIndex].materialDesc}}</cover-view>
+                        </cover-view>
+                    </cover-view>
+                    <cover-view class="progress-wrap">
+                        <cover-view animation="{{animationPrograss}}" class="progress"></cover-view>
+                    </cover-view>
+                    <cover-view class="btn-link-wrap">
+                        <cover-view useTouchEvent catchtap="bindShowModal" class="btn btn-link">
+                            <cover-image useTouchEvent class="btn-bg" src="https://qzonestyle.gtimg.cn/qz-proj/weishi-miniprogram/img/common/player-v2/btn-download@2x.png"></cover-image>
+                            <cover-image useTouchEvent class="icon" src="https://qzonestyle.gtimg.cn/qz-proj/weishi-miniprogram/img/common/player-v2/icon-logo@2x.png"></cover-image>
+                            <cover-view useTouchEvent class="btn-link-txt">下载APP</cover-view>
+                        </cover-view>
+                    </cover-view>
+                </cover-view>
+                <cover-view useTouchEvent catchtap="bindReturn" class="back-wrap" wx:if="{{!mainPage}}">
+                    <cover-image useTouchEvent class="icon-back" src="https://qzonestyle.gtimg.cn/qz-proj/weishi-miniprogram/img/topic/icon_back.png"></cover-image>
+                </cover-view>
+            </cover-view>
+            <cover-view class="mod-control">
+                <cover-view class="control-wrap">
+                    <cover-view useTouchEvent catchtap="bindShowModal" class="item">
+                        <cover-image useTouchEvent class="icon icon-video" mode="aspectFit" src="https://qzonestyle.gtimg.cn/qz-proj/weishi-miniprogram/img/common/control-v2/icon-hepai@2x.png"></cover-image>
+                        <cover-view useTouchEvent class="txt">合拍</cover-view>
+                    </cover-view>
+                    <cover-view useTouchEvent catchtap="bindLike" class="item {{feedList[feedIndex].isDing?'act':''}}">
+                        <cover-image useTouchEvent class="icon icon-like" mode="aspectFit" src="https://qzonestyle.gtimg.cn/qz-proj/weishi-miniprogram/img/common/control-v2/icon-like@2x.png"></cover-image>
+                        <cover-image useTouchEvent class="icon icon-liked" mode="aspectFit" src="https://qzonestyle.gtimg.cn/qz-proj/weishi-miniprogram/img/common/control-v2/icon-like-act@2x.png"></cover-image>
+                        <cover-view class="txt">{{number.format(feedList[feedIndex].dingCount)}}</cover-view>
+                    </cover-view>
+                    <cover-view useTouchEvent catchtap="bindShowComment" class="item">
+                        <cover-image useTouchEvent class="icon icon-comment" mode="aspectFit" src="https://qzonestyle.gtimg.cn/qz-proj/weishi-miniprogram/img/common/control-v2/icon-comment@2x.png"></cover-image>
+                        <cover-view useTouchEvent class="txt">{{number.format(feedList[feedIndex].commentNum)}}</cover-view>
+                    </cover-view>
+                    <cover-view useTouchEvent catchtap="bindShowModal" class="item" hidden="{{!feedList[feedIndex].materialThumburl}}">
+                        <cover-view animation="{{animationMusic}}" class="music-cover">
+                            <cover-image class="img" mode="aspectFit" src="{{feedList[feedIndex].materialThumburl}}"></cover-image>
+                            <cover-view class="img-before"></cover-view>
+                            <cover-view class="img-after"></cover-view>
+                        </cover-view>
+                        <cover-view class="note-wrap">
+                            <cover-view class="note"></cover-view>
+                            <cover-view class="note"></cover-view>
+                            <cover-view class="note"></cover-view>
+                        </cover-view>
+                    </cover-view>
+                </cover-view>
+            </cover-view>
+            <cover-view useTouchEvent catchtap="bindCommentListTap" class="pop pop-comment-list" data-id="commentList" wx:if="{{isShowComment&&isShowCommentLoaded}}">
+                <cover-view class="mod-box">
+                    <cover-view class="box-hd">
+                        <cover-view class="tit">评论 {{feedList[feedIndex].commentNum}}</cover-view>
+                        <cover-view useTouchEvent catchtap="bindHideComment" class="btn-close">
+                            <cover-image class="icon icon-close" src="https://qzonestyle.gtimg.cn/qz-proj/weishi-miniprogram/img/common/control/icon-close-s@2x.png"></cover-image>
+                        </cover-view>
+                    </cover-view>
+                    <cover-view class="box-bd">
+                        <block wx:if="{{comments.length}}">
+                            <cover-view class="list">
+                                <cover-view class="item" wx:for="{{comments}}" wx:for-item="comment" wx:key="id">
+                                    <cover-view class="mod-figure">
+                                        <cover-view class="figure-img">
+                                            <cover-image alt="{{comment.poster.nick}}" src="{{comment.poster.avatar}}"></cover-image>
+                                        </cover-view>
+                                        <cover-view class="figure-txt">
+                                            <cover-view class="figure-txt-con">
+                                                <cover-view class="tit">
+                                                    <cover-view class="user-name" id="posterNick">{{comment.poster.nick}}</cover-view>
+                                                </cover-view>
+                                                <cover-view class="txt">{{comment.wording}}</cover-view>
+                                                <cover-view class="time">{{date.getTimeStr(comment.createTime)}}</cover-view>
+                                                <cover-view useTouchEvent catchtap="bindShowModal" class="favor {{comment.isDing?'liked':''}}" data-comment-id="{{comment.id}}" data-feed-id="{{feedList[feedIndex].id}}">
+                                                    <cover-image class="icon icon-unlike" src="https://qzonestyle.gtimg.cn/qz-proj/weishi-miniprogram/img/common/control/icon-unlike-dark@2x.png"></cover-image>
+                                                    <cover-image class="icon icon-like" src="https://qzonestyle.gtimg.cn/qz-proj/weishi-miniprogram/img/common/control/icon-like-dark@2x.png"></cover-image>
+                                                    <cover-view class="num">{{number.format(comment.dingNum)}}</cover-view>
+                                                </cover-view>
+                                            </cover-view>
+                                            <cover-view class="seprate"></cover-view>
+                                        </cover-view>
+                                    </cover-view>
+                                </cover-view>
+                            </cover-view>
+                            <cover-view useTouchEvent catchtap="bindShowModal" class="guide-app">
+                                <cover-view class="guide-btn">去APP查看更多评论</cover-view>
+                            </cover-view>
+                        </block>
+                        <block wx:else>
+                            <cover-view class="mod-status">
+                                <cover-view class="txt">暂无评论</cover-view>
+                            </cover-view>
+                            <cover-view useTouchEvent catchtap="bindShowModal" class="guide-app">
+                                <cover-view useTouchEvent class="guide-btn">去APP评论</cover-view>
+                            </cover-view>
+                        </block>
+                    </cover-view>
+                    <cover-view class="box-ft" wx:if="{{false}}">
+                        <cover-view class="mod-input">
+                            <cover-view class="input-wrap">
+                                <cover-view class="input"></cover-view>
+                            </cover-view>
+                        </cover-view>
+                    </cover-view>
+                </cover-view>
+            </cover-view>
+            <cover-view useTouchEvent catchtap="bindTapModal" class="mod-pop-download" data-id="modal" wx:if="{{showModal}}">
+                <cover-view class="pop-inner">
+                    <cover-view useTouchEvent catchtap="bindHideModal" class="close">
+                        <cover-image useTouchEvent class="icon-close" src="https://qzonestyle.gtimg.cn/qz-proj/weishi-miniprogram/img/topic/close.png"></cover-image>
+                    </cover-view>
+                    <cover-image class="download" src="https://qzonestyle.gtimg.cn/qz-proj/weishi-miniprogram/img/topic/qrcode.png"></cover-image>
+                    <cover-view class="guide">截屏后扫描安装</cover-view>
+                    <cover-view useTouchEvent catchtap="saveAlbum" class="btn">保存到手机相册</cover-view>
+                </cover-view>
+            </cover-view>
+        </cover-view>
+    </view>
+    <view class="mod-loading mod-loading-feed" hidden="{{!videoHidden||animation}}">
+        <view class="icon icon-loading-s"></view>
+    </view>
+</view>
+`<wxs module="date" src="../../assets/wxs/date.wxs" />
+<wxs module="number" src="../../assets/wxs/number.wxs" />

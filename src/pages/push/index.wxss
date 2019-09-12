@@ -1,0 +1,222 @@
+/* pages/live/push.wxss */
+.live-container {
+  width: 100%;
+  height: 100vh;
+  position: relative; 
+}
+.live-view {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+}
+.cover-image {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index:1;
+}
+.user-info-view {
+  position: absolute;
+  width: 560rpx;
+  left: 0;
+  z-index: 2;
+  overflow: hidden;
+  display:flex;
+  flex-direction:row;
+  align-items:center;
+}
+.user-info-view .back {
+  width: 50rpx;
+  height: 60rpx;
+  margin: 0 10rpx;
+}
+.user-info-view .self-box {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 80rpx;
+  margin-right: 20rpx;
+}
+.self-box .avatar {
+  display: inline-block;
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 100%;
+  margin: 10rpx;
+  vertical-align: middle;
+}
+.user-info-view .self-box .info, .user-info-view .self-box .follow {
+  display: inline-block;
+  vertical-align: middle;
+}
+.user-info-view .self-box .info .nickname {
+  font-size: 24rpx;
+  height:40rpx;
+  line-height:40rpx;
+  width: 100rpx;
+  color: #fff;
+}
+.user-info-view .self-box .info .onlines {
+  font-size: 20rpx;
+  height:24rpx;
+  line-height:24rpx;
+  color: #fff;
+}
+.user-info-view .self-box .follow {
+  width: auto;
+  height: 40rpx;
+  line-height: 40rpx;
+  padding: 0 20rpx;
+  background: #05d380;
+  border-radius: 60rpx;
+  font-size: 20rpx;
+  margin: 10rpx; 
+  color: #fff;
+}
+.user-box {
+  position: relative;
+  height: 60rpx;
+  width: 142rpx;
+}
+.user-box .avatar {
+  position: absolute;
+  border: 2rpx solid #fff;
+  width: 58rpx;
+  height: 58rpx;
+  border-radius: 100%;
+}
+.avatar1 {
+  left: 0;
+  z-index: 3
+}
+.avatar2 {
+  left: 40rpx;
+  z-index: 2
+}
+.avatar3 {
+  left: 80rpx;
+  z-index: 1
+}
+.comments-view {
+  position: absolute;
+  width: 450rpx;
+  bottom: 110rpx;
+  left: 20rpx;
+  overflow: scroll;
+  z-index: 3;
+}
+.comments-view .comments {
+  margin-top: 20rpx;
+}
+.comments-view .comments cover-image{
+  display: inline-block;
+  width: 50rpx;
+  height: 50rpx;
+  border-radius: 100%;
+  margin-right: 20rpx;
+  vertical-align: top;
+}
+.replay-view {
+  display: inline-block;
+  max-width: 350rpx;
+  font-size: 24rpx;
+  background: rgba(0, 0, 0, 0.2);
+  padding: 10rpx 10rpx;
+  vertical-align: middle;
+  border-radius: 24rpx;
+  color: #fff;
+}
+.replay-view .nickname {
+  display: inline;
+  color: #face17;
+  white-space: normal;
+  vertical-align: top;
+}
+.replay-view .replay {
+  display: inline;
+  white-space: normal;
+  vertical-align: top;
+}
+.online-tils {
+  font-size: 24rpx;
+  display: inline-block;
+  background: rgba(0, 0, 0, 0.2);
+  padding: 10rpx 10rpx;
+  border-radius: 24rpx;
+  white-space: pre-wrap;
+  margin-top: 10rpx;
+  color: #fff;
+}
+.live-bottom-box {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-top: 1rpx solid rgba(255, 255, 255, 0.1);
+  z-index: 4
+}
+.live-bottom-box .comments-btn {
+  width: 260rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 30rpx;
+  padding: 0 20rpx;
+  margin: 0 20rpx;
+}
+.live-bottom-box .btn-view {
+  width: 400rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+.live-bottom-box .comments-btn cover-view {
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 24rpx;
+  color: rgba(255, 255, 255, 0.6)
+}
+.live-bottom-box .comments-btn cover-image {
+  display: inline-block;
+  width: 40rpx;
+  height: 40rpx;
+  vertical-align: middle;
+  margin-right: 20rpx;
+}
+.live-bottom-box .btn-view .btn {
+  width: 70rpx;
+  height: 70rpx;
+}
+.message-view {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 100rpx;
+}
+.message-view .message-input {
+  box-sizing: border-box;
+  height: 100rpx;
+  padding: 10rpx 20rpx;
+}
+.message-view .send-message-btn {
+  position: absolute;
+  width: 120rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+  z-index:8;
+  top:0;
+  right:0;
+  color:#05d380;
+  font-size:32rpx;
+  font-weight:300;
+  letter-spacing:4rpx;
+  border-left:2rpx solid #ccc;
+  margin:10rpx 0;
+}

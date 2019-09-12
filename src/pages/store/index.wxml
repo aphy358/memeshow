@@ -1,0 +1,141 @@
+<!--pages/my/index.wxml-->
+<!--index.wxml-->
+<!-- <nav-bar innerTitle="店铺" isShowBack="{{true}}"></nav-bar> -->
+<view class="container">
+    <view  class="bg-show">
+      <text wx:if="{{bgShow.btnTitle}}" class="bg-show-btn btn">{{bgShow.btnTitle}}</text>
+      <image mode="heightFix" wx:else class="bg-show-img" src="/assets/images/background/backgrond.jpg"></image>
+
+      <view  class="store">
+      <!-- <view class="store-right-area"  wx:if="{{isMySelf}}">
+        <view class=" btn icon-btn live-btn">
+          <image src="/assets/images/live2.png"></image>
+          <text>直播中</text>
+          <image class="arrowR" src="/assets/images/arrowR.png"></image>
+        </view>
+      </view>    -->
+      <view class="store-content">
+       <view class="store-content-wrap">
+        <image class="store-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+        <view class="store-nickname fz30 mt16">轻奢侈主义</view>
+        <view>
+          <text class="store-label">古玩</text>
+          <text class="store-label">奢侈品</text>
+        </view>
+        <view class="store-motto">潮流尖货，全在轻奢侈主义旗舰</view>
+        <view class="mt40 store-state-wrap">
+          <view class="store-state">
+            <view class="number">9102</view>
+            <view>获赞</view>
+          </view>
+          <view class="column-divider">|</view>
+          <view class="store-state">
+            <view class="number">4102</view>
+            <view>关注</view>
+          </view>
+          <view class="column-divider">|</view>
+          <view class="store-state">
+            <view class="number">890</view>
+            <view>粉丝数</view>
+          </view>
+        </view>
+	    </view>
+      </view>
+    </view>
+    </view>
+    
+    
+
+    <view class='my-content mt24'>
+    <view class='my-content-wrap'>
+      <slide-tab scroll-view-x-class="scroll-view-x" active-class="active" class="slide-tab" tList="{{tList}}"   bind:changeCurrent="swichNav" currentTab="{{currentTab}}" >
+        <swiper height="300" class="slide-content" current="{{currentTab}}"  bindchange="bindChange" style="height:{{currentTab===1?(list[currentTab].length)*1105+220:(list[currentTab].length)/2>1?((list[currentTab].length)/2+(list[currentTab].length)%2)*359+220:519}}rpx">
+        <block wx:for="{{list}}" wx:key="index">
+        <swiper-item>   
+
+
+          <view wx:if="{{currentTab===1}}" class="dynamics-list">
+           <view wx:for="{{item}}" wx:key="index" class='dynamics-item mt16'>
+            <view class="flex-row avatar-area">
+              <image class="dynamics-avatar  icon70-radius mr16" src="{{userInfo.avatarUrl}}"></image>
+              <view class="nick-name-area">
+               <view class="fz30 fc3">安然</view>
+               <view class="date fc2">07-30</view>
+              </view>
+            </view>
+            <view class="dynamics-content">
+              <view class="title mt24 fz30 fc3">
+              <text class="fcs2 fw5">#我就是“控御”有术</text>
+             hahahahhahahha
+              </view>
+              <image class="image mt24" src="https://wx4.sinaimg.cn/mw690/5eef6257gy1fwx82b34ivg206w09znpd.gif"></image>
+              <view class="flex-row-around slogon-area">
+               <view class="flex-row-around slogon">
+                <!-- <image class="icon" src="/assets/images/playing.png"></image> -->
+                <text class="fc-white fz24">@安然创作的原声</text>
+               </view>
+               <view bindtap='playHandle'>
+                <i wx:if="{{isPlaying}}" class="iconfont icon-pause"></i>
+                <i wx:else class="iconfont icon-play"></i>
+                
+               </view>
+              
+              </view>
+            </view>
+
+            <view class="flex-row-space dynamics-bottom fc3 fz26 mt24 mb24">
+              <view class="slogon">
+                <i class="iconfont icon-my-like"></i>
+                <text >点赞</text>
+               </view>
+               <view class="slogon">
+                <i class="iconfont icon-my-comment"></i>
+                <text>评论</text>
+               </view>
+               <view class="slogon">
+                <i class="iconfont icon-my-share"></i>
+                <text >转发</text>
+               </view>
+
+               <view class="slogon">
+                <i class="iconfont icon-my-share2"></i>
+               </view>
+            
+            </view>
+        </view>
+        </view>     
+        
+        <scroll-view wx:if="{{currentTab!=1}}" scroll-y="true" class="card-list" scroll-with-animation="true" lower-threshold="1" bindscrolltolower="scrolltolower" style="" hidden="{{item ? flase : true}}">
+        <view class="card-wrap">
+              <view class="card-item"
+                wx:for="{{item}}" wx:key="index">
+                <navigator hover-class="item-hover"url="/pages/push/index?id">
+                <view class="img-area">
+                  <image style='width:248rpx;' mode="widthFix" src="https://wx4.sinaimg.cn/mw690/5eef6257gy1fwx82b34ivg206w09znpd.gif" style="height: 248.984px;"></image>
+                </view>
+                <view class="card-label">
+                  <image src="/assets/images/icon_like.png"></image>
+                  <text>172</text>
+                </view>
+                </navigator>
+              </view>
+        </view>
+              </scroll-view>
+              <view class="no-item">
+                <view class="no-more-tips">暂时没有更多了</view>
+              </view>
+            </swiper-item>
+            </block>
+        </swiper>
+      </slide-tab>
+      </view>
+    </view>
+
+    <view class="footer" wx:if="{{!inputShow}}">
+      <button  class='com-btn fz26 fc1' bindtap='focusStoreHandle'>
+       {{!hasFoucsed?"➕ 关注店铺":"已关注"}}
+      </button>
+  </view>
+</view>
+
+

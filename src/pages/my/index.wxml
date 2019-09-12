@@ -1,0 +1,216 @@
+<!--pages/my/index.wxml-->
+<!--index.wxml-->
+<!-- <nav-bar innerTitle="个人中心" isShowBack="{{true}}"></nav-bar> -->
+<view class="container">
+    <view  class="bg-show">
+      <image mode="widthFix" class="bg-show-img" src="/assets/images/background/backgrond.jpg"></image>
+    </view>
+    
+    <view  class="userinfo">
+      <view class="userinfo-top">
+	      <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+        <view class="userinfo-right-area"  wx:if="{{isMySelf}}">
+          <view class="button btn icon-btn collect-btn ">
+            <i class="iconfont icon-collect"></i>
+            收藏
+          </view>
+          <view class="button btn icon-btn invite-btn">
+            <i class="iconfont icon-invite"></i>
+          </view>
+          <view class="button btn icon-btn qrCode-btn ">
+            <i class="iconfont icon-QRcode"></i>
+          </view>     
+        </view>   
+        <view class="userinfo-right-area"  wx:else="{{!isMySelf}}"> 
+          <text class="btn txt-btn send-btn">发消息</text>
+          <text  class="btn icon-btn foucs-btn" bindtap="bindFocus">{{hasFoucsed?"取消关注":"+ 关注"}}</text>    
+        </view> 
+      </view>
+      <view class="userinfo-content">
+       <view class="userinfo-content-wrap">
+        <view class="userinfo-nickname">
+          安然
+        </view>
+        <view class="userinfo-id">
+         <text>ID: {{userInfo.id}}</text>
+         <view class="tag-area">
+             <image src="{{userInfo.avatarUrl}}"></image>
+             <navigator url="/pages/store/products/index">
+             进入店铺
+            </navigator>
+          </view>
+        </view>
+
+
+        <view class="account-area">
+          <image class="bg" src="/assets/images/background/Group4Copy.png"></image>
+          <view class="account-main fc-white">
+            <view class="body">
+               <view class="tag fz24">我的资产</view>
+               <view class="content fz48 fw8">
+                  <text class="label fz30 fw6">￥</text>
+                  <text>680.00</text>
+              </view>
+            </view>
+            <view class="btn text goto" bindtap=''>
+            <text>查看</text>
+            <i class="iconfont icon-right-arrow"></i>
+            
+            </view>
+          </view>
+        </view>
+
+        <view class="divider"></view>
+        
+        <view>
+          
+          <view><text class="userinfo-motto">{{userInfo.motto}}</text></view>
+
+          <view class="info-tag-area flex-row mt16">
+              <i class="iconfont icon-my-address mr8"></i>
+             地区：广州
+          </view>
+          <view class="info-tag-area flex-row mt8">
+              <i class="iconfont icon-my-QQ mr8"></i>
+             QQ：2424082761
+          </view>
+          <view class="info-tag-area flex-row mt8">
+              <i class="iconfont icon-my-Qzone mr8"></i>
+             QQ空间：安然的生活
+          </view>
+          <view class="info-tag-area flex-row mt8 mb32">
+              <i class="iconfont icon-my-wechat mr8"></i>
+             微信：dsfsd
+          </view>
+          
+          
+
+
+
+
+          <view>
+          <view class="userinfo-state">
+            <text class="number">{{userInfo.like}}</text>
+          获赞</view>
+          <view class="userinfo-state">
+            <text class="number">{{userInfo.focus}}</text>
+          关注</view>
+          <view class="userinfo-state">
+            <text class="number">{{userInfo.fans}}</text>
+           粉丝</view>
+          </view>
+        </view>
+	    </view>
+      </view>
+      
+    </view>
+
+    <view class='my-content'>
+    <view class='my-content-wrap'>
+      <slide-tab scroll-view-x-class="scroll-view-x" active-class="active" class="slide-tab" tList="{{tList}}"   bind:changeCurrent="swichNav" currentTab="{{currentTab}}" >
+        <swiper class="slide-content" current="{{currentTab}}"  bindchange="bindChange" style="height:{{currentTab===1?(list[currentTab].length)*1124:((list[currentTab].length)/3>1?((list[currentTab].length)/3+(list[currentTab].length)%3)*359:519)}}rpx">
+        <block wx:for="{{list}}" wx:key="index">
+        <swiper-item wx:if="{{index==0}}">
+         <scroll-view  scroll-y="true" class="card-list" scroll-with-animation="true" lower-threshold="1" bindscrolltolower="scrolltolower" style="" >
+        <view class="card-wrap">
+              <view class="card-item"
+                wx:for="{{list[0]}}" wx:key="index">
+                <navigator hover-class="item-hover"url="/pages/video/index?id">
+                <view class="img-area">
+                  <image style='width:248rpx;' mode="aspectFill" src="{{index<items.length?items[index].url:(index>2*items.length?items[index-2*items.length].url:items[index-items.length].url)}}" style="height: 248.984px;"></image>
+                </view>
+                <view class="card-label">
+                  <i class="iconfont icon-my-play"></i>
+                  <text style="font-size:28rpx;color:#fff">172</text>
+                </view>
+                </navigator>
+              </view>
+        </view>
+        </scroll-view>
+        </swiper-item>
+
+        <swiper-item wx:if="{{index==1}}">
+        <view  class="dynamics-list">
+           <view wx:for="{{list[1]}}" wx:key="index" class='dynamics-item mt16'>
+            <view class="flex-row avatar-area">
+              <image class="dynamics-avatar  icon70-radius mr16" src="{{userInfo.avatarUrl}}"></image>
+              <view class="nick-name-area">
+               <view class="fz30 fc3">安然</view>
+               <view class="date fc2">07-30</view>
+              </view>
+            </view>
+            <view class="dynamics-content">
+              <view class="title mt24 fz30 fc3">
+              <text class="fcs2 fw6">#我就是“控御”有术</text>
+             hahahahhahahha
+              </view>
+              <image class="image mt24" mode="aspectFill" src="{{index<items.length?items[index].url:(index>2*items.length?items[index-2*items.length].url:items[index-items.length].url)}}"></image>
+              <view class="flex-row-around slogon-area">
+               <view class="flex-row-around slogon">
+                <text class="fc-white fz24">@安然创作的原声</text>
+               </view>
+               <view bindtap='playHandle'>
+                <i wx:if="{{isPlaying}}" class="iconfont icon-pause"></i>
+                <i wx:else class="iconfont icon-play"></i>
+                
+               </view>
+              
+              </view>
+            </view>
+
+            <view class="flex-row-space dynamics-bottom fc3 fz26 mt24 mb24">
+              <view class="slogon">
+                <i class="iconfont icon-my-like"></i>
+                <text >点赞</text>
+               </view>
+               <view class="slogon">
+                <i class="iconfont icon-my-comment"></i>
+                <text>评论</text>
+               </view>
+               <view class="slogon">
+                <i class="iconfont icon-my-share"></i>
+                <text >转发</text>
+               </view>
+               <view class="slogon">
+                <i class="iconfont icon-my-share2"></i>
+               </view>
+            </view>
+        </view>
+      </view>
+      </swiper-item> 
+
+      <swiper-item wx:if="{{index==2}}">
+      <scroll-view  scroll-y="true" class="card-list" scroll-with-animation="true" lower-threshold="1" bindscrolltolower="scrolltolower" style="" 
+     
+     >
+        <view class="card-wrap">
+              <view class="card-item"
+                wx:for="{{list[2]}}" wx:key="index">
+                <navigator hover-class="item-hover"url="/pages/video/index?id">
+                <view class="img-area">
+                  <image style='width:248rpx;' mode="aspectFill" src="{{index<items.length?items[index].url:(index>2*items.length?items[index-2*items.length].url:items[index-items.length].url)}}" style="height: 248.984px;"></image>
+                </view>
+                <view class="card-label">
+                  <i class="iconfont icon-like"></i>
+                  
+                  <text style="font-size:28rpx;color:#fff">1024</text>
+                </view>
+                </navigator>
+              </view>
+        </view>
+        </scroll-view>
+        </swiper-item>
+
+         
+  
+        </block>
+        
+        </swiper>
+
+        <view class="no-more-tips">暂时没有更多了</view>
+      </slide-tab>
+      </view>
+    </view>
+</view>
+
+

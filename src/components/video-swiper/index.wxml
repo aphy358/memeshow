@@ -1,0 +1,16 @@
+<!--components/video_swipe/index.wxml-->
+<swiper
+  vertical
+  duration="{{500}}"
+  circular="{{circular}}"
+  bindchange="swiperChange"
+>
+  <swiper-item wx:if="{{item.id != null}}" id="{{item.id}}" wx:for="{{bufferItems}}" wx:key="id">
+    <video id="v-{{item.id}}" 
+      bindtouchstart='touchstart'
+      bindtouchmove='touchmove' 
+      bindtouchend='touchend' 
+      bindtouchcancel='touchcancel'
+      controls="{{item.controls}}" src="{{item.videoUrl}}" autoplay='{{item.autoplay}}'/>
+  </swiper-item>
+</swiper>

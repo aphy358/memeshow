@@ -1,0 +1,11 @@
+<nav-bar innerTitle="编辑封面" isShowBack="{{true}}"></nav-bar>
+<view class="cover-container clearfix">
+    <view bindtap="addImg" class="image-outer">
+        <image class="para-img" mode="aspectFill" src="/assets/images/add-cover.png"></image>
+    </view>
+    <view bindtap="chooseCover" class="image-outer {{item.selected?'selected':''}}" data-index="{{index}}" wx:for="{{articleImages}}">
+        <image class="para-img" mode="aspectFill" src="{{item.img}}">
+            <image class="select-icon" mode="aspectFit" src="/assets/images/cover-selected.png"></image>
+        </image>
+    </view>
+</view>

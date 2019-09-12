@@ -1,0 +1,76 @@
+<view bindtouchstart="closeAddPanel" class="edit-container">
+    <nav-bar innerTitle="编辑" isShowBack="{{true}}"></nav-bar>
+    <view class="main-view">
+        <view bindtap="editTitle" class="cover">
+            <!-- <image mode="aspectFill" src="{{cover}}"></image> -->
+            <view class="title line-clamp-2">{{title||'点击设置标题'}}</view>
+            <view class="footer-func">
+                <view catchtap="editMusic" class="btn-outer">
+                    <button class="btn-choose-music">
+                        <i class="iconfont icon-yinfu {{music.name?'':'hidden'}}"></i>
+                        <view class="music-name line-clamp-1">{{music.name||'添加音乐'}}</view>
+                    </button>
+                </view>
+                <view catchtap="changeCover" class="btn-outer">
+                    <button>更换封面</button>
+                </view>
+            </view>
+        </view>
+        <view class="para-add-outer-btn">
+            <view catchtap="expandAdd" class="para-add" data-index="-1">
+                <i class="iconfont icon-create"></i>
+            </view>
+        </view>
+        <view animation="{{animationData}}" class="para-add-outer" style="top:{{addPanelTop}}px; bottom:{{addPanelBottom}}rpx;">
+            <view class="tranform-container">
+                <image class="createtipbg {{curIndex==-1?'':'down'}}" src="/assets/images/createtipbg.png"></image>
+                <view class="para-adding">
+                    <view catchtap="addImg" class="adding-li photo" hoverClass="hover">
+                        <image mode="aspectFill" src="/assets/images/image-icon.png"></image>
+                        <text>图片</text>
+                    </view>
+                    <view catchtap="addText" class="adding-li text" hoverClass="hover">
+                        <image mode="aspectFill" src="/assets/images/text-icon.png"></image>
+                        <text>文字</text>
+                    </view>
+                    <view catchtap="addVideo" class="adding-li video" hoverClass="hover">
+                        <image mode="aspectFill" src="/assets/images/video-icon.png"></image>
+                        <text>视频</text>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="para-container" wx:for="{{paraList}}" wx:for-item="para" wx:key="index">
+            <block wx:if="{{para.img||para.video_thumbnail||para.text}}">
+                <view class="para">
+                    <i bindtap="delPara" class="btn-del-para iconfont icon-guanbi" data-index="{{index}}"></i>
+                    <image class="edit-img-tips" src="/assets/images/edit-img-tips.png" wx:if="{{editImgTipsIndex==index&&isShowEditImgTips}}"></image>
+                    <view class="thumb">
+                        <i class="iconfont icon-shipin" wx:if="{{para.video_thumbnail}}"></i>
+                        <image bindtap="editImg" data-index="{{index}}" data-type="{{para.type}}" mode="aspectFill" src="{{para.img||para.video_thumbnail||'/imgs/text_preview.png'}}"></image>
+                    </view>
+                    <view bindtap="editPara" class="text line-clamp-4 {{para.text?'has-content':''}}" data-index="{{index}}" data-type="{{para.type}}">
+            {{para.text||'点击添加文字'}}
+          </view>
+                    <view class="up-down-container">
+                        <i bindtap="pullUp" class="btn-up iconfont icon-up {{index===0?'first-child':''}}" data-index="{{index}}"></i>
+                        <i bindtap="pullDown" class="btn-down iconfont icon-up {{index===paraList.length-1?'last-child':''}}" data-index="{{index}}"></i>
+                    </view>
+                </view>
+                <view class="para-add-outer-btn">
+                    <view catchtap="expandAdd" class="para-add" data-index="{{index}}">
+                        <i class="iconfont icon-create"></i>
+                    </view>
+                </view>
+            </block>
+        </view>
+    </view>
+    <view class="bottom-btn-container">
+        <button bindtap="removeDraft" class="finish-btn remove-btn" data-draft-key="{{draftKey}}" wx:if="{{draftKey}}">删除</button>
+        <button bindtap="createArticle" class="finish-btn" disabled="{{submitClicked}}" wx:if="{{phone}}">完成</button>
+        <button bindgetphonenumber="getPhoneNumber" class="finish-btn" openType="getPhoneNumber" wx:else>完成</button>
+    </view>
+    <view bindtap="closeTitleLead" class="title-lead" wx:if="{{showTitleLead}}">
+        <image src="/assets/images/title_lead.png"></image>
+    </view>
+</view>

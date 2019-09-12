@@ -1,0 +1,44 @@
+var fixDateLen = (function(num) {
+    num = num || 0;
+    return (num <= 9 ? '0' + num : num + '')
+});
+var getTimeStr = (function(time, nowDate) {
+    time = time || 0;
+    nowDate = nowDate || getDate();
+    var date = getDate(time * 1000);
+    var str;
+    var seconds;
+    var days;
+    if (date > nowDate) {
+        return ('刚刚')
+    };
+    if (date.getFullYear() === nowDate.getFullYear()) {
+        if (date.getMonth() === nowDate.getMonth() && date.getDate() === nowDate.getDate()) {
+            seconds = (nowDate - date) / 1000;
+            if (seconds < 3600) {
+                if (seconds < 60) {
+                    str = '刚刚'
+                } else {
+                    str = parseInt(seconds / 60) + '分钟前'
+                }
+            } else {
+                str = parseInt(seconds / 3600) + '小时前'
+            }
+        } else {
+            days = nowDate.getDate() - date.getDate();
+            if (days === 1) {
+                str = '昨天 ' + fixDateLen(date.getHours() + ':' + fixDateLen(date.getMinutes()))
+            } else if (days === 2) {
+                str = '前天 ' + fixDateLen(date.getHours() + ':' + fixDateLen(date.getMinutes()))
+            } else {
+                str = fixDateLen(date.getMonth() + 1) + '-' + fixDateLen(date.getDate())
+            }
+        }
+    } else {
+        str = date.getFullYear() + '-' + fixDateLen(date.getMonth() + 1) + '-' + fixDateLen(date.getDate())
+    };
+    return (str)
+});
+module.exports = ({
+    getTimeStr: getTimeStr,
+});

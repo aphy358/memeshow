@@ -1,0 +1,10 @@
+<!--pages/create/text.js.wxml-->
+<view class="text-editor">
+  <nav-bar innerTitle="编辑文字" isShowBack="{{true}}"></nav-bar>
+  <view class="textarea-container">
+    <textarea autoFocus="true" bindconfirm="onconfirm" bindinput="oninput" maxlength="5000" placeholderStyle="color: #B7BABE" value="{{content}}"></textarea>
+  </view>
+  <view class="count {{error?'error':''}}">
+      <text class="number">{{inputLen}}</text>/{{maxLen}}
+  </view>
+</view>

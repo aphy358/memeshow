@@ -1,11 +1,28 @@
+## Mofanshow
+>一个集 IM 和视频点播功能的小程序
 
-项目创建步骤：
+#### 快速开始
 
-1、先按照官方 vue-cli（v3.0.0-beta.11） 的步骤一路走下来，注意参考：https://majing.io/posts/10000017191170， 这里会教你从一开始就配置好 css 预处理配置、单元测试、router、vuex 等。注意：运行 vue create my-project 的时候要用 windows 自带的 git bash 面板，否则不能正常的上下选择选项。
+``` bash
+# 首先是安装开发依赖包
+npm install
 
-2、在根目录下新建文件 vue.config.js，然后再在里面新增自定义配置，比如对 scss 的支持，具体步骤请参考：https://github.com/vuejs/vue-cli/blob/dev/docs/css.md
-但是要安装相关插件：npm install -D sass-loader node-sass，当然，如果你在最开始运行 vue-cli 的时候就已经配置好了这些就不用在这一步进行手动配置了。
+# 开发模式，然后使用微信开发者工具打开 dist 目录进行开发调试
+npm run dev
 
-3、如果是用 windows 自带的 git bash 面板安装 cnpm i，则所有命令：npm run dev/npm run test 都要用 windows 自带的 git bash 面板，否则会报错，反之如果是用 GIT BASH 面板安装 cnpm i，则所有命令都要用 GIT BASH 面板运行。
+# 运行构建，构建结果也是放在 dist 目录，用微信开发者工具打开该目录进行最后的测试，没问题后便可上传代码
+npm run build
 
-4、
+# 运行代码检查
+npm run lint
+```
+
+#### 注意事项
+
+* 该项目运行 ```npm run build``` 构建时是主包分包一起构建的，所有的公共代码包都默认放在 ```dist``` 目录下（比如 ```common.js```、```common_IM.js``` 等），自主开发的 ```moveFilesPlugin.js``` 插件会将属于各个分包的公共代码包移动到各自的分包目录下（比如将 ```common_IM.js``` 移动到 ```IM``` 目录下），以保证代码正确运行
+
+* 如果需要添加更多的分包，则在 ```src/packages``` 目录下添加即可，目录结构参照 ```IM``` 分包目录结构，并在 ```app.json``` 中做相应配置
+
+* 如果在项目中用到 ```input``` 组件时，不能写成 ```<input></input>```，而要写成 ```<input />```，因为前一种写法经过 ```webpack``` 压缩之后会报错
+
+* ```plugins``` 目录下放的是自主开发的 ```webpack``` 插件

@@ -1,56 +1,49 @@
 {
-  "name": "my-project2",
-  "version": "0.1.0",
-  "private": true,
+  "name": "mapp.mofanshow",
+  "version": "0.0.1",
+  "description": "mapp.mofanshow",
+  "main": "app.js",
   "scripts": {
-    "dev": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint",
-    "test": "vue-cli-service test:unit"
+    "dev": "webpack --env.NODE_ENV=development --progress --watch",
+    "build": "webpack --env.NODE_ENV=production --progress",
+    "lint": "eslint ./src --ext .js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@code.aliyun.com:mofan/mapp.mofanshow.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.4.3",
+    "@babel/plugin-transform-modules-commonjs": "^7.4.3",
+    "@babel/plugin-transform-regenerator": "^7.4.3",
+    "@babel/plugin-transform-runtime": "^7.4.3",
+    "@babel/preset-env": "^7.4.3",
+    "autoprefixer": "^9.5.1",
+    "babel-loader": "^8.0.5",
+    "copy-webpack-plugin": "^5.0.2",
+    "css-loader": "^2.1.1",
+    "cssnano": "^4.1.10",
+    "eslint": "^5.16.0",
+    "file-loader": "^3.0.1",
+    "fs-extra": "^8.0.1",
+    "globby": "^9.2.0",
+    "optimize-css-assets-webpack-plugin": "^5.0.1",
+    "postcss-import": "^12.0.1",
+    "postcss-loader": "^3.0.0",
+    "shelljs": "^0.8.3",
+    "string-replace-loader": "^2.1.1",
+    "uglifyjs-webpack-plugin": "^2.1.2",
+    "webpack": "^4.30.0",
+    "webpack-cli": "^3.3.1",
+    "wxml-loader": "^0.3.0"
   },
   "dependencies": {
-    "vue": "^2.5.16",
-    "vue-router": "^3.0.1",
-    "vuex": "^3.0.1"
-  },
-  "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.0.0-beta.11",
-    "@vue/cli-plugin-eslint": "^3.0.0-beta.11",
-    "@vue/cli-plugin-unit-mocha": "^3.0.0-beta.11",
-    "@vue/cli-service": "^3.0.0-beta.11",
-    "@vue/test-utils": "^1.0.0-beta.16",
-    "babel-core": "^6.26.3",
-    "babel-loader": "^7.1.4",
-    "chai": "^4.1.2",
-    "element-ui": "^2.3.9",
-    "eslint-loader": "^2.0.0",
-    "node-sass": "^4.9.0",
-    "sass-loader": "^7.0.1",
-    "vue-style-loader": "^4.1.0",
-    "vue-template-compiler": "^2.5.16"
-  },
-  "eslintConfig": {
-    "root": true,
-    "env": {
-      "node": true
-    },
-    "extends": [
-      "plugin:vue/essential",
-      "eslint:recommended"
-    ],
-    "rules": {},
-    "parserOptions": {
-      "parser": "babel-eslint"
-    }
-  },
-  "postcss": {
-    "plugins": {
-      "autoprefixer": {}
-    }
-  },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not ie <= 8"
-  ]
+    "@babel/runtime": "^7.4.3",
+    "dateformat": "^3.0.3",
+    "iview-weapp": "^2.0.0",
+    "lodash": "^4.17.11",
+    "miniprogram-computed": "0.0.7"
+  }
 }

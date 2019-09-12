@@ -1,0 +1,103 @@
+<!-- 引入自定义组价。'navbar-data'中navbar是自定义名字，决定了组件中'navbarData'的名字 -->
+<!-- <nav-bar innerTitle="魔范秀首页" isShowBack="{{false}}"></nav-bar> -->
+  <navigation custom="{{true}}">
+      <view class="nav-wrapper flex-row">
+          <image class="logo" src="/assets/images/background/logo.png" bindtap="gotoIM"></image>
+          <navigator class="search-wrapper flex-row" url="/pages/search/index">
+              <image src="/assets/images/search.png"></image>
+              <text>搜索{{testData}}</text>
+          </navigator>
+      </view>
+  </navigation>
+  
+  <view class="container" style="margin-top: 88rpx">
+    <!-- BEGIN 首页banner-->
+    <view class="header" style="top: {{height}}px">
+      <scroll-view class="category" scroll-x="{{true}}"
+      
+      scroll-into-view="item{{toView}}"
+      >
+        <view wx:for="{{categories}}" wx:key="{{index}}" class="category-item {{currentTab==index ? 'nav-active' : ''}}" data-current="{{index}}" bindtap="switchNav" id="item{{index}}">{{item.name}}</view>
+      </scroll-view>
+    </view>
+    
+    <swiper autoplay="{{false}}" bindchange="changePage" current="{{currentTab}}" indicatorDots="{{false}}" style="height: 100%;">
+      <block wx:for="{{list}}" wx:key="index">
+      <swiper-item wx:if="{{index!='data1'}}">
+        <scroll-view bindscrolltolower="refreshData" class="scroll-content" enableBackToTop="true" lowerThreshold="100" scrollTop="{{scrollTop}}" scrollY="true">
+          <view class="medium-container">
+           <block>
+              <view class="item-box" wx:for="{{item}}" wx:key="{{item.id}}" wx:if="{{index%2===0}}">
+                <navigator url="{{item.type!=='article' ? '/pages/'+item.type+'/index?id='+item.videoValue:'/pages/'+item.type+'/detail?id='+item.videoValue}}"
+
+                hover-class="item-hover">
+                  <view wx:if="{{item.type !== 'article'}}" class="{{item.type}}-btn type-btn"><image src="/assets/images/{{item.type}}.png"></image></view>
+                  <view class="image-box">
+                    <!-- <image mode="aspectFill" src="{{item.url}}" ></image> -->
+                   <image mode="widthFix" src="{{item.url}}" ></image>
+                  </view>
+                  <view class="item-desc">{{item.des}}</view>
+                  <view class="item-info">
+                    <view class="belonger" catchtap="toCustomer"><image src="{{item.user.avatar}}"></image>{{item.user.name}}</view>
+                    <view class="like" catchtap="like"><image src="/assets/images/like.png"></image>{{item.likes}}</view>
+                  </view>
+                </navigator>
+              </view>
+            </block>
+            <block>
+              <view class="item-box" wx:for="{{item}}" wx:key="{{item.id}}" wx:if="{{index%2!==0}}">
+                <navigator url="{{item.type!=='article' ? '/pages/'+item.type+'/index?id='+item.videoValue:'/pages/'+item.type+'/detail?id='+item.videoValue}}" hover-class="item-hover">
+                  <view wx:if="{{item.type !== 'article'}}" class="{{item.type}}-btn type-btn"><image src="/assets/images/{{item.type}}.png"></image></view>
+                  <view class="image-box">
+                    <!-- <image mode="aspectFill" src="{{item.url}}" ></image> -->
+                    <image mode="widthFix" src="{{item.url}}" ></image>
+                    
+                    
+                  </view>
+                  <view class="item-desc">{{item.des}}</view>
+                  <view class="item-info">
+                    <view class="belonger"><image src="{{item.user.avatar}}"></image>{{item.user.name}}</view>
+                    <view class="like"><image src="/assets/images/like.png"></image>{{item.likes}}</view>
+                  </view>
+                </navigator>
+              </view>
+            </block>
+            </view>
+        </scroll-view>
+      </swiper-item>
+
+      <swiper-item wx:if="{{index=='data1'}}">
+        <scroll-view   class="scroll-content"  scrollTop="{{scrollTop}}" scrollY="true">
+          <view class="card-list">
+          <view class="card-item"  wx:for="{{item}}" wx:key="index">
+            <navigator url="/pages/article/detail">
+              <view class="card-item-wrap">
+                  <view class="title-area ellipsis">
+                  {{item.des}}
+                  </view>
+                  <view class="img-area">
+                  <image style='width:100%' mode="aspectFill" src="{{item.url}}" ></image>
+                  </view>
+                  <view class="card-label">
+                    <view class="headimg-area">
+                      <image src="{{item.user.avatar}}"></image>
+                      <text>{{item.user.name}}</text>
+                    </view>
+                    <view class="state-area">
+                      <text>22230 阅读</text>
+                      <text>206 评论</text>
+                      <text>1087 点赞</text>
+                    </view>
+                  </view>
+              </view>
+            </navigator>
+          </view>
+          </view>
+        </scroll-view>
+        </swiper-item>
+
+      </block>
+      
+    </swiper>
+  </view>
+  <!-- END 首页banner-->

@@ -1,0 +1,80 @@
+{
+  "pages": [
+    "pages/aaa/index",
+    "pages/index/index",
+    "pages/video/index",
+    "pages/live/index",
+    "pages/push/index",
+    "pages/new-video/index",
+    "pages/create/index",
+    "pages/my/index",
+    "pages/create/editor",
+    "pages/create/image",
+    "pages/create/text",
+    "pages/create/music",
+    "pages/create/cover",
+    "pages/search/index",
+    "pages/store/products/index",
+    "pages/article/detail",
+    "pages/article/comments",
+    "components/hswiper-wx/hswiper",
+    "components/navTab/index",
+    "components/createor/index",
+    "components/image/index"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "魔范秀",
+    "backgroundColor": "#eeeeee",
+    "backgroundTextStyle": "light",
+    "navigationStyle": "custom"
+  },
+  "subpackages": [
+    {
+      "root": "packages/IM",
+      "pages": [
+        "pages/login/login",
+        "pages/recentchat/recentchat",
+        "pages/register/register",
+        "components/emoji/emoji",
+        "components/inputclear/inputclear",
+        "components/inputmodal/inputmodal",
+        "partials/chating/chating"
+      ]
+    },
+    {
+      "root": "packages/TTM",
+      "pages": [
+        "pages/testPage/testPage"
+      ]
+    }
+  ],
+  "tabBar": {
+    "color": "#999999",
+    "selectedColor": "#1c1c1c;",
+    "borderStyle": "white",
+    "backgroundColor": "#fff",
+    "list": [
+      {
+        "selectedIconPath": "assets/images/background/home_black.png",
+        "iconPath": "assets/images/background/home_gray.png",
+        "pagePath": "pages/index/index",
+        "text": "首页"
+      },
+      {
+        "selectedIconPath": "assets/images/background/start.png",
+        "iconPath": "assets/images/background/start.png",
+        "pagePath": "pages/create/index",
+        "text": "开始创作"
+      },
+      {
+        "selectedIconPath": "assets/images/background/me_black.png",
+        "iconPath": "assets/images/background/me_gray.png",
+        "pagePath": "pages/my/index",
+        "text": "我的"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json"
+}

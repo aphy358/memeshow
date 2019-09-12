@@ -1,0 +1,5 @@
+module.exports = ({
+    thumb: (function(url) {
+        return (url.replace(getRegExp("\x5c/480$"), '/270'))
+    }),
+});

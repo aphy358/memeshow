@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "",
+  "navigationStyle": "default",
+  "usingComponents": {
+    "component-emoji": "/packages/IM/components/emoji/emoji",
+    "input-modal": "/packages/IM/components/inputmodal/inputmodal"
+  }
+}

@@ -1,0 +1,5 @@
+<!--packages/TTM/pages/testPage/testPage.wxml-->
+<text>{{testData}}</text>
+<view>
+  <button bindtap="testClick">测试</button>
+</view>

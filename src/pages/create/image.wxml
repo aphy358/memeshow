@@ -1,0 +1,11 @@
+<!--pages/create/image.js.wxml-->
+<view class="image-editor">
+  <nav-bar innerTitle="编辑图片" isShowBack="{{true}}"></nav-bar>
+  <view class="image-view" style="height: {{contentH}}px">
+    <image class="image" src="{{url}}" mode="aspectFit"></image>
+  </view>
+  <view class="btn-view">
+    <view class="change-btn">更换</view>
+    <view class="delete-btn">删除</view>
+  </view>
+</view>

@@ -1,0 +1,19 @@
+<!-- 加载中的图片 -->
+<image
+    hidden="{{ !isLoading }}"
+    src="{{ errSrc }}"
+    style="width: {{ width }}; height: {{ height }}; {{ styleStr }}"
+    mode="{{ imgMode }}"
+/>
+
+
+<!-- 实际加载的图片 -->
+<image
+    hidden="{{ isLoading }}"
+    src="{{ imgSrc || src }}"
+    mode="{{ imgMode }}"
+    style="width: {{ width }}; height: {{ height }}; {{ styleStr }}"
+    bindload="_onImageLoad"
+    binderror="_onImageError"
+    lazy-load="{{ true }}"
+/>

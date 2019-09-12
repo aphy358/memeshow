@@ -1,0 +1,25 @@
+<View class="swiper" >
+  <comp
+    templateName="hSwiperItem"
+    moveTo="{{moveTo}}"
+    animationType="ease-out"
+    dataList="{{dataList}}"
+    bind:customevent="getRef"
+    bind:firstView="firstView"
+    bind:beforeViewChange="beforeViewChange"
+    bind:afterViewChange="afterViewChange"
+    bind:lastView="lastView"
+    bind:move="viewMove"
+    bind:onTap="onTap"
+  ></comp>
+</View>
+
+<!-- 
+  recycle="{{true}}"
+  padding="{{30}}"
+  width="{{320}}"
+  height="{{500}}" 
+  animationDuration="300"
+  vertical="{{true}}"
+  initIndex="{{2}}"
+-->

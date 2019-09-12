@@ -1,0 +1,34 @@
+/* pages/create/image.js.wxss */
+.image-editor {
+  width: 100%;
+  height: 100vh;
+  background: #000000;
+}
+.image-view {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.image {
+  width: 100%;
+  height: 100%;
+}
+.btn-view {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 100rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  box-sizing: border-box;
+  background: rgba(255, 255, 255, 0.1)
+}
+.btn-view view {
+  width: 120rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+  color: #fff;
+  font-size: 32rpx;
+}

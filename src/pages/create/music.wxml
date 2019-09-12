@@ -1,0 +1,63 @@
+<nav-bar innerTitle="背景音乐" isShowBack="{{true}}"></nav-bar>
+<view class="tab {{tabActive[1]=='active'?'search-tab':''}}" style="top: {{tabTop}}px">
+    <view class="active-line" style="left: {{187+activeNav*158}}rpx;"></view>
+    <view class="tab-item-container">
+        <view bindtap="tapChoose" class="tab-item {{tabActive[0]}}">选择音乐</view>
+    </view>
+    <view class="tab-item-container">
+        <view bindtap="tapSearch" class="tab-item {{tabActive[1]}}">搜索音乐</view>
+    </view>
+</view>
+<view class="tab-content choose-music {{tabActive[0]}}">
+    <view bindtap="tapCategory" class="cell-group {{item.active}}" data-index="{{index}}" wx:for="{{musicList}}">
+        <view class="cell">
+            <view class="desc">
+                <view class="cell-title line-clamp-1">{{item.catName}}</view>
+                <view class="cell-desc" wx:if="{{index!==0}}">包含{{item.list.length}}首歌曲</view>
+            </view>
+            <i class="iconfont icon-gou {{item.selected}}"></i>
+        </view>
+        <view class="sub-list" wx:if="{{item.list.length>0}}">
+            <view catchtap="selectSong" class="item" data-cat-index="{{index}}" data-song-index="{{idx}}" wx:for="{{item.list}}" wx:for-index="idx" wx:for-item="song">
+                <view class="music-name-outer">
+                    <view class="music-name line-clamp-1">{{song.name}}</view>
+                    <i class="iconfont icon-gou {{song.selected}}"></i>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
+<view class="search-container center-flex" wx:if="{{tabActive[1]=='active'}}" style="top: {{90+tabTop*2}}rpx">
+    <icon size="16" type="search"></icon>
+    <input bindconfirm="search" bindinput="onSearchInput" confirmType="search" placeholder="搜索在线音乐" value="{{search.keywords}}" />
+</view>
+<view class="tab-content {{tabActive[1]}} {{tabActive[1]=='active'?'search-music':''}}">
+    <view class="hot-music" wx:if="{{!searchReturn&&hotMusic.length>0}}">
+        <view class="hot-title">热门搜索</view>
+        <view class="music-list">
+            <view bindtap="searchHot" class="music-item" data-hot="{{item}}" wx:for="{{hotMusic}}">{{item}}</view>
+        </view>
+    </view>
+    <view class="result-container">
+        <block wx:if="{{searchReturn&&rcmd_list==1}}">
+            <view class="empty-container">
+                <image mode="aspectFill" src="https://ss2.meipian.me/mpwxapp/img/music.png"></image>
+                <text>暂未收录此音乐</text>
+            </view>
+            <view class="favorite-title">你可能会喜欢的音乐</view>
+        </block>
+        <view bindtap="selectSearchResult" class="result-cell" data-index="{{index}}" wx:for="{{search.result}}">
+            <view class="result-cell-inner">
+                <view class="result-desc">
+                    <image class="album-cover" mode="aspectFill" src="{{item.cover}}"></image>
+                    <view class="text">
+                        <view class="music-name line-clamp-1">{{item.name}}</view>
+                        <view class="artist line-clamp-1">{{item.artist}}</view>
+                    </view>
+                </view>
+                <i class="iconfont icon-gou {{item.selected}}"></i>
+            </view>
+        </view>
+    </view>
+</view>
+<button bindtap="finishChooseMusic" class="finish-btn">完成</button>

@@ -1,0 +1,9 @@
+/* pages/test_video_swiper/index.wxss */
+page {
+  height: 100vh
+}
+
+.video-swiper {
+  width: 100%;
+  height: 100%;
+}

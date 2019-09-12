@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "美文",
+  "usingComponents": {
+    "slide-tab": "../../components/SlideTab/index",
+    "nav-bar": "../../components/navbar/index"
+  }
+}

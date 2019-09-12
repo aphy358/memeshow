@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "nav-bar": "../../components/navbar/index",
+    "createor": "../../components/createor/index"
+  },
+  "onReachBottomDistance": 0
+}

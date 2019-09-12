@@ -1,0 +1,66 @@
+<!--pages/live/push.wxml-->
+<view class="live-container">
+  <!-- <live-pusher id="pusher" class="live-view"
+  url="{{item.pushUrl}}" mode="RTC" beauty="{{9}}" whiteness="9" enable-camera autopush bindstatechange="statechange" binderror="error" style="width: {{liveWidth}}px; height: {{liveHeight}}px"> -->
+  <video
+      class="live-view"
+      id="myVideo"
+src="http://cloudbrain-docs.oss-cn-shenzhen.aliyuncs.com/504df73ac7bdb24a26855474a8f4246b-1541658595592.mp4"
+      autoplay
+      muted="{{true}}"
+      loop="{{true}}"
+      controls="{{false}}"
+      style="width: {{liveWidth}}px; height: {{liveHeight}}px"
+      objectFit="cover">
+    <!-- <cover-image class="cover-image" src="http://sjbz.fd.zol-img.com.cn/t_s320x510/g5/M00/0F/0F/ChMkJlfJSpaIbOzjAAOZxpOoslQAAU86QGwwqYAA5ne189.jpg"></cover-image> -->
+    <!--视频头部用户头像显示区域-->
+    <cover-view class="user-info-view" style="height: {{topHeight}}px;top: {{statusBarHeight}}px">
+      <cover-image class="back" src="/assets/images/backTo.png"></cover-image>
+      <cover-view class="self-box">
+        <cover-image class="avatar" src="http://wx.qlogo.cn/mmhead/ver_1/tiauLYEyeWFPfgND4M8WzUK2mrGCCck7XTtnwhJ6wmH696TUzv99ribOuS3jMdrHXveTtCm2thvv9FbqQ0E6mApQ/132"></cover-image>
+        <cover-view class="info">
+          <cover-view class="nickname">美娜</cover-view>
+          <cover-view class="onlines">720人</cover-view>
+        </cover-view>
+        <cover-view class="follow">+关注</cover-view>
+        </cover-view>
+      <cover-view class="user-box">
+         <cover-image class="avatar avatar1" src="http://wx.qlogo.cn/mmhead/ver_1/BlwyIFbkEha1NUxdBVzt6vEYAHJUfa9j8F8OXBRy3ibiaKSs6WnhC8eaVPNjEKTibTRFfzsWEtkZanfOyiaxpI2zCEvh9D67FiaGe0tzLzpc6WEU/132"></cover-image>
+          <cover-image class="avatar avatar2" src="http://wx.qlogo.cn/mmhead/ver_1/BUaRoIYqibL7Qq7Bu5DmZAJl6HPNHBXCWNaBAflvcUUsuMePO33QpDugMtVwYckPSDJj8bglHiaSjmpjHcz1Xbk9ict2iamoEJX9Y08kHpnKOls/132"></cover-image>
+          <cover-image class="avatar avatar3" src="http://wx.qlogo.cn/mmhead/ver_1/9t4ekca4WjWia46PydVUrRKYmhw880SYALGy8kZK24K7cicqAgWT6r1jCNfDhGwLInGqUJlx06ezD9yGpq71WDXTwhl6qRicXroHaqcn3A6pcQ/132"></cover-image>
+      </cover-view>
+    </cover-view>
+  <!--视频头部用户头像显示区域 -->
+  <!-- 直播评论显示区域 这里需要改用canvas,watch 监听 newMessage-->
+    <!-- <cover-view class="comments-view" hidden="{{isCommentView}}">
+      <cover-view class="comments" wx:for="{{comments}}"> 
+        <cover-image wx:if="{{item.type==='message'}}" src="{{item.avatar}}"></cover-image>
+        <cover-view class="replay-view">
+          <cover-view class="nickname">{{item.nickname}}：</cover-view>
+          <cover-view class="replay">{{item.content}}</cover-view>
+        </cover-view>
+      </cover-view>
+      <cover-view class="online-tils">一个很酷的男人 加入了</cover-view>
+    </cover-view> -->
+  <!-- 直播评论显示区域-->
+  <!-- 底部操作按钮集群-->
+    <cover-view class="live-bottom-box" hidden="{{isBottomView}}"> 
+      <cover-view class="comments-btn" bindtap="bindOpenMessage">
+        <cover-image src="/assets/images/icon-comment.png"></cover-image>
+        <cover-view>说点什么...</cover-view>
+      </cover-view>
+      <cover-view class="btn-view">
+        <cover-image class="share btn" src="/assets/images/share2.png"></cover-image>
+        <cover-image class="lihe btn" src="/assets/images/gift.png"></cover-image>
+        <cover-image class="douyin btn" src="/assets/images/order1.png"></cover-image>
+        <cover-image class="emotion btn" src="/assets/images/shop1.png"></cover-image>
+      </cover-view>
+    </cover-view>
+  <!-- 底部操作按钮集群-->
+  </video>
+  <!-- </live-pusher> -->
+  <view class="message-view" hidden="{{isMessageView}}">
+    <input class="message-input" focus="{{isfoucs}}" bindblur="bindBlur" />
+    <view class="send-message-btn" bindtap="sendMessage">发送</view>
+  </view>
+</view>

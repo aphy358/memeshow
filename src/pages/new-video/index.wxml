@@ -1,0 +1,19 @@
+<!--pages/new-video/index.wxml-->
+<view class="mod-wrapper">
+    <view animation="{{transform}}" bindtransitionend="end" class="mod-wrap" style="will-change:transform;">
+        <view class="mod-box mod-box-player" wx:for="{{feedList}}" wx:for-item="feed" wx:key="index">
+            <image class="video" mode="{{feed.isVertical?'aspectFill':'aspectFit'}}" src="{{feed.coverUrl}}" wx:if="{{index<=preloadedIndex}}"></image>
+        </view>
+    </view>
+    <view class="mod-box mod-box-player-cus" wx:if="{{feedList.length>0}}">
+        <video loop autoplay="{{true}}" bindended="{{feedIndex!==batchFeedIndex[0]?'nil':'videoStop'}}" bindplay="startPlay" bindprogress="prograss" bindtimeupdate="timeupdate" class="video" controls="{{false}}" customCache="{{false}}" data-index="{{batchFeedIndex[0]}}" id="video-0" objectFit="{{feedList[ batchFeedIndex[0] ].isVertical?'cover':'contain'}}" poster="{{feedList[ batchFeedIndex[0] ].coverUrl}}" showCenterPlayBtn="{{false}}" showProgress="{{false}}" src="{{feedList[ batchFeedIndex[0] ].videoUrl}}" style="will-change:transform;transform: translateX({{videoHidden||feedIndex!==batchFeedIndex[0]?'-100%':0}})"></video>
+        <video loop bindended="{{feedIndex!==batchFeedIndex[1]?'nil':'videoStop'}}" bindplay="startPlay" bindprogress="prograss" bindtimeupdate="timeupdate" class="video" controls="{{false}}" customCache="{{false}}" data-index="{{batchFeedIndex[1]}}" id="video-1" objectFit="{{feedList[ batchFeedIndex[1] ].isVertical?'cover':'contain'}}" poster="{{feedList[ batchFeedIndex[1] ].coverUrl}}" showCenterPlayBtn="{{false}}" showProgress="{{false}}" src="{{feedList[ batchFeedIndex[1] ].videoUrl}}" style="will-change:transform;transform: translateX({{videoHidden||feedIndex!==batchFeedIndex[1]?'-100%':0}})"></video>
+        <video loop bindended="{{feedIndex!==batchFeedIndex[2]?'nil':'videoStop'}}" bindplay="startPlay" bindprogress="prograss" bindtimeupdate="timeupdate" class="video" controls="{{false}}" customCache="{{false}}" data-index="{{batchFeedIndex[2]}}" id="video-2" objectFit="{{feedList[ batchFeedIndex[2] ].isVertical?'cover':'contain'}}" poster="{{feedList[ batchFeedIndex[2] ].coverUrl}}" showCenterPlayBtn="{{false}}" showProgress="{{false}}" src="{{feedList[ batchFeedIndex[2] ].videoUrl}}" style="will-change:transform;transform: translateX({{videoHidden||feedIndex!==batchFeedIndex[2]?'-100%':0}})"></video>
+        <cover-view useTouchEvent bindtouchcancel="touchCancel" bindtouchend="touchEnd" bindtouchstart="touchStart" class="video-action" style="display: {{animation?'none':''}};">
+            <cover-view useTouchEvent bindtap="bindClickVideo" class="box-wrapper">
+                <cover-image class="mask-top" src="https://qzonestyle.gtimg.cn/qz-proj/weishi-miniprogram/img/common/control-v2/mask-top@2x.png"></cover-image>
+                <cover-image class="mask-bottom" src="https://qzonestyle.gtimg.cn/qz-proj/weishi-miniprogram/img/common/control-v2/mask-bottom@2x.png"></cover-image>
+            </cover-view>
+        </cover-view>
+    </view>
+</view>
