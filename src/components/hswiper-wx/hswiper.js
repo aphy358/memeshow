@@ -304,31 +304,9 @@ Component({
     /* 计算可视区域元素，用于正常情况下的条状 */
     calVisibleDataList() {
       /* 区分是否支持循环滚动 */
-      let res = []
       let {dataList} = this.data
-      let dataCount = dataList.length
-      let pre1 = (dataCount + (0 - 1)) % dataCount
-      let pre2 = (dataCount + (0 - 2)) % dataCount
-      let next1 = (dataCount) % dataCount
-      let next2 = ((dataCount + 1)) % dataCount
-      res[0] = dataList[pre2]
-      res[1] = dataList[pre1]
-      res = res.concat(dataList)
-      res.push(dataList[next1])
-      res.push(dataList[next2])
-      if (!this.data.recycle) {
-        let len = res.length
-        let emptyElement = {
-          templateName: '_hswiper_emptyItem'
-        }
-        res[1] = emptyElement
-        res[0] = emptyElement
-        res[len - 2] = emptyElement
-        res[len - 1] = emptyElement
-      }
-      
       this.setData({
-        visibleDataList: res
+        visibleDataList: dataList
       })
     },
     /**
