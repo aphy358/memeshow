@@ -12,21 +12,19 @@ let DURATION = 300
 let TIMEING_FUNCTION = 'ease-out'
 const TIMEING_FUNCTION_ARRAY = ['linear', 'ease-in', 'ease-in-out', 'ease-out', 'step-start', 'step-end']
 
-// 视图过度动画实例
-let VIEW_ANIMATION = wx.createAnimation({
-  transformOrigin: '50% 50%',
-  duration: DURATION,
-  timingFunction: TIMEING_FUNCTION,
-  delay: 0
-})
-
-// 视图移动动画实例
-const MOVE_ANIMATION = wx.createAnimation({
-  transformOrigin: '50% 50%',
-  duration: 0,
-  timingFunction: 'ease',
-  delay: 0
-})
+/**
+ * 获取动画实例
+ * @param {Boolean} ifAnimate 是否带动画
+ * @param {String} animateType 动画过渡类型，如 'linear', 'ease-in', 'ease-in-out', 'ease-out', 'step-start', 'step-end' 等
+ */
+const getAnimation = (ifAnimate, animateType) => {
+  return wx.createAnimation({
+    transformOrigin: '50% 50%',
+    duration: ifAnimate ? DURATION : 0,
+    timingFunction: animateType || TIMEING_FUNCTION,
+    delay: 0
+  })
+}
 
 
 Component({
@@ -101,12 +99,6 @@ Component({
           return
         }
         TIMEING_FUNCTION = newVal
-        VIEW_ANIMATION = wx.createAnimation({
-          transformOrigin: '50% 50%',
-          duration: DURATION,
-          timingFunction: newVal,
-          delay: 0
-        })
       }
     },
     // 动画持续时间
@@ -115,12 +107,6 @@ Component({
       value: 300,
       observer(newVal) {
         DURATION = newVal
-        VIEW_ANIMATION = wx.createAnimation({
-          transformOrigin: '50% 50%',
-          duration: DURATION,
-          timingFunction: newVal,
-          delay: 0
-        })
       }
     },
     templateName: {
@@ -309,14 +295,6 @@ Component({
 
       this.updateDomStyle(viewBoxStyle, 'viewBoxStyle')
     },
-    // 计算可视区域元素，用于正常情况下的条状
-    // calVisibleDataList() {
-    //   // 区分是否支持循环滚动
-    //   let {dataList} = this.data
-    //   this.setData({
-    //     visibleDataList: dataList
-    //   })
-    // },
     /*
      * @description 移动到指定 dom index 位置
      * @param {*} domIndex dom元素的index
@@ -351,20 +329,15 @@ Component({
       }
 
       // 是否启用动画过渡
-      let _this = this
-      if (useAnimation) {
-        VIEW_ANIMATION[attr](pos).translate3d(0).step()
-        _this.setData({
-          wrapperAnimation: VIEW_ANIMATION.export(),
-          [posType]: pos
-        })
-      } else {
-        MOVE_ANIMATION[attr](pos).translate3d(0).step()
-        _this.setData({
-          wrapperAnimation: MOVE_ANIMATION.export(),
-          [posType]: pos
-        })
-      }
+      let ANIMATION = useAnimation
+        ? getAnimation(true)
+        : getAnimation(false)
+
+      ANIMATION[attr](pos).translate3d(0).step()
+      this.setData({
+        wrapperAnimation: ANIMATION.export(),
+        [posType]: pos
+      })
 
       let p = new Promise((resolve) => {
         setTimeout(() => {
@@ -452,6 +425,8 @@ Component({
           nowViewDataIndex: nextIndex
         })
         if (isReset) {
+          console.log('reset.............');
+          
           this.moveViewTo(nextIndex)
         }
         return null
@@ -517,6 +492,8 @@ Component({
       if (pos < min) {
         pos = min
       }
+
+      const MOVE_ANIMATION = getAnimation(false)
       MOVE_ANIMATION[type](nowTran).translate3d(0).step()
       this.setData({
         wrapperAnimation: MOVE_ANIMATION.export()

@@ -80,7 +80,7 @@ Page({
     }
   },
   alreadyFirstView(e) {
-    // console.log('alreadyFirstView', e)
+    console.log('alreadyFirstView', e)
   },
   firstView(e) {
     // console.log('firstView', e)
@@ -111,7 +111,7 @@ Page({
     }
   },
   alreadyLastView(e) {
-    // console.log('alreadyLastView', e)
+    console.log('alreadyLastView', e)
   },
   viewMove(e) {
     // console.log('viewMove', e)
