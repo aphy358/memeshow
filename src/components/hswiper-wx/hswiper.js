@@ -425,8 +425,6 @@ Component({
           nowViewDataIndex: nextIndex
         })
         if (isReset) {
-          console.log('reset.............');
-          
           this.moveViewTo(nextIndex)
         }
         return null
@@ -440,6 +438,8 @@ Component({
         this.setData({
           tranforming: false
         })
+        console.log('nowViewDataIndex: ' + nowViewDataIndex);
+        
         return null
       })
     },
