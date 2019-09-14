@@ -11,7 +11,11 @@
     animation="{{wrapperAnimation}}"
     style="{{wrapperStyle}}" >
     <block wx:for="{{visibleDataList}}" wx:key="{{item}}" >
-      <view class="item" style="{{itemStyle}}" bindtap="onTap">
+      <view 
+        class="item" 
+        animation="{{itemAnimations[index]}}"
+        style="{{itemStyle}}" 
+        bindtap="onTap">
         <template is="{{item.templateName || templateName}}" data="{{item, index}}"></template>
       </view>
     </block>

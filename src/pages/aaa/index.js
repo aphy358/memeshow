@@ -55,7 +55,7 @@ Page({
     dataList2: [0, 1, 2, 3, 4],
     moveTo: 0,
     recyle: false,
-    firstIndex: 0,
+    firstIndex: 5,
   },
   onReady() {
     this.setVisibleList()
@@ -84,10 +84,11 @@ Page({
   },
   firstView(e) {
     // console.log('firstView', e)
-    let {firstIndex} = this.data
+    let {firstIndex, dataList0} = this.data
     if(firstIndex > 0){
       this.setData({
-        firstIndex: firstIndex - 1
+        firstIndex: firstIndex - 1,
+        newDataList: this.data.dataList0.slice(firstIndex - 1, firstIndex)
       })
     }
   },
@@ -106,7 +107,8 @@ Page({
     let {firstIndex, dataList0} = this.data
     if(firstIndex < dataList0.length - 3){
       this.setData({
-        firstIndex: firstIndex + 1
+        firstIndex: firstIndex + 1,
+        newDataList: this.data.dataList0.slice(firstIndex + 3, firstIndex + 4)
       })
     }
   },

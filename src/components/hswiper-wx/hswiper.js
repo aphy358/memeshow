@@ -38,7 +38,7 @@ Component({
     // 每个元素的高度
     itemHeight: SCREEN_HEIGHT,
     wrapperAnimation: {},
-    itemAnimation: [],
+    itemAnimations: [],
     wrapperStyle: '',
     itemStyle: '',
     // 当前显示的数据所在数组的下标
@@ -58,7 +58,7 @@ Component({
       value: [],
       observer(newVal) {
         if(newVal.length > 0){
-          this.setVisibleDOM()
+          this.initVisibleDOM()
         }else{
           if(this.data.visibleDataList.length){
             console.warn('dataList不能为空')
@@ -71,7 +71,16 @@ Component({
       type: Array,
       value: [],
       observer(newVal) {
-        // debugger
+        if(newVal.length > 0){
+          console.log('newDataList: ' + JSON.stringify(newVal));
+          if(this.data.tranforming){
+            // 如果页面还处在翻页的动画中，说明数据先返回了，这时候先将数据更新到相应 DOM 中，而 DOM 的位移在动画完成之后再做
+
+          }else{
+            // 如果页面翻页动画已经结束，说明数据在动画完成之后返回，这时候应该将数据更新到相应 DOM 中，同时做好 DOM 的位移
+
+          }
+        }
       }
     },
     // 移动到指定试图，伴随过渡动画
@@ -438,7 +447,8 @@ Component({
         this.setData({
           tranforming: false
         })
-        console.log('nowViewDataIndex: ' + nowViewDataIndex);
+        console.log('nowViewDataIndex/afterViewChange: ' + nowViewDataIndex);
+        // debugger
         
         return null
       })
@@ -506,27 +516,32 @@ Component({
         nativeEvent: e
       })
     },
-    // 渲染无限列表 DOM
-    setVisibleDOM(){
-      if(this.data.dataList && this.data.dataList.length){
-        let {nowViewDataIndex, visibleDataList, dataList, initIndex} = this.data
-        let isFirstTime = visibleDataList.length === 0
-        
-        // 第一次初始化页面
-        if(isFirstTime){
-          this.setData({
-            visibleDataList: dataList
-          })
-          this.initStruct()
-          this.moveViewTo(initIndex)
+    // 初始化无限列表 DOM
+    initVisibleDOM(){
+      let {nowViewDataIndex, visibleDataList, dataList, initIndex} = this.data
+      let isFirstTime = visibleDataList.length === 0
+      
+      // 第一次初始化页面
+      if(isFirstTime){
+        // 初始化 itemAnimations 和 visibleDataList
+        let animationArr = []
+        for (let i = 0; i < dataList.length; i++) {
+          animationArr.push(getAnimation())
         }
+        this.setData({
+          visibleDataList: dataList,
+          itemAnimations: animationArr
+        })
+
+        this.initStruct()
+        this.moveViewTo(initIndex)
       }
     }
   },
   lifetimes: {
     ready() {
       this.registerTouchEvent()
-      // this.setVisibleDOM()
+      // this.initVisibleDOM()
     }
   },
   pageLifetimes: {}
