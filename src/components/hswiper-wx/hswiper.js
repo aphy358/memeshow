@@ -39,7 +39,8 @@ Component({
     itemWidth: SCREEN_WIDTH,
     // 每个元素的高度
     itemHeight: SCREEN_HEIGHT,
-    swiperAnimation: {},
+    wrapperAnimation: {},
+    itemAnimation: [],
     wrapperStyle: '',
     itemStyle: '',
     // 当前显示的数据所在数组的下标
@@ -309,31 +310,33 @@ Component({
       this.updateDomStyle(viewBoxStyle, 'viewBoxStyle')
     },
     // 计算可视区域元素，用于正常情况下的条状
-    calVisibleDataList() {
-      // 区分是否支持循环滚动
-      let {dataList} = this.data
-      this.setData({
-        visibleDataList: dataList
-      })
-    },
+    // calVisibleDataList() {
+    //   // 区分是否支持循环滚动
+    //   let {dataList} = this.data
+    //   this.setData({
+    //     visibleDataList: dataList
+    //   })
+    // },
     /*
      * @description 移动到指定 dom index 位置
      * @param {*} domIndex dom元素的index
      * @param {*} useAnimation 是否启用过渡动画
      */
     moveViewTo(domIndex, useAnimation) {
+      console.log('domIndex:' + domIndex);
       let {
         itemWidth, itemHeight, vertical, padding, paddingX, paddingY, recycle, visibleDataList
       } = this.data
       let len = visibleDataList.length
-      domIndex += 2
+
       if (recycle) {
-        domIndex = Math.max(domIndex, 1)
-        domIndex = Math.min(domIndex, len - 1)
+        // domIndex = Math.max(domIndex, 1)
+        // domIndex = Math.min(domIndex, len - 1)
       } else {
-        domIndex = Math.max(domIndex, 2)
-        domIndex = Math.min(domIndex, len - 2)
+        domIndex = Math.max(domIndex, 0)
+        domIndex = Math.min(domIndex, len - 1)
       }
+
       let pos = 0
       let attr = 'translateY'
       let posType = 'nowTranY'
@@ -352,19 +355,16 @@ Component({
       if (useAnimation) {
         VIEW_ANIMATION[attr](pos).translate3d(0).step()
         _this.setData({
-          swiperAnimation: VIEW_ANIMATION.export(),
+          wrapperAnimation: VIEW_ANIMATION.export(),
           [posType]: pos
         })
       } else {
         MOVE_ANIMATION[attr](pos).translate3d(0).step()
         _this.setData({
-          swiperAnimation: MOVE_ANIMATION.export(),
+          wrapperAnimation: MOVE_ANIMATION.export(),
           [posType]: pos
         })
       }
-      setTimeout(() => {
-        
-      }, 5);
 
       let p = new Promise((resolve) => {
         setTimeout(() => {
@@ -390,8 +390,9 @@ Component({
       let len = dataList.length
       let originNextIndex = nextIndex
       nextIndex = Math.abs((nextIndex + len) % len)
-      // 当前是否已经是最后一个
+
       if (!this.data.recycle) {
+        // 当前是否已经是最后一个
         if (nowViewDataIndex === (len - 1) && originNextIndex >= len) {
           this.triggerEvent('alreadyLastView', {
             index: nowViewDataIndex,
@@ -518,7 +519,7 @@ Component({
       }
       MOVE_ANIMATION[type](nowTran).translate3d(0).step()
       this.setData({
-        swiperAnimation: MOVE_ANIMATION.export()
+        wrapperAnimation: MOVE_ANIMATION.export()
       })
     },
     onTap(e) {
@@ -531,31 +532,24 @@ Component({
     // 渲染无限列表 DOM
     setVisibleDOM(){
       if(this.data.dataList && this.data.dataList.length){
-        let {nowViewDataIndex, visibleDataList, dataList} = this.data
+        let {nowViewDataIndex, visibleDataList, dataList, initIndex} = this.data
         let isFirstTime = visibleDataList.length === 0
-        this.calVisibleDataList()
         
+        // 第一次初始化页面
         if(isFirstTime){
-          this.initStruct() // 应该只要初始化一次 DOM 结构就可以
-        }
-
-        // 每次 dataList 变更的时候，始终让列表显示第二项数据，也就是第二屏数据
-        // this.data.nowViewDataIndex
-        console.log('nowViewDataIndex: ' + nowViewDataIndex);
-        
-        let _this = this
-        this.moveViewTo(1).then(() => {
-          _this.setData({
-            nowViewDataIndex: 1
+          this.setData({
+            visibleDataList: dataList
           })
-        })
+          this.initStruct()
+          this.moveViewTo(initIndex)
+        }
       }
     }
   },
   lifetimes: {
     ready() {
       this.registerTouchEvent()
-      this.setVisibleDOM()
+      // this.setVisibleDOM()
     }
   },
   pageLifetimes: {}

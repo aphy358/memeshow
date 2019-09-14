@@ -84,9 +84,12 @@ Page({
   },
   firstView(e) {
     // console.log('firstView', e)
-    this.setData({
-      firstIndex: this.data.firstIndex - 1
-    })
+    let {firstIndex} = this.data
+    if(firstIndex > 0){
+      this.setData({
+        firstIndex: firstIndex - 1
+      })
+    }
   },
   beforeViewChange(e) {
     // console.log('beforeViewChange', e)
@@ -96,13 +99,16 @@ Page({
     let {firstIndex} = this.data
     console.log('firstIndex:' + firstIndex);
     
-    this.setVisibleList()
+    // this.setVisibleList()
   },
   lastView(e) {
     // console.log('lastView', e)
-    this.setData({
-      firstIndex: this.data.firstIndex + 1
-    })
+    let {firstIndex, dataList0} = this.data
+    if(firstIndex < dataList0.length - 3){
+      this.setData({
+        firstIndex: firstIndex + 1
+      })
+    }
   },
   alreadyLastView(e) {
     // console.log('alreadyLastView', e)

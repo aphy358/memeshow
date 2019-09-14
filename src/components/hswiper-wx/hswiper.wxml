@@ -8,7 +8,7 @@
 >
   <view 
     class="hSwiperCon"
-    animation="{{swiperAnimation}}"
+    animation="{{wrapperAnimation}}"
     style="{{wrapperStyle}}" >
     <block wx:for="{{visibleDataList}}" wx:key="{{item}}" >
       <view class="item" style="{{itemStyle}}" bindtap="onTap">
