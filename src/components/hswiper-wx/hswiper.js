@@ -117,7 +117,7 @@ Component({
     },
     templateName: {
       type: String,
-      value: '_hswiper_emptyItem_default'
+      value: 'hSwiperItem'
     },
     // 初始显示第几屏的数据，默认第二屏
     initIndex: {
@@ -327,14 +327,8 @@ Component({
         res[len - 1] = emptyElement
       }
       
-      const styleObj = {
-        width: '375px',
-        height: '4669px',
-        transform: 'translateY(-2001px) translate3d(0px, 0px, 0px)'
-      }
       this.setData({
-        visibleDataList: res,
-        // wrapperStyle: styleStringify(styleObj)
+        visibleDataList: res
       })
     },
     /**
