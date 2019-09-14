@@ -1,6 +1,5 @@
 import {parseStyle, styleStringify} from './libs/utils'
 import HTouch from './libs/hTouch'
-import { SSL_OP_LEGACY_SERVER_CONNECT } from 'constants';
 const touchHandle = new HTouch()
 
 // 获取屏幕宽高
@@ -36,9 +35,9 @@ Component({
   },
   externalClasses: ['wrap-container'],
   data: {
-    /* 每个元素的宽度 */
+    // 每个元素的宽度
     itemWidth: SCREEN_WIDTH,
-    /* 每个元素的高度 */
+    // 每个元素的高度
     itemHeight: SCREEN_HEIGHT,
     swiperAnimation: {},
     wrapperStyle: '',
@@ -48,13 +47,13 @@ Component({
     nowTranX: 0,
     nowTranY: 0,
     visibleDataList: [],
-    /* 最外层可视区域盒子的样式 */
+    // 最外层可视区域盒子的样式
     viewBoxStyle: '',
-    /* 是否过渡中 */
+    // 是否过渡中
     tranforming: false
   },
   properties: {
-    /* 传入的数据 */
+    // 传入的数据
     dataList: {
       type: Array,
       value: [],
@@ -68,7 +67,15 @@ Component({
         }
       }
     },
-    /* 移动到指定试图，伴随过渡动画 */
+    // 动态加载的新数据
+    newDataList: {
+      type: Array,
+      value: [],
+      observer(newVal) {
+        // debugger
+      }
+    },
+    // 移动到指定试图，伴随过渡动画
     moveTo: {
       type: Number,
       value: 0,
@@ -76,7 +83,7 @@ Component({
         this.moveViewToAdapter(newVal, true)
       }
     },
-    /* 移动到指定试图，无过渡动画 */
+    // 移动到指定试图，无过渡动画
     moveToWithOutAnimation: {
       type: Number,
       value: 0,
@@ -136,7 +143,7 @@ Component({
         })
       }
     },
-    /* 滚动图的宽度 */
+    // 滚动图的宽度
     width: {
       type: Number,
       value: SCREEN_WIDTH,
@@ -147,7 +154,7 @@ Component({
         })
       }
     },
-    /* 滚动图的高度 */
+    // 滚动图的高度
     height: {
       type: Number,
       value: SCREEN_HEIGHT,
@@ -158,7 +165,7 @@ Component({
         })
       }
     },
-    /* 垂直和水平方向各自减少的距离 */
+    // 垂直和水平方向各自减少的距离
     padding: {
       type: Number,
       value: 0,
@@ -171,7 +178,7 @@ Component({
         })
       }
     },
-    /* 水平方向减少的距离 */
+    // 水平方向减少的距离
     paddingX: {
       type: Number,
       value: 0,
@@ -184,7 +191,7 @@ Component({
         })
       }
     },
-    /* 垂直方向减少的距离 */
+    // 垂直方向减少的距离
     paddingY: {
       type: Number,
       value: 0,
@@ -197,12 +204,12 @@ Component({
         })
       }
     },
-    /* 是否为垂直 */
+    // 是否为垂直
     vertical: {
       type: Boolean,
       value: true
     },
-    /* 是否循环 */
+    // 是否循环
     recycle: {
       type: Boolean,
       value: false
@@ -222,7 +229,7 @@ Component({
           this.preView()
         })
         touchHandle.listen('touchmove', (data) => {
-          /* 过渡中禁止手指滑动 */
+          // 过渡中禁止手指滑动
           if (this.data.tranforming) {
             return
           }
@@ -236,7 +243,7 @@ Component({
         })
         return
       }
-      /* 垂直方向滚动 */
+      // 垂直方向滚动
       touchHandle.listen('touchup', () => {
         this.nextView()
       })
@@ -254,7 +261,7 @@ Component({
         this.movePos(data.endY - data.startY, 'translateY')
       })
     },
-    /**
+    /*
      * 动态更新指定样式属性变量的值
      * @param {*} attr 样式属性名
      * @param {*} val 样式属性值
@@ -268,7 +275,7 @@ Component({
         [styleName]: styleStringify(style)
       })
     },
-    /* 初始化 dom 结构 */
+    // 初始化 dom 结构
     initStruct() {
       let {
         itemHeight, itemWidth, vertical, width, height, visibleDataList
@@ -301,15 +308,15 @@ Component({
 
       this.updateDomStyle(viewBoxStyle, 'viewBoxStyle')
     },
-    /* 计算可视区域元素，用于正常情况下的条状 */
+    // 计算可视区域元素，用于正常情况下的条状
     calVisibleDataList() {
-      /* 区分是否支持循环滚动 */
+      // 区分是否支持循环滚动
       let {dataList} = this.data
       this.setData({
         visibleDataList: dataList
       })
     },
-    /**
+    /*
      * @description 移动到指定 dom index 位置
      * @param {*} domIndex dom元素的index
      * @param {*} useAnimation 是否启用过渡动画
@@ -330,17 +337,17 @@ Component({
       let pos = 0
       let attr = 'translateY'
       let posType = 'nowTranY'
-      /* 垂直方向 */
+      // 垂直方向
       if (vertical) {
         pos = -domIndex * itemHeight + padding + paddingX
       } else {
-        /* 水平方向 */
+        // 水平方向
         pos = -domIndex * itemWidth + padding + paddingY
         attr = 'translateX'
         posType = 'nowTranX'
       }
 
-      /* 是否启用动画过渡 */
+      // 是否启用动画过渡
       let _this = this
       if (useAnimation) {
         VIEW_ANIMATION[attr](pos).translate3d(0).step()
@@ -366,13 +373,13 @@ Component({
       })
       return p
     },
-    /* 向后一个视图 */
+    // 向后一个视图
     nextView(useAnimation = true) {
       let {nowViewDataIndex} = this.data
       let nextIndex = nowViewDataIndex + 1
       this.moveViewToAdapter(nextIndex, useAnimation)
     },
-    /* 向前一个视图 */
+    // 向前一个视图
     preView(useAnimation = true) {
       let {nowViewDataIndex} = this.data
       let nextIndex = nowViewDataIndex - 1
@@ -383,7 +390,7 @@ Component({
       let len = dataList.length
       let originNextIndex = nextIndex
       nextIndex = Math.abs((nextIndex + len) % len)
-      /* 当前是否已经是最后一个 */
+      // 当前是否已经是最后一个
       if (!this.data.recycle) {
         if (nowViewDataIndex === (len - 1) && originNextIndex >= len) {
           this.triggerEvent('alreadyLastView', {
@@ -394,7 +401,7 @@ Component({
           return null
         }
 
-        /* 当前是否已经是第一个 */
+        // 当前是否已经是第一个
         if (nowViewDataIndex === 0 && originNextIndex < 0) {
           this.triggerEvent('alreadyFirstView', {
             index: nowViewDataIndex,
@@ -405,7 +412,7 @@ Component({
         }
       }
 
-      /* 是否可以进行过渡 */
+      // 是否可以进行过渡
       if (!this.canTransforming()) {
         return null
       }
@@ -460,7 +467,7 @@ Component({
         return null
       })
     },
-    /* 是否可以进行过渡 */
+    // 是否可以进行过渡
     canTransforming() {
       let {
         tranforming
@@ -473,7 +480,7 @@ Component({
       })
       return true
     },
-    /* 移动到指定像素位置 */
+    // 移动到指定像素位置
     movePos(pos, type = 'translateX') {
       if (this.data.tranforming) {
         return

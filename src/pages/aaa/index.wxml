@@ -2,6 +2,7 @@
   <comp
     templateName="hSwiperItem"
     dataList="{{dataList}}"
+    newDataList="{{newDataList}}"
     bind:customevent="getRef"
     bind:firstView="firstView"
     bind:beforeViewChange="beforeViewChange"
