@@ -37,22 +37,27 @@ Component({
     itemWidth: SCREEN_WIDTH,
     // 每个元素的高度
     itemHeight: SCREEN_HEIGHT,
-    wrapperAnimation: {},
-    itemAnimations: [],
     wrapperStyle: '',
     itemStyle: '',
     // 当前显示的数据所在数组的下标
     nowViewDataIndex: 1,
-    nowTranX: 0,
-    nowTranY: 0,
+    // 记录所有 item 当前的位移
+    transPositionArr: [],
+    // 记录所有 item 当前的位移的备份
+    transPositionStoreArr: [],
+    // 所有可视区 item 数据
     visibleDataList: [],
+    // 所有 item 的动画实例
+    itemAnimations: [],
     // 最外层可视区域盒子的样式
     viewBoxStyle: '',
     // 是否过渡中
     tranforming: false,
-    // 上翻还是下翻，prev：上翻，  next：下翻
+    // 上翻还是下翻，prev：上翻/前翻，  next：下翻/后翻
     viewDirection: 'next',
-    dataWillUpdateAt: -1
+    dataWillUpdateAt: -1,
+    // 'resolved'、'pending'
+    newDataListStatus: 'resolved'
   },
   properties: {
     // 传入的数据
@@ -76,13 +81,16 @@ Component({
       observer(newVal) {
         if(newVal.length > 0){
           console.log('newDataList: ' + JSON.stringify(newVal));
-          if(this.data.tranforming){
-            // 如果页面还处在翻页的动画中，说明数据先返回了，这时候先将数据更新到相应 DOM 中，而 DOM 的位移在动画完成之后再做
 
-          }else{
-            // 如果页面翻页动画已经结束，说明数据在动画完成之后返回，这时候应该将数据更新到相应 DOM 中，同时做好 DOM 的位移
+          let {visibleDataList, dataList, dataWillUpdateAt, tranforming} = this.data
+          visibleDataList.splice(dataWillUpdateAt, 1, ...newVal)
+          dataList.splice(dataWillUpdateAt, 1, ...newVal)
 
-          }
+          this.data.dataList = dataList
+          this.setData({
+            visibleDataList: visibleDataList,
+            newDataListStatus: 'resolved'
+          })
         }
       }
     },
@@ -91,7 +99,7 @@ Component({
       type: Number,
       value: 0,
       observer(newVal) {
-        this.moveViewToAdapter(newVal, true)
+        this.moveViewToAdapter(true)
       }
     },
     // 移动到指定试图，无过渡动画
@@ -99,7 +107,7 @@ Component({
       type: Number,
       value: 0,
       observer(newVal) {
-        this.moveViewToAdapter(newVal)
+        this.moveViewToAdapter()
       }
     },
     // 动画类型
@@ -219,49 +227,51 @@ Component({
     touchmove: touchHandle.touchmove.bind(touchHandle),
     touchend: touchHandle.touchend.bind(touchHandle),
     registerTouchEvent() {
-      let {vertical} = this.data
-      if (!vertical) {
-        touchHandle.listen('touchleft', () => {
-          this.data.viewDirection = 'next'
-          this.nextView()
-        })
-        touchHandle.listen('touchright', () => {
-          this.data.viewDirection = 'prev'
-          this.preView()
-        })
-        touchHandle.listen('touchmove', (data) => {
-          // 过渡中禁止手指滑动
-          if (this.data.tranforming) {
-            return
-          }
-          this.triggerEvent('move', {
-            index: this.data.nowViewDataIndex,
-            nativeEvent: data,
-            vertical: this.data.vertical,
-            type: 'x'
-          })
-          this.movePos(data.endX - data.startX, 'translateX')
-        })
-        return
+      let {vertical, tranforming, newDataListStatus, nowViewDataIndex} = this.data
+      let nextEvent = 'touchleft'
+      let prevEvent = 'touchright'
+      let type = 'x'
+      let endPhase = 'endX'
+      let startPhase = 'startX'
+      let translateType = 'translateX'
+
+      if(vertical){
+        nextEvent = 'touchup'
+        prevEvent = 'touchdown'
+        type = 'y'
+        endPhase = 'endY'
+        startPhase = 'startY'
+        translateType = 'translateY'
       }
-      // 垂直方向滚动
-      touchHandle.listen('touchup', () => {
+
+      touchHandle.listen(nextEvent, () => {
         this.data.viewDirection = 'next'
-        this.nextView()
+        if(this.data.newDataListStatus === 'resolved'){
+          this.moveViewToAdapter(true)
+        }
       })
 
-      touchHandle.listen('touchdown', () => {
+      touchHandle.listen(prevEvent, () => {
         this.data.viewDirection = 'prev'
-        this.preView()
+        if(this.data.newDataListStatus === 'resolved'){
+          this.moveViewToAdapter(true)
+        }
       })
+
       touchHandle.listen('touchmove', (data) => {
+        // 过渡中禁止手指滑动
+        if (tranforming || newDataListStatus === 'pending') {
+          console.log('moving........newDataListStatus: ' + newDataListStatus);
+          return
+        }
+        
         this.triggerEvent('move', {
-          index: this.data.nowViewDataIndex,
+          index: nowViewDataIndex,
           nativeEvent: data,
-          vertical: this.data.vertical,
-          type: 'y'
+          vertical: vertical,
+          type: type
         })
-        this.movePos(data.endY - data.startY, 'translateY')
+        this.movePos(data[endPhase] - data[startPhase], translateType)
       })
     },
     /*
@@ -290,6 +300,7 @@ Component({
         width: width + 'px',
         height: height + 'px'
       }
+
       if (vertical) {
         w = itemWidth + 'px'
         h = count * itemHeight + 'px'
@@ -299,6 +310,7 @@ Component({
         h = itemHeight + 'px'
         viewBoxStyle['padding-top'] = (height - itemHeight) / 2 + 'px'
       }
+
       // 更新容器的宽度，默认
       this.updateDomStyle({
         width: w,
@@ -308,50 +320,25 @@ Component({
         width: itemWidth + 'px',
         height: itemHeight + 'px'
       }, 'itemStyle')
-
       this.updateDomStyle(viewBoxStyle, 'viewBoxStyle')
     },
     /*
-     * @description 移动到指定 dom index 位置
-     * @param {*} domIndex dom元素的index
+     * @description 将所有 item 按照 transPositionArr 的偏移量进行移动
      * @param {*} useAnimation 是否启用过渡动画
      */
-    moveViewTo(domIndex, useAnimation) {
-      let {
-        itemWidth, itemHeight, vertical, padding, paddingX, paddingY, recycle, visibleDataList
-      } = this.data
-      let len = visibleDataList.length
+    moveView(useAnimation) {
+      let {vertical, transPositionArr, itemAnimations} = this.data
+      let attr = vertical ? 'translateY' : 'translateX'
 
-      if (recycle) {
-        // domIndex = Math.max(domIndex, 1)
-        // domIndex = Math.min(domIndex, len - 1)
-      } else {
-        domIndex = Math.max(domIndex, 0)
-        domIndex = Math.min(domIndex, len - 1)
+      for (let i = 0; i < itemAnimations.length; i++) {
+        let ANIMATION = getAnimation(useAnimation)
+        let pos = transPositionArr[i]
+        ANIMATION[attr](pos).translate3d(0).step()
+        itemAnimations[i] = ANIMATION.export()
       }
 
-      let pos = 0
-      let attr = 'translateY'
-      let posType = 'nowTranY'
-      // 垂直方向
-      if (vertical) {
-        pos = -domIndex * itemHeight + padding + paddingX
-      } else {
-        // 水平方向
-        pos = -domIndex * itemWidth + padding + paddingY
-        attr = 'translateX'
-        posType = 'nowTranX'
-      }
-
-      // 是否启用动画过渡
-      let ANIMATION = useAnimation
-        ? getAnimation(true)
-        : getAnimation(false)
-
-      ANIMATION[attr](pos).translate3d(0).step()
       this.setData({
-        wrapperAnimation: ANIMATION.export(),
-        [posType]: pos
+        itemAnimations: itemAnimations
       })
 
       let p = new Promise((resolve) => {
@@ -361,88 +348,60 @@ Component({
       })
       return p
     },
-    // 将指定位置的 DOM 移动位置
-    translateView(domIndex) {
+    // 将指定位置的 item 移动位置
+    translateView() {
       let {
-        itemWidth, itemHeight, vertical, padding, paddingX, paddingY, visibleDataList, itemAnimations
+        itemWidth, itemHeight, vertical, visibleDataList, itemAnimations, dataWillUpdateAt, viewDirection
       } = this.data
       let len = visibleDataList.length
-      let pos = 0
-      let attr = 'translateY'
-      let posType = 'nowTranY'
-      let itemAnimation = 'itemAnimations[' + domIndex + ']'
-      
-      if (vertical) {   // 垂直方向
-        pos = len * itemHeight + padding + paddingY
-      } else {          // 水平方向
-        pos = len * itemWidth + padding + paddingX
-        attr = 'translateX'
-        posType = 'nowTranX'
-      }
+      let attr = vertical ? 'translateY' : 'translateX'
+      let pos = vertical ? itemHeight : itemWidth
+      if(viewDirection === 'prev')  pos = -pos
+
+      this.data.transPositionArr[dataWillUpdateAt] += pos * len
+      this.data.transPositionStoreArr[dataWillUpdateAt] += pos * len
 
       // 是否启用动画过渡
       let ANIMATION = getAnimation(false)
       ANIMATION[attr](pos).translate3d(0).step()
-      itemAnimations[domIndex] = ANIMATION.export()
+      itemAnimations[dataWillUpdateAt] = ANIMATION.export()
 
       this.setData({
-        // [itemAnimation]: ANIMATION.export(),
         itemAnimations: itemAnimations
       })
     },
-    // 向后一个视图
-    nextView(useAnimation = true) {
-      let {nowViewDataIndex} = this.data
-      let nextIndex = nowViewDataIndex + 1
-      this.moveViewToAdapter(nextIndex, useAnimation)
-    },
-    // 向前一个视图
-    preView(useAnimation = true) {
-      let {nowViewDataIndex} = this.data
-      let nextIndex = nowViewDataIndex - 1
-      this.moveViewToAdapter(nextIndex, useAnimation)
-    },
-    moveViewToAdapter(nextIndex, useAnimation) {
-      let {nowViewDataIndex, dataList, viewDirection, recycle, dataWillUpdateAt} = this.data
+    moveViewToAdapter(useAnimation) {
+      let {
+        nowViewDataIndex, dataList, viewDirection, itemHeight, itemWidth, vertical, transPositionStoreArr, transPositionArr
+      } = this.data
       let len = dataList.length
-      let originNextIndex = nextIndex
-      nextIndex = Math.abs((nextIndex + len) % len)
 
-      if (!recycle) {
-        // 当前是否已经是最后一个
-        if (nowViewDataIndex === (len - 1) && originNextIndex >= len) {
-          this.triggerEvent('alreadyLastView', {
-            index: nowViewDataIndex,
-            item: dataList[nowViewDataIndex]
-          })
-          this.moveViewTo(nowViewDataIndex, useAnimation)
-          return null
-        }
+      viewDirection === 'next'
+        ? nowViewDataIndex = (nowViewDataIndex + len + 1) % len
+        : nowViewDataIndex = (nowViewDataIndex + len - 1) % len
+      this.data.nowViewDataIndex = nowViewDataIndex
 
-        // 当前是否已经是第一个
-        if (nowViewDataIndex === 0 && originNextIndex < 0) {
-          this.triggerEvent('alreadyFirstView', {
-            index: nowViewDataIndex,
-            item: dataList[nowViewDataIndex]
-          })
-          this.moveViewTo(nowViewDataIndex, useAnimation)
-          return null
-        }
-      }
+      this.data.dataWillUpdateAt = viewDirection === 'next'
+        ? (nowViewDataIndex + len + 1) % len
+        : (nowViewDataIndex + len - 1) % len
 
       // 是否可以进行过渡
       if (!this.canTransforming()) {
         return null
       }
 
-      if (nextIndex === 0) {
+      this.setData({
+        newDataListStatus: 'pending'
+      })
+
+      if (viewDirection === 'prev') {
         this.triggerEvent('firstView', {
           index: nowViewDataIndex,
           item: dataList[nowViewDataIndex]
         })
       }
 
-      if (nextIndex === (len - 1)) {
+      if (viewDirection === 'next') {
         this.triggerEvent('lastView', {
           index: nowViewDataIndex,
           item: dataList[nowViewDataIndex]
@@ -451,53 +410,28 @@ Component({
 
       this.triggerEvent('beforeViewChange', {
         index: nowViewDataIndex,
-        from: nowViewDataIndex,
-        to: nextIndex,
         item: dataList[nowViewDataIndex]
       })
-      
-      return this.moveViewTo(originNextIndex, useAnimation).then(() => {
-        let isReset = false
-        if ((originNextIndex) < 0) {
-          isReset = true
-        }
-        if ((originNextIndex) >= dataList.length) {
-          isReset = true
-        }
 
-        this.setData({
-          nowViewDataIndex: nextIndex
-        })
-        if (isReset) {
-          this.moveViewTo(nextIndex)
-        }
-        return null
-      }).then(() => {
+      for (let i = 0; i < dataList.length; i++) {
+        viewDirection === 'next'
+          ? transPositionArr[i] = transPositionStoreArr[i] - (vertical ? itemHeight : itemWidth)
+          : transPositionArr[i] = transPositionStoreArr[i] + (vertical ? itemHeight : itemWidth)
+      }
+      this.data.transPositionArr = transPositionArr
+      this.data.transPositionStoreArr = transPositionArr.slice()
+      
+      return this.moveView(useAnimation).then(() => {
+        console.log('transPositionStoreArr:' + transPositionStoreArr);
         this.triggerEvent('afterViewChange', {
-          index: nextIndex,
-          from: nowViewDataIndex,
-          to: nextIndex,
-          item: dataList[nextIndex]
+          index: nowViewDataIndex,
+          item: dataList[nowViewDataIndex]
         })
         this.setData({
           tranforming: false
         })
-        console.log('nowViewDataIndex/nextIndex: ' + nowViewDataIndex + '/' + nextIndex);
 
-        if(viewDirection === 'prev'){
-          // 向前/向上滚动屏幕
-
-        }else{
-          // 向后/向下滚动屏幕
-          if(nextIndex >= len - 1){
-            this.data.dataWillUpdateAt = 0
-            this.translateView(this.data.dataWillUpdateAt)
-          }
-
-        }
-        // debugger
-        
-        return null
+        this.translateView()
       })
     },
     // 是否可以进行过渡
@@ -519,42 +453,41 @@ Component({
         return
       }
       let {
-        itemHeight, itemWidth, nowTranY, nowTranX, dataList
+        itemHeight, itemWidth, dataList, transPositionArr, transPositionStoreArr
       } = this.data
-      let nowTran = 0
       let min = 0
       let max = 0
       let maxDistance = 0
       let len = dataList.length
-      if (type === 'translateX') {
-        nowTran = nowTranX + pos
-        max = itemWidth
-        min = -(len - 2) * itemWidth
-        maxDistance = itemWidth
-      } else {
-        nowTran = nowTranY + pos
-        max = itemWidth
-        min = -(len - 2) * itemHeight
-        maxDistance = itemHeight
-      }
-      maxDistance -= 10
-      if (Math.abs(pos) > maxDistance) {
-        return
-      }
 
-      if (pos > max) {
-        pos = max
-      }
+      // if (type === 'translateX') {
+      //   max = itemWidth
+      //   min = -(len - 2) * itemWidth
+      //   maxDistance = itemWidth
+      // } else {
+      //   max = itemWidth
+      //   min = -(len - 2) * itemHeight
+      //   maxDistance = itemHeight
+      // }
+      // maxDistance -= 10
+      // if (Math.abs(pos) > maxDistance) {
+      //   return
+      // }
 
-      if (pos < min) {
-        pos = min
-      }
+      // if (pos > max) {
+      //   pos = max
+      // }
 
-      const MOVE_ANIMATION = getAnimation(false)
-      MOVE_ANIMATION[type](nowTran).translate3d(0).step()
-      this.setData({
-        wrapperAnimation: MOVE_ANIMATION.export()
-      })
+      // if (pos < min) {
+      //   pos = min
+      // }
+
+      for (let i = 0; i < dataList.length; i++) {
+        transPositionArr[i] = transPositionStoreArr[i] + pos
+      }
+      this.data.transPositionArr = transPositionArr
+
+      this.moveView()
     },
     onTap(e) {
       this.triggerEvent('onTap', {
@@ -563,25 +496,33 @@ Component({
         nativeEvent: e
       })
     },
+    // 初始化数据
+    initData(){
+      let {
+        dataList, initIndex, itemHeight, itemWidth, vertical, transPositionArr, itemAnimations
+      } = this.data
+
+      for (let i = 0; i < dataList.length; i++) {
+        itemAnimations[i] = getAnimation()
+        transPositionArr[i] = -(vertical ? itemHeight : itemWidth) * initIndex
+      }
+
+      this.setData({
+        visibleDataList: dataList,
+        itemAnimations: itemAnimations,
+        transPositionArr: transPositionArr,
+        transPositionStoreArr: transPositionArr.slice(),
+      })
+    },
     // 初始化无限列表 DOM
     initVisibleDOM(){
-      let {nowViewDataIndex, visibleDataList, dataList, initIndex} = this.data
-      let isFirstTime = visibleDataList.length === 0
+      let {visibleDataList} = this.data
       
       // 第一次初始化页面
-      if(isFirstTime){
-        // 初始化 itemAnimations 和 visibleDataList
-        let animationArr = []
-        for (let i = 0; i < dataList.length; i++) {
-          animationArr.push(getAnimation())
-        }
-        this.setData({
-          visibleDataList: dataList,
-          itemAnimations: animationArr
-        })
-
+      if(visibleDataList.length === 0){
+        this.initData()
         this.initStruct()
-        this.moveViewTo(initIndex)
+        this.moveView()
       }
     }
   },

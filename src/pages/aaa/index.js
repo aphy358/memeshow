@@ -88,7 +88,7 @@ Page({
     if(firstIndex > 0){
       this.setData({
         firstIndex: firstIndex - 1,
-        newDataList: this.data.dataList0.slice(firstIndex - 1, firstIndex)
+        newDataList: dataList0.slice(firstIndex - 1, firstIndex)
       })
     }
   },
@@ -99,17 +99,18 @@ Page({
     // console.log('afterViewChange', e)
     let {firstIndex} = this.data
     console.log('firstIndex:' + firstIndex);
-    
-    // this.setVisibleList()
   },
   lastView(e) {
     // console.log('lastView', e)
     let {firstIndex, dataList0} = this.data
+    let _this = this
     if(firstIndex < dataList0.length - 3){
-      this.setData({
-        firstIndex: firstIndex + 1,
-        newDataList: this.data.dataList0.slice(firstIndex + 3, firstIndex + 4)
-      })
+      setTimeout(() => {
+        _this.setData({
+          firstIndex: firstIndex + 1,
+          newDataList: dataList0.slice(firstIndex + 3, firstIndex + 4)
+        })
+      }, 500);
     }
   },
   alreadyLastView(e) {

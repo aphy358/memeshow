@@ -8,7 +8,6 @@
 >
   <view 
     class="hSwiperCon"
-    animation="{{wrapperAnimation}}"
     style="{{wrapperStyle}}" >
     <block wx:for="{{visibleDataList}}" wx:key="{{item}}" >
       <view 
@@ -21,3 +20,8 @@
     </block>
   </view>
 </view>
+
+<view 
+  class="hSwiper-mask" 
+  wx:if="{{newDataListStatus === 'pending'}}"
+  ></view>
