@@ -49,7 +49,10 @@ Component({
     // 最外层可视区域盒子的样式
     viewBoxStyle: '',
     // 是否过渡中
-    tranforming: false
+    tranforming: false,
+    // 上翻还是下翻，prev：上翻，  next：下翻
+    viewDirection: 'next',
+    dataWillUpdateAt: -1
   },
   properties: {
     // 传入的数据
@@ -219,9 +222,11 @@ Component({
       let {vertical} = this.data
       if (!vertical) {
         touchHandle.listen('touchleft', () => {
+          this.data.viewDirection = 'next'
           this.nextView()
         })
         touchHandle.listen('touchright', () => {
+          this.data.viewDirection = 'prev'
           this.preView()
         })
         touchHandle.listen('touchmove', (data) => {
@@ -241,10 +246,12 @@ Component({
       }
       // 垂直方向滚动
       touchHandle.listen('touchup', () => {
+        this.data.viewDirection = 'next'
         this.nextView()
       })
 
       touchHandle.listen('touchdown', () => {
+        this.data.viewDirection = 'prev'
         this.preView()
       })
       touchHandle.listen('touchmove', (data) => {
@@ -252,7 +259,7 @@ Component({
           index: this.data.nowViewDataIndex,
           nativeEvent: data,
           vertical: this.data.vertical,
-          type: 'x'
+          type: 'y'
         })
         this.movePos(data.endY - data.startY, 'translateY')
       })
@@ -310,7 +317,6 @@ Component({
      * @param {*} useAnimation 是否启用过渡动画
      */
     moveViewTo(domIndex, useAnimation) {
-      console.log('domIndex:' + domIndex);
       let {
         itemWidth, itemHeight, vertical, padding, paddingX, paddingY, recycle, visibleDataList
       } = this.data
@@ -355,6 +361,35 @@ Component({
       })
       return p
     },
+    // 将指定位置的 DOM 移动位置
+    translateView(domIndex) {
+      let {
+        itemWidth, itemHeight, vertical, padding, paddingX, paddingY, visibleDataList, itemAnimations
+      } = this.data
+      let len = visibleDataList.length
+      let pos = 0
+      let attr = 'translateY'
+      let posType = 'nowTranY'
+      let itemAnimation = 'itemAnimations[' + domIndex + ']'
+      
+      if (vertical) {   // 垂直方向
+        pos = len * itemHeight + padding + paddingY
+      } else {          // 水平方向
+        pos = len * itemWidth + padding + paddingX
+        attr = 'translateX'
+        posType = 'nowTranX'
+      }
+
+      // 是否启用动画过渡
+      let ANIMATION = getAnimation(false)
+      ANIMATION[attr](pos).translate3d(0).step()
+      itemAnimations[domIndex] = ANIMATION.export()
+
+      this.setData({
+        // [itemAnimation]: ANIMATION.export(),
+        itemAnimations: itemAnimations
+      })
+    },
     // 向后一个视图
     nextView(useAnimation = true) {
       let {nowViewDataIndex} = this.data
@@ -368,12 +403,12 @@ Component({
       this.moveViewToAdapter(nextIndex, useAnimation)
     },
     moveViewToAdapter(nextIndex, useAnimation) {
-      let {nowViewDataIndex, dataList} = this.data
+      let {nowViewDataIndex, dataList, viewDirection, recycle, dataWillUpdateAt} = this.data
       let len = dataList.length
       let originNextIndex = nextIndex
       nextIndex = Math.abs((nextIndex + len) % len)
 
-      if (!this.data.recycle) {
+      if (!recycle) {
         // 当前是否已经是最后一个
         if (nowViewDataIndex === (len - 1) && originNextIndex >= len) {
           this.triggerEvent('alreadyLastView', {
@@ -447,7 +482,19 @@ Component({
         this.setData({
           tranforming: false
         })
-        console.log('nowViewDataIndex/afterViewChange: ' + nowViewDataIndex);
+        console.log('nowViewDataIndex/nextIndex: ' + nowViewDataIndex + '/' + nextIndex);
+
+        if(viewDirection === 'prev'){
+          // 向前/向上滚动屏幕
+
+        }else{
+          // 向后/向下滚动屏幕
+          if(nextIndex >= len - 1){
+            this.data.dataWillUpdateAt = 0
+            this.translateView(this.data.dataWillUpdateAt)
+          }
+
+        }
         // debugger
         
         return null
