@@ -55,7 +55,7 @@ Page({
     dataList2: [0, 1, 2, 3, 4],
     moveTo: 0,
     recyle: false,
-    firstIndex: 5,
+    firstIndex: 0,
   },
   onReady() {
     this.setVisibleList()

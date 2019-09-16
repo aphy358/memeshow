@@ -15,10 +15,17 @@ class HTouch extends HEvent {
 
     this.startTime = 0
     this.endTime = 0
+    this.disableMove = false
   }
 
   touchstart(e) {
     if(!e.changedTouches[0])  return
+    if(e.timeStamp - this.endTime < 500){
+      this.disableMove = true
+      return
+    }else{
+      this.disableMove = false
+    }
 
     this.startX = e.changedTouches[0].clientX
     this.startY = e.changedTouches[0].clientY
@@ -36,7 +43,7 @@ class HTouch extends HEvent {
   }
 
   touchmove(e) {
-    if(!e.changedTouches[0])  return
+    if(!e.changedTouches[0] || this.disableMove)  return
 
     this.endX = e.changedTouches[0].clientX
     this.endY = e.changedTouches[0].clientY
@@ -65,7 +72,7 @@ class HTouch extends HEvent {
   }
 
   touchend(e) {
-    if(!e.changedTouches[0])  return
+    if(!e.changedTouches[0] || this.disableMove)  return
     
     const times = e.timeStamp - this.touchTime
     const distanceX = e.changedTouches[0].clientX - this.startX
@@ -73,6 +80,7 @@ class HTouch extends HEvent {
 
     this.moveDistanceY = distanceY
     this.moveDistanceX = distanceX
+    this.endTime = e.timeStamp
 
     if (Math.abs(distanceX) < 10 && Math.abs(distanceY) < 10) {
       return

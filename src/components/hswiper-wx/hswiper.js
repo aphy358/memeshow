@@ -1,5 +1,6 @@
 import {parseStyle, styleStringify} from './libs/utils'
 import HTouch from './libs/hTouch'
+import { SSL_OP_LEGACY_SERVER_CONNECT } from 'constants';
 const touchHandle = new HTouch()
 
 // 获取屏幕宽高
@@ -87,9 +88,9 @@ Component({
           dataList.splice(dataWillUpdateAt, 1, ...newVal)
 
           this.data.dataList = dataList
+          this.data.newDataListStatus = 'resolved'
           this.setData({
-            visibleDataList: visibleDataList,
-            newDataListStatus: 'resolved'
+            visibleDataList: visibleDataList
           })
         }
       }
@@ -226,31 +227,19 @@ Component({
     touchstart: touchHandle.touchstart.bind(touchHandle),
     touchmove: touchHandle.touchmove.bind(touchHandle),
     touchend: touchHandle.touchend.bind(touchHandle),
-    touchEventHandler(e){
-      let {vertical, tranforming, newDataListStatus, nowViewDataIndex, viewDirection} = this.data
-      let {distanceX, distanceY, duration} = e
+    getViewDirection(e){
+      let {vertical} = this.data
+      let {distanceX, distanceY} = e
+      let direction = ''
 
-      if(vertical){
-        distanceY > 0
-          ? viewDirection = 'prev'
-          : viewDirection = 'next'
+      vertical
+        ? (direction = distanceY > 0 ? 'prev' : 'next')
+        : (direction = distanceX > 0 ? 'prev' : 'next')
 
-        if(duration > 300 && Math.abs(distanceY) * 2 < SCREEN_HEIGHT) viewDirection = 'goback'
-      }else{
-        distanceX > 0
-          ? viewDirection = 'prev'
-          : viewDirection = 'next'
-
-        if(duration > 300 && Math.abs(distanceX) * 2 < SCREEN_WIDTH) viewDirection = 'goback'
-      }
-
-      this.data.viewDirection = viewDirection
-      if(this.data.newDataListStatus === 'resolved'){
-        this.moveViewToAdapter(true)
-      }
+      return direction
     },
     registerTouchEvent() {
-      let {vertical, tranforming, newDataListStatus, nowViewDataIndex} = this.data
+      let {vertical} = this.data
       let type = 'x'
       let endPhase = 'endX'
       let startPhase = 'startX'
@@ -263,24 +252,39 @@ Component({
         translateType = 'translateY'
       }
 
-      touchHandle.listen('touchup', (e) => {
-        this.touchEventHandler(e)
-      })
-      touchHandle.listen('touchdown', (e) => {
-        this.touchEventHandler(e)
-      })
-      touchHandle.listen('touchleft', (e) => {
-        this.touchEventHandler(e)
-      })
-      touchHandle.listen('touchright', (e) => {
-        this.touchEventHandler(e)
+      touchHandle.listen('touchend', (e) => {
+        let {vertical} = this.data
+        let {distanceX, distanceY, duration} = e
+
+        if(vertical){
+          if(duration > 300 && Math.abs(distanceY) * 2 < SCREEN_HEIGHT) viewDirection = 'goback'
+        }else{
+          if(duration > 300 && Math.abs(distanceX) * 2 < SCREEN_WIDTH) viewDirection = 'goback'
+        }
+
+        this.data.viewDirection = this.getViewDirection(e)
+        if(this.data.newDataListStatus === 'resolved'){
+          this.moveViewToAdapter(true)
+        }
       })
 
       touchHandle.listen('touchmove', (data) => {
+        let {newDataListStatus, nowViewDataIndex, tranforming, viewDirection, vertical} = this.data
+        let tmpDirection = this.getViewDirection(data)
+
+        if(newDataListStatus === 'pending'){
+          if(tmpDirection === viewDirection){
+            return
+          }else{
+
+          }
+        }
+        
         // 过渡中禁止手指滑动
-        if (tranforming || newDataListStatus === 'pending') {
+        if (tranforming) {
           return
         }
+        console.log('newDataListStatus: ' + newDataListStatus);
         
         this.triggerEvent('move', {
           index: nowViewDataIndex,
@@ -403,9 +407,7 @@ Component({
           ? (nowViewDataIndex + len + 1) % len
           : (nowViewDataIndex + len - 1) % len
 
-        this.setData({
-          newDataListStatus: 'pending'
-        })
+        this.data.newDataListStatus = 'pending'
 
         for (let i = 0; i < dataList.length; i++) {
           viewDirection === 'next'
@@ -437,13 +439,9 @@ Component({
         })
       }
 
-      this.triggerEvent('beforeViewChange', {
-        index: nowViewDataIndex,
-        item: dataList[nowViewDataIndex]
-      })
-      
       return this.moveView(useAnimation).then(() => {
         console.log('transPositionStoreArr:' + transPositionStoreArr);
+
         this.triggerEvent('afterViewChange', {
           index: nowViewDataIndex,
           item: dataList[nowViewDataIndex]
@@ -452,7 +450,9 @@ Component({
           tranforming: false
         })
 
-        this.translateView()
+        if(viewDirection !== 'goback'){
+          this.translateView()
+        }
       })
     },
     // 是否可以进行过渡
