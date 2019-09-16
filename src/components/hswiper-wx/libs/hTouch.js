@@ -2,6 +2,8 @@
  * 小程序touch 扩展包
  */
 import HEvent from './hEvent'
+// 每次滑动相对于上次滑动的间隔限制
+const SWIPER_DUARATION = 300
 
 class HTouch extends HEvent {
   constructor() {
@@ -20,7 +22,7 @@ class HTouch extends HEvent {
 
   touchstart(e) {
     if(!e.changedTouches[0])  return
-    if(e.timeStamp - this.endTime < 500){
+    if(e.timeStamp - this.endTime < SWIPER_DUARATION){
       this.disableMove = true
       return
     }else{
