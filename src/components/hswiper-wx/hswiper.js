@@ -97,22 +97,6 @@ Component({
         }
       }
     },
-    // 移动到指定试图，伴随过渡动画
-    moveTo: {
-      type: Number,
-      value: 0,
-      observer(newVal) {
-        this.moveViewToAdapter(true)
-      }
-    },
-    // 移动到指定试图，无过渡动画
-    moveToWithOutAnimation: {
-      type: Number,
-      value: 0,
-      observer(newVal) {
-        this.moveViewToAdapter()
-      }
-    },
     // 动画类型
     animationType: {
       type: String,
@@ -132,6 +116,7 @@ Component({
         DURATION = newVal
       }
     },
+    // 模版名称
     templateName: {
       type: String,
       value: 'hSwiperItem'
@@ -153,90 +138,24 @@ Component({
         })
       }
     },
-    // 滚动图的宽度
-    width: {
-      type: Number,
-      value: SCREEN_WIDTH,
-      observer(newVal) {
-        let tempReduceDistance = (this.data.padding + this.data.paddingX) * 2
-        this.setData({
-          itemWidth: newVal - tempReduceDistance
-        })
-      }
-    },
-    // 滚动图的高度
-    height: {
-      type: Number,
-      value: SCREEN_HEIGHT,
-      observer(newVal) {
-        let tempReduceDistance = (this.data.padding + this.data.paddingY) * 2
-        this.setData({
-          itemHeight: newVal - tempReduceDistance
-        })
-      }
-    },
-    // 垂直和水平方向各自减少的距离
-    padding: {
-      type: Number,
-      value: 0,
-      observer(newVal) {
-        let tempReduceDistanceX = (newVal + this.data.paddingX) * 2
-        let tempReduceDistanceY = (newVal + this.data.paddingY) * 2
-        this.setData({
-          itemWidth: this.data.width - tempReduceDistanceX,
-          itemHeight: this.data.height - tempReduceDistanceY
-        })
-      }
-    },
-    // 水平方向减少的距离
-    paddingX: {
-      type: Number,
-      value: 0,
-      observer(newVal) {
-        let tempReduceDistanceX = (newVal + newVal) * 2
-        let tempReduceDistanceY = (this.data.paddingY + this.data.paddingY) * 2
-        this.setData({
-          itemWidth: this.data.width - tempReduceDistanceX,
-          itemHeight: this.data.height - tempReduceDistanceY
-        })
-      }
-    },
-    // 垂直方向减少的距离
-    paddingY: {
-      type: Number,
-      value: 0,
-      observer(newVal) {
-        let tempReduceDistanceX = (this.data.padding + this.data.paddingX) * 2
-        let tempReduceDistanceY = (this.data.padding + newVal) * 2
-        this.setData({
-          itemWidth: this.data.width - tempReduceDistanceX,
-          itemHeight: this.data.height - tempReduceDistanceY
-        })
-      }
-    },
-    // 是否为垂直
-    vertical: {
+    // 是否为垂直翻页
+    isVertical: {
       type: Boolean,
       value: true
     },
-    // 是否循环
-    recycle: {
-      type: Boolean,
-      value: false
-    }
   },
   methods: {
     touchstart: touchHandle.touchstart.bind(touchHandle),
     touchmove: touchHandle.touchmove.bind(touchHandle),
     touchend: touchHandle.touchend.bind(touchHandle),
     registerTouchEvent() {
-      let {vertical} = this.data
+      let {isVertical} = this.data
       let type = 'x'
       let endPhase = 'endX'
       let startPhase = 'startX'
       let translateType = 'translateX'
 
-      if(vertical){
+      if(isVertical){
         type = 'y'
         endPhase = 'endY'
         startPhase = 'startY'
@@ -244,12 +163,12 @@ Component({
       }
 
       touchHandle.listen('touchend', (e) => {
-        let {vertical} = this.data
+        let {isVertical} = this.data
         let {distanceX, distanceY, duration} = e
         let _direction = this.getViewDirection(e)
 
         this.data.viewDirection = _direction
-        if(vertical){
+        if(isVertical){
           if(duration > 300 && Math.abs(distanceY) * 2 < SCREEN_HEIGHT) this.data.viewDirection = 'goback'
         }else{
           if(duration > 300 && Math.abs(distanceX) * 2 < SCREEN_WIDTH) this.data.viewDirection = 'goback'
@@ -263,7 +182,7 @@ Component({
       })
 
       touchHandle.listen('touchmove', (data) => {
-        let {newDataListStatus, nowViewDataIndex, tranforming, viewDirection, vertical} = this.data
+        let {newDataListStatus, nowViewDataIndex, tranforming, isVertical} = this.data
         let tmpDirection = this.getViewDirection(data)
 
         if(newDataListStatus[tmpDirection] === 'pending'){
@@ -279,20 +198,20 @@ Component({
         this.triggerEvent('move', {
           index: nowViewDataIndex,
           nativeEvent: data,
-          vertical: vertical,
+          isVertical: isVertical,
           type: type
         })
         this.movePos(data[endPhase] - data[startPhase], translateType)
       })
     },
     getViewDirection(e){
-      let {vertical} = this.data
+      let {isVertical} = this.data
       let {distanceX, distanceY} = e
       let direction = ''
 
-      vertical
-        ? (direction = distanceY > 0 ? 'prev' : 'next')
-        : (direction = distanceX > 0 ? 'prev' : 'next')
+      direction = isVertical
+        ? (distanceY > 0 ? 'prev' : 'next')
+        : (distanceX > 0 ? 'prev' : 'next')
 
       return direction
     },
@@ -313,24 +232,24 @@ Component({
     // 初始化 dom 结构
     initStruct() {
       let {
-        itemHeight, itemWidth, vertical, width, height, visibleDataList
+        itemHeight, itemWidth, isVertical, visibleDataList
       } = this.data
       let h = 0
       let w = 0
       let count = visibleDataList.length
       let viewBoxStyle = {
-        width: width + 'px',
-        height: height + 'px'
+        width: itemWidth + 'px',
+        height: itemHeight + 'px'
       }
 
-      if (vertical) {
+      if (isVertical) {
         w = itemWidth + 'px'
         h = count * itemHeight + 'px'
-        viewBoxStyle['padding-left'] = (width - itemWidth) / 2 + 'px'
+        viewBoxStyle['padding-left'] = (itemWidth - itemWidth) / 2 + 'px'
       } else {
         w = count * itemWidth + 'px'
         h = itemHeight + 'px'
-        viewBoxStyle['padding-top'] = (height - itemHeight) / 2 + 'px'
+        viewBoxStyle['padding-top'] = (itemHeight - itemHeight) / 2 + 'px'
       }
 
       // 更新容器的宽度，默认
@@ -349,8 +268,8 @@ Component({
      * @param {*} useAnimation 是否启用过渡动画
      */
     moveView(useAnimation) {
-      let {vertical, transPositionArr, itemAnimations} = this.data
-      let attr = vertical ? 'translateY' : 'translateX'
+      let {isVertical, transPositionArr, itemAnimations} = this.data
+      let attr = isVertical ? 'translateY' : 'translateX'
 
       for (let i = 0; i < itemAnimations.length; i++) {
         let ANIMATION = getAnimation(useAnimation)
@@ -373,11 +292,11 @@ Component({
     // 将指定位置的 item 移动位置
     translateView() {
       let {
-        itemWidth, itemHeight, vertical, visibleDataList, itemAnimations, dataWillUpdateAt, viewDirection
+        itemWidth, itemHeight, isVertical, visibleDataList, itemAnimations, dataWillUpdateAt, viewDirection
       } = this.data
       let len = visibleDataList.length
-      let attr = vertical ? 'translateY' : 'translateX'
-      let pos = vertical ? itemHeight : itemWidth
+      let attr = isVertical ? 'translateY' : 'translateX'
+      let pos = isVertical ? itemHeight : itemWidth
       if(viewDirection === 'prev')  pos = -pos
 
       this.data.transPositionArr[dataWillUpdateAt] += pos * len
@@ -394,7 +313,7 @@ Component({
     },
     moveViewToAdapter(useAnimation) {
       let {
-        nowViewDataIndex, dataList, viewDirection, itemHeight, itemWidth, vertical, transPositionStoreArr, transPositionArr
+        nowViewDataIndex, dataList, viewDirection, itemHeight, itemWidth, isVertical, transPositionStoreArr, transPositionArr
       } = this.data
       let len = dataList.length
 
@@ -412,8 +331,8 @@ Component({
 
         for (let i = 0; i < dataList.length; i++) {
           viewDirection === 'next'
-            ? transPositionArr[i] = transPositionStoreArr[i] - (vertical ? itemHeight : itemWidth)
-            : transPositionArr[i] = transPositionStoreArr[i] + (vertical ? itemHeight : itemWidth)
+            ? transPositionArr[i] = transPositionStoreArr[i] - (isVertical ? itemHeight : itemWidth)
+            : transPositionArr[i] = transPositionStoreArr[i] + (isVertical ? itemHeight : itemWidth)
         }
         this.data.transPositionArr = transPositionArr
         this.data.transPositionStoreArr = transPositionArr.slice()
@@ -522,12 +441,12 @@ Component({
     // 初始化数据
     initData(){
       let {
-        dataList, initIndex, itemHeight, itemWidth, vertical, transPositionArr, itemAnimations
+        dataList, initIndex, itemHeight, itemWidth, isVertical, transPositionArr, itemAnimations
       } = this.data
 
       for (let i = 0; i < dataList.length; i++) {
         itemAnimations[i] = getAnimation()
-        transPositionArr[i] = -(vertical ? itemHeight : itemWidth) * initIndex
+        transPositionArr[i] = -(isVertical ? itemHeight : itemWidth) * initIndex
       }
 
       this.setData({

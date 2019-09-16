@@ -3,7 +3,7 @@
     templateName="hSwiperItem"
     dataList="{{dataList}}"
     newDataList="{{newDataList}}"
-    vertical="{{true}}"
+    isVertical="{{true}}"
     bind:customevent="getRef"
     bind:beforeViewChange="beforeViewChange"
     bind:afterViewChange="afterViewChange"
@@ -17,13 +17,8 @@
 </View>
 
 <!-- 
-  recycle="{{true}}"
-  moveTo="{{moveTo}}"
-  padding="{{30}}"
-  width="{{320}}"
-  height="{{500}}" 
   animationType="ease-out"
   animationDuration="300"
-  vertical="{{true}}"
+  isVertical="{{true}}"
   initIndex="{{2}}"
 -->
