@@ -55,7 +55,7 @@ Page({
     dataList2: [0, 1, 2, 3, 4],
     moveTo: 0,
     recyle: false,
-    firstIndex: 0,
+    firstIndex: 5,
   },
   onReady() {
     this.setVisibleList()
@@ -110,7 +110,7 @@ Page({
           firstIndex: firstIndex + 1,
           newDataList: dataList0.slice(firstIndex + 3, firstIndex + 4)
         })
-      }, 500);
+      }, 300);
     }
   },
   alreadyLastView(e) {
