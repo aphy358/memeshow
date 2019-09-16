@@ -21,7 +21,7 @@
   </view>
 </view>
 
-<view 
+<!-- <view 
   class="hSwiper-mask" 
   wx:if="{{newDataListStatus === 'pending'}}"
-  ></view>
+  ></view> -->

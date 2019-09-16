@@ -226,42 +226,59 @@ Component({
     touchstart: touchHandle.touchstart.bind(touchHandle),
     touchmove: touchHandle.touchmove.bind(touchHandle),
     touchend: touchHandle.touchend.bind(touchHandle),
+    touchEventHandler(e){
+      let {vertical, tranforming, newDataListStatus, nowViewDataIndex, viewDirection} = this.data
+      let {distanceX, distanceY, duration} = e
+
+      if(vertical){
+        distanceY > 0
+          ? viewDirection = 'prev'
+          : viewDirection = 'next'
+
+        if(duration > 300 && Math.abs(distanceY) * 2 < SCREEN_HEIGHT) viewDirection = 'goback'
+      }else{
+        distanceX > 0
+          ? viewDirection = 'prev'
+          : viewDirection = 'next'
+
+        if(duration > 300 && Math.abs(distanceX) * 2 < SCREEN_WIDTH) viewDirection = 'goback'
+      }
+
+      this.data.viewDirection = viewDirection
+      if(this.data.newDataListStatus === 'resolved'){
+        this.moveViewToAdapter(true)
+      }
+    },
     registerTouchEvent() {
       let {vertical, tranforming, newDataListStatus, nowViewDataIndex} = this.data
-      let nextEvent = 'touchleft'
-      let prevEvent = 'touchright'
       let type = 'x'
       let endPhase = 'endX'
       let startPhase = 'startX'
       let translateType = 'translateX'
 
       if(vertical){
-        nextEvent = 'touchup'
-        prevEvent = 'touchdown'
         type = 'y'
         endPhase = 'endY'
         startPhase = 'startY'
         translateType = 'translateY'
       }
 
-      touchHandle.listen(nextEvent, () => {
-        this.data.viewDirection = 'next'
-        if(this.data.newDataListStatus === 'resolved'){
-          this.moveViewToAdapter(true)
-        }
+      touchHandle.listen('touchup', (e) => {
+        this.touchEventHandler(e)
       })
-
-      touchHandle.listen(prevEvent, () => {
-        this.data.viewDirection = 'prev'
-        if(this.data.newDataListStatus === 'resolved'){
-          this.moveViewToAdapter(true)
-        }
+      touchHandle.listen('touchdown', (e) => {
+        this.touchEventHandler(e)
+      })
+      touchHandle.listen('touchleft', (e) => {
+        this.touchEventHandler(e)
+      })
+      touchHandle.listen('touchright', (e) => {
+        this.touchEventHandler(e)
       })
 
       touchHandle.listen('touchmove', (data) => {
         // 过渡中禁止手指滑动
         if (tranforming || newDataListStatus === 'pending') {
-          console.log('moving........newDataListStatus: ' + newDataListStatus);
           return
         }
         
@@ -376,23 +393,35 @@ Component({
       } = this.data
       let len = dataList.length
 
-      viewDirection === 'next'
-        ? nowViewDataIndex = (nowViewDataIndex + len + 1) % len
-        : nowViewDataIndex = (nowViewDataIndex + len - 1) % len
-      this.data.nowViewDataIndex = nowViewDataIndex
+      if(viewDirection !== 'goback'){
+        viewDirection === 'next'
+          ? nowViewDataIndex = (nowViewDataIndex + len + 1) % len
+          : nowViewDataIndex = (nowViewDataIndex + len - 1) % len
+        this.data.nowViewDataIndex = nowViewDataIndex
+  
+        this.data.dataWillUpdateAt = viewDirection === 'next'
+          ? (nowViewDataIndex + len + 1) % len
+          : (nowViewDataIndex + len - 1) % len
 
-      this.data.dataWillUpdateAt = viewDirection === 'next'
-        ? (nowViewDataIndex + len + 1) % len
-        : (nowViewDataIndex + len - 1) % len
+        this.setData({
+          newDataListStatus: 'pending'
+        })
+
+        for (let i = 0; i < dataList.length; i++) {
+          viewDirection === 'next'
+            ? transPositionArr[i] = transPositionStoreArr[i] - (vertical ? itemHeight : itemWidth)
+            : transPositionArr[i] = transPositionStoreArr[i] + (vertical ? itemHeight : itemWidth)
+        }
+        this.data.transPositionArr = transPositionArr
+        this.data.transPositionStoreArr = transPositionArr.slice()
+      }else{
+        this.data.transPositionArr = transPositionStoreArr.slice()
+      }
 
       // 是否可以进行过渡
       if (!this.canTransforming()) {
         return null
       }
-
-      this.setData({
-        newDataListStatus: 'pending'
-      })
 
       if (viewDirection === 'prev') {
         this.triggerEvent('firstView', {
@@ -412,14 +441,6 @@ Component({
         index: nowViewDataIndex,
         item: dataList[nowViewDataIndex]
       })
-
-      for (let i = 0; i < dataList.length; i++) {
-        viewDirection === 'next'
-          ? transPositionArr[i] = transPositionStoreArr[i] - (vertical ? itemHeight : itemWidth)
-          : transPositionArr[i] = transPositionStoreArr[i] + (vertical ? itemHeight : itemWidth)
-      }
-      this.data.transPositionArr = transPositionArr
-      this.data.transPositionStoreArr = transPositionArr.slice()
       
       return this.moveView(useAnimation).then(() => {
         console.log('transPositionStoreArr:' + transPositionStoreArr);
