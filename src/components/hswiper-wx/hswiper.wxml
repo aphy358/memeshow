@@ -11,7 +11,7 @@
     style="{{wrapperStyle}}" >
     <block wx:for="{{visibleDataList}}" wx:key="{{item}}" >
       <view 
-        class="item" 
+        class="hSwiper-item" 
         animation="{{itemAnimations[index]}}"
         style="{{itemStyle}}" 
         bindtap="onTap">

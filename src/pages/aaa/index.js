@@ -59,15 +59,6 @@ Page({
   },
   onReady() {
     this.setVisibleList()
-
-    // if (this.data.recyle) {
-    //   setInterval(() => {
-    //     this.setData({
-    //       moveTo: (this.data.moveTo + 1) % this.data.dataList.length
-    //     })
-    //     console.log('change view')
-    //   }, 1000)
-    // }
   },
   setVisibleList(fIndex){
     let {firstIndex, dataList0} = this.data

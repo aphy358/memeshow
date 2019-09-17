@@ -12,9 +12,10 @@
 	will-change: transform;
   overflow: hidden;
 }
-.item {
-	position:relative;
-	float: left;
+.hSwiper-item {
+  position: absolute;
+  top: 0;
+  left: 0;
   box-sizing:border-box;
   overflow: hidden;
 }

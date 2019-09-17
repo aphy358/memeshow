@@ -1,4 +1,4 @@
-<View class="swiper" >
+<View class="swiper">
   <comp
     templateName="hSwiperItem"
     dataList="{{dataList}}"

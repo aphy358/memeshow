@@ -446,7 +446,7 @@ Component({
 
       for (let i = 0; i < dataList.length; i++) {
         itemAnimations[i] = getAnimation()
-        transPositionArr[i] = -(isVertical ? itemHeight : itemWidth) * initIndex
+        transPositionArr[i] = (isVertical ? itemHeight : itemWidth) * (i - initIndex)
       }
 
       this.setData({
