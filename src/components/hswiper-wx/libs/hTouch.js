@@ -17,6 +17,7 @@ class HTouch extends HEvent {
 
     this.startTime = 0
     this.endTime = 0
+    // 用于标记当前是否允许滑动屏幕
     this.disableMove = false
     // 存储第一次触屏的事件 identifier，用于解决多个手指滑动的冲突
     this.alreadyTouched = undefined
