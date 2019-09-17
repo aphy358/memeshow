@@ -18,6 +18,8 @@ class HTouch extends HEvent {
     this.startTime = 0
     this.endTime = 0
     this.disableMove = false
+    // 存储第一次触屏的事件 identifier，用于解决多个手指滑动的冲突
+    this.alreadyTouched = undefined
   }
 
   touchstart(e) {
@@ -27,6 +29,12 @@ class HTouch extends HEvent {
       return
     }else{
       this.disableMove = false
+    }
+
+    if(this.alreadyTouched !== undefined){
+      return
+    }else{
+      this.alreadyTouched = e.changedTouches[0].identifier
     }
 
     this.startX = e.changedTouches[0].clientX
@@ -46,6 +54,7 @@ class HTouch extends HEvent {
 
   touchmove(e) {
     if(!e.changedTouches[0] || this.disableMove)  return
+    if(this.alreadyTouched !== e.changedTouches[0].identifier) return
 
     this.endX = e.changedTouches[0].clientX
     this.endY = e.changedTouches[0].clientY
@@ -75,6 +84,9 @@ class HTouch extends HEvent {
 
   touchend(e) {
     if(!e.changedTouches[0] || this.disableMove)  return
+    if(this.alreadyTouched !== e.changedTouches[0].identifier) return
+
+    this.alreadyTouched = undefined
     
     const times = e.timeStamp - this.touchTime
     const distanceX = e.changedTouches[0].clientX - this.startX
