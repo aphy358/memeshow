@@ -9,9 +9,6 @@
     bind:afterViewChange="afterViewChange"
     bind:firstView="firstView"
     bind:lastView="lastView"
-    bind:alreadyFirstView="alreadyFirstView"
-    bind:alreadyLastView="alreadyLastView"
-    bind:move="viewMove"
     bind:onTap="onTap"
   ></comp>
 </View>

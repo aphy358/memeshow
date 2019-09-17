@@ -70,9 +70,6 @@ Page({
       })
     }
   },
-  alreadyFirstView(e) {
-    console.log('alreadyFirstView', e)
-  },
   firstView(e) {
     // console.log('firstView', e)
     let {firstIndex, dataList0} = this.data
@@ -89,7 +86,7 @@ Page({
   afterViewChange(e) {
     // console.log('afterViewChange', e)
     let {firstIndex} = this.data
-    console.log('firstIndex:' + firstIndex);
+    // console.log('firstIndex:' + firstIndex);
   },
   lastView(e) {
     // console.log('lastView', e)
@@ -103,12 +100,6 @@ Page({
         })
       }, 300);
     }
-  },
-  alreadyLastView(e) {
-    console.log('alreadyLastView', e)
-  },
-  viewMove(e) {
-    // console.log('viewMove', e)
   },
   onTap(e) {
     console.log(e, '监听到了 tap')

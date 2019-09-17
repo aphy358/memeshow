@@ -12,20 +12,6 @@ let DURATION = 300
 let TIMEING_FUNCTION = 'ease-out'
 const TIMEING_FUNCTION_ARRAY = ['linear', 'ease-in', 'ease-in-out', 'ease-out', 'step-start', 'step-end']
 
-/**
- * 获取动画实例
- * @param {Boolean} ifAnimate 是否带动画
- * @param {String} animateType 动画过渡类型，如 'linear', 'ease-in', 'ease-in-out', 'ease-out', 'step-start', 'step-end' 等
- */
-const getAnimation = (ifAnimate, animateType) => {
-  return wx.createAnimation({
-    transformOrigin: '50% 50%',
-    duration: ifAnimate ? DURATION : 0,
-    timingFunction: animateType || TIMEING_FUNCTION,
-    delay: 0
-  })
-}
-
 
 Component({
   options: {
@@ -83,8 +69,6 @@ Component({
       value: [],
       observer(newVal) {
         if(newVal.length > 0){
-          console.log('newDataList: ' + JSON.stringify(newVal));
-
           let {visibleDataList, dataList, dataWillUpdateAt, viewDirection} = this.data
           visibleDataList.splice(dataWillUpdateAt, 1, ...newVal)
           dataList.splice(dataWillUpdateAt, 1, ...newVal)
@@ -148,6 +132,7 @@ Component({
     touchstart: touchHandle.touchstart.bind(touchHandle),
     touchmove: touchHandle.touchmove.bind(touchHandle),
     touchend: touchHandle.touchend.bind(touchHandle),
+    // 注册屏幕滑动事件
     registerTouchEvent() {
       let {isVertical} = this.data
       let type = 'x'
@@ -163,7 +148,6 @@ Component({
       }
 
       touchHandle.listen('touchend', (e) => {
-        let {isVertical} = this.data
         let {distanceX, distanceY, duration} = e
         let _direction = this.getViewDirection(e)
 
@@ -184,16 +168,11 @@ Component({
       touchHandle.listen('touchmove', (data) => {
         let {newDataListStatus, nowViewDataIndex, tranforming, isVertical} = this.data
         let tmpDirection = this.getViewDirection(data)
-
-        if(newDataListStatus[tmpDirection] === 'pending'){
-          return
-        }
         
-        // 过渡中禁止手指滑动
-        if (tranforming) {
+        // 翻页过渡中或者下个页面的数据未返回禁止手指滑动
+        if (tranforming || newDataListStatus[tmpDirection] === 'pending') {
           return
         }
-        console.log('newDataListStatus: ' + newDataListStatus[tmpDirection]);
         
         this.triggerEvent('move', {
           index: nowViewDataIndex,
@@ -204,6 +183,20 @@ Component({
         this.movePos(data[endPhase] - data[startPhase], translateType)
       })
     },
+    /**
+     * 获取动画实例
+     * @param {Boolean} ifAnimate 是否带动画
+     * @param {String} animateType 动画过渡类型，如 'linear', 'ease-in', 'ease-in-out', 'ease-out', 'step-start', 'step-end' 等
+     */
+    getAnimation(ifAnimate, animateType) {
+      return wx.createAnimation({
+        transformOrigin: '50% 50%',
+        duration: ifAnimate ? DURATION : 0,
+        timingFunction: animateType || TIMEING_FUNCTION,
+        delay: 0
+      })
+    },
+    // 获取屏幕滑动方向，'prev'：向前/上，  'next'：向后/下
     getViewDirection(e){
       let {isVertical} = this.data
       let {distanceX, distanceY} = e
@@ -257,10 +250,12 @@ Component({
         width: w,
         height: h
       }, 'wrapperStyle')
+
       this.updateDomStyle({
         width: itemWidth + 'px',
         height: itemHeight + 'px'
       }, 'itemStyle')
+      
       this.updateDomStyle(viewBoxStyle, 'viewBoxStyle')
     },
     /*
@@ -272,7 +267,7 @@ Component({
       let attr = isVertical ? 'translateY' : 'translateX'
 
       for (let i = 0; i < itemAnimations.length; i++) {
-        let ANIMATION = getAnimation(useAnimation)
+        let ANIMATION = this.getAnimation(useAnimation)
         let pos = transPositionArr[i]
         ANIMATION[attr](pos).translate3d(0).step()
         itemAnimations[i] = ANIMATION.export()
@@ -303,7 +298,7 @@ Component({
       this.data.transPositionStoreArr[dataWillUpdateAt] += pos * len
 
       // 是否启用动画过渡
-      let ANIMATION = getAnimation(false)
+      let ANIMATION = this.getAnimation(false)
       ANIMATION[attr](pos).translate3d(0).step()
       itemAnimations[dataWillUpdateAt] = ANIMATION.export()
 
@@ -318,11 +313,11 @@ Component({
       let len = dataList.length
 
       if(viewDirection !== 'springback'){
-        viewDirection === 'next'
-          ? nowViewDataIndex = (nowViewDataIndex + len + 1) % len
-          : nowViewDataIndex = (nowViewDataIndex + len - 1) % len
+        nowViewDataIndex = viewDirection === 'next'
+          ? (nowViewDataIndex + len + 1) % len
+          : (nowViewDataIndex + len - 1) % len
+
         this.data.nowViewDataIndex = nowViewDataIndex
-  
         this.data.dataWillUpdateAt = viewDirection === 'next'
           ? (nowViewDataIndex + len + 1) % len
           : (nowViewDataIndex + len - 1) % len
@@ -361,8 +356,6 @@ Component({
       }
 
       return this.moveView(useAnimation).then(() => {
-        console.log('transPositionStoreArr:' + transPositionStoreArr);
-
         this.triggerEvent('afterViewChange', {
           index: nowViewDataIndex,
           item: dataList[nowViewDataIndex]
@@ -445,7 +438,7 @@ Component({
       } = this.data
 
       for (let i = 0; i < dataList.length; i++) {
-        itemAnimations[i] = getAnimation()
+        itemAnimations[i] = this.getAnimation()
         transPositionArr[i] = (isVertical ? itemHeight : itemWidth) * (i - initIndex)
       }
 
