@@ -41,8 +41,10 @@ Component({
     tranforming: false,
     // 上翻还是下翻，prev：上翻/前翻，  next：下翻/后翻， springback：回弹
     viewDirection: 'next',
+    // 表示页面中数组处于哪个下标的item值将会更新
     dataWillUpdateAt: -1,
-    // 'resolved'、'pending'
+    // 'resolved'表示数据已经加载完成、'pending'表示正在加载
+    // prev 和 next 分别表示向前/向后（或向上/向下）滑动的两个方向
     newDataListStatus: {
       prev: 'resolved',
       next: 'resolved'
@@ -152,14 +154,20 @@ Component({
         let _direction = this.getViewDirection(e)
 
         this.data.viewDirection = _direction
+
+        // 如果手指在屏幕上滑动的时间超过300ms，且滑动的距离小于屏幕的半个高度（vertival的情况下），
+        // 或小于屏幕的半个宽度（横向滚动的情况下），则将屏幕弹回原来展示的那个item位置
         if(isVertical){
           if(duration > 300 && Math.abs(distanceY) * 2 < SCREEN_HEIGHT) this.data.viewDirection = 'springback'
         }else{
           if(duration > 300 && Math.abs(distanceX) * 2 < SCREEN_WIDTH) this.data.viewDirection = 'springback'
         }
 
+        // 如果当前屏幕滑动的方向所要加载的数据已经加载完成了，则允许屏幕向这个方向翻页
         if(this.data.newDataListStatus[_direction] === 'resolved'){
           this.moveViewToAdapter(true)
+
+          // 当屏幕向一个方向翻页的时候，则将相反的那个方向的数据加载态设置为已经完成加载
           let direction = this.data.viewDirection === 'next' ? 'prev' : 'next'
           this.data.newDataListStatus[direction] = 'resolved'
         }
@@ -169,7 +177,7 @@ Component({
         let {newDataListStatus, nowViewDataIndex, tranforming, isVertical} = this.data
         let tmpDirection = this.getViewDirection(data)
         
-        // 翻页过渡中或者下个页面的数据未返回禁止手指滑动
+        // 翻页过渡中或者下个页面的数据未加载完成则禁止手指滑动
         if (tranforming || newDataListStatus[tmpDirection] === 'pending') {
           return
         }
@@ -255,7 +263,7 @@ Component({
         width: itemWidth + 'px',
         height: itemHeight + 'px'
       }, 'itemStyle')
-      
+
       this.updateDomStyle(viewBoxStyle, 'viewBoxStyle')
     },
     /*
@@ -297,7 +305,7 @@ Component({
       this.data.transPositionArr[dataWillUpdateAt] += pos * len
       this.data.transPositionStoreArr[dataWillUpdateAt] += pos * len
 
-      // 是否启用动画过渡
+      // false表示不启用动画过渡，直接移过去即可
       let ANIMATION = this.getAnimation(false)
       ANIMATION[attr](pos).translate3d(0).step()
       itemAnimations[dataWillUpdateAt] = ANIMATION.export()
@@ -322,6 +330,7 @@ Component({
           ? (nowViewDataIndex + len + 1) % len
           : (nowViewDataIndex + len - 1) % len
 
+        // 在翻页开始的时候，将这个方向的数据加载态设为正在加载
         this.data.newDataListStatus[viewDirection] = 'pending'
 
         for (let i = 0; i < dataList.length; i++) {
@@ -364,6 +373,7 @@ Component({
           tranforming: false
         })
 
+        // 如果是翻页（而不是把屏幕弹回之前位置），则需要将某一个item移动到合适的位置
         if(viewDirection !== 'springback'){
           this.translateView()
         }
@@ -437,6 +447,7 @@ Component({
         dataList, initIndex, itemHeight, itemWidth, isVertical, transPositionArr, itemAnimations
       } = this.data
 
+      // 初始化每个item的位置偏移量和每个item的动画实例
       for (let i = 0; i < dataList.length; i++) {
         itemAnimations[i] = this.getAnimation()
         transPositionArr[i] = (isVertical ? itemHeight : itemWidth) * (i - initIndex)
