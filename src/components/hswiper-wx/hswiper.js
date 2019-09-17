@@ -53,7 +53,7 @@ Component({
     viewBoxStyle: '',
     // 是否过渡中
     tranforming: false,
-    // 上翻还是下翻，prev：上翻/前翻，  next：下翻/后翻
+    // 上翻还是下翻，prev：上翻/前翻，  next：下翻/后翻， springback：回弹
     viewDirection: 'next',
     dataWillUpdateAt: -1,
     // 'resolved'、'pending'
@@ -169,9 +169,9 @@ Component({
 
         this.data.viewDirection = _direction
         if(isVertical){
-          if(duration > 300 && Math.abs(distanceY) * 2 < SCREEN_HEIGHT) this.data.viewDirection = 'goback'
+          if(duration > 300 && Math.abs(distanceY) * 2 < SCREEN_HEIGHT) this.data.viewDirection = 'springback'
         }else{
-          if(duration > 300 && Math.abs(distanceX) * 2 < SCREEN_WIDTH) this.data.viewDirection = 'goback'
+          if(duration > 300 && Math.abs(distanceX) * 2 < SCREEN_WIDTH) this.data.viewDirection = 'springback'
         }
 
         if(this.data.newDataListStatus[_direction] === 'resolved'){
@@ -317,7 +317,7 @@ Component({
       } = this.data
       let len = dataList.length
 
-      if(viewDirection !== 'goback'){
+      if(viewDirection !== 'springback'){
         viewDirection === 'next'
           ? nowViewDataIndex = (nowViewDataIndex + len + 1) % len
           : nowViewDataIndex = (nowViewDataIndex + len - 1) % len
@@ -337,7 +337,7 @@ Component({
         this.data.transPositionArr = transPositionArr
         this.data.transPositionStoreArr = transPositionArr.slice()
       }else{
-        // 如果是 'goback'，则将屏幕弹回去
+        // 如果是 'springback'，则将屏幕弹回去
         this.data.transPositionArr = transPositionStoreArr.slice()
       }
 
@@ -371,7 +371,7 @@ Component({
           tranforming: false
         })
 
-        if(viewDirection !== 'goback'){
+        if(viewDirection !== 'springback'){
           this.translateView()
         }
       })
