@@ -112,11 +112,6 @@ Component({
         DURATION = newVal
       }
     },
-    // 模版名称
-    templateName: {
-      type: String,
-      value: 'hSwiperItem'
-    },
     // 初始显示第几屏的数据，默认第二屏
     initIndex: {
       type: Number,
@@ -359,7 +354,7 @@ Component({
         }
         this.data.transPositionArr = transPositionArr
         this.data.transPositionStoreArr = transPositionArr.slice()
-      }else{  // 当不是屏幕回弹的情况下（最终没翻页）
+      }else{  // 当是屏幕回弹的情况下（最终没翻页）
         // 将备份的动画偏移值设置回去，后续按照这个备份的动画偏移值进行动画，最终实现页面回弹效果
         this.data.transPositionArr = transPositionStoreArr.slice()
       }

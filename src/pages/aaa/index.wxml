@@ -1,8 +1,8 @@
 <View class="swiper">
   <comp
-    templateName="hSwiperItem"
     dataList="{{dataList}}"
     isVertical="{{true}}"
+    generic:hswiper-item="hswiper-item" 
     bind:customevent="getRef"
     bind:beforeViewChange="beforeViewChange"
     bind:afterViewChange="afterViewChange"

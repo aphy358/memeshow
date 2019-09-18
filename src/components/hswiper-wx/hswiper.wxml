@@ -15,13 +15,9 @@
         animation="{{itemAnimations[index]}}"
         style="{{itemStyle}}" 
         bindtap="onTap">
-        <template is="{{item.templateName || templateName}}" data="{{item, index}}"></template>
+        <!-- 这里放自定义的组件作为 item 显示的模版 -->
+        <hswiper-item item="{{item}}"></hswiper-item>
       </view>
     </block>
   </view>
 </view>
-
-<!-- <view 
-  class="hSwiper-mask" 
-  wx:if="{{newDataListStatus === 'pending'}}"
-  ></view> -->

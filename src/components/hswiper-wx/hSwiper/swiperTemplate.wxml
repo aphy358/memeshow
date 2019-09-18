@@ -3,8 +3,3 @@
   <image class="imgOmg" src="{{item}}"></image>
 </template>
 
-<template name="hSwiperItem2">
-  <view style="width: 100%; height: 100%;">
-    {{item}}
-  </view>
-</template>
