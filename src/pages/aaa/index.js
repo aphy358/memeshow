@@ -1,6 +1,5 @@
 Page({
   data: {
-    newDataList: [],
     dataList: [
     ],
     dataList0: [
@@ -55,7 +54,7 @@ Page({
     dataList2: [0, 1, 2, 3, 4],
     moveTo: 0,
     recyle: false,
-    firstIndex: 5,
+    firstIndex: 0,
   },
   onReady() {
     this.setVisibleList()
@@ -72,11 +71,12 @@ Page({
   },
   firstView(e) {
     // console.log('firstView', e)
-    let {firstIndex, dataList0} = this.data
+    let {firstIndex, dataList0, dataList} = this.data
+    let len = dataList.length
     if(firstIndex > 0){
       this.setData({
         firstIndex: firstIndex - 1,
-        newDataList: dataList0.slice(firstIndex - 1, firstIndex)
+        dataList: dataList0.slice(firstIndex - 1, firstIndex + len)
       })
     }
   },
@@ -85,18 +85,17 @@ Page({
   },
   afterViewChange(e) {
     // console.log('afterViewChange', e)
-    let {firstIndex} = this.data
     // console.log('firstIndex:' + firstIndex);
   },
   lastView(e) {
     // console.log('lastView', e)
-    let {firstIndex, dataList0} = this.data
+    let {firstIndex, dataList0, dataList} = this.data
+    let len = dataList.length
     let _this = this
-    if(firstIndex < dataList0.length - 3){
+    if(firstIndex + len + 1 <= dataList0.length){
       setTimeout(() => {
         _this.setData({
-          firstIndex: firstIndex + 1,
-          newDataList: dataList0.slice(firstIndex + 3, firstIndex + 4)
+          dataList: dataList0.slice(firstIndex, firstIndex + len + 1)
         })
       }, 300);
     }

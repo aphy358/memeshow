@@ -25,8 +25,6 @@ Component({
     itemHeight: SCREEN_HEIGHT,
     wrapperStyle: '',
     itemStyle: '',
-    // 当前显示的数据所在数组的下标
-    nowViewDataIndex: 1,
     // 记录所有 item 当前的位移
     transPositionArr: [],
     // 记录所有 item 当前的位移的备份
@@ -41,8 +39,12 @@ Component({
     tranforming: false,
     // 上翻还是下翻，prev：上翻/前翻，  next：下翻/后翻， springback：回弹
     viewDirection: 'next',
-    // 表示页面中数组处于哪个下标的item值将会更新
+    // 当前显示的数据所在 dataList 中的下标
+    nowViewDataIndex: 1,
+    // 表示将被更新的 item 下标（item指页面中的item组件）
     dataWillUpdateAt: -1,
+    // 表示当前显示的 item 下标（item指页面中的item组件）
+    dataShowAt: 1,
     // 'resolved'表示数据已经加载完成、'pending'表示正在加载
     // prev 和 next 分别表示向前/向后（或向上/向下）滑动的两个方向
     newDataListStatus: {
@@ -57,29 +59,37 @@ Component({
       value: [],
       observer(newVal) {
         if(newVal.length > 0){
-          this.initVisibleDOM()
+          let {visibleDataList, dataWillUpdateAt, viewDirection, nowViewDataIndex} = this.data
+      
+          if(visibleDataList.length === 0){
+            // visibleDataList.length === 0 表示第一次初始化页面
+            this.initData()
+            this.initStruct()
+            this.moveView()
+          }else{
+            // 数据返回，则将屏幕滚动方向的 '数据加载态' 设置为已加载
+            this.data.newDataListStatus[viewDirection] = 'resolved'
+
+            // 既然触发了 dataList 改变，那么 viewDirection 一定是 'prev' 或者 'next'
+            if(viewDirection === 'prev'){
+              // 如果是向上/向前滑动一页，则将返回数组的第一项更新到视图中
+              visibleDataList.splice(dataWillUpdateAt, 1, newVal[0])
+
+              // 如果是向上/向前滑动一页，则加载新数据后，这个当前显示的数据下标就应该在原来基础上加1
+              this.data.nowViewDataIndex = nowViewDataIndex + 1
+            }else{
+              // 如果是向下/向后滑动一页，则将返回数组的最后一项更新到视图中
+              visibleDataList.splice(dataWillUpdateAt, 1, newVal[newVal.length - 1])
+            }
+
+            this.setData({
+              visibleDataList: visibleDataList
+            })
+          }
         }else{
           if(this.data.visibleDataList.length){
             console.warn('dataList不能为空')
           }
-        }
-      }
-    },
-    // 动态加载的新数据
-    newDataList: {
-      type: Array,
-      value: [],
-      observer(newVal) {
-        if(newVal.length > 0){
-          let {visibleDataList, dataList, dataWillUpdateAt, viewDirection} = this.data
-          visibleDataList.splice(dataWillUpdateAt, 1, ...newVal)
-          dataList.splice(dataWillUpdateAt, 1, ...newVal)
-
-          this.data.dataList = dataList
-          this.data.newDataListStatus[viewDirection] = 'resolved'
-          this.setData({
-            visibleDataList: visibleDataList
-          })
         }
       }
     },
@@ -174,7 +184,7 @@ Component({
       })
 
       touchHandle.listen('touchmove', (data) => {
-        let {newDataListStatus, nowViewDataIndex, tranforming, isVertical} = this.data
+        let {newDataListStatus, nowViewDataIndex, tranforming, isVertical, dataList} = this.data
         let tmpDirection = this.getViewDirection(data)
         
         // 翻页过渡中或者下个页面的数据未加载完成则禁止手指滑动
@@ -183,7 +193,7 @@ Component({
         }
         
         this.triggerEvent('move', {
-          index: nowViewDataIndex,
+          item: dataList[nowViewDataIndex],
           nativeEvent: data,
           isVertical: isVertical,
           type: type
@@ -281,6 +291,7 @@ Component({
         itemAnimations[i] = ANIMATION.export()
       }
 
+      // 更新每个 item 对应的动画实体，触发屏幕的滚动
       this.setData({
         itemAnimations: itemAnimations
       })
@@ -302,6 +313,7 @@ Component({
       let pos = isVertical ? itemHeight : itemWidth
       if(viewDirection === 'prev')  pos = -pos
 
+      // 修改对应item项对应的动画位移值，后续按照这个位移值对这个item进行移动
       this.data.transPositionArr[dataWillUpdateAt] += pos * len
       this.data.transPositionStoreArr[dataWillUpdateAt] += pos * len
 
@@ -310,63 +322,85 @@ Component({
       ANIMATION[attr](pos).translate3d(0).step()
       itemAnimations[dataWillUpdateAt] = ANIMATION.export()
 
+      // 更新每个 item 对应的动画实体，触发屏幕的滚动
       this.setData({
         itemAnimations: itemAnimations
       })
     },
     moveViewToAdapter(useAnimation) {
       let {
-        nowViewDataIndex, dataList, viewDirection, itemHeight, itemWidth, isVertical, transPositionStoreArr, transPositionArr
+        nowViewDataIndex, dataList, viewDirection, itemHeight, itemWidth, isVertical, transPositionStoreArr, transPositionArr, visibleDataList, dataShowAt
       } = this.data
-      let len = dataList.length
+      let len = visibleDataList.length
 
-      if(viewDirection !== 'springback'){
+      if(viewDirection !== 'springback'){   // 当不是屏幕回弹的情况下（最终翻页了）
+        // 更新 nowViewDataIndex 在 dataList 中的下标值，如果是上翻页，则下标 -1，如果是下翻页，则下标 +1
         nowViewDataIndex = viewDirection === 'next'
-          ? (nowViewDataIndex + len + 1) % len
-          : (nowViewDataIndex + len - 1) % len
+          ? nowViewDataIndex + 1
+          : nowViewDataIndex - 1
 
         this.data.nowViewDataIndex = nowViewDataIndex
+
+        // 更新 dataShowAt 在 visibleDataList 中的下标值
+        this.data.dataShowAt = viewDirection === 'next'
+          ? (dataShowAt + len + 1) % len
+          : (dataShowAt + len - 1) % len
+
+        // 更新 dataWillUpdateAt 在 visibleDataList 中的下标值
         this.data.dataWillUpdateAt = viewDirection === 'next'
-          ? (nowViewDataIndex + len + 1) % len
-          : (nowViewDataIndex + len - 1) % len
+          ? (dataShowAt + len + 2) % len
+          : (dataShowAt + len - 2) % len
 
-        // 在翻页开始的时候，将这个方向的数据加载态设为正在加载
-        this.data.newDataListStatus[viewDirection] = 'pending'
-
-        for (let i = 0; i < dataList.length; i++) {
+        // 更新每一项item对应的动画偏移值，后续按照新的动画偏移值进行翻页动画
+        for (let i = 0; i < visibleDataList.length; i++) {
           viewDirection === 'next'
             ? transPositionArr[i] = transPositionStoreArr[i] - (isVertical ? itemHeight : itemWidth)
             : transPositionArr[i] = transPositionStoreArr[i] + (isVertical ? itemHeight : itemWidth)
         }
         this.data.transPositionArr = transPositionArr
         this.data.transPositionStoreArr = transPositionArr.slice()
-      }else{
-        // 如果是 'springback'，则将屏幕弹回去
+      }else{  // 当不是屏幕回弹的情况下（最终没翻页）
+        // 将备份的动画偏移值设置回去，后续按照这个备份的动画偏移值进行动画，最终实现页面回弹效果
         this.data.transPositionArr = transPositionStoreArr.slice()
       }
 
       // 是否可以进行过渡
-      if (!this.canTransforming()) {
-        return null
-      }
+      if (!this.canTransforming())  return null;
 
       if (viewDirection === 'prev') {
-        this.triggerEvent('firstView', {
-          index: nowViewDataIndex,
-          item: dataList[nowViewDataIndex]
-        })
+        if(nowViewDataIndex === 0){
+          // 当数据在这个方向已经显示到头的时候，将这个方向的数据加载态设为正在加载
+          this.data.newDataListStatus[viewDirection] = 'pending'
+          this.triggerEvent('firstView', {
+            item: dataList[nowViewDataIndex]
+          })
+        }else{
+          // 如果翻一页还没到头，说明数据在 dataList 中有缓存
+          visibleDataList.splice(this.data.dataWillUpdateAt, 1, dataList[this.data.nowViewDataIndex - 1])
+          this.setData({
+            visibleDataList: visibleDataList
+          })
+        }
       }
 
       if (viewDirection === 'next') {
-        this.triggerEvent('lastView', {
-          index: nowViewDataIndex,
-          item: dataList[nowViewDataIndex]
-        })
+        if(nowViewDataIndex === dataList.length - 1){
+          // 当数据在这个方向已经显示到头的时候，将这个方向的数据加载态设为正在加载
+          this.data.newDataListStatus[viewDirection] = 'pending'
+          this.triggerEvent('lastView', {
+            item: dataList[nowViewDataIndex]
+          })
+        }else{
+          // 如果翻一页还没到头，说明数据在 dataList 中有缓存
+          visibleDataList.splice(this.data.dataWillUpdateAt, 1, dataList[this.data.nowViewDataIndex + len - 2])
+          this.setData({
+            visibleDataList: visibleDataList
+          })
+        }
       }
 
       return this.moveView(useAnimation).then(() => {
         this.triggerEvent('afterViewChange', {
-          index: nowViewDataIndex,
           item: dataList[nowViewDataIndex]
         })
         this.setData({
@@ -436,9 +470,6 @@ Component({
     },
     onTap(e) {
       this.triggerEvent('onTap', {
-        index: this.data.nowViewDataIndex,
-        itemData: this.data.dataList[this.data.nowViewDataIndex],
-        nativeEvent: e
       })
     },
     // 初始化数据
@@ -460,22 +491,10 @@ Component({
         transPositionStoreArr: transPositionArr.slice(),
       })
     },
-    // 初始化无限列表 DOM
-    initVisibleDOM(){
-      let {visibleDataList} = this.data
-      
-      // 第一次初始化页面
-      if(visibleDataList.length === 0){
-        this.initData()
-        this.initStruct()
-        this.moveView()
-      }
-    }
   },
   lifetimes: {
     ready() {
       this.registerTouchEvent()
-      // this.initVisibleDOM()
     }
   },
   pageLifetimes: {}
