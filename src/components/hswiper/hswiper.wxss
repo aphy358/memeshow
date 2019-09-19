@@ -1,0 +1,15 @@
+.hswiper-wrap {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  overflow: hidden;
+  box-sizing:border-box;
+}
+.hswiper-item {
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  box-sizing:border-box;
+}

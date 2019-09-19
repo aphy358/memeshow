@@ -1,20 +1,5 @@
-<View class="swiper">
-  <comp
-    dataList="{{dataList}}"
-    isVertical="{{true}}"
-    generic:hswiper-item="hswiper-item" 
-    bind:customevent="getRef"
-    bind:beforeViewChange="beforeViewChange"
-    bind:afterViewChange="afterViewChange"
-    bind:firstView="firstView"
-    bind:lastView="lastView"
-    bind:onTap="onTap"
-  ></comp>
-</View>
-
-<!-- 
-  animationType="ease-out"
-  animationDuration="300"
-  isVertical="{{true}}"
-  initIndex="{{2}}"
--->
+<view class="swiper">
+  <hswiper generic:hswiper-item="hswiper-item" items="{{items}}"
+    bindbeforeSwipe="beforeSwipe" bindafterSwipe="afterSwipe" binditemsExhausted="itemsExhausted"
+    bindactiveItem="activeItem" bindmove="swiperMove"></hswiper>
+</view>

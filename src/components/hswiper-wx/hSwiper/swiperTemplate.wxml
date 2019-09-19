@@ -1,5 +1,0 @@
-
-<template name="hSwiperItem">
-  <image class="imgOmg" src="{{item}}"></image>
-</template>
-

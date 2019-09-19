@@ -1,2 +1,3 @@
 
-<image class="imgOmg" src="{{item}}"></image>
+<image wx:if="{{!!item}}" class="imgOmg" src="{{item}}"></image>
+<view vx:else></view>

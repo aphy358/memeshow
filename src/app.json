@@ -18,7 +18,7 @@
     "pages/article/detail",
     "pages/article/comments",
     "components/hswiper-item/hswiper-item",
-    "components/hswiper-wx/hswiper",
+    "components/hswiper/hswiper",
     "components/navTab/index",
     "components/createor/index",
     "components/image/index"

@@ -1,0 +1,7 @@
+<view class="hswiper-wrap" bindtouchstart="touchstart" bindtouchmove="touchmove" bindtouchend="touchend">
+  <block wx:for="{{elements}}" wx:key="{{item.id}}">
+    <view class="hswiper-item" animation="{{item.animation}}" style="width:{{elemSize.width}}px;height:{{elemSize.height}}px;">
+      <hswiper-item item="{{elementData[item.id]}}"></hswiper-item>
+    </view>
+  </block>
+</view>
