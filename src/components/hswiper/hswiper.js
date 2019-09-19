@@ -74,7 +74,7 @@ Component({
     // 没有当前数据时，以列表中该位置的数据作为当前数据
     defaultItemIndex: {
       type: Number,
-      value: 0
+      value: 1
     },
     // 动画类型
     animationType: {
@@ -96,15 +96,15 @@ Component({
       type: Boolean,
       value: true
     },
-    // 滑动最短时间，少于该时间回弹到原位置
+    // 滑动时间阀值，少于该阀值直接翻页，大于该值，则根据滑动距离判断是回弹到原位置还是翻页
     swipeMinDuration: {
       type: Number,
-      default: 300
+      value: 300
     },
     // 滑动最短距离，小于该距离回弹到原位置，默认为容器尺寸30%，<=1时表示占容器尺寸的比例，>1时表示绝对像素值
     swipeMinDistance: {
       type: Number,
-      default: 0.45
+      value: 0.45
     }
   },
   methods: {
@@ -197,11 +197,8 @@ Component({
         return
       }
 
-      if (duration < swipeMinDuration) {
-        // 滑动时间太短，回弹到原位置
-        dir = 'springback'
-      } else {
-        // 滑动距离不够，回弹到原位置
+      // 滑动时间大于设定的阀值，我们视为正在拖动屏幕，这种情况下如果滑动距离不够，则回弹到原位置
+      if (duration > swipeMinDuration) {
         const distance = isVertical ? distanceY : distanceX
         let minDistance = swipeMinDistance
         if (swipeMinDistance <= 1) {
@@ -234,7 +231,7 @@ Component({
         // 滑动到前一个/后一个
         const unitSize = isVertical ? elemSize.height : elemSize.width
         const delta = dir === 'next' ? -unitSize : unitSize
-        const endDelta = delta
+        endDelta = delta
         const elemCount = elements.length
 
         // 更新dom信息

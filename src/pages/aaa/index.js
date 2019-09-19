@@ -18,7 +18,7 @@ const images = [
 
 Page({
   data: {
-    items: _.shuffle(_.uniq(images)).slice(0, 4)
+    items: _.shuffle(_.uniq(images)).slice(0, 3)
   },
   onReady() {
   },
@@ -36,10 +36,10 @@ Page({
     const activeIndex = e.detail.index
     let items = this.data.items
     if (activeIndex === 0) {
-      items = _.concat(_.shuffle(_.uniq(_.difference(images, items))).slice(0, 4), items)
+      items = _.concat(_.shuffle(_.uniq(_.difference(images, items))).slice(0, 3), items)
       this.setData({ items })
     } else if (activeIndex === items.length - 1) {
-      items = _.concat(items, _.shuffle(_.uniq(_.difference(images, items))).slice(0, 4))
+      items = _.concat(items, _.shuffle(_.uniq(_.difference(images, items))).slice(0, 3))
       this.setData({ items })
     }
   },
