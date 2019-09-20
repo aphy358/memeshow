@@ -1,6 +1,6 @@
 module.exports = {
   api: {
-    baseUrl: "http://192.168.0.96:3000"
+    baseurl: "http://127.0.0.1:3000"
   },
 
   appId: "wx75473f7e3d5a9c63",

@@ -1,5 +1,0 @@
-<view class="swiper">
-  <hswiper generic:hswiper-item="hswiper-item" items="{{items}}"
-    bindbeforeSwipe="beforeSwipe" bindafterSwipe="afterSwipe" binditemsExhausted="itemsExhausted"
-    bindactiveItem="activeItem" bindmove="swiperMove"></hswiper>
-</view>

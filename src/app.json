@@ -1,6 +1,5 @@
 {
   "pages": [
-    "pages/aaa/index",
     "pages/index/index",
     "pages/video/index",
     "pages/live/index",

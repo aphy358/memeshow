@@ -1,6 +1,0 @@
-{
-  "usingComponents": {
-    "hswiper": "/components/hswiper/hswiper",
-    "hswiper-item": "/components/hswiper-item/hswiper-item"
-  }
-}

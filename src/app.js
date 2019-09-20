@@ -7,6 +7,7 @@ import ENVIRONMENT_CONFIG from './plugins/redux/config/envConfig.js'
 const { Provider } = WeAppRedux;
 const store = createStore(reducer)
 
+// require('./utils/promisify')(wx)
 const api = require('./utils/api.js')
 
 
@@ -102,7 +103,7 @@ App(
             that.globalData.titleBarHeight = 0
           }
         })
-        
+
         api.login(function (loginRes) {
           console.log('登录完成: ', loginRes)
 
