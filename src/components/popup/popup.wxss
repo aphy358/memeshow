@@ -1,0 +1,22 @@
+
+.popup-wrap{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.popup-mask{
+  width: 100%;
+  height: 100%;
+  background: red;
+  opacity: .5;
+}
+
+.popup-body{
+  position: absolute;
+  background: blue;
+  overflow: hidden;
+}

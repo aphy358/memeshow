@@ -1,0 +1,7 @@
+
+<view class="popup-wrap" style="visibility: {{ifShow ? 'visible' : 'hidden'}};">
+  <view class="popup-mask" style="{{popupMaskStyle}}" bindtap="tapMask"></view>
+  <view class="popup-body" animation="{{popupAnimation}}" style="width:{{width}};height:{{height}};{{bodyFinalStyle}}">
+    <slot></slot>
+  </view>
+</view>

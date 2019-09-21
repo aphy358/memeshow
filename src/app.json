@@ -1,6 +1,8 @@
 {
   "pages": [
+    "pages/comment-test-page/comment-test-page",
     "pages/index/index",
+    "pages/aaa/index",
     "pages/video/index",
     "pages/live/index",
     "pages/push/index",
@@ -18,6 +20,7 @@
     "pages/article/comments",
     "components/hswiper-item/hswiper-item",
     "components/hswiper/hswiper",
+    "components/popup/popup",
     "components/navTab/index",
     "components/createor/index",
     "components/image/index"
