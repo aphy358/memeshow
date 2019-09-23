@@ -5,7 +5,7 @@ const POPUP_DEFAULT_HEIGHT = '600rpx'
 
 Component({
   properties: {
-    // 是否显示 popup
+    // 是否显示 hpopup
     showPopup: {
       type: Boolean,
       value: false,
@@ -55,7 +55,7 @@ Component({
       value: 'bottom'
     },
 
-    // popup-body自定义样式
+    // hpopup-body自定义样式
     bodyStyle: {
       type: String,
       value: '',
@@ -87,7 +87,7 @@ Component({
       height: 667
     },
 
-    // popup-body最终拼接样式
+    // hpopup-body最终拼接样式
     bodyFinalStyle: '',
 
     // 动画实例
@@ -114,7 +114,7 @@ Component({
       this.getScreenSize()
 
       // 获取弹框尺寸
-      wx.createSelectorQuery().in(this).select('.popup-body').boundingClientRect().exec(res => {
+      wx.createSelectorQuery().in(this).select('.hpopup-body').boundingClientRect().exec(res => {
         const width = res[0].width
         const height = res[0].height
         // 设置弹框尺寸
@@ -195,7 +195,7 @@ Component({
         this.setData({ ifShow: newVal, transforming: false })
       }, animationDuration);
 
-      console.log(`popup ${newVal ? 'show' : 'hide'}`);
+      console.log(`hpopup ${newVal ? 'show' : 'hide'}`);
     },
 
     getOffset(){

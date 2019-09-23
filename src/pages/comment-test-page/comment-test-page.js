@@ -1,11 +1,13 @@
-// pages/comment-test-page/comment-test-page.js
+import { _data } from './testData/data'
+
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    // 是否显示 popup
+    // 是否显示 hpopup
     showPopup: false,
 
     obj: {

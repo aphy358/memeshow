@@ -1,27 +1,17 @@
 <view class="hello-wrap">
   <button class="btn" type="primary" bindtap="clickBtn">
-    按钮文本
+    查看评论
   </button>
 </view>
 
-<popup
+<hpopup
   showPopup="{{showPopup}}"
-  height="30%"
-  width="80%"
-  position="center"
-  animateFrom="top"
+  height="70%"
+  width="100%"
+  position="bottom"
+  animateFrom="bottom"
   bodyStyle="border-top-left-radius: 10rpx;border-top-right-radius: 10rpx;"
   bind:tapMask="tapMask"
   >
-  <view class="test">呵呵呵😄</view>
-  <view class="test">呵呵呵😄</view>
-  <view class="test">呵呵呵😄</view>
-  <view class="test">呵呵呵😄</view>
-  <view class="test">呵呵呵😄</view>
-  <view class="test">呵呵呵😄</view>
-  <view class="test">呵呵呵😄</view>
-  <view class="test">呵呵呵😄</view>
-  <view class="test">呵呵呵😄</view>
-  <view class="test">呵呵呵😄</view>
-  <view class="test">呵呵呵😄</view>
-</popup>
+
+</hpopup>

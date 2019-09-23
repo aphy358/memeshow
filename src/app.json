@@ -20,7 +20,7 @@
     "pages/article/comments",
     "components/hswiper-item/hswiper-item",
     "components/hswiper/hswiper",
-    "components/popup/popup",
+    "components/hpopup/hpopup",
     "components/navTab/index",
     "components/createor/index",
     "components/image/index"
