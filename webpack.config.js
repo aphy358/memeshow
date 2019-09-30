@@ -152,7 +152,7 @@ const walkTabBarAssets = (appRoot, tabBar, entries, indent = '\t\t') => {
 const walkEntryResources = (appRoot, entries, indent = '\t\t') => {
 	const patterns = _.values(entries).map(it => {
 		const { dir, name } = parse(it)
-		return resolve(dir, `${name}.(json|wxss|wxml)`)
+		return resolve(dir, `${name}.(json|wxss|wxml|scss)`)
 	})
 	patterns.push(resolve(appRoot, 'project.config.json'))
 	const resources = globby.sync(patterns, { cwd: appRoot, nodir: true, realpath: true, ignore: ['**/*.js'] })
@@ -319,6 +319,15 @@ const resConfig = env => {
 						'postcss-loader'
 					],
 					include: /node_modules/
+				},
+				{
+					test: /\.scss$/,
+					use: [
+						{ loader: 'file-loader', options: { context: src, name: '[path][name].wxss' } },
+						'postcss-loader',
+						'sass-loader'
+					],
+					exclude: /node_modules/
 				},
 				{
 					test: /\.wxml$/,

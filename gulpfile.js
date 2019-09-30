@@ -1,38 +1,34 @@
 const path = require("path")
-const { src, dest, watch, series } = require("gulp")
+const gulp = require("gulp")
 const less = require("gulp-less")
 const rename = require("gulp-rename")
 
 const srcDir = path.resolve(__dirname, "./src")
-const distDir = path.resolve(__dirname, "./dist")
 
-const lessGlob = [
+const LESS_GLOB = [
   "src/*.less",
   "src/components/**/*.less",
+  "!src/components/common/**/*",
   "src/packages/**/*.less",
   "src/pages/**/*.less"
 ]
 
 function lessTask() {
-  return src(lessGlob)
-    .pipe(less())
-    .pipe(
-      rename(path => {
-        path.extname = ".wxss"
-      })
-    )
-    .pipe(dest("./src"))
+  return gulp.src(LESS_GLOB, {
+    base: "./src"
+  })
+  .pipe(less())
+  .pipe(
+    rename({
+      extname: ".wxss"
+    })
+  )
+  .pipe(gulp.dest("./src"))
 }
 
 function lessWatch() {
-  watch(lessGlob, lessTask)
+  gulp.watch(LESS_GLOB, lessTask)
 }
 
-// const LessWatcher = watch(lessGlob)
-
-// lessWatcher.on('change', (path, state) => {
-//   console.info(`${path} has changed:`)
-// })
-
 exports.develop = lessWatch
-exports.default = series(lessTask)
+exports.default = gulp.series(lessTask)
