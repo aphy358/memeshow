@@ -1,0 +1,6 @@
+<view
+    bind:tap="onTap"
+    capture-catch:touchmove="onTouchMove"
+    class="mf_mask"
+    style="z-index:{{ zIndex }}"
+></view>

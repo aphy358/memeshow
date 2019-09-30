@@ -1,7 +1,23 @@
 
-<view class="hpopup-wrap" style="visibility: {{ifShow ? 'visible' : 'hidden'}};">
-  <view class="hpopup-mask" style="{{popupMaskStyle}}" bindtap="tapMask"></view>
-  <view class="hpopup-body" animation="{{popupAnimation}}" style="width:{{width}};height:{{height}};{{bodyFinalStyle}}">
+<view 
+  class="hpopup-wrap" 
+  style="z-index: {{ zIndex }};{{ wrapStyle }}"
+  >
+
+  <view 
+    wx:if="{{ mask }}" 
+    class="hpopup-mask {{ popupMaskClasses }}" 
+    bind:tap="tapMask" 
+    bind:touchend="touchendMask"
+    style="transition-duration:{{ currentDuration }}ms;"
+  ></view>
+
+  <view 
+    class="hpopup-body hpopup-body__{{ position }} {{ customAnimation ? '' : popupBodyClasses }}"
+    animation="{{ customAnimation }}" 
+    style="transition-duration:{{ currentDuration }}ms;"
+  >
     <slot></slot>
   </view>
+
 </view>

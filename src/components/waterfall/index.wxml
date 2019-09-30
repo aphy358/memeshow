@@ -1,0 +1,23 @@
+<!-- Waterfall component -->
+
+<view class="mf_waterfall">
+    <view
+        class="mf_waterfall_container"
+        style="column-count:{{ col }};column-gap:{{ gap + 'rpx' }};"
+    >
+        <view
+            wx:for="{{ list }}"
+            wx:key="{{ index }}"
+            wx:for-item="colum"
+            class="mf_waterfall_col"
+        >
+            <view
+                wx:for="{{ colum.items }}"
+                wx:key="{{ index }}"
+                class="mf_waterfall_item"
+            >
+                <list-item url="{{ item.url }}"></list-item>
+            </view>
+        </view>
+    </view>
+</view>

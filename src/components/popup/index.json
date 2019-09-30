@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "mf-mask": "../mask/index"
+  }
+}

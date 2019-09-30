@@ -3,3 +3,43 @@
  *
  * 想了解 Less.js --> http://lesscss.org/
  */
+
+.full-screen() {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.flex(@direction: row; @wrap: nowrap; @justify: "flex-start"; @align: stretch) {
+  display: flex;
+  flex-flow: @direction @wrap;
+  justify-content: @justify;
+  align-content: @align;
+}
+
+.size(@width; @height) {
+  width: @width;
+  height: @height;
+}
+
+.square(@size) {
+  .size(@size; @size);
+}
+
+.placeholder(@color) {
+  // Firefox
+  &::-moz-placeholder {
+    color: @color;
+    opacity: 1; // Override Firefox's unusual default opacity; see https://github.com/twbs/bootstrap/pull/11526
+  }
+  // Internet Explorer 10+
+  &:-ms-input-placeholder {
+    color: @color;
+  }
+  // Safari and Chrome
+  &::-webkit-input-placeholder {
+    color: @color;
+  }
+}

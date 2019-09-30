@@ -1,5 +1,9 @@
-
-
-.hello-wrap{
-    padding: 200rpx;
+.page-wrap {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.hello-wrap {
+  padding: 200rpx;
 }

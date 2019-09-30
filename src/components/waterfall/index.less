@@ -1,0 +1,20 @@
+image {
+    display: block;
+    width: 100%;
+}
+
+.mf_waterfall {
+    overflow: hidden;
+
+    &_container {
+        column-rule: none;
+        column-fill: auto;
+    }
+
+    &_col {
+        break-inside: avoid;
+        break-after: avoid;
+        break-before: avoid;
+        column-span: none;
+    }
+}

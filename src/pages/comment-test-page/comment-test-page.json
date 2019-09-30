@@ -1,5 +1,5 @@
 {
   "usingComponents": {
-    "hpopup": "../../components/hpopup/hpopup"
+    "comment": "../../components/comment/comment"
   }
 }

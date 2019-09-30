@@ -1,17 +1,16 @@
-<view class="hello-wrap">
-  <button class="btn" type="primary" bindtap="clickBtn">
-    查看评论
-  </button>
+
+<view class="page-wrap">
+  <view class="hello-wrap">
+    <button class="btn" type="primary" bindtap="clickBtn">
+      查看评论
+    </button>
+  </view>
+
+  <comment
+    comments="{{comments}}"
+    ifShow="{{ifShow}}"
+    bind:hideComment="hideComment"
+    bind:confirmInput="confirmInput"
+    bind:switchStarStatus="switchStarStatus"
+  ></comment>
 </view>
-
-<hpopup
-  showPopup="{{showPopup}}"
-  height="70%"
-  width="100%"
-  position="bottom"
-  animateFrom="bottom"
-  bodyStyle="border-top-left-radius: 10rpx;border-top-right-radius: 10rpx;"
-  bind:tapMask="tapMask"
-  >
-
-</hpopup>

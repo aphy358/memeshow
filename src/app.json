@@ -18,6 +18,7 @@
     "pages/store/products/index",
     "pages/article/detail",
     "pages/article/comments",
+    "components/comment/comment",
     "components/hswiper-item/hswiper-item",
     "components/hswiper/hswiper",
     "components/hpopup/hpopup",

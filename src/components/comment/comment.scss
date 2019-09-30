@@ -1,0 +1,273 @@
+
+@import './iconfont/iconfont.css';
+
+
+.comment-outer{
+
+  @at-root .comment-wrap{
+    color: white;
+    height: 100%;
+    background: #333;
+    opacity: .9;
+    font-size: 28rpx;
+
+    @at-root .comment-item-wrap{
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      padding: 100rpx 0;
+      overflow-y: auto;
+      box-sizing: border-box;
+      -webkit-overflow-scrolling: touch;
+      z-index: -1;
+
+      @at-root .comment-item{
+        &.level-one{
+          padding: 0 30rpx;
+          margin-bottom: 40rpx;
+        }
+      
+        &.level-two{
+          margin-top: 30rpx;
+        }
+
+        @at-root .avatar-one{
+          float: left;
+          width: 60rpx;
+          height: 60rpx;
+          border-radius: 60rpx;
+          overflow: hidden;
+        
+          image{
+            width: 100%;
+            height: 100%;
+          }
+        }
+
+        @at-root .content-one-wrap{
+          padding-left: 80rpx;
+
+          @at-root .content-one-inner{
+            position: relative;
+            
+            @at-root .content-nickname{
+              color: gray;
+              font-size: 24rpx;
+            }
+
+            @at-root .content-comment{
+              padding-right: 80rpx;
+
+              @at-root .content-commenttime{
+                display: inline-block;
+                color: gray;
+                font-size: 24rpx;
+              }
+
+              @at-root .content-reply-name{
+                color: grey;
+              }
+            }
+          }
+        }
+
+        @at-root .avatar-two{
+          float: left;
+          width: 40rpx;
+          height: 40rpx;
+          border-radius: 40rpx;
+          overflow: hidden;
+        
+          image{
+            width: 100%;
+            height: 100%;
+          }
+        }
+
+        @at-root .content-two-wrap{
+          position: relative;
+          padding-left: 50rpx;
+        
+          @at-root .comment-star-wrap{
+            position: absolute;
+            right: -30rpx;
+            top: 0;
+            width: 100rpx;
+            text-align: center;
+            overflow: hidden;
+        
+            @at-root .iconheart{
+              display: block;
+              font-size: 46rpx;
+              color: gray;
+            
+              &.stared{
+                color: #f50005;
+              }
+            }
+        
+            @at-root .comment-star-count{
+              position: relative;
+              top: -8rpx;
+              color: gray;
+              font-size: 24rpx;
+            }
+          }
+        }
+      }
+    }
+
+    @at-root .comment-title-wrap{
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100rpx;
+      line-height: 100rpx;
+      background: #333;
+      z-index: 9999;
+    
+      @at-root .comment-title{
+        text-align: center;
+      }
+    
+      @at-root .comment-close-btn{
+        position: absolute;
+        width: 100rpx;
+        height: 100rpx;
+        top: 0;
+        right: 0;
+      
+        .icon-font{
+          display: inline-block;
+          text-align: center;
+          color: white;
+      
+          &.icondelete{
+            width: 100rpx;
+            height: 100rpx;
+            line-height: 100rpx;
+          }
+        }
+      }
+    }
+
+    @at-root .comment-footer-wrap{
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 100rpx;
+      line-height: 100rpx;
+      background: #111;
+      z-index: 9999;
+    
+      .icon-font{
+        position: absolute;
+        right: 0;
+        font-size: 50rpx;
+        color: gray;
+    
+        &.iconat{
+          right: 120rpx;
+        }
+    
+        &.iconface{
+          right: 30rpx;
+          font-weight: bold;
+        }
+      }
+    
+      @at-root .comment-footer-inner{
+        padding: 0 30rpx;
+      
+        @at-root .comment-footer-text{
+          color: gray;
+        }
+      }
+    }
+  }
+}
+
+
+// 以下为评论输入框弹层样式
+.comment-input-wrap{
+  background: white;
+  overflow: hidden;
+
+  .icon-font{
+    position: absolute;
+    right: 0;
+    top: 25rpx;
+    font-size: 50rpx;
+    color: gray;
+  }
+
+  .iconat{
+    right: 120rpx;
+  }
+
+  .iconface{
+    right: 30rpx;
+    font-weight: bold;
+    z-index: 999;
+  }
+
+  @at-root .comment-input-pholder{
+    height: 1000rpx;
+  }
+
+  @at-root .comment-input-inner{
+    overflow: hidden;
+  
+    .comment-input{
+      height: 100rpx;
+      width: calc(100% - 20px);
+      padding: 0 20rpx;
+      margin: 10px 10px 0;
+      box-sizing: border-box;
+      background: #f7f7f7;
+      border-radius: 6rpx;
+    }
+  
+    .footer-wrap{
+      height: 100rpx;
+      padding: 0 30rpx;
+      box-sizing: border-box;
+      color: #ccc;
+      font-size: 28rpx;
+  
+      .footer-note{
+        float: right;
+        line-height: 100rpx;
+        margin-right: 30rpx;
+      }
+  
+      .footer-send-btn{
+        float: right;
+        height: 60rpx;
+        line-height: 20rpx;
+        margin-top: 20rpx;
+        padding: 20rpx 40rpx;
+        background: #eeeeee;
+        border-radius: 60rpx;
+        box-sizing: border-box;
+  
+        &.active{
+          color: white;
+          background: rgb(3, 210, 247);
+        }
+      }
+    }
+  }
+}
+
+
+// 覆盖掉原组件的默认样式
+.hpopup1 .hpopup-body{
+  height: 1000rpx;
+  border-top-left-radius: 20rpx;
+  border-top-right-radius: 20rpx;
+}
