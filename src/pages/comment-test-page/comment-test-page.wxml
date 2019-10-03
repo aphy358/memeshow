@@ -13,4 +13,15 @@
     bind:confirmInput="confirmInput"
     bind:switchStarStatus="switchStarStatus"
   ></comment>
+
+  <hpopup
+    show="{{ifShow0}}"
+    position="center"
+    customAnimation="{{animate}}"
+    bind:touchendMask="hidePopup"
+  >
+    <view class="test-popup">
+              
+    </view>
+  </hpopup>
 </view>

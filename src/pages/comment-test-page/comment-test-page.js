@@ -8,6 +8,9 @@ Page({
   data: {
     // 是否显示 hpopup
     ifShow: false,
+    ifShow0: false,
+
+    animate: {},
 
     comments: _comments,
   },
@@ -30,7 +33,17 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    
+    let { animate } = this.data
+
+    animate = this.animateTo({
+      'top': '100%',
+      'translateY': '0%',
+      'translateX': '-50%',
+    }, 0)
+
+    this.setData({
+      animate: animate.export()
+    })
   },
 
   /**
@@ -69,14 +82,69 @@ Page({
   },
 
   clickBtn(){
+    // let { animate } = this.data
+
+    // animate = this.animateTo({
+    //   'top': '50%',
+    //   'translateY': '-50%',
+    //   'translateX': '-50%',
+    // }, 150)
+
+    // this.setData({
+    //   ifShow0: true,
+    //   animate: animate.export()
+    // })
+
     this.setData({
       ifShow: true
     })
   },
 
   hideComment(){
+    // this.setData({
+    //   ifShow0: false
+    // })
     this.setData({
       ifShow: false
+    })
+  },
+
+  /**
+   * 构建动画实例
+   * @param {*} animateOpt 由多个动画属性组成的对象
+   * @param {*} duration 动画时长
+   * @param {*} timingFunction 动画过渡方式
+   */
+  animateTo(animateOpt = {}, duration = 300, timingFunction = 'ease-out'){
+    let animate = wx.createAnimation({
+      transformOrigin: '50% 50%',
+      duration: duration,
+      timingFunction: timingFunction,
+      delay: 0
+    })
+
+    for (const key in animateOpt) {
+      if (animateOpt.hasOwnProperty(key)) {
+        const animateVal = animateOpt[key];
+        animate[key](animateVal)
+      }
+    }
+
+    return animate.step()
+  },
+
+  hidePopup(){
+    let { animate } = this.data
+
+    animate = this.animateTo({
+      'top': '100%',
+      'translateY': '0%',
+      'translateX': '-50%',
+    }, 150)
+
+    this.setData({
+      ifShow0: false,
+      animate: animate.export()
     })
   },
 
