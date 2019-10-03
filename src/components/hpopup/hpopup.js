@@ -9,8 +9,6 @@ const MASK_CLASS_NAMES = {
 }
 
 
-console.log('init..........');
-
 Component({
   options: {
     // 允许页面的样式影响到组件
