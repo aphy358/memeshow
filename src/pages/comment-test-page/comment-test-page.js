@@ -9,8 +9,7 @@ Page({
     // 是否显示 hpopup
     ifShow: false,
     ifShow0: false,
-
-    animate: {},
+    bounceClass: '',
 
     comments: _comments,
   },
@@ -33,17 +32,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    let { animate } = this.data
 
-    animate = this.animateTo({
-      'top': '100%',
-      'translateY': '0%',
-      'translateX': '-50%',
-    }, 0)
-
-    this.setData({
-      animate: animate.export()
-    })
   },
 
   /**
@@ -82,17 +71,9 @@ Page({
   },
 
   clickBtn(){
-    // let { animate } = this.data
-
-    // animate = this.animateTo({
-    //   'top': '50%',
-    //   'translateY': '-50%',
-    //   'translateX': '-50%',
-    // }, 150)
-
     // this.setData({
     //   ifShow0: true,
-    //   animate: animate.export()
+    //   bounceClass: 'bounceOut',
     // })
 
     this.setData({
@@ -102,7 +83,7 @@ Page({
 
   hideComment(){
     // this.setData({
-    //   ifShow0: false
+    //   ifShow0: false,
     // })
     this.setData({
       ifShow: false
@@ -134,17 +115,9 @@ Page({
   },
 
   hidePopup(){
-    let { animate } = this.data
-
-    animate = this.animateTo({
-      'top': '100%',
-      'translateY': '0%',
-      'translateX': '-50%',
-    }, 150)
-
     this.setData({
       ifShow0: false,
-      animate: animate.export()
+      bounceClass: 'bounceIn',
     })
   },
 

@@ -1,3 +1,14 @@
+@import '../../assets/styles/animate/bounce-in-out.scss';
+
+.bounceOut .hpopup-body{
+  @include bounce-out(translate3d(-50%, -50%, 0));
+}
+
+.bounceIn .hpopup-body{
+  @include bounce-in(translate3d(-50%, -50%, 0));
+}
+
+
 .page-wrap {
   position: fixed;
   width: 100%;
@@ -8,7 +19,6 @@
 .hello-wrap {
   padding: 200rpx;
 }
-
 
 .test-popup{
   width: 600rpx;

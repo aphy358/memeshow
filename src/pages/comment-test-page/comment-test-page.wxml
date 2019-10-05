@@ -14,14 +14,18 @@
     bind:switchStarStatus="switchStarStatus"
   ></comment>
 
-  <hpopup
-    show="{{ifShow0}}"
-    position="center"
-    customAnimation="{{animate}}"
-    bind:touchendMask="hidePopup"
-  >
-    <view class="test-popup">
-              
-    </view>
-  </hpopup>
+
+  <view class="{{bounceClass}}">
+    <hpopup
+      show="{{ifShow0}}"
+      position="center"
+      bind:touchendMask="hidePopup"
+    >
+      <view class="test-popup">
+                
+      </view>
+    </hpopup>
+  </view>
+    
+    
 </view>

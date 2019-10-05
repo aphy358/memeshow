@@ -175,7 +175,7 @@ Component({
       // 键盘收起来的速度很慢，所以这里的值设的大一点，确保在键盘收起来之后再将 transforming 的值设为 false
       setTimeout(() => {
         this.data.transforming = false
-      }, 500);
+      }, 300);
 
       this.triggerEvent(eventType)
     },
