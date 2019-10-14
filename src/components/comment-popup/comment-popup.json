@@ -1,0 +1,9 @@
+{
+  "component": true,
+  "usingComponents": {
+    "hpopup": "../base/hpopup/hpopup"
+  },
+  "componentGenerics": {
+    "comment-list": true
+  }
+}

@@ -1,0 +1,28 @@
+/* tabs .wxss */
+
+@import "../../common/styles/index.scss";
+
+$content: mf_tabs-content;
+
+.mf_tabs {
+    @include flex($justify: space-between);
+
+    &-left,
+    &-right {
+        height: auto;
+        width: auto;
+    }
+}
+
+.#{$content} {
+    flex: 1;
+    @include flex($justify: space-between);
+}
+
+.#{$content}__scroll {
+    flex: 1;
+    @include flex();
+
+    // scroll view 中出现中文会折行
+    white-space: nowrap;
+}

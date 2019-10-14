@@ -1,0 +1,13 @@
+<!-- navigation bar component -->
+
+<view class="mf_navigation-bar" style="padding-top:{{ statusBarHeight }}px;">
+    <view class='mf-navigation-bar_left'>
+        <block wx:if="{{ back }}">
+            <view bindtap="onBack" class="mf-navigation-bar_left_back"></view>
+        </block>
+        <slot name="left"></slot>
+    </view>
+    <view class='mf-navigation-bar_content'>
+        <slot></slot>
+    </view>
+</view>

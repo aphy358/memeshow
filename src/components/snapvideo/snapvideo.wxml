@@ -1,0 +1,42 @@
+
+<view wx:if="{{!!item}}" class="snap-video-wrap">
+  <image class="imgOmg" src="{{item}}"></image>
+
+  <!-- 右侧操作栏，包括点赞、评论、关注、转发等 -->
+  <view class="operate-bar-wrap">
+    <view class="operate-item">
+      <view class="avatar-wrap">
+        <view class="avatar-inner">
+          <image src="./img/avatar.png" class="avatar-img" />
+        </view>
+      </view>
+      <view class="follow-wrap">
+        <image src="./img/follow.png" class="follow-wrap-img" />
+      </view>
+    </view>
+
+    <view class="operate-item">
+      <image class="operate-item-img" src="./img/icon-lilke@3x.png" />
+      <text class="operate-item-text">38900</text>
+    </view>
+
+    <view class="operate-item">
+      <image class="operate-item-img" src="./img/icon_comment@3x.png" />
+      <text class="operate-item-text">3.89w</text>
+    </view>
+
+    <view class="operate-item">
+      <image class="operate-item-img" src="./img/icon_share-wechat@3x.png" />
+      <text class="operate-item-text">389</text>
+    </view>
+  </view>
+
+  <progress 
+    custom-class="snap-video-progress"
+    stroke-width="1rpx"
+    percentage="50"
+    show-pivot="{{ false }}"
+    color="white"
+  />
+</view>
+<view wx:else></view>

@@ -1,5 +1,9 @@
+/**
+ * API Entry
+ */
+
 const _ = require("lodash")
-const apiConfig = require("../config").api
+const config = require("../config.js").api
 
 const apiMap = {
   category: import("./Category")

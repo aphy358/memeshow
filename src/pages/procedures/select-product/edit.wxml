@@ -1,0 +1,31 @@
+<view class="container">
+  <view class="product">
+    <image
+      bind:tap="navToProductDetail"
+      class="product-image"
+      data-product-id="{{item.id}}"
+      src="{{item.image}}"
+    />
+    <view
+      bind:tap="navToProductDetail"
+      class="product-info"
+      data-productid="{{item.id}}"
+    >
+      <view class="product-info__title">{{item.title}}</view>
+      <view class="product-info__soldCount">{{item.soldCount}}人付款</view>
+      <view class="product-info__profit">
+        <view class="product-info__profit-tag">每单赚 ￥</view>
+        <view class="product-info__profit-big">{{item.profit}}</view>
+      </view>
+      <view class="product-info__price">售价 ￥{{item.price}}</view>
+    </view>
+  </view>
+  <form class="edit" bindsubmit="handleFormSubmit">
+    <view class="edit-input-hint">
+      <view class="edit-input-hint__title">商品短标题</view>
+      <view class="edit-input-hint__ext">最多10字</view>
+    </view>
+    <input class="edit-input" type="text" placeholder="此标题将用于视频播放等页面展示" name="shotTitle" bindinput="onInput" />
+    <button class="edit-btn" disabled="{{form.btn.disabled}}" form-type="submit">完成编辑</button>
+  </form>
+</view>

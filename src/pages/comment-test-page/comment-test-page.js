@@ -1,4 +1,5 @@
 import { _comments } from './testData/comments'
+import { animateTo } from '../../components/common/utils'
 
 
 Page({
@@ -6,66 +7,59 @@ Page({
    * 页面的初始数据
    */
   data: {
+    percentage: 0,
+
+    // 评论输入弹层动画
+    customAnimation: {},
+
     // 是否显示 hpopup
-    ifShow: false,
+    ifShowCommentPopup: false,
+
     ifShow0: false,
+
     bounceClass: '',
 
     comments: _comments,
+
+    // 是否显示评论输入框
+    ifShowCommentInputPopup: false,
+
+    // 回复谁？
+    replyTo: null
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad: function (options) {
     
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
   onReady: function () {
 
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
   onShow: function () {
+    let customAnimation = animateTo({
+      'width': '100%'
+    }, 20000, 'linear')
 
+    this.setData({ customAnimation })
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
   onHide: function () {
 
   },
 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
   onUnload: function () {
 
   },
 
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
   onPullDownRefresh: function () {
 
   },
 
-  /**
-   * 页面上拉触底事件的处理函数
-   */
   onReachBottom: function () {
 
   },
 
-  /**
-   * 用户点击右上角分享
-   */
   onShareAppMessage: function () {
 
   },
@@ -77,41 +71,17 @@ Page({
     // })
 
     this.setData({
-      ifShow: true
+      ifShowCommentPopup: true
     })
   },
 
-  hideComment(){
+  hideCommentPopup(){
     // this.setData({
     //   ifShow0: false,
     // })
     this.setData({
-      ifShow: false
+      ifShowCommentPopup: false
     })
-  },
-
-  /**
-   * 构建动画实例
-   * @param {*} animateOpt 由多个动画属性组成的对象
-   * @param {*} duration 动画时长
-   * @param {*} timingFunction 动画过渡方式
-   */
-  animateTo(animateOpt = {}, duration = 300, timingFunction = 'ease-out'){
-    let animate = wx.createAnimation({
-      transformOrigin: '50% 50%',
-      duration: duration,
-      timingFunction: timingFunction,
-      delay: 0
-    })
-
-    for (const key in animateOpt) {
-      if (animateOpt.hasOwnProperty(key)) {
-        const animateVal = animateOpt[key];
-        animate[key](animateVal)
-      }
-    }
-
-    return animate.step()
   },
 
   hidePopup(){
@@ -121,8 +91,20 @@ Page({
     })
   },
 
-  confirmInput(e){
-    console.log('confirmInput: ', e.detail);
+  showCommentInputPopup(e){
+    this.setData({ 
+      ifShowCommentInputPopup: true,
+      replyTo: e.detail
+    })
+  },
+
+  hideCommentInputPopup(e){
+    this.setData({ ifShowCommentInputPopup: false })
+  },
+
+  // 创建一条新的评论
+  createNewComment(e){
+    console.log('createNewComment: ', e.detail);
     
     // 拿到新创建的评论，先将它插入到之前的数据列表中，然后存数据库？
     let { comments } = this.data

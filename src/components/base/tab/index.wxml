@@ -1,0 +1,11 @@
+<!-- Tab component -->
+<view
+    bindtap="onTap"
+    class="mf_tab {{ disabled ? 'mf_tab__disabled' : '' }} {{ activation ? 'mf_tab__on actived' : '' }}"
+    style="{{ sticky ? 'position:sticky;top:10px;' : '' }}"
+>
+    <view class="mf_tab_content">
+        <slot></slot>
+    </view>
+    <view class="mf_tab_dash" wx:if="{{ activation }}"></view>
+</view>

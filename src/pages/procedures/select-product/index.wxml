@@ -1,0 +1,37 @@
+<!--pages/item-selector/item-selector.wxml-->
+<view class="list-container">
+  <view
+    class="product"
+    wx:for="{{list}}"
+    wx:key="id"
+  >
+    <image
+      class="product-image"
+      src="{{item.image}}"
+      bind:tap="navToProductDetail"
+      data-productId="{{item.id}}"
+    ></image>
+    <view class="product-info"
+      bind:tap="navToProductDetail"
+      data-productid="{{item.id}}"
+    >
+      <view class="product-info__title">{{item.title}}</view>
+      <view class="product-info__soldCount">{{item.soldCount}}人付款</view>
+      <view class="product-info__profit">
+        <view class="product-info__profit-tag">每单赚 ￥</view>
+        <view class="product-info__profit-big">{{item.profit}}</view>
+      </view>
+      <view class="product-info__price">售价 ￥{{item.price}}</view>
+    </view>
+    <view class="product-action">
+      <view
+        class="product-action__add"
+        bind:tap="navToEditPromt"
+        data-productid="{{item.id}}">
+        添加
+      </view>
+    </view>
+  </view>
+</view>
+<!-- TODO: use component -->
+<view class="hint">没有更多了~</view>

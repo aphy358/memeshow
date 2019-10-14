@@ -1,0 +1,42 @@
+/* tab .wxss */
+@import "../../common/styles/index.scss";
+
+:host {
+    flex: 1;
+}
+
+.mf_tab {
+    position: relative;
+    overflow-y: hidden;
+
+    // scroll view 中使用 view 会出现问题
+    display: inline-block;
+
+    @include ellipsis();
+
+    &_content {
+        padding: 0 20rpx;
+        margin-bottom: 20rpx;
+        text-align: center;
+    }
+
+    &_dash {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        max-width: 60%;
+        height: 4rpx;
+
+        background: $theme-color;
+        margin: auto;
+    }
+
+    &__on {
+        color: $theme-color;
+    }
+
+    &__disabled {
+        color: #999;
+    }
+}

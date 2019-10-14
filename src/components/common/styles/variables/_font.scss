@@ -1,0 +1,15 @@
+/**
+ * Font
+ */
+
+// Font Family
+$font-en: "-apple-system-font", "Helvetica Neue";
+$font-cn: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei";
+$font-sans: sans-serif;
+$font-sefault: $font-en, $font-cn, $font-sans;
+
+// Font Size
+$font-size-xs: 20rpx;
+$font-size-sm: 24rpx;
+$font-size-md: 28rpx;
+$font-size-lg: 32rpx;

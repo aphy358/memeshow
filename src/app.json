@@ -1,8 +1,8 @@
 {
   "pages": [
+    "pages/aaa/index",
     "pages/comment-test-page/comment-test-page",
     "pages/index/index",
-    "pages/aaa/index",
     "pages/video/index",
     "pages/live/index",
     "pages/push/index",
@@ -18,10 +18,12 @@
     "pages/store/products/index",
     "pages/article/detail",
     "pages/article/comments",
-    "components/comment/comment",
-    "components/hswiper-item/hswiper-item",
-    "components/hswiper/hswiper",
-    "components/hpopup/hpopup",
+    "pages/test_selector/index",
+    "pages/procedures/select-product/index",
+    "pages/procedures/select-product/edit",
+    "pages/procedures/select-topic/index",
+    "pages/procedures/select-relation/index",
+    "pages/procedures/select-location/index",
     "components/navTab/index",
     "components/createor/index",
     "components/image/index"
@@ -79,6 +81,9 @@
         "text": "我的"
       }
     ]
+  },
+  "networkTimeout": {
+    "request": 500
   },
   "sitemapLocation": "sitemap.json"
 }

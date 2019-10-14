@@ -1,0 +1,38 @@
+
+<view class="comment-input-popup-wrap">
+  <hpopup
+    show="{{ show }}"
+    position="bottom"
+    custom-animation="{{ customAnimation }}"
+    bind:touchendMask="hideCommentInputPopup"
+    >
+  
+    <view class="comment-input-wrap">
+      <view class="comment-input-inner">
+        <input 
+          id="commentInput" class="comment-input" type="text" 
+
+          focus="{{ show }}"
+          hold-keyboard="{{ true }}"
+          adjust-position="{{ false }}" 
+          value="{{ inputContent }}"
+          placeholder="{{ inputPlaceholder }}" 
+
+          bindkeyboardheightchange="keyboardheightchange" 
+          bindinput="bindinput"
+          bindfocus="bindfocus"
+          bindblur="bindblur"
+          bindconfirm="bindconfirm"
+        />
+
+        <view class="footer-wrap">
+          <text class="footer-send-btn{{ inputContent === '' ? '' : ' active' }}" bind:tap="confirmInput">发表</text>
+          <text class="footer-note">请少于100字</text>
+        </view>
+      </view>
+
+      <!-- 占位元素，给它设置一个高度，这样当切换输入法键盘高度发生变化时，就不会因为输入框和键盘衔接不上而产生怪异的视觉效果 -->
+      <view class="comment-input-pholder"></view>
+    </view>
+  </hpopup>
+</view>

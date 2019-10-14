@@ -1,6 +1,9 @@
 {
   "usingComponents": {
-    "comment": "../../components/comment/comment",
-    "hpopup": "../../components/hpopup/hpopup"
+    "comment-input-popup": "../../components/comment-input-popup/comment-input-popup",
+    "comment-popup": "../../components/comment-popup/comment-popup",
+    "comment-list-video": "../../components/comment-list-video/comment-list-video",
+    "progress": "../../components/base/progress/progress",
+    "hpopup": "../../components/base/hpopup/hpopup"
   }
 }

@@ -1,3 +1,4 @@
+import { animateTo } from '../../components/common/utils'
 import HTouch from './libs/hTouch'
 const touchHandle = new HTouch()
 
@@ -149,7 +150,7 @@ Component({
           // 上次停留的偏移位置
           const prevOffset = offset
           // 初始时直接移动到所在位置
-          const animation = this.animateTo(false, translateType, offset)
+          const animation = animateTo({[translateType]: offset}, 0)
           elements.push({ id, index, prevOffset, offset, animation })
           console.log(`hswiper elem-${id} init index is ${index} offset is ${offset}`)
         }
@@ -218,7 +219,7 @@ Component({
         endDelta = 0
         elements.forEach(elem => {
           elem.offset = elem.prevOffset
-          elem.animation = this.animateTo(true, translateType, elem.offset)
+          elem.animation = animateTo({[translateType]: elem.offset})
         })
         this.setData({ elements, transforming: true })
 
@@ -256,7 +257,7 @@ Component({
           elem.index = nextIndex
           elem.offset = finalOffset
           elem.prevOffset = finalOffset
-          elem.animation = this.animateTo(true, translateType, animateOffset)
+          elem.animation = animateTo({[translateType]: animateOffset})
         })
 
         // 新的dom指针
@@ -308,7 +309,7 @@ Component({
       // 滑动结束后，立即回到最终位置
       setTimeout(() => {
         const { elements } = this.data
-        elements.forEach(elem => elem.animation = this.animateTo(false, translateType, elem.offset))
+        elements.forEach(elem => elem.animation = animateTo({[translateType]: elem.offset}, 0))
         this.setData({ elements, transforming: false })
 
         console.log('hswiper after transforming the elements are:')
@@ -350,7 +351,7 @@ Component({
 
       elements.forEach(elem => {
         elem.offset = elem.prevOffset + delta
-        elem.animation = this.animateTo(false, translateType, elem.offset)
+        elem.animation = animateTo({[translateType]: elem.offset}, 0)
       });
       this.setData({ elements })
 
@@ -360,16 +361,6 @@ Component({
         delta,
         maxDistance
       })
-    },
-
-    animateTo(ifAnimate, translateType, offset) {
-      const { timingFunction, animationDuration } = this.data
-      return wx.createAnimation({
-        transformOrigin: '50% 50%',
-        duration: ifAnimate ? animationDuration : 0,
-        timingFunction,
-        delay: 0
-      })[translateType](offset).step().export()
     },
 
     swipeDirection(e) {

@@ -1,6 +1,6 @@
 {
   "usingComponents": {
-    "hswiper": "/components/hswiper/hswiper",
-    "hswiper-item": "/components/hswiper-item/hswiper-item"
+    "hswiper": "../../components/hswiper/hswiper",
+    "snapvideo": "../../components/snapvideo/snapvideo"
   }
 }

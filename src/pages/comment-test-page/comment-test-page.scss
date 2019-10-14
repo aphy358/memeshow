@@ -25,3 +25,14 @@
   height: 600rpx;
   background: red;
 }
+
+// 覆盖掉原组件的默认样式
+.comment-popup-wrap .hpopup-body{
+  height: 1000rpx;
+  border-top-left-radius: 20rpx;
+  border-top-right-radius: 20rpx;
+}
+
+.ex-class{
+  height: 8px!important;
+}

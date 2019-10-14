@@ -1,0 +1,15 @@
+<view class="mf_popup">
+    <mask
+        wx:if="{{ mask }}"
+        show="{{ display }}"
+        z-index="{{ zIndex }}"
+        bind:click="onBlur"
+        style="{{ display ? '' : 'display:none' }};transition-duration:{{ currentDuration  }}ms;"
+    ></mask>
+    <view
+        class="{{ classes }} mf_popup-content mf_popup-content__{{ position }}"
+        style="z-index:{{ zIndex }};{{ display ? '' : 'display:none' }};transition-duration:{{ currentDuration }}ms;"
+    >
+        <slot></slot>
+    </view>
+</view>

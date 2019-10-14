@@ -3,8 +3,10 @@
     "navigationStyle": "custom"
   },
   "usingComponents": {
-    "nav-bar": "../../components/navbar/index",
-    "slide-tab": "../../components/SlideTab/index",
-    "navigation": "../../components/navigation/navigation"
+    "navigation": "../../components/navigation/navigation",
+    "tab": "../../components/base/tab/index",
+    "tabs": "../../components/base/tabs/index",
+    "waterfall": "../../components/base/list/index",
+    "waterfall-item": "../../components/base/list-item-image/index"
   }
 }

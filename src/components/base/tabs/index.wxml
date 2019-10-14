@@ -1,0 +1,26 @@
+<!-- Tabs component -->
+<view class="mf_tabs">
+    <view class="mf_tabs-left">
+        <slot name="before"></slot>
+    </view>
+
+    <scroll-view
+        wx:if="{{ scroll }}"
+        scroll-x
+        scroll-with-animation
+        class="mf_tabs-content__scroll"
+    >
+        <slot></slot>
+    </scroll-view>
+
+    <view
+        wx:else
+        class="mf_tabs-content"
+    >
+        <slot></slot>
+    </view>
+
+    <view class="mf_tabs-right">
+        <slot name="after"></slot>
+    </view>
+</view>

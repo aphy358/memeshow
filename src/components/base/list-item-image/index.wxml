@@ -1,0 +1,5 @@
+<!-- List Item Image component -->
+
+<view>
+    <image src="{{ url }}" mode="widthFix"></image>
+</view>

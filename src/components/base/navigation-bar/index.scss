@@ -1,0 +1,13 @@
+/* navigation bar component .wxss */
+
+@import "../../common/styles/index.scss";
+
+.mf_navigation-bar {
+    @include flex($justify: space-around);
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+
+}

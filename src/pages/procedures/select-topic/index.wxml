@@ -1,0 +1,58 @@
+<form
+  bindsubmit="searchTopic"
+  style="width: 100%;"
+>
+  <view class="search">
+    <view class="search-icon"></view>
+    <input
+      bindinput="onInput"
+      class="search-input"
+      name="keyword"
+      placeholder="搜索更多话题"
+    />
+    <button
+      class="search-btn"
+      disabled="{{form.btn.disabled}}"
+      form-type="submit"
+      size="mini"
+    >搜索</button>
+  </view>
+</form>
+
+<scroll-view
+  class="category-container"
+  scroll-x="{{true}}"
+>
+  <view
+    bind:tap="onTapCategory"
+    class="category"
+    data-id="{{item.id}}"
+    wx:for="{{categories.list}}"
+    wx:key="id"
+  >
+    <view class="category-back"></view>
+    <view class="category-title">
+      <view class="category-title__container">
+        <view class="category-title__content">{{item.title}}</view>
+        <view
+          class="category-title__cur"
+          style="background: {{categories.current == index ? '#fff' : ''}}"
+        ></view>
+      </view>
+    </view>
+  </view>
+</scroll-view>
+
+<view class="list">
+  <view
+    bind:tap="onTapTopic"
+    class="list-item"
+    data-id="{{item.id}}"
+    wx:for="{{topic.list}}"
+    wx:key="id"
+  >
+    <view class="topic-title"># {{item.title}}</view>
+    <view class="topic-hotpoint"></view>
+    <view class="topic-pop">{{item.popularity}}</view>
+  </view>
+</view>
