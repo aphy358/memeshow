@@ -11,10 +11,8 @@
     height: 100%;
 
     @at-root .snap-video-video{
-      // position: absolute;
       width: 100%;
       height: 100%;
-      // z-index: -1;
     }
 
     .icon-play{
@@ -32,7 +30,7 @@
     width: 90rpx;
     right: 16rpx;
     bottom: 300rpx;
-    z-index: 8000;
+    z-index: 1000;
 
     @at-root .operate-item{
       position: relative;
@@ -110,6 +108,7 @@
     bottom: 62rpx;
     background: #585256;
     transform: scaleY(.5);
+    z-index: 1000;
   }
 
   .ad-wrap{
@@ -118,6 +117,7 @@
     width: calc(100% - 200rpx);
     bottom: 80rpx;
     color: white;
+    z-index: 1000;
 
     @at-root .ad-board-wrap{
       position: absolute;

@@ -8,7 +8,6 @@
       controls="{{ false }}"
       loop="{{ true }}"
       muted="{{ muted }}"
-      custom-cache="{{false}}"
       show-center-play-btn="{{ false }}"
   
       binderror="binderror"
@@ -82,7 +81,7 @@
   <!-- 底部进度条 -->
   <progress 
     custom-class="snap-video-progress"
-    stroke-width="1rpx"
+    stroke-width="1px"
     percentage="{{ 0 }}"
     show-pivot="{{ false }}"
     custom-animation="{{ progressAnimation }}"
