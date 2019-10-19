@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "dev": "webpack --env.NODE_ENV=development --progress --watch",
-    "build": "webpack --env.NODE_ENV=development --progress",
+    "build": "webpack --env.NODE_ENV=production --progress",
     "lint": "eslint ./src --ext .js"
   },
   "repository": {

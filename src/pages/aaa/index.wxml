@@ -1,5 +1,11 @@
 <view class="swiper">
-  <hswiper generic:hswiper-item="snapvideo" items="{{items}}"
-    bindbeforeSwipe="beforeSwipe" bindafterSwipe="afterSwipe" binditemsExhausted="itemsExhausted"
-    bindactiveItem="activeItem" bindmove="swiperMove"></hswiper>
+  <hswiper 
+    generic:hswiper-item="snapvideo" 
+    items="{{items}}"
+    bindbeforeSwipe="beforeSwipe" 
+    bindafterSwipe="afterSwipe" 
+    binditemsExhausted="itemsExhausted"
+    bindactiveItem="activeItem" 
+    bindmove="swiperMove"
+  />
 </view>

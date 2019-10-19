@@ -1,51 +1,68 @@
 import _ from 'lodash'
 
 const images = [
-  'http://statics.h-five.com/db3.jpg',
-  'http://statics.h-five.com/little-love.jpg',
-  'http://statics.h-five.com/withme.jpg',
-  'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1568206648336&di=116333425c14113bedd4b987223c5e40&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201512%2F07%2F20151207231724_UwXSH.thumb.700_0.jpeg',
-  'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1568206648336&di=61986b64e75b630c8720d773177fbf3b&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fblog%2F201406%2F02%2F20140602194925_fWVYn.thumb.700_0.jpeg',
-  'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1568206648336&di=961456995234f28d6ab2bb06a110acd0&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201505%2F18%2F20150518123943_SHk5m.jpeg',
-  'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1568206648336&di=9e28f8829a13289a2eaf1dc50d95837b&imgtype=0&src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2F571cf1a863a2be5e6b6565c68901eda1c6da9e5849e03-NSvkIv_fw658',
-  'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1568206648336&di=c23b9f9398fc35974a913f18c92c1bed&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201509%2F03%2F20150903204626_Yi8hC.jpeg',
-  'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1568206648337&di=5ae26dd2a293980c5314bd90efc98715&imgtype=0&src=http%3A%2F%2Fpic.rmb.bdstatic.com%2F386d8715f0f2557ca5f2eb77bfe5ea3a.jpeg%40c_1%2Cw_640%2Ch_1136%2Cx_0%2Cy_0',
-  'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1568206648337&di=8de4c8a76952ae3b63179ab970e59bb8&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201409%2F03%2F20140903172242_QEdjJ.png',
-  'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1568206648337&di=a78cec5339c39b01e525ee4d0f8f94ea&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201702%2F05%2F20170205213208_TtEZh.thumb.700_0.jpeg',
-  'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1568206648337&di=af2490b874ed8e04d2f6dd88b2e884e6&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201703%2F21%2F20170321153911_E8YCa.jpeg',
-  'http://statics.h-five.com/db2.jpg'
+  {id: 0, url: 'http://39.108.78.208:5105/1550725124044844.mp4',},
+  {id: 10, url: 'http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400',},
+  {id: 20, url: 'http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400',},
+  {id: 30, url: 'http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400',},
+  {id: 40, url: 'https://gslb.miaopai.com/stream/X8~pWRN2uyMsKpAmVN1oUtVMcTP3pgfSv8hhIA__.mp4?ssig=c881979b4b5edac2bc11dcdd6dd1c9f9&time_stamp=1526461625051&cookie_id=&vend=1&os=3&partner=1&platform=2&cookie_id=&refer=miaopai&scid=X8%7EpWRN2uyMsKpAmVN1oUtVMcTP3pgfSv8hhIA__',},
+  {id: 50, url: 'http://39.108.78.208:5105/1550725124044844.mp4',},
+  {id: 60, url: 'http://39.108.78.208:5105/1550725124044844.mp4',},
+  {id: 70, url: 'http://39.108.78.208:5105/1550725124044844.mp4',},
 ]
+
+const findex = 3
+
 
 Page({
   data: {
-    items: _.shuffle(_.uniq(images)).slice(0, 3)
+    items: images.slice(findex, 3+findex)
   },
   onReady() {
   },
   beforeSwipe(e) {
-    console.log('beforeSwipe: ', e.detail)
+    // console.log('beforeSwipe: ', e.detail)
   },
   afterSwipe(e) {
-    console.log('afterSwipe: ', e.detail)
+    // console.log('afterSwipe: ', e.detail)
   },
   itemsExhausted(e) {
-    console.log('itemsExhausted: ', e.detail)
+    // console.log('itemsExhausted: ', e.detail)
   },
   activeItem(e) {
-    console.log('activeItem: ', e.detail)
     const activeIndex = e.detail.index
     let items = this.data.items
+    let index = this.indexOf(images, e.detail.item) // 2
+
     if (activeIndex === 0) {
-      items = _.concat(_.shuffle(_.uniq(_.difference(images, items))).slice(0, 3), items)
-      this.setData({ items })
+
+      if(index > 0){
+        items = _.concat(images.slice(index-1, index), items)
+        this.setData({ items })
+      }
+
     } else if (activeIndex === items.length - 1) {
-      items = _.concat(items, _.shuffle(_.uniq(_.difference(images, items))).slice(0, 3))
-      this.setData({ items })
+      if(index <= 6){
+        items = _.concat(items, images.slice(index+1, index+2))
+        this.setData({ items })
+      }
     }
   },
   swiperMove(e) {
     // console.log('move: ', e.detail)
+  },
+
+  indexOf(arr, obj){
+    for (let i = 0, len = arr.length; i < len; ++i) {
+      const elem = arr[i];
+      if(JSON.stringify(elem) === JSON.stringify(obj)){
+        return i
+      }
+    }
+
+    return -1
   }
+
 })
 
 

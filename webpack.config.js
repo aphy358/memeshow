@@ -321,10 +321,15 @@ const resConfig = env => {
 					include: /node_modules/
 				},
 				{
-					test: /\.scss$/,
+					test: /\.(scss|css)$/,
 					use: [
 						{ loader: 'file-loader', options: { context: src, name: '[path][name].wxss' } },
-						'postcss-loader',
+						// 'postcss-loader',
+						// TO DOM: 这里的 'postcss-loader' 还是要注释掉，
+						// 如果不注释，则形如  width: calc(100% - 200rpx); 的样式编译会报错，
+						// 但如果注释掉了，则形如 @import './iconfont.css'; 的代码无法正确引入，但却可以引入 .scss 的外部文件，
+						// 所以后面的所有样式文件全用 .scss 为后缀的样式文件就好了，
+						// 反正问题就出在 'postcss-loader' 上，也不知道该如何进一步配置来兼容这个问题。
 						'sass-loader'
 					],
 					exclude: /node_modules/
@@ -463,14 +468,6 @@ const resConfig = env => {
 
 			// 拷贝资源
 			new CopyWebpackPlugin([
-				{
-					from: resolve(src, 'assets/images/'),
-					to: resolve(dist, 'assets/images/')
-				},
-				{
-					from: resolve(src, 'packages/IM/images/'),
-					to: resolve(dist, 'packages/IM/images/')
-				},
 				{
 					from: resolve(src, 'sitemap.json'),
 					to: resolve(dist, 'sitemap.json')

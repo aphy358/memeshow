@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import { animateTo } from '../../components/common/utils'
+import { animateTo } from '../../../components/common/utils'
 
 Component({
   options: {

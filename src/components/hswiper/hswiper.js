@@ -11,27 +11,40 @@ Component({
       width: 0,
       height: 0
     },
+
     // 元素尺寸
     elemSize: {
       width: 0,
       height: 0
     },
+
     // dom信息
     elements: [],
+
     // 指向第一个dom信息
     headElement: null,
+
     // 指向最后一个dom信息
     tailElement: null,
+
     // 指向当前激活的dom信息
     activeElement: null,
+
     // dom关联的数据
     elementData: {},
+
     // 是否正在动画中
     transforming: false,
+
     // 动画
     timingFunction: 'ease-out',
+
     // 是否初始化
-    initialized: false
+    initialized: false,
+
+    // 该变量用于标记当前 swiper 组件是否禁止 touch 事件，如果禁止掉了，则屏幕无法滚动
+    // 在用到评论框的场景，我们希望在翻看评论的时候不会导致整个视频的滚动，则需要将 forbidTouch 设置为 true
+    forbidTouch: false
   },
   properties: {
     // 元素宽度
@@ -39,11 +52,13 @@ Component({
       type: Number,
       value: 0
     },
+
     // 元素高度
     elementHeight: {
       type: Number,
       value: 0
     },
+
     // 列表数据
     items: {
       type: Array,
@@ -57,26 +72,30 @@ Component({
           this.setData({ elementData: {} })
           return
         }
-        const { elements, activeElement, elementData, defaultItemIndex } = this.data
-        const activeItem = elementData[activeElement.id]
-        const newActiveItemIdx = newVal.indexOf(activeItem)
-        // 根据当前数据在新列表中的位置重置数据和dom的关联
-        const activeItemIdx = newActiveItemIdx >= 0 ? newActiveItemIdx : defaultItemIndex
+
+        const { elements, activeElement, elementData } = this.data
+        const activeItemIdx = activeElement.id
+        const activeDataIdx = this.indexOf(newVal, elementData[activeItemIdx])
         const activeElementIdx = activeElement.index
+
+        // 根据当前数据在新列表中的位置重置数据和dom的关联
         for (let i = 0, len = elements.length; i < len; ++i) {
           const elem = elements[i]
-          const itemIdx = activeItemIdx + (elem.index - activeElementIdx)
+          const itemIdx = activeDataIdx + (elem.index - activeElementIdx)
           elementData[elem.id] = newVal[itemIdx] || null
         }
+
         this.setData({ elementData })
-        console.log(`reset items, new active item index is ${newActiveItemIdx} `, newVal)
+        // console.log(`reset items, new active item index is ${activeItemIdx} `, newVal)
       }
     },
+
     // 没有当前数据时，以列表中该位置的数据作为当前数据
     defaultItemIndex: {
       type: Number,
       value: 1
     },
+
     // 动画类型
     animationType: {
       type: String,
@@ -87,21 +106,25 @@ Component({
         }
       }
     },
+
     // 动画持续时间
     animationDuration: {
       type: Number,
       value: 300
     },
+
     // 是否为垂直翻页
     isVertical: {
       type: Boolean,
       value: true
     },
+
     // 滑动时间阀值，少于该阀值直接翻页，大于该值，则根据滑动距离判断是回弹到原位置还是翻页
     swipeMinDuration: {
       type: Number,
       value: 300
     },
+
     // 滑动最短距离，小于该距离回弹到原位置，默认为容器尺寸30%，<=1时表示占容器尺寸的比例，>1时表示绝对像素值
     swipeMinDistance: {
       type: Number,
@@ -112,6 +135,12 @@ Component({
     touchstart: touchHandle.touchstart.bind(touchHandle),
     touchmove: touchHandle.touchmove.bind(touchHandle),
     touchend: touchHandle.touchend.bind(touchHandle),
+
+    // 由子组件传递上来的事件，传递一个标识来控制当前组件是否可以执行 touch 事件
+    preventTouch(e){
+      this.data.forbidTouch = e.detail
+    },
+
     registerTouchEvent() {
       touchHandle.listen('touchend', e => this.onTouchEnd(e))
       touchHandle.listen('touchmove', e => this.onTouchMove(e))
@@ -151,8 +180,8 @@ Component({
           const prevOffset = offset
           // 初始时直接移动到所在位置
           const animation = animateTo({[translateType]: offset}, 0)
-          elements.push({ id, index, prevOffset, offset, animation })
-          console.log(`hswiper elem-${id} init index is ${index} offset is ${offset}`)
+          elements.push({ id, index, prevOffset, offset, animation, active: offset === 0 })
+          // console.log(`hswiper elem-${id} init index is ${index} offset is ${offset}`)
         }
 
         // dom指针
@@ -180,6 +209,8 @@ Component({
     },
 
     onTouchEnd(e) {
+      if(this.data.forbidTouch)  return
+
       const { isVertical, wrapSize, elements, headElement, tailElement, elementData, elemSize, items,
         animationDuration, timingFunction, swipeMinDuration, swipeMinDistance } = this.data
       const { distanceX, distanceY, duration } = e
@@ -187,16 +218,8 @@ Component({
 
       // 计算最终滑动方向
       let dir = this.swipeDirection(e)
-
-      // 滑动方向上没有数据，禁止移动
-      if (dir === 'next' && !elementData[tailElement.id]) {
-        this.triggerEvent('itemsExhausted', { direction: dir, isVertical })
-        return
-      }
-      if (dir === 'prev' && !elementData[headElement.id]) {
-        this.triggerEvent('itemsExhausted', { direction: dir, isVertical })
-        return
-      }
+      if (dir === 'next' && !elementData[tailElement.id]) return
+      if (dir === 'prev' && !elementData[headElement.id]) return
 
       // 滑动时间大于设定的阀值，我们视为正在拖动屏幕，这种情况下如果滑动距离不够，则回弹到原位置
       if (duration > swipeMinDuration) {
@@ -258,6 +281,7 @@ Component({
           elem.offset = finalOffset
           elem.prevOffset = finalOffset
           elem.animation = animateTo({[translateType]: animateOffset})
+          elem.active = finalOffset === 0
         })
 
         // 新的dom指针
@@ -296,7 +320,7 @@ Component({
           direction: dir,
           isVertical
         })
-
+        
         // 通知新的当前数据
         const activeItem = elementData[activeElement.id]
         const activeItemIdx = items.indexOf(activeItem)
@@ -312,8 +336,8 @@ Component({
         elements.forEach(elem => elem.animation = animateTo({[translateType]: elem.offset}, 0))
         this.setData({ elements, transforming: false })
 
-        console.log('hswiper after transforming the elements are:')
-        elements.forEach(elem => console.log(`\thswiper elem-${elem.id} init index is ${elem.index} offset is ${elem.offset}`))
+        // console.log('hswiper after transforming the elements are:')
+        // elements.forEach(elem => console.log(`\thswiper elem-${elem.id} init index is ${elem.index} offset is ${elem.offset}`))
 
         // 通知滑动结束
         this.triggerEvent('afterSwipe', {
@@ -329,6 +353,8 @@ Component({
     },
 
     onTouchMove(e) {
+      if(this.data.forbidTouch)  return
+
       const { elemSize, elements, headElement, tailElement, elementData, transforming, isVertical } = this.data
       const startPhase = isVertical ? 'startY' : 'startX'
       const endPhase = isVertical ? 'endY' : 'endX'
@@ -341,8 +367,14 @@ Component({
 
       // 滑动方向上没有数据，禁止移动
       const dir = this.swipeDirection(e)
-      if (dir === 'next' && !elementData[tailElement.id]) return
-      if (dir === 'prev' && !elementData[headElement.id]) return
+      if (dir === 'next' && !elementData[tailElement.id]) {
+        this.triggerEvent('itemsExhausted', { direction: dir, isVertical })
+        return
+      }
+      if (dir === 'prev' && !elementData[headElement.id]) {
+        this.triggerEvent('itemsExhausted', { direction: dir, isVertical })
+        return
+      }
 
       // 跟随手指移动，并限制移动范围
       let delta = e[endPhase] - e[startPhase]
@@ -366,6 +398,17 @@ Component({
     swipeDirection(e) {
       const distance = this.data.isVertical ? e.distanceY : e.distanceX
       return distance > 0 ? 'prev' : 'next'
+    },
+
+    indexOf(arr, obj){
+      for (let i = 0, len = arr.length; i < len; ++i) {
+        const elem = arr[i];
+        if(JSON.stringify(elem) === JSON.stringify(obj)){
+          return i
+        }
+      }
+
+      return -1
     }
   },
   lifetimes: {

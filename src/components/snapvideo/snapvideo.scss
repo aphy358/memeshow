@@ -1,15 +1,30 @@
-@import './iconfont.css';
+@import '../../assets/styles/common/index.scss';
+@import './iconfont.scss';
 
 .snap-video-wrap{
   position: relative;
   width: 100%;
   height: 100%;
 
-  .imgOmg {
-    display: block;
+  @at-root .snap-video-inner{
     width: 100%;
     height: 100%;
-    border-radius: 6px;
+
+    @at-root .snap-video-video{
+      // position: absolute;
+      width: 100%;
+      height: 100%;
+      // z-index: -1;
+    }
+
+    .icon-play{
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 100rpx;
+      opacity: .5;
+    }
   }
 
   @at-root .operate-bar-wrap{
@@ -17,6 +32,7 @@
     width: 90rpx;
     right: 16rpx;
     bottom: 300rpx;
+    z-index: 8000;
 
     @at-root .operate-item{
       position: relative;
@@ -75,12 +91,131 @@
         font-size: 26rpx;
         text-shadow: 2rpx 2rpx 2rpx #333;
       }
+
+      @at-root .share-button-mask{
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        background: transparent;
+        opacity: 0;
+      }
     }
   }
 
-  .snap-video-progress{
+  @at-root .snap-video-progress{
+    position: absolute;
     left: 0;
     bottom: 62rpx;
     background: #585256;
+    transform: scaleY(.5);
+  }
+
+  .ad-wrap{
+    position: absolute;
+    left: 20rpx;
+    width: calc(100% - 200rpx);
+    bottom: 80rpx;
+    color: white;
+
+    @at-root .ad-board-wrap{
+      position: absolute;
+      padding: 14rpx;
+      background: white;
+      top: -30rpx;
+      left: -20rpx;
+      width: 404rpx;
+      height: 140rpx;
+      box-sizing: border-box;
+      transform: translate(-100%, -100%);
+
+      &::after{
+        content: '';
+        position: absolute;
+        bottom: -14rpx;
+        left: 20rpx;
+        display: block;
+        width: 0;
+        height: 0;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-top: 8px solid white;
+      }
+
+      @at-root .ad-board-img{
+        float: left;
+        width: 112rpx;
+        height: 112rpx;
+        border-radius: 4rpx;
+      }
+
+      @at-root .ad-board-content-wrap{
+        float: left;
+        padding: 15rpx 20rpx;
+
+        @at-root .ad-board-content{
+          color: #BAB9BE;
+          line-height: 42rpx;
+          font-size: 26rpx;
+
+          &.price{
+            color: #FB3E4A;
+          }
+        }
+      }
+
+      @at-root .ad-close-btn{
+        position: absolute;
+        right: 0;
+        top: 0;
+        color: #666;
+        font-size: 22rpx;
+        padding: 10rpx;
+      }
+    }
+
+    @at-root .ad-tag-wrap{
+      float: left;
+      max-width: 300rpx;
+      height: 56rpx;
+      padding: 0 10rpx;
+      background-color:rgba(0, 0, 0, 0.23);
+      border-radius: 0 4rpx 4rpx 0;
+
+      .icon-shopping-cart{
+        position: absolute;
+        font-size: 34rpx;
+        margin-top: 8rpx;
+        color: rgb(249, 205, 52);
+      }
+
+      .ad-tag-text{
+        display: block;
+        margin-left: 50rpx;
+        line-height: 56rpx;
+        font-size: 28rpx;
+
+        @include no-wrap()
+      }
+    }
+
+    @at-root .ad-title{
+      float: left;
+      width: 100%;
+      font-size: 36rpx;
+      margin: 8rpx 0;
+
+      @include no-wrap()
+    }
+
+    @at-root .ad-content{
+      float: left;
+      font-size: 28rpx;
+
+      @include multiEllipsis(4)
+    }
+
   }
 }
+

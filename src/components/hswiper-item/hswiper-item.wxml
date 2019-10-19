@@ -1,3 +1,0 @@
-
-<image wx:if="{{!!item}}" class="imgOmg" src="{{item}}"></image>
-<view wx:else></view>

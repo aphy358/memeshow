@@ -1,8 +1,8 @@
 {
   "pages": [
     "pages/aaa/index",
-    "pages/comment-test-page/comment-test-page",
     "pages/index/index",
+    "pages/comment-test-page/comment-test-page",
     "pages/video/index",
     "pages/live/index",
     "pages/push/index",
