@@ -3,6 +3,7 @@
 
   <view class="snap-video-inner" bindtap="bindtap">
     <video 
+      wx:if="{{ active }}"
       id="{{ 'videoId' + item.id }}" class="snap-video-video"
       src="{{ item.url }}" 
       controls="{{ false }}"

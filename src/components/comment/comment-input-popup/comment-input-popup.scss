@@ -1,69 +1,73 @@
+.comment-input-popup-wrap{
+  position: absolute;
+  z-index: 9000;
 
-.comment-input-wrap{
-  background: white;
-  overflow: hidden;
-
-  .icon-font{
-    position: absolute;
-    right: 0;
-    top: 25rpx;
-    font-size: 50rpx;
-    color: gray;
-  }
-
-  .iconat{
-    right: 120rpx;
-  }
-
-  .iconface{
-    right: 30rpx;
-    font-weight: bold;
-    z-index: 999;
-  }
-
-  @at-root .comment-input-pholder{
-    height: 1000rpx;
-  }
-
-  @at-root .comment-input-inner{
+  @at-root .comment-input-wrap{
+    background: white;
     overflow: hidden;
   
-    .comment-input{
-      height: 100rpx;
-      width: calc(100% - 20px);
-      padding: 0 20rpx;
-      margin: 10px 10px 0;
-      box-sizing: border-box;
-      background: #f7f7f7;
-      border-radius: 6rpx;
+    .icon-font{
+      position: absolute;
+      right: 0;
+      top: 25rpx;
+      font-size: 50rpx;
+      color: gray;
     }
   
-    .footer-wrap{
-      height: 100rpx;
-      padding: 0 30rpx;
-      box-sizing: border-box;
-      color: #ccc;
-      font-size: 28rpx;
+    .iconat{
+      right: 120rpx;
+    }
   
-      .footer-note{
-        float: right;
-        line-height: 100rpx;
-        margin-right: 30rpx;
-      }
+    .iconface{
+      right: 30rpx;
+      font-weight: bold;
+      z-index: 999;
+    }
   
-      .footer-send-btn{
-        float: right;
-        height: 60rpx;
-        line-height: 20rpx;
-        margin-top: 20rpx;
-        padding: 20rpx 40rpx;
-        background: #eeeeee;
-        border-radius: 60rpx;
+    @at-root .comment-input-pholder{
+      height: 1000rpx;
+    }
+  
+    @at-root .comment-input-inner{
+      overflow: hidden;
+    
+      .comment-input{
+        height: 100rpx;
+        width: calc(100% - 20px);
+        padding: 0 20rpx;
+        margin: 10px 10px 0;
         box-sizing: border-box;
-  
-        &.active{
-          color: white;
-          background: rgb(3, 210, 247);
+        background: #f7f7f7;
+        border-radius: 6rpx;
+      }
+    
+      .footer-wrap{
+        height: 100rpx;
+        padding: 0 30rpx;
+        box-sizing: border-box;
+        color: #ccc;
+        font-size: 28rpx;
+    
+        .footer-note{
+          float: right;
+          line-height: 100rpx;
+          margin-right: 30rpx;
+        }
+    
+        .footer-send-btn{
+          float: right;
+          height: 60rpx;
+          line-height: 20rpx;
+          margin-top: 20rpx;
+          padding: 20rpx 40rpx;
+          background: #eeeeee;
+          border-radius: 60rpx;
+          box-sizing: border-box;
+    
+          &.active{
+            color: white;
+            background: rgb(3, 210, 247);
+          }
         }
       }
     }

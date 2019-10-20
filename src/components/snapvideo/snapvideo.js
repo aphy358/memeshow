@@ -8,11 +8,11 @@ Component({
       type: Object,
       value: {},
       observer(newVal, oldVal) {
-        if(JSON.stringify(newVal) !== JSON.stringify(oldVal) && newVal !== null){
-          this.createVideoContext()
-          this.playVideo()
-          this.setData({ videoInitialed: false })
-        }
+        // if(JSON.stringify(newVal) !== JSON.stringify(oldVal) && newVal !== null){
+        //   this.createVideoContext()
+        //   this.playVideo()
+        //   this.setData({ videoInitialed: false })
+        // }
       }
     },
 
@@ -23,16 +23,17 @@ Component({
       observer(newVal) {
         if(this.data.item){
           if(newVal){
+            this.createVideoContext()
             this.playVideo()
             // 显示广告牌
             this.showAdBoard()
-            this.setMuted(false)
           }else{
             this.stopVideo()
             this.hideAdBoard()
             this.resetProgress()
-            this.setMuted(true)
           }
+
+          this.setMuted(!newVal)
         }
       }
     },
