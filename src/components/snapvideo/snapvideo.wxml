@@ -79,6 +79,7 @@
 
   <!-- 底部进度条 -->
   <progress 
+    style="opacity:{{ ifShowVideo ? '1' : '0' }};"
     custom-class="snap-video-progress"
     stroke-width="1px"
     percentage="{{ 0 }}"

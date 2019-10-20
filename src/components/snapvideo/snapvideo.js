@@ -20,13 +20,14 @@ Component({
 
         if(this.data.item){
           setTimeout(() => {
-            if(newVal){
+            if(newVal){   // 视频滑入
               this.showAdBoard()
               this.createVideoContext()
               this.playVideo()
-            }else{
+            }else{        // 视频滑出
               this.hideAdBoard()
               this.stopVideo()
+              this.setData({ isVideoPlaying: true })
             }
   
             this.setData({ ifShowVideo: newVal })
@@ -80,11 +81,15 @@ Component({
 
   methods: {
     playVideo(){
-      const { videoContext } = this.data
+      const { videoContext, videoDuration } = this.data
 
       if(videoContext){
         videoContext.play()
         this.setData({ isVideoPlaying: true })
+
+        if(videoDuration){
+          this.restartProgress()
+        }
       }
     },
 
@@ -95,6 +100,28 @@ Component({
         videoContext.pause();
         this.setData({ isVideoPlaying: false })
       }
+
+      this.pauseProgress()
+    },
+
+    pauseProgress(){
+      const { videoDuration, currentVideoTime } = this.data
+      const rate = currentVideoTime / videoDuration * 100 + '%'
+
+      let progressAnimation = animateTo({ 'width': rate }, 0, 'linear')
+      this.setData({ progressAnimation })
+    },
+
+    restartProgress(){
+      const { videoDuration, currentVideoTime } = this.data
+
+      let progressAnimation = animateTo(
+        { 'width': '100%' }, 
+        (videoDuration - currentVideoTime) * 1000, 
+        'linear'
+      )
+
+      this.setData({ progressAnimation })
     },
 
     stopVideo(){
