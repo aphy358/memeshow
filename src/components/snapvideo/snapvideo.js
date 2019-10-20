@@ -16,6 +16,8 @@ Component({
       type: Boolean,
       value: false,
       observer(newVal) {
+        this.resetProgress()
+
         if(this.data.item){
           setTimeout(() => {
             if(newVal){
@@ -25,7 +27,6 @@ Component({
             }else{
               this.hideAdBoard()
               this.stopVideo()
-              this.resetProgress()
             }
   
             this.setData({ ifShowVideo: newVal })
@@ -69,6 +70,12 @@ Component({
 
     // 广告牌显示计时器
     adTimeout: null,
+
+    // 视频的时长
+    videoDuration: 0,
+
+    // 视频当前播放时间
+    currentVideoTime: 0,
   },
 
   methods: {
@@ -241,35 +248,29 @@ Component({
     },
 
     bindtimeupdate(e){
-      const { videoInitialed, active } = this.data
+      const { duration, currentTime } = e.detail
+      const { videoDuration, currentVideoTime } = this.data
 
-      // // 如果视频之前还从来没播放过，则说明现在是第一次播放，并已经初次播放了，现在需要将视频暂停到最开始的位置了
-      // if(!videoInitialed){
-      //   if(!active){
-      //     this.stopVideo()
-      //   }
-      //   this.setData({ videoInitialed: true })
-      // }
+      // 如果是第一次播放，或者是重复播放，先将进度条归位，并开启进度条动画
+      if(!videoDuration || currentVideoTime > currentTime){
+        this.resetProgress()
 
-      // if(!this.data.videoDuration){
-      //   if(e.detail && e.detail.duration){
-      //     this.data.videoDuration = e.detail.duration
+        let progressAnimation = animateTo({
+          'width': '100%'
+        }, (duration - currentTime) * 1000, 'linear')
+        
+        this.setData({ progressAnimation })
+        this.data.videoDuration = duration
+      }
 
-      //     let progressAnimation = animateTo({
-      //       'width': '100%'
-      //     }, e.detail.duration * 1000, 'linear')
-
-      //     this.setData({ progressAnimation })
-      //   }
-      // }
+      this.data.currentVideoTime = currentTime
     },
 
     resetProgress(){
-      let progressAnimation = animateTo({
-        'width': '0%'
-      }, 0, 'linear')
-      
+      let progressAnimation = animateTo({ 'width': '0%' }, 0)
       this.setData({ progressAnimation })
+      this.data.videoDuration = 0
+      this.data.currentVideoTime = 0
     }
   },
 
