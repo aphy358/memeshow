@@ -2,6 +2,7 @@
 
 <view class="progress custom-class" style="height: {{ strokeWidthUnit }};">
   <view
+    wx:if="{{ !isLoading }}"
     class="progress__portion"
     style="width: {{ percentage }}%; background: {{ inactive ? '#cacaca' : color }}"
     animation="{{ customAnimation }}"
@@ -14,4 +15,11 @@
       {{ getters.text(pivotText, percentage) }}
     </view>
   </view>
+
+  <view 
+    wx:if="{{ isLoading }}"
+    class="progress__loading"
+    style="background: {{ inactive ? '#cacaca' : color }}"
+    animation="{{ loadingAnimation }}"
+  ></view>
 </view>

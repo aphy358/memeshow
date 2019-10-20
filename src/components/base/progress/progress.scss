@@ -13,6 +13,14 @@
     border-radius: inherit;
   }
 
+  &__loading {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0);
+    height: 100%;
+    border-radius: inherit;
+  }
+
   &__pivot {
     position: absolute;
     top: 50%;

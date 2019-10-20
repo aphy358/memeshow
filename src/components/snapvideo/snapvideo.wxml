@@ -11,6 +11,7 @@
   
       binderror="videoError"
       bindtimeupdate="bindtimeupdate"
+      bindwaiting="videoWaiting"
     />
 
     <text wx:if="{{ !isVideoPlaying }}" class="iconfont icon-play"></text>
@@ -85,6 +86,7 @@
     percentage="{{ 0 }}"
     show-pivot="{{ false }}"
     custom-animation="{{ progressAnimation }}"
+    isLoading="{{ isLoading }}"
     color="white"
   />
 

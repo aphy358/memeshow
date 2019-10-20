@@ -2,6 +2,11 @@ import { _comments } from './testData/comments'
 import { animateTo } from '../../components/common/utils'
 
 Component({
+  options: {
+    // 允许页面的样式影响到组件
+    styleIsolation: 'apply-shared'
+  },
+
   properties: {
     // 数据项
     item: {
@@ -40,37 +45,35 @@ Component({
   data: {
     ifShowVideo: false,
 
-    // 当前视频是否已经初始化了
-    videoInitialed: false,
-
     videoContext: null,
-
-    progressAnimation: {},
-
-    // 广告牌动画
-    adAnimation: {},
-
-    percentage: 50,
-
-    // 是否显示 hpopup
-    ifShowCommentPopup: false,
-
-    comments: _comments,
-
-    // 是否显示评论输入框
-    ifShowCommentInputPopup: false,
-
-    // 回复谁？
-    replyTo: null,
 
     // 当前视频是否正在播放
     isVideoPlaying: true,
+
+    // 广告牌动画
+    adAnimation: {},
 
     // 广告牌是否已经显示
     adShown: false,
 
     // 广告牌显示计时器
     adTimeout: null,
+
+    // 是否显示 hpopup
+    ifShowCommentPopup: false,
+
+    // 是否显示评论输入框
+    ifShowCommentInputPopup: false,
+
+    // 回复谁？
+    replyTo: null,
+    
+    comments: _comments,
+
+    progressAnimation: {},
+
+    // 当前视频是否正在加载
+    isLoading: true,
 
     // 视频的时长
     videoDuration: 0,
@@ -291,6 +294,14 @@ Component({
       }
 
       this.data.currentVideoTime = currentTime
+    },
+
+    videoWaiting(e){
+      wx.showToast({
+        title: '正在加载...' + JSON.stringify(e),
+        icon: 'none',
+        duration: 2000
+      })
     },
 
     resetProgress(){
