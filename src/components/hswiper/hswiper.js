@@ -1,4 +1,4 @@
-import { animateTo } from '../../components/common/utils'
+import { animateTo, throttle } from '../../components/common/utils'
 import HTouch from './libs/hTouch'
 const touchHandle = new HTouch()
 
@@ -43,8 +43,8 @@ Component({
     initialized: false,
 
     // 该变量用于标记当前 swiper 组件是否禁止 touch 事件，如果禁止掉了，则屏幕无法滚动
-    // 在用到评论框的场景，我们希望在翻看评论的时候不会导致整个视频的滚动，则需要将 forbidTouch 设置为 true
-    forbidTouch: false
+    // 在用到评论框的场景，我们希望在翻看评论的时候不会导致整个视频的滚动，则需要将 forbidSwipe 设置为 true
+    forbidSwipe: false
   },
   properties: {
     // 元素宽度
@@ -137,13 +137,13 @@ Component({
     touchend: touchHandle.touchend.bind(touchHandle),
 
     // 由子组件传递上来的事件，传递一个标识来控制当前组件是否可以执行 touch 事件
-    preventTouch(e){
-      this.data.forbidTouch = e.detail
+    preventSwipe(e){
+      this.data.forbidSwipe = e.detail
     },
 
     registerTouchEvent() {
       touchHandle.listen('touchend', e => this.onTouchEnd(e))
-      touchHandle.listen('touchmove', e => this.onTouchMove(e))
+      touchHandle.listen('touchmove', e => throttle(this.onTouchMove, 100)(e, this))
     },
 
     initialize() {
@@ -209,7 +209,7 @@ Component({
     },
 
     onTouchEnd(e) {
-      if(this.data.forbidTouch)  return
+      if(this.data.forbidSwipe)  return
 
       const { isVertical, wrapSize, elements, headElement, tailElement, elementData, elemSize, items,
         animationDuration, timingFunction, swipeMinDuration, swipeMinDistance } = this.data
@@ -352,10 +352,10 @@ Component({
       }, animationDuration)
     },
 
-    onTouchMove(e) {
-      if(this.data.forbidTouch)  return
+    onTouchMove(e, _this) {
+      if(_this.data.forbidSwipe)  return
 
-      const { elemSize, elements, headElement, tailElement, elementData, transforming, isVertical } = this.data
+      const { elemSize, elements, headElement, tailElement, elementData, transforming, isVertical } = _this.data
       const startPhase = isVertical ? 'startY' : 'startX'
       const endPhase = isVertical ? 'endY' : 'endX'
       const translateType = isVertical ? 'translateY' : 'translateX'
@@ -366,13 +366,13 @@ Component({
       }
 
       // 滑动方向上没有数据，禁止移动
-      const dir = this.swipeDirection(e)
+      const dir = _this.swipeDirection(e)
       if (dir === 'next' && !elementData[tailElement.id]) {
-        this.triggerEvent('itemsExhausted', { direction: dir, isVertical })
+        _this.triggerEvent('itemsExhausted', { direction: dir, isVertical })
         return
       }
       if (dir === 'prev' && !elementData[headElement.id]) {
-        this.triggerEvent('itemsExhausted', { direction: dir, isVertical })
+        _this.triggerEvent('itemsExhausted', { direction: dir, isVertical })
         return
       }
 
@@ -385,10 +385,10 @@ Component({
         elem.offset = elem.prevOffset + delta
         elem.animation = animateTo({[translateType]: elem.offset}, 0)
       });
-      this.setData({ elements })
+      _this.setData({ elements })
 
       // 激发移动事件
-      this.triggerEvent('move', {
+      _this.triggerEvent('move', {
         direction: dir,
         delta,
         maxDistance

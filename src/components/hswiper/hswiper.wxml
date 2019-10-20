@@ -13,7 +13,7 @@
       <hswiper-item 
         item="{{ elementData[item.id] }}" 
         active="{{ item.active }}" 
-        bind:preventTouch="preventTouch"
+        bind:preventSwipe="preventSwipe"
       />
     </view>
   </block>

@@ -1,17 +1,15 @@
 
 <view wx:if="{{ !!item }}" class="snap-video-wrap">
 
-  <view class="snap-video-inner" bindtap="bindtap">
+  <view class="snap-video-inner" bindtap="tapVideo">
     <video 
-      wx:if="{{ active }}"
+      wx:if="{{ ifShowVideo }}"
       id="{{ 'videoId' + item.id }}" class="snap-video-video"
       src="{{ item.url }}" 
       controls="{{ false }}"
       loop="{{ true }}"
-      muted="{{ muted }}"
-      show-center-play-btn="{{ false }}"
   
-      binderror="binderror"
+      binderror="videoError"
       bindtimeupdate="bindtimeupdate"
     />
 

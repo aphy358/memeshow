@@ -39,6 +39,23 @@ export function addUnit(value) {
   return isNumber(value) ? `${value}px` : value;
 }
 
+
+export function throttle(func, wait) {
+  wait = wait || 300
+
+  return function () {
+    var context = this;
+    var args = arguments;
+
+    if (!func.tId) {
+      func.tId = setTimeout(() => {
+        func.tId = null;
+        func.apply(context, args)
+      }, wait);
+    }
+  }
+}
+
 /**
  * 构建动画实例
  * @param {*} animateOpt 由多个动画属性组成的对象

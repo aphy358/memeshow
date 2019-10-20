@@ -7,12 +7,7 @@ Component({
     item: {
       type: Object,
       value: {},
-      observer(newVal, oldVal) {
-        // if(JSON.stringify(newVal) !== JSON.stringify(oldVal) && newVal !== null){
-        //   this.createVideoContext()
-        //   this.playVideo()
-        //   this.setData({ videoInitialed: false })
-        // }
+      observer(newVal) {
       }
     },
 
@@ -22,30 +17,31 @@ Component({
       value: false,
       observer(newVal) {
         if(this.data.item){
-          if(newVal){
-            this.createVideoContext()
-            this.playVideo()
-            // 显示广告牌
-            this.showAdBoard()
-          }else{
-            this.stopVideo()
-            this.hideAdBoard()
-            this.resetProgress()
-          }
-
-          this.setMuted(!newVal)
+          setTimeout(() => {
+            if(newVal){
+              this.showAdBoard()
+              this.createVideoContext()
+              this.playVideo()
+            }else{
+              this.hideAdBoard()
+              this.stopVideo()
+              this.resetProgress()
+            }
+  
+            this.setData({ ifShowVideo: newVal })
+          }, 300);
         }
       }
     },
   },
 
   data: {
+    ifShowVideo: false,
+
     // 当前视频是否已经初始化了
     videoInitialed: false,
 
     videoContext: null,
-
-    muted: true,
 
     progressAnimation: {},
 
@@ -66,14 +62,16 @@ Component({
     replyTo: null,
 
     // 当前视频是否正在播放
-    isVideoPlaying: true
+    isVideoPlaying: true,
+
+    // 广告牌是否已经显示
+    adShown: false,
+
+    // 广告牌显示计时器
+    adTimeout: null,
   },
 
   methods: {
-    setMuted(newVal){
-      this.setData({ muted: newVal })
-    },
-
     playVideo(){
       const { videoContext } = this.data
 
@@ -181,7 +179,7 @@ Component({
       })
 
       setTimeout(() => {
-        this.triggerEvent('preventTouch', false)
+        this.triggerEvent('preventSwipe', false)
       }, 300);
     },
 
@@ -191,15 +189,15 @@ Component({
         ifShowCommentPopup: true
       })
 
-      this.triggerEvent('preventTouch', true)
+      this.triggerEvent('preventSwipe', true)
     },
 
     // 隐藏广告面板
     hideAdBoard(){
       // 如果广告牌还没显示出来，但是之前已经设置了定时器，则删除该定时器，比如用户在短时间内上下翻动视频的时候就会出现这种情况
-      if(!this.data.adShown && this.data.timeout){
-        clearTimeout(this.data.timeout)
-        this.data.timeout = null
+      if(!this.data.adShown && this.data.adTimeout){
+        clearTimeout(this.data.adTimeout)
+        this.data.adTimeout = null
       }
 
       let adAnimation = animateTo({
@@ -214,7 +212,7 @@ Component({
     // 显示广告面板
     showAdBoard(){
       // 当前视频被激活后，3秒后显示广告牌
-      this.data.timeout = setTimeout(() => {
+      this.data.adTimeout = setTimeout(() => {
         let adAnimation = animateTo({
           'left': '0',
           'translateX': '0',
@@ -225,14 +223,16 @@ Component({
       }, 3000);
     },
 
-    bindtap(e){
+    // 点击视频
+    tapVideo(e){
       const { isVideoPlaying } = this.data
+
       isVideoPlaying
         ? this.pauseVideo()
         : this.playVideo()
     },
 
-    binderror(e){
+    videoError(e){
       wx.showToast({
         title: '视频播放出错！',
         icon: 'none',
