@@ -2,13 +2,13 @@
  * API Entry
  */
 
-const _ = require("lodash")
-const config = require("../config.js").api
+import _ from "lodash"
+import config from "../config.js"
 
 const apiMap = {
   category: import("./Category")
 }
 
-const apis = _.mapValues(apiMap, cls => new cls(apiConfig.baseUrl))
+const apis = _.mapValues(apiMap, cls => new cls(config.baseUrl))
 
-module.exports = apis
+export default apis

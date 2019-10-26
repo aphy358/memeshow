@@ -31,30 +31,21 @@ Component({
       value: null
     },
     // 是否正在加载
-    isLoading: {
+    loading: {
       type: Boolean,
       value: false,
-      observer(newVal) {
-        console.log('isLoading: ', newVal);
-        if(newVal){
-          setInterval(() => {
-            let loadingAnimation = animateTo({ 'width': '0%' }, 0)
-            this.setData({ loadingAnimation })
-
-            loadingAnimation = animateTo({ 'width': '100%' }, 400)
-            this.setData({ loadingAnimation })
-          }, 450);
-        }else{
-
-        }
-      }
+      observer: 'switchLoadingStatus'
     },
   },
 
   data: {
     strokeWidthUnit: '8rpx',
 
+    // 等待加载时的动画
     loadingAnimation: null,
+
+    // 等待加载时的 `interval`
+    loadingInterval: null,
   },
 
   methods: {
@@ -62,6 +53,23 @@ Component({
       this.setData({
         strokeWidthUnit: addUnit(val)
       });
+    },
+
+    // 切换加载等待状态
+    switchLoadingStatus (isLoading) {
+      if(isLoading){
+        this.data.loadingInterval = setInterval(() => {
+          let loadingAnimation = animateTo({ 'width': '0%' }, 0)
+          this.setData({ loadingAnimation })
+
+          loadingAnimation = animateTo({ 'width': '100%' }, 500)
+          this.setData({ loadingAnimation })
+        }, 600);
+      }else{
+        clearInterval(this.data.loadingInterval)
+        let loadingAnimation = animateTo({ 'width': '0%' }, 0)
+        this.setData({ loadingAnimation })
+      }
     }
   }
 })

@@ -1,4 +1,4 @@
-import { connect } from '../../../../plugins/redux/index.js'
+import { connect } from '../../../../libs/redux/index.js'
 import { generateFingerGuessImageFile, generateBigEmojiImageFile, generateRichTextNode, generateImageNode, calcTimeHeader } from '../../utils/util.js'
 import { showToast, deepClone, clickLogoJumpToCard } from '../../utils/util.js'
 import * as iconBase64Map from '../../utils/imageBase64.js'
@@ -1049,7 +1049,7 @@ let pageConfig = {
       wx.navigateTo({
         url: '../../partials/advancedGroupMemberCard/advancedGroupMemberCard?account=' + data.target.dataset.account + '&teamId=' + this.data.chatTo
       })
-    }   
+    }
   },
   /**
    * 查看云端历史消息、查看群信息、查看讨论组信息

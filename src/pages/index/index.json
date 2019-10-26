@@ -7,6 +7,6 @@
     "tab": "../../components/base/tab/index",
     "tabs": "../../components/base/tabs/index",
     "waterfall": "../../components/base/list/index",
-    "waterfall-item": "../../components/base/list-item-image/index"
+    "waterfall-item-image": "../../components/list-item/list-item-image/index"
   }
 }

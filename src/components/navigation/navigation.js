@@ -1,6 +1,9 @@
-import { connect } from '../../plugins/redux/index.js'
+import { connect } from '../../libs/redux/index.js'
 
 const app = getApp()
+
+console.log("this app", app)
+
 let store = app.store
 
 let componentConfig = {

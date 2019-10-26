@@ -1,7 +1,6 @@
 const app = getApp()
-const api = require('../../utils/api.js')
-var {comments} = require('../../data/comment.js')
-var {videos} = require('../../data/video.js')
+var {comments} = require('../../../data/comment.js')
+var {videos} = require('../../../data/video.js')
 
 
 var start;
@@ -11,7 +10,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    isIphoneX: app.globalData.isIphoneX ? true : false,    
+    isIphoneX: app.globalData.isIphoneX ? true : false,
     keyboardHeight:0,
     commentHeight:0,
     videoUrl:videos[2],
@@ -88,7 +87,7 @@ Page({
     }else{
       subject.likes = subject.likes - 1;
     }
-    
+
     this.setData({
       subject: subject
     })
@@ -144,7 +143,7 @@ Page({
       isHiddenInfo: true,
       isHiddentools: true,
       isHiddenTransverse:true
-      
+
     })
   },
   commentHide() {
@@ -154,9 +153,9 @@ Page({
       isHiddenMask: true,
       isHiddenSlide: false,
       isHiddenProduct: false,
-      isHiddenInfo: false, 
+      isHiddenInfo: false,
       isHiddentools: false,
-      isHiddenTransverse:false         
+      isHiddenTransverse:false
     })
   },
 
@@ -175,7 +174,7 @@ Page({
       isHiddenTransverse:false
     })
   },
-  
+
   productViewFade() {
     console.log('显示产品图片')
     this.setData({
@@ -227,7 +226,7 @@ Page({
       inputShow: true
     })
   },
- 
+
 
   closeTransverse:function(){
    this.setData({
@@ -383,7 +382,7 @@ Page({
           transverseAnimation: animation.export()
         })
         break
-        default: 
+        default:
         break
       }
     }

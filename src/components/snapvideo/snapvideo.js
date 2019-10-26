@@ -70,10 +70,11 @@ Component({
     
     comments: _comments,
 
+    // 进度条动画
     progressAnimation: {},
 
     // 当前视频是否正在加载
-    isLoading: true,
+    isLoading: false,
 
     // 视频的时长
     videoDuration: 0,
@@ -83,6 +84,7 @@ Component({
   },
 
   methods: {
+    // 播放视频
     playVideo(){
       const { videoContext, videoDuration } = this.data
 
@@ -96,17 +98,19 @@ Component({
       }
     },
 
+    // 暂停视频播放
     pauseVideo(){
       const { videoContext } = this.data
 
       if(videoContext){
         videoContext.pause();
-        this.setData({ isVideoPlaying: false })
       }
-
+      
+      this.setData({ isVideoPlaying: false })
       this.pauseProgress()
     },
 
+    // 暂停进度条动画
     pauseProgress(){
       const { videoDuration, currentVideoTime } = this.data
       const rate = currentVideoTime / videoDuration * 100 + '%'
@@ -115,6 +119,7 @@ Component({
       this.setData({ progressAnimation })
     },
 
+    // 重新开始进度条动画（在原来的进度基础上）
     restartProgress(){
       const { videoDuration, currentVideoTime } = this.data
 
@@ -127,6 +132,7 @@ Component({
       this.setData({ progressAnimation })
     },
 
+    // 停止播放视频
     stopVideo(){
       const { videoContext } = this.data
 
@@ -137,6 +143,7 @@ Component({
       }
     },
 
+    // 创建视频上下文
     createVideoContext(){
       let videoContext = wx.createVideoContext('videoId' + this.data.item.id, this)
       this.setData({ videoContext })
@@ -144,8 +151,6 @@ Component({
 
     // 创建一条新的评论
     createNewComment(e){
-      console.log('createNewComment: ', e.detail);
-      
       // 拿到新创建的评论，先将它插入到之前的数据列表中，然后存数据库？
       let { comments } = this.data
       const newComment = e.detail
@@ -176,14 +181,12 @@ Component({
     showCommentInputPopup(e){
       this.setData({ 
         ifShowCommentInputPopup: true,
-        replyTo: e.detail
+        replyTo: e.detail.nickName ? e.detail : e.currentTarget.dataset.replyto
       })
     },
 
     // 点击了小红心，切换点赞状态
     switchStarStatus(e){
-      console.log('switchStarStatus: ', e.detail);
-
       const { commentId  } = e.detail
       let { comments } = this.data
 
@@ -277,35 +280,51 @@ Component({
       })
     },
 
+    // 视频播放进度改变时触发
     bindtimeupdate(e){
       const { duration, currentTime } = e.detail
       const { videoDuration, currentVideoTime } = this.data
 
       // 如果是第一次播放，或者是重复播放，先将进度条归位，并开启进度条动画
       if(!videoDuration || currentVideoTime > currentTime){
-        this.resetProgress()
+        this.resetProgress(currentTime / duration * 100)
 
-        let progressAnimation = animateTo({
-          'width': '100%'
-        }, (duration - currentTime) * 1000, 'linear')
+        let progressAnimation = animateTo(
+          { 'width': '100%' }, 
+          (duration - currentTime) * 1000, 
+          'linear'
+        )
         
         this.setData({ progressAnimation })
         this.data.videoDuration = duration
+
+      }else{
+        // 如果是一般时刻的进度更新，则先判断下之前有没有等待加载的情况，如果有，则先清空定时器，并重置 loading 状态
+        if(this.data.waitTimeout){
+          this.restartProgress()
+          clearTimeout(this.data.waitTimeout)
+          this.setData({ isLoading: false })
+        }
       }
 
       this.data.currentVideoTime = currentTime
     },
 
+    // 等待加载时触发
     videoWaiting(e){
-      wx.showToast({
-        title: '正在加载...' + JSON.stringify(e),
-        icon: 'none',
-        duration: 2000
-      })
+      this.pauseProgress()
+      this.data.waitTimeout = setTimeout(() => {
+        this.setData({ isLoading: true })
+      }, 300);
     },
 
-    resetProgress(){
-      let progressAnimation = animateTo({ 'width': '0%' }, 0)
+    // e.detail.buffered
+    videoProgress(e){
+    },
+
+    // 将进度条设置为指定进度
+    resetProgress(percent){
+      let progressAnimation = animateTo({ 'width': percent ? percent + '%' : '0%' }, 0)
       this.setData({ progressAnimation })
       this.data.videoDuration = 0
       this.data.currentVideoTime = 0

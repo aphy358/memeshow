@@ -12,6 +12,7 @@
       binderror="videoError"
       bindtimeupdate="bindtimeupdate"
       bindwaiting="videoWaiting"
+      bindprogress="videoProgress"
     />
 
     <text wx:if="{{ !isVideoPlaying }}" class="iconfont icon-play"></text>
@@ -21,16 +22,10 @@
   <view class="operate-bar-wrap">
     <view class="operate-item">
       <!-- 个人主页 -->
-      <view class="avatar-wrap">
-        <view class="avatar-inner">
-          <image src="./img/avatar.png" class="avatar-img" />
-        </view>
-      </view>
+      <image src="./img/avatar.png" class="avatar-img" />
 
       <!-- 关注 -->
-      <view class="follow-wrap">
-        <image src="./img/follow.png" class="follow-wrap-img" />
-      </view>
+      <image src="./img/follow.png" class="follow-wrap-img" />
     </view>
 
     <!-- 小红心 -->
@@ -86,7 +81,7 @@
     percentage="{{ 0 }}"
     show-pivot="{{ false }}"
     custom-animation="{{ progressAnimation }}"
-    isLoading="{{ isLoading }}"
+    loading="{{ isLoading }}"
     color="white"
   />
 

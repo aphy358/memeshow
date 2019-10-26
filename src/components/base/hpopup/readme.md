@@ -4,6 +4,10 @@
 
 `hpopup` 是一个公共的弹框组件，用户可以指定它的弹出方向、弹框样式、可自定义弹框的动画，它内部实现了 `z-index` 的自动管理，无需用户手动设置便可以实现多个弹框的有序叠加显示。
 
+## 注意事项
+
+为防止滚动穿透的问题，组件最外层用了 `catch:touchmove="true"`，所以，如果弹框内部需要滚动的时候，需要用 `scroll-view` 组件才行。[参考实例](../../comment/comment-list-video/comment-list-video.wxml)。
+
 ## 代码演示
 
 `.json`

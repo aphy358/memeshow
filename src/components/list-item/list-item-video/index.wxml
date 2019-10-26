@@ -1,0 +1,9 @@
+<!-- List Item Image component -->
+<!-- <wxs src="../typeMapper.wxs" module="typeMapper"></wxs> -->
+<view class="home-page-content">
+    <slot></slot>
+    <view class="home-page-content-detail">
+        <view>这里是标题和简介</view>
+        <view>operator</view>
+    </view>
+</view>

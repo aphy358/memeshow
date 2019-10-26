@@ -7,6 +7,8 @@ $content: mf_tabs-content;
 .mf_tabs {
     @include flex($justify: space-between);
 
+    background: $white;
+
     &-left,
     &-right {
         height: auto;

@@ -143,7 +143,7 @@ Component({
 
     registerTouchEvent() {
       touchHandle.listen('touchend', e => this.onTouchEnd(e))
-      touchHandle.listen('touchmove', e => throttle(this.onTouchMove, 100)(e, this))
+      touchHandle.listen('touchmove', e => throttle(this.onTouchMove.bind(this), 50)(e))
     },
 
     initialize() {
@@ -352,10 +352,10 @@ Component({
       }, animationDuration)
     },
 
-    onTouchMove(e, _this) {
-      if(_this.data.forbidSwipe)  return
+    onTouchMove(e) {
+      if(this.data.forbidSwipe)  return
 
-      const { elemSize, elements, headElement, tailElement, elementData, transforming, isVertical } = _this.data
+      const { elemSize, elements, headElement, tailElement, elementData, transforming, isVertical } = this.data
       const startPhase = isVertical ? 'startY' : 'startX'
       const endPhase = isVertical ? 'endY' : 'endX'
       const translateType = isVertical ? 'translateY' : 'translateX'
@@ -366,13 +366,13 @@ Component({
       }
 
       // 滑动方向上没有数据，禁止移动
-      const dir = _this.swipeDirection(e)
+      const dir = this.swipeDirection(e)
       if (dir === 'next' && !elementData[tailElement.id]) {
-        _this.triggerEvent('itemsExhausted', { direction: dir, isVertical })
+        this.triggerEvent('itemsExhausted', { direction: dir, isVertical })
         return
       }
       if (dir === 'prev' && !elementData[headElement.id]) {
-        _this.triggerEvent('itemsExhausted', { direction: dir, isVertical })
+        this.triggerEvent('itemsExhausted', { direction: dir, isVertical })
         return
       }
 
@@ -385,10 +385,10 @@ Component({
         elem.offset = elem.prevOffset + delta
         elem.animation = animateTo({[translateType]: elem.offset}, 0)
       });
-      _this.setData({ elements })
+      this.setData({ elements })
 
       // 激发移动事件
-      _this.triggerEvent('move', {
+      this.triggerEvent('move', {
         direction: dir,
         delta,
         maxDistance

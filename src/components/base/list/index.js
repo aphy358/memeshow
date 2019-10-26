@@ -1,13 +1,8 @@
 /**
  * List component
- *
- * @todo 自适应宽度
- * @todo 懒加载，原生的 lazy-load 效果不好
- *
- * @event Waterfall#beforeAppend
- * @event Waterfall#appended
  */
 
+import { baseBehavior } from "../../common/behaviors/index"
 // es6 module 兼用性问题
 // import Column from "./Column"
 const Column = require("./Column")
@@ -39,12 +34,33 @@ Component({
       value: false
     },
 
-    appended: {
+    /**
+     * 计算高度的 strategy
+     */
+
+    strategy: {
       type: Function,
       value: null
     },
 
+    /**
+     * beforeAppend
+     * 回调函数
+     * 注意 `this` 关键字的指向
+     */
+
     beforeAppend: {
+      type: Function,
+      value: null
+    },
+
+    /**
+     * appended
+     * 回调函数
+     * 注意 `this` 关键字的指向
+     */
+
+    appended: {
       type: Function,
       value: null
     }
@@ -67,6 +83,8 @@ Component({
     perWidth: 0
   },
 
+  behaviors: [baseBehavior()],
+
   observers: {
     appendList: function(list) {
       if (!list || list.length <= 0) return
@@ -78,43 +96,41 @@ Component({
 
   methods: {
     buildRenderList(appendList = []) {
-      const { list: preList, col } = this.data
+      const { list, col } = this.data
 
       appendList.forEach(image => {
-        if (preList.length < col) {
+        if (list.length < col) {
           const column = new Column()
           column.addItem(image)
-          preList.push(column)
+          list.push(column)
         } else {
-          const insertTarget = this.findShortest(preList)
+          const insertTarget = this.shortest(list)
           insertTarget.addItem(image)
         }
       })
 
-      this.setData({ list: this.data.list })
+      this.setData({ list })
     },
 
-    findShortest(list) {
+    shortest(list) {
       return list.reduce((shortest, item) =>
         item.height < shortest.height ? item : shortest
       )
     },
 
     /**
-     * @event Waterfall#beforeAppend
+     * @event List#beforeAppend
      */
 
     _emitBeforeAppend() {
-      this.triggerEvent("beforeAppend")
       this.data.beforeAppend && this.data.beforeAppend()
     },
 
     /**
-     * @event Waterfall#appended
+     * @event List#appended
      */
 
     _emitAppended() {
-      this.triggerEvent("appended")
       this.data.appended && this.data.appended()
     }
   }

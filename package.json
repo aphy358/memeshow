@@ -4,8 +4,8 @@
   "description": "mapp.mofanshow",
   "main": "app.js",
   "scripts": {
-    "dev": "webpack --env.NODE_ENV=development --progress --watch",
-    "build": "webpack --env.NODE_ENV=production --progress",
+    "dev": "webpack --env.NODE_ENV=development --env.development --progress --watch",
+    "build": "webpack --env.NODE_ENV=production --env.production --progress",
     "lint": "eslint ./src --ext .js"
   },
   "repository": {
@@ -22,6 +22,7 @@
     "@babel/preset-env": "^7.4.3",
     "autoprefixer": "^9.5.1",
     "babel-loader": "^8.0.5",
+    "clean-webpack-plugin": "^3.0.0",
     "copy-webpack-plugin": "^5.0.2",
     "cssnano": "^4.1.10",
     "eslint": "^5.16.0",

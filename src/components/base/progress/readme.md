@@ -97,6 +97,7 @@ Page({
 | pivot-text | 文字显示 | *string* | 百分比文字 | - |
 | pivot-color | 文字背景色 | *string* | 与进度条颜色一致 | - |
 | custom-animation | 自定义进度条动画 | *object* | `null` | - |
+| loading | 是否处于加载等待中 | *boolean* | `false` | - |
 
 ### 外部样式类
 

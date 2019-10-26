@@ -1,5 +1,5 @@
-import { connect } from "../../plugins/redux/index.js"
-import { categories, mediumItems, articleItems } from "../../data"
+import { connect } from "../../libs/redux/index.js"
+import { categories, homePageItems } from "../../../data"
 
 const app = getApp()
 let store = app.store
@@ -28,16 +28,6 @@ let pageConfig = {
   },
 
   /**
-   * lifeTime
-   */
-
-  onReady() {
-    this.setData({
-      height: app.globalData.statusBarHeight + app.globalData.titleBarHeight
-    })
-  },
-
-  /**
    * 加载图片
    */
 
@@ -58,7 +48,7 @@ let pageConfig = {
    */
 
   fetchList() {
-    this.setData({ list: articleItems })
+    this.setData({ list: homePageItems })
   },
 
   /**
@@ -143,10 +133,6 @@ let pageConfig = {
 
   gotoIM() {
     wx.navigateTo({ url: "/pages/aaa/index" })
-  },
-
-  onPageScroll(e) {
-    let scrollTop = this.data.scrollTop
   }
 }
 

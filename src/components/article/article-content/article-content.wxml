@@ -1,0 +1,69 @@
+<!-- 文章正文 -->
+<view class="article-body-wrap">
+  <view class="cotent-title-wrap">
+    <view class="cotent-title-text">{{ article.title }}</view>
+    <view class="cotent-state-wrap">
+      <text class="cotent-state-text">2018.11.03</text>
+      <text class="cotent-state-text" style="color:#64779C;">ben</text>
+      <text class="cotent-state-text">阅读 1087</text>
+    </view>
+  </view>
+
+  <block wx:for="{{ article.contentList }}" wx:key="{{ item.id }}">
+    <view class="article-block" data-type="{{ item.type }}">
+      <!-- 背景音乐 -->
+      <block wx:if="{{ item.type === 'music' }}">
+      </block>
+
+      <!-- 小视频 -->
+      <block wx:elif="{{ item.type === 'video' }}">
+        <view class="article-video-wrap">
+          <video
+            id="myVideo" 
+            class="article-video"
+            object-fit="fit"
+            show-center-play-btn="{{ false }}"
+            poster="{{ item.url }}"
+            src="{{ item.src }}"
+          />
+        </view>
+      </block>
+
+      <!-- 文字 -->
+      <block wx:elif="{{ item.type === 'text' }}">
+        <text class="article-body-text">{{ item.info }}</text>
+      </block>
+
+      <!-- 图片 -->
+      <block wx:elif="{{ item.type === 'picture' }}">
+        <image class="article-img" src="{{ item.src }}" />
+      </block>
+
+      <!-- 商品 -->
+      <block wx:elif="{{ item.type === 'commodity' }}">
+        <image class="article-img" src="{{ item.src }}" />
+        <view class="article-commodity-btn">
+          <text class="iconfont icon-shopping-cart"></text>
+          <text class="text">购买</text>
+        </view>
+      </block>
+
+      <!-- 位置 -->
+      <block wx:elif="{{ item.type === 'location' }}">
+      </block>
+
+      <!-- 标题 -->
+      <block wx:elif="{{ item.type === 'title' }}">
+      </block>
+
+      <!-- 投票 -->
+      <block wx:elif="{{ item.type === 'vote' }}">
+      </block>
+
+      <!-- 拼图 -->
+      <block wx:else="{{ item.type === 'puzzle' }}">
+      </block>
+
+    </view>
+  </block>
+</view>

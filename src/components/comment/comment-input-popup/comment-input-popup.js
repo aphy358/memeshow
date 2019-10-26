@@ -185,17 +185,14 @@ Component({
       this.triggerEvent('createNewComment', newComment)
     },
 
-    // 键盘弹起的时候，安卓上会触发两次，而且两次给出的键盘高度不一样... and I don't know why
+    // 键盘弹起的时候，安卓上会触发两次，而且两次给出的键盘高度不一样... 
     keyboardheightchange(event){
-      // 键盘弹起
-      if(event.detail.height > 0){
-        const { isIOS, keyBoardHeight } = this.data
+      const { height } = event.detail
+      
+      // iOS 上的键盘高度可能不一样，会随着输入法的切换而变动，所以每次都要重新设置键盘高度
+      if(height > 230){
+        this.setData({ keyBoardHeight: height })
 
-        // 如果是安卓，则只存第一次键盘弹起的高度，如果是 iOS，则每次变化高度都存起来
-        if(isIOS || !keyBoardHeight){
-          this.setData({ keyBoardHeight: event.detail.height })
-        }
-  
         // 则显示评论输入框
         this.showCommentInputPopup()
       }

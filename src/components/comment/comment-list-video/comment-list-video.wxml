@@ -9,7 +9,8 @@
     </view>
   </view>
 
-  <view class="comment-item-wrap">
+  <!-- 弹框内容需要滚动，使用 scroll-view 组件 -->
+  <scroll-view scroll-y class="comment-item-wrap">
     <view class="comment-item level-one" wx:for="{{ comments }}" wx:key="{{ item.commentId }}">
       <view class="avatar-one">
         <image src="{{ item.avatar }}" />
@@ -53,7 +54,7 @@
         </view>
       </view>
     </view>
-  </view>
+  </scroll-view>
 
   <view class="comment-footer-wrap" bind:tap="showCommentInputPopup">
     <view class="comment-footer-inner">

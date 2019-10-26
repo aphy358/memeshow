@@ -37,39 +37,25 @@
       text-align: center;
       color: white;
       margin-top: 16rpx;
+      @include clearfix();
 
-      .avatar-wrap{
+      .avatar-img{
+        float: left;
+        width: 86rpx;
+        height: 86rpx;
+        border: 2rpx solid white;
         border-radius: 50%;
-        background: white;
-        overflow: hidden;
-        margin-bottom: 60rpx;
-
-        .avatar-inner{
-          width: 86rpx;
-          height: 86rpx;
-          margin: 2rpx;
-          border-radius: 50%;
-          overflow: hidden;
-
-          .avatar-img{
-            width: 100%;
-            height: 100%;
-          }
-        }
+        margin-bottom: 40rpx;
       }
 
-      .follow-wrap{
+      .follow-wrap-img{
         position: absolute;
         width: 40rpx;
         height: 40rpx;
         bottom: 0;
         left: 50%;
         transform: translate(-50%, 50%);
-
-        &-img{
-          width: 100%;
-          height: 100%;
-        }
+        margin-bottom: 40rpx;
       }
 
       @at-root .operate-item-img{
@@ -114,13 +100,15 @@
   .ad-wrap{
     position: absolute;
     left: 20rpx;
-    width: calc(100% - 200rpx);
+    width: calc(100% - 100px);
     bottom: 80rpx;
     color: white;
     z-index: 1000;
 
     @at-root .ad-board-wrap{
       position: absolute;
+      display: flex;
+      align-items: center;
       padding: 14rpx;
       background: white;
       top: -30rpx;
@@ -144,14 +132,12 @@
       }
 
       @at-root .ad-board-img{
-        float: left;
         width: 112rpx;
         height: 112rpx;
         border-radius: 4rpx;
       }
 
       @at-root .ad-board-content-wrap{
-        float: left;
         padding: 15rpx 20rpx;
 
         @at-root .ad-board-content{
@@ -176,26 +162,22 @@
     }
 
     @at-root .ad-tag-wrap{
-      float: left;
+      display: flex;
+      align-items: center;
       max-width: 300rpx;
       height: 56rpx;
-      padding: 0 10rpx;
       background-color:rgba(0, 0, 0, 0.23);
       border-radius: 0 4rpx 4rpx 0;
 
       .icon-shopping-cart{
-        position: absolute;
-        font-size: 34rpx;
-        margin-top: 8rpx;
+        padding: 0 10rpx;
+        font-size: 36rpx;
         color: rgb(249, 205, 52);
       }
 
       .ad-tag-text{
-        display: block;
-        margin-left: 50rpx;
         line-height: 56rpx;
         font-size: 28rpx;
-
         @include no-wrap()
       }
     }

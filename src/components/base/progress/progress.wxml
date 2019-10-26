@@ -2,9 +2,8 @@
 
 <view class="progress custom-class" style="height: {{ strokeWidthUnit }};">
   <view
-    wx:if="{{ !isLoading }}"
     class="progress__portion"
-    style="width: {{ percentage }}%; background: {{ inactive ? '#cacaca' : color }}"
+    style="width: {{ percentage }}%; background: {{ inactive ? '#cacaca' : color }};opacity: {{ loading ? '0' : '1' }};"
     animation="{{ customAnimation }}"
   >
     <view
@@ -17,9 +16,8 @@
   </view>
 
   <view 
-    wx:if="{{ isLoading }}"
     class="progress__loading"
-    style="background: {{ inactive ? '#cacaca' : color }}"
+    style="background: {{ inactive ? '#cacaca' : color }};opacity: {{ loading ? '1' : '0' }};"
     animation="{{ loadingAnimation }}"
   ></view>
 </view>

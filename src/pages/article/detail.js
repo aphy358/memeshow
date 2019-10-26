@@ -1,9 +1,8 @@
 //获取应用实例
 var app = getApp()
-const api = require('../../utils/api.js')
-import { numberFormat } from '../../utils/common.js';
+import { numberFormat } from '../../utils/utils.js';
 
-import {comments} from '../../data/comment.js'
+import {comments} from '../../../data/comment.js'
 console.log(comments)
 
 const audioAd = wx.createInnerAudioContext();
@@ -94,7 +93,7 @@ Page({
   //   //   currentType:options.id ? options.id:0
   //   // })
   // },
-  // 点击tab切换 
+  // 点击tab切换
   swichNav: function (res) {
     console.log(res)
     if (this.data.currentTab == res.detail.currentNum) return;
@@ -230,7 +229,7 @@ Page({
     })
     !this.data.isPlaying ? audioAd.play() : audioAd.pause();
   },
-  
+
   tabInputHandle: function (e) {
     console.log(e)
     this.setData({
@@ -323,6 +322,6 @@ Page({
     return {
       path: '/pages/index/index?pagename="acticle"',
     }
-  }  
+  }
 })
 

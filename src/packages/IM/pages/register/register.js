@@ -2,7 +2,7 @@ import { post, validStringType, showToast } from '../../utils/util.js'
 import { iconLogo } from '../../utils/imageBase64.js'
 import IMController from '../../controller/im.js'
 import MD5 from '../../vendors/md5.js'
-import { connect } from '../../../../plugins/redux/index.js'
+import { connect } from '../../../../libs/redux/index.js'
 
 let app = getApp()
 let store = app.store
@@ -38,7 +38,7 @@ let pageConfig = {
     let username = this.data.account
     let nickname = this.data.nickname
     let password = this.data.password
-    let self = this 
+    let self = this
     // 校验输入
     if (!validStringType(username, 'string-number')) {
       errorMessage = '账号限字母或数字'

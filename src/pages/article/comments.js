@@ -1,8 +1,7 @@
 //获取应用实例
 var app = getApp()
-const api = require('../../utils/api.js')
-import { numberFormat } from '../../utils/common.js';
-import { comments } from '../../data/comment.js'
+import { numberFormat } from '../../utils/utils.js';
+import { comments } from '../../../data/comment.js'
 
 const audioAd = wx.createInnerAudioContext();
 audioAd.autoplay = true;
@@ -18,7 +17,7 @@ Page({
    */
   data: {
     keyboardHeight:0,
-    isIphoneX: app.globalData.isIphoneX ? true : false,    
+    isIphoneX: app.globalData.isIphoneX ? true : false,
     comments: comments,
     length:30,
     likes: 256,
@@ -95,7 +94,7 @@ Page({
   //   //   currentType:options.id ? options.id:0
   //   // })
   // },
-  // 点击tab切换 
+  // 点击tab切换
   swichNav: function (res) {
     console.log(res)
     if (this.data.currentTab == res.detail.currentNum) return;

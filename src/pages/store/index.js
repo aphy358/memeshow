@@ -1,8 +1,7 @@
 // pages/my/index.js
 //获取应用实例
 var app = getApp()
-const api = require('../../utils/api.js')
-import { numberFormat } from '../../utils/common.js';
+import { numberFormat } from '../../utils/utils.js';
 
 // wx.setNavigationBarColor({
 //   frontColor: '#ffffff',
@@ -62,7 +61,7 @@ Page({
   //   //   currentType:options.id ? options.id:0
   //   // })
   // },
-  // 点击tab切换 
+  // 点击tab切换
   swichNav: function (res) {
     console.log(res)
     if (this.data.currentTab == res.detail.currentNum) return;

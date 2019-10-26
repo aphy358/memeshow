@@ -5,10 +5,8 @@
  * @slot [default]
  * @slot after
  *
- * @event disabled
- * @event change
- *
- * @todo sticky
+ * @event tabs#disabled
+ * @event tabs#change
  */
 
 Component({
@@ -62,11 +60,16 @@ Component({
 
     ready() {
       if (this.data.sticky) {
-        this._observer = wx.createIntersectionObserver()
-        this._observer.relativeToViewport({ top: 0, bottom: 0 })
-          .observe(".mf-tabs-sticky", res => {
-            console.log(res)
-          })
+        const $ref = this.createSelectorQuery()
+        console.log("tabs sticky: ", $ref)
+        $ref.select(".mf_tabs")
+
+      //   this._observer = wx.createIntersectionObserver()
+      //   this._observer
+      //     .relativeToViewport({ top: 0, bottom: 0 })
+      //     .observe(".mf-tabs-sticky", res => {
+      //       console.log(res)
+      //     })
       }
     }
   },
@@ -100,6 +103,7 @@ Component({
   },
 
   options: {
-    multipleSlots: true
+    multipleSlots: true,
+    pureDataPattern: /^_/
   }
 })

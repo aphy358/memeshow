@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "",
+  "usingComponents": {
+    "article-content": "../../../components/article/article-content/article-content",
+    "article-comment": "../../../components/article/article-comment/article-comment"
+  }
+}

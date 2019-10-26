@@ -1,31 +1,5 @@
 let cache = null
 
-function getSafeArea() {
-  return new Promise((resolve, reject) => {
-    if (cache) {
-      resolve(cache)
-    } else {
-      wx.getSystemInfo({
-        success(res) {
-          const model = res.model,
-            safeArea = res.safeArea,
-            screenHeight = res.screenHeight,
-            statusBarHeight = res.statusBarHeight
-          const iphoneX = /iphone x/i.test(model)
-          const iphoneNew = /iPhone11/i.test(model) && screenHeight === 812
-          cache = {
-            safeArea,
-            statusBarHeight,
-            isIPhoneX: iphoneX || iphoneNew
-          }
-          resolve(cache)
-        },
-        fail: reject
-      })
-    }
-  })
-}
-
 export function safeArea(options = {}) {
   let _options = options
   let safeAreaInsetBottom =
@@ -63,6 +37,34 @@ export function safeArea(options = {}) {
           isIPhoneX,
           statusBarHeight
         })
+      })
+    }
+  })
+}
+
+/**
+ * 获取设备的信息
+ */
+
+function getSafeArea() {
+  return new Promise((resolve, reject) => {
+    if (cache) {
+      resolve(cache)
+    } else {
+      wx.getSystemInfo({
+        success(res) {
+          const { model, safeArea, screenHeight, statusBarHeight } = res
+          const iphoneX   = /iphone x/i.test(model)
+          const iphoneNew = /iPhone11/i.test(model) && screenHeight === 812
+
+          cache = {
+            safeArea,
+            statusBarHeight,
+            isIPhoneX: iphoneX || iphoneNew
+          }
+          resolve(cache)
+        },
+        fail: reject
       })
     }
   })

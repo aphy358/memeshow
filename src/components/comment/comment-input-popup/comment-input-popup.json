@@ -1,6 +1,6 @@
 {
   "component": true,
   "usingComponents": {
-    "hpopup": "../base/hpopup/hpopup"
+    "hpopup": "../../base/hpopup/hpopup"
   }
 }

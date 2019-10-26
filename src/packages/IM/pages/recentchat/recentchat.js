@@ -1,4 +1,4 @@
-import { connect } from '../../../../plugins/redux/index.js'
+import { connect } from '../../../../libs/redux/index.js'
 import { showToast, calcTimeHeader, clickLogoJumpToCard } from '../../utils/util.js'
 import { iconNoMessage } from '../../utils/imageBase64.js'
 let app = getApp()

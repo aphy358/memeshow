@@ -255,3 +255,38 @@
     left: 0;
   }
 }
+
+/**
+ * 半个像素高的一条直线
+ * halfPixelTopLine 顶部直线
+ * halfPixelBottomLine 底部直线
+ *
+ * 使用方法:
+ * .halfLine {
+ *   @include halfPixelTopLine(#eee);
+ *   @include halfPixelBottomLine(#eee);
+ * }
+ */
+@mixin halfPixelLine($background: #eee) {
+  position: absolute;
+  content: '';
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: $background;
+  transform: scaleY(.5);
+}
+
+@mixin halfPixelTopLine($background: #eee) {
+  &::before{
+    @include halfPixelLine($background);
+    top: 0;
+  }
+}
+
+@mixin halfPixelBottomLine($background: #eee) {
+  &::after{
+    @include halfPixelLine($background);
+    bottom: 0;
+  }
+}

@@ -1,0 +1,13 @@
+<!-- Badge component -->
+
+<view class="badge-outer">
+    <slot></slot>
+    <view
+        wx:if="{{ hint || dot }}"
+        class="mf_badge"
+        bindtap="handleTap"
+        style="position: absolute;top: -.4em;right: -.4em;"
+    >
+        <text wx:if="{{ hint }}">{{ hint }}</text>
+    </view>
+</view>

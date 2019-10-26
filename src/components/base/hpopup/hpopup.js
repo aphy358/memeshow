@@ -1,5 +1,4 @@
 
-import { GLOBAL } from '../../common/utils'
 const NEXT_TICK = () => new Promise(resolve => setTimeout(resolve, 30))
 const MASK_CLASS_NAMES = {
   "enter": `mask-enter mask-enter-active`,
@@ -53,13 +52,15 @@ Component({
     mask: {
       type: Boolean,
       value: true
-    }
+    },
+
+    zIndex: {
+      type: Number,
+      value: 9000
+    },
   },
 
   data: {
-    // 设置弹层的 z-index
-    zIndex: GLOBAL.mofanshow.popupZIndex,
-
     currentDuration: 300,
 
     // 是否正在动画中
@@ -124,11 +125,6 @@ Component({
           })
         })
         .catch(e => console.error(e))
-
-      // 显示弹窗，则当前所有弹窗最大 z-index 值加1，并且当前已显示弹窗的数量加1
-      ++GLOBAL.mofanshow.popupCount
-      ++GLOBAL.mofanshow.popupZIndex
-      this.setData({ zIndex: GLOBAL.mofanshow.popupZIndex })
     },
 
     // 退场动画
@@ -155,9 +151,6 @@ Component({
           })
         })
         .catch(e => console.error(e))
-
-      // 隐藏弹窗，则当前已显示弹窗的数量减1，并且如果当前已显示的弹窗总数为0，则将当前所有弹窗最大 z-index 值设置为9000
-      --GLOBAL.mofanshow.popupCount
     },
 
     /**
@@ -172,7 +165,7 @@ Component({
         })
       }
 
-      // 键盘收起来的速度很慢，所以这里的值设的大一点，确保在键盘收起来之后再将 transforming 的值设为 false
+      // 这里延后 `300ms` 将 `transforming` 的值设为 `false` 是为了避免频繁的触发 `tapMask`、`touchendMask` 等事件
       setTimeout(() => {
         this.data.transforming = false
       }, 300);

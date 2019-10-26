@@ -24,6 +24,7 @@
   @at-root .hpopup-body {
     position: fixed;
     background: #fff;
+    min-height: 200rpx;
     transition-timing-function: "ease-out";
     overflow: hidden;
 

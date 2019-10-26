@@ -15,8 +15,8 @@
     @include ellipsis();
 
     &_content {
-        padding: 0 20rpx;
-        margin-bottom: 20rpx;
+        padding: 10rpx 20rpx;
+        margin-bottom: 6rpx;
         text-align: center;
     }
 
@@ -37,6 +37,6 @@
     }
 
     &__disabled {
-        color: #999;
+        color: $disabled-color;
     }
 }

@@ -1,0 +1,53 @@
+
+<view class="comment-wrap">
+  
+  <!-- 一级评论 -->
+  <view class="comment-title-wrap">
+    <view class="comment-title">回复详情</view>
+    <view class="comment-close-btn">
+      <text class="iconfont icon-delete" bind:tap="hideCommentPopup"></text>
+    </view>
+  </view>
+
+  <!-- 弹框内容需要滚动，使用 scroll-view 组件 -->
+  <scroll-view scroll-y class="comment-item-wrap">
+    <block wx:for="{{ commentsShow }}" wx:key="{{ item.commentId }}">
+      <view class="comment-item">
+        <image class="comment-avatar" src="{{ item.avatar }}" />
+  
+        <view class="content-wrap">
+          <view class="comment-nickname-star">
+            <view class="content-nickname">{{ item.nickName }}</view>
+
+            <view class="comment-star-wrap">
+              <view class="comment-star-count">{{ item.starCount }}</view>
+              <text class="iconfont icon-heart {{ item.iAlreadyStared ? 'stared' : '' }}" bind:tap="switchStarStatus" data-starto="{{ item }}"></text>
+            </view>
+          </view>
+
+          <view class="content-comment" bind:tap="showCommentInputPopup" data-replyto="{{ item }}">
+            <block wx:if="{{ item.replyTo }}">
+              <text>回复 </text>
+              <text class="content-reply-name" data-replyto="{{ item }}">{{ item.replyTo.nickName }}</text>
+              <text>：</text>
+            </block>
+            {{ item.comment }}
+            <view class="content-commenttime">8小时前</view>
+          </view>
+        </view>
+      </view>
+
+      <view wx:if="{{ index === 0 && commentsShow.length > 1 }}" class="comment-gap">
+        <text class="">全部回复</text>
+        <text class="child-count">{{ commentsShow.length - 1 }}</text>
+      </view>
+    </block>
+  </scroll-view>
+
+  <view class="comment-footer-wrap" bind:tap="showCommentInputPopup">
+    <view class="comment-footer-inner">
+      <text class="iconfont icon-bianji"></text>
+      <text class="comment-footer-text">有爱评论，说点儿好听的～</text>
+    </view>
+  </view>
+</view>

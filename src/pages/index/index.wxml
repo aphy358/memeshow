@@ -25,5 +25,5 @@
     waterfall
     col="{{ 2 }}"
     appendList="{{ list }}"
-    generic:list-item="waterfall-item"
+    generic:list-item="waterfall-item-image"
 ></waterfall>

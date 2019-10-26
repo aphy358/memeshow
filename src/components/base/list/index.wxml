@@ -1,22 +1,22 @@
 <!-- List component -->
 
-<view class="mf_waterfall">
+<view class="mf_list">
     <view
-        class="mf_waterfall_container"
+        class="mf_list_container"
         style="column-count:{{ col }};column-gap:{{ gap + 'rpx' }};"
     >
         <view
             wx:for="{{ list }}"
             wx:key="{{ index }}"
             wx:for-item="colum"
-            class="mf_waterfall_col"
+            class="mf_list_col"
         >
             <view
                 wx:for="{{ colum.items }}"
                 wx:key="{{ index }}"
-                class="mf_waterfall_item"
+                class="mf_list_item"
             >
-                <list-item url="{{ item.url }}"></list-item>
+                <list-item post="{{ item }}"></list-item>
             </view>
         </view>
     </view>

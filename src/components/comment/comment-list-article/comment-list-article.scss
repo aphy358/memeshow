@@ -1,0 +1,168 @@
+@import './iconfont/iconfont.css';
+@import '../../../assets/styles/common/index.scss';
+
+
+.comment-wrap{
+  color: #333333;
+  height: 100%;
+  background: white;
+  opacity: .9;
+  font-size: 28rpx;
+
+  @at-root .comment-item-wrap{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 100rpx 0;
+    overflow-y: auto;
+    box-sizing: border-box;
+    -webkit-overflow-scrolling: touch;
+
+    @at-root .comment-item{
+      position: relative;
+      display: flex;
+      padding: 0 30rpx;
+      margin-bottom: 40rpx;
+
+      @at-root .comment-avatar{
+        width: 60rpx;
+        height: 60rpx;
+        margin-right: 20rpx;
+        border-radius: 60rpx;
+      }
+
+      @at-root .content-wrap{
+        width: 100%;
+
+        @at-root .comment-nickname-star{
+          display: flex;
+          justify-content: space-between;
+          font-size: 24rpx;
+          margin-bottom: 10rpx;
+
+          @at-root .content-nickname{
+            color: rgb(122, 148, 161);
+          }
+
+          @at-root .comment-star-wrap{
+            display: flex;
+            align-items: center;
+        
+            @at-root .icon-heart{
+              font-size: 36rpx;
+              color: gray;
+              margin-left: 10rpx;
+            
+              &.stared{
+                color: #f50005;
+              }
+            }
+        
+            @at-root .comment-star-count{
+              color: gray;
+            }
+          }
+        }
+
+        @at-root .content-comment{
+          padding-right: 80rpx;
+
+          @at-root .content-commenttime{
+            display: inline-block;
+            color: gray;
+            font-size: 24rpx;
+          }
+
+          @at-root .content-reply-name{
+            color: grey;
+          }
+        }
+      }
+    }
+
+    .comment-gap{
+      position: relative;
+      padding: 20rpx 30rpx;
+      margin-bottom: 20rpx;
+      font-weight: bold;
+
+      @include halfPixelTopLine();
+
+      .child-count{
+        font-weight: normal;
+        color: #999999;
+        margin-left: 10rpx;
+      }
+    }
+  }
+
+  @at-root .comment-title-wrap{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100rpx;
+    background: white;
+    line-height: 100rpx;
+    z-index: 9999;
+  
+    @at-root .comment-title{
+      text-align: center;
+    }
+  
+    @at-root .comment-close-btn{
+      position: absolute;
+      width: 100rpx;
+      height: 100rpx;
+      top: 0;
+      right: 0;
+    
+      .iconfont{
+        display: inline-block;
+        text-align: center;
+        color: #333333;
+    
+        &.icon-delete{
+          width: 100rpx;
+          height: 100rpx;
+          line-height: 100rpx;
+        }
+      }
+    }
+  }
+
+  @at-root .comment-footer-wrap{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100rpx;
+    background: white;
+    z-index: 9999;
+    @include halfPixelTopLine();
+  
+    @at-root .comment-footer-inner{
+      display: flex;
+      align-items: center;
+      height: 76rpx;
+      width: 100%;
+      border-radius: 76rpx;
+      background: rgb(242, 243, 247);
+      margin: 0 30rpx;
+
+      .iconfont{
+        font-size: 42rpx;
+        padding: 0 10rpx;
+        margin-left: 20rpx;
+      }
+    
+      @at-root .comment-footer-text{
+        color: gray;
+      }
+    }
+  }
+}

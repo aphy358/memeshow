@@ -19,8 +19,6 @@ class HTouch extends HEvent {
     this.endTime = 0
     // 用于标记当前是否允许滑动屏幕
     this.disableMove = false
-    // 存储第一次触屏的事件 identifier，用于解决多个手指滑动的冲突
-    this.alreadyTouched = undefined
   }
 
   touchstart(e) {
@@ -32,13 +30,6 @@ class HTouch extends HEvent {
       return
     }else{
       this.disableMove = false
-    }
-
-    // 当前如果已经有手指在滑动屏幕了，则不再触发其他手指的滑动事件；而如果是第一次触摸屏幕的实体，则将相关参数保存起来
-    if(this.alreadyTouched !== undefined){
-      return
-    }else{
-      this.alreadyTouched = e.changedTouches[0].identifier
     }
 
     this.startX = e.changedTouches[0].clientX
@@ -58,9 +49,6 @@ class HTouch extends HEvent {
 
   touchmove(e) {
     if(!e.changedTouches[0] || this.disableMove)  return
-
-    // 如果第一次触摸屏幕的实体和正在当前正在屏幕上移动的实体不一致（比如第二个手指），则不触发屏幕移动
-    if(this.alreadyTouched !== e.changedTouches[0].identifier) return
 
     this.endX = e.changedTouches[0].clientX
     this.endY = e.changedTouches[0].clientY
@@ -89,16 +77,8 @@ class HTouch extends HEvent {
   }
 
   touchend(e) {
-    // 这里预先将 this.alreadyTouched 清空，因为在iPhone上，当从底部上滑调起控制台时会将 touchend 事件吃掉，从而导致 this.alreadyTouched 没有清空
-    // 那么后续再怎么滑动屏幕都没有反应，造成假死现象。而如果在这个时机提供清空的机制，则可以通过多次滑动屏幕而重新激活该列表滚动
-    let alreadyTouched = this.alreadyTouched
-    this.alreadyTouched = undefined
-
     if(!e.changedTouches[0] || this.disableMove)  return
 
-    // 如果第一次触摸屏幕的实体和正在当前正在屏幕上移动的实体不一致（比如第二个手指），则不触发屏幕移动
-    if(alreadyTouched !== e.changedTouches[0].identifier) return
-    
     const times = e.timeStamp - this.touchTime
     const distanceX = e.changedTouches[0].clientX - this.startX
     const distanceY = e.changedTouches[0].clientY - this.startY

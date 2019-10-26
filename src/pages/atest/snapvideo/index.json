@@ -1,0 +1,7 @@
+{
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "hswiper": "../../../components/hswiper/hswiper",
+    "snapvideo": "../../../components/snapvideo/snapvideo"
+  }
+}

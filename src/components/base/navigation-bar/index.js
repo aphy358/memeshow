@@ -8,7 +8,7 @@
  * @event NavigationBar#back
  */
 
-import { safeArea } from "../common/behaviors/index"
+import { safeArea } from "../../common/behaviors/index"
 
 Component({
   properties: {

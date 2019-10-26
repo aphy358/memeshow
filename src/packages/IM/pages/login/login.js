@@ -1,5 +1,5 @@
 import IMController from '../../controller/im.js'
-import { connect } from '../../../../plugins/redux/index.js'
+import { connect } from '../../../../libs/redux/index.js'
 let app = getApp()
 let store = app.store
 let pageConfig = {
