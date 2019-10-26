@@ -9,10 +9,13 @@ Component({
     // 评论数据源
     comments: {
       type: Array,
-      value: [],
-      observer(newVal) {
-        if (!this.data.initialized) return;
-      }
+      value: []
+    },
+
+    // 被回复的评论在所有评论的下标
+    dataindex: {
+      type: String | Number,
+      value: -1
     },
 
     // 是否显示评论弹框
@@ -23,14 +26,9 @@ Component({
   },
 
   data: {
-    initialized: false
   },
 
   methods: {
-    initialize(){
-      this.data.initialized = true
-    },
-
     // 通知上层显示评论输入框
     showCommentInputPopup(e){
       this.triggerEvent('showCommentInputPopup', e.detail)
@@ -49,7 +47,6 @@ Component({
 
   lifetimes: {
     ready() {
-      this.initialize()
     }
   }
 })

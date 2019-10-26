@@ -218,6 +218,7 @@ Component({
         ifShowCommentPopup: false
       })
 
+      // 通知上层组件，允许滑动屏幕了
       setTimeout(() => {
         this.triggerEvent('preventSwipe', false)
       }, 300);
@@ -229,6 +230,7 @@ Component({
         ifShowCommentPopup: true
       })
 
+      // 通知上层组件，禁止滑动屏幕
       this.triggerEvent('preventSwipe', true)
     },
 

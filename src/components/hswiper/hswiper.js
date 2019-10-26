@@ -1,4 +1,4 @@
-import { animateTo, throttle } from '../../components/common/utils'
+import { animateTo, throttle } from '../common/utils'
 import HTouch from './libs/hTouch'
 const touchHandle = new HTouch()
 

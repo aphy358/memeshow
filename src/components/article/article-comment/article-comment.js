@@ -9,16 +9,11 @@ Component({
     // 评论数据源
     comments: {
       type: Array,
-      value: [],
-      observer(newVal) {
-        if (!this.data.initialized) return;
-      }
+      value: []
     },
   },
 
   data: {
-    initialized: false,
-
     // 是否显示 hpopup
     ifShowCommentPopup: false,
 
@@ -28,36 +23,26 @@ Component({
     // 回复谁？
     replyTo: null,
 
-    // 评论弹出框展示的评论列表
-    popComment: []
+    // 被回复的评论在所有评论的下标
+    dataIndex: -1,
   },
 
   methods: {
-    initialize(){
-      this.data.initialized = true
-    },
-
     // 隐藏评论弹框
     hideCommentPopup(){
       this.setData({
         ifShowCommentPopup: false
       })
-
-      setTimeout(() => {
-        this.triggerEvent('preventSwipe', false)
-      }, 300);
     },
 
     // 显示评论弹框
     showCommentPopup(e){
-      const { comment } = e.currentTarget.dataset
+      const { dataindex } = e.currentTarget.dataset
 
       this.setData({
         ifShowCommentPopup: true,
-        popComment: [comment]
+        dataIndex: dataindex
       })
-
-      this.triggerEvent('preventSwipe', true)
     },
 
     // 点击了小红心，切换点赞状态
@@ -127,7 +112,6 @@ Component({
 
   lifetimes: {
     ready() {
-      this.initialize()
     }
   }
 })

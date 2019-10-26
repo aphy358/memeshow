@@ -1,3 +1,6 @@
+import { throttle } from '../../common/utils'
+import _ from 'lodash'
+
 Component({
   properties: {
     // 评论数据源
@@ -5,18 +8,16 @@ Component({
       type: Array,
       value: [],
       observer(newVal) {
-        if (!this.data.initialized) return;
+        throttle(this.commentsChanged.bind(this), 50)()
+      }
+    },
 
-        if(newVal.length > 0){
-          let comment = Object.assign(newVal[0])
-          let commentsShow = [comment]
-          if(comment.childComments){
-            commentsShow = commentsShow.concat(comment.childComments)
-            delete comment.childComments
-          }
-
-          this.setData({ commentsShow })
-        }
+    // 被回复的评论在所有评论的下标
+    dataindex: {
+      type: Number | String,
+      value: -1,
+      observer(newVal) {
+        throttle(this.commentsChanged.bind(this), 50)()
       }
     },
   },
@@ -26,8 +27,21 @@ Component({
   },
 
   methods: {
-    initialize(){
-      this.data.initialized = true
+    // 当评论变化时触发
+    commentsChanged(){
+      const { dataindex, comments } = this.data
+      let commentsShow = []
+
+      if(dataindex > -1 && comments.length > 0){
+        let comment = _.cloneDeep(comments[+dataindex])
+        commentsShow = [comment]
+        if(comment.childComments){
+          commentsShow = commentsShow.concat(comment.childComments)
+          delete comment.childComments
+        }
+      }
+
+      this.setData({ commentsShow })
     },
 
     // 通知上层关闭评论列表
@@ -49,7 +63,6 @@ Component({
 
   lifetimes: {
     ready() {
-      this.initialize()
     }
   }
 })
