@@ -1,5 +1,7 @@
+// home page
+
 import { connect } from "../../libs/redux/index.js"
-import { categories, homePageItems } from "../../../data"
+import { categories, homePageItems, mediumItems } from "../../../data"
 
 const app = getApp()
 let store = app.store
@@ -48,7 +50,7 @@ let pageConfig = {
    */
 
   fetchList() {
-    this.setData({ list: homePageItems })
+    this.setData({ list: mediumItems })
   },
 
   /**

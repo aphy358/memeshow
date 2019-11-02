@@ -16,9 +16,11 @@ export const categories = [
 
 export var mediumItems = [
   {
+    width: 1,
+    height: 1,
     id: 1,
     des: "网红健身小姐姐教你一个月Get蜜桃臀+马甲线",
-    url: "http://img5.imgtn.bdimg.com/it/u=627515299,2762150680&fm=11&gp=0.jpg",
+    url: "http://img1.imgtn.bdimg.com/it/u=1823520900,3478458563&fm=26&gp=0.jpg",
     type: "article",
     likes: 298,
     videoValue: 1, //关联视频的ID
@@ -29,6 +31,8 @@ export var mediumItems = [
     }
   },
   {
+    width: 1,
+    height: 1,
     id: 5,
     des:
       "渣渣Zayn Malik登上Fader雜誌封面及寫真大圖，美渣機車熟男風範盡顯，帥一臉！",
@@ -43,35 +47,9 @@ export var mediumItems = [
         "http://wx.qlogo.cn/mmhead/ver_1/JtL8JiaA3qHx7WAvibt57Cpialu8Aiaw1mxmDWboP9icM7luMaqe6DBbvVMbicR2ymtWmF0D5bYkZw1GBXKqeswsueHkYnOYBPYvt6iacIS4HMicVLM/96"
     }
   },
-
   {
-    id: 4,
-    des: "健身小姐姐蜜桃臀+马甲线",
-    url:
-      "http://img1.imgtn.bdimg.com/it/u=1823520900,3478458563&fm=26&gp=0.jpg",
-    type: "article",
-    likes: 298,
-    videoValue: 4, //关联视频的ID
-    user: {
-      name: "冯莫提",
-      avatar:
-        "http://wx.qlogo.cn/mmhead/ver_1/JtL8JiaA3qHx7WAvibt57Cpialu8Aiaw1mxmDWboP9icM7luMaqe6DBbvVMbicR2ymtWmF0D5bYkZw1GBXKqeswsueHkYnOYBPYvt6iacIS4HMicVLM/96"
-    }
-  },
-  {
-    id: 6,
-    des: "仙仙的轻纱裙 对她就是要外穿的街拍罩裙",
-    url: "http://img0.imgtn.bdimg.com/it/u=3949526191,86860031&fm=11&gp=0.jpg",
-    type: "article",
-    likes: 298,
-    videoValue: 4, //关联视频的ID
-    user: {
-      name: "冯莫提",
-      avatar:
-        "http://wx.qlogo.cn/mmhead/ver_1/JtL8JiaA3qHx7WAvibt57Cpialu8Aiaw1mxmDWboP9icM7luMaqe6DBbvVMbicR2ymtWmF0D5bYkZw1GBXKqeswsueHkYnOYBPYvt6iacIS4HMicVLM/96"
-    }
-  },
-  {
+    width: 1,
+    height: 1,
     id: 8,
     des: "潮男老炮儿聚集的机车俱乐部!",
     url:
@@ -85,8 +63,9 @@ export var mediumItems = [
         "http://wx.qlogo.cn/mmhead/ver_1/JtL8JiaA3qHx7WAvibt57Cpialu8Aiaw1mxmDWboP9icM7luMaqe6DBbvVMbicR2ymtWmF0D5bYkZw1GBXKqeswsueHkYnOYBPYvt6iacIS4HMicVLM/96"
     }
   },
-
   {
+    width: 1,
+    height: 1,
     id: 10,
     des: "北欧风轻时尚系列",
     url: "http://39.108.78.208:5105/imge/man_1.jpg",
@@ -99,8 +78,9 @@ export var mediumItems = [
         "http://wx.qlogo.cn/mmhead/ver_1/JtL8JiaA3qHx7WAvibt57Cpialu8Aiaw1mxmDWboP9icM7luMaqe6DBbvVMbicR2ymtWmF0D5bYkZw1GBXKqeswsueHkYnOYBPYvt6iacIS4HMicVLM/96"
     }
   },
-
   {
+    width: 1,
+    height: 1,
     id: 7,
     des: "南宁一大帮美女又...",
     url:
@@ -115,6 +95,8 @@ export var mediumItems = [
     }
   },
   {
+    width: 1,
+    height: 1,
     id: 7,
     des:
       "卫衣+裙子|潮潮的眨眼图案灰色卫衣|仙仙的轻纱裙 对她就是要外穿的街拍罩裙|🌟",
@@ -129,6 +111,8 @@ export var mediumItems = [
     }
   },
   {
+    width: 1,
+    height: 1,
     id: 3,
     des: "维密现场直播进行时，大长腿超模身材有点好～",
     url: "http://39.108.78.208:5105/Victoria.gif",

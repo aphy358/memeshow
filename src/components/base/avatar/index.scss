@@ -1,0 +1,23 @@
+/**
+  * Avatar Component
+  *
+  * 小程序在处理图片的时
+  * `inline-block` 会造成像素差
+  */
+
+:host {
+    display: inline-block;
+}
+
+.mf_avatar {
+    display: block;
+    overflow: hidden;
+
+    &__circle {
+        border-radius: 100%;
+    }
+
+    image {
+        display: block;
+    }
+}

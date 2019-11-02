@@ -1,12 +1,14 @@
 {
   "pages": [
-    "pages/atest/article/index",
-    "pages/atest/snapvideo/index",
+    "pages/article/index",
     "pages/index/index",
+    "pages/follow/index",
+    "pages/publish/index",
+    "pages/chat/index",
+    "pages/usercenter/index",
     "pages/video/index",
     "pages/live/index",
     "pages/push/index",
-    "pages/new-video/index",
     "pages/create/index",
     "pages/my/index",
     "pages/create/editor",
@@ -16,9 +18,6 @@
     "pages/create/cover",
     "pages/search/index",
     "pages/store/products/index",
-    "pages/article/detail",
-    "pages/article/comments",
-    "pages/test_selector/index",
     "pages/procedures/select-product/index",
     "pages/procedures/select-product/edit",
     "pages/procedures/select-topic/index",
@@ -39,32 +38,6 @@
       ]
     }
   ],
-  "tabBar": {
-    "color": "#999999",
-    "selectedColor": "#1c1c1c;",
-    "borderStyle": "white",
-    "backgroundColor": "#fff",
-    "list": [
-      {
-        "selectedIconPath": "assets/images/background/home_black.png",
-        "iconPath": "assets/images/background/home_gray.png",
-        "pagePath": "pages/index/index",
-        "text": "首页"
-      },
-      {
-        "selectedIconPath": "assets/images/background/start.png",
-        "iconPath": "assets/images/background/start.png",
-        "pagePath": "pages/create/index",
-        "text": "开始创作"
-      },
-      {
-        "selectedIconPath": "assets/images/background/me_black.png",
-        "iconPath": "assets/images/background/me_gray.png",
-        "pagePath": "pages/my/index",
-        "text": "我的"
-      }
-    ]
-  },
   "window": {
     "navigationBarBackgroundColor": "#FFFFFF",
     "navigationBarTextStyle": "black",

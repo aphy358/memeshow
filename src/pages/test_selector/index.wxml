@@ -1,4 +1,0 @@
-<button bind:tap="selectProduct">选择商品</button>
-<button bind:tap="selectTopic">选择话题</button>
-<button bind:tap="selectRelation">选择好友</button>
-<button bind:tap="selectLocation">选择地址</button>

@@ -1,0 +1,34 @@
+<ws-nav-bar  title="消息" fixed  bind:clickLeft="goBack" />
+<view class="wrapper">
+   <view class="header flex-space fz26" style="margin-top:{{statusBarHeight+titleBarHeight}}px">
+   <view class="tab-item" bindtap="onTabItem" data-type="like">
+     <view class="image flex-center bg_red" ur="/images/lick.png" >
+      <ws-icon type="my-like" size="16" color="#fff" />
+     </view>
+     <text class="text">赞</text>
+   </view>
+   <view class="tab-item" bindtap="onTabItem" data-type="follow">
+     <view class="image flex-center bg_blue" ur="/images/lick.png" >
+      <ws-icon type="msg-focus" size="16" color="#fff" />
+     </view>
+     <text class="text"> 新增关注</text>
+   </view>
+   <view class="tab-item" bindtap="onTabItem" data-type="comment">
+     <view class="image flex-center bg_green" ur="/images/lick.png" >
+      <ws-icon type="msg-comment" size="16" color="#fff" />
+     </view>
+     <text class="text">评论和@</text>
+   </view>
+  </view>
+
+  <view class="content" style="background: #fff;">
+     <ws-msg-list-card   
+      wx:for="{{msgData}}" 
+      wx:key="{{index}}" 
+      index="{{index}}" 
+      data="{{item}}" 
+     /> 
+     
+  </view>
+
+</view>

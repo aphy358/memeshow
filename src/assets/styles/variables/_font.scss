@@ -1,0 +1,29 @@
+/**
+ * Font
+ */
+
+@import "../utils.scss";
+
+/* Family */
+$font-en: "-apple-system-font", "Helvetica Neue";
+$font-cn: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei";
+$font-nu: "Helvetica Neue";
+$font-co: "DIN Alternate-Bold";
+$font-sans: sans-serif;
+$font-default: $font-en, $font-cn, $font-sans;
+
+/* Size */
+$font-size-base: units(28) !default; // 常用字号，用于正文
+$font-size-xs: unit(20) !default; // 非常用字号，用于标签
+$font-size-sm: units(24) !default; // 用于辅助信息，用于辅助信息/注释
+$font-size-lg: units(32) !default; // 常规标题
+$font-size-xl: units(36) !default; // 大标题
+$font-size-xxl: units(40) !default; // 用于大号的数字
+
+/* Line Height */
+$line-height-base: $font-size-base + units(14) !default;
+$line-height-xs: $font-size-xs + units(10) !default;
+$line-height-sm: $font-size-sm + units(12) !default;
+$line-height-lg: $font-size-lg + units(16) !default;
+$line-height-xl: $font-size-xl + units(18) !default;
+$line-height-xxl: $font-size-xxl + units(20) !default;

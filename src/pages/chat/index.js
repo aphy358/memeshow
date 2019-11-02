@@ -1,0 +1,3 @@
+// pages/message.js
+
+Page({})

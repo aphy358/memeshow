@@ -1,5 +1,5 @@
 /* tab .wxss */
-@import "../../common/styles/index.scss";
+@import "@/assets/styles/index.scss";
 
 :host {
     flex: 1;
@@ -15,8 +15,8 @@
     @include ellipsis();
 
     &_content {
-        padding: 10rpx 20rpx;
-        margin-bottom: 6rpx;
+        padding:$spacing-h-md $spacing-h-lg;
+        font-size: $font-size-xl;
         text-align: center;
     }
 
@@ -28,15 +28,15 @@
         max-width: 60%;
         height: 4rpx;
 
-        background: $theme-color;
+        background: $color-primary;
         margin: auto;
     }
 
     &__on {
-        color: $theme-color;
+        color: $color-primary;
     }
 
     &__disabled {
-        color: $disabled-color;
+        color: $color-text-bullet;
     }
 }

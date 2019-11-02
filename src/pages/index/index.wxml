@@ -1,29 +1,42 @@
-<!-- 引入自定义组价。'navbar-data'中navbar是自定义名字，决定了组件中'navbarData'的名字 -->
-<navigation custom="{{true}}">
-    <view class="nav-wrapper flex-row">
-        <image class="logo" src="/assets/images/background/logo.png" bindtap="gotoIM"></image>
-        <navigator class="search-wrapper flex-row" url="/pages/search/index">
-            <image src="/assets/images/search.png"></image>
-            <text>搜索{{testData}}</text>
-        </navigator>
-    </view>
-</navigation>
+<!-- Home Page -->
 
-<tabs scroll>
-    <block
-        wx:for="{{ categories }}"
-        wx:for-item="cat"
-        wx:key="{{ index }}"
-    >
-        <tab index="{{ index }}">
-            {{ cat.name }}
-        </tab>
-    </block>
-</tabs>
+<view class="home-page-header">
+    <navigation-bar>
+        <image
+            src="./logo.png"
+            slot="left"
+            mode="widthFix"
+            class="home-page-logo"
+        ></image>
+        <view class="mf-searchbar">
+            <input type="text"></input>
+        </view>
+    </navigation-bar>
+    <tabs scroll>
+        <block
+            wx:for="{{ categories }}"
+            wx:for-item="cat"
+            wx:key="{{ index }}"
+        >
+            <tab
+                underline="{{ false }}"
+                index="{{ index }}"
+                class="actived-tab"
+            >
+                {{ cat.name }}
+            </tab>
+        </block>
+    </tabs>
+</view>
 
-<waterfall
-    waterfall
-    col="{{ 2 }}"
-    appendList="{{ list }}"
-    generic:list-item="waterfall-item-image"
-></waterfall>
+<view class="home-page_list">
+    <waterfall
+        waterfall
+        gap="{{ 20 }}"
+        col="{{ 2 }}"
+        appendList="{{ list }}"
+        generic:list-item="waterfall-item"
+    ></waterfall>
+</view>
+
+<custom-tab-bar selected="{{ 0 }}"></custom-tab-bar>

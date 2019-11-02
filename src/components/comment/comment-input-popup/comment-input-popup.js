@@ -1,10 +1,10 @@
 import _ from 'lodash'
-import { animateTo } from '../../../components/common/utils'
+import { animateTo } from '@/components/common/utils'
 
 Component({
   options: {
     // 允许页面的样式影响到组件
-    styleIsolation: 'shared'
+    styleIsolation: 'apply-shared'
   },
 
   properties: {

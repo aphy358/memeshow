@@ -1,0 +1,25 @@
+@import "../../assets/styles/index.scss";
+
+page {
+    background: $color-bg;
+}
+
+.home-page-logo {
+    width: 200rpx;
+}
+
+.home-page-header {
+    position: sticky;
+    top: 0;
+}
+
+.home-page_list {
+    padding: 20rpx;
+}
+
+.mf-searchbar {
+    height: 100%;
+    background: $color-bg;
+    border-radius: 40rpx;
+    margin: 0 30rpx;
+}

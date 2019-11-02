@@ -1,0 +1,276 @@
+<!--pages/home/my/index.wxml-->
+<!-- <ws-nav-bar cover fixed border="{{false}}" ws-class="navbar-box" titleColor="#333" >
+     <cover-image slot="left" bindtap="onTapCashOut" class="cash-out-icon" src="/images/cash-out-icon.png" />
+</ws-nav-bar> -->
+
+<ws-nav-bar opacity="{{opacity}}" wsStyle="background:url(http://39.108.78.208:5105/backgrond.jpg);background-repeat:no-repeat; background-size:100% auto;background-position:center center;" fixed border="{{false}}" ws-class="highlight-navbar-box"  left-arrow="{{pageType=='my'?false:true}}" titleColor="#fff" title="{{pageType=='my'?'我的':'小姐姐'}}">
+   <!-- <view slot="left" class="highlight-navbar--left" >
+     <view class="text ml20" style="color:#fff">{{pageType=='my'?'我的':'小姐姐'}}</view>
+   </view> -->
+</ws-nav-bar>
+
+<wxs src="../../wxs/number.wxs" module="ws" />
+
+<view class="container">
+  <view  class="header ws-hairline--bottom" style="background:#fff;height:{{(statusBarHeight)*2+197+227}}rpx">
+    <ws-image ws-class="container-head-bg" height="{{(statusBarHeight)*2+197}}rpx" class="head-bg" src="http://39.108.78.208:5105/backgrond.jpg" />
+    <ws-nav-bar  titleColor="#fff" bgColor="rgba(0,0,0,0)" border="{{false}}" title="{{pageType=='my'?'我的':'小姐姐'}}"  bind:clickLeft="goBack" />
+    <view class="header-content" style="top:{{(statusBarHeight)*2+197-100}}rpx">
+      <view class="userinfo flex">
+        <image class="userinfo-avatar ml30 mr30" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+        <view class="right flex-col" style='flex:1'>
+          <view class="right-top flex fz32" style="color:#fff;">
+            <view class="userinfo-state flex-col" bindtap='onTabItem' data-type="follow">
+              <text class="fz28" style="color:#fff">关注</text>
+              <text class="number font-load-DINAlternate-Bold fz36 mt4">{{ws.format(userInfo.focus)}}</text>
+            </view>
+            <view class="userinfo-state flex-col" style="margin:0 92rpx;">
+              <text class="fz28" style="color:#fff">获赞</text>
+              <text class="number font-load-DINAlternate-Bold fz36 mt4">{{ws.format(userInfo.like)}}</text>
+            </view>
+            <view class="userinfo-state flex-col" bindtap='onTabItem' data-type="fans">
+              <text class="fz28" style="color:#fff">粉丝</text>
+              <text class="number font-load-DINAlternate-Bold fz36 mt4">{{ws.format(userInfo.fans)}}</text>
+            </view>
+          </view>
+          <view class="right-bottom flex-space mt28" style='color:#ff5733'>
+            <view class="flex">
+              <view class="edit-btn fw6" style="{{pageType=='my'?'border:2rpx solid #eee;color:#333':'background:#FE2C54;color:#fff'}}" data-type="{{pageType=='my'?'edit':'focus'}}" bindtap="{{pageType=='my'?'onTapEditUserInfo':'onTapFocus'}}">
+                {{pageType=='my'?'编辑资料':'关注'}}
+              </view>  
+              <view  class="setting-btn ml32" style="border:2rpx solid #eee;color:#333" bindtap='onTapGotoStoreHome'>
+                <ws-icon type="my--shop-icon" size="18" />
+              </view>
+            </view>
+            <view bindtap='onTapShare' class="share-btn ml32" style="border:2rpx solid #eee;color:#333">
+              <ws-icon type="article-share" size="14" />
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="flex uid-area mt18" style="padding:0rpx 30rpx;padding-bottom:0">
+        <text class="fz36 fw6" style="color:#333">哦嗨呦</text>
+      </view>
+      <view  class="slogo fz24" style="color:#999;padding:11rpx 0rpx 21rpx 30rpx">
+        我爱美食，爱做菜，把好吃的菜谱分享大家！
+      </view>
+      
+    </view>
+  </view>
+
+
+
+  <view class="coin-area flex">
+    <view class="coin-area--content" style="background:url(http://39.108.78.208:5105/Slice.png);background-repeat:no-repeat; background-size:100% auto;background-position:center center;">
+      <view class="label fz28">今日可领金币</view>
+      <view class="num fw6 mt10 flex">
+      <text class="count font-load-DINAlternate-Bold" style="color:#fff;font-size:60rpx">19020</text>
+      <text class="tag fz20">约19.02元</text></view>
+    </view>
+    <ws-button ws-class="coin-area--button fz28">马上领</ws-button>
+  </view>
+
+
+
+  <view wx:if="{{pageType=='my'}}"  class="income-area mt20" style="background:#fff;">
+    <view class="head flex-space fz34" style="padding:30rpx 30rpx 43rpx 30rpx">
+      <view class="title" style="color:#333">我的收益</view>
+      <view class="right fz28" style="color:#999">全部<ws-icon type="right-arrow" /></view>
+    </view>
+    <view class="income-content flex-space fz28" style="padding-bottom:26rpx;">
+      <view class="item flex-col-center" bindtap='onTapGotoGoldTokenDetails'>
+          <view class="label" >可提现</view>
+          <text class="number fz36 fw6 font-load-DINAlternate-Bold" style="color:#FE2C54">1203.44</text>
+      </view>
+      <view class="item item-two ws-hairline--left ws-hairline--right flex-col-center" bindtap='onTapGotoRedPacketDetails'>
+        <view class="label">今日收益</view>
+        <text class="number font-load-DINAlternate-Bold fz36 fw6">100</text>
+      </view>
+      <view class="item flex-col-center" bindtap='onTapCashout'>
+        <view class="label">累计收益</view>
+        <text class="number font-load-DINAlternate-Bold fz36 fw6">6195</text>
+      </view>
+    </view>
+  </view>
+  
+    
+  <!-- order -->
+  <view wx:if="{{pageType=='my'}}" class="order-info flex-col">
+    <view class="order-info-top flex-space fz34" style="width:100%">
+      <view class="title" style="color:#333">我的订单</view>
+      <view class="desc fz28" 
+      data-index="0" bindtap="onTapGoToOrderList"
+      style="color:#999">全部<ws-icon type="right-arrow" /></view>
+    </view>
+    <view class="order-info-bottom flex-space">
+      <view class="li-item flex-col" data-index="1" bindtap="onTapGoToOrderList">
+        <ws-icon size="29" color="#333" type="wait-payment"  />
+        <text class="text mt10 fz28" style="color:#666">等待支付</text>
+      </view>
+      <view class="li-item flex-col" data-index="2" bindtap="onTapGoToOrderList">
+        <ws-icon size="29" color="#333" type="wait-shipment" />
+        <text class="text mt10 fz28" style="color:#666">等待发货</text>
+      </view>
+      <view class="li-item flex-col" data-index="3" bindtap="onTapGoToOrderList">
+        <ws-icon size="29" color="#333" type="wait-receiving" />
+        <text class="text mt10 fz28" style="color:#666">等待收货</text>
+      </view>
+      <view class="li-item flex-col" data-index="4" bindtap="onTapGoToOrderList">
+        <ws-icon size="29" color="#333" type="return-goods" />
+        <text class="text fz28 mt10" style="color:#666">退货中</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- other nav -->
+  <view bindtap="onTapCollectMenu" class="collection-menu other-item-menu ws-hairline--top flex-space fz34">
+    <view class="title" style="color:#333">我的收藏</view>
+    <view class="right fz28" style="color:#999">100<ws-icon type="right-arrow" /></view>
+  </view>
+   
+  <view class='my-content mt20' style="backgrond:#fff">
+    <view class='my-content-wrap mt6' style="padding-bottom:{{customTabBar?(48+(isIphoneX?32:0)):0}}px">
+      <ws-tabs 
+        fixed="{{hasFixedWsTabs}}" 
+        contentHeight="{{contentHeight}}" 
+        ws-class="ws-tabs-area"  
+        animated="{{false}}" 
+        sticky="{{false}}" 
+        scrollTop="{{ scrollTop}}" 
+        offsetTop="{{70}}" 
+        wrapStyle="padding-top:{{!hasFixedWsTabs?46+statusBarHeight:0}}px;" 
+        >
+        <block>
+        <ws-tab  title="作品 {{list[0].length}}">
+         <scroll-view  
+         scroll-y="true" 
+         class="card-list" 
+         bindscrolltolower="onTapScrolltolower"
+        >
+        <view class="card-wrap">
+              <view class="card-item"
+                wx:for="{{list[0]}}" wx:key="{{index}}">
+                <navigator hover-class="item-hover"url="/packageContent/pages/video/index?id={{index}}={{index}}">
+                <view class="img-area">
+                  <image style='width:248rpx;' mode="aspectFill" src="{{index<items.length?items[index].url:(index>2*items.length?items[index-2*items.length].url:items[index-items.length].url)}}"></image>
+                </view>
+                <view class="card-label">
+                  <!-- <image src="/images/like.png"></image> -->
+                  <i class="iconfont icon-my-play"></i>
+                  <text style="font-size:28rpx;color:#fff">172</text>
+                </view>
+                </navigator>
+              </view>
+        </view>
+        </scroll-view>
+        </ws-tab>
+
+        <ws-tab title="动态 {{list[1].length}}">
+         <scroll-view  
+         scroll-y="true" 
+         class="dynamics-list" 
+         bindscrolltolower="onTapScrolltolower"
+         >
+
+           <view wx:for="{{list[1]}}" wx:key="{{index}}" class='dynamics-item mt16 ws-hairline--bottom'>
+            <view class="flex-row avatar-area">
+              <image class="dynamics-avatar  icon70-radius mr16" src="{{userInfo.avatarUrl}}"></image>
+              <view class="nick-name-area">
+               <view class="fz30 fc3">安然</view>
+               <view class="date fc2">07-30</view>
+              </view>
+            </view>
+            <view class="dynamics-content">
+              <view class="title mt24 fz30 fc3">
+              <text class="fcs2 fw6">#我就是“控御”有术</text>
+             hahahahhahahha
+              </view>
+              <image class="image mt24" mode="aspectFill" src="{{index<items.length?items[index].url:(index>2*items.length?items[index-2*items.length].url:items[index-items.length].url)}}"></image>
+              <view class="flex-row-around slogon-area">
+               <view class="flex-row-around slogon">
+                <!-- <image class="icon" src="/images/playing.png"></image> -->
+                <text class="fc-white fz24">@安然创作的原声</text>
+               </view>
+               <view bindtap='playHandle'>
+                <i wx:if="{{isPlaying}}" class="iconfont icon-pause"></i>
+                <i wx:else class="iconfont icon-play"></i>
+                
+               </view>
+              
+              </view>
+            </view>
+
+            <view class="flex-row-space dynamics-bottom fc3 fz26 mt24 mb24">
+              <view class="slogon">
+                <i class="iconfont icon-my-like"></i>
+                <text >点赞</text>
+               </view>
+               <view class="slogon">
+                <i class="iconfont icon-my-comment"></i>
+                <text>评论</text>
+               </view>
+               <view class="slogon">
+                <i class="iconfont icon-my-share"></i>
+                <text >转发</text>
+               </view>
+               <view class="slogon">
+                <i class="iconfont icon-my-share2"></i>
+               </view>
+            </view>
+        </view>
+      </scroll-view>
+      </ws-tab> 
+
+
+      <ws-tab title="喜欢 {{list[2].length}}">
+      <scroll-view  
+      scroll-y="true" 
+      class="card-list
+      bindscrolltolower="onTapScrolltolower"
+      >
+        <view class="card-wrap">
+              <view class="card-item"
+                wx:for="{{list[2]}}" wx:key="{{index}}">
+                <navigator hover-class="item-hover"url="/packageContent/pages/video/index?id={{index}}">
+                <view class="img-area">
+                  <image style='width:248rpx;' mode="aspectFill" src="{{index<items.length?items[index].url:(index>2*items.length?items[index-2*items.length].url:items[index-items.length].url)}}"></image>
+                </view>
+                <view class="card-label">
+                  <!-- <image src="/images/like.png"></image> -->
+                  <i class="iconfont icon-like"></i>
+                  
+                  <text style="font-size:28rpx;color:#fff">1024</text>
+                </view>
+                </navigator>
+              </view>
+        </view>
+        </scroll-view>
+        </ws-tab>
+        </block>
+      </ws-tabs>
+      <ws-load-more ws-class="load-more" isLoading="{{isLoading}}" />
+    </view>
+  </view>
+</view>
+
+
+<ws-action-panel  
+   mask="{{false}}"
+   bind:close="onTapCloseActionPanel"
+   animation="fadeInUpBig"  
+   bottom="{{isIphoneX?160:96}}"
+   show="{{isShowSharePanel}}"  
+   ws-class="ani-share-panel"
+>
+  <view class="share-panel-content  flex-col-center fz30">
+    <button plain bindtap='shareAppMessage'  class="item ws-hairline--top comment-bar-button" formType="submit" openType="share">
+      <text class="fz30">分享给微信好友</text>
+    </button>
+      <!-- <view bindtap='shareAppMessage' class="item ws-hairline--bottom"></view> -->
+      <view class="item ws-hairline--top"> 生成海报</view>
+  </view>
+</ws-action-panel>
+
+<view class="range-box" style="height:{{statusBarHeight+titleBarHeight}}px" ></view>
+
+

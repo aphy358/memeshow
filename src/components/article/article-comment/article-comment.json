@@ -1,8 +1,0 @@
-{
-  "component": true,
-  "usingComponents": {
-    "comment-input-popup": "../../comment/comment-input-popup/comment-input-popup",
-    "comment-popup": "../../comment/comment-popup/comment-popup",
-    "comment-list-article": "../../comment/comment-list-article/comment-list-article"
-  }
-}

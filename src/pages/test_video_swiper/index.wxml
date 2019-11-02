@@ -1,2 +1,0 @@
-<!--pages/test_video_swiper/index.wxml-->
-<video-swiper class="video-swiper" bindloadmore="loadmore"/>

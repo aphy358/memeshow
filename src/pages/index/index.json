@@ -1,12 +1,10 @@
 {
-  "window": {
-    "navigationStyle": "custom"
-  },
+  "navigationStyle": "custom",
   "usingComponents": {
-    "navigation": "../../components/navigation/navigation",
+    "navigation-bar": "../../components/base/navigation-bar/index",
     "tab": "../../components/base/tab/index",
     "tabs": "../../components/base/tabs/index",
     "waterfall": "../../components/base/list/index",
-    "waterfall-item-image": "../../components/list-item/list-item-image/index"
+    "waterfall-item": "../../components/list-item/list-item-home/index"
   }
 }

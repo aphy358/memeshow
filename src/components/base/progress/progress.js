@@ -1,5 +1,4 @@
-import { addUnit } from '../../common/utils';
-import { animateTo } from '../../../components/common/utils'
+import { animateTo, addUnit } from '@/components/common/utils';
 
 Component({
   externalClasses: ['custom-class'],

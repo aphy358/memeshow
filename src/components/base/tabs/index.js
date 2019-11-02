@@ -5,8 +5,8 @@
  * @slot [default]
  * @slot after
  *
- * @event tabs#disabled
- * @event tabs#change
+ * @event Tabs#disabled
+ * @event Tabs#change
  */
 
 Component({

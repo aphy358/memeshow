@@ -1,0 +1,12 @@
+
+<!-- 文章关注栏 -->
+<view class="article-tab-wrap">
+  <view class="article-tab-avatar-wrap">
+    <image class="article-tab-avatar" src="http://wx.qlogo.cn/mmopen/vi_32/Ylib33UuwG3TE0bK6cibd5S9sSP2mx2kyDDicyXKaJxSBDcMvANHgIR8kezUG7norOg1SVeiabpJiaH3v5Qia4NmoooA/132" />
+    <text class="article-author-nickname">安然</text>
+  </view>
+  <view class="article-follow-share">
+    <text class="article-follow-btn">关注</text>
+    <image style="width:40rpx;height:40rpx;" src="/assets/images/article/share.png" />
+  </view>
+</view>

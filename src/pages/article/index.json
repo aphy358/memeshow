@@ -1,7 +1,10 @@
 {
-  "navigationBarTitleText": "美文",
+  "navigationBarTitleText": "",
   "usingComponents": {
-    "slide-tab": "../../components/SlideTab/index",
-    "nav-bar": "../../components/navbar/index"
+    "article-recommend-list" : "/components/base/list/index",
+    "waterfall-item": "/components/list-item/list-item-home/index",
+    "article-follow": "./components/article-follow/article-follow",
+    "article-content": "./components/article-content/article-content",
+    "article-comment": "./components/article-comment/article-comment"
   }
 }

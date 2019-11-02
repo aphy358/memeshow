@@ -1,5 +1,0 @@
-<!-- List Item Image component -->
-
-<list-item-base post="{{ post }}">
-    <image src="{{ post.url }}" mode="widthFix"></image>
-</list-item-base>

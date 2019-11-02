@@ -1,0 +1,35 @@
+// icon component
+
+// 字体集，替换后更新 icon 集
+@font-face {
+    font-family: 'iconfont';  /* project id 1473357 */
+    src: url('//at.alicdn.com/t/font_1473357_5lqmlkjcblo.eot');
+    src: url('//at.alicdn.com/t/font_1473357_5lqmlkjcblo.eot?#iefix') format('embedded-opentype'),
+    url('//at.alicdn.com/t/font_1473357_5lqmlkjcblo.woff2') format('woff2'),
+    url('//at.alicdn.com/t/font_1473357_5lqmlkjcblo.woff') format('woff'),
+    url('//at.alicdn.com/t/font_1473357_5lqmlkjcblo.ttf') format('truetype'),
+    url('//at.alicdn.com/t/font_1473357_5lqmlkjcblo.svg#iconfont') format('svg');
+  }
+
+$icon: "mf_icon";
+
+.#{$icon} {
+    display: inline-block;
+
+    &_body {
+        font-family: "iconfont" !important;
+        font-style: normal;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* 定义你自己的 `icon` 集 */
+
+    &-back:before {
+        content: "\e614";
+    }
+
+    &-like:before {
+        content: "\e601";
+    }
+}

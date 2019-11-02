@@ -1,12 +1,11 @@
 /* tabs .wxss */
 
-@import "../../common/styles/index.scss";
+@import "@/assets/styles/index.scss";
 
 $content: mf_tabs-content;
 
 .mf_tabs {
     @include flex($justify: space-between);
-
     background: $white;
 
     &-left,

@@ -1,0 +1,24 @@
+<!-- List Item Home Component -->
+
+<view class="mf_list-item-home">
+    <list-item-image url="{{ post.url }}"></list-item-image>
+    <view class="mf_list-item-home_detail">
+        <view class="mf_list-item-home_desc">
+            {{ post.des }}
+        </view>
+        <view class="mf_list-item-home_author">
+            <view class="mf_list-item-home_author_avatar">
+                <avatar
+                    url="{{ post.user.avatar }}"
+                    size="{{ 40 }}"
+                    mode="circle"
+                ></avatar>
+                <text class="mf_list-item-home_author_name">{{ post.user.name }}</text>
+            </view>
+            <view class="mf_list-item-home_author_social">
+                <mf-icon name="like" size="{{ 15 }}"></mf-icon>
+                <view class="mf_list-item-home_author_social__number">{{ post.likes }}</view>
+            </view>
+        </view>
+    </view>
+</view>

@@ -14,6 +14,7 @@ const src = resolve("./src")
 const dist = resolve("./dist")
 const moduleDirAlias = "_vendors"
 
+
 /**
  * 从app.json中的pages作为起点 构建依赖树
  * @param {String} app - app的路径
@@ -229,7 +230,8 @@ const fullScriptPath = path => {
   if (!ext) {
     const candidates = [
       resolve(dir, `${name}.js`),
-      resolve(dir, name, "index.js")
+      resolve(dir, name, "index.js"),
+      resolve('./src' + dir, `${name}.js`)
     ]
     const result = candidates.find(existsSync)
     if (result) return result
@@ -317,6 +319,12 @@ const resConfig = env => {
     entry: entries,
     // 小程序不支持eval，不能使用eval相关的devtool
     devtool: prod ? false : "source-map",
+    resolve: {
+      // 设置别名
+      alias: {
+        '@': src
+      }
+    },
     module: {
       rules: [
         {

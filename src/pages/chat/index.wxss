@@ -1,0 +1,76 @@
+/* pages/message.wxss */
+/* base */
+.bg_red{
+  background: #ff5266;
+}
+.bg_blue{
+  background:#3395ff;
+}
+.bg_green{
+  background:#45d8ab;
+}
+
+.wrapper{
+  /* height: 100vh; */
+}
+page{background: #f7f8fa;}
+
+.header{
+  padding:44rpx 84rpx 38rpx 84rpx;
+  text-align: center;
+  margin-bottom:20rpx;
+  background: #fff;
+}
+.header .tab-item{
+  text-align: center;
+  display: flex;
+  width:120rpx;
+  flex-direction:column;
+  justify-content: center;
+  align-items: center
+}
+.header .tab-item .image{
+  width:80rpx;
+  height:80rpx;
+  border-radius: 16rpx;
+}
+.header .tab-item text{
+  width:120rpx;
+  height:40rpx;
+  margin-top:16rpx;
+  text-align: center;
+  color:#333;
+}
+
+.message-item{
+  padding:28rpx 30rpx 26rpx 30rpx;
+  
+}
+.message-item .left .image-area{
+  width:84rpx;
+  height:84rpx;
+  border-radius: 100%;
+  background: #eee;
+  overflow: hidden;
+  margin-right:30rpx;
+}
+
+
+.message-item .right{
+  font-size:22rpx; 
+  color:#9a9a9a;
+  flex:1;
+}
+
+.message-item .right .name{
+  font-size:30rpx; 
+  color:#333;
+}
+.message-item .right .msg{
+  font-size:26rpx; 
+  color:#9a9a9a;
+}
+
+.message-item .right .title-area{
+  width:100%;
+}

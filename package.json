@@ -2,10 +2,11 @@
   "name": "mapp.mofanshow",
   "version": "0.0.1",
   "description": "mapp.mofanshow",
-  "main": "app.js",
+  "main": "./dist/app.js",
   "scripts": {
     "dev": "webpack --env.NODE_ENV=development --env.development --progress --watch",
     "build": "webpack --env.NODE_ENV=production --env.production --progress",
+    "debug": "sudo node-nightly --inspect-brk ./webpack.config.js",
     "lint": "eslint ./src --ext .js"
   },
   "repository": {

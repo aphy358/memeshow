@@ -21,15 +21,6 @@ export function nextTick(fn) {
   }, 1000 / 30);
 }
 
-let systemInfo = null;
-export function getSystemInfoSync() {
-  if (systemInfo == null) {
-    systemInfo = wx.getSystemInfoSync();
-  }
-
-  return systemInfo;
-}
-
 export function addUnit(value) {
   if (!isDef(value)) {
     return undefined;
@@ -39,23 +30,6 @@ export function addUnit(value) {
   return isNumber(value) ? `${value}px` : value;
 }
 
-
-export function throttle(func, wait) {
-  wait = wait || 300
-
-  return function () {
-    var context = this;
-    var args = arguments;
-
-    if (!func.tId) {
-      func.tId = setTimeout(() => {
-        func.tId = null;
-        func.apply(context, args)
-      }, wait);
-    }
-  }
-}
-
 /**
  * 构建动画实例
  * @param {*} animateOpt 由多个动画属性组成的对象
@@ -63,8 +37,8 @@ export function throttle(func, wait) {
  * @param {*} timingFunction 动画过渡方式
  */
 export function animateTo(
-  animateOpt = {}, 
-  duration = 300, 
+  animateOpt = {},
+  duration = 300,
   timingFunction = 'ease-out'
 ){
   let animate = wx.createAnimation({

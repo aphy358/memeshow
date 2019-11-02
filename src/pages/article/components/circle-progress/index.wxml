@@ -1,0 +1,6 @@
+<view class="ws-class ws-circle" style="{{ style }}">
+  <canvas class="ws-circle-canvas" style="{{ style }}" canvas-id="circle" />
+  <view class="ws-circle__inner">
+    <slot></slot>
+  </view>
+</view>

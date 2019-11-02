@@ -3,7 +3,7 @@
 <view class="mf_list">
     <view
         class="mf_list_container"
-        style="column-count:{{ col }};column-gap:{{ gap + 'rpx' }};"
+        style="column-count:{{ col }};column-gap:{{ gap }}rpx;"
     >
         <view
             wx:for="{{ list }}"

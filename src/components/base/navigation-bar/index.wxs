@@ -1,0 +1,22 @@
+function setRightMargin(safeArea, menuBtn) {
+  return safeArea.right - menuBtn.left
+}
+
+function setHeight(safeArea, menuBtn) {
+  return 2 * getCrevice(safeArea, menuBtn) + menuBtn.height
+}
+
+function setPlacehold(safeArea, menuBtn) {
+  return setHeight(safeArea, menuBtn) + safeArea.top
+}
+
+function getCrevice(safeArea, menuBtn) {
+  return menuBtn.top - safeArea.top
+}
+
+module.exports = {
+  setHeight,
+  setPlacehold,
+  setRightMargin,
+  getCrevice
+}

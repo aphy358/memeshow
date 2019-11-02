@@ -1,4 +1,4 @@
-import { animateTo, throttle } from '../common/utils'
+import { animateTo } from '../common/utils'
 import HTouch from './libs/hTouch'
 const touchHandle = new HTouch()
 
@@ -143,7 +143,7 @@ Component({
 
     registerTouchEvent() {
       touchHandle.listen('touchend', e => this.onTouchEnd(e))
-      touchHandle.listen('touchmove', e => throttle(this.onTouchMove.bind(this), 50)(e))
+      touchHandle.listen('touchmove', e => this.onTouchMove(e))
     },
 
     initialize() {
@@ -354,6 +354,13 @@ Component({
 
     onTouchMove(e) {
       if(this.data.forbidSwipe)  return
+
+      // 这里使用 lodash 的截流函数无效，只能在这里做一个限制
+      if(this.throttle_onTouchMove && +new Date() - this.throttle_onTouchMove < 100){
+        return
+      }else{
+        this.throttle_onTouchMove = +new Date()
+      }
 
       const { elemSize, elements, headElement, tailElement, elementData, transforming, isVertical } = this.data
       const startPhase = isVertical ? 'startY' : 'startX'

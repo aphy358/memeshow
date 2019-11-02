@@ -15,10 +15,15 @@ Component({
     disabled: {
       type: Boolean,
       value: false
+    },
+
+    underline: {
+      type: Boolean,
+      value: true
     }
   },
 
-  externalClasses: ["actived"],
+  externalClasses: ["actived-tab"],
 
   data: {
     activation: false

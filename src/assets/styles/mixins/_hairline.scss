@@ -1,0 +1,27 @@
+/**
+ * 0.5px 宽的直线
+ */
+
+@mixin hairline($color: #eee, $position: top) {
+    @if $position == top {
+        &::before {
+            @include _hairline($color);
+            top: 0;
+        }
+    } @else {
+        &::after {
+            @include _hairline($color);
+            bottom: 0;
+        }
+    }
+}
+
+@mixin _hairline($color: #eee) {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: $color;
+    transform: scaleY(0.5);
+}

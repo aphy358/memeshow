@@ -1,0 +1,5 @@
+$GLOBAL_UNIT: 1rpx;
+
+@function units($number) {
+    @return $number * $GLOBAL_UNIT;
+}

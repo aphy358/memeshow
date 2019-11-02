@@ -19,6 +19,7 @@ Component({
       value: 2
     },
 
+    // 列间距，单位 `rpx`
     gap: {
       type: Number,
       value: 0

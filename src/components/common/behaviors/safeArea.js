@@ -1,3 +1,4 @@
+// 缓存
 let cache = null
 
 export function safeArea(options = {}) {
@@ -29,9 +30,11 @@ export function safeArea(options = {}) {
 
     attached() {
       getSafeArea().then(res => {
-        const safeArea = res.safeArea
-        const isIPhoneX = res.isIPhoneX
-        const statusBarHeight = res.statusBarHeight
+        const {
+          safeArea,
+          isIPhoneX,
+          statusBarHeight
+        } = res
         this.setData({
           safeArea,
           isIPhoneX,
@@ -53,10 +56,14 @@ function getSafeArea() {
     } else {
       wx.getSystemInfo({
         success(res) {
-          const { model, safeArea, screenHeight, statusBarHeight } = res
-          const iphoneX   = /iphone x/i.test(model)
+          const {
+            model,
+            safeArea,
+            screenHeight,
+            statusBarHeight
+          } = res
+          const iphoneX = /iphone x/i.test(model)
           const iphoneNew = /iPhone11/i.test(model) && screenHeight === 812
-
           cache = {
             safeArea,
             statusBarHeight,

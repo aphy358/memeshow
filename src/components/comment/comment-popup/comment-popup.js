@@ -2,7 +2,7 @@
 Component({
   options: {
     // 允许页面的样式影响到组件
-    styleIsolation: 'shared'
+    styleIsolation: 'apply-shared'
   },
 
   properties: {
