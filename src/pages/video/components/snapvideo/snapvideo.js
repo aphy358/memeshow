@@ -56,14 +56,14 @@ Component({
     // 视频当前播放时间
     currentVideoTime: 0,
 
-    // 屏幕上闪现的点赞红心
-    stars: [],
-
     // 是否显示 '不感兴趣' 弹层
     showNotInterestedIn: false,
 
     // 当前是否正在拖动进度条
     touchProgress: false,
+
+    // 双击视频次数
+    doubleTapPos: {},
   },
 
   methods: {
@@ -79,7 +79,7 @@ Component({
           }else{        // 视频滑出
             this.stopVideo()
             // 清空屏幕上的小红心
-            this.setData({ stars: [] })
+            // this.setData({ stars: [] })
           }
 
           this.setData({ ifShowVideo: ifActive })
@@ -188,9 +188,6 @@ Component({
 
     // 点击视频
     tapVideo(e){
-      // 每次点击，先将屏幕上之前的小红心清空
-      this.setData({ stars: [] })
-
       // 用 alreadyTapped 来判断很短时间内是否多次点击，对单机和双击作出不同响应
       if (!this.data.alreadyTapped) {
         this.data.alreadyTapped = true
@@ -202,7 +199,7 @@ Component({
       } else {
         this.data.alreadyTapped = false
         clearTimeout(this.data.tapTimeout)
-        this.showStar(e)
+        this.setData({ doubleTapPos: e })
       }
     },
 
@@ -213,69 +210,6 @@ Component({
       isVideoPaused
         ? this.playVideo()
         : this.pauseVideo()
-    },
-
-    // 在屏幕上添加一个点赞红星
-    showStar(e) {
-      const { x, y } = e.detail
-      let { stars } = this.data
-
-      stars[0] = {
-        style: `top: ${y}px;left: ${x}px;`,
-        animation: {}
-      }
-      this.setData({ stars })
-
-      stars[0].animation = wx.createAnimation({
-        transformOrigin: '50% 50% 0',
-        timingFunction: 'ease-out',
-      })
-        .translate('-50%', '-50%')
-        .rotate(Math.random() * 34 - 17)
-        .opacity(0)
-        .step({
-          delay: 0,
-          duration: 10,
-        })
-
-        .scale(1.2)
-        .opacity(1)
-        .step({
-          delay: 10,
-          duration: 50,
-        })
-
-        .scale(.9)
-        .step({
-          delay: 50,
-          duration: 100,
-        })
-        .step({
-          delay: 0,
-          duration: 0,
-        })
-
-        .scale(1)
-        .step({
-          delay: 20,
-          duration: 50,
-        })
-
-        .opacity(0)
-        .scale(3)
-        .step({
-          delay: 500,
-          duration: 300,
-        })
-
-        .scale(1)
-        .step({
-          delay: 0,
-          duration: 20,
-        })
-        .export()
-
-      this.setData({ stars })
     },
 
     videoError(e){
