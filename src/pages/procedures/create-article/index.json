@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "mf-add-btn": "./components/add-section-btn/index",
+    "mf-article-node": "./components/article-node/index"
+  },
+  "disableScroll": true
+}

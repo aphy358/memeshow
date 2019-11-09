@@ -1,12 +1,14 @@
 {
   "pages": [
-    "pages/article/index",
+    "pages/video/index",
     "pages/index/index",
-    "pages/follow/index",
+    "pages/procedures/create-article/index",
+    "pages/procedures/create-video/edit",
     "pages/publish/index",
+    "pages/procedures/edit-rich-text/index",
+    "pages/follow/index",
     "pages/chat/index",
     "pages/usercenter/index",
-    "pages/video/index",
     "pages/live/index",
     "pages/push/index",
     "pages/create/index",
@@ -18,11 +20,12 @@
     "pages/create/cover",
     "pages/search/index",
     "pages/store/products/index",
+    "pages/article/index",
     "pages/procedures/select-product/index",
     "pages/procedures/select-product/edit",
     "pages/procedures/select-topic/index",
     "pages/procedures/select-relation/index",
-    "pages/procedures/select-location/index"
+    "pages/procedures/create-video/index"
   ],
   "subpackages": [
     {

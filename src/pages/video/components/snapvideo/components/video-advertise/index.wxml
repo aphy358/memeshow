@@ -1,0 +1,24 @@
+
+<view class="ad-wrap" catchtap="true">
+  <view class="ad-board-wrap" animation="{{ adAnimation }}">
+    <image class="ad-board-img" src="../../assets/avatar.png" />
+    <view class="ad-board-content-wrap">
+      <view class="ad-board-content">视频中同款商品</view>
+      <view class="ad-board-content price">¥ 999.00</view>
+    </view>
+    <text class="ad-close-btn iconfont icon-delete" bind:tap="hideAdBoard"></text>
+  </view>
+
+  <view class="ad-tag-wrap">
+    <text class="iconfont icon-shopping-cart"></text>
+    <text class="ad-tag-text">三只松鼠🌰三只松鼠🌰三只松鼠🌰</text>
+  </view>
+
+  <view class="ad-title">
+    <text>djsura_officialdjsura_officialdjsura_official</text>
+  </view>
+
+  <view class="ad-content">
+    <text>DJ SURA OFFICIAL 小姐姐带AL 小姐姐带high全场high全场DJ SURA OFFICIAL</text>
+  </view>
+</view>

@@ -1,0 +1,19 @@
+.node {
+  width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  padding: 20rpx;
+  background-color: #fff;
+
+  .pic {
+    width: 80rpx;
+    height: 80rpx;
+    margin-right: 20rpx;
+    background-color: #000;
+  }
+
+  .content {
+    height: 80rpx;
+    flex: 1;
+  }
+}

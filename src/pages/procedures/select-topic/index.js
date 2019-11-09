@@ -118,11 +118,11 @@ Page({
    * @param {event} e - 点击话题的时间
    */
   onTapTopic(e) {
-    const id = e.currentTarget.dataset.id
-    console.log(`topic ${id} has been tapped`)
+    const index = e.currentTarget.dataset.index
     // do something
-    const eventChannel = this.getOpenerEventChannel()
-    eventChannel.emit('acceptData', id)
+    const emitter = procedures.get(this.data.sid).asProcedure()
+    emitter.emit('toCaller', this.data.topic.list[index])
+    emitter.emit('complete', this.data.topic.list[index])
     wx.navigateBack({ delta: 1 })
   },
 

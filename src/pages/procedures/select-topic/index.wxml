@@ -47,7 +47,7 @@
   <view
     bind:tap="onTapTopic"
     class="list-item"
-    data-id="{{item.id}}"
+    data-index="{{index}}"
     wx:for="{{topic.list}}"
     wx:key="id"
   >

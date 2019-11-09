@@ -1,0 +1,3 @@
+<view wx:if="{{type == 'base'}}">
+  <mf-article-node-base content="{{content}}"></mf-article-node-base>
+</view>

@@ -1,0 +1,11 @@
+// Textarea Component
+
+@import "@/assets/styles/index.scss";
+
+.mf-textarea {
+    @include flex($direction: column);
+
+    &_count {
+        text-align: right;
+    }
+}

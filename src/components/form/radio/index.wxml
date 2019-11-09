@@ -1,0 +1,19 @@
+<!-- Radio Component -->
+
+<view
+    hover-class="mf-radio__actived"
+    class="mf-radio {{ disabled ? 'mf-radio__disabled' : '' }}"
+    bindtap="onTap"
+>
+    <view class="mf-radio_title">
+        <text class="mf-radio_label">{{ label }}</text>
+        <text wx:if="{{ desc }}" class="mf-radio_desc">{{ desc }}</text>
+    </view>
+    <view class="mf-radio_icon">
+        <mf-icon
+            name="{{ checked ? 'checked' : '' }}"
+            size="{{ 18 }}"
+            class="mf-class"
+        ></mf-icon>
+    </view>
+</view>

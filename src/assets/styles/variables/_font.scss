@@ -14,7 +14,7 @@ $font-default: $font-en, $font-cn, $font-sans;
 
 /* Size */
 $font-size-base: units(28) !default; // 常用字号，用于正文
-$font-size-xs: unit(20) !default; // 非常用字号，用于标签
+$font-size-xs: units(20) !default; // 非常用字号，用于标签
 $font-size-sm: units(24) !default; // 用于辅助信息，用于辅助信息/注释
 $font-size-lg: units(32) !default; // 常规标题
 $font-size-xl: units(36) !default; // 大标题

@@ -1,0 +1,39 @@
+
+<view class="not-interested-in-wrap {{ fadeClass }}" catch:touchmove="true" catch:touchend="true">
+  <hpopup
+    show="{{ show }}"
+    position="center"
+    duration="{{ 100 }}"
+    custom-animation="{{ customAnimation }}"
+    bind:touchendMask="hideNTIPopup"
+    >
+
+    <view class="nii-inner">
+      <view class="">请选择你要进行的操作</view>
+
+      <view class="nii-btn-list">
+        <view class="nii-btn-item">
+          <view class="nii-btn-icon">
+            <text class="iconfont icon-download"></text>
+          </view>
+          <view class="nii-btn-text">保存到相册</view>
+        </view>
+
+        <view class="nii-btn-item">
+          <view class="nii-btn-icon">
+            <text class="iconfont icon-collection"></text>
+          </view>
+          <view class="nii-btn-text">收藏</view>
+        </view>
+
+        <view class="nii-btn-item">
+          <view class="nii-btn-icon">
+            <text class="iconfont icon-not-interested"></text>
+          </view>
+          <view class="nii-btn-text">不感兴趣</view>
+        </view>
+      </view>
+    </view>
+  
+  </hpopup>
+</view>

@@ -121,7 +121,6 @@ min-height: 300rpx;
   height:72px;
   border-radius: 100%;
   position: relative;
-  
 }
 
 .live-item--head-area::before{
@@ -511,7 +510,7 @@ padding:0 0 0rpx 30rpx;
   height:90rpx;
   border-radius: 100%;
   position: relative;
-  
+
 }
 
 .dynamics-avatar.living::before{

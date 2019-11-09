@@ -2,7 +2,9 @@
   class="hswiper-wrap" 
   bindtouchstart="touchstart" 
   bindtouchmove="touchmove" 
-  bindtouchend="touchend">
+  bindtouchend="touchend"
+  bindtouchcancel="touchcancel"
+>
 
   <block wx:for="{{ elements }}" wx:key="{{ item.id }}">
     <view 
@@ -13,6 +15,7 @@
       <hswiper-item 
         item="{{ elementData[item.id] }}" 
         active="{{ item.active }}" 
+        touchEvent="{{ touchEvent }}"
         bind:preventSwipe="preventSwipe"
       />
     </view>

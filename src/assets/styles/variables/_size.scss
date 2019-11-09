@@ -10,27 +10,22 @@ $border-radius-md: units(6) !default;
 $border-radius-lg: units(8) !default;
 $border-radius-circle: 50% !default;
 
-/* 尺寸标准 */
+/* Spacing */
 $spacing-base: units(5) !default;
+$spacing-sm: $spacing-base * 2 !default;
+$spacing-md: $spacing-base * 3 !default;
+$spacing-lg: $spacing-base * 4 !default;
+$spacing-xl: $spacing-base * 5 !default;
 
-/* 水平间距 */
-$spacing-h-sm: units(10) !default;
-$spacing-h-md: units(16) !default;
-$spacing-h-lg: units(24) !default;
-$spacing-h-xl: units(32) !default;
-
-/* 垂直间距 */
-$spacing-v-xs: units(6) !default;
-$spacing-v-sm: units(12) !default;
-$spacing-v-md: units(18) !default;
-$spacing-v-lg: units(24) !default;
-$spacing-v-xl: units(30) !default;
-
-/* 图标尺寸 */
+/* Icon */
 $icon-size: units(44) !default;
 $icon-size-sm: units(36) !default;
 $icon-size-lg: units(72) !default;
 
-/* 透明度 */
-$opacity-active: 0.6 !default; // Button 等组件点击态额透明度
-$opacity-disabled: 0.3 !default; // Button 等组件禁用态的透明度
+/* Opacity */
+$opacity-active: 0.6 !default;
+$opacity-disabled: 0.3 !default;
+
+/* Form */
+$form-label-base: 172rpx;
+$form-label-lgest: 264rpx;

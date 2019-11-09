@@ -1,0 +1,28 @@
+// Button Component
+
+@import "@/assets/styles/index";
+
+.mf-button {
+    border-radius: $border-radius-lg;
+
+    &__primary {
+        background: $color-primary;
+        color: $white;
+    }
+
+    &__secondary {
+        border: 2rpx solid $color-primary;
+        color: $color-primary;
+    }
+    &__circle {
+        border-radius: $border-radius-circle;
+    }
+
+    &__disabled {
+
+    }
+
+    // &__actived {
+    //     background: rgba(254,44,84,0.6);
+    // }
+}

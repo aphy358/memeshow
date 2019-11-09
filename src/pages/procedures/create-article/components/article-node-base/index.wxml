@@ -1,0 +1,4 @@
+<view class="node">
+  <view class="pic"></view>
+  <view class="content">{{content}}</view>
+</view>

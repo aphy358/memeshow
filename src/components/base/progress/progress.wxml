@@ -13,6 +13,12 @@
     >
       {{ getters.text(pivotText, percentage) }}
     </view>
+
+    <view 
+      wx:if="{{ showDotPivot }}"
+      style="background: {{ inactive ? '#cacaca' : color }}"
+      class="progress__dot__pivot"
+    />
   </view>
 
   <view 

@@ -1,5 +1,6 @@
 import { animateTo } from '../common/utils'
-import HTouch from './libs/hTouch'
+import { indexOfStringify } from '@/libs/utils.js'
+import HTouch from '@/libs/hTouch.js'
 const touchHandle = new HTouch()
 
 const TIMING_FUNCTION_ARRAY = ['linear', 'ease-in', 'ease-in-out', 'ease-out', 'step-start', 'step-end']
@@ -44,7 +45,14 @@ Component({
 
     // 该变量用于标记当前 swiper 组件是否禁止 touch 事件，如果禁止掉了，则屏幕无法滚动
     // 在用到评论框的场景，我们希望在翻看评论的时候不会导致整个视频的滚动，则需要将 forbidSwipe 设置为 true
-    forbidSwipe: false
+    forbidSwipe: false,
+
+    // 屏幕滑动方向（horizonal/vertical），这个方向是在屏幕滑动一段距离之后定性的一个状态，要么就是上下滑动，要么就是左右滑动
+    // 而我们这里的应用场景只允许上下滑动，所以当定性为左右滑动的时候，则不滑动屏幕
+    swipeDirection: '',
+
+    // 向子组件传递的 touch 事件对象
+    touchEvent: null,
   },
   properties: {
     // 元素宽度
@@ -75,7 +83,7 @@ Component({
 
         const { elements, activeElement, elementData } = this.data
         const activeItemIdx = activeElement.id
-        const activeDataIdx = this.indexOf(newVal, elementData[activeItemIdx])
+        const activeDataIdx = indexOfStringify(newVal, elementData[activeItemIdx])
         const activeElementIdx = activeElement.index
 
         // 根据当前数据在新列表中的位置重置数据和dom的关联
@@ -135,6 +143,7 @@ Component({
     touchstart: touchHandle.touchstart.bind(touchHandle),
     touchmove: touchHandle.touchmove.bind(touchHandle),
     touchend: touchHandle.touchend.bind(touchHandle),
+    touchcancel: touchHandle.touchcancel.bind(touchHandle),
 
     // 由子组件传递上来的事件，传递一个标识来控制当前组件是否可以执行 touch 事件
     preventSwipe(e){
@@ -142,8 +151,10 @@ Component({
     },
 
     registerTouchEvent() {
-      touchHandle.listen('touchend', e => this.onTouchEnd(e))
+      touchHandle.listen('touchstart', e => this.onTouchStart(e))
       touchHandle.listen('touchmove', e => this.onTouchMove(e))
+      touchHandle.listen('touchend', e => this.onTouchEnd(e))
+      touchHandle.listen('touchcancel', e => this.onTouchCancel(e))
     },
 
     initialize() {
@@ -208,7 +219,16 @@ Component({
       })
     },
 
-    onTouchEnd(e) {
+    onTouchStart(e) {
+      e.type = 'touchstart'
+      this.setData({ touchEvent: e })
+      this.data.swipeDirection = ''    // 恢复状态
+    },
+
+    onTouchEnd(e, eventType = 'touchend') {
+      e.type = eventType
+      this.setData({ touchEvent: e })
+
       if(this.data.forbidSwipe)  return
 
       const { isVertical, wrapSize, elements, headElement, tailElement, elementData, elemSize, items,
@@ -217,12 +237,18 @@ Component({
       const translateType = isVertical ? 'translateY' : 'translateX'
 
       // 计算最终滑动方向
+      if (this.data.swipeDirection === 'horizonal'){
+        this.data.swipeDirection = ''    // 恢复状态
+        if (eventType === 'touchend') return
+      }
+      
       let dir = this.swipeDirection(e)
+      if (dir === '' && eventType === 'touchend') return
       if (dir === 'next' && !elementData[tailElement.id]) return
       if (dir === 'prev' && !elementData[headElement.id]) return
 
       // 滑动时间大于设定的阀值，我们视为正在拖动屏幕，这种情况下如果滑动距离不够，则回弹到原位置
-      if (duration > swipeMinDuration) {
+      if (dir !== 'springback' && duration > swipeMinDuration && eventType === 'touchend') {
         const distance = isVertical ? distanceY : distanceX
         let minDistance = swipeMinDistance
         if (swipeMinDistance <= 1) {
@@ -237,6 +263,7 @@ Component({
       const startDelta = elements[0].offset - elements[0].prevOffset
       let endDelta
 
+      if (eventType === 'touchcancel')  dir = 'springback'
       if (dir === 'springback') {
         // 回到原来位置
         endDelta = 0
@@ -352,7 +379,14 @@ Component({
       }, animationDuration)
     },
 
+    onTouchCancel(e) {
+      this.onTouchEnd(e, 'touchcancel')
+    },
+
     onTouchMove(e) {
+      e.type = 'touchmove'
+      this.setData({ touchEvent: e })
+
       if(this.data.forbidSwipe)  return
 
       // 这里使用 lodash 的截流函数无效，只能在这里做一个限制
@@ -374,6 +408,8 @@ Component({
 
       // 滑动方向上没有数据，禁止移动
       const dir = this.swipeDirection(e)
+      if (dir === '' || this.data.swipeDirection === 'horizonal')  return
+
       if (dir === 'next' && !elementData[tailElement.id]) {
         this.triggerEvent('itemsExhausted', { direction: dir, isVertical })
         return
@@ -403,20 +439,28 @@ Component({
     },
 
     swipeDirection(e) {
+      let dir = ''
       const distance = this.data.isVertical ? e.distanceY : e.distanceX
-      return distance > 0 ? 'prev' : 'next'
-    },
+      
+      if(Math.abs(distance) < 20)   return dir
+      
+      if(
+        (this.data.isVertical && Math.abs(e.distanceY) <= Math.abs(e.distanceX)) ||
+        (!this.data.isVertical && Math.abs(e.distanceY) >= Math.abs(e.distanceX))
+      ){
+        if(this.data.swipeDirection !== 'vertical')  this.data.swipeDirection = 'horizonal'
 
-    indexOf(arr, obj){
-      for (let i = 0, len = arr.length; i < len; ++i) {
-        const elem = arr[i];
-        if(JSON.stringify(elem) === JSON.stringify(obj)){
-          return i
-        }
+        // 如果之前已经判定为可滑动，可是后来总的滑动轨迹又显示不同方向上滑动距离比屏幕实际滑动距离还长，
+        // 这个时候让屏幕弹回去，而不能让屏幕卡在那
+        if(this.data.swipeDirection === 'vertical')  dir = 'springback'
+      }else{
+        dir = distance > 0 ? 'prev' : 'next'
+        if(this.data.swipeDirection !== 'horizonal') this.data.swipeDirection = 'vertical'
       }
 
-      return -1
-    }
+      return dir
+    },
+
   },
   lifetimes: {
     ready() {

@@ -1,0 +1,103 @@
+.content-editor {
+  width: 92%;
+  margin: 20rpx 4% 0;
+  padding-bottom: 20rpx;
+  display: flex;
+  flex-flow: row nowrap;
+  border-bottom: 2rpx solid #eee;
+}
+
+.content-editor__title {
+  flex: 1;  
+
+  .text {
+    width: 100%;
+    height: 180rpx;
+  }
+
+  .text__placeholder {
+    color: #999;
+    font-size: 26rpx;
+  }
+  
+  .addition {
+    width: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+  }
+
+  .addition__btn {
+    padding: 6rpx;
+    border-radius: 6rpx;
+    background-color: #888;
+    margin-right: 16rpx;
+    color: #fff;
+  }
+}
+
+.content-editor__cover {
+  width: 160rpx;
+  margin-left: 20rpx;
+  position: relative;
+  
+  .img {
+    width: 100%;
+    height: 100%;
+  }
+
+  .placeholder {
+    width: 100%;
+    height: 100%;
+    background-color: #eee;
+  }
+
+  .placeholder__text {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    background-color: #888;
+    color: #fff;
+  }
+}
+
+.addition-editor {
+  width: 96%;
+}
+
+.action-bar {
+  width: 92%;
+  padding: 20rpx 4%;
+  border-top: 1rpx solid #999;
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  flex-flow: row nowrap;
+
+  .padding-top-bottom {
+    padding-top: 10rpx;
+    padding-bottom: 10rpx;
+  }
+  
+  .round-corner {
+    border-radius: 999rpx;
+  }
+
+  .white-text {
+    color: #fff;
+  }
+
+  .draft-btn {
+    padding-left: 40rpx;
+    padding-right: 40rpx;
+    background-color: #999;
+    margin-right: 20rpx;
+  }
+
+  .confirm-btn {
+    flex: 1;
+    background-color: #ee0000;
+    text-align: center;
+  }
+
+}

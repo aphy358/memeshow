@@ -76,7 +76,7 @@ class HTouch extends HEvent {
     this.emit(type, touchObj)
   }
 
-  touchend(e) {
+  touchend(e, eventType = 'touchend') {
     if(!e.changedTouches[0] || this.disableMove)  return
 
     const times = e.timeStamp - this.touchTime
@@ -102,7 +102,7 @@ class HTouch extends HEvent {
       startY: this.startY,
       endY: e.changedTouches[0].clientY
     }
-    this.emit('touchend', touchObj)
+    this.emit(eventType, touchObj)
     let type = ''
     /* 确定是垂直 */
     if ((Math.abs(distanceY) - Math.abs(distanceX)) > 0) {
@@ -118,6 +118,10 @@ class HTouch extends HEvent {
     }
     touchObj.type = type
     this.emit(type, touchObj)
+  }
+
+  touchcancel(e) {
+    this.touchend(e, 'touchcancel')
   }
 }
 

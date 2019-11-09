@@ -1,9 +1,13 @@
 {
   "component": true,
   "usingComponents": {
-    "progress": "/components/base/progress/progress",
+    "video-advertise": "./components/video-advertise/index",
+    "comment-list-video": "./components/comment-list-video/index",
+    "operate-bar": "./components/operate-bar/index",
+    "not-interested-in": "./components/not-interested-in/index",
+    "video-progress": "./components/video-progress/index",
+    
     "comment-input-popup": "/components/comment/comment-input-popup/comment-input-popup",
-    "comment-popup": "/components/comment/comment-popup/comment-popup",
-    "comment-list-video": "../comment-list-video/comment-list-video"
+    "comment-popup": "/components/comment/comment-popup/comment-popup"
   }
 }

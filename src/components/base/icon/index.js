@@ -19,5 +19,7 @@ Component({
       type: String,
       value: ""
     }
-  }
+  },
+
+  externalClasses: ["mf-class"]
 })

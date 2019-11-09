@@ -1,10 +1,14 @@
 <!-- List Item Home Component -->
 
 <view class="mf_list-item-home">
-    <list-item-image url="{{ post.url }}"></list-item-image>
+    <navigator url="/pages/{{ post.type }}/index?id={{ post.id }}">
+        <list-item-image url="{{ post.url }}"></list-item-image>
+    </navigator>
     <view class="mf_list-item-home_detail">
         <view class="mf_list-item-home_desc">
-            {{ post.des }}
+            <navigator url="/pages/{{ post.type }}/index?id={{ post.id }}">
+                {{ post.des }}
+            </navigator>
         </view>
         <view class="mf_list-item-home_author">
             <view class="mf_list-item-home_author_avatar">

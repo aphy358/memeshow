@@ -15,9 +15,9 @@ Page({
     comments: comments,
     focusData: focusData,
     articleData: {
-      isShowMoreArticle: false, 
-      fontSize:28, 
-      isPlaying:false, 
+      isShowMoreArticle: false,
+      fontSize:28,
+      isPlaying:false,
       isShowPoster:true,
     },
     isPlaying: true,
@@ -57,12 +57,12 @@ Page({
     })
   },
 
-  // 文章 
+  // 文章
   onTapToggleMoreArticle: function (e) {
     // this.setData({
-    //   articleData: { 
+    //   articleData: {
     //     ...this.data.articleData,
-    //     isShowMoreArticle: !this.data.articleData.isShowMoreArticle 
+    //     isShowMoreArticle: !this.data.articleData.isShowMoreArticle
     //   }
     // })
     this.onTapGoToArticleDetailPage()
@@ -75,8 +75,8 @@ Page({
     })
   },
 
- 
-  // 
+
+  //
   openCommentsPanel: function (res) {
     console.log(res)
     let itemId = res.currentTarget.dataset.index;
@@ -116,7 +116,7 @@ Page({
   },
 
   //用户列表 关注
-  onTapFocus: function (res) { 
+  onTapFocus: function (res) {
     this.setData({
       mediumData: this.data.mediumData.filter((e, i) => {
         return res.currentTarget.dataset.index != i
@@ -124,7 +124,7 @@ Page({
     })
   },
 
-  
+
   // more
   onTapShowMorePopup:function(res){
     this.setData({
@@ -157,7 +157,7 @@ Page({
     })
   },
 
- 
+
 
 
   //  点击播放按钮
@@ -169,8 +169,8 @@ Page({
     })
   },
 
-  
-  
+
+
 
   playHandle: function () {
     console.log(this.data.isPlaying)
@@ -178,7 +178,7 @@ Page({
       isPlaying: !this.data.isPlaying
     })
   },
-  
+
   // 点赞按钮
   onTapToggleLike: function (res) {
     console.log(res)
@@ -195,7 +195,7 @@ Page({
     }
   },
 
-  
+
 
   // onPageTouchend:function(res){
   //   // this.intersection()
@@ -221,13 +221,13 @@ Page({
           })
         }
       });
-    
+
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  
+
 
   onLoad: function(options){
    console.log(options)
@@ -314,7 +314,7 @@ Page({
     this.timer3=null;
     this.timer3 = setTimeout(() => {
       this.intersection();
-    },200);   
+    },200);
   },
 
 

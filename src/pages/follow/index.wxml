@@ -1,3 +1,56 @@
-<view>
-  关注页
+<!-- Follow page -->
+
+<view class="page_follow">
+    <view class="page_follow_online-list">
+        <scroll-view
+            scroll-x
+            enable-flex
+            class="page_follow_online-list__scroll"
+        >
+            <view
+                wx:for="{{ followers }}"
+                wx:for-item="follower"
+                wx:key="{{ follower.id }}"
+                class="page_follow_online-list_follower"
+            >
+                <view class="page_follow_online-list_follower-avatar">
+                    <avatar
+                        size="{{ 100 }}"
+                        url="{{ follower.user.avatar }}"
+                        class="mf-class"
+                    ></avatar>
+                </view>
+                <view class="page_follow_online-list_follower-name" >
+                    {{ follower.user.name }}
+                </view>
+            </view>
+        </scroll-view>
+    </view>
+<!--
+    <view class="page_follow_recommand">
+        <view class="page_follow_recommand_title">
+            <view class="page_follow_recommand_title__type">
+                你可能感兴趣的用户
+            </view>
+            <view class="page_follow_recommand_title__more">
+                <text>查看更多</text>
+                <mf-icon name="right-arrow" size="{{ 10 }}"></mf-icon>
+            </view>
+        </view>
+        <view class="page_follow_recommand_body">
+            <scroll-view
+                scroll-x
+                enable-flex
+                class="page_follow_recommand_list"
+            >
+                <view class="page_follow_recommand_podcaster">
+                    <view class="page_follow_recommand_podcaster_avatar">
+                        <avatar></avatar>
+                    </view>
+                    <view class="page_follow_recommand_podcaster_bio"></view>
+                    <view class="page_follow_recommand_podcaster_follow"></view>
+                </view>
+            </scroll-view>
+        </view>
+    </view> -->
 </view>

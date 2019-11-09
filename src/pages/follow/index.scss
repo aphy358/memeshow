@@ -1,0 +1,86 @@
+@import "../../assets/styles/index.scss";
+
+$page: page_follow;
+
+.#{$page}_online-list {
+    border-top: 1rpx solid $color-border;
+    border-bottom: 1rpx solid $color-border;
+    padding: $spacing-sm;
+
+    &__scroll {
+        @include flex($align-items: flex-start);
+    }
+
+    &_follower {
+        padding: $spacing-md;
+        @include flex(column, nowrap, flex-start, center);
+
+        &-avatar {
+            // padding: $spacing-base;
+            // border: 1rpx solid $color-primary;
+            // border-radius: 100%;
+            margin-bottom: $spacing-base;
+            // @include flex($justify: center, $align-items: center);
+        }
+
+        &-name {
+            @include ellipsis();
+            font-size: $font-size-xs;
+        }
+    }
+}
+
+.#{$page}_recommand {
+    padding: $spacing-lg $spacing-md;
+    background: $color-bg;
+
+    &_title {
+        margin-bottom: $spacing-lg;
+        @include flex($justify: space-between, $align-items: center);
+        font-size: $font-size-base;
+        color: $color-text;
+
+        &__type {
+            font-weight: bold;
+        }
+
+        &__more {
+            @include flex($align-items: center);
+        }
+    }
+
+    &_body {
+        @include flex();
+    }
+}
+
+.mf-class {
+    // animation: pound 0.8s infinite 0.1s ease-out;
+}
+
+@keyframes pound {
+    from {
+        transform: scale(0.9);
+    }
+    50% {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(0.9);
+    }
+}
+
+@keyframes wavy {
+    from {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(0.428571429);
+    }
+    to {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+}

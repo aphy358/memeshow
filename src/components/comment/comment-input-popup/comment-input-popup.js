@@ -34,6 +34,12 @@ Component({
       }
     },
 
+    // 键盘弹起时，是否自动上推页面，false 不上推
+    adjustPosition: {
+      type: Boolean,
+      value: false,
+    },
+
   },
 
   data: {

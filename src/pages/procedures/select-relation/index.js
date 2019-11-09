@@ -67,10 +67,10 @@ Page({
    * @param {event} e - 事件
    */
   onTapUser(e) {
-    const id = e.currentTarget.dataset.id
+    const index = e.currentTarget.dataset.index
     // do something
 
-    procedures.get(this.data.sid).asProcedure().emit('complete', id)
+    procedures.get(this.data.sid).asProcedure().emit('complete', this.data.users.list[index])
     wx.navigateBack({ delta: 1 })
   },
 

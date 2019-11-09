@@ -15,7 +15,7 @@
     @include ellipsis();
 
     &_content {
-        padding:$spacing-h-md $spacing-h-lg;
+        padding:$spacing-md $spacing-lg;
         font-size: $font-size-xl;
         text-align: center;
     }

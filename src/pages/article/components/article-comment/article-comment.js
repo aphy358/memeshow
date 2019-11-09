@@ -1,3 +1,4 @@
+import { switchStarStatus, addNewComment } from '@/components/comment/commentHelper.js'
 
 Component({
   options: {
@@ -47,41 +48,40 @@ Component({
 
     // 点击了小红心，切换点赞状态
     switchStarStatus(e){
-      let commentId = e.detail.commentId || e.currentTarget.dataset.starto.commentId
+      const commentId = e.detail.commentId || e.currentTarget.dataset.starto.commentId
       let { comments } = this.data
 
-      for (let i = 0; i < comments.length; i++) {
-        let comment = comments[i]
-        if(comment.commentId === commentId){
-          comment.iAlreadyStared = !comment.iAlreadyStared
-          comment.iAlreadyStared ? comment.starCount++ : comment.starCount--
-          return this.setData({ comments })
-
-        }else{
-          if(comment.childComments){
-            for (let j = 0; j < comment.childComments.length; j++) {
-              let childComment = comment.childComments[j]
-              if(childComment.commentId === commentId){
-                childComment.iAlreadyStared = !childComment.iAlreadyStared
-                childComment.iAlreadyStared ? childComment.starCount++ : childComment.starCount--
-                return this.setData({ comments })
-              }
-            }
-          }
-        }
-      }
+      comments = switchStarStatus(comments, commentId)
+      this.setData({ comments })
     },
 
     // 弹出评论输入框
     showCommentInputPopup(e){
-      this.setData({ 
-        ifShowCommentInputPopup: true,
-        replyTo: e.detail.nickName ? e.detail : e.currentTarget.dataset.replyto
+      let _this = this
+
+      // 弹起键盘之前先记录页面的滚动位置，等键盘收起等时候再滚到原来的位置
+      const query = wx.createSelectorQuery()
+      query.select('.article-wrap').boundingClientRect()
+      query.exec(function(res){
+        _this.data.scrollTop = Math.abs(res[0].top)
+        
+        _this.setData({ 
+          ifShowCommentInputPopup: true,
+          replyTo: e.detail.nickName ? e.detail : e.currentTarget.dataset.replyto
+        })
       })
     },
 
     // 隐藏评论输入框
     hideCommentInputPopup(e){
+      // 键盘收起之后，要将页面滚动到键盘弹起之前的那个位置
+      if(this.data.scrollTop != null){
+        wx.pageScrollTo({
+          scrollTop: this.data.scrollTop,
+          duration: 300
+        })
+      }
+
       this.setData({ ifShowCommentInputPopup: false })
     },
 
@@ -91,27 +91,14 @@ Component({
       let { comments } = this.data
       const newComment = e.detail
 
-      if(newComment.commentLevel === 2){
-        // 如果是二级评论，则插入到对应父评论下的子评论数组头部
-        for (let i = 0; i < comments.length; i++) {
-          let ele = comments[i]
-          if(ele.commentId == newComment.parentId){
-            ele.childComments.unshift(newComment)
-            break;
-          }
-        }
-      }else{
-        // 如果是一级评论，则直接插入到数组的头部
-        comments.unshift(newComment)
-      }
-
+      comments = addNewComment(comments, newComment)
       this.setData({ comments })
     },
-
   },
 
   lifetimes: {
     ready() {
+
     }
   }
 })

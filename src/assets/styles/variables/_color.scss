@@ -20,7 +20,8 @@ $color-door: #f1e4ed !default;
 $color-curtain: #f0d0d5 !default;
 
 /* Text */
-$color-text: #7f7f7f !default;
+$color-text: #333 !default;
+$color-text-placeholder: #7f7f7f !default;
 $color-text-link: #1890ff !default;
 $color-text-title: #333 !default;
 $color-text-bullet: #b2b2b2 !default; // 弹幕
@@ -38,6 +39,7 @@ $color-icon: #ccc !default;
 
 /* Pure */
 $white: #fff !default;
+$black: #000 !default;
 
 /* Palette */
 $color-black-0: #000 !default;

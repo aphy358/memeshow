@@ -21,23 +21,23 @@
     display: flex;
     padding: 20rpx 0;
     padding-bottom: 30rpx;
-
+    
     @include hairline(#eee, bottom);
 
     &:last-child::after{
       content: none;
     }
 
+    @at-root .aci-avatar{
+      width: 70rpx;
+      height: 70rpx;
+      border-radius: 70rpx;
+      border: 2rpx solid #eee;
+      margin-right: 16rpx;
+    }
+
     @at-root .aci-content-wrap{
       width: 100%;
-
-      @at-root .aci-avatar{
-        width: 70rpx;
-        height: 70rpx;
-        border-radius: 70rpx;
-        border: 2rpx solid #eee;
-        margin-right: 16rpx;
-      }
 
       @at-root .aci-content-top{
 

@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "mf-article-node-base": "../article-node-base/index"
+  }
+}

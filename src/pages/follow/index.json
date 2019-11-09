@@ -1,3 +1,7 @@
 {
-  "usingComponents": {}
+  "navigationBarTitleText": "关注",
+  "usingComponents": {
+    "avatar": "../../components/base/avatar/index",
+    "mf-icon": "../../components/base/icon/index"
+  }
 }

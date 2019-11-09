@@ -1,3 +1,12 @@
-<view>
-  publish
+<view class="pub-container">
+  <image class="pub-bg" src="{{bgImg}}" />
+
+  <view class="pub-entries">
+    <block wx:for="{{publishEntries}}" wx:key="title">
+      <view class="pub-entry" bind:tap="handleEntryClicked" data-index="{{index}}">
+        <image class="pub-entry__icon" src="{{item.icon}}" />
+        <view class="pub-entry__title">{{item.title}}</view>
+      </view>
+    </block>
+  </view>
 </view>

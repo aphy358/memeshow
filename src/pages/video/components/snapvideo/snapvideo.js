@@ -1,10 +1,11 @@
 import { _comments } from './assets/comments'
-import { animateTo } from '@/components/common/utils'
+import { switchStarStatus, addNewComment } from '@/components/comment/commentHelper.js'
+
 
 Component({
   options: {
     // 允许页面的样式影响到组件
-    styleIsolation: 'apply-shared'
+    styleIsolation: 'shared'
   },
 
   properties: {
@@ -12,33 +13,18 @@ Component({
     item: {
       type: Object,
       value: {},
-      observer(newVal) {
-      }
     },
 
-    // 当前项是否被激活
+    // 当前视频项是否被激活（是否被滑动到可视区）
     active: {
       type: Boolean,
       value: false,
-      observer(newVal) {
-        this.resetProgress()
+      observer: "videoActive"
+    },
 
-        if(this.data.item){
-          setTimeout(() => {
-            if(newVal){   // 视频滑入
-              this.showAdBoard()
-              this.createVideoContext()
-              this.playVideo()
-            }else{        // 视频滑出
-              this.hideAdBoard()
-              this.stopVideo()
-              this.setData({ isVideoPlaying: true })
-            }
-  
-            this.setData({ ifShowVideo: newVal })
-          }, 300);
-        }
-      }
+    touchEvent: {
+      type: Object,
+      value: null
     },
   },
 
@@ -47,17 +33,11 @@ Component({
 
     videoContext: null,
 
-    // 当前视频是否正在播放
-    isVideoPlaying: true,
+    // 当前视频是否被暂停
+    isVideoPaused: false,
 
-    // 广告牌动画
-    adAnimation: {},
-
-    // 广告牌是否已经显示
-    adShown: false,
-
-    // 广告牌显示计时器
-    adTimeout: null,
+    // 当前视频是否正在加载
+    isLoading: false,
 
     // 是否显示 hpopup
     ifShowCommentPopup: false,
@@ -70,31 +50,50 @@ Component({
     
     comments: _comments,
 
-    // 进度条动画
-    progressAnimation: {},
-
-    // 当前视频是否正在加载
-    isLoading: false,
-
     // 视频的时长
     videoDuration: 0,
 
     // 视频当前播放时间
     currentVideoTime: 0,
+
+    // 屏幕上闪现的点赞红心
+    stars: [],
+
+    // 是否显示 '不感兴趣' 弹层
+    showNotInterestedIn: false,
+
+    // 当前是否正在拖动进度条
+    touchProgress: false,
   },
 
   methods: {
+    videoActive(ifActive) {
+      if(this.data.item){
+        setTimeout(() => {
+          if(ifActive){   // 视频滑入
+            this.createVideoContext()
+            setTimeout(() => {
+              this.playVideo()
+            }, 50);
+
+          }else{        // 视频滑出
+            this.stopVideo()
+            // 清空屏幕上的小红心
+            this.setData({ stars: [] })
+          }
+
+          this.setData({ ifShowVideo: ifActive })
+        }, 300);
+      }
+    },
+
     // 播放视频
     playVideo(){
-      const { videoContext, videoDuration } = this.data
+      const { videoContext } = this.data
 
       if(videoContext){
         videoContext.play()
-        this.setData({ isVideoPlaying: true })
-
-        if(videoDuration){
-          this.restartProgress()
-        }
+        this.setData({ isVideoPaused: false })
       }
     },
 
@@ -104,32 +103,8 @@ Component({
 
       if(videoContext){
         videoContext.pause();
+        this.setData({ isVideoPaused: true })
       }
-      
-      this.setData({ isVideoPlaying: false })
-      this.pauseProgress()
-    },
-
-    // 暂停进度条动画
-    pauseProgress(){
-      const { videoDuration, currentVideoTime } = this.data
-      const rate = currentVideoTime / videoDuration * 100 + '%'
-
-      let progressAnimation = animateTo({ 'width': rate }, 0, 'linear')
-      this.setData({ progressAnimation })
-    },
-
-    // 重新开始进度条动画（在原来的进度基础上）
-    restartProgress(){
-      const { videoDuration, currentVideoTime } = this.data
-
-      let progressAnimation = animateTo(
-        { 'width': '100%' }, 
-        (videoDuration - currentVideoTime) * 1000, 
-        'linear'
-      )
-
-      this.setData({ progressAnimation })
     },
 
     // 停止播放视频
@@ -139,7 +114,7 @@ Component({
       if(videoContext){
         videoContext.seek(0)
         videoContext.pause();
-        this.setData({ isVideoPlaying: false })
+        this.setData({ isVideoPaused: true, videoDuration: 0, currentVideoTime: 0 })
       }
     },
 
@@ -155,20 +130,7 @@ Component({
       let { comments } = this.data
       const newComment = e.detail
 
-      if(newComment.commentLevel === 2){
-        // 如果是二级评论，则插入到对应父评论下的子评论数组头部
-        for (let i = 0; i < comments.length; i++) {
-          let ele = comments[i]
-          if(ele.commentId == newComment.parentId){
-            ele.childComments.unshift(newComment)
-            break;
-          }
-        }
-      }else{
-        // 如果是一级评论，则直接插入到数组的头部
-        comments.unshift(newComment)
-      }
-
+      comments = addNewComment(comments, newComment)
       this.setData({ comments })
     },
     
@@ -179,37 +141,23 @@ Component({
 
     // 弹出评论输入框
     showCommentInputPopup(e){
+      let replyTo = e.detail 
+        ? (e.detail.nickName ? e.detail : e.currentTarget.dataset.replyto) 
+        : null
+
       this.setData({ 
         ifShowCommentInputPopup: true,
-        replyTo: e.detail.nickName ? e.detail : e.currentTarget.dataset.replyto
+        replyTo
       })
     },
 
     // 点击了小红心，切换点赞状态
     switchStarStatus(e){
-      const { commentId  } = e.detail
+      const { commentId } = e.detail
       let { comments } = this.data
 
-      for (let i = 0; i < comments.length; i++) {
-        let comment = comments[i]
-        if(comment.commentId === commentId){
-          comment.iAlreadyStared = !comment.iAlreadyStared
-          comment.iAlreadyStared ? comment.starCount++ : comment.starCount--
-          return this.setData({ comments })
-
-        }else{
-          if(comment.childComments){
-            for (let j = 0; j < comment.childComments.length; j++) {
-              let childComment = comment.childComments[j]
-              if(childComment.commentId === commentId){
-                childComment.iAlreadyStared = !childComment.iAlreadyStared
-                childComment.iAlreadyStared ? childComment.starCount++ : childComment.starCount--
-                return this.setData({ comments })
-              }
-            }
-          }
-        }
-      }
+      comments = switchStarStatus(comments, commentId)
+      this.setData({ comments })
     },
 
     // 隐藏评论弹框
@@ -234,44 +182,100 @@ Component({
       this.triggerEvent('preventSwipe', true)
     },
 
-    // 隐藏广告面板
-    hideAdBoard(){
-      // 如果广告牌还没显示出来，但是之前已经设置了定时器，则删除该定时器，比如用户在短时间内上下翻动视频的时候就会出现这种情况
-      if(!this.data.adShown && this.data.adTimeout){
-        clearTimeout(this.data.adTimeout)
-        this.data.adTimeout = null
-      }
-
-      let adAnimation = animateTo({
-        'left': '-20rpx',
-        'translateX': '-100%',
-        'translateY': '-100%'
-      })
-      this.setData({ adAnimation })
-      this.data.adShown = false
-    },
-
-    // 显示广告面板
-    showAdBoard(){
-      // 当前视频被激活后，3秒后显示广告牌
-      this.data.adTimeout = setTimeout(() => {
-        let adAnimation = animateTo({
-          'left': '0',
-          'translateX': '0',
-          'translateY': '-100%'
-        })
-        this.setData({ adAnimation })
-        this.data.adShown = true
-      }, 3000);
+    preventSwipe(e) {
+      this.triggerEvent('preventSwipe', e.detail)
     },
 
     // 点击视频
     tapVideo(e){
-      const { isVideoPlaying } = this.data
+      // 每次点击，先将屏幕上之前的小红心清空
+      this.setData({ stars: [] })
 
-      isVideoPlaying
-        ? this.pauseVideo()
-        : this.playVideo()
+      // 用 alreadyTapped 来判断很短时间内是否多次点击，对单机和双击作出不同响应
+      if (!this.data.alreadyTapped) {
+        this.data.alreadyTapped = true
+        this.data.tapTimeout = setTimeout(() => {
+          this.data.alreadyTapped = false
+          this.toggleVideo()
+        }, 300);
+
+      } else {
+        this.data.alreadyTapped = false
+        clearTimeout(this.data.tapTimeout)
+        this.showStar(e)
+      }
+    },
+
+    // 切换视频播放状态
+    toggleVideo() {
+      const { isVideoPaused } = this.data
+
+      isVideoPaused
+        ? this.playVideo()
+        : this.pauseVideo()
+    },
+
+    // 在屏幕上添加一个点赞红星
+    showStar(e) {
+      const { x, y } = e.detail
+      let { stars } = this.data
+
+      stars[0] = {
+        style: `top: ${y}px;left: ${x}px;`,
+        animation: {}
+      }
+      this.setData({ stars })
+
+      stars[0].animation = wx.createAnimation({
+        transformOrigin: '50% 50% 0',
+        timingFunction: 'ease-out',
+      })
+        .translate('-50%', '-50%')
+        .rotate(Math.random() * 34 - 17)
+        .opacity(0)
+        .step({
+          delay: 0,
+          duration: 10,
+        })
+
+        .scale(1.2)
+        .opacity(1)
+        .step({
+          delay: 10,
+          duration: 50,
+        })
+
+        .scale(.9)
+        .step({
+          delay: 50,
+          duration: 100,
+        })
+        .step({
+          delay: 0,
+          duration: 0,
+        })
+
+        .scale(1)
+        .step({
+          delay: 20,
+          duration: 50,
+        })
+
+        .opacity(0)
+        .scale(3)
+        .step({
+          delay: 500,
+          duration: 300,
+        })
+
+        .scale(1)
+        .step({
+          delay: 0,
+          duration: 20,
+        })
+        .export()
+
+      this.setData({ stars })
     },
 
     videoError(e){
@@ -285,58 +289,43 @@ Component({
     // 视频播放进度改变时触发
     bindtimeupdate(e){
       const { duration, currentTime } = e.detail
-      const { videoDuration, currentVideoTime } = this.data
-
-      // 如果是第一次播放，或者是重复播放，先将进度条归位，并开启进度条动画
-      if(!videoDuration || currentVideoTime > currentTime){
-        this.resetProgress(currentTime / duration * 100)
-
-        let progressAnimation = animateTo(
-          { 'width': '100%' }, 
-          (duration - currentTime) * 1000, 
-          'linear'
-        )
-        
-        this.setData({ progressAnimation })
-        this.data.videoDuration = duration
-
-      }else{
-        // 如果是一般时刻的进度更新，则先判断下之前有没有等待加载的情况，如果有，则先清空定时器，并重置 loading 状态
-        if(this.data.waitTimeout){
-          this.restartProgress()
-          clearTimeout(this.data.waitTimeout)
-          this.setData({ isLoading: false })
-        }
-      }
-
-      this.data.currentVideoTime = currentTime
+      this.setData({ currentVideoTime: currentTime, videoDuration: duration })
     },
 
     // 等待加载时触发
     videoWaiting(e){
-      this.pauseProgress()
-      this.data.waitTimeout = setTimeout(() => {
-        this.setData({ isLoading: true })
-      }, 300);
+      this.setData({ isLoading: true })
     },
 
     // e.detail.buffered
     videoProgress(e){
+      this.setData({ isLoading: false })
     },
 
-    // 将进度条设置为指定进度
-    resetProgress(percent){
-      let progressAnimation = animateTo({ 'width': percent ? percent + '%' : '0%' }, 0)
-      this.setData({ progressAnimation })
-      this.data.videoDuration = 0
-      this.data.currentVideoTime = 0
-    }
+    longpress(e) {
+      this.setData({ showNotInterestedIn: true })
+    },
+
+    hideNTIPopup(e) {
+      this.setData({ showNotInterestedIn: false })
+    },
+
+    progressPercentChanged(e) {
+      const { videoContext } = this.data
+
+      videoContext.seek(e.detail)
+      setTimeout(() => {
+        this.playVideo()
+      }, 500);
+    },
+
+    touchingProgress(e) {
+      this.setData({ touchProgress: e.detail })
+    },
   },
 
   lifetimes: {
     ready() {
     },
-    created() {
-    }
   }
 })

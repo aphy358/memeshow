@@ -1,3 +1,41 @@
+/* pages/publish.wxss */
+.pub-container {
+  width: 100%;
+  min-height: 100vh;
+}
+
+.pub-bg {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: -1;
+}
+
+.pub-entries {
+  width: 72%;
+  padding: 0 14%;
+  display: flex;
+  position: absolute;
+  bottom: 26vh;
+  flex-flow: row nowrap;
+  justify-content: space-between;  
+  justify-items: start;
+}
+
+.pub-entry__icon {
+  width: 140rpx;
+  height: 140rpx;
+}
+
+.pub-entry__title {
+  width: 100%;
+  text-align: center;
+  color: white;
+}
+
+
+
+
 /* pages/message.wxss */
 /* base */
 .bg_red{

@@ -1,0 +1,6 @@
+<view style="width: 100vw; height: 100vh; background-color: #000;">
+    <view
+        style="border-radius: 70rpx; width: 200rpx; height: 70rpx; background-color: red; color: white; text-align:center; position: absolute; bottom: 10vh;"
+        bind:tap="handleClickNxt"
+    >下一步</view>
+</view>

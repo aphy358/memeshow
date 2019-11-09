@@ -1,0 +1,31 @@
+/**
+ * 将一个数字格式化为 01:12:20 格式的时间字符串
+ * 
+ * @param second 单位秒
+ */
+var formatTime = (function(second) {
+  let res = ''
+  second = Math.round(second)
+
+  let h = (second / 3600) | 0
+  second = second % 3600
+  let m = (second / 60) | 0
+  let s = second % 60
+
+  if(h > 0){
+    res += h + ':'
+  }
+
+  res += toFix(m) + ':' + toFix(s)
+
+  return res
+});
+
+var toFix = (num) => {
+  if(+num < 10)  return '0' + num
+  return num
+}
+
+module.exports = ({
+  formatTime
+});

@@ -1,0 +1,30 @@
+<wxs src="../../assets/util.wxs" module="util" />
+
+<!-- 滑动进度条时显示的时间点面板 -->
+<view class="progress-rate-wrap" wx:if="{{ touchProgress }}">
+  <view class="progress-rate-inner">
+    <text class="pr-video-time" style="color:white;">{{ util.formatTime(progressNewPos) }}</text>
+    <text>/</text>
+    <text class="pr-video-time">{{ util.formatTime(videoDuration) }}</text>
+  </view>
+</view>
+
+<!-- 覆盖在进度条上一个有一定宽度的区域，使得进度条的 touchstart 事件能够更灵敏的响应 -->
+<view 
+  class="progress-shadow" 
+  catchtap="true" 
+  catch:longpress="true"
+  bindtouchstart="touchStartProgress" 
+/>
+
+<progress 
+  style="opacity:{{ active ? '1' : '0' }};"
+  custom-class="snap-video-progress"
+  stroke-width="{{ (isVideoPaused || touchProgress) ? '2px' : '1px' }}"
+  percentage="{{ 0 }}"
+  show-pivot="{{ false }}"
+  showDotPivot="{{ isVideoPaused || touchProgress }}"
+  custom-animation="{{ progressAnimation }}"
+  loading="{{ progressLoading }}"
+  color="white"
+/>

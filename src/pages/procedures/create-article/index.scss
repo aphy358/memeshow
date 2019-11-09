@@ -1,0 +1,54 @@
+@import '@/assets/styles/index.scss';
+
+$silent-node-shadow: 0 0 4px $color-grey-5;
+$active-node-shadow: 0 0 5px $color-grey-3;
+$active-node-scale-rate: 1.03;
+
+
+.title {
+  height: 5vh;
+}
+
+scroll-view {
+  height: 95vh;
+}
+
+.article-area {
+  width: 100%;
+  // border: 4rpx solid #000;
+
+  .node {
+    width: 100%;
+    overflow: visible;
+  }
+
+  .node-active__top {
+    position: relative;
+    z-index: $zindex-modal;
+  }
+
+  .node-active__shadow {
+    box-shadow: $active-node-shadow;
+  }
+
+  .node-active__scale-bigger {
+    transform: scale($active-node-scale-rate);
+  }
+
+  .node-silent {
+    box-shadow: $silent-node-shadow;
+  }
+}
+
+.add-btn {
+  position: relative;
+  z-index: $zindex-action-sheet;
+}
+
+.add-btn__hidden {
+  visibility: hidden;
+}
+
+.add-btn__shown {
+  visibility: initial;
+}

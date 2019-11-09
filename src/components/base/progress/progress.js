@@ -12,6 +12,10 @@ Component({
       type: Boolean,
       value: true
     },
+    showDotPivot: {
+      type: Boolean,
+      value: false
+    },
     color: {
       type: String,
       value: '#1989fa'

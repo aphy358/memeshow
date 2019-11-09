@@ -3,6 +3,7 @@
   class="hpopup-wrap" 
   style="z-index: {{ zIndex }};{{ wrapStyle }}"
   catch:touchmove="true"
+  catchtap="true"
   >
 
   <view 

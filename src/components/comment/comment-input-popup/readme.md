@@ -33,8 +33,9 @@
 
 | 参数 | 说明 | 类型 | 默认值 | 版本 |
 |------|------|------|------|------|------|
-| replyTo | 指向被回复的那个人的相关信息 | *Object* | null | - |
-| show | 是否显示评论输入弹框 | *Boolean* | false | - |
+| reply-to | 指向被回复的那个人的相关信息 | *Object* | `null` | - |
+| show | 是否显示评论输入弹框 | *Boolean* | `false` | - |
+| adjust-position | 键盘弹起时，是否自动上推页面，`false` 不上推 | *Boolean* | `false` | - |
 
 ### Events
 

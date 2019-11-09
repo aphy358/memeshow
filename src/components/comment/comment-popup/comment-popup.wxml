@@ -12,7 +12,7 @@
       bind:switchStarStatus="switchStarStatus"
       bind:hideCommentPopup="hideCommentPopup"
       bind:showCommentInputPopup="showCommentInputPopup"
-    ></comment-list>
+    />
   
   </hpopup>
 </view>

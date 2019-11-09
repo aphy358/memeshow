@@ -6,9 +6,9 @@
     overflow: hidden;
     background: $white;
     border-radius: 8rpx;
-    margin-bottom: $spacing-v-md;
+    margin-bottom: $spacing-md;
 
-    $desc-distance: $spacing-v-md;
+    $desc-distance: $spacing-md;
 
     &_detail {
         padding: 0 $desc-distance;
@@ -30,7 +30,7 @@
         }
 
         &_name {
-            margin-left: $spacing-h-sm;
+            margin-left: $spacing-sm;
             font-size: $font-size-xs;
             color: $color-text-bullet;
         }
@@ -39,7 +39,7 @@
             @include flex($align-items: center);
 
             &__number {
-                margin-left: $spacing-h-sm;
+                margin-left: $spacing-sm;
             }
         }
     }

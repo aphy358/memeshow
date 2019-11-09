@@ -1,0 +1,58 @@
+<view class="title">
+    <input placeholder="请输入标题" />
+</view>
+
+<scroll-view
+    bindscroll="handleScroll"
+    scroll-y="{{canScroll}}"
+>
+    <view class="add-btn {{article.draging ? 'add-btn__hidden' : 'add-btn__shown'}}">
+        <mf-add-btn
+            catch:toggle="handleAddBtnTap"
+            data-sort="{{0}}"
+            visible="{{addBtnStates[0]}}"
+        ></mf-add-btn>
+    </view>
+    <movable-area
+        class="article-area"
+        style="height: {{article.height}}px;"
+    >
+        <block
+            wx:for="{{article.nodes}}"
+            wx:key="id"
+        >
+            <movable-view
+                bind:touchmove="handleArticleNodeTouchMove"
+                bindtouchend="handleArticleNodeTouchEnd"
+                class="{{article.activeNodeIndex == index ? 'node-active__top' : ''}}"
+                damping="{{166}}"
+                friction="{{2}}"
+                direction="vertical"
+                disabled="{{true}}"
+                out-of-bounds="{{true}}"
+                style="width: 100%; height: {{item.height}}px;"
+                y="{{article.activeNodeIndex == index ? article.activeNodeY : item.y}}"
+            >
+                <view class="node">
+                    <view
+                        bindlongpress="handleArticleNodeLongPress"
+                        class="{{article.activeNodeIndex == index ? 'node-active__shadow node-active__scale-bigger' : 'node-silent'}}"
+                        id="{{item.id}}"
+                    >
+                        <mf-article-node content="{{item.id}}"></mf-article-node>
+                    </view>
+                    <view
+                        class="add-btn {{article.draging ? 'add-btn__hidden' : 'add-btn__shown'}}"
+                    >
+                        <mf-add-btn
+                            catch:toggle="handleAddBtnTap"
+                            data-sort="{{item.sort}}"
+                            direction="{{index == article.nodes.length-1 ? 'bottom' : 'top'}}"
+                            visible="{{addBtnStates[item.sort]}}"
+                        ></mf-add-btn>
+                    </view>
+                </view>
+            </movable-view>
+        </block>
+    </movable-area>
+</scroll-view>

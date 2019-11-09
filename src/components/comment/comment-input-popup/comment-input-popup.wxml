@@ -14,7 +14,7 @@
 
           focus="{{ show }}"
           hold-keyboard="{{ true }}"
-          adjust-position="{{ false }}" 
+          adjust-position="{{ adjustPosition }}" 
           value="{{ inputContent }}"
           placeholder="{{ inputPlaceholder }}" 
 

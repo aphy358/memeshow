@@ -389,8 +389,9 @@ const resConfig = env => {
               options: {
                 root: src,
                 enforceRelativePath: true,
-                // TODO <input></input> 需要写成 <input/>，否则 minify 后错误
                 minimize: prod,
+                ignoreCustomFragments: [/<\/input>/],
+                removeRedundantAttributes: false,
                 transformUrl(url, resource) {
                   // url 是资源相对于 root 的相对路径，需要转换为相对于 resource 的相对路径
                   return relative(dirname(resource), resolve(src, url))
@@ -409,8 +410,9 @@ const resConfig = env => {
               options: {
                 root: base,
                 enforceRelativePath: true,
-                // TODO <input></input> 需要写成 <input/>，否则 minify 后错误
                 minimize: prod,
+                ignoreCustomFragments: [/<\/input>/],
+                removeRedundantAttributes: false,
                 transformUrl(url, resource) {
                   // url 是资源相对于 root 的相对路径，需要转换为相对于 resource 的相对路径
                   return relative(dirname(resource), resolve(base, url))
