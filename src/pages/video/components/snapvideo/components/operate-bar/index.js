@@ -9,12 +9,20 @@ Component({
   },
 
   data: {
-
+    staredClazz: 'star-no'
   },
 
   methods: {
     showCommentPopup() {
       this.triggerEvent('showCommentPopup')
+    },
+
+    starYes(e) {
+      this.setData({ staredClazz: 'star-yes' })
+    },
+
+    starNo(e) {
+      this.setData({ staredClazz: 'star-no' })
     }
   }
 })

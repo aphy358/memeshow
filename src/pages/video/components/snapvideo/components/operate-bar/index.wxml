@@ -10,19 +10,26 @@
 
   <!-- 小红心 -->
   <view class="operate-item">
-    <image class="operate-item-img heart" src="../../assets/icon-lilke@3x.png" />
+    <view class="operate-item-img-wrap">
+      <image class="operate-item-img heart-red {{ staredClazz }}" src="../../assets/icon-lilke@3x.png" bindtap="starNo" />
+      <image class="operate-item-img heart-white {{ staredClazz }}" src="../../assets/icon-lilke@3x.png" bindtap="starYes" />
+    </view>
     <text class="operate-item-text">38900</text>
   </view>
 
   <!-- 评论 -->
   <view class="operate-item" bindtap="showCommentPopup">
-    <image class="operate-item-img" src="../../assets/icon_comment@3x.png" />
+    <view class="operate-item-img-wrap">
+      <image class="operate-item-img" src="../../assets/icon_comment@3x.png" />
+    </view>
     <text class="operate-item-text">3.89w</text>
   </view>
 
   <!-- 转发分享 -->
   <view class="operate-item">
-    <image class="operate-item-img" src="../../assets/icon_share-wechat@3x.png" />
+    <view class="operate-item-img-wrap">
+      <image class="operate-item-img" src="../../assets/icon_share-wechat@3x.png" />
+    </view>
     <text class="operate-item-text">389</text>
     <button class='share-button-mask' open-type="share"></button>
   </view>

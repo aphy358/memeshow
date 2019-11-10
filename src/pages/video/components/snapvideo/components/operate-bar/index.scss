@@ -1,5 +1,29 @@
 @import '@/assets/styles/index.scss';
 
+@keyframes scaleOut {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  100% {
+    transform: translate(-50%, -50%) scale(0);
+  }
+}
+
+@keyframes popIn {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+  }
+
+  50% {
+    transform: translate(-50%, -50%) scale(1.2);
+  }
+
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
 .operate-bar-wrap{
   position: absolute;
   width: 90rpx;
@@ -33,9 +57,42 @@
       margin-bottom: 40rpx;
     }
 
-    @at-root .operate-item-img{
+    @at-root .operate-item-img-wrap{
       width: 84rpx;
       height: 84rpx;
+
+      @at-root .operate-item-img{
+        position: absolute;
+        top: 42rpx;
+        left: 42rpx;
+        width: 84rpx;
+        height: 84rpx;
+        transform: translate(-50%, -50%);
+
+        &.heart-red{
+          transform: translate(-50%, -50%) scale(0);
+
+          &.star-yes{
+            animation: popIn 300ms ease-out 100ms forwards;
+          }
+
+          &.star-no{
+            animation: scaleOut 200ms linear 0s forwards;
+          }
+        }
+
+        &.heart-white{
+          transform: translate(-50%, -50%) scale(1);
+
+          &.star-yes{
+            animation: scaleOut 100ms ease 0s forwards;
+          }
+
+          &.star-no{
+            transform: translate(-50%, -50%) scale(1);
+          }
+        }
+      }
     }
 
     @at-root .operate-icon{
