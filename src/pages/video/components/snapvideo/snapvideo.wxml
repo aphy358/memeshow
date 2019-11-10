@@ -3,11 +3,11 @@
   wx:if="{{ !!item }}" 
   class="snap-video-wrap"
 
-  bindtap="tapVideo"
   bindlongpress="longpress"
 >
-
-  <view class="snap-video-inner" >
+  
+  <!-- 视频 -->
+  <view class="snap-video-inner" bindtap="tapVideo">
     <video 
       wx:if="{{ ifShowVideo }}"
       id="{{ 'videoId' + item.id }}" class="snap-video-video"

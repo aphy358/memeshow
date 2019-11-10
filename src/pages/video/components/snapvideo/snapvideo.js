@@ -78,8 +78,6 @@ Component({
 
           }else{        // 视频滑出
             this.stopVideo()
-            // 清空屏幕上的小红心
-            // this.setData({ stars: [] })
           }
 
           this.setData({ ifShowVideo: ifActive })
@@ -116,6 +114,56 @@ Component({
         videoContext.pause();
         this.setData({ isVideoPaused: true, videoDuration: 0, currentVideoTime: 0 })
       }
+    },
+
+    // 点击视频
+    tapVideo(e){
+      // 用 alreadyTapped 来判断很短时间内是否多次点击，对单机和双击作出不同响应
+      if (!this.data.alreadyTapped) {
+        this.data.alreadyTapped = true
+        this.data.tapTimeout = setTimeout(() => {
+          this.data.alreadyTapped = false
+          this.toggleVideo()
+        }, 300);
+
+      } else {
+        this.data.alreadyTapped = false
+        clearTimeout(this.data.tapTimeout)
+        this.setData({ doubleTapPos: e })
+      }
+    },
+
+    // 切换视频播放状态
+    toggleVideo() {
+      const { isVideoPaused } = this.data
+
+      isVideoPaused
+        ? this.playVideo()
+        : this.pauseVideo()
+    },
+
+    videoError(e){
+      wx.showToast({
+        title: '视频播放出错！',
+        icon: 'none',
+        duration: 2000
+      })
+    },
+
+    // 视频播放进度改变时触发
+    bindtimeupdate(e){
+      const { duration, currentTime } = e.detail
+      this.setData({ currentVideoTime: currentTime, videoDuration: duration })
+    },
+
+    // 等待加载时触发
+    videoWaiting(e){
+      this.setData({ isLoading: true })
+    },
+
+    // e.detail.buffered
+    videoProgress(e){
+      this.setData({ isLoading: false })
     },
 
     // 创建视频上下文
@@ -184,56 +232,6 @@ Component({
 
     preventSwipe(e) {
       this.triggerEvent('preventSwipe', e.detail)
-    },
-
-    // 点击视频
-    tapVideo(e){
-      // 用 alreadyTapped 来判断很短时间内是否多次点击，对单机和双击作出不同响应
-      if (!this.data.alreadyTapped) {
-        this.data.alreadyTapped = true
-        this.data.tapTimeout = setTimeout(() => {
-          this.data.alreadyTapped = false
-          this.toggleVideo()
-        }, 300);
-
-      } else {
-        this.data.alreadyTapped = false
-        clearTimeout(this.data.tapTimeout)
-        this.setData({ doubleTapPos: e })
-      }
-    },
-
-    // 切换视频播放状态
-    toggleVideo() {
-      const { isVideoPaused } = this.data
-
-      isVideoPaused
-        ? this.playVideo()
-        : this.pauseVideo()
-    },
-
-    videoError(e){
-      wx.showToast({
-        title: '视频播放出错！',
-        icon: 'none',
-        duration: 2000
-      })
-    },
-
-    // 视频播放进度改变时触发
-    bindtimeupdate(e){
-      const { duration, currentTime } = e.detail
-      this.setData({ currentVideoTime: currentTime, videoDuration: duration })
-    },
-
-    // 等待加载时触发
-    videoWaiting(e){
-      this.setData({ isLoading: true })
-    },
-
-    // e.detail.buffered
-    videoProgress(e){
-      this.setData({ isLoading: false })
     },
 
     longpress(e) {
