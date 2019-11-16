@@ -1,12 +1,14 @@
 <!-- Button Component -->
 
-<button
-    form-type="{{ formType }}"
-    plain="{{ tpye === 'secondary' }}"
-    size="{{ size === 'mini' ? size : 'default' }}"
-    disabled="{{ disabled }}"
-    loading="{{ loading }}"
-    hover-class="mf-button__actived"
-    class="mf-button mf-button__{{ type }} {{ circle && 'mf-button__circle' }} {{ disabled && 'mf-button__disabled' }}"
-    bindtap="onClick"
-><slot></slot></button>
+<view style="{{ size === 'mini' ? 'display:inline' : '' }}">
+    <button
+        form-type="{{ formType }}"
+        plain="{{ type === 'secondary' }}"
+        size="{{ size === 'mini' ? size : 'default' }}"
+        disabled="{{ disabled }}"
+        loading="{{ loading }}"
+        hover-class="mf-button__actived"
+        class="mf-button mf-button_{{ type }} mf-button_{{ size }} {{ circle && 'mf-button__circle' }} {{ disabled && 'mf-button__disabled' }} mf-class"
+        bindtap="onClick"
+    ><slot></slot></button>
+</view>

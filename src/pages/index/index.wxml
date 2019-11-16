@@ -1,7 +1,7 @@
 <!-- Home Page -->
 
-<view class="home-page-header">
-    <navigation-bar>
+<view class="home-page_header">
+    <navigation-bar >
         <image
             src="./logo.png"
             slot="left"
@@ -9,10 +9,102 @@
             class="home-page-logo"
         ></image>
         <view class="mf-searchbar">
-            <input type="text"></input>
+            <mf-icon name="search" size="{{ 16 }}"></mf-icon>
+            <input type="text" placeholder="搜索"></input>
         </view>
     </navigation-bar>
-    <tabs scroll>
+</view>
+
+<view class="home-page_live">
+    <scroll-view
+        scroll-x
+        enable-flex
+        class="home-page_live-list"
+    >
+        <view class="home-page_live-list_home">
+            <view class="home-page_live-list_home_carousel">
+                <block
+                    wx:for="{{ hots }}"
+                    wx:key="{{ index }}"
+                >
+                    <view
+                        class="home-page_live-list_home_carousel_frame"
+                        style="{{ animations[index] }}"
+                    >
+                        <avatar
+                            url="{{ item.url }}"
+                            size="{{ 116 }}"
+                        ></avatar>
+                    </view>
+                </block>
+            </view>
+            <view class="home-page_live-list_home_title">
+                <text>进入直播频道</text>
+                <mf-icon name="right-arrow" size="{{ 10 }}"></mf-icon>
+            </view>
+        </view>
+        <view
+            wx:for="{{ liveList }}"
+            wx:key="{{ index }}"
+            wx:for-item="room"
+            wx:key="{{ room.roomid }}"
+            class="home-page_live-list_room"
+        >
+            <live-room user="{{ room.user }}"></live-room>
+        </view>
+    </scroll-view>
+</view>
+
+<view class="home-page_promo">
+    <swiper
+        autoplay
+        circular
+        indicator-dots
+        indicator-color="#fe2c54"
+    >
+        <block
+            wx:for="{{ promos }}"
+            wx:key="{{ promo.id }}"
+            wx:for-item="promo"
+        >
+            <swiper-item>
+                <navigator url="{{ promo.url }}" hover-class="">
+                    <image
+                        src="{{ promo.image }}"
+                        mode="aspectFit"
+                        class="home-page_promo_image"
+                    ></image>
+                </navigator>>
+            </swiper-item>
+        </block>
+    </swiper>
+</view>
+
+<view class="home-page_activities">
+    <view class="home-page_activities_item">
+        <activity-card
+            title="百元套餐"
+            desc="网罗最好的搭配"
+            image="//img.alicdn.com/tfs/TB1tqpnegMPMeJjy1XcXXXpppXa-148-48.png"
+        ></activity-card>
+    </view>
+
+    <view class="home-page_activities_item">
+        <activity-card
+            title="直播红人"
+            desc="主播秒杀好物"
+            image="//img.alicdn.com/tfs/TB1tqpnegMPMeJjy1XcXXXpppXa-148-48.png"
+        ></activity-card>
+    </view>
+</view>
+
+<view class="home-page_channel-list">
+    <tabs
+        scroll
+        sticky="{{ tabs.sticky }}"
+        offset="{{ tabs.offset }}"
+        id="home-page_tabs"
+    >
         <block
             wx:for="{{ categories }}"
             wx:for-item="cat"
@@ -27,16 +119,16 @@
             </tab>
         </block>
     </tabs>
-</view>
 
-<view class="home-page_list">
-    <waterfall
-        waterfall
-        gap="{{ 20 }}"
-        col="{{ 2 }}"
-        appendList="{{ list }}"
-        generic:list-item="waterfall-item"
-    ></waterfall>
-</view>
+    <view class="home-page_list">
+        <waterfall
+            waterfall
+            gap="{{ 20 }}"
+            col="{{ 2 }}"
+            appendList="{{ list }}"
+            generic:list-item="waterfall-item"
+        ></waterfall>
+    </view>
 
-<custom-tab-bar selected="{{ 0 }}"></custom-tab-bar>
+    <loading-more enloading></loading-more>
+</view>

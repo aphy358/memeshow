@@ -36,12 +36,19 @@ Page({
     }
   },
 
-  /**
-   * @param {object} options - 页面参数
-   */
   onLoad(options) {
     this.data.sid = options.sid
+  },
+
+  onLoad() {
     procedures.get(this.data.sid).register(this)
+  },
+
+  onUnload() {
+    const instance = procedures.get(this.data.sid)
+    if (instance) {
+      instance.asProcedure().emit('complete')
+    }
   },
 
   /**

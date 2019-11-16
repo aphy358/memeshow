@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "ws-video": "/components/video1/index"
+  }
+}

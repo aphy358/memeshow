@@ -1,0 +1,17 @@
+<hpopup show="{{ show }}" position="bottom" bind:touchendMask="hidePopup">
+  <view class="select-creator-inner">
+    <view bindtap="addArticle" class="select-creator-item {{ show ? 'pop-up-1' : '' }}">
+      <image class="image" src="/assets/images/background/text.png"></image>
+      <view class="text">文章创作</view>
+    </view>
+    <view bindtap="addVideo" class="select-creator-item {{ show ? 'pop-up-2' : '' }}">
+      <image class="image" src="/assets/images/background/video.png"></image>
+      <view class="text">视频创作</view>
+    </view>
+    <view bindtap="addLive" class="select-creator-item {{ show ? 'pop-up-3' : '' }}">
+      <image class="image" src="/assets/images/background/live.png"></image>
+      <view class="text">直播创作</view>
+    </view>
+  </view>
+  <view class="pop-close-icon"></view>
+</hpopup>

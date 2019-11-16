@@ -1,3 +1,8 @@
+<navigation-bar 
+  back="{{ true }}"
+  home="{{ true }}"
+/>
+
 <view class="article-wrap">
   <!-- 文章关注栏 -->
   <article-follow />

@@ -29,3 +29,4 @@ emitter.emit('complete', data)
 
 - 在 procedure 中可以嵌套打开多个 procedure。
 - 一个复杂的 procedure 可以有多个页面来处理，比如选择商品之后编辑商品，该过程分别需要两个页面。主页面传递 sid 给子页面，子页面向主页面传数据则通过实例抛出事件。
+- 在 procedure 中，先在 onLoad 中取到 sid，然后再到 onReady 中注册。在真机中，onLoad 页面还没有注册。

@@ -16,6 +16,7 @@ $page: page_follow;
         @include flex(column, nowrap, flex-start, center);
 
         &-avatar {
+            // animation: pound 0.8s infinite 0.1s ease-out;
             // padding: $spacing-base;
             // border: 1rpx solid $color-primary;
             // border-radius: 100%;
@@ -31,13 +32,14 @@ $page: page_follow;
 }
 
 .#{$page}_recommand {
-    padding: $spacing-lg $spacing-md;
+    padding: $spacing-xl 0;
     background: $color-bg;
 
     &_title {
-        margin-bottom: $spacing-lg;
+        margin: $spacing-xl $spacing-xxl;
         @include flex($justify: space-between, $align-items: center);
         font-size: $font-size-base;
+        line-height: $line-height-base;
         color: $color-text;
 
         &__type {
@@ -46,27 +48,31 @@ $page: page_follow;
 
         &__more {
             @include flex($align-items: center);
+
+            > text {
+                margin-right: $spacing-base;
+            }
         }
     }
 
-    &_body {
-        @include flex();
-    }
-}
+    &_list {
+        @include flex($align-items: flex-start);
 
-.mf-class {
-    // animation: pound 0.8s infinite 0.1s ease-out;
+        &-user {
+            margin: 0 $spacing-base;
+        }
+    }
 }
 
 @keyframes pound {
     from {
-        transform: scale(0.9);
-    }
-    50% {
         transform: scale(1);
     }
-    to {
+    50% {
         transform: scale(0.9);
+    }
+    to {
+        transform: scale(1);
     }
 }
 

@@ -1,0 +1,21 @@
+// User Card Component
+@import "@/assets/styles/index.scss";
+
+:host {
+    display: inline-block;
+}
+
+.mf_user-card-light {
+    width: $room-width;
+    overflow: hidden;
+    @include flex($direction: column, $align-items: center);
+
+    &_name {
+        width: 100%;
+        margin-top: $spacing-sm;
+        font-size: $font-size-xs;
+        line-height: $line-height-xs;
+        color: $color-text;
+        @include ellipsis();
+    }
+}

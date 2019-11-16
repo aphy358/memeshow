@@ -12,7 +12,7 @@
 }
 
 .pub-entries {
-  width: 72%;
+  width: 100%;
   padding: 0 14%;
   display: flex;
   position: absolute;

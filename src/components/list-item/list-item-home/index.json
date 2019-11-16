@@ -1,9 +1,0 @@
-{
-    "component": true,
-    "usingComponents": {
-        "avatar": "../../base/avatar/index",
-        "mf-icon": "../../base/icon/index",
-        "list-item-video": "../list-item-base/list-item-video/index",
-        "list-item-image": "../list-item-base/list-item-image/index"
-    }
-}

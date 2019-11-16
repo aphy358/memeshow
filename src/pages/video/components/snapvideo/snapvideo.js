@@ -62,6 +62,9 @@ Component({
     // 当前是否正在拖动进度条
     touchProgress: false,
 
+    // 是否清屏（隐藏广告、右边的操作栏）
+    clearScreen: false,
+
     // 双击视频次数
     doubleTapPos: {},
   },
@@ -112,7 +115,7 @@ Component({
       if(videoContext){
         videoContext.seek(0)
         videoContext.pause();
-        this.setData({ isVideoPaused: true, videoDuration: 0, currentVideoTime: 0 })
+        this.setData({ videoDuration: 0, currentVideoTime: 0 })
       }
     },
 
@@ -235,11 +238,11 @@ Component({
     },
 
     longpress(e) {
-      this.setData({ showNotInterestedIn: true })
+      this.setData({ showNotInterestedIn: true, clearScreen: true })
     },
 
     hideNTIPopup(e) {
-      this.setData({ showNotInterestedIn: false })
+      this.setData({ showNotInterestedIn: false, clearScreen: false })
     },
 
     progressPercentChanged(e) {

@@ -1,3 +1,12 @@
 <view wx:if="{{type == 'base'}}">
   <mf-article-node-base content="{{content}}"></mf-article-node-base>
 </view>
+<view wx:if="{{type=='video'}}">
+  <mf-article-node-video content="{{content}}"></mf-article-node-video>
+</view>
+<view wx:if="{{type=='location'}}">
+  <mf-article-node-location content="{{content}}"></mf-article-node-location>
+</view>
+<view wx:if="{{type=='vote'}}">
+  <mf-article-node-vote content="{{content}}"></mf-article-node-vote>
+</view>

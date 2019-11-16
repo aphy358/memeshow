@@ -5,6 +5,13 @@ Component({
   },
   
   properties: {
+    // 当前视频项是否被激活（是否被滑动到可视区）
+    active: {
+      type: Boolean,
+      value: false,
+      observer: "videoActive"
+    },
+
     doubleTapPos: {
       type: Object,
       value: {},
@@ -23,62 +30,22 @@ Component({
       const { x, y } = e.detail
       let { stars } = this.data
 
-      stars[0] = {
-        style: `top: ${y}px;left: ${x}px;`,
-        animation: {}
-      }
-      this.setData({ stars })
-
-      stars[0].animation = wx.createAnimation({
-        transformOrigin: '50% 50% 0',
-        timingFunction: 'ease-out',
+      stars.push({
+        wrapStyle: `top: ${y}px;left: ${x}px;transform: rotate(${Math.random() * 34 - 17}deg);`,
       })
-        .translate('-50%', '-50%')
-        .rotate(Math.random() * 34 - 17)
-        .opacity(0)
-        .step({
-          delay: 0,
-          duration: 10,
-        })
-
-        .scale(1.2)
-        .opacity(1)
-        .step({
-          delay: 10,
-          duration: 50,
-        })
-
-        .scale(.9)
-        .step({
-          delay: 50,
-          duration: 100,
-        })
-        .step({
-          delay: 0,
-          duration: 0,
-        })
-
-        .scale(1)
-        .step({
-          delay: 20,
-          duration: 50,
-        })
-
-        .opacity(0)
-        .scale(3)
-        .step({
-          delay: 500,
-          duration: 300,
-        })
-
-        .scale(1)
-        .step({
-          delay: 0,
-          duration: 20,
-        })
-        .export()
-
       this.setData({ stars })
+    },
+
+    // 点击视频
+    tapStar(e){
+      this.showStar(e)
+    },
+
+    videoActive(isActive) {
+      // 视频划出，清空红心
+      if (!isActive) {
+        this.setData({ stars: [] })
+      }
     },
 
     doubleTaped(e) {

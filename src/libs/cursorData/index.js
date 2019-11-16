@@ -16,14 +16,24 @@ class CursorData {
 
   async _loadNext() {
     const { queryLimit, maxSize } = this.options
-    const cursor = this.delegator.cursor(_.last(this.dataList))
+
+    // this.dataList 为空，说明是第一次加载，此时还没有游标
+    const cursor = this.dataList.length > 0
+      ? this.delegator.cursor(_.last(this.dataList))
+      : null
+
     const fetched = await this.delegator.loadNext(cursor, queryLimit)
 
-    // 预先算出数组限制长度前后的长度差
-    const lenDiff = Math.max(this.dataList.length + fetched.length, maxSize) - maxSize
+    // 用户可通过 maxSize 来限定最多缓存的记录条数
+    if (maxSize) {
+      // 预先算出数组限制长度前后的长度差
+      const lenDiff = Math.max(this.dataList.length + fetched.length, maxSize) - maxSize
+      this.dataList = arrayLenthLimit(_.concat(this.dataList, fetched), maxSize)
+      this.index -= lenDiff
 
-    this.dataList = arrayLenthLimit(_.concat(this.dataList, fetched), maxSize)
-    this.index -= lenDiff
+    } else {
+      this.dataList = _.concat(this.dataList, fetched)
+    }
   }
 
   // 获取下一项数据
@@ -51,10 +61,19 @@ class CursorData {
 
   async _loadPrev() {
     const { queryLimit, maxSize } = this.options
-    const cursor = this.delegator.cursor(_.first(this.dataList))
+
+    // this.dataList 为空，说明是第一次加载，此时还没有游标
+    const cursor = this.dataList.length > 0
+      ? this.delegator.cursor(_.first(this.dataList))
+      : null
+
     const fetched = await this.delegator.loadPrev(cursor, queryLimit)
 
-    this.dataList = arrayLenthLimit(_.concat(fetched, this.dataList), maxSize, true)
+    // 用户可通过 maxSize 来限定最多缓存的记录条数
+    this.dataList = maxSize
+      ? arrayLenthLimit(_.concat(fetched, this.dataList), maxSize, true)
+      : _.concat(fetched, this.dataList)
+
     this.index += fetched.length
   }
 

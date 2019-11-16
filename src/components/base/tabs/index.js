@@ -26,11 +26,18 @@ Component({
     sticky: {
       type: Boolean,
       value: false
-    }
-  },
+    },
 
-  data: {
-    current: 0
+    /**
+     * 当 `sticky` 为 `true` 时生效
+     * 相对窗口的偏移量
+     * 单位 `px`
+     */
+
+    offset: {
+      type: Number,
+      value: 0
+    }
   },
 
   relations: {
@@ -51,6 +58,11 @@ Component({
     }
   },
 
+  data: {
+    current: 0,
+    _chirdren: []
+  },
+
   lifetimes: {
     attached() {
       this.setData({
@@ -59,18 +71,7 @@ Component({
     },
 
     ready() {
-      if (this.data.sticky) {
-        const $ref = this.createSelectorQuery()
-        console.log("tabs sticky: ", $ref)
-        $ref.select(".mf_tabs")
-
-      //   this._observer = wx.createIntersectionObserver()
-      //   this._observer
-      //     .relativeToViewport({ top: 0, bottom: 0 })
-      //     .observe(".mf-tabs-sticky", res => {
-      //       console.log(res)
-      //     })
-      }
+      if (this.data.sticky) {}
     }
   },
 

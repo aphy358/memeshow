@@ -21,7 +21,7 @@ const _comments = [
     // 我是否已经点赞
     iAlreadyStared: true,
     // 该评论下对应的子评论条数
-    childCommentCount: 23,
+    childCommentCount: 0,
     // 该评论下对应的子评论（做分页加载？）
     childComments: [
     ],
@@ -47,7 +47,7 @@ const _comments = [
     // 我是否已经点赞
     iAlreadyStared: true,
     // 该评论下对应的子评论条数
-    childCommentCount: 23,
+    childCommentCount: 2,
     // 该评论下对应的子评论（做分页加载？）
     childComments: [
       {
@@ -104,7 +104,7 @@ const _comments = [
     // 我是否已经点赞
     iAlreadyStared: true,
     // 该评论下对应的子评论条数
-    childCommentCount: 23,
+    childCommentCount: 1,
     // 该评论下对应的子评论（做分页加载？）
     childComments: [
       {
@@ -143,7 +143,7 @@ const _comments = [
     // 我是否已经点赞
     iAlreadyStared: true,
     // 该评论下对应的子评论条数
-    childCommentCount: 23,
+    childCommentCount: 2,
     // 该评论下对应的子评论（做分页加载？）
     childComments: [
       {
@@ -195,7 +195,7 @@ const _comments = [
     // 我是否已经点赞
     iAlreadyStared: true,
     // 该评论下对应的子评论条数
-    childCommentCount: 23,
+    childCommentCount: 2,
     // 该评论下对应的子评论（做分页加载？）
     childComments: [
       {

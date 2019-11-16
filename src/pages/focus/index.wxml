@@ -1,0 +1,312 @@
+<import src="/template/articleFocus/index.wxml"></import>
+
+<ws-nav-bar border="{{false}}" cover title="关注" fixed  bind:clickLeft="goBack" />
+
+<view class="warpper" style="width:100%;background:#f5f5f5;padding-top:{{titleBarHeight+statusBarHeight}}px;padding-bottom:{{customTabBar?(48+(isIphoneX?32:0)):0}}px;transform: translate(0,{{transformY+'px'}})">
+
+<ws-tabs  boder="{{false}}" contentHeight="{{contentHeight}}" ws-class="ws-tabs-area"  animated="{{false}}" sticky="{{false}}" scrollTop="{{ scrollTop}}" offsetTop="{{70}}" >
+<ws-tab  title="关注">
+<view class="live-list">
+  <scroll-view  scroll-x="true" class=" flex">
+  <view class="live-wrap" style="width:{{7*124}}rpx">
+      <view  wx:for="{{mediumData}}" wx:key="{{index}}"
+        wx:if="{{index<=3}}" class="live-item flex-col-center">
+        <view class="live-item--head-area {{index==1?'living':''}} flex-center">
+          <image class="live-item--head-box {{index==1?'living':''}}"  src="{{item.user.avatar}}" />
+        </view>
+        <text class="mt6" style="color:#252525;font-size:24rpx">{{item.user.name}}</text>
+      </view>
+    </view>
+  </scroll-view>
+</view>
+
+<!-- 文章关注 -->
+  <template is="article" data="{{...articleData,playIndex,appear,isLiked,likeCurrent,animationType}}" />
+
+
+<!-- 用户关注 card-->
+<view class="user-area" wx:if="{{mediumData.length>0}}">
+  <view class="head flex-space">
+    <text class="fz26">你可能感兴趣的用户</text>
+    <text class="fz26">查看更多</text>
+  </view>
+  <scroll-view  scroll-x="true" class="cont mt26">
+     <view class="ul flex" style="width:{{136*2*5}}rpx;">
+       <view class="user-card mr12 flex-col-center"
+        wx:for="{{mediumData}}"
+        wx:key="{{index}}"
+        wx:if="{{index<=8}}">
+          <image
+            class="headImg mt22"
+            style="width:144rpx;height:144rpx;border-radius:100%;"
+            src="{{item.url}}"
+          />
+          <view class="fz26 name mt18" style="color:#333">{{item.user.name}}</view>
+          <view class="fz22 slogn mt10" style="color:#333">看剧玩音乐扛把子</view>
+          <view class="fz22 fans mt10" style="color:#999">{{index}}.5万粉丝</view>
+          <view class="focus-btn mt16 fz28"
+            data-index="{{index}}"
+            bindtap='onTapFocus'
+          >关注</view>
+          <!-- clean -->
+          <ws-icon ws-class="clean-btn enlarge"
+            data-index="{{index}}"
+            bindtap='onTapNointerest'
+            type="close"
+          />
+       </view>
+     </view>
+  </scroll-view>
+</view>
+
+<!-- 小视频关注 -->
+<view  class="dynamics-list" >
+  <view wx:for="{{focusData}}" wx:key="index" data-id="{{index}}" id="dynamics-item-{{index}}" class='dynamics-item mt16 ws-hairline--bottom' hidden="{{transformY&&item>currentItem}}">
+    <view class="flex-space avatar-area">
+      <view class="avatar-left flex">
+        <view class="dynamics-avatar mr16 {{item.living?'living':''}} flex-center">
+          <ws-image ws-class="dynamics-avatar--box {{item.living?'living':''}}"  src="{{item.video.cover.url_list[0]}}" />
+        </view>
+        <view class="nick-name-area flex">
+          <view class="fz30">{{item.author.nickname}}</view>
+          <view wx:if="{{item.living}}" class="fz30" style="color:#a2a2a2;margin-left:40rpx">正在直播中</view>
+        </view>
+      </view>
+      <view class="avatar-right enlarge" data-index="{{index}}" bindtap='onTapShowMorePopup'>
+        <ws-icon type="my-share2" color="#959595" />
+      </view>
+    </view>
+
+    <view class="dynamics-content">
+      <view class="title mt14 fz30">
+      <text class="fcs2 fw6">#我就是“控御”有术</text>
+      hahahahhahahha
+      </view>
+      <view  class="video-wrap mt24">
+      <!-- isPlay="{{playIndex==index&&videoPlay}}" -->
+        <ws-video
+          vid="{{index+1}}"
+          id="{{index+1}}"
+          touchStartTime="{{touchStartTime}}"
+          data-index="{{index+1}}"
+          desc="{{item.desc}}"
+          playIndex="{{playIndex}}"
+          isPlay="{{playIndex==index&&videoPlay}}"
+          videoShow="{{index+1}}"
+          autoplay="{{false}}"
+          bindplay="onPlay"
+          class='item'
+          loop="{{true}}"
+          width="{{ws.getVideoSize('width',item.video.width,item.video.height)}}"
+          height="{{ws.getVideoSize('height',item.video.width,item.video.height)}}"
+          poster="{{item.video.cover.url_list[0]}}"
+          src="{{item.video.play_addr.url_list[0]}}"
+          >
+          </ws-video>
+      </view>
+      <!-- <image class="image mt24" mode="aspectFill" src="{{item.url}}"></image> -->
+    </view>
+
+    <view class="flex-space dynamics-bottom fz26 mt24 mb24">
+        <view class="date fz24" style="color:#a2a2a2">{{index}}</view>
+        <view class="flex-end">
+          <view class="flex-center enlarge ml16" data-index="{{index}}" bindtap="onTapToggleLike">
+            <ws-icon
+              ws-class="animated {{likeCurrent==index&&isLiked?animationType:''}}"
+              type="my-like"
+              size="17"
+              color="{{likeCurrent==index&&isLiked?'#fe2c54':'#808080'}}"
+            />
+            <text  class="ml16" >点赞</text>
+          </view>
+          <view class="flex-center enlarge ml16" data-index="{{index}}" bindtap="openCommentsPanel">
+            <ws-icon type="my-comment" size="18" color="#808080" />
+            <text class="ml16">评论</text>
+          </view>
+          <view class="flex-center enlarge ml16">
+            <ws-icon type="my-share" size="22" color="#808080" />
+            <text class="ml16" >转发</text>
+          </view>
+        </view>
+    </view>
+
+    <!-- tag -->
+    <view wx:if="{{index==1}}" class="tag-area flex-center" >
+      <ws-icon type="shoppingCart-icon" color="#FDD013" />
+      <text class="ml20" style="color:#fff;font-size:24rpx">超低特价99元</text>
+    </view>
+
+    <!-- comment -->
+    <view wx:if="{{index!=1}}" class="comment-area mt20" >
+      <view class="comment-info fz26" style='color:#000'>
+        <text class="name fw6">🌻向日葵：</text>
+        <text class="text">小姐姐真美</text>
+      </view>
+      <view class="more-comment-btn enlarge18 fz26" bindtap="openCommentsPanel" style="color:#a2a2a2;margin-left:-20rpx;margin-top:-10rpx;">查看8条评论</view>
+    </view>
+
+    <view class="comment-input flex mt20">
+      <ws-icon type="pub-comment" size='16' color="#808080" style="line-height:18px" />
+      <input type='text'
+        class="fz28 ml16"
+        placeholder='添加评论...'
+        placeholder-style="font-size:28rpx;color:#a0a0a0"
+      />
+    </view>
+
+  </view>
+</view>
+
+<ws-load-more ws-class="load-more" isLoading="{{isLoading}}" />
+
+</ws-tab>
+
+
+<ws-tab  title="好友"></ws-tab>
+
+</ws-tabs>
+
+
+</view>
+
+<view class="range-box" ></view>
+
+<!-- more  -->
+<ws-popup
+   bind:close="onTapCloseMorePopup"
+   height="850"
+   mask="{{true}}"
+   animation="fadeInUpBig"
+   show="{{isShowMorePopup}}"
+   ws-class="ani-more-popup"
+>
+ <view class="more-Popup-content flex-col" >
+   <view class="item enlarge fz30" bindtap='onTapShowSharePanel'>分享及更多操作</view>
+   <view class="item enlarge fz30" bindtap='onTapDeleteItem'>取消关注</view>
+ </view>
+</ws-popup>
+
+<!-- share 及更多操作 -->
+<ws-action-panel
+   mask="{{true}}"
+   bind:close="onTapCloseActionPanel"
+   animation="fadeInUpBig"
+   bottom="{{isIphoneX?160:96}}"
+   show="{{isShowSharePanel}}"
+   ws-class="ani-share-panel"
+>
+  <view class="share-panel-content fz30" style="padding-bottom:8rpx;">
+      <view class="item ws-hairline--bottom">分享给微信好友</view>
+      <view class="item ws-hairline--bottom"> 生成海报</view>
+  </view>
+</ws-action-panel>
+
+<!-- 评论面板 -->
+<ws-action-panel
+   mask="{{true}}"
+   height="850"
+   closeBtn
+   bind:close="onTapCloseActionPanel"
+   animation="fadeInUpBig"
+   show="{{isShowCommentsPanel}}"
+   ws-class="ani-comments-panel"
+>
+ <view class="comments-panel-content">
+
+    <view class="title">50条评论</view>
+    <scroll-view  class="comments-c-v" scroll-y="{{true}}" scroll-top="0" >
+      <view  class="comments" wx:for="{{comments}}" wx:key="root_{{index}}">
+        <view class="left avatar">
+          <image class="image" src="{{item.avatar}}"></image>
+        </view>
+        <view class="right">
+          <view class="root-comment">
+            <view class="content">
+              <view class="user">@{{item.publisher}}</view>
+              <view class="text">
+                {{item.content}}<view class="ctime">{{item.ctime}}</view>
+              </view>
+            </view>
+             <view class="like">
+              <ws-icon type="my-like" size="18" color="#ddd" />
+              <view class="mt12">{{item.likes}}</view>
+            </view>
+          </view>
+          <view class="subnode" wx:if="{{item.replys.length>1}}" wx:for="{{item.replys}}" wx:for-item="reply" wx:for:index="key" wx:key="reply_{{key}}">
+            <view class="avatar">
+              <image class="image" src="{{item.avatar}}"></image>
+            </view>
+            <view class="reply">
+              <view class="content">
+                <view class="user">@{{reply.publisher}}</view>
+                <view wx:if="{{reply.replyName}}" class="text">
+                  回复”@{{reply.replyName}}“：{{reply.content}}
+                  <view class="ctime">{{reply.ctime}}</view>
+                </view>
+                <view wx:else class="text">
+                  {{reply.content}}<view class="ctime">{{reply.ctime}}</view>
+                </view>
+              </view>
+            </view>
+            <view class="like">
+                <ws-icon type="my-like" size="18" color="#ddd" />
+                <view class="mt12">{{reply.likes}}</view>
+            </view>
+          </view>
+          <view class="open">
+            展开56条回复
+            <image class="open-icon" src="/images/open.png"></image>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+    <view class="comment-input ws-hairline" style="bottom:{{keyboardHeight}}px" >
+      <input  class="input"
+      bindfocus="onfocus"
+      bindblur="onblur"
+      placeholder="有爱评论，说点儿好听的～"
+      placeholder-class="placeholder"
+      adjust-position="{{false}}"
+      value="{{commentValue}}"
+      bindconfirm="onConfirm"
+      bindinput='onInput'
+      ></input>
+      <view bindtap='onConfirm' data-value="{{commentValue}}" class="submit">提交</view>
+      <image class="face" src="/images/icon-face.png"></image>
+    </view>
+ </view>
+</ws-action-panel>
+
+<!-- <ani-test test animation="aniTest"  show="{{isShowPopup}}"  bind:click="onStartAnTest" ws-class="ani-test-area">
+</ani-test> -->
+
+<ws-toast cover id="ws-toast" />
+
+<wxs module="ws">
+  function memorize(fn) {
+    var cache = {}
+    return function() {
+      var args = Array.prototype.slice.call(arguments)
+      var _args = JSON.stringify(args)
+      return cache[_args] || (cache[_args] = fn.apply(fn, args))
+    }
+  }
+
+  function getVideoSize(str,w,h,) {
+    var size={};
+    if(w>h){
+      size.width='690rpx';
+      size.height =  '388rpx';
+    }else{
+      size.width='562rpx';
+      size.height= '812rpx';
+    }
+    return size[str]
+  }
+
+
+
+  module.exports = {
+    getVideoSize: getVideoSize
+  }
+</wxs>

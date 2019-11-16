@@ -1,0 +1,8 @@
+<view
+    catch:tap="emitEditEvent"
+    class="node"
+    data-type="vote"
+>
+    <image src="{{pic}}" />
+    <view class="content">{{content.title}}</view>
+</view>

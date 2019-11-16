@@ -1,55 +1,91 @@
 <view class="title">
-    <input placeholder="请输入标题" />
+    <view class="input">
+        <input placeholder="请输入标题" />
+    </view>
+    <view class="submit">提交</view>
 </view>
+
+<!-- todo -->
+<mf-popover
+    rect="{{popoverRect}}"
+    bind:tapitem="handleAddPopItemTap"
+    visible="{{popoverVisible}}"
+></mf-popover>
 
 <scroll-view
     bindscroll="handleScroll"
     scroll-y="{{canScroll}}"
 >
+    <view
+        class="top-placeholder"
+        style="height: {{titleHeight}}px;"
+    ></view>
+
     <view class="add-btn {{article.draging ? 'add-btn__hidden' : 'add-btn__shown'}}">
-        <mf-add-btn
-            catch:toggle="handleAddBtnTap"
-            data-sort="{{0}}"
-            visible="{{addBtnStates[0]}}"
-        ></mf-add-btn>
+        <view
+            bind:tap="toggleAddBtn"
+            id="add-0"
+        >+</view>
     </view>
     <movable-area
         class="article-area"
-        style="height: {{article.height}}px;"
+        style="height: {{article.height + 100}}px;"
     >
         <block
             wx:for="{{article.nodes}}"
             wx:key="id"
         >
             <movable-view
-                bind:touchmove="handleArticleNodeTouchMove"
-                bindtouchend="handleArticleNodeTouchEnd"
                 class="{{article.activeNodeIndex == index ? 'node-active__top' : ''}}"
                 damping="{{166}}"
-                friction="{{2}}"
                 direction="vertical"
                 disabled="{{true}}"
+                friction="{{2}}"
                 out-of-bounds="{{true}}"
                 style="width: 100%; height: {{item.height}}px;"
                 y="{{article.activeNodeIndex == index ? article.activeNodeY : item.y}}"
             >
                 <view class="node">
                     <view
-                        bindlongpress="handleArticleNodeLongPress"
-                        class="{{article.activeNodeIndex == index ? 'node-active__shadow node-active__scale-bigger' : 'node-silent'}}"
+                        bind:longpress="handleArticleNodeLongPress"
+                        bind:touchend="handleArticleNodeTouchEnd"
+                        bind:touchmove="handleArticleNodeTouchMove"
+                        class="content {{article.activeNodeIndex == index ? 'node-active__shadow node-active__scale-bigger' : 'node-silent'}}"
                         id="{{item.id}}"
                     >
-                        <mf-article-node content="{{item.id}}"></mf-article-node>
+                        <view style="flex: 1;">
+                            <mf-article-node
+                                catch:edit="handleEditNode"
+                                content="{{article.idDataMap[item.id]}}"
+                                data-id="{{item.id}}"
+                                type="{{item.type}}"
+                            ></mf-article-node>
+                        </view>
+                        <view
+                            class="node-action {{index != article.activeNodeIndex ? '' : 'node-action__hidden'}}"
+                        >
+                            <view
+                                catch:tap="handleRemoveNode"
+                                class="remove"
+                                data-id="{{item.id}}"
+                            >X</view>
+                            <view class="move">三</view>
+                        </view>
                     </view>
                     <view
                         class="add-btn {{article.draging ? 'add-btn__hidden' : 'add-btn__shown'}}"
                     >
-                        <mf-add-btn
+                        <view
+                            bind:tap="toggleAddBtn"
+                            id="add-{{index+1}}"
+                        >+</view>
+                        <!-- <mf-add-btn
+                            bind:tapitem="handleAddPopItemTap"
                             catch:toggle="handleAddBtnTap"
                             data-sort="{{item.sort}}"
                             direction="{{index == article.nodes.length-1 ? 'bottom' : 'top'}}"
                             visible="{{addBtnStates[item.sort]}}"
-                        ></mf-add-btn>
+                        ></mf-add-btn>-->
                     </view>
                 </view>
             </movable-view>

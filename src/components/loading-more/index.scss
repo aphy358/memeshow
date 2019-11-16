@@ -1,0 +1,11 @@
+// Loading More Component
+
+@import "../../assets/styles/index.scss";
+
+.mf_loading-more {
+    @include flex($justify: center);
+
+    &_text {
+        margin-left: $spacing-md;
+    }
+}

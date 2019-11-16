@@ -1,4 +1,11 @@
 <view class="swiper">
+  <navigation-bar 
+    back="{{ true }}"
+    placehold="{{ false }}"
+    color="white"
+    text-shadow="1px 1px 2px black"
+  />
+
   <hswiper 
     generic:hswiper-item="snapvideo" 
     items="{{items}}"

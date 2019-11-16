@@ -1,6 +1,9 @@
 {
   "component": true,
   "usingComponents": {
-    "mf-article-node-base": "../article-node-base/index"
+    "mf-article-node-base": "../article-node-base/index",
+    "mf-article-node-video": "../article-node-video/index",
+    "mf-article-node-location": "../article-node-location/index",
+    "mf-article-node-vote": "../article-node-vote/index"
   }
 }

@@ -1,0 +1,7 @@
+{
+    "component": true,
+    "usingComponents": {
+        "avatar": "../avatar/index",
+        "mf-button": "../form/button/index"
+    }
+}

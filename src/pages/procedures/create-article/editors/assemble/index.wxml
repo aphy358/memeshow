@@ -1,0 +1,21 @@
+<view class="action-bar">
+    <scroll-view
+        class="layouts"
+        enable-flex="{{true}}"
+        scroll-x="{{true}}"
+    >
+        <view
+            class="layout"
+            wx:for="{{layouts}}"
+            wx:key="id"
+        >
+            <view class="content"></view>
+        </view>
+    </scroll-view>
+    <view class="submit" bind:tap="submit">完成</view>
+</view>
+
+<canvas
+    canvas-id="canvas"
+    style="width: 100%; height: 750rpx;"
+/>

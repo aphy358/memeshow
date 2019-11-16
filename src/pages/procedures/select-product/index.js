@@ -26,6 +26,9 @@ Page({
 
   onLoad: function (option) {
     this.data.sid = option.sid
+  },
+
+  onReady() {
     const instance = procedures.get(this.data.sid)
     instance.register(this)
     console.log('procedure args: ', instance.args)
@@ -35,6 +38,12 @@ Page({
     setTimeout(() => {
       emitter.emit('toCaller', { id: instance.id })
     }, 4000)
+  },
+  onUnload() {
+    const instance = procedures.get(this.data.sid)
+    if (instance) {
+      instance.asProcedure().emit('complete')
+    }
   },
 
   /**

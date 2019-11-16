@@ -3,15 +3,16 @@
 // 字体集，替换后更新 icon 集
 @font-face {
     font-family: "iconfont"; /* project id 1473357 */
-    src: url("//at.alicdn.com/t/font_1473357_pj8qh2uhv5.eot");
-    src: url("//at.alicdn.com/t/font_1473357_pj8qh2uhv5.eot?#iefix")
+    src: url("//at.alicdn.com/t/font_1473357_4rqy4tdsx5b.eot");
+    src: url("//at.alicdn.com/t/font_1473357_4rqy4tdsx5b.eot?#iefix")
             format("embedded-opentype"),
-        url("//at.alicdn.com/t/font_1473357_pj8qh2uhv5.woff2") format("woff2"),
-        url("//at.alicdn.com/t/font_1473357_pj8qh2uhv5.woff") format("woff"),
-        url("//at.alicdn.com/t/font_1473357_pj8qh2uhv5.ttf") format("truetype"),
-        url("//at.alicdn.com/t/font_1473357_pj8qh2uhv5.svg#iconfont")
+        url("//at.alicdn.com/t/font_1473357_4rqy4tdsx5b.woff2") format("woff2"),
+        url("//at.alicdn.com/t/font_1473357_4rqy4tdsx5b.woff") format("woff"),
+        url("//at.alicdn.com/t/font_1473357_4rqy4tdsx5b.ttf") format("truetype"),
+        url("//at.alicdn.com/t/font_1473357_4rqy4tdsx5b.svg#iconfont")
             format("svg");
 }
+
 
 $icon: "mf_icon";
 
@@ -37,6 +38,10 @@ $icon: "mf_icon";
         content: "\e614";
     }
 
+    &-right-arrow:before {
+        content: "\e74b";
+    }
+
     &-like:before {
         content: "\e601";
     }
@@ -47,5 +52,13 @@ $icon: "mf_icon";
 
     &-checked:before {
         content: "\e610";
+    }
+
+    &-search:before {
+        content: "\e603";
+    }
+
+    &-home:before {
+        content: "\e621";
     }
 }

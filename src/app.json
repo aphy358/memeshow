@@ -1,18 +1,15 @@
 {
   "pages": [
-    "pages/video/index",
     "pages/index/index",
-    "pages/procedures/create-article/index",
-    "pages/procedures/create-video/edit",
-    "pages/publish/index",
-    "pages/procedures/edit-rich-text/index",
+    "pages/video/index",
+    "pages/article/index",
     "pages/follow/index",
     "pages/chat/index",
     "pages/usercenter/index",
     "pages/live/index",
     "pages/push/index",
-    "pages/create/index",
     "pages/my/index",
+    "pages/create/index",
     "pages/create/editor",
     "pages/create/image",
     "pages/create/text",
@@ -20,27 +17,60 @@
     "pages/create/cover",
     "pages/search/index",
     "pages/store/products/index",
-    "pages/article/index",
+    "pages/publish/index",
     "pages/procedures/select-product/index",
     "pages/procedures/select-product/edit",
     "pages/procedures/select-topic/index",
     "pages/procedures/select-relation/index",
-    "pages/procedures/create-video/index"
+    "pages/procedures/create-article/index",
+    "pages/procedures/create-article/editors/text/index",
+    "pages/procedures/create-article/editors/vote/index",
+    "pages/procedures/create-video/index",
+    "pages/procedures/create-article/editors/assemble/index",
+    "pages/procedures/create-video/edit"
   ],
-  "subpackages": [
-    {
-      "root": "packages/IM",
-      "pages": [
-        "pages/login/login",
-        "pages/recentchat/recentchat",
-        "pages/register/register",
-        "components/emoji/emoji",
-        "components/inputclear/inputclear",
-        "components/inputmodal/inputmodal",
-        "partials/chating/chating"
-      ]
-    }
-  ],
+  "tabBar": {
+    "color": "#9f9f9f",
+    "selectedColor": "#3b3b3b",
+    "borderStyle": "white",
+    "custom": true,
+    "backgroundColor": "white",
+    "list": [
+      {
+        "selectedIconPath": "assets/images/background/home_black.png",
+        "iconPath": "assets/images/background/home_gray.png",
+        "pagePath": "pages/index/index",
+        "text": "首页"
+      },
+      {
+        "selectedIconPath": "assets/images/background/focus_gray.png",
+        "iconPath": "assets/images/background/focus_black.png",
+        "pagePath": "pages/follow/index",
+        "text": "关注"
+      },
+      {
+        "selectedIconPath": "assets/images/background/start.png",
+        "iconPath": "assets/images/background/start.png",
+        "pagePath": "pages/create/index",
+        "text": "开始创作"
+      },
+      {
+        "selectedIconPath": "assets/images/background/msg_gray.png",
+        "iconPath": "assets/images/background/msg_black.png",
+        "pagePath": "pages/chat/index",
+        "text": "消息"
+      },
+      {
+        "selectedIconPath": "assets/images/background/me_black.png",
+        "iconPath": "assets/images/background/me_gray.png",
+        "pagePath": "pages/my/index",
+        "text": "我的"
+      }
+    ]
+  },
+  "usingComponents": {
+    "custom-tab-bar": "custom-tab-bar/index"
+  },
   "window": {
     "navigationBarBackgroundColor": "#FFFFFF",
     "navigationBarTextStyle": "black",

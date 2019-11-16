@@ -45,12 +45,12 @@ class HEvent {
     let isFind = false
     for (let i = 0; i < keys.length; i++) {
       const key = keys[i]
-      const array = _listenersObj[key]
+      let array = _listenersObj[key]
       for (let j = 0; j < array.length; j) {
         const item = array[j]
         if (item.id === listenerId) {
           isFind = true
-          item.splice(j, 1)
+          array.splice(j, 1)
           break
         }
       }

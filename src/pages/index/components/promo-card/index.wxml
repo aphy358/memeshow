@@ -1,0 +1,12 @@
+<!-- Promo Card Component -->
+
+<view class="mf_promo-card mf-class">
+    <view class="mf_promo-card_content">
+        <view class="mf_promo-card_title">{{ title }}</view>
+        <view wx:if="{{ !!timer }}" class="mf_promo-card_timer"></view>
+        <view wx:else class="mf_promo-card_desc">{{ desc }}</view>
+    </view>
+    <view class="mf_promo-card_image">
+        <image src="{{ image }}" mode="aspectFit"></image>
+    </view>
+</view>

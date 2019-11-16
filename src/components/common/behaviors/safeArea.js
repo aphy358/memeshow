@@ -25,6 +25,7 @@ export function safeArea(options = {}) {
     data: {
       safeArea: {},
       isIPhoneX: false,
+      isIPhone: false,
       statusBarHeight: 0
     },
 
@@ -33,11 +34,13 @@ export function safeArea(options = {}) {
         const {
           safeArea,
           isIPhoneX,
+          isIPhone,
           statusBarHeight
         } = res
         this.setData({
           safeArea,
           isIPhoneX,
+          isIPhone,
           statusBarHeight
         })
       })
@@ -62,12 +65,14 @@ function getSafeArea() {
             screenHeight,
             statusBarHeight
           } = res
+          const isIPhone = /iphone/i.test(model)
           const iphoneX = /iphone x/i.test(model)
           const iphoneNew = /iPhone11/i.test(model) && screenHeight === 812
           cache = {
             safeArea,
             statusBarHeight,
-            isIPhoneX: iphoneX || iphoneNew
+            isIPhoneX: iphoneX || iphoneNew,
+            isIPhone
           }
           resolve(cache)
         },

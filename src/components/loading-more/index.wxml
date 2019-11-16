@@ -1,0 +1,20 @@
+<!-- Loading More Component-->
+
+<view class="mf_loading-more">
+    <view wx:if="{{ error }}">
+        <mf-icon name="close"></mf-icon>
+        <text class="mf_loading-more_text">{{ errorText }}</text>
+    </view>
+    <view wx:elif="{{ nomore }}">
+        <mf-icon name="checked"></mf-icon>
+        <text class="mf_loading-more_text">{{ nomoreText }}</text>
+    </view>
+    <view wx:elif="{{ afterloading }}">
+        <mf-icon name="checked"></mf-icon>
+        <text class="mf_loading-more_text">{{ afterloadingText }}</text>
+    </view>
+    <view wx:else="{{ enloading }}">
+        <loading size="{{ 30 }}"></loading>
+        <text class="mf_loading-more_text">{{ enloadingText }}</text>
+    </view>
+</view>

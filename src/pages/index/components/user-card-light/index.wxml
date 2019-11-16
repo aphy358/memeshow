@@ -1,0 +1,10 @@
+<!-- User Card Light Component -->
+
+<view class="mf_user-card-light mf-class">
+    <avatar
+        url="{{ user.avatar }}"
+        size="{{ 120 }}"
+        preview="{{ preview }}"
+    ></avatar>
+    <view class="mf_user-card-light_name">{{ user.name }}</view>
+</view>

@@ -1,9 +1,12 @@
 import { switchStarStatus, addNewComment } from '@/components/comment/commentHelper.js'
+import { safeArea } from "@/components/common/behaviors/index"
 
 Component({
+  behaviors: [safeArea()],
+
   options: {
     // 允许页面的样式影响到组件
-    styleIsolation: 'apply-shared'
+    styleIsolation: 'shared'
   },
   
   properties: {
@@ -23,9 +26,6 @@ Component({
 
     // 回复谁？
     replyTo: null,
-
-    // 被回复的评论在所有评论的下标
-    dataIndex: -1,
   },
 
   methods: {
@@ -38,11 +38,8 @@ Component({
 
     // 显示评论弹框
     showCommentPopup(e){
-      const { dataindex } = e.currentTarget.dataset
-
       this.setData({
-        ifShowCommentPopup: true,
-        dataIndex: dataindex
+        ifShowCommentPopup: true
       })
     },
 
@@ -63,7 +60,10 @@ Component({
       const query = wx.createSelectorQuery()
       query.select('.article-wrap').boundingClientRect()
       query.exec(function(res){
-        _this.data.scrollTop = Math.abs(res[0].top)
+        _this.data.scrollTop = Math.abs(res[0].top) + _this.data.beginTop
+        if (Math.abs(res[0].top) <= _this.data.beginTop) {
+          _this.data.scrollTop = Math.abs(_this.data.beginTop - Math.abs(res[0].top))
+        }
         
         _this.setData({ 
           ifShowCommentInputPopup: true,
@@ -75,7 +75,7 @@ Component({
     // 隐藏评论输入框
     hideCommentInputPopup(e){
       // 键盘收起之后，要将页面滚动到键盘弹起之前的那个位置
-      if(this.data.scrollTop != null){
+      if(this.data.scrollTop != null && this.data.isIPhone){
         wx.pageScrollTo({
           scrollTop: this.data.scrollTop,
           duration: 300
@@ -94,11 +94,22 @@ Component({
       comments = addNewComment(comments, newComment)
       this.setData({ comments })
     },
+
+    getBeginTop(e) {
+      let _this = this
+
+      // 弹起键盘之前先记录页面的滚动位置，等键盘收起等时候再滚到原来的位置
+      const query = wx.createSelectorQuery()
+      query.select('.article-wrap').boundingClientRect()
+      query.exec(function(res){
+        _this.data.beginTop = res[0].top
+      })
+    },
   },
 
   lifetimes: {
     ready() {
-
+      this.getBeginTop()
     }
   }
 })

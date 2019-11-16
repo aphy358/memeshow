@@ -24,7 +24,7 @@
           {{ item.comment }}
         </view>
 
-        <view class="child-comments-wrap" wx:if="{{ item.childComments.length > 0 }}" bindtap="showCommentPopup" data-dataindex="{{ index }}">
+        <view class="child-comments-wrap" wx:if="{{ item.childComments.length > 0 }}">
           <view class="child-comments-item" wx:for="{{ item.childComments }}" wx:for-item="childComment" wx:key="{{ index }}">
             <text class="child-comments-reply-name">
               <text>{{ childComment.nickName }}</text>
@@ -44,6 +44,8 @@
       </view>
     </view>
   </block>
+
+  <view class="article-comment-more" bindtap="showCommentPopup">更多评论</view>
 </view>
 
 <!-- 底部评论栏 -->
@@ -62,9 +64,8 @@
 
 <!-- 评论弹出框 -->
 <comment-popup
-  generic:comment-list="comment-list-article"
+  generic:comment-list="comment-list-video"
   comments="{{ comments }}"
-  dataindex="{{ dataIndex }}"
   show="{{ ifShowCommentPopup }}"
   bind:hideCommentPopup="hideCommentPopup"
   bind:switchStarStatus="switchStarStatus"

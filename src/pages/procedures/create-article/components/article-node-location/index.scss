@@ -1,0 +1,27 @@
+@import "@/assets/styles/index.scss";
+
+$node-size: 170rpx;
+
+.node {
+  width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+
+  .map {
+    width: $node-size;
+    height: $node-size;
+    margin-right: $spacing-lg;
+
+    map {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .content {
+    height: $node-size;
+    flex: 1;
+    font-size: $font-size-lg;
+    color: $color-black-1;
+  }
+}

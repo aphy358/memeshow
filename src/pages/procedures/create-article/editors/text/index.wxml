@@ -1,0 +1,12 @@
+<view class="input-area">
+    <textarea
+        bindinput="handleInput"
+        placeholder="请输入"
+        maxlength="5000"
+        value="{{text}}"
+    ></textarea>
+</view>
+<view class="action">
+    <view class="hint">{{text.length}}/5000</view>
+    <view class="submit" bindtap="handleSubmit">完成</view>
+</view>

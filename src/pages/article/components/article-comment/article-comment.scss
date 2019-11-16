@@ -1,7 +1,8 @@
 @import '@/assets/styles/index.scss';
+@import './assets/comment-list-video-replace.scss';
 
 // 文章评论
-.article-comment-wrap{
+.article-comment-wrap {
   position: relative;
   overflow: hidden;
   background: white;
@@ -9,26 +10,22 @@
   color: #333333;
   font-size: 30rpx;
 
-  @at-root .article-comment-title{
+  @at-root .article-comment-title {
     position: relative;
     line-height: 100rpx;
 
     @include hairline(#eee, bottom);
   }
 
-  @at-root .article-comment-item{
+  @at-root .article-comment-item {
     position: relative;
     display: flex;
     padding: 20rpx 0;
     padding-bottom: 30rpx;
-    
+
     @include hairline(#eee, bottom);
 
-    &:last-child::after{
-      content: none;
-    }
-
-    @at-root .aci-avatar{
+    @at-root .aci-avatar {
       width: 70rpx;
       height: 70rpx;
       border-radius: 70rpx;
@@ -36,64 +33,61 @@
       margin-right: 16rpx;
     }
 
-    @at-root .aci-content-wrap{
+    @at-root .aci-content-wrap {
       width: 100%;
 
-      @at-root .aci-content-top{
+      @at-root .aci-content-top {
 
-        @at-root .aci-content-nickname{
+        @at-root .aci-content-nickname {}
 
-        }
-
-        .time-line{
+        .time-line {
           display: flex;
           justify-content: space-between;
           flex-direction: row;
           align-items: center;
           font-size: 22rpx;
           color: #999;
-          
-          @at-root .aci-content-time{
-          }
 
-          .star-wrap{
+          @at-root .aci-content-time {}
+
+          .star-wrap {
             position: relative;
             top: -40rpx;
             display: flex;
             justify-content: space-between;
             align-items: center;
 
-            .icon-dianzan{
+            .icon-dianzan {
               margin-left: 10rpx;
             }
           }
         }
       }
 
-      @at-root .aci-content-comment{
+      @at-root .aci-content-comment {
         margin-top: 10rpx;
       }
 
-      @at-root .child-comments-wrap{
+      @at-root .child-comments-wrap {
         margin-top: 24rpx;
         padding: 22rpx;
         background: #F6F8FA;
         border-radius: 4rpx;
         font-size: 26rpx;
 
-        .child-comments-item{
+        .child-comments-item {
           margin-bottom: 16rpx;
 
-          &:last-child{
+          &:last-child {
             margin-bottom: 0;
           }
 
-          .child-comments-reply-name{
+          .child-comments-reply-name {
             color: #959595;
           }
         }
 
-        .child-comments-more{
+        .child-comments-more {
           display: flex;
           justify-content: flex-end;
           align-items: center;
@@ -104,10 +98,20 @@
       }
     }
   }
+
+  @at-root .article-comment-more {
+    position: relative;
+    margin-top: -13px;
+    background: #fff;
+    color: red;
+    text-align: center;
+    padding: 30rpx 0;
+    margin-bottom: 5px;
+  }
 }
 
 // 底部评论栏
-.article-tabbar-wrap{
+.article-tabbar-wrap {
   position: fixed;
   width: 100%;
   left: 0;
@@ -120,7 +124,7 @@
 
   @include hairline();
 
-  @at-root .write-comment-wrap{
+  @at-root .write-comment-wrap {
     display: flex;
     align-items: center;
     float: left;
@@ -130,19 +134,19 @@
     border-radius: 70rpx;
     width: 300rpx;
 
-    @at-root .edit-comment-icon{
+    @at-root .edit-comment-icon {
       font-size: 42rpx;
       padding: 0 10rpx;
       color: #666;
     }
 
-    @at-root .edit-comment-input{
+    @at-root .edit-comment-input {
       line-height: 70rpx;
       color: #999;
     }
   }
 
-  @at-root .article-tabbar-icon-wrap{
+  @at-root .article-tabbar-icon-wrap {
     float: right;
     display: flex;
     align-items: center;
@@ -150,13 +154,13 @@
     width: 400rpx;
     justify-content: space-around;
 
-    @at-root .article-tabbar-icon{
+    @at-root .article-tabbar-icon {
       font-size: 42rpx;
       color: #999;
       width: 44rpx;
       height: 42rpx;
 
-      &:last-child{
+      &:last-child {
         margin-right: 10rpx;
       }
     }

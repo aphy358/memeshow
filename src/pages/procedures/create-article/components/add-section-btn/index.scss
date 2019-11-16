@@ -4,27 +4,29 @@
   $gray: #888;
 
   width: 100%;
-  height: 30px;
   overflow: visible;
   position: relative;
 
   .popover {
     position: absolute;
     left: 50%;
-    transition-property: transform;
-    transition-duration: 0.2s;
+    transition-property: transform opacity;
+    transition-duration: 0.1s;
   }
 
   .popover__hidden {
-    transform: translate(-50%, -20rpx) scale(0);
+    transform: translate(-50%, -$icon-size) scale(0);
+    opacity: 0;
   }
 
   .popover-shown__bottom {
     transform: translate(-50%, 50%) scale(1);
+    opacity: 1;
   }
 
   .popover-shown__top {
     transform: translate(-50%, -110%) scale(1);
+    opacity: 1;
   }
 
   .content {
@@ -32,10 +34,33 @@
     box-shadow: 0 2rpx 8rpx 8rpx #eee;
     display: flex;
     flex-flow: row wrap;
-    max-width: 400rpx;
-    border-radius: 6rpx;
-    background-color: #fff;
-    padding: 20rpx;
+    width: ($icon-size-lg + $spacing-lg) *4;
+    border-radius: $border-radius-lg;
+    background-color: $white;
+    padding: $spacing-lg;
+    justify-content: space-between;
+
+    .item {
+      width: $icon-size-lg;
+      display: flex;
+      flex-flow: column nowrap;
+      margin: 0 $spacing-sm;
+
+      view {
+        align-self: center;
+      }
+
+      .item-icon {
+        background: #888;
+        width: $icon-size-lg;
+        height: $icon-size-lg;
+      }
+
+      .item-text {
+        margin-top: $spacing-sm;
+        font-size: $font-size-sm;
+      }
+    }
   }
 
   .content__bottom::before {
@@ -63,11 +88,11 @@
   }
 
   .icon {
-    width: 40rpx;
-    height: 40rpx;
-    line-height: 40rpx;
+    width: $icon-size;
+    height: $icon-size;
+    line-height: $icon-size;
     color: $gray;
-    margin: 10rpx auto;
+    margin: 0 auto;
     border-radius: 50%;
     border: 4rpx solid $gray;
     text-align: center;

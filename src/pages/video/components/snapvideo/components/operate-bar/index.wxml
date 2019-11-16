@@ -1,8 +1,14 @@
 
 <view class="operate-bar-wrap" catchtap="true">
   <view class="operate-item">
-    <!-- 个人主页 -->
-    <image src="../../assets/avatar.png" class="avatar-img" />
+    <!-- 头像 -->
+    <view class="avatar-outer {{ onLive ? 'live' : '' }}">
+      <view class="avatar-img-wrap {{ onLive ? 'live' : '' }}">
+        <view wx:if="{{ onLive }}" class="avatar-live-text">直播</view>
+        <image src="../../assets/avatar.png" class="avatar-img" />
+      </view>
+      <view wx:if="{{ onLive }}" class="avatar-out-circle"></view>
+    </view>
 
     <!-- 关注 -->
     <image src="../../assets/follow.png" class="follow-wrap-img" />
@@ -10,9 +16,9 @@
 
   <!-- 小红心 -->
   <view class="operate-item">
-    <view class="operate-item-img-wrap">
-      <image class="operate-item-img heart-red {{ staredClazz }}" src="../../assets/icon-lilke@3x.png" bindtap="starNo" />
-      <image class="operate-item-img heart-white {{ staredClazz }}" src="../../assets/icon-lilke@3x.png" bindtap="starYes" />
+    <view class="operate-item-img-wrap" style="opacity: .9;">
+      <image class="operate-item-img heart-red {{ staredClazz }}" src="../../assets/redStar.png" bindtap="starNo" />
+      <image class="operate-item-img heart-white {{ staredClazz }}" src="../../assets/whiteStar.png" bindtap="starYes" />
     </view>
     <text class="operate-item-text">38900</text>
   </view>

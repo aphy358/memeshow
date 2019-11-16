@@ -1,10 +1,16 @@
 {
   "navigationStyle": "custom",
   "usingComponents": {
-    "navigation-bar": "../../components/base/navigation-bar/index",
+    "avatar": "../../components/avatar/index",
+    "navigation-bar": "../../components/navigation-bar/index",
     "tab": "../../components/base/tab/index",
     "tabs": "../../components/base/tabs/index",
     "waterfall": "../../components/base/list/index",
-    "waterfall-item": "../../components/list-item/list-item-home/index"
+    "waterfall-item": "../../components/list-item/list-item-post/index",
+    "mf-icon": "../../components/base/icon/index",
+    "loading-more": "../../components/loading-more/index",
+
+    "live-room": "./components/user-card-light/index",
+    "activity-card": "./components/promo-card/index"
   }
 }

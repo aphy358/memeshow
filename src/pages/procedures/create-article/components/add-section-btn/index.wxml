@@ -1,15 +1,19 @@
 <view class="add-section">
     <view class="popover {{visible ? 'popover-shown__'+direction : 'popover__hidden'}}">
         <view class="content {{'content__'+direction}}">
-            <view
-                class="item"
+            <block
                 wx:for="{{sectionTypes}}"
                 wx:key="name"
-                catch:
             >
-              <view style="width: 50rpx; height: 50rpx; background-color: #888;"></view>
-              <view class="item__text">{{item.title}}</view>
-            </view>
+                <view
+                    catch:tap="handleTapItem"
+                    class="item"
+                    data-type="{{item.name}}"
+                >
+                    <view class="item-icon"></view>
+                    <view class="item-text">{{item.title}}</view>
+                </view>
+            </block>
         </view>
     </view>
     <view

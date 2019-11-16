@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "hpopup": "/components/base/hpopup/hpopup"
+  }
+}

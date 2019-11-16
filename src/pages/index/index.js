@@ -1,21 +1,188 @@
-// home page
+// Home Page
 
-import { connect } from "../../libs/redux/index.js"
 import { categories, homePageItems, mediumItems } from "../../../data"
+// @todo connect reducer
+import { connect } from "../../libs/redux/index.js"
 
-const app = getApp()
-let store = app.store
+// const app = getApp()
+// let store = app.store
+// let pageConfig =
+// let mapStateToData = state => {
+//   return { testData: state.testData || store.getState().testData }
+// }
+// const mapDispatchToPage = dispatch => ({})
+// let connectedPageConfig = connect(
+//   mapStateToData,
+//   mapDispatchToPage
+// )(pageConfig)
 
-let pageConfig = {
+Page({
   data: {
+    // 相关频道下的长列表
     list: [],
-    categories: []
-  },
 
-  // 组件所需的参数
-  nvabarData: {
-    title: "", //导航栏 中间的标题
-    showCapsule: 1 //是否显示左上角图标
+    // 频道分类
+    categories: [],
+
+    // 直播列表
+    liveList: [
+      {
+        roomid: "123",
+        user: {
+          id: "123",
+          avatar:
+            "http://wx.qlogo.cn/mmhead/ver_1/ZGUEsHq3NgPXs2YVpv7M57RYM1yWv8iaRzJP3NDNicMoKVue4m0XozfNf3ib4wMMQVvQGqCuuMUuibPTXuibDmCB5nJdtN36hVWBD1Z8TWokUCwc/96",
+          name: "今晚打老虎"
+        }
+      },
+      {
+        roomid: "1234",
+        user: {
+          id: "1234",
+          avatar:
+            "http://wx.qlogo.cn/mmhead/ver_1/ZGUEsHq3NgPXs2YVpv7M57RYM1yWv8iaRzJP3NDNicMoKVue4m0XozfNf3ib4wMMQVvQGqCuuMUuibPTXuibDmCB5nJdtN36hVWBD1Z8TWokUCwc/96",
+          name:
+            "今晚打老虎今晚打老今晚打老今晚打老今晚打老今晚打老今晚打老今晚打老今晚打老"
+        }
+      },
+      {
+        roomid: "123",
+        user: {
+          id: "123",
+          avatar:
+            "http://wx.qlogo.cn/mmhead/ver_1/ZGUEsHq3NgPXs2YVpv7M57RYM1yWv8iaRzJP3NDNicMoKVue4m0XozfNf3ib4wMMQVvQGqCuuMUuibPTXuibDmCB5nJdtN36hVWBD1Z8TWokUCwc/96",
+          name: "今晚打老虎"
+        }
+      },
+      {
+        roomid: "1234",
+        user: {
+          id: "1234",
+          avatar:
+            "http://wx.qlogo.cn/mmhead/ver_1/ZGUEsHq3NgPXs2YVpv7M57RYM1yWv8iaRzJP3NDNicMoKVue4m0XozfNf3ib4wMMQVvQGqCuuMUuibPTXuibDmCB5nJdtN36hVWBD1Z8TWokUCwc/96",
+          name:
+            "今晚打老虎今晚打老今晚打老今晚打老今晚打老今晚打老今晚打老今晚打老今晚打老"
+        }
+      },
+      {
+        roomid: "123",
+        user: {
+          id: "123",
+          avatar:
+            "http://wx.qlogo.cn/mmhead/ver_1/ZGUEsHq3NgPXs2YVpv7M57RYM1yWv8iaRzJP3NDNicMoKVue4m0XozfNf3ib4wMMQVvQGqCuuMUuibPTXuibDmCB5nJdtN36hVWBD1Z8TWokUCwc/96",
+          name: "今晚打老虎"
+        }
+      },
+      {
+        roomid: "1234",
+        user: {
+          id: "1234",
+          avatar:
+            "http://wx.qlogo.cn/mmhead/ver_1/ZGUEsHq3NgPXs2YVpv7M57RYM1yWv8iaRzJP3NDNicMoKVue4m0XozfNf3ib4wMMQVvQGqCuuMUuibPTXuibDmCB5nJdtN36hVWBD1Z8TWokUCwc/96",
+          name:
+            "今晚打老虎今晚打老今晚打老今晚打老今晚打老今晚打老今晚打老今晚打老今晚打老"
+        }
+      },
+      {
+        roomid: "123",
+        user: {
+          id: "123",
+          avatar:
+            "http://wx.qlogo.cn/mmhead/ver_1/ZGUEsHq3NgPXs2YVpv7M57RYM1yWv8iaRzJP3NDNicMoKVue4m0XozfNf3ib4wMMQVvQGqCuuMUuibPTXuibDmCB5nJdtN36hVWBD1Z8TWokUCwc/96",
+          name: "今晚打老虎"
+        }
+      },
+      {
+        roomid: "1234",
+        user: {
+          id: "1234",
+          avatar:
+            "http://wx.qlogo.cn/mmhead/ver_1/ZGUEsHq3NgPXs2YVpv7M57RYM1yWv8iaRzJP3NDNicMoKVue4m0XozfNf3ib4wMMQVvQGqCuuMUuibPTXuibDmCB5nJdtN36hVWBD1Z8TWokUCwc/96",
+          name:
+            "今晚打老虎今晚打老今晚打老今晚打老今晚打老今晚打老今晚打老今晚打老今晚打老"
+        }
+      },
+      {
+        roomid: "123",
+        user: {
+          id: "123",
+          avatar:
+            "http://wx.qlogo.cn/mmhead/ver_1/ZGUEsHq3NgPXs2YVpv7M57RYM1yWv8iaRzJP3NDNicMoKVue4m0XozfNf3ib4wMMQVvQGqCuuMUuibPTXuibDmCB5nJdtN36hVWBD1Z8TWokUCwc/96",
+          name: "今晚打老虎"
+        }
+      },
+      {
+        roomid: "1234",
+        user: {
+          id: "1234",
+          avatar:
+            "http://wx.qlogo.cn/mmhead/ver_1/ZGUEsHq3NgPXs2YVpv7M57RYM1yWv8iaRzJP3NDNicMoKVue4m0XozfNf3ib4wMMQVvQGqCuuMUuibPTXuibDmCB5nJdtN36hVWBD1Z8TWokUCwc/96",
+          name:
+            "今晚打老虎今晚打老今晚打老今晚打老今晚打老今晚打老今晚打老今晚打老今晚打老"
+        }
+      },
+      {
+        roomid: "123",
+        user: {
+          id: "123",
+          avatar:
+            "http://wx.qlogo.cn/mmhead/ver_1/ZGUEsHq3NgPXs2YVpv7M57RYM1yWv8iaRzJP3NDNicMoKVue4m0XozfNf3ib4wMMQVvQGqCuuMUuibPTXuibDmCB5nJdtN36hVWBD1Z8TWokUCwc/96",
+          name: "今晚打老虎"
+        }
+      },
+      {
+        roomid: "1234",
+        user: {
+          id: "1234",
+          avatar:
+            "http://wx.qlogo.cn/mmhead/ver_1/ZGUEsHq3NgPXs2YVpv7M57RYM1yWv8iaRzJP3NDNicMoKVue4m0XozfNf3ib4wMMQVvQGqCuuMUuibPTXuibDmCB5nJdtN36hVWBD1Z8TWokUCwc/96",
+          name:
+            "今晚打老虎今晚打老今晚打老今晚打老今晚打老今晚打老今晚打老今晚打老今晚打老"
+        }
+      }
+    ],
+
+    // 轮播图促销列表
+    promos: [
+      {
+        id: 12,
+        url: "",
+        image: "//img.alicdn.com/simba/img/TB1bH3imXT7gK0jSZFpSuuTkpXa.jpg"
+      },
+      {
+        id: 123,
+        url: "",
+        image:
+          "//img.alicdn.com/tfs/TB1HrtNmp67gK0jSZPfXXahhFXa-520-280.jpg_q90_.webp"
+      }
+    ],
+
+    tabs: {
+      sticky: false,
+      offset: 0
+    },
+
+    hots: [
+      {
+        url: "https://avatars3.githubusercontent.com/u/25254?s=460&v=4"
+      },
+      {
+        url: "https://avatars2.githubusercontent.com/u/24228255?s=460&v=4"
+      },
+      {
+        url: "https://avatars1.githubusercontent.com/u/150330?s=460&v=4"
+      },
+      {
+        url: "https://avatars1.githubusercontent.com/u/810438?s=460&v=4"
+      }
+    ],
+
+    animations: [
+      "transform: translateX(0);z-index:1;opacity: 1;",
+      "transform: translateX(50%);z-index:2;",
+      "transform: translateX(100%);z-index:3;",
+      "@keyframe reset { frome { transform: translateX(100%);z-index:3; } 50% { transform: translateX(100%);z-index:3;display:none; } to { transform: translateX(0);opacity: 0.6;z-index:0;display:block } };animation-name: reset;animation-delay: 0; animation-duration: 2s;animation-fill-mode: forwards;"
+    ]
   },
 
   /**
@@ -23,10 +190,31 @@ let pageConfig = {
    */
 
   onLoad(options) {
-    if (options.pagename) wx.navigateTo({ url: "../article/detail" })
-
     this.initCategories()
     this.fetchList()
+    this.initTabs()
+  },
+
+  /**
+   * lifeTime Ready
+   */
+
+  onReady() {
+    this._timer = setInterval(() => {
+      this.setData({
+        animations: this.whirlAnimations(this.data.animations)
+      })
+    }, 2000)
+  },
+
+  /**
+   * lifeTime Unload
+   *
+   * 注销 observer
+   */
+
+  onUnload() {
+    this._observer.disconnect()
   },
 
   /**
@@ -46,7 +234,7 @@ let pageConfig = {
   },
 
   /**
-   * get List
+   * Get List
    */
 
   fetchList() {
@@ -54,99 +242,26 @@ let pageConfig = {
   },
 
   /**
-   * 进入商户个人中心
+   * 初始化频道 `tabs`
+   * 吸附
    */
 
-  toCustomer() {
-    wx.navigateTo({
-      url: "/pages/customer/index"
-    })
-  },
-
-  /**
-   * 切换导航
-   */
-
-  switchNav(e) {
-    if (this.data.currentTab == e.currentTarget.dataset.current) return
-    this.setData({
-      currentTab: e.currentTarget.dataset.current
-    })
-  },
-
-  changePage: function(e) {
-    setTimeout(() => {
-      if (e.detail.current > this.data.toView) {
-        this.setData(
-          {
-            toView: e.detail.current - 2
-          },
-          () => console.log(this.data.toView)
-        )
-      } else if (e.detail.current <= this.data.toView) {
-        this.setData(
-          {
-            toView: e.detail.current - 1
-          },
-          () => console.log(this.data.toView)
-        )
-      }
-      if (e.detail.current == 1) {
-        this.setData(
-          {
-            currentTab: e.detail.current,
-            list: { ...this.data.list, data1: articleItems }
-          },
-          () => {
-            // wx.hideLoading();
-            console.log(this.data.list)
+  initTabs() {
+    this._observer = wx.createIntersectionObserver()
+    this._observer
+      .relativeTo(".home-page_channel-list")
+      .observe(".home-page_header", res => {
+        this.setData({
+          tabs: {
+            sticky: !this.data.tabs.sticky,
+            offset: res.boundingClientRect.bottom
           }
-        )
-      } else {
-        this.setData(
-          {
-            currentTab: e.detail.current,
-            list: {
-              ...this.data.list,
-              ["data" + e.detail.current]: mediumItems
-            }
-          },
-          () => {
-            console.log(this.data.list)
-          }
-        )
-      }
-    }, 500)
+        })
+      })
   },
 
-  /**
-   * 跳转到搜索页面
-   */
-
-  search() {
-    wx.navigateTo({
-      url: "/pages/search/index"
-    })
-  },
-
-  /**
-   * 跳转到 `IM` 页面
-   */
-
-  gotoIM() {
-    wx.navigateTo({ url: "/pages/aaa/index" })
+  whirlAnimations(list) {
+    list.push(list.shift())
+    return list
   }
-}
-
-let mapStateToData = state => {
-  return { testData: state.testData || store.getState().testData }
-}
-
-const mapDispatchToPage = dispatch => ({})
-
-let connectedPageConfig = connect(
-  mapStateToData,
-  mapDispatchToPage
-)(pageConfig)
-
-Page(connectedPageConfig)
+})

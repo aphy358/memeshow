@@ -2,7 +2,7 @@
   "component": true,
   "usingComponents": {
     "video-advertise": "./components/video-advertise/index",
-    "comment-list-video": "./components/comment-list-video/index",
+    "comment-list-video": "/components/comment/comment-list-video/index",
     "operate-bar": "./components/operate-bar/index",
     "not-interested-in": "./components/not-interested-in/index",
     "video-progress": "./components/video-progress/index",

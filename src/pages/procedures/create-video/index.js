@@ -5,10 +5,16 @@ Page({
     sid: ''
   },
   onLoad(options) {
-    const sid = options.sid
-    this.data.sid = sid
-    const instance = procedures.get(sid)
-    instance.register(this)
+    this.data.sid = options.sid
+  },
+  onReady() {
+    procedures.get(this.data.sid).register(this)
+  },
+  onUnload() {
+    const instance = procedures.get(this.data.sid)
+    if (instance) {
+      instance.asProcedure().emit('complete')
+    }
   },
   handleClickNxt() {
     wx.navigateTo({

@@ -11,7 +11,7 @@ Component({
   properties: {
     /**
      * button 的类型
-     * `primary`, `secondary`, `
+     * `primary`, `secondary`,
      */
 
     type: {
@@ -33,6 +33,7 @@ Component({
      * Button 支持 `form` 的默认操作
      * `submit`, `reset`
      */
+
     formType: {
       type: String,
       value: ""
@@ -58,7 +59,10 @@ Component({
 
   methods: {
     onClick() {
+      if (this.data.disabled) return
       this.triggerEvent("click")
     }
-  }
+  },
+
+  externalClasses: ["mf-class"]
 })

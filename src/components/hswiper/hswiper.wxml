@@ -1,5 +1,6 @@
 <view 
   class="hswiper-wrap" 
+  style="width:{{ safeArea.width }}px;height:{{ safeArea.bottom }}px;"
   bindtouchstart="touchstart" 
   bindtouchmove="touchmove" 
   bindtouchend="touchend"

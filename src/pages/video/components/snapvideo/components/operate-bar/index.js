@@ -5,11 +5,18 @@ Component({
   },
   
   properties: {
-
+    doubleTapPos: {
+      type: Object,
+      value: {},
+      observer: "doubleTaped"
+    },
   },
 
   data: {
-    staredClazz: 'star-no'
+    staredClazz: 'star-no',
+
+    // 是否正在直播
+    onLive: true,
   },
 
   methods: {
@@ -23,6 +30,12 @@ Component({
 
     starNo(e) {
       this.setData({ staredClazz: 'star-no' })
+    },
+
+    doubleTaped(e) {
+      if (typeof e.detail !== 'undefined'){
+        this.setData({ staredClazz: 'star-yes' })
+      }
     }
   }
 })

@@ -24,6 +24,9 @@ Page({
     this.setData({ sid })
   },
 
+  onUnload() {
+    procedures.get(this.data.sid).asProcedure().emit('complete')
+  },
   /**
    * 处理表单提交
    * @param {object} detail - 表单内容

@@ -1,0 +1,18 @@
+<view
+    catch:tap="emitEditEvent"
+    class="node"
+    data-type="location"
+>
+    <view class="map">
+        <map
+            enable-rotate="{{rotate}}"
+            enable-scroll="{{scroll}}"
+            enable-zoom="{{zoom}}"
+            latitude="{{latitude}}"
+            longitude="{{longitude}}"
+            markers="{{markers}}"
+            scale="12"
+        />
+    </view>
+    <view class="content">{{name}}</view>
+</view>

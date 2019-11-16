@@ -1,0 +1,27 @@
+<!-- User Card Component -->
+
+<view class="mf-user_card">
+    <view class="mf-user_card-avatar">
+        <avatar
+            size="{{ 140 }}"
+            url="{{ userInfo.avatar }}"
+        ></avatar>
+    </view>
+    <view class="mf-user_card-name">
+        {{ userInfo.name }}
+    </view>
+    <view class="mf-user_card-bio">
+        你开始说骚话了么
+        <!-- {{ userInfo.signature }} -->
+    </view>
+    <view class="mf-user_card-stats">
+        11.3w粉丝
+    </view>
+    <view class="mf-user_card-btn">
+        <mf-button
+            circle
+            size="mini"
+            class="mf-class"
+        >关注</mf-button>
+    </view>
+</view>

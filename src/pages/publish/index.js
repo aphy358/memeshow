@@ -21,6 +21,10 @@ Page({
 
   },
 
+  onReady() {
+    const instance = procedures.open('create-article')
+  },
+
   handleEntryClicked(e) {
     const index = e.currentTarget.dataset.index
     switch (index) {
@@ -34,6 +38,7 @@ Page({
   },
 
   createArticle() {
+    const instance = procedures.open('create-article')
   },
 
   createVideo() {

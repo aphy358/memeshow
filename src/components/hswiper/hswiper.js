@@ -1,3 +1,4 @@
+import { safeArea } from "@/components/common/behaviors/index"
 import { animateTo } from '../common/utils'
 import { indexOfStringify } from '@/libs/utils.js'
 import HTouch from '@/libs/hTouch.js'
@@ -6,6 +7,8 @@ const touchHandle = new HTouch()
 const TIMING_FUNCTION_ARRAY = ['linear', 'ease-in', 'ease-in-out', 'ease-out', 'step-start', 'step-end']
 
 Component({
+  behaviors: [safeArea()],
+  
   data: {
     // 容器尺寸
     wrapSize: {
@@ -151,10 +154,17 @@ Component({
     },
 
     registerTouchEvent() {
-      touchHandle.listen('touchstart', e => this.onTouchStart(e))
-      touchHandle.listen('touchmove', e => this.onTouchMove(e))
-      touchHandle.listen('touchend', e => this.onTouchEnd(e))
-      touchHandle.listen('touchcancel', e => this.onTouchCancel(e))
+      this.data.listenerId1 = touchHandle.listen('touchstart', e => this.onTouchStart(e))
+      this.data.listenerId2 = touchHandle.listen('touchmove', e => this.onTouchMove(e))
+      this.data.listenerId3 = touchHandle.listen('touchend', e => this.onTouchEnd(e))
+      this.data.listenerId4 = touchHandle.listen('touchcancel', e => this.onTouchCancel(e))
+    },
+
+    removeListeners() {
+      touchHandle.removeListener(this.data.listenerId1)
+      touchHandle.removeListener(this.data.listenerId2)
+      touchHandle.removeListener(this.data.listenerId3)
+      touchHandle.removeListener(this.data.listenerId4)
     },
 
     initialize() {
@@ -228,7 +238,7 @@ Component({
     onTouchEnd(e, eventType = 'touchend') {
       e.type = eventType
       this.setData({ touchEvent: e })
-
+      
       if(this.data.forbidSwipe)  return
 
       const { isVertical, wrapSize, elements, headElement, tailElement, elementData, elemSize, items,
@@ -466,6 +476,9 @@ Component({
     ready() {
       this.initialize()
       this.registerTouchEvent()
-    }
+    },
+    detached() {
+      this.removeListeners()
+    },
   }
 })

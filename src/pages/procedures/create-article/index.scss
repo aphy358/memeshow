@@ -4,27 +4,81 @@ $silent-node-shadow: 0 0 4px $color-grey-5;
 $active-node-shadow: 0 0 5px $color-grey-3;
 $active-node-scale-rate: 1.03;
 
-
 .title {
-  height: 5vh;
+  padding: $spacing-lg $spacing-xl;
+  display: flex;
+  width: 100%;
+  flex-flow: row nowrap;
+  position: fixed;
+  top: 0;
+  background-color: $white;
+  box-sizing: border-box;
+  z-index: $zindex-search-bar;
+
+  view {
+    display: inline-block;
+  }
+
+  .input {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    align-self: center;
+
+    input {
+      width: 100%;
+    }
+  }
+
+  .submit {
+    padding: $spacing-sm 0;
+    border-radius: 999rpx;
+    font-size: $font-size-lg;
+    background-color: $color-text-link;
+    color: $white;
+    width: 140rpx;
+    text-align: center;
+    align-self: center;
+  }
 }
 
 scroll-view {
-  height: 95vh;
+  height: 100vh;
+  background-color: $color-bg;
 }
 
 .article-area {
   width: 100%;
-  // border: 4rpx solid #000;
 
   .node {
     width: 100%;
     overflow: visible;
+
+    .content {
+      display: flex;
+      flex-flow: row nowrap;
+      padding: $spacing-lg;
+      background-color: $white;
+
+      .node-action {
+        width: 60rpx;
+        display: flex;
+        flex-flow: column nowrap;
+
+        view {
+          align-self: center;
+        }
+      }
+
+      .node-action__hidden {
+        opacity: 0;
+      }
+    }
   }
 
   .node-active__top {
     position: relative;
-    z-index: $zindex-modal;
+    z-index: $zindex-search-bar - 1;
   }
 
   .node-active__shadow {
@@ -42,7 +96,19 @@ scroll-view {
 
 .add-btn {
   position: relative;
-  z-index: $zindex-action-sheet;
+  z-index: $zindex-search-bar - 2;
+  padding: $spacing-lg 0;
+
+  view {
+    width: $icon-size;
+    height: $icon-size;
+    line-height: $icon-size;
+    border-radius: $border-radius-circle;
+    border: 4rpx $color-border solid;
+    text-align: center;
+    margin: 0 auto;
+    box-sizing: content-box;
+  }
 }
 
 .add-btn__hidden {

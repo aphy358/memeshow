@@ -1,0 +1,70 @@
+/* navigation bar component .wxss */
+
+@import "@/assets/styles/index.scss";
+
+.mf_navigation-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 999999;
+    overflow: hidden;
+
+    &_body {
+        box-sizing: border-box;
+        overflow: hidden;
+        text-align: center;
+
+        @include flex();
+
+        &_left {
+            @include flex($align-items: center, $justify: flex-end);
+            overflow: hidden;
+
+            &_back {
+                position: relative;
+                @include flex($align-items: center);
+
+                @at-root .mf_navigation-bar-icon{
+                    width: 50%;
+                }
+
+                &.go-home {
+                    @include flex($align-items: center, $justify: center);
+
+                    &::before {
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 200%;
+                        height: 200%;
+                        border: 1px solid #dddddd;
+                        content: "";
+                        border-radius: 9999px;
+                        box-sizing: border-box;
+                        transform: scale(.5);
+                        transform-origin: left top;
+                        z-index: -1;
+                    }
+
+                    &::after {
+                        content: "";
+                        position: absolute;
+                        background: #ccc;
+                        top: 50%;
+                        left: 50%;
+                        width: 1rpx;
+                        height: 60%;
+                        transform: translate(-50%, -50%) scaleX(0.5);
+                    }
+                }
+
+            }
+        }
+
+        &_center {
+            flex: 1;
+            @include flex($align-items:center, $justify: center);
+        }
+    }
+}

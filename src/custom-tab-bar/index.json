@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "select-creator": "./components/select-creator/index"
+  }
+}

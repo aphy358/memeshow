@@ -1,0 +1,83 @@
+<form
+    bindsubmit="submit"
+    class="vote"
+>
+    <view class="vote-options">
+        <view class="vote-option border-bottom">
+            <view class="vote-hint gap-right">投票描述</view>
+            <input
+                name="title"
+                value="{{title}}"
+                placeholder="输入投票主题"
+            />
+        </view>
+        <view
+            class="vote-option border-bottom"
+            wx:for="{{options}}"
+            wx:key="{{index}}"
+        >
+            <view class="option-circle gap-right"></view>
+            <view class="option-text">
+                <input
+                    placeholder="选项 {{index + 1}}"
+                    value="{{item.text}}"
+                    bindinput="handleOptionInput"
+                    data-index="{{index}}"
+                />
+            </view>
+            <view
+                bind:tap="handleRemoveOption"
+                class="option-remove"
+                data-index="{{index}}"
+                wx:if="{{index > 1}}"
+            ></view>
+        </view>
+        <view
+            bind:tap="handleAddOption"
+            class="add"
+        >+ 添加选项</view>
+    </view>
+
+    <view class="addition">
+        <view class="option border-bottom">
+            <view class="vote-hint gap-right">截止日期</view>
+            <picker
+                bindchange="handleDateChange"
+                mode="date"
+                name="date"
+                start="{{end.date.start}}"
+                value="{{end.date.content}}"
+            >
+                <view class="vote-text">{{end.date.content ? end.date.content : '无截止日期'}}</view>
+            </picker>
+        </view>
+        <view class="option border-bottom">
+            <view class="vote-hint gap-right">截止时间</view>
+            <picker
+                bindchange="handleTimeChange"
+                mode="time"
+                name="time"
+                value="{{end.time.content}}"
+            >
+                <view class="vote-text">{{end.time.content ? end.time.content : '无截止时间'}}</view>
+            </picker>
+        </view>
+        <view class="option">
+            <view class="vote-hint gap-right">投票类型</view>
+            <picker
+                bindchange="handleTypeChange"
+                mode="selector"
+                name="type"
+                range="{{type.range}}"
+                value="{{type.value}}"
+            >
+                <view class="vote-text">{{type.range[type.value]}}</view>
+            </picker>
+        </view>
+    </view>
+
+    <button
+        class="submit"
+        form-type="submit"
+    >完成</button>
+</form>

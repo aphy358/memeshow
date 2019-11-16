@@ -2,8 +2,6 @@
 
 @import "@/assets/styles/index.scss";
 
-$content: mf_tabs-content;
-
 .mf_tabs {
     @include flex($justify: space-between);
     background: $white;
@@ -13,17 +11,21 @@ $content: mf_tabs-content;
         height: auto;
         width: auto;
     }
-}
 
-.#{$content} {
-    flex: 1;
-    @include flex($justify: space-between);
-}
+    &-content {
+        flex: 1;
+        @include flex($justify: space-between);
 
-.#{$content}__scroll {
-    flex: 1;
-    @include flex();
+        @at-root &__scroll {
+            flex: 1;
+            @include flex($align-items: flex-start);
 
-    // scroll view 中出现中文会折行
-    white-space: nowrap;
+            // scroll view 中出现中文会折行
+            white-space: nowrap;
+        }
+    }
+
+    &__sticky {
+        position: fixed;
+    }
 }

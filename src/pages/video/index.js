@@ -33,8 +33,6 @@ Page({
       new VideoCursorDataDelegator ()
     )
 
-    
-
     wx.videoCursorData = videoCursorData
 
 

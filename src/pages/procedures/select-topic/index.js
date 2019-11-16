@@ -76,10 +76,18 @@ Page({
    */
   onLoad(options) {
     this.data.sid = options.sid
-    const instance = procedures.get(this.data.sid)
-    instance.register(this)
+  },
+
+  onReady() {
+    procedures.get(this.data.sid).register(this)
   },
   
+  onUnload() {
+    const instance = procedures.get(this.data.sid)
+    if (instance) {
+      instance.asProcedure().emit('complete')
+    }
+  },
   /**
    * 当输入框有输入时 使能确认按钮
    * @param {object} detail - 输入框输入事件

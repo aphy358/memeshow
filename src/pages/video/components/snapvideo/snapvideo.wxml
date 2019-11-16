@@ -2,12 +2,10 @@
 <view 
   wx:if="{{ !!item }}" 
   class="snap-video-wrap"
-
-  bindlongpress="longpress"
 >
   
   <!-- 视频 -->
-  <view class="snap-video-inner" bindtap="tapVideo">
+  <view class="snap-video-inner" bindtap="tapVideo" bindlongpress="longpress">
     <video 
       wx:if="{{ ifShowVideo }}"
       id="{{ 'videoId' + item.id }}" class="snap-video-video"
@@ -32,20 +30,23 @@
 
   <!-- 右侧操作栏，包括点赞、评论、关注、转发等 -->
   <operate-bar 
-    class="{{ !touchProgress ? '' : 'visible-hidden' }}" 
+    class="{{ !clearScreen && !touchProgress ? '' : 'visible-hidden' }}" 
+    doubleTapPos="{{ doubleTapPos }}" 
     bind:showCommentPopup="showCommentPopup" 
   />
 
 
   <!-- 广告 -->
   <video-advertise 
-    class="{{ !touchProgress ? '' : 'visible-hidden' }}" 
+    class="{{ !clearScreen && !touchProgress ? '' : 'visible-hidden' }}" 
     video-active="{{ active }}" 
+    bindlongpress="longpress"
   />
 
 
   <!-- 底部进度条 -->
   <video-progress 
+    class="{{ !clearScreen ? '' : 'visible-hidden' }}" 
     active="{{ active }}"
     touchEvent="{{ touchEvent }}" 
     isLoading="{{ isLoading }}"
@@ -80,7 +81,10 @@
 
 
   <!-- 屏幕上闪现的点赞红心 -->
-  <red-stars doubleTapPos="{{ doubleTapPos }}" />
+  <red-stars 
+    doubleTapPos="{{ doubleTapPos }}" 
+    active="{{ active }}"
+  />
 
 
   <!-- 更多操作弹层（不感兴趣等） -->

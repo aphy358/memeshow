@@ -1,8 +1,9 @@
 {
-  "navigationBarTitleText": "",
+  "navigationStyle": "custom",
   "usingComponents": {
+    "navigation-bar": "/components/navigation-bar/index",
     "article-recommend-list" : "/components/base/list/index",
-    "waterfall-item": "/components/list-item/list-item-home/index",
+    "waterfall-item": "/components/list-item/list-item-post/index",
     "article-follow": "./components/article-follow/article-follow",
     "article-content": "./components/article-content/article-content",
     "article-comment": "./components/article-comment/article-comment"

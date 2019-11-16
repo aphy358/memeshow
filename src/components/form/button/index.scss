@@ -3,26 +3,41 @@
 @import "@/assets/styles/index";
 
 .mf-button {
+    min-width: 120rpx;
+    min-height: 50rpx;
     border-radius: $border-radius-lg;
 
-    &__primary {
+    &_large {
+        padding: $spacing-lg 0;
+        font-size: $font-size-lg;
+        line-height: $line-height-lg;
+    }
+
+    &_mini {
+        font-size: $font-size-base;
+        line-height: $line-height-base;
+    }
+
+    &_primary {
         background: $color-primary;
         color: $white;
     }
 
-    &__secondary {
+    &_secondary {
         border: 2rpx solid $color-primary;
         color: $color-primary;
     }
+
     &__circle {
-        border-radius: $border-radius-circle;
+        // todo auto set border-radius
+        border-radius: 30rpx;
+    }
+
+    &__actived {
+        opacity: $opacity-actived;
     }
 
     &__disabled {
-
+        opacity: $opacity-disabled;
     }
-
-    // &__actived {
-    //     background: rgba(254,44,84,0.6);
-    // }
 }

@@ -22,6 +22,8 @@ class HTouch extends HEvent {
   }
 
   touchstart(e) {
+    // 事件原本的 timeStamp 不准，所以这里重新赋值
+    e.timeStamp = +new Date()
     if(!e.changedTouches[0])  return
 
     // 如果当前时间戳和上一次 touchend 时记录的时间戳间隔小于设定的值，则不允许滑动屏幕（用于限制用户过于快速而频繁的滑动屏幕而导致异常）
@@ -48,6 +50,8 @@ class HTouch extends HEvent {
   }
 
   touchmove(e) {
+    // 事件原本的 timeStamp 不准，所以这里重新赋值
+    e.timeStamp = +new Date()
     if(!e.changedTouches[0] || this.disableMove)  return
 
     this.endX = e.changedTouches[0].clientX
@@ -77,6 +81,8 @@ class HTouch extends HEvent {
   }
 
   touchend(e, eventType = 'touchend') {
+    // 事件原本的 timeStamp 不准，所以这里重新赋值
+    e.timeStamp = +new Date()
     if(!e.changedTouches[0] || this.disableMove)  return
 
     const times = e.timeStamp - this.touchTime

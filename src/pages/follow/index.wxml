@@ -17,7 +17,6 @@
                     <avatar
                         size="{{ 100 }}"
                         url="{{ follower.user.avatar }}"
-                        class="mf-class"
                     ></avatar>
                 </view>
                 <view class="page_follow_online-list_follower-name" >
@@ -26,7 +25,7 @@
             </view>
         </scroll-view>
     </view>
-<!--
+
     <view class="page_follow_recommand">
         <view class="page_follow_recommand_title">
             <view class="page_follow_recommand_title__type">
@@ -34,7 +33,7 @@
             </view>
             <view class="page_follow_recommand_title__more">
                 <text>查看更多</text>
-                <mf-icon name="right-arrow" size="{{ 10 }}"></mf-icon>
+                <mf-icon name="right-arrow" size="{{ 15 }}"></mf-icon>
             </view>
         </view>
         <view class="page_follow_recommand_body">
@@ -43,14 +42,18 @@
                 enable-flex
                 class="page_follow_recommand_list"
             >
-                <view class="page_follow_recommand_podcaster">
-                    <view class="page_follow_recommand_podcaster_avatar">
-                        <avatar></avatar>
-                    </view>
-                    <view class="page_follow_recommand_podcaster_bio"></view>
-                    <view class="page_follow_recommand_podcaster_follow"></view>
+                <view
+                    class="page_follow_recommand_list-user"
+                    wx:for="{{ recommand }}"
+                >
+                    <user-card user-info="{{ item.user }}" ></user-card>
                 </view>
             </scroll-view>
         </view>
-    </view> -->
+    </view>
+
+    <view class="page_follow_post">
+    </view>
 </view>
+
+<custom-tab-bar selected="{{ 1 }}"></custom-tab-bar>

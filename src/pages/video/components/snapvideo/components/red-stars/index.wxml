@@ -1,11 +1,11 @@
 
 <block wx:for="{{ stars }}" wx:key="{{ index }}">
-  <image 
-    class="snapvideo-red-star" 
-    mode="widthFix" 
-    style="{{ item.style }}"
-    src="../../assets/redStar.png" 
-    animation="{{ item.animation }}" 
-  />
+  <view class="snapvideo-red-star-wrap" style="{{ item.wrapStyle }}" bind:tap="tapStar">
+    <image 
+      class="snapvideo-red-star" 
+      mode="widthFix" 
+      src="../../assets/redStar.png" 
+    />
+  </view>
 </block>
   

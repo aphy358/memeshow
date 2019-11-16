@@ -40,21 +40,20 @@ export default VideoCursorDataDelegator
 import VideoCursorDataDelegator from './assets/videoCursorDataDelegator'
 import CursorData from '@/libs/cursorData/index.js'
 
+const videoCursorData = new CursorData(
+  {
+    queryLimit: 10,
+    maxSize: 50,
+  },
+  new VideoCursorDataDelegator ()
+)
+
 Page({
   onLoad() {
-    let videoCursorData = new CursorData(
-      {
-        queryLimit: 10,
-        maxSize: 50,
-      },
-      new VideoCursorDataDelegator ()
-    )
-
-    this.setData({ videoCursorData })
   }
 
   loadMore() {
-    this.data.videoCursorData.batchNext(10)
+    videoCursorData.batchNext(10)
   }
 })
 ```

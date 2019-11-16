@@ -35,7 +35,22 @@ Component({
           name: 'product',
           icon: '',
           title: '商品'
-        }
+        },
+        {
+          name: 'location',
+          icon: '',
+          title: '位置'
+        },
+        {
+          name: 'vote',
+          icon: '',
+          title: '投票'
+        },
+        {
+          name: 'assemble',
+          icon: '',
+          title: '拼图'
+        },
       ]
     }
   },
@@ -44,5 +59,9 @@ Component({
     handleToggle() {
       this.triggerEvent('toggle')
     },
+    handleTapItem(e) {
+      const type = e.currentTarget.dataset.type
+      this.triggerEvent('tapitem', type)
+    }
   }
 })

@@ -14,13 +14,14 @@ const _comments = [
     commentLevel: 1,
     // 评论时间
     commentTime: '2019-9-20 10:00:21',
+    commentTimeText: '10分钟前',
     commentId: 243253,
     // 总点赞数量
     starCount: 9197,
     // 我是否已经点赞
     iAlreadyStared: true,
     // 该评论下对应的子评论条数
-    childCommentCount: 23,
+    childCommentCount: 0,
     // 该评论下对应的子评论（做分页加载？）
     childComments: [
     ],
@@ -39,13 +40,14 @@ const _comments = [
     commentLevel: 1,
     // 评论时间
     commentTime: '2019-9-20 10:00:21',
+    commentTimeText: '10分钟前',
     commentId: 243254,
     // 总点赞数量
     starCount: 197,
     // 我是否已经点赞
     iAlreadyStared: true,
     // 该评论下对应的子评论条数
-    childCommentCount: 23,
+    childCommentCount: 2,
     // 该评论下对应的子评论（做分页加载？）
     childComments: [
       {
@@ -55,6 +57,7 @@ const _comments = [
         comment: '二级评论。。。',
         commentLevel: 2,
         commentTime: '2019-9-20 10:20:21',
+        commentTimeText: '10分钟前',
         commentId: 243255,
         parentId: 243254,
         starCount: 17,
@@ -72,6 +75,7 @@ const _comments = [
         comment: '二级评论。。。',
         commentLevel: 2,
         commentTime: '2019-9-20 10:20:21',
+        commentTimeText: '10分钟前',
         commentId: 243256,
         parentId: 243254,
         starCount: 17,
@@ -93,13 +97,14 @@ const _comments = [
     commentLevel: 1,
     // 评论时间
     commentTime: '2019-9-20 10:00:21',
+    commentTimeText: '10分钟前',
     commentId: 243257,
     // 总点赞数量
     starCount: 197,
     // 我是否已经点赞
     iAlreadyStared: true,
     // 该评论下对应的子评论条数
-    childCommentCount: 23,
+    childCommentCount: 1,
     // 该评论下对应的子评论（做分页加载？）
     childComments: [
       {
@@ -109,6 +114,7 @@ const _comments = [
         comment: '二级评论。。。二级评论。。。二级评论。。。二级评论。。。二',
         commentLevel: 2,
         commentTime: '2019-9-20 10:20:21',
+        commentTimeText: '10分钟前',
         commentId: 243258,
         parentId: 243257,
         starCount: 17,
@@ -130,13 +136,14 @@ const _comments = [
     commentLevel: 1,
     // 评论时间
     commentTime: '2019-9-20 10:00:21',
+    commentTimeText: '10分钟前',
     commentId: 243259,
     // 总点赞数量
     starCount: 197,
     // 我是否已经点赞
     iAlreadyStared: true,
     // 该评论下对应的子评论条数
-    childCommentCount: 23,
+    childCommentCount: 2,
     // 该评论下对应的子评论（做分页加载？）
     childComments: [
       {
@@ -146,6 +153,7 @@ const _comments = [
         comment: '二级评论。。。',
         commentLevel: 2,
         commentTime: '2019-9-20 10:20:21',
+        commentTimeText: '10分钟前',
         commentId: 24325410,
         parentId: 243259,
         starCount: 17,
@@ -158,6 +166,7 @@ const _comments = [
         comment: '二级评论。。。',
         commentLevel: 2,
         commentTime: '2019-9-20 10:20:21',
+        commentTimeText: '10分钟前',
         commentId: 24325411,
         parentId: 243259,
         starCount: 17,
@@ -179,13 +188,14 @@ const _comments = [
     commentLevel: 1,
     // 评论时间
     commentTime: '2019-9-20 10:00:21',
+    commentTimeText: '10分钟前',
     commentId: 24325312,
     // 总点赞数量
     starCount: 197,
     // 我是否已经点赞
     iAlreadyStared: true,
     // 该评论下对应的子评论条数
-    childCommentCount: 23,
+    childCommentCount: 2,
     // 该评论下对应的子评论（做分页加载？）
     childComments: [
       {
@@ -195,6 +205,7 @@ const _comments = [
         comment: '二级评论。。。',
         commentLevel: 2,
         commentTime: '2019-9-20 10:20:21',
+        commentTimeText: '10分钟前',
         commentId: 24325413,
         parentId: 24325312,
         starCount: 17,
@@ -207,6 +218,7 @@ const _comments = [
         comment: '二级评论。。。',
         commentLevel: 2,
         commentTime: '2019-9-20 10:20:21',
+        commentTimeText: '10分钟前',
         commentId: 24325414,
         parentId: 24325312,
         starCount: 17,
