@@ -74,7 +74,7 @@ Component({
       wx.createSelectorQuery().in(this).selectAll('.child-comment-wrap').boundingClientRect((rects) => {
         const thatRect = rects.find(n => n.dataset.comment.commentId === comment.commentId)
         if (thatRect) {
-          thatComment.animation = animateTo({'height': thatRect.height + 450}, 360)
+          thatComment.animation = animateTo({'height': thatRect.height + 380}, 360)
           this.setData({ commentsShow })
 
           setTimeout(() => {
@@ -85,7 +85,7 @@ Component({
                 this.setData({ commentsShow })
               }
             }).exec()
-          }, 500);
+          }, 450);
         }
       }).exec()
     },
