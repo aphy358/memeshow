@@ -1,0 +1,174 @@
+<view class="m-b-xl">
+    <view class="h2 m-b-sm m-h-lg">基本用法</view>
+    <view class="cell">
+        <view class="cell__header">
+            <view class="cell__title">标题文字</view>
+        </view>
+    </view>
+</view>
+
+<view class="m-b-xl">
+    <view class="h2 m-b-sm m-h-lg">箭头</view>
+    <view class="cell">
+        <view class="cell__header">
+            <view class="cell__title">标题文字</view>
+        </view>
+        <view class="cell__tail">
+            <view class="icon icon-chevron-right cell__icon-link"></view>
+        </view>
+    </view>
+</view>
+
+<view class="m-b-xl">
+    <view class="h2 m-b-sm m-h-lg">内容</view>
+    <view class="cell">
+        <view class="cell__header">
+            <view class="cell__title">标题文字</view>
+        </view>
+        <view class="cell__tail">
+            <view class="cell__detail">详细信息</view>
+            <view class="icon icon-chevron-right cell__icon-link"></view>
+        </view>
+    </view>
+</view>
+
+<view class="m-b-xl">
+    <view class="h2 m-b-sm m-h-lg">icon</view>
+    <view class="cell">
+        <view class="cell__header">
+            <image
+                src="./logo.png"
+                mode="aspectFill"
+                class="cell__img"
+            ></image>
+            <view class="cell__title">标题文字</view>
+        </view>
+        <view class="cell__tail">
+            <view class="cell__detail">详细信息</view>
+        </view>
+    </view>
+</view>
+
+<view class="m-b-xl">
+    <view class="h2 m-b-sm m-h-lg">自定义尾部</view>
+    <view class="cell">
+        <view class="cell__header">
+            <view class="cell__title">标题文字</view>
+        </view>
+        <view class="cell__tail">
+            <switch checked></switch>
+        </view>
+    </view>
+</view>
+
+<view class="m-b-xl">
+    <view class="h2 m-b-sm m-h-lg">带描述信息</view>
+    <view class="cell">
+        <view class="cell__header">
+            <image
+                src="./logo.png"
+                mode="aspectFill"
+                class="cell__img"
+            ></image>
+            <view class="cell__title--multi">
+                <view class="cell__title">标题文字</view>
+                <view class="cell__desc">描述文字</view>
+            </view>
+        </view>
+        <view class="cell__tail">
+            <view class="cell__detail">详细信息</view>
+        </view>
+    </view>
+</view>
+
+<view class="m-b-xl">
+    <view class="h2 m-b-sm m-h-lg">激活</view>
+    <view class="cell" hover-class="cell--actived">
+        <view class="cell__header">
+            <image
+                src="./logo.png"
+                mode="aspectFill"
+                class="cell__img"
+            ></image>
+            <view class="cell__title--multi">
+                <view class="cell__title">标题文字</view>
+                <view class="cell__desc">描述文字</view>
+            </view>
+        </view>
+        <view class="cell__tail">
+            <view class="cell__detail">详细信息</view>
+        </view>
+    </view>
+</view>
+
+<view class="m-b-xl">
+    <view class="h2 m-b-sm m-h-lg">列表</view>
+    <view class="cell__group">
+        <view class="cell">
+            <view class="cell__header">
+                <view class="cell__title">标题文字</view>
+            </view>
+        </view>
+        <view class="cell">
+            <view class="cell__header">
+                <view class="cell__title">标题文字</view>
+            </view>
+            <view class="cell__tail">
+                <view class="cell__detail">详细信息</view>
+                <view class="icon icon-chevron-right cell__icon-link"></view>
+            </view>
+        </view>
+        <view class="cell">
+            <view class="cell__header">
+                <image
+                    src="./logo.png"
+                    mode="aspectFill"
+                    class="cell__img"
+                ></image>
+                <view class="cell__title--multi">
+                    <view class="cell__title">标题文字</view>
+                    <view class="cell__desc">描述文字</view>
+                </view>
+            </view>
+            <view class="cell__tail">
+                <view class="cell__detail">详细信息</view>
+            </view>
+        </view>
+    </view>
+</view>
+
+<view class="m-b-xl">
+    <view class="h2 m-b-sm m-h-lg">子列表</view>
+    <view class="cell__group">
+        <view class="cell cell--sub">
+            <view class="cell__header">
+                <view class="cell__title">标题文字</view>
+            </view>
+        </view>
+        <view class="cell cell--sub">
+            <view class="cell__header">
+                <view class="cell__title">标题文字</view>
+            </view>
+            <view class="cell__tail">
+                <view class="cell__detail">详细信息</view>
+                <view class="icon icon-chevron-right cell__icon-link"></view>
+            </view>
+        </view>
+        <view class="cell cell--sub">
+            <view class="cell__header">
+                <image
+                    src="./logo.png"
+                    mode="aspectFill"
+                    class="cell__img"
+                ></image>
+                <view class="cell__title--multi">
+                    <view class="cell__title">标题文字</view>
+                    <view class="cell__desc">描述文字</view>
+                </view>
+            </view>
+            <view class="cell__tail">
+                <view class="cell__detail">详细信息</view>
+            </view>
+        </view>
+    </view>
+</view>

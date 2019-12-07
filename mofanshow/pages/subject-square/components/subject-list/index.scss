@@ -1,0 +1,25 @@
+@import '@/assets/styles/index.scss';
+
+.subject-list-nav {
+  padding: 0 150rpx;
+  height: 92rpx;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background: $white;
+
+  .subject-nav-item {
+    height: 92rpx;
+    line-height: 92rpx;
+    color: $color-text-light;
+
+    &.active {
+      color: $color-text;
+      border-bottom: 4rpx solid $color-primary;
+    }
+  }
+}
+
+.subject-list-wrap {
+  padding: $spacing-lg;
+}

@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "mf-poster-img": "../poster-img/index",
+    "mf-poster-video": "../poster-video/index"
+  }
+}

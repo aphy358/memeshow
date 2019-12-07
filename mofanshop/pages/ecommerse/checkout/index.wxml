@@ -1,0 +1,60 @@
+<!--pages/ecommerse/checkout/index.wxml-->
+<view class="container checkout-page">
+  <address-component address-data="{{address}}"></address-component>
+  <block wx:for="{{lists}}" wx:key="shop_{{item.shop.id}}">
+    <view class="shop-list">
+      <view class="top">
+        <view class="logo"><image mode="aspectFit" src="{{item.shop.logo}}"></image></view>
+        <view class="shop-name">{{item.shop.name}}</view>
+      </view>
+      <block wx:for="{{item.products}}" wx:for-item="products" wx:key="index">
+        <view class="list-item">
+          <view class="left"><image src="{{products.src}}"></image></view>
+          <view class="right">
+            <view class="product-desc line2ellipsis">
+              <text class="sign">限时特价</text>
+              <text class="desc">{{products.subtitle}}</text>
+            </view>
+            <view class="price-num">
+              <text class="price">￥{{products.realPrice}}</text>
+              <text class="num">x {{products.num}}</text>
+            </view>
+          </view>
+        </view>
+      </block>
+    </view>
+  </block>
+
+  <view class="payment-info">
+    <view class="payment">
+      <view class="lr-flex">
+        <view class="left">
+          <text>支付金额</text>
+          <text class="num">￥441</text>
+          <text class="postage">（免运费）</text>
+        </view>
+        <view class="right">
+          <text>查看明细</text>
+          <image src="/images/down-arrow.png"></image>
+        </view>
+      </view>
+    </view>
+    <view class="paymethod">
+      <view class="lr-flex">
+        <view class="left">
+          <text>支付方式</text>
+          <image src="/images/wechat.png"></image>
+          <text>微信支付</text>
+        </view>
+        <view class="right">
+          <image src="/images/down-arrow.png"></image>
+        </view>
+      </view>
+    </view>
+  </view>
+  
+  <view class="bottom">
+    <view class="left">总计：<text>￥441</text></view>
+    <view class="right">支付</view>
+  </view>
+</view>

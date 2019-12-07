@@ -1,0 +1,28 @@
+
+
+<view class="suggest-wrap">
+
+
+  <!-- 导航栏 -->
+  <navigation-bar class="suggest-nav" back>
+    <view class="">搜索</view>
+  </navigation-bar>
+
+
+  <!-- 关键字输入框区域 -->
+  <input-area />
+
+
+  <!-- 历史搜索 & 热门搜索 -->
+  <!-- <suggest-history-hot /> -->
+
+
+  <!-- 搜索关键字列表 -->
+  <!-- <suggest-keyword-list /> -->
+
+
+  <!-- 搜索结果 -->
+  <suggest-result />
+
+
+</view>

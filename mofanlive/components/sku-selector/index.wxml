@@ -1,0 +1,48 @@
+<mf-popup
+    closable
+    open="{{open}}"
+    catch:close="emitCancel"
+>
+    <view
+        class="info-container"
+        slot="header"
+    >
+        <image
+            class="info-image"
+            src="{{image}}"
+        />
+        <view class="info">
+            <view class="info-price-container">
+                <view class="info-price-tag">￥</view>
+                <view class="info-price">{{price / 100}}</view>
+            </view>
+            <view class="info-selection">已选择 {{skuSelected}}</view>
+        </view>
+    </view>
+    <view class="skus-container">
+        <view
+            style="display: inline;"
+            wx:for="{{displayProps}}"
+            wx:key="kid"
+        >
+            <view class="skus-title">{{item.k}}</view>
+            <view class="skus-props-container">
+                <view
+                    bind:tap="onTapVal"
+                    class="skus-prop {{value.isSelected ? 'skus-prop-selected' : ''}} {{value.isSoldOut ? 'skus-prop-disabled' : ''}}"
+                    data-disabled="{{value.isSoldOut}}"
+                    id="{{item.kid + '|' + value.vid}}"
+                    wx:for="{{item.values}}"
+                    wx:for-item="value"
+                    wx:key="vid"
+                >{{value.v}}</view>
+            </view>
+        </view>
+        <view class="count-container">
+            <view class="count-title">购买数量</view>
+        </view>
+    </view>
+    <view class="action-container" slot="footer" style="padding-bottom: {{isIPhoneX ? 68 : 0}}rpx;">
+        <slot></slot>
+    </view>
+</mf-popup>

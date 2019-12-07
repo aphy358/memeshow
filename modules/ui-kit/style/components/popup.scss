@@ -1,0 +1,78 @@
+@import "../variables/default.scss";
+@import "../mixins/index.scss";
+
+.popup {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    visibility: hidden;
+    z-index: $zindex-popup;
+    transition: visibility $popup-layout-timer cubic-bezier(0.36, 0.66, 0.04, 1);
+
+    /* elements */
+    &__overlay,
+    &__overlay--opacity {
+        @include overlay;
+        opacity: 0;
+        transition: opacity 150ms ease-in;
+    }
+
+    &__content {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        background: $color-white;
+        transform: translate(0, 100%);
+        transition: transform $popup-layout-timer
+            cubic-bezier(0.36, 0.66, 0.04, 1);
+    }
+
+    &__header {
+        @include display-flex();
+        flex-flow: row nowrap;
+        justify-content: flex-end;
+        align-items: flex-start;
+        font-size: $font-size-lg;
+        line-height: 1;
+    }
+
+    &__body {
+        min-height: $popup-height-min;
+        max-height: $popup-height-max;
+        height: auto;
+        overflow-y: scroll;
+        padding: $padding-sm $padding-md;
+        font-size: $font-size-base;
+    }
+
+    &__title {
+        @include flex(1, 1, auto);
+        @include line(1);
+        display: block;
+        padding: $padding-sm $padding-md;
+        color: $color-text-title;
+        line-height: 1;
+    }
+
+    &__title--extra {
+        @include flex(1, 1, auto);
+    }
+
+    &__close {
+        @include flex(0, 0, auto);
+        padding: $padding-sm $padding-md;
+    }
+
+    /* 激活状态 */
+    &--actived {
+        visibility: visible;
+        .popup__overlay {
+            opacity: 1;
+        }
+        .popup__content {
+            transform: translate(0, 0);
+        }
+    }
+}

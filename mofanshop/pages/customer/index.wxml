@@ -1,0 +1,62 @@
+<!--pages/customer/index.wxml-->
+<view class="container">
+  <view class="customer-info">
+    <view class="customer-header">
+      <view class="avatar"><image src="http://wx.qlogo.cn/mmhead/ver_1/ZGUEsHq3NgPXs2YVpv7M57RYM1yWv8iaRzJP3NDNicMoKVue4m0XozfNf3ib4wMMQVvQGqCuuMUuibPTXuibDmCB5nJdtN36hVWBD1Z8TWokUCwc/96"></image></view>
+      <view class="follow-btn">关注</view>
+      <view class="share-btn"><image src="/images/share.png"></image></view>
+    </view>
+    <view class="info">林菲菲 | 微信号：<text>kawaii188766</text></view>
+  </view>
+  <view class="nav">
+    <view class="subnav {{nav==='shop' ? 'active' : ''}}" data-current="shop" bindtap="switchNav">TA店铺</view>
+    <view class="subnav {{nav==='story' ? 'active' : ''}}" data-current="story" bindtap="switchNav">TA的Story</view>
+  </view>
+  <view wx:if="{{nav==='shop'}}" class="product-list">
+    <view class="product-item" wx:for="{{productList}}" wx:key="{{item.id}}">
+      <view class="image"><image mode="widthFix" src="{{item.src}}"></image></view>
+      <view class="info">
+        <view class="title">{{item.title}}</view>
+        <view class="subtitle">{{item.subtitle}}</view>
+        <view class="price">
+          <text class="sale-price">￥{{item.salePrice}}</text>
+          <text class="real-price">￥{{item.realPrice}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view wx:if="{{nav==='story'}}" class="medium-container">
+        <!-- <scroll-view scroll-y > -->
+        <block>
+          <view class="item-box" wx:for="{{storyList}}" wx:key="{{item.id}}" wx:if="{{index%2===0}}">
+            <navigator url="/pages/{{item.type}}/index?id={{item.videoValue}}" hover-class="item-hover">
+              <view wx:if="{{item.type == 'video'}}" class="video-btn"><image src="/images/play.png"></image></view>
+              <view class="image-box">
+                <image mode="widthFix" src="{{item.url}}" ></image>
+              </view>
+              <view class="item-desc">{{item.des}}</view>
+              <view class="item-info">
+                <view class="belonger" catchtap="toCustomer"><image src="{{item.user.avatar}}"></image>{{item.user.name}}</view>
+                <view class="like" catchtap="like"><image src="/images/like.png"></image>{{item.likes}}</view>
+              </view>
+            </navigator>
+          </view>
+        </block>
+        <block>
+          <view class="item-box" wx:for="{{storyList}}" wx:key="{{item.id}}" wx:if="{{index%2!==0}}">
+            <navigator url="/pages/{{item.type}}/index?id={{item.videoValue}}" hover-class="item-hover">
+              <view wx:if="{{item.type == 'video'}}" class="video-btn"><image src="/images/play.png"></image></view>
+              <view class="image-box">
+                <image mode="widthFix" src="{{item.url}}" ></image>
+              </view>
+              <view class="item-desc">{{item.des}}</view>
+              <view class="item-info">
+                <view class="belonger"><image src="{{item.user.avatar}}"></image>{{item.user.name}}</view>
+                <view class="like"><image src="/images/like.png"></image>{{item.likes}}</view>
+              </view>
+            </navigator>
+          </view>
+        </block>
+      <!-- </scroll-view> -->
+    </view>
+</view>

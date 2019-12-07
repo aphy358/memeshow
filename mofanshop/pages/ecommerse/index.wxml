@@ -1,0 +1,27 @@
+<!--pages/ecommerse/index.wxml-->
+<view class="container">
+  <view class="customer-header">
+    <view class="search-view" bindtap="search">
+      <view class="search-icon"><image src="/images/search.png"></image></view>
+      <input class="search-btn" placeholder-class="placeholder" type="text" cursor="4" placeholder="大家都在搜索‘阿里巴巴’" disabled></input>
+    </view>
+    <scroll-view class="category" scroll-x>
+      <view wx:for="{{navs}}" wx:key="{{item.id}}" class="category-item {{navId==item.id ? 'nav-active' : ''}}" id="{{item.id}}" bindtap="switchNav">{{item.name}}</view>
+    </scroll-view>
+  </view>
+  <view class="product-list">
+    <view class="product-item" wx:for="{{productList}}" wx:key="{{item.id}}">
+      <navigator url="/pages/ecommerse/detail/index" hover-class="item-hover">
+        <view class="image"><image mode="widthFix" src="{{item.src}}"></image></view>
+        <view class="info">
+          <view class="title">{{item.title}}</view>
+          <view class="subtitle">{{item.subtitle}}</view>
+          <view class="price">
+            <text class="sale-price">￥{{item.salePrice}}</text>
+            <text class="real-price">￥{{item.realPrice}}</text>
+          </view>
+        </view>
+      </navigator>
+    </view>
+  </view>
+</view>

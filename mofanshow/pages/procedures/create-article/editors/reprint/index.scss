@@ -1,0 +1,45 @@
+@import "@/assets/styles/index.scss";
+
+page {
+  background-color: $color-bg;
+}
+
+.hint {
+  width: 100%;
+  padding: $spacing-lg;
+  color: $color-text-light;
+
+  view {
+    display: inline-block;
+  }
+
+  .question {
+    color: $color-text-link;
+  }
+}
+
+.link-input {
+  width: 100%;
+  padding: $spacing-lg;
+  background-color: $white;
+  box-shadow: $box-shadow;
+
+  input {
+    widows: 100%;
+  }
+
+}
+
+.submit {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+
+  button {
+    background-color: $white;
+    border-radius: 0;
+  }
+  button::after {
+    border: none;
+  }
+}

@@ -1,0 +1,69 @@
+@import "../variables/default.scss";
+@import "../mixins/index.scss";
+
+.card {
+    @include border-thin($color: $card-color-border);
+    margin: 0 $card-grap;
+    border-radius: $card-border-radius;
+
+    /* elements */
+    &__header {
+        @include display-flex;
+        @include align-items(center);
+        @include border-thin-bottom();
+        width: 100%;
+        padding: $padding-sm $padding-md;
+    }
+
+    &__title,
+    &__extra {
+        @include line;
+        line-height: size(25);
+    }
+
+    &__title {
+        @include flex(auto);
+        font-size: $font-size-lg;
+        color: $color-text-title;
+    }
+
+    &__extra {
+        @include flex(0, 0, auto);
+        max-width: size(100);
+        margin-left: $card-grap;
+        font-size: $font-size-base;
+        color: $color-text-base;
+    }
+
+    &__thumb {
+        @include flex(0, 0, $card-thumb-size);
+        display: block;
+        margin-right: $spacing-h-md;
+        height: $card-thumb-size;
+    }
+
+    &__content {
+        width: 100%;
+        padding: $padding-sm $padding-md;
+    }
+
+    &__info {
+        width: 100%;
+        font-size: $font-size-base;
+        color: $color-text-base;
+    }
+
+    &__note {
+        margin-top: $spacing-v-md;
+        font-size: $font-size-sm;
+        color: $color-text-placeholder;
+    }
+
+    /* modifiers */
+    &--full {
+        margin: 0;
+        border-radius: 0;
+        border-left: none;
+        border-right: none;
+    }
+}

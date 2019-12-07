@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "商品详情",
+  "usingComponents": {
+    "mf-poster": "./components/poster/index",
+    "mf-action-group": "./components/action-group/index",
+    "mf-detail": "./components/detail/index",
+    "mf-action-bar": "./components/action-bar/index",
+    "mf-sku-selector": "../../components/sku-selector/index"
+  }
+}

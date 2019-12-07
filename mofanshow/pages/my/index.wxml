@@ -1,0 +1,36 @@
+
+<view class="my-center-wrap">
+
+  <!-- 导航栏 -->
+  <navigation-bar class="my-center-nav" style="opacity: {{ navOpcity }};">
+    <view class="">我的</view>
+  </navigation-bar>
+
+
+  <!-- 我的店铺（信息 & 操作） -->
+  <my-shop />
+  <mf-page-gapper />
+
+
+  <!-- 我的收益 -->
+  <my-profit />
+  <mf-page-gapper />
+
+
+  <!-- 今日计划 -->
+  <my-plan />
+  <mf-page-gapper />
+
+
+  <!-- 本周 TOP10 -->
+  <best-seller />
+  <mf-page-gapper />
+
+
+  <!-- 其他推荐 -->
+  <!-- <recommended /> -->
+  <seller-menus />
+
+  <view style="height: 150rpx;"></view>
+
+</view>

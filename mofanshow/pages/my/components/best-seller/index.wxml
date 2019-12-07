@@ -1,0 +1,38 @@
+
+<view class="best-seller my-block">
+  <view class="my-block-title">
+    <text class="title">本周TOP 10</text>
+    <view class="my-block-more">
+      <navigator url="" class="my-block-more-btn" hover-class="button-hover">查看更多</navigator>
+    </view>
+  </view>
+
+  <view class="best-seller-outer">
+    <view class="best-seller-list">
+      <view class="best-seller-item">
+        <image class="img" src="https://hbimg.huabanimg.com/ef9978f541e23dca04f5658150ac06e79877fc709b33-NlsaW7" />
+      </view>
+  
+      <view class="best-seller-item">
+        <image class="img" src="https://hbimg.huabanimg.com/ef9978f541e23dca04f5658150ac06e79877fc709b33-NlsaW7" />
+      </view>
+  
+      <view class="best-seller-item">
+        <image class="img" src="https://hbimg.huabanimg.com/ef9978f541e23dca04f5658150ac06e79877fc709b33-NlsaW7" />
+      </view>
+  
+      <view class="best-seller-item">
+        <image class="img" src="https://hbimg.huabanimg.com/ef9978f541e23dca04f5658150ac06e79877fc709b33-NlsaW7" />
+      </view>
+  
+      <view class="best-seller-item">
+        <image class="img" src="https://hbimg.huabanimg.com/ef9978f541e23dca04f5658150ac06e79877fc709b33-NlsaW7" />
+      </view>
+  
+      <view class="best-seller-item">
+        <image class="img" src="https://hbimg.huabanimg.com/ef9978f541e23dca04f5658150ac06e79877fc709b33-NlsaW7" />
+      </view>
+    </view>
+  </view>
+
+</view>

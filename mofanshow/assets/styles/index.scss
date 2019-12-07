@@ -1,0 +1,7 @@
+@import "./animations/index.scss";
+@import "./mixins/index.scss";
+@import "./variables/index.scss";
+@import "./guides/index.scss";
+
+// 选择你需要的主题，覆盖预设样式
+@import "./themes/default.scss";

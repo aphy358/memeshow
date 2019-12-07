@@ -1,0 +1,75 @@
+/* pages/customer/index.wxss */
+.customer-info {
+  background: #fff;
+  box-shadow: 0 4rpx 8rpx 0 rgba(239, 239, 239,  0.5)
+}
+.customer-info .customer-header {
+  display: flex;
+  flex-direction: row;
+  padding: 20rpx 30rpx;
+  align-items: center;
+}
+.customer-info .customer-header .avatar{
+  width: 134rpx;
+  height: 134rpx;
+  margin-right: 210rpx;
+}
+.customer-header .avatar image {
+  width: 134rpx;
+  height: 134rpx;
+  border-radius: 100%;
+}
+.customer-info .customer-header .follow-btn {
+  width: 228rpx;
+  height: 52rpx;
+  line-height: 52rpx;
+  background: #ff2741;
+  border-radius: 26rpx;
+  margin-right: 28rpx;
+  text-align: center;
+  font-size: 26rpx;
+  color: #fff;
+}
+.customer-info .customer-header .share-btn { 
+  width: 90rpx;
+  height: 52rpx;
+  border-radius: 26rpx;
+  background: #ff2741; 
+  text-align: center;
+}
+.customer-header .share-btn image{ 
+  width: 26rpx;
+  height: 26rpx;
+}
+.customer-info .info {
+  height: 60rpx;
+  line-height: 60rpx;
+  font-size: 26rpx;
+  color: #323232;
+  padding: 0 30rpx;
+}
+.customer-info .info text {
+  font-size: 26rpx;
+  color: #069bf9;
+}
+.nav {
+  height: 80rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0 100rpx;
+  background:rgb(250, 250, 250);
+}
+.nav .subnav {
+  padding: 0 30rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  font-size: 30rpx;
+  color: #323232;
+  text-align: center;
+  cursor: pointer;
+}
+.nav .active {
+  border-bottom: 4rpx solid #ff2741;
+}

@@ -1,0 +1,4 @@
+<view class="container">
+  <address-component address-date="address"></address-component>
+  <view class="save">保存收货地址</view>
+</view>

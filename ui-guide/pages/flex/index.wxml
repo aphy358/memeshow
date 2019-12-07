@@ -1,0 +1,89 @@
+<view class="m-b-xl">
+    <view class="h2 m-b-sm">基本案例</view>
+    <view class="row">
+        <view class="col tc f-sm f-base-inverse bg-blue-6 p-xs">A</view>
+        <view class="col tc f-sm f-base-inverse bg-blue-3 p-xs">B</view>
+        <view class="col tc f-sm f-base-inverse bg-blue-6 p-xs">C</view>
+    </view>
+</view>
+<view class="m-b-xl">
+    <view class="h2 m-b-sm">定义长度</view>
+    <view class="row">
+        <view class="col col-2 tc f-sm f-base-inverse bg-blue-6 p-xs">A</view>
+        <view class="col col-6 tc f-sm f-base-inverse bg-blue-3 p-xs">B</view>
+        <view class="col col-3 tc f-sm f-base-inverse bg-blue-6 p-xs">C</view>
+        <view class="col col-1 tc f-sm f-base-inverse bg-blue-3 p-xs">D</view>
+    </view>
+</view>
+<view class="m-b-xl">
+    <view class="h2 m-b-sm">定义偏移</view>
+    <view class="row">
+        <view class="col col-2 col__offset-1 tc f-sm f-base-inverse bg-blue-6 p-xs">A</view>
+        <view class="col col-6 col__offset-3 tc f-sm f-base-inverse bg-blue-3 p-xs">B</view>
+    </view>
+</view>
+<view class="m-b-xl">
+    <view class="h2 m-b-sm">超出换行</view>
+    <view class="row row--wrap">
+        <view class="col col-4 tc f-sm f-base-inverse bg-blue-6 p-xs">A</view>
+        <view class="col col-4 tc f-sm f-base-inverse bg-blue-3 p-xs">B</view>
+        <view class="col col-4 tc f-sm f-base-inverse bg-blue-6 p-xs">C</view>
+        <view class="col col-4 tc f-sm f-base-inverse bg-blue-3 p-xs">D</view>
+    </view>
+</view>
+<view class="m-b-xl">
+    <view class="h2 m-b-sm">宽度根据内容撑开</view>
+    <view class="row">
+        <view class="col col-1 col--auto tc f-sm f-base-inverse bg-blue-6 p-xs">被内容撑开</view>
+        <view class="col tc f-sm f-base-inverse bg-blue-3 p-xs">B</view>
+    </view>
+</view>
+<view class="m-b-xl">
+    <view class="h2 m-b-sm">内容自动换行</view>
+    <view class="row">
+        <view class="col col-1 col--wrap tc f-sm f-base-inverse bg-blue-6 p-xs">内容自动换行</view>
+        <view class="col tc f-sm f-base-inverse bg-blue-3 p-xs">B</view>
+    </view>
+</view>
+<view class="m-b-xl">
+    <view class="h2 m-b-sm">侧轴方向的对齐方式</view>
+    <view class="row m-b-sm">
+        <view class="col tc f-sm f-base-inverse bg-blue-6 p-xs" style="height: 200rpx;">A</view>
+        <view class="col tc f-sm f-base-inverse bg-blue-3 p-xs">默认对齐方式 -- stretch</view>
+    </view>
+    <view class="row row__align--start m-b-sm">
+        <view class="col tc f-sm f-base-inverse bg-blue-6 p-xs" style="height: 200rpx;">A</view>
+        <view class="col tc f-sm f-base-inverse bg-blue-3 p-xs">顶部对齐 -- start</view>
+    </view>
+    <view class="row row__align--center m-b-sm">
+        <view class="col tc f-sm f-base-inverse bg-blue-6 p-xs" style="height: 200rpx;">A</view>
+        <view class="col tc f-sm f-base-inverse bg-blue-3 p-xs">居中对齐 -- center</view>
+    </view>
+    <view class="row row__align--end">
+        <view class="col tc f-sm f-base-inverse bg-blue-6 p-xs" style="height: 200rpx;">A</view>
+        <view class="col tc f-sm f-base-inverse bg-blue-3 p-xs">底部对齐 -- end</view>
+    </view>
+</view>
+<view>
+    <view class="h2 m-b-sm">主轴方向的排列方式</view>
+    <view class="row m-b-sm">
+        <view class="col col-5 tc f-sm f-base-inverse bg-blue-6 p-xs">默认</view>
+        <view class="col col-5 tc f-sm f-base-inverse bg-blue-3 p-xs">Start</view>
+    </view>
+    <view class="row row__justify--end m-b-sm">
+        <view class="col col-5 tc f-sm f-base-inverse bg-blue-6 p-xs">底部排列</view>
+        <view class="col col-5 tc f-sm f-base-inverse bg-blue-3 p-xs">End</view>
+    </view>
+    <view class="row row__justify--center m-b-sm">
+        <view class="col col-5 tc f-sm f-base-inverse bg-blue-6 p-xs">居中排列</view>
+        <view class="col col-5 tc f-sm f-base-inverse bg-blue-3 p-xs">Center</view>
+    </view>
+    <view class="row row__justify--between m-b-sm">
+        <view class="col col-5 tc f-sm f-base-inverse bg-blue-6 p-xs">左右排列</view>
+        <view class="col col-5 tc f-sm f-base-inverse bg-blue-3 p-xs">Between</view>
+    </view>
+    <view class="row row__justify--around">
+        <view class="col col-5 tc f-sm f-base-inverse bg-blue-6 p-xs">平均排列</view>
+        <view class="col col-5 tc f-sm f-base-inverse bg-blue-3 p-xs">Around</view>
+    </view>
+</view>

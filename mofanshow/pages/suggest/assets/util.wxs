@@ -1,0 +1,7 @@
+const getActiveType = (suggestResList) => {
+  return suggestResList.filter(n => n.active)[0].type
+}
+
+module.exports = ({
+  getActiveType
+});

@@ -1,0 +1,42 @@
+<form
+    bindsubmit="searchUser"
+    style="width: 100%;"
+>
+    <view class="search">
+        <view class="search-icon"></view>
+        <input
+            bindinput="onInput"
+            class="search-input"
+            name="keyword"
+            disabled="{{form.btn.loading}}"
+            placeholder="搜索用户"
+        />
+        <button
+            class="mf-button mf-button_mini mf-button_primary {{form.btn.disabled ? 'mf-button__disabled' : ''}}"
+            form-type="submit"
+            size="mini"
+            disabled="{{form.btn.disabled}}"
+            loading="{{form.btn.loading}}"
+        >搜索</button>
+    </view>
+</form>
+<view class="list">
+    <view class="list-title">关注的用户</view>
+    <view class="list-container">
+        <view
+            bind:tap="onTapUser"
+            class="list-item"
+            data-index="{{index}}"
+            wx:for="{{users.list}}"
+            wx:key="id"
+        >
+            <mf-avatar url="{{}}" size="55"></mf-avatar>
+            <view class="user-info">
+                <view class="user-info__nickname">{{item.nickname}}</view>
+                <view
+                    class="user-info__detail"
+                >文章 | {{item.count.article}} 粉丝 | {{item.count.followed}}</view>
+            </view>
+        </view>
+    </view>
+</view>

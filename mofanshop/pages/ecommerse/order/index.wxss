@@ -1,0 +1,94 @@
+/* pages/ecommerse/order/index.wxss */
+.container {
+  box-sizing: border-box;
+  padding-top: 100rpx;
+}
+.nav {
+  width: 100%;
+  height: 100rpx;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #fff;
+  box-shadow: 0  4rpx 6rpx 0 rgba(239,239,239,0.50);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 26rpx;
+  color: rgba(0,0,0,0.5)
+}
+.type {
+  padding: 4rpx;
+}
+.nav .active {
+  color: rgba(0,0,0,0.8);
+  border-bottom: 4rpx solid #ff2471;
+}
+.order-lists {
+  padding: 0 30rpx;
+  margin-top: 20rpx;
+  background: #fff;
+  font-size: 24rpx;
+}
+.top-content, .bottom-content {
+  width: 100%;
+  height: 80rpx;
+}
+.middle-content {
+  width: 100%;
+  height: 200rpx;
+}
+.image-view {
+  display: inline-block;
+  width: 200rpx;
+  height: 200rpx;
+  overflow: hidden;
+  margin-right: 20rpx;
+}
+.image-view image{
+  width: 200rpx;
+}
+.scroll-view-H {
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.package .left {
+  width: 200rpx;
+  height: 200rpx;
+  margin-right: 30rpx;
+  overflow: hidden
+}
+.package .right {
+  width: 460rpx;
+  height: 60rpx;
+  line-height: 30rpx;
+}
+.package .left image{ 
+  width: 200rpx;
+}
+.bottom-content .num {
+  margin-left: 20rpx;
+  font-size: 20rpx;
+  color: rgba(0,0,0,0.6)
+}
+.image-border {
+  border:1rpx solid #ccc;
+  border-radius:6rpx;
+}
+.type_pending {
+  color: #ff2471;
+}
+.payment {
+  background: #ff2741;
+  color: #fff;
+  padding: 8rpx;
+  border-radius: 6rpx;
+}
+.type_received {
+  color: #32a3f3
+}
+.type_cancle {
+  color: rgba(0,0,0,0.3)
+}

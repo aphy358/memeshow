@@ -1,0 +1,40 @@
+/**
+ * Entry
+ *
+ * MoFan UI Components
+ */
+
+@import "@/assets/styles/index.scss";
+
+page {
+    padding-bottom: 50rpx;
+}
+
+.mf_guide-component-title {
+    color: $black;
+    font-size: $font-size-xxl;
+    line-height: $line-height-xxl;
+    text-align: center;
+    font-weight: bold;
+    margin: $spacing-xxl 0;
+}
+
+.mf_guide-component-block {
+    padding: 0 $spacing-lg;
+    margin-bottom: 40rpx;
+    &-title {
+        font-size: $font-size-xl;
+        line-height: $line-height-xl;
+        color: $color-text;
+    }
+}
+
+.mf_components-entry {
+    border: 2rpx solid $color-border;
+    margin: $spacing-lg 0;
+
+    > navigator {
+        padding: $spacing-lg;
+        text-align: center;
+    }
+}

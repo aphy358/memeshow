@@ -1,0 +1,58 @@
+
+.comment-panel-wrap {
+  position: fixed;
+  left: 30rpx;
+  bottom: calc(140rpx + constant(safe-area-inset-bottom));
+  bottom: calc(140rpx + env(safe-area-inset-bottom));
+  width: 70%;
+  overflow: hidden;
+
+  .welcome-tip {
+    float: left;
+    border-radius: 8rpx;
+    line-height: 58rpx;
+    color: white;
+    background: rgb(235, 171, 53);
+    padding: 0 16rpx;
+    transform: translateX(-100%);
+    margin-bottom: 8rpx;
+  }
+
+  .comment-panel-inner {
+    height: 380rpx;
+    width: calc(100% + 10px);
+    padding-top: 70rpx;
+
+    .comment-item {
+      overflow: hidden;
+      margin-bottom: 8rpx;
+      margin-right: 10px;
+
+      .comment-item-inner {
+        float: left;
+        padding: 8rpx 16rpx;
+        border-radius: 8rpx;
+        background: rgba(0, 0, 0, 0.3);
+
+        .comment-author {
+          font-size: 20rpx;
+          padding: 2rpx 6rpx;
+          border-radius: 4rpx;
+          color: white;
+          background: rgb(50, 178, 238);
+          margin-right: 8rpx;
+        }
+  
+        .comment-text {
+          font-size: 28rpx;
+          color: rgb(241, 252, 251);
+        }
+      }
+    }
+  }
+
+  .recommend-product {
+    height: 0;
+    background: rgba(231, 123, 123, 0.445);
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "mf-card": "/components/base/card/index",
+    "mf-input": "/components/form/input/index",
+    "mf-icon": "/components/base/icon/index",
+    "mf-cell-group": "/components/base/cell-group/index",
+    "mf-cell": "/components/base/cell/index"
+  }
+}

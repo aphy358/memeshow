@@ -1,0 +1,36 @@
+
+<view class="suggest-history suggest-module">
+  <view class="suggest-module-title">
+    <text >历史搜索</text>
+  </view>
+
+  <view class="suggest-keyword-round-list">
+    <navigator class="suggest-res-item" url="">拌面</navigator>
+    <navigator class="suggest-res-item" url="">香水</navigator>
+    <navigator class="suggest-res-item" url="">李现同款</navigator>
+    <navigator class="suggest-res-item" url="">唇膏</navigator>
+    <navigator class="suggest-res-item" url="">拌面</navigator>
+    <navigator class="suggest-res-item" url="">香水</navigator>
+    <navigator class="suggest-res-item" url="">李现同款</navigator>
+    <navigator class="suggest-res-item" url="">唇膏</navigator>
+  </view>
+</view>
+
+<mf-page-gapper />
+
+<view class="hot-suggest suggest-module">
+  <view class="suggest-module-title">
+    <text >热门搜索</text>
+  </view>
+
+  <view class="suggest-keyword-round-list">
+    <navigator class="suggest-res-item" url="">拌面</navigator>
+    <navigator class="suggest-res-item" url="">香水</navigator>
+    <navigator class="suggest-res-item" url="">李现同款</navigator>
+    <navigator class="suggest-res-item" url="">唇膏</navigator>
+    <navigator class="suggest-res-item" url="">拌面</navigator>
+    <navigator class="suggest-res-item" url="">香水</navigator>
+    <navigator class="suggest-res-item" url="">李现同款</navigator>
+    <navigator class="suggest-res-item" url="">唇膏</navigator>
+  </view>
+</view>

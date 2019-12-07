@@ -1,0 +1,91 @@
+@import "../variables/default.scss";
+@import "../mixins/index.scss";
+
+/* reset 小程序自带的 button 样式 */
+button {
+    &::after {
+        display: none;
+    }
+}
+
+@mixin reset-loading($size) {
+    button[loading]::before {
+        width: $font-size-lg !important;
+        height: $font-size-lg !important;
+    }
+}
+
+@mixin button-base() {
+    width: 100%;
+    height: $button-height;
+    box-sizing: border-box;
+    overflow: hidden;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+    background-color: $color-brand;
+    border: size(1) solid $color-brand;
+    border-radius: $border-radius-md;
+    color: $color-white;
+    text-align: center;
+    text-decoration: none;
+    font-size: $font-size-lg;
+    line-height: 1;
+}
+
+.button {
+    &--primary {
+        @include button-base();
+        color: $color-white !important;
+        background-color: $color-brand !important;
+    }
+
+    // 次要按钮
+    &--secondary {
+        @include button-base();
+        background-color: $color-white;
+        color: $color-brand !important;
+    }
+
+    // 次次要按钮
+    &--tertiary {
+        @include button-base();
+        border-color: $color-border-grey;
+        background-color: $color-white;
+        color: $color-text-base !important;
+    }
+
+    // 小按钮
+    &--mini {
+        display: inline-block;
+        width: auto;
+        height: $button-height-sm;
+        padding: size(7) $padding-sm;
+        font-size: $font-size-base;
+        &[loading]::before {
+            width: $font-size-base !important;
+            height: $font-size-base !important;
+        }
+    }
+
+    &--circle {
+        border-radius: $button-height-sm;
+    }
+
+    &--full {
+        margin-left: 0;
+        margin-right: 0;
+        border-left: 0;
+        border-right: 0;
+        border-radius: 0;
+    }
+
+    &--disabled {
+        opacity: $opacity-disabled;
+    }
+
+    &--actived {
+        opacity: $opacity-active;
+    }
+}

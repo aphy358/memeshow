@@ -1,0 +1,11 @@
+// Banner Component
+@import "@/assets/styles/index.scss";
+
+.mf_banner {
+    background: $white;
+
+    &-image {
+        width: 100%;
+        max-height: 150px;
+    }
+}

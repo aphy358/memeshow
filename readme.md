@@ -70,13 +70,3 @@ yarn build
 ### ESLint
 
 由于目前项目存在老代码尚未更新问题，所以并没有将 Lint 工具加入全局代码的构建过程。需要针对性使用 Lint 工具的同学，可通过 CLI 检测对应的文件。
-
-## 注意事项
-
-- 该项目运行 `npm run build` 构建时是主包分包一起构建的，所有的公共代码包都默认放在 `dist` 目录下（比如 `common.js`、`common_IM.js` 等），自主开发的 `moveFilesPlugin.js` 插件会将属于各个分包的公共代码包移动到各自的分包目录下（比如将 `common_IM.js` 移动到 `IM` 目录下），以保证代码正确运行
-
-- 如果需要添加更多的分包，则在 `src/packages` 目录下添加即可，目录结构参照 `IM` 分包目录结构，并在 `app.json` 中做相应配置
-
-- 如果在项目中用到 `input` 组件时，不能写成 `<input></input>`，而要写成 `<input />`，因为前一种写法经过 `webpack` 压缩之后会报错
-
-- `plugins` 目录下放的是自主开发的 `webpack` 插件

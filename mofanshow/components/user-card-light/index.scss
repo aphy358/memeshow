@@ -1,0 +1,39 @@
+// User Card Component
+@import "@/assets/styles/index.scss";
+
+:host {
+    display: inline-block;
+}
+
+.mf_user-card-light {
+    width: auto;
+    overflow: hidden;
+
+    &__row {
+        @include flex($direction: row, $align-items: center);
+
+        > view {
+            max-width: 180rpx;
+            margin-left: $spacing-lg;
+            font-size: $font-size-base;
+            line-height: $line-height-base;
+        }
+    }
+
+    &__column {
+        @include flex($direction: column, $align-items: center);
+
+        > view {
+            width: 100%;
+            margin-top: $spacing-sm;
+            font-size: $font-size-xs;
+            line-height: $line-height-xs;
+        }
+    }
+
+    &_name {
+        text-align: center;
+        @include ellipsis();
+        color: $color-text;
+    }
+}

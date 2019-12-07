@@ -1,0 +1,7 @@
+{
+    "usingComponents": {
+        "cell": "../../../components/base/cell/index",
+        "cell-group": "../../../components/base/cell-group/index",
+        "mf-switch": "../../../components/form/switch/index"
+    }
+}

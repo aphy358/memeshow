@@ -1,0 +1,18 @@
+<wxs module="formator" src="/utils/formator.wxs" />
+
+<view 
+  class="bullet-item bullet-animate"
+  wx:for="{{ bullets }}"
+  wx:key="index"
+  wx:if="{{ formator.getTimeDiff(item.timeStamp) < 10000 }}"
+  style="{{ item.style }}"
+>
+  <view class="bullet-avatar">
+    <image class="img" src="{{ item.avatar }}" />
+  </view>
+
+  <view class="bullet-text">
+    <text class="name">{{ item.userName }}</text>
+    <text class="text">{{ item.text }}</text>
+  </view>
+</view>

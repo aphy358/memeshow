@@ -1,0 +1,5 @@
+{
+    "usingComponents": {
+        "mf-textarea": "../../../components/form/textarea/index"
+    }
+}

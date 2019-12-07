@@ -1,0 +1,100 @@
+<wxs src="../../assets/util.wxs" module="processor" />
+
+<!-- tab 栏 （全部/商品/用户） -->
+<view class="suggest-res-bar suggest-result-nav">
+  <view class="suggest-result-nav-inner">
+    <view 
+      wx:for="{{ suggestResList }}"
+      wx:key="{{ item.type }}"
+      class="nav-item {{ item.active ? 'active' : '' }}"
+      bind:tap="switchSuggestRes"
+      data-type="{{ item.type }}"
+    >
+      {{ item.text }}
+    </view>
+  </view>
+</view>
+
+
+<!-- 话题栏 -->
+<view class="suggest-res-bar suggest-result-subject">
+  <view class="subject-list">
+    <navigator 
+      class="subject-item"
+      wx:for="{{ subjectList }}"
+      wx:key="index"
+      url="{{ item.url }}"
+    >#{{ item.text }}</navigator>
+  </view>
+</view>
+
+
+<!-- 排序 tab 栏 -->
+<view class="suggest-res-bar suggest-order-bar">
+  <text>9566 篇作品</text>
+  <view class="right" bind:tap="showFilterPopup">
+    <text>综合排序</text>
+    <mf-icon name="right-arrow" size="{{ 14 }}" />
+  </view>
+</view>
+
+
+<!-- 全部作品列表 -->
+<view class="suggest-waterfall-list" wx:if="{{ processor.getActiveType(suggestResList) == 0 }}">
+  <article-recommend-list
+    waterfall
+    gap="{{ 20 }}"
+    col="{{ 2 }}"
+    appendList="{{ allList }}"
+    generic:list-item="waterfall-item"
+  />
+</view>
+
+
+<!-- 商品列表 -->
+<view class="suggest-waterfall-list" wx:if="{{ processor.getActiveType(suggestResList) == 1 }}">
+  <article-recommend-list
+    waterfall
+    gap="{{ 20 }}"
+    col="{{ 2 }}"
+    appendList="{{ allList }}"
+    generic:list-item="waterfall-item"
+  />
+</view>
+
+
+<!-- 用户列表 -->
+<block wx:if="{{ processor.getActiveType(suggestResList) == 2 }}">
+  <mf-page-gapper />
+
+  <view class="suggest-user-list">
+    <view 
+      class="suggest-user-item"
+      wx:for="{{ userList }}"
+      wx:key="index"
+    >
+      <image class="avatar" src="https://hbimg.huabanimg.com/ef9978f541e23dca04f5658150ac06e79877fc709b33-NlsaW7" />
+
+      <view class="brief-wrap">
+        <view class="nickName">{{ item.nickName }}</view>
+        <view class="">
+          <text class="article-fans">文章 {{ item.articleNum }}</text>
+          <text class="article-fans">粉丝 {{ item.fans }}</text>
+        </view>
+      </view>
+
+      <button class="follow-btn">
+        关注
+      </button>
+    </view>
+  </view>
+</block>
+
+<hpopup show="{{ showFilterPop }}" position="bottom" bind:touchendMask="hideFilterPopup">
+  <view class="suggest-filter-wrap">
+    <view class="suggest-filter-item active">综合排序</view>
+    <view class="suggest-filter-item">按时间排序</view>
+    <view class="suggest-filter-item">按热度排序</view>
+    <view class="suggest-filter-item" style="margin-top: 20rpx;" bind:tap="hideFilterPopup">取消</view>
+  </view>
+</hpopup>

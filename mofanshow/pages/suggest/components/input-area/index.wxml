@@ -1,0 +1,11 @@
+
+<view class="input-area">
+
+  <view class="input-wrap">
+    <mf-icon name="search" size="{{ 16 }}" style="padding: 0 10px;color: gray;"></mf-icon>
+    <input class="input" placeholder="请输入关键字" />
+    <mf-icon name="close" size="{{ 32 }}" style="color: gray;"></mf-icon>
+  </view>
+
+  <text class="search-text">搜索</text>
+</view>

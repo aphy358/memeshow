@@ -1,0 +1,9 @@
+{
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "input-area": "./components/input-area/index",
+    "suggest-history-hot": "./components/suggest-history-hot/index",
+    "suggest-keyword-list": "./components/suggest-keyword-list/index",
+    "suggest-result": "./components/suggest-result/index"
+  }
+}

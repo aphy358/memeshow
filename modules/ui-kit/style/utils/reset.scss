@@ -1,0 +1,15 @@
+page {
+  line-height: $line-height-zh;
+  font-family: $font-default;
+}
+
+page,
+view {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+icon {
+  vertical-align: middle;
+}

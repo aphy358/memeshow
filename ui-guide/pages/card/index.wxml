@@ -1,0 +1,98 @@
+<view class="m-b-xl">
+    <view class="h2 m-b-sm m-h-lg">一般用法</view>
+    <view class="card">
+        <view class="card__header">
+            <view class="card__title">这里是标题</view>
+        </view>
+        <view class="card__content">
+            <view class="card__info">
+                这里是卡片的内容区
+            </view>
+        </view>
+    </view>
+</view>
+
+<view class="m-b-xl">
+    <view class="h2 m-b-sm m-h-lg">title 带有图标</view>
+    <view class="card">
+        <view class="card__header">
+            <image class="card__thumb" src="./logo.png"></image>
+            <view class="card__title">这里是标题</view>
+        </view>
+        <view class="card__content">
+            <view class="card__info">
+                这里是卡片的内容区
+            </view>
+        </view>
+    </view>
+</view>
+
+<view class="m-b-xl">
+    <view class="h2 m-b-sm m-h-lg">title 带有额外内容</view>
+    <view class="card">
+        <view class="card__header">
+            <view class="card__title">这里是标题</view>
+            <view class="ccard__extra">额外文本</view>
+        </view>
+        <view class="card__content">
+            <view class="card__info">
+                这里是卡片的内容区
+            </view>
+        </view>
+    </view>
+</view>
+
+<view class="m-b-xl">
+    <view class="h2 m-b-sm m-h-lg">内容带有提示</view>
+    <view class="card">
+        <view class="card__header">
+            <view class="card__title">这里是标题</view>
+        </view>
+        <view class="card__content">
+            <view class="card__info">
+                这里是卡片的内容区
+            </view>
+            <view class="card__note">
+                这里是提示
+            </view>
+        </view>
+    </view>
+</view>
+
+<view class="m-b-xl">
+    <view class="h2 m-b-sm m-h-lg">包含所有元素</view>
+    <view class="card">
+        <view class="card__header">
+            <image class="card__thumb" src="./logo.png"></image>
+            <view class="card__title">这里是标题</view>
+            <view class="ccard__extra">额外文本</view>
+        </view>
+        <view class="card__content">
+            <view class="card__info">
+                这里是卡片的内容区
+            </view>
+            <view class="card__note">
+                这里是提示
+            </view>
+        </view>
+    </view>
+</view>
+
+<view class="m-b-xl">
+    <view class="h2 m-b-sm m-h-lg">通栏</view>
+    <view class="card card--full">
+        <view class="card__header">
+            <image class="card__thumb" src="./logo.png"></image>
+            <view class="card__title">这里是标题</view>
+            <view class="ccard__extra">额外文本</view>
+        </view>
+        <view class="card__content">
+            <view class="card__info">
+                这里是卡片的内容区
+            </view>
+            <view class="card__note">
+                这里是提示
+            </view>
+        </view>
+    </view>
+</view>

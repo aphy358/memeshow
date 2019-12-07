@@ -1,0 +1,38 @@
+<view class="mf_components-test-module" style="padding: 0 20rpx;">
+    <view class="mf_components-test-module_title">Tips:</view>
+    <view>1. 组件内部不包括 border 样式，以下 border 仅为方便展示</view>
+    <view>2. tab 的 index 属性为必填</view>
+</view>
+<view class="mf_components-test-module">
+    <view class="mf_components-test-module_title">默认等宽 Tab 栏</view>
+    <tabs>
+        <tab index="1">标题1</tab>
+        <tab index="2">标题2</tab>
+        <tab index="3">标题3</tab>
+    </tabs>
+</view>
+<view class="mf_components-test-module">
+    <view class="mf_components-test-module_title">默认选中</view>
+    <tabs default="2">
+        <tab index="1">标题1</tab>
+        <tab index="2">标题2</tab>
+        <tab index="3">标题3</tab>
+    </tabs>
+</view>
+<view class="mf_components-test-module">
+    <view class="mf_components-test-module_title">支持 scroll</view>
+    <tabs default="1" scroll>
+        <tab index="1">标题1</tab>
+        <tab index="2">标题2</tab>
+        <tab index="3">标题3</tab>
+        <tab index="4">标题4</tab>
+        <tab index="5">标题5</tab>
+        <tab index="6">标题6</tab>
+    </tabs>
+</view>
+<view class="mf_components-test-module">
+    <view class="mf_components-test-module_title">Todo:</view>
+    <view>1. 垂直模式</view>
+    <view>2. 切换内容</view>
+    <view>3. 受限于小程序组件使用的渲染库，scroll-into-view 方法展示无法实现</view>
+</view>

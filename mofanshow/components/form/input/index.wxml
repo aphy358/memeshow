@@ -1,0 +1,40 @@
+<!-- Input Component -->
+
+<view class="mf-input {{ error ? 'mf-input__error' : '' }} {{ disabled ? 'mf-input__disabled' : '' }}">
+    <view wx:if="{{ !!title }}" class="mf-input_title">{{ title }}</view>
+    <input
+        name="{{ name }}"
+        value="{{ value }}"
+        type="{{ type }}"
+        password="{{ type === 'password' }}"
+        disabled="{{ disabled }}"
+        maxlength="{{ maxlength }}"
+        placeholder="{{ placeholder }}"
+        placeholder-style="{{ placeholderStyle }}"
+        placeholder-class="mf-input_placeholder mf-class-placeholder"
+        adjust-position="{{ adjustPosition }}"
+        class="mf-input_content"
+        bindblur="onBlur"
+        bindfocus="onFocus"
+        bindinput="onInput"
+        bindchange="onChange"
+        bindconfirm="onConfirm"
+    ></input>
+    <view
+        class="mf-input_clear"
+        wx:if="{{ clearable && !!value }}"
+        bindtap="onClear"
+    >
+        <mf-icon name="close" size="{{ 18 }}"></mf-icon>
+    </view>
+    <view
+        class="mf-input_error"
+        wx:if="{{ error }}"
+        bindtap="onConfirmError"
+    >
+        <mf-icon name="info" size="{{ 18 }}" color="#78a4fa"></mf-icon>
+    </view>
+    <view>
+        <slot></slot>
+    </view>
+</view>

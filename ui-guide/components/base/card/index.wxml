@@ -1,0 +1,26 @@
+<!-- Card Component -->
+
+<view class="mf-card {{ full ? 'mf-card__full' : '' }}">
+    <view wx:if="{{ title }}" class="mf-card_title">
+        <view class="mf-card_title_left">
+            <image
+                wx:if="{{ !!thumb }}"
+                mode="aspectFit"
+                src="{{ thumb }}"
+                class="mf-card_title-thumb"
+            ></image>
+            <view class="mf-card_title-text">{{ title }}</view>
+        </view>
+        <view wx:if="{{ !!extra }}" class="mf-card_title_right">
+            <view class="mf-card_title-extra">{{ extra }}</view>
+        </view>
+    </view>
+    <view class="mf-card_content">
+        <view class="mf-card_content-main">
+            <slot></slot>
+        </view>
+        <view wx:if="{{ !!note }}" class="mf-card_content-tips">
+            {{ note }}
+        </view>
+    </view>
+</view>

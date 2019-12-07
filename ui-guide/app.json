@@ -1,0 +1,26 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/flex/index",
+    "pages/grid/index",
+    "pages/card/index",
+    "pages/cell/index",
+    "pages/form/index",
+    "pages/popup/index",
+    "pages/icon/index",
+    "pages/button/index",
+    "pages/switch/index"
+  ],
+  "usingComponents": {
+    "popup": "ui-kit/components/popup/index"
+  },
+  "window": {
+    "navigationBarBackgroundColor": "#FFFFFF",
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "UI规范"
+  },
+  "networkTimeout": {
+    "request": 500
+  },
+  "sitemapLocation": "sitemap.json"
+}

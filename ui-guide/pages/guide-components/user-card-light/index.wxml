@@ -1,0 +1,45 @@
+<view class="mf_components-test-module">
+    <view class="mf_components-test-module_title">Tips:</view>
+    <view>1. avatar & name 属性是 required 的</view>
+</view>
+
+<view class="mf_components-test-module">
+    <view class="mf_components-test-module_title">默认</view>
+    <view class="mf_components-test-module_inline-item">
+        <user-card-light
+            avatar="https://avatars3.githubusercontent.com/u/25254?s=460&v=4"
+            name="tj Holowaychuk"
+        ></user-card-light>
+    </view>
+    <view class="mf_components-test-module_inline-item">
+        <user-card-light
+            avatar="https://avatars3.githubusercontent.com/u/25254?s=460&v=4"
+            name="tj Holowaychuk"
+            size="{{ 180 }}"
+        ></user-card-light>
+    </view>
+</view>
+
+<view class="mf_components-test-module">
+    <view class="mf_components-test-module_title">横向</view>
+    <view class="mf_components-test-module_inline-item">
+        <user-card-light
+            avatar="https://avatars3.githubusercontent.com/u/25254?s=460&v=4"
+            name="tj Holowaychuk"
+            size="{{ 50 }}"
+            mode="row"
+        ></user-card-light>
+    </view>
+    <view class="mf_components-test-module_inline-item">
+        <user-card-light
+            avatar="https://avatars3.githubusercontent.com/u/25254?s=460&v=4"
+            name="tj Holowaychuk"
+            mode="row"
+        ></user-card-light>
+    </view>
+</view>
+
+<!-- <view class="mf_components-test-module">
+    <view class="mf_components-test-module_title">Todo:</view>
+    <view>1. </view>
+</view> -->

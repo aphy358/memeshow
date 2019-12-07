@@ -1,0 +1,73 @@
+@import "@/assets/styles/index";
+
+
+page {
+    color: $color-text;
+    background: #ececec;
+}
+
+view {
+    box-sizing: border-box;
+}
+
+/**
+ * Profill
+ */
+
+// 目前设置了 form-type 的 button 只会对当前组件中的 form 有效。
+// 因而，将 button 封装在自定义组件中，而 from 在自定义组件外，将会使这个 button 的 form-type 失效
+.mf-button {
+    min-width: 120rpx;
+    min-height: 50rpx;
+    border-radius: $border-radius-lg;
+
+    &_large {
+        padding: $spacing-lg 0;
+        font-size: $font-size-lg;
+        line-height: $line-height-lg;
+    }
+
+    &_mini {
+        display: inline-block;
+        font-size: $font-size-base;
+        // 与原生组件样式冲突
+        line-height: $line-height-base;
+    }
+
+    &_primary {
+        background: $color-primary !important;
+        border: 2rpx solid $color-primary;
+        color: $white !important;
+    }
+
+    &_secondary {
+        border: 2rpx solid $color-primary;
+        color: $color-primary;
+    }
+
+    &_tertiary {
+        border: 2rpx solid #ccc !important;
+        color: $color-text !important;
+    }
+
+    &__circle {
+        // todo auto set border-radius
+        border-radius: 30rpx;
+    }
+
+    &__actived {
+        opacity: $opacity-actived;
+    }
+
+    &__disabled {
+        opacity: $opacity-disabled !important;
+    }
+}
+
+.mf-button[size=mini] {
+    padding: 0;
+}
+
+.mf-button__circle.mf-button_large {
+    border-radius: 46rpx;
+}

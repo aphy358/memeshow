@@ -1,0 +1,52 @@
+<camera
+    device-position="{{devicePos}}"
+    flash="flash"
+>
+    <cover-view
+        class="cover"
+        style="padding-bottom: {{safeBottom}}px;"
+    >
+        <cover-view
+            catch:tap="handleNavBack"
+            class="back"
+            style="top: {{safeTop}}px;"
+        >
+            <cover-image src="../../../assets/images/backTo.png"></cover-image>
+        </cover-view>
+
+        <cover-view class="tool-bar">
+            <cover-view
+                catch:tap="handleTurnCamera"
+                class="tool-item"
+            >
+                <cover-image class="icon" src="../../../assets/images/icon_camera.png"></cover-image>
+                <cover-view class="text">翻转</cover-view>
+            </cover-view>
+            <cover-view
+                catch:tap="handleFlash"
+                class="tool-item"
+            >
+                <cover-view class="icon"></cover-view>
+                <cover-view class="text">闪光</cover-view>
+            </cover-view>
+        </cover-view>
+        <cover-view class="action-bar">
+            <!-- todo -->
+            <cover-view
+                catch:tap="handleAlbums"
+                class="albums"
+            >
+                <cover-image class="icon" src="../../../assets/images/plus.png"></cover-image>
+                <cover-view class="text">相册</cover-view>
+            </cover-view>
+            <cover-view class="record-btn">
+                <cover-view
+                    catch:tap="handleRecord"
+                    class="icon"
+                    style="background-color: {{recording ? 'red' : '#888'}};"
+                ></cover-view>
+            </cover-view>
+            <cover-view style="flex: 1;"></cover-view>
+        </cover-view>
+    </cover-view>
+</camera>

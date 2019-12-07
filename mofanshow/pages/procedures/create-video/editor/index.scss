@@ -1,0 +1,78 @@
+@import "@/assets/styles/index.scss";
+
+.content-editor {
+  width: 92%;
+  margin: 20rpx 4% 0;
+  padding-bottom: 20rpx;
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+.content-editor__title {
+  flex: 1;  
+
+  .text {
+    width: 100%;
+    height: 180rpx;
+  }
+
+  .text__placeholder {
+    font-family: $font-cn;
+    font-size: $font-size-lg;
+    color: $color-text-placeholder;
+  }
+  
+  .addition {
+    width: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+  }
+
+  .addition__btn {
+    padding: $spacing-sm $spacing-xxl;
+    border-radius: $border-radius-lg;
+    background-color: $color-grey-1;
+    margin-right: $spacing-xxl;
+    color: $white;
+  }
+}
+
+.content-editor__cover {
+  width: 160rpx;
+  margin-left: 20rpx;
+  position: relative;
+  
+  .img {
+    width: 100%;
+    height: 100%;
+  }
+
+  .placeholder {
+    width: 100%;
+    height: 100%;
+    background-color: #eee;
+  }
+
+  .placeholder__text {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    background-color: $color-grey-1;
+    padding: $spacing-sm 0;
+    color: #fff;
+  }
+}
+
+.addition-editor {
+  width: 100%;
+  box-sizing: border-box;
+  border-top: $color-border 1rpx solid;
+  margin-top: $spacing-xxl;
+}
+
+.action-bar {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+}

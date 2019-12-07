@@ -1,0 +1,51 @@
+@import "@/assets/styles/index.scss";
+
+page {
+  background-color: $color-bg;
+}
+
+.action-bar {
+  width: 100%;
+  box-sizing: border-box;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: $white;
+  border-top: $color-border 2rpx solid;
+
+  .layouts {
+    width: 100%;
+    height: $icon-size*2 + $spacing-xxl*2;
+    padding: $spacing-xxl;
+    display: flex;
+    flex-flow: row nowrap;
+    box-sizing: border-box;
+
+    .layout {
+      padding-right: $spacing-xxl;
+
+      .content {
+        width: $icon-size*2;
+        height: $icon-size*2;
+        background-color: $color-black-2;
+      }
+    }
+  }
+
+  .submit {
+    width: 100%;
+    padding: $spacing-xxl 0;
+    text-align: center;
+    border-top: $color-border 2rpx solid;
+  }
+}
+
+.assemble-area {
+  width: 100vw;
+  height: 100vw;
+  padding: $spacing-xxl;
+  margin-top: $spacing-xxl;
+  box-sizing: border-box;
+  background-color: $white;
+}

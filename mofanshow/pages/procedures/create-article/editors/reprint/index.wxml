@@ -1,0 +1,24 @@
+<view class="hint">
+    <view>请粘贴一个文章链接。</view>
+    <view class="question" bind:tap="handleTapQuestion">如何获取？</view>
+</view>
+
+<form bindsubmit="submit">
+    <view class="link-input">
+        <input
+            name="link"
+            placeholder="http://www.example.com"
+        />
+    </view>
+    <view
+        class="submit"
+        style="padding-bottom: {{paddingBottom}}px;"
+    >
+        <button
+            disabled="{{disabled}}"
+            form-type="submit"
+            loading="{{loading}}"
+            type="default"
+        >完成</button>
+    </view>
+</form>

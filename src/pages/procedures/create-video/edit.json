@@ -1,7 +1,0 @@
-{
-  "usingComponents": {
-    "mf-cell-group": "../../../components/base/cell-group/index",
-    "mf-cell": "../../../components/base/cell/index"
-  },
-  "navigationBarTitleText": "创作视频"
-}

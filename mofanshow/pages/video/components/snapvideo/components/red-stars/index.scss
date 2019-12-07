@@ -1,0 +1,55 @@
+@import '@/assets/styles/index.scss';
+
+@keyframes starAnimate {
+  0% {
+    opacity: 0.9;
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+
+  5% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.2);
+  }
+
+  20% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(.9);
+  }
+
+  25% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  70% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  99% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(3);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0);
+  }
+}
+
+.snapvideo-red-star-wrap{
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  z-index: $zindex-indexes;
+
+  @at-root .snapvideo-red-star{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 220rpx;
+    height: 197rpx;
+    opacity: 0;
+    animation: starAnimate 1.2s ease 0ms forwards;
+  }
+}

@@ -1,0 +1,94 @@
+@import "@/assets/styles/index.scss";
+@import "../mixins.scss";
+
+.search {
+  @include search($color-bg);
+}
+
+.search-input {
+  flex: 1;
+}
+
+.category-container {
+  width: 100%;
+  padding: $spacing-xxl;
+  overflow: hidden;
+  white-space: nowrap;
+  background-color: $white;
+  box-sizing: border-box;
+}
+
+.category {
+  width: 180rpx;
+  height: 120rpx;
+  display: inline-block;
+  margin-right: 10rpx;
+  position: relative;
+  background-color: #700;
+}
+
+.category-back {
+  position: absolute;
+  background-color: #090;
+}
+
+.category-title {
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.category-title__container {
+  position: relative;
+  width: min-content;
+  align-self: center;
+  margin-top: 30%;
+}
+
+.category-title__content {
+  width: max-content;
+  position: relative;
+  color: white;
+}
+
+.category-title__cur {
+  position: relative;
+  height: 6rpx;
+}
+
+
+.title {
+  width: 100%;
+  box-sizing: border-box;
+  padding: $spacing-xxl;
+  font-size: $font-size-lg;
+  color: $color-text;
+}
+
+.list {
+  width: 100%;
+  padding: 0 $spacing-xxl;
+  box-sizing: border-box;
+  border-top: 1rpx solid $color-border;
+  background-color: $white;
+}
+
+.list-item {
+  width: 100%;
+  padding: $spacing-xxl;
+  box-sizing: border-box;
+  display: flex;
+  flex-flow: row nowrap;
+  border-bottom: 1rpx solid $color-border;
+}
+
+.topic-hotpoint {
+  width: 20rpx;
+  height: 20rpx;
+  border-radius: $border-radius-circle;
+  margin-left: $spacing-xxl;
+  margin-right: $spacing-sm;
+  background-color: $color-primary;
+  align-self: center;
+}

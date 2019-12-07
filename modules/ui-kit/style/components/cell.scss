@@ -1,0 +1,105 @@
+@import "../variables/default.scss";
+@import "../mixins/index.scss";
+
+.cell {
+    @include display-flex();
+    @include align-items(center);
+    @include justify-content();
+    @include hairline-top-bottom($color: $cell-color-border);
+    padding: 0 $cell-spacing-h;
+
+    &__header {
+        @include flex(1, 1, auto);
+        @include display-flex();
+        @include align-items(center);
+        overflow: hidden;
+    }
+
+    &__tail {
+        @include flex(0, 0, auto);
+        @include display-flex();
+        @include align-items(center);
+        @include justify-content(flex-end);
+        max-width: 30%;
+        margin-left: $spacing-h-lg;
+        overflow: hidden;
+    }
+
+    &__detail,
+    &__title {
+        @include line();
+        line-height: size(25);
+        padding: $padding-sm 0;
+    }
+
+    &__title {
+        font-size: $font-size-lg;
+        color: $color-text-base;
+    }
+
+    &__detail {
+        font-size: $font-size-base;
+        color: $color-text-paragraph;
+    }
+
+    &__img {
+        @include flex(0, 0, auto);
+        display: block;
+        width: $cell-size-img;
+        height: $cell-size-img;
+        overflow: hidden;
+        margin-right: $spacing-h-lg;
+    }
+
+    &__desc {
+        margin: $spacing-v-xs 0;
+        line-height: $font-size-base;
+        font-size: $font-size-sm;
+        color: $color-text-paragraph;
+    }
+
+    &__title--multi {
+        @include display-flex();
+        @include align-items(flex-start);
+        flex-direction: column;
+        overflow: hidden;
+        padding: $padding-sm 0;
+
+        .cell__title {
+            padding: 0;
+        }
+    }
+
+    &__icon-link {
+        margin-left: $spacing-v-sm;
+        font-size: $font-size-base;
+        color: $font-size-base;
+    }
+
+    &--actived {
+        background-color: $cell-color-actived;
+    }
+}
+
+.cell__group {
+    @include hairline-top-bottom($color: $cell-color-border);
+
+    .cell {
+        @include hairline-bottom($color: $cell-color-border);
+
+        &::before {
+            display: none;
+        }
+
+        &--sub {
+            @include hairline-bottom-relative(
+                $left: $cell-spacing-h,
+                $color: $cell-color-border
+            );
+        }
+
+        &:last-child::after {
+            display: none;
+        }
+    }
+}

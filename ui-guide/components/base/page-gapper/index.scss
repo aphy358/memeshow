@@ -1,0 +1,19 @@
+@import '@/assets/styles/index.scss';
+
+
+.mf-page-gapper {
+  position: relative;
+
+  &.border-both {
+    @include hairline($color: $color-grey-4, $position: top);
+    @include hairline($color: $color-grey-4, $position: bottom, $element: after);
+  }
+
+  &.border-top {
+    @include hairline($color: $color-grey-4, $position: top);
+  }
+
+  &.border-bottom {
+    @include hairline($color: $color-grey-4, $position: bottom);
+  }
+}

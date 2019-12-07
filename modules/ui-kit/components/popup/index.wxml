@@ -1,0 +1,29 @@
+<view class="popup {{ open ? 'popup--actived' : '' }}">
+    <view
+        class="{{ mask ? 'popup__overlay' : 'popup__overlay--opacity' }}"
+        catchtouchmove="onPreventDefault"
+        catchtap="onTapMask"
+    ></view>
+    <view class="popup__content">
+        <view class="popup__header">
+            <view
+                wx:if="{{ !!title }}"
+                class="popup__title"
+            >{{ title }}</view>
+            <view wx:else class="popup__title--extra">
+                <slot name="header"></slot>
+            </view>
+            <view
+                wx:if="{{ closable }}"
+                class="popup__close icon icon-close"
+                catchtap="onClose"
+            ></view>
+        </view>
+        <view class="popup__body" mark:scrolltarget="popup-content">
+            <slot></slot>
+        </view>
+        <view class="popup__footer">
+            <slot name="footer"></slot>
+        </view>
+    </view>
+</view>

@@ -1,311 +1,314 @@
-const { resolve, dirname, parse, relative, join } = require("path")
+const { resolve, dirname, parse, relative, isAbsolute, sep } = require("path")
 const { removeSync } = require("fs-extra")
 const { existsSync } = require("fs")
-const fs = require("fs")
 const _ = require("lodash")
 const globby = require("globby")
+const argv = require('yargs').argv
+const colors = require('colors/safe')
 const webpack = require("webpack")
-const CopyWebpackPlugin = require("copy-webpack-plugin")
-const MoveFilesPlugin = require("./plugins/moveFilesPlugin")
 
-const base = resolve(".")
-const baseModules = resolve("./node_modules")
-const src = resolve("./src")
-const dist = resolve("./dist")
-const moduleDirAlias = "_vendors"
-
-
-/**
- * 从app.json中的pages作为起点 构建依赖树
- * @param {String} app - app的路径
- */
-const walkEntries = app => {
-  const entries = { app }
-  const resolves = []
-  // console.info(`walk entries:\n\t app => ${app}`)
-  const appRoot = dirname(app)
-
-  // 遍历pages
-  const { pages = [], subpackages = [], tabBar = {} } = require(resolve(
-    appRoot,
-    "app.json"
-  ))
-  pages.forEach(it => walkPageEntries(resolve(appRoot, it), entries, resolves))
-
-  // 加入app目录下的custom-tab-bar
-  walkPageEntries(resolve(appRoot, "custom-tab-bar/index"), entries, resolves)
-
-  subpackages.forEach(it =>
-    walkSubPackageEntries(appRoot, it, entries, resolves)
-  )
-  walkEntryResources(appRoot, entries)
-  walkTabBarAssets(appRoot, tabBar, entries)
-  return { entries, resolves }
+const proj = argv.proj
+if (!proj) {
+  console.log(colors.red('usage: npm run <dev|build> -- --proj <project>'))
+  process.exit(1)
 }
 
-/**
- * 以page为入口遍历页面依赖的组件
- * @param {String} page
- * @param {Object} entries
- * @param {String[]} resolves
- * @param {String} indent
- */
-const walkPageEntries = (page, entries, resolves, indent = "\t\t") => {
-  const path = fullScriptPath(page)
-  if (!path) return
-  const { dir, name } = parse(path)
-  const entryName = relative(src, resolve(dir, name))
-  entries[entryName] = path
-  // console.info(`${indent}page => ${path}`)
-  walkComponentEntries(path, entries, resolves, `${indent}\t`)
-}
+// 工作目录
+const base = resolve('.')
+// 项目根目录
+const src = resolve(base, proj)
+// node_modules目录
+const nodeModules = resolve('./node_modules')
+// 用户公共组件目录
+const customModules = resolve('./modules')
+// 打包输出目录
+const dist = resolve(`./dist/${proj}`)
+// 公共组件打包输出目录
+// TODO 小程序会忽略 node_modules 目录，因此 node_modules 中的组件也发布到这里
+const distModules = resolve(dist, '_modules')
+// 打包入口
+const entries = {}
+// 路径别名
+const resolves = []
+// 分包信息
+const packages = []
+// 提取公共代码
+const splits = {}
 
-const walkSubPackageEntries = (
-  appRoot,
-  package,
-  entries,
-  resolves,
-  indent = "\t\t"
-) => {
-  const { root, pages = [] } = package
-  const packageRoot = resolve(appRoot, root)
-  // console.info(`${indent}subPackage => ${packageRoot}`)
-  pages.forEach(it =>
-    walkPageEntries(resolve(packageRoot, it), entries, resolves, `${indent}\t`)
-  )
-}
+const walkProject = () => {
+  // app.js 作为主入口
+  entries.app = resolve(src, 'app.js')
 
-/**
- * 以组件为入口 递归遍历组件依赖的组件
- * @param {string} instancePath
- * @param {object} entries
- * @param {string[]} resolves
- * @param {string} indent
- */
-const walkComponentEntries = (instancePath, entries, resolves, indent) => {
-  const { dir, name } = parse(instancePath)
-  const path = resolve(dir, `${name}.json`)
-  if (!existsSync(path)) {
-    return
-  }
-  const { usingComponents = {} } = require(path)
+  // 从 app.json 解析依赖
+  const appJson = resolve(src, 'app.json')
+  const { pages = [], usingComponents = {}, subpackages = [], tabBar = {} } = require(appJson)
+
+  // 页面
+  pages.forEach(it => {
+    const path = resolveFullScriptPath(src, it)
+    if (!path) {
+      console.log(colors.yellow(`can't find page: ${it}`))
+      return
+    }
+    walkPage(path)
+  })
+
+  // 全局组件
   _.values(usingComponents).forEach(it => {
-    walkComponent(path, it, entries, resolves, indent)
+    const configContext = distContext(appJson)
+    // resolve relative to project dir
+    let path = resolveFullScriptPath(src, it)
+    if (path) {
+      walkComponent(path, configContext, it)
+      return
+    }
+    // resolve in node_modules dir
+    path = resolveFullScriptPath(nodeModules, it)
+    if (path) {
+      walkComponent(path, configContext, it)
+      return
+    }
+    // resolve in custom modules dir
+    path = resolveFullScriptPath(customModules, it)
+    if (path) {
+      walkComponent(path, configContext, it)
+      return
+    }
+    console.log(colors.yellow(`can't find component: ${it}`))
+  })
+
+  // 分包
+  subpackages.forEach(it => walkSubpackage(it))
+
+  // js关联的 .json .wxml .wxss .scss ...
+  walkEntries()
+
+  // tabbar 资源
+  walkTabBar(tabBar)
+}
+
+const walkPage = path => {
+  const context = setEntry(path)
+  if (!context) return
+  walkComponentsRecursively(path, context)
+}
+
+const walkComponent = (path, configContext, originalPath) => {
+  const context = setEntry(path)
+  if (!context) return
+  // 配置文件中公共组件路径替换为真实路径
+  setResolves(context, configContext, originalPath)
+  walkComponentsRecursively(path, context)
+}
+
+const walkComponentsRecursively = (path, context) => {
+  const { rootPath } = context
+  const { dir, name } = parse(path)
+  const configPath = resolve(dir, `${name}.json`)
+  if (!existsSync(configPath)) return
+  const configContext = distContext(configPath)
+  const { usingComponents = {} } = require(configPath)
+  _.values(usingComponents).forEach(it => {
+    // resolve relative to parent
+    let path = resolveFullScriptPath(dir, it)
+    if (path) {
+      walkComponent(path, configContext, it)
+      return
+    }
+    // resolve relative to parent's root
+    path = resolveFullScriptPath(rootPath, it)
+    if (path) {
+      walkComponent(path, configContext, it)
+      return
+    }
+    // resolve in node_modules dir
+    path = resolveFullScriptPath(nodeModules, it)
+    if (path) {
+      walkComponent(path, configContext, it)
+      return
+    }
+    // resolve in custom modules dir
+    path = resolveFullScriptPath(customModules, it)
+    if (path) {
+      walkComponent(path, configContext, it)
+      return
+    }
+    // can't resolve
+    console.log(colors.yellow(`can't find sub component: ${configPath}, ${it}`))
   })
 }
 
-/**
- * 遍历组件 发现有依赖其他组件且没有添加到入口集合中 则遍历该组件
- * @param {string} parentJsonPath
- * @param {string[]} componentPath
- * @param {object} entries
- * @param {string[]} resolves
- * @param {string} indent
- */
-const walkComponent = (
-  parentJsonPath,
-  componentPath,
-  entries,
-  resolves,
-  indent
-) => {
-  const parentDir = parse(parentJsonPath).dir
-  // 先尝试在调用者目录中查找
-  let path = fullScriptPath(resolve(parentDir, componentPath))
-  if (!path) {
-    // 不存在，尝试在node_modules中查找
-    path = fullScriptPath(resolve(baseModules, componentPath))
-    if (path) {
-      const { name, dir } = parse(path)
-      const from = join(dist, relative(src, parentDir))
-      // 小程序会忽略node_modules目录，使用其它目录名
-      const to = join(dist, relative(base, dir)).replace(
-        "node_modules",
-        moduleDirAlias
-      )
-      // 替换配置的路径
-      resolves.push({
-        parent: parentJsonPath,
-        component: componentPath,
-        resolveTo: join(relative(from, to), name)
-      })
-    }
-  }
-  if (!path) return
-  const isVendor = path.indexOf(baseModules) === 0
-  // trim ext
-  const { dir, name } = parse(path)
-  const entryPath = resolve(dir, name)
-  // node_modules下的组件保持相对base的路径，src下的组件保持相对src的路径
-  let entryName = isVendor
-    ? relative(base, entryPath)
-    : relative(src, entryPath)
-  // 小程序会忽略node_modules目录，使用其它目录名
-  entryName = entryName.replace("node_modules", moduleDirAlias)
+const setEntry = path => {
+  const context = distContext(path)
+  if (!context) return
+  // 打包入口名需要去除文件后缀
+  const { dir, name } = parse(context.distPath)
+  const entryName = relative(dist, resolve(dir, name))
   if (!entries[entryName]) {
     entries[entryName] = path
-    // console.info(`${indent}component => ${path}`)
-    walkComponentEntries(path, entries, resolves, `${indent}\t`)
+    return context
   }
 }
 
-/**
- * 遍历app.json中tabbar中定义的tab页面
- * @param {string} appRoot
- * @param {object} tabBar
- * @param {string[]} entries
- * @param {string} indent
- */
-const walkTabBarAssets = (appRoot, tabBar, entries, indent = "\t\t") => {
-  let assets = []
-  ;(tabBar.list || []).forEach(it => {
-    const iconPath = it.iconPath
-    const selectedIconPath = it.selectedIconPath
-    if (iconPath) assets.push(resolve(appRoot, iconPath))
-    if (selectedIconPath) assets.push(resolve(appRoot, selectedIconPath))
+const distContext = path => {
+  // 如果是 node_modules/用户公共组件，发布到统一的模块目录distModules，其余发布到项目目录dist
+  const rootPath = [src, nodeModules, customModules].find(it => path.indexOf(it) === 0)
+  if (!rootPath) {
+    console.log(colors.yellow(`invalid path: ${path}`))
+    return
+  }
+  const isModule = [nodeModules, customModules].indexOf(rootPath) >= 0
+  const relativePath = relative(rootPath, path)
+  const distRootPath = isModule ? distModules : dist
+  const distPath = resolve(distRootPath, relativePath)
+  return { path, rootPath, relativePath, distRootPath, distPath, isModule }
+}
+
+const setResolves = (context, configContext, originalPath) => {
+  const configDistPath = configContext.distPath
+  const configDirPath = dirname(configDistPath)
+  const compDistPath = context.distPath
+  // trim ext as import path
+  const compDistImportPath = compDistPath.split('.').slice(0, -1).join('.')
+  const resolvedPath = relative(configDirPath, compDistImportPath)
+  const configEntryName = relative(dist, configDistPath)
+  if (resolvedPath !== originalPath) {
+    resolves.push({
+      entry: configEntryName,
+      from: originalPath,
+      to: resolvedPath
+    })
+  }
+}
+
+const walkSubpackage = subpackage => {
+  const { root, pages = [], independent = false } = subpackage
+  const rootPath = resolve(src, root)
+  pages.forEach(it => {
+    const path = resolveFullScriptPath(rootPath, it)
+    if (!path) {
+      console.log(colors.yellow(`can't find subpackage page: ${rootPath}, ${it}`))
+      return
+    }
+    walkPage(path)
   })
-  assets = _.uniq(assets)
-  if (!_.isEmpty(assets)) {
-    entries._assets = _.concat(entries._assets || [], assets)
-    // assets.forEach(it => console.info(`${indent}tabIcon => ${it}`))
+  // 分包信息
+  const name = relative(src, rootPath).replace(sep, '_')
+  const splitName = `common_${name}`
+  const { distPath } = distContext(resolve(rootPath, splitName))
+  const splitDistPath = distPath
+  packages.push({ name, splitName, splitDistPath, rootPath, independent })
+  // 提取公共代码
+  const split = {
+    chunks(chunk) {
+      // 仅处理分包内
+      return resolve(dist, chunk.name).indexOf(dirname(splitDistPath)) === 0
+    },
+    test(mod) {
+      // 独立分包只能引用自己
+      // TODO node_modules & 用户公共模块 在独立分包会被内联
+      return !independent || !mod.resource || mod.resource.indexOf(rootPath) === 0
+    },
+    enforce: true,
+    minChunks: 2,
+    // 输出到分包目录下
+    name: relative(dist, splitDistPath),
+    priority: 10
   }
+  splits[splitName] = split
 }
 
-/**
- * 遍历入口依赖的资源 由于文件同名 所以匹配后缀
- * @param {string} appRoot
- * @param {string[]} entries
- * @param {string} indent
- */
-const walkEntryResources = (appRoot, entries, indent = "\t\t") => {
+const walkEntries = () => {
   const patterns = _.values(entries).map(it => {
     const { dir, name } = parse(it)
-    return resolve(dir, `${name}.(json|wxss|wxml|scss)`)
+    return resolve(dir, `${name}.(json|wxml|wxss|scss)`)
   })
-  patterns.push(resolve(appRoot, "project.config.json"))
+  _.forEach(['project.config.json', 'sitemap.json'], it => patterns.push(resolve(src, it)))
   const resources = globby.sync(patterns, {
-    cwd: appRoot,
+    cwd: base,
     nodir: true,
     realpath: true,
     ignore: ["**/*.js"]
   })
   if (!_.isEmpty(resources)) {
     entries._assets = _.concat(entries._assets || [], resources)
-    // resources.forEach(it => console.info(`${indent}resource => ${it}`))
   }
 }
 
-const vendorFileLoader = () => {
+const walkTabBar = tabBar => {
+  const assets = _.uniq(
+    _.filter(_.flattenDeep(_.map(tabBar.list || [], it => [
+      resolveFullResourcePath(src, it.iconPath), resolveFullResourcePath(src, it.selectedIconPath)
+    ])))
+  )
+  if (!_.isEmpty(assets)) {
+    entries._assets = _.concat(entries._assets || [], assets)
+  }
+}
+
+const distPathFileLoader = transform => {
   return {
     loader: "file-loader",
     options: {
       context: base,
       name: "[path][name].[ext]",
-      // 小程序会忽略node_modules目录，使用其它目录名
-      outputPath: url => url.replace("node_modules", moduleDirAlias)
+      outputPath: path => {
+        const fullPath = resolve(base, path)
+        const context = distContext(fullPath)
+        if (!context) throw new Error(`invalid file-loader path ${path}`)
+        const outputPath = relative(dist, context.distPath)
+        return transform ? transform(outputPath) : outputPath
+      }
     }
   }
 }
 
 const resolveRules = resolves => {
-  const resolvesByFiles = _.groupBy(resolves, "parent")
-  const results = _.keys(resolvesByFiles).map(it => {
+  const resolvesByEntries = _.groupBy(resolves, 'entry')
+  const rules = _.keys(resolvesByEntries).map(it => {
     return {
-      test: new RegExp(`${parse(it).base}$`),
+      test: new RegExp(`${it}$`),
       loader: "string-replace-loader",
       options: {
-        multiple: resolvesByFiles[it].map(it => ({
-          search: it.component,
-          replace: it.resolveTo
+        multiple: resolvesByEntries[it].map(it => ({
+          search: it.from,
+          replace: it.to
         }))
       }
     }
   })
-  return results
+  return rules
 }
 
-const fullScriptPath = path => {
+const resolveFullResourcePath = (root, ...segments) => {
+  const path = _.reduce(segments, (path, it) => isAbsolute(it) ? resolve(`${root}${it}`) : resolve(path, it), root)
+  return existsSync(path) ? path : null
+}
+
+const resolveFullScriptPath = (root, ...segments) => {
+  const path = _.reduce(segments, (path, it) => isAbsolute(it) ? resolve(`${root}${it}`) : resolve(path, it), root)
   const { dir, name, ext } = parse(path)
-  if (!!ext && existsSync(path)) return path
-  if (!ext) {
-    const candidates = [
-      resolve(dir, `${name}.js`),
-      resolve(dir, name, "index.js"),
-      resolve('./src' + dir, `${name}.js`)
-    ]
-    const result = candidates.find(existsSync)
-    if (result) return result
+  const candidates = [
+    path,
+    resolve(dir, `${name}.js`),
+    resolve(dir, name, "index.js"),
+  ]
+  if (ext) {
+    candidates.push(resolve(dir, `${name}.${ext}.js`))
+    candidates.push(resolve(dir, `${name}.${ext}`, "index.js"))
   }
-  return null
+  return candidates.find(existsSync)
 }
 
-/**
- * 获取某个路径下的所有文件夹，并以数组的形式返回
- * @param {string} path
- */
-const getFolders = path => {
-  let entriesFolder = resolve(src, path)
-  let dirs = fs.readdirSync(entriesFolder)
-  return dirs.filter(o => o.indexOf(".") === -1)
-}
-
-/**
- * 设置分包 common 包的配置，格式统一为 common_ + 分包名，比如 common_IM
- */
-const setSubPackageCommmon = () => {
-  const dirs = getFolders("packages/")
-  let resObj = {}
-  for (let i = 0; i < dirs.length; i++) {
-    const ele = dirs[i]
-    resObj["common_" + ele] = {
-      chunks: "all",
-      test: new RegExp("packages\\/" + ele),
-      minChunks: 2,
-      name: "common_" + ele,
-      priority: 5
-    }
-  }
-
-  return resObj
-}
-
-/**
- * 拼接文件移动插件的入参
- */
-const getMoveFilesObj = () => {
-  const dirs = getFolders("packages/")
-  let resObj = []
-  for (let i = 0; i < dirs.length; i++) {
-    const ele = dirs[i]
-    resObj.push(
-      {
-        from: resolve(dist, "common_" + ele + ".js"),
-        to: resolve(dist, "packages/" + ele + "/common_" + ele + ".js")
-      },
-      {
-        from: resolve(dist, "common_" + ele + ".js.map"),
-        to: resolve(dist, "packages/" + ele + "/common_" + ele + ".js.map")
-      }
-    )
-  }
-
-  return resObj
-}
-
-const resConfig = env => {
+const build = env => {
   const mode = env.NODE_ENV
   const prod = mode === "production"
-  // console.info(`building in ${mode} mode`)
-  // console.info(`project base\t=> ${base}`)
-  // console.info(`project node_modules\t=> ${baseModules}`)
-  // console.info(`project src\t=> ${src}`)
-  // console.info(`project dist\t=> ${dist}`)
 
-  // 构建先清理
+  // 构建前先清理
   removeSync(dist)
 
-  // 从app开始，遍历出所有入口文件
-  const { entries, resolves } = walkEntries(resolve(src, "app.js"))
+  // 遍历项目建立构建信息
+  walkProject()
 
   return {
     mode,
@@ -320,8 +323,11 @@ const resConfig = env => {
     // 小程序不支持eval，不能使用eval相关的devtool
     devtool: prod ? false : "source-map",
     resolve: {
+      // 扩展js库查找路径
+      modules: [nodeModules, customModules],
       // 设置别名
       alias: {
+        // 项目根目录
         '@': src
       }
     },
@@ -332,156 +338,80 @@ const resConfig = env => {
           use: ["babel-loader"],
           exclude: /node_modules/
         },
-        // 拷贝资源时，src下的资源保持相对src的路径，node_modules下的资源保持相对base的路径
         {
           test: /.wxs$/,
-          use: [
-            {
-              loader: "file-loader",
-              options: { context: src, name: "[path][name].[ext]" }
-            },
-            "babel-loader"
-          ],
-          exclude: /node_modules/
-        },
-        {
-          test: /.wxs$/,
-          use: [vendorFileLoader(), "babel-loader"],
-          include: /node_modules/
+          use: [distPathFileLoader(), "babel-loader"]
         },
         {
           test: /\.wxss$/,
-          use: [
-            {
-              loader: "file-loader",
-              options: { context: src, name: "[path][name].[ext]" }
-            },
-            "postcss-loader"
-          ],
-          exclude: /node_modules/
-        },
-        {
-          test: /\.wxss$/,
-          use: [vendorFileLoader(), "postcss-loader"],
-          include: /node_modules/
+          use: [distPathFileLoader(), "postcss-loader"]
         },
         {
           test: /\.scss$/,
           use: [
-            {
-              loader: "file-loader",
-              options: { context: src, name: "[path][name].wxss" }
-            },
-            "postcss-loader",
-            "sass-loader"
-          ],
-          exclude: /node_modules/
+            distPathFileLoader(path => path.substr(0, path.lastIndexOf('.')) + '.wxss'),
+            "postcss-loader", "sass-loader"]
         },
         {
           test: /\.wxml$/,
           use: [
-            {
-              loader: "file-loader",
-              options: { context: src, name: "[path][name].[ext]" }
-            },
+            distPathFileLoader(),
+            // wxml中引入的资源
             {
               loader: "wxml-loader",
               options: {
+                // 当引入的资源是绝对路径时，以root作为根目录
+                // 例如 <img src="/assets/t.png" />，会引入 ${root}/assets/t.png
                 root: src,
+                publicPath: '',
                 enforceRelativePath: true,
                 minimize: prod,
                 ignoreCustomFragments: [/<\/input>/],
                 removeRedundantAttributes: false,
-                transformUrl(url, resource) {
-                  // url 是资源相对于 root 的相对路径，需要转换为相对于 resource 的相对路径
-                  return relative(dirname(resource), resolve(src, url))
+                transformUrl(assetDistRelativePath, wxmlPath) {
+                  const from = dirname(distContext(wxmlPath).distPath)
+                  const to = resolve(dist, assetDistRelativePath)
+                  return relative(from, to)
                 }
               }
             }
-          ],
-          exclude: /node_modules/
-        },
-        {
-          test: /\.wxml$/,
-          use: [
-            vendorFileLoader(),
-            {
-              loader: "wxml-loader",
-              options: {
-                root: base,
-                enforceRelativePath: true,
-                minimize: prod,
-                ignoreCustomFragments: [/<\/input>/],
-                removeRedundantAttributes: false,
-                transformUrl(url, resource) {
-                  // url 是资源相对于 root 的相对路径，需要转换为相对于 resource 的相对路径
-                  return relative(dirname(resource), resolve(base, url))
-                }
-              }
-            }
-          ],
-          include: /node_modules/
+          ]
         },
         {
           test: /.json$/,
           type: "javascript/auto",
-          use: [
-            {
-              loader: "file-loader",
-              options: { context: src, name: "[path][name].[ext]" }
-            }
-          ],
-          exclude: /node_modules/
-        },
-        {
-          test: /.json$/,
-          type: "javascript/auto",
-          use: [vendorFileLoader()],
-          include: /node_modules/
+          use: [distPathFileLoader()]
         },
         {
           test: /\.(png|jpg|gif)$/,
-          use: [
-            {
-              loader: "file-loader",
-              options: { context: src, name: "[path][name].[ext]" }
-            }
-          ],
-          exclude: /node_modules/
+          use: [distPathFileLoader()]
         },
-        {
-          test: /\.(png|jpg|gif)$/,
-          use: [vendorFileLoader()],
-          include: /node_modules/
-        },
-        // 替换引用node_modules内的组件为真实路径
+        // 替换配置文件中的组件路径为实际路径
         ...resolveRules(resolves)
       ]
     },
-    // 警告 webpack 的性能提示
-    performance: {
-      hints: "warning",
-      assetFilter: function(assetFilename) {
-        return assetFilename.indexOf("common_IM.js") === -1
-      }
-    },
     optimization: {
-      // 公共代码抽取
-      runtimeChunk: {
-        name: "runtime"
-      },
       splitChunks: {
         cacheGroups: {
+          // 分包公共代码
+          ...splits,
+          // 全局公共代码
           common: {
             chunks(chunk) {
-              return chunk.name.indexOf("packages") === -1
+              // 不处理独立分包
+              return packages.findIndex(
+                it => it.independent && resolve(dist, chunk.name).indexOf(dirname(it.splitDistPath)) === 0
+              ) < 0
             },
-            minChunks: 2,
+            test(mod) {
+              // 不引用分包中的模块
+              return !mod.resource || _.every(packages, it => mod.resource.indexOf(it.rootPath) < 0)
+            },
+            enforce: true,
+            minChunks: 1,
             name: "common",
-            priority: 10
-          },
-          // 针对所有分包下的公共模块进行单独打包
-          ...setSubPackageCommmon()
+            priority: 20
+          }
         }
       }
     },
@@ -489,57 +419,38 @@ const resConfig = env => {
       // 在entry头部引入公共代码
       new webpack.BannerPlugin({
         banner: options => {
-          const chunkPath = dirname(resolve(src, options.filename))
-          const isPackage = chunkPath.indexOf("packages") !== -1
-          let subPackageName = ""
-          if (isPackage) {
-            let restPath = chunkPath.split("/packages/")[1]
-            let index = restPath.indexOf("/")
-            subPackageName = restPath.substring(0, index)
+          // 公共chunks
+          const chunks = [resolve(dist, 'common.js')]
+          // entry路径
+          const path = resolve(dist, options.filename)
+          // entry所在的分包信息
+          const package = packages.find(it => path.indexOf(dirname(it.splitDistPath)) === 0)
+          // 计算依赖chunks
+          let depChunks
+          if (package) {
+            const pkgChunks = [`${package.splitDistPath}.js`]
+            if (package.independent) {
+              // 独立分包，只依赖自身
+              depChunks = pkgChunks
+            } else {
+              // 非独立分包，依赖公共&自身
+              depChunks = _.concat(chunks, pkgChunks)
+            }
+          } else {
+            // 不在分包内，依赖公共
+            depChunks = chunks
           }
-          let deps = isPackage
-            ? ["common_" + subPackageName]
-            : ["runtime", "common"]
 
-          const requires = deps.map(it => {
-            const path = resolve(src, `${it}.js`)
-            let res = relative(chunkPath, path)
+          // 避免循环引用
+          if (depChunks.indexOf(path) >= 0) return ''
 
-            // 分包 common_**.js 本身不需要引用主包 runtime.js 和 common.js，直接 return
-            if (options.chunk.name.indexOf("common_") !== -1) {
-              return ""
-            }
-
-            // 如果是分包 common_**.js，则路径减少两层（以满足后续文件移动后能正确执行）
-            // 注意，实际情况下，如果不满足公共代码抽离的标准的话，可能并不会打包出相应的 common_**.js
-            // 这种情况下我们自主开发的插件 MoveFilesPlugin 会到相应目录下创建一个空的 common_**.js，这样就不会报错了
-            if (it.indexOf("common_") !== -1) {
-              res = res.substr(6)
-            }
-
-            return `require("${res}");`
-          })
-
-          return deps.indexOf(options.chunk.name) > -1 ? "" : requires.join("")
+          return depChunks.map(it => `require("${relative(dirname(path), it)}");`).join('')
         },
         raw: true,
         entryOnly: true
-      }),
-
-      // 拷贝资源
-      new CopyWebpackPlugin([
-        {
-          from: resolve(src, "sitemap.json"),
-          to: resolve(dist, "sitemap.json")
-        }
-      ]),
-
-      // 移动文件到指定目录
-      new MoveFilesPlugin(getMoveFilesObj())
+      })
     ]
   }
 }
-module.exports = resConfig
-resConfig({
-  NODE_ENV: "production" // development
-})
+
+module.exports = build

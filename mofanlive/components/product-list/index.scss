@@ -1,0 +1,52 @@
+@import "../../theme.scss";
+
+.product-list {
+  width: 100%;
+  height: 50vh;
+  box-sizing: border-box;
+}
+
+.product {
+  $product-img-size: 200rpx;
+
+  padding: $spacing-v-lg $spacing-h-lg;
+  width: 100%;
+  box-sizing: border-box;
+
+  @include flex-row-nowrap;
+  @include hairline-bottom;
+
+  &-img {
+    width: $product-img-size;
+    height: $product-img-size;
+    margin-right: $spacing-h-lg;
+    border-radius: $border-radius-lg;
+  }
+
+  &-desc {
+    @include flex;
+    position: relative;
+    display: inline;
+
+    &-title {
+      width: 100%;
+      color: $color-grey-0;
+      font-family: $font-cn;
+      font-size: $font-size-lg;
+    }
+
+    &-price {
+      color: $color-error;
+      font-size: $font-size-xxl;
+      font-family: $font-en;
+      position: absolute;
+      bottom: 0;
+    }
+
+    &-buy {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+    }
+  }
+}

@@ -1,0 +1,30 @@
+<!-- Banner Component -->
+
+
+<swiper
+    current="{{ current }}"
+    autoplay="{{ autoplay }}"
+    circular="{{ circular }}"
+    interval="{{ interval }}"
+    duration="{{ duration }}"
+    indicator-dots="{{ indicatorDots }}"
+    indicator-color="{{ indicatorColor }}"
+    indicator-active-color="{{ indicatorActiveColor }}"
+    class="mf_banner"
+>
+    <block
+        wx:for="{{ list }}"
+        wx:key="{{ banner.id }}"
+        wx:for-item="banner"
+    >
+        <swiper-item>
+            <navigator url="{{ banner.url }}" hover-class="none">
+                <image
+                    src="{{ banner.image }}"
+                    mode="aspectFit"
+                    class="mf_banner-image"
+                ></image>
+            </navigator>>
+        </swiper-item>
+    </block>
+</swiper>

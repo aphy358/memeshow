@@ -1,0 +1,16 @@
+<view class="input-area">
+    <mf-textarea
+        bind:blur="handleInput"
+        bind:confirm="handleSubmit"
+        counter
+        maxlength="5000"
+        value="{{text}}"
+    ></mf-textarea>
+</view>
+<!-- <view class="action">
+    <mf-button
+        bind:click="handleSubmit"
+        circle
+        size="mini"
+    >完成</mf-button>
+</view> -->

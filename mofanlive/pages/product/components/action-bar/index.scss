@@ -1,0 +1,73 @@
+@import "@/theme";
+
+.container {
+  width: 100%;
+  position: relative;
+}
+
+.placeholder {
+  display: inline;
+  position: relative;
+}
+
+.action-bar {
+  width: 100%;
+  padding-left: $spacing-h-lg;
+  padding-right: $spacing-h-lg;
+  box-sizing: border-box;
+  @include flex-row-nowrap;
+  position: fixed;
+  bottom: 0;
+
+  &__left {
+    width: 50%;
+    padding-left: $spacing-h-lg;
+    background-color: #1D1E2F;
+    border-radius: $border-radius-lg;
+    @include flex-row-nowrap;
+
+    &-btn {
+      display: flex;
+      flex-flow: column nowrap;
+      align-items: center;
+      padding-right: $spacing-h-lg;
+      align-self: center;
+
+      &-icon {
+        width: $icon-size-md;
+        height: $icon-size-md;
+
+        color: #000;
+        background-color: $color-grey-5;
+        font-size: $font-size-xs;
+      }
+
+      &-text {
+        color: $color-white;
+        font-size: $font-size-sm;
+      }
+
+      &__cart {
+        flex: 1;
+        display: inline;
+        text-align: center;
+        vertical-align: middle;
+        background-color: $color-black-1;
+        color: $color-white;
+        border-radius: $border-radius-lg;
+      }
+
+      &__cart::before {
+        content: "";
+        display: inline-block;
+        height: 100%;
+        vertical-align: middle;
+      }
+    }
+  }
+
+  .buy {
+    flex: 1;
+    margin: 0 $spacing-h-md;
+  }
+}

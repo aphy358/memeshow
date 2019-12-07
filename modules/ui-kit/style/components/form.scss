@@ -1,0 +1,61 @@
+@import "../variables/default.scss";
+@import "../mixins/index.scss";
+
+.form {
+    @include hairline-top-bottom($color: $form-color-border);
+
+    &__item {
+        @include display-flex();
+        @include align-items(center);
+        @include hairline-bottom-relative(
+            $left: $form-spacing-h,
+            $color: $form-color-border
+        );
+        padding: 0 $form-spacing-h;
+        line-height: 40rpx;
+
+        &:last-child::after {
+            display: none;
+        }
+
+        &--disabled {
+            .form__label,
+            .form__content {
+                color: $color-text-disabled;
+            }
+        }
+
+        &--error {
+            .form__label,
+            .form__content {
+                color: $color-error;
+            }
+        }
+    }
+
+    &__label {
+        @include flex(0, 0, auto);
+        min-width: $form-label-min-width;
+        max-width: $form-label-max-width;
+        margin-right: $spacing-h-md;
+    }
+
+    &__content {
+        @include flex(auto);
+    }
+
+    &__tail {
+        @include flex(0, 0, auto);
+    }
+
+    &--no-border {
+        &::after,
+        &::before {
+            display: none;
+        }
+
+        .form__item::after {
+            display: none;
+        }
+    }
+}

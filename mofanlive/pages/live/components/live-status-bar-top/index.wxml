@@ -1,0 +1,7 @@
+
+<view 
+  class="status-bar-wrap"
+  style="width: {{ menuBtn.left - 40 }}px;height: {{ menuBtn.height }}px;top: {{ menuBtn.top }}px;"
+>
+
+</view>

@@ -1,0 +1,87 @@
+<!-- Follow page -->
+
+<view class="mf_list-item_content">
+    <view class="mf_list-item_content_head">
+        <user-light
+            size="{{ 70 }}"
+            avatar="http://wx.qlogo.cn/mmhead/ver_1/ZGUEsHq3NgPXs2YVpv7M57RYM1yWv8iaRzJP3NDNicMoKVue4m0XozfNf3ib4wMMQVvQGqCuuMUuibPTXuibDmCB5nJdtN36hVWBD1Z8TWokUCwc/96"
+            name="冯提莫"
+            mode="row"
+        ></user-light>
+        <mf-icon name="more" size="{{ 20 }}"></mf-icon>
+    </view>
+    <view class="mf_list-item_content_media">
+        <image
+            src="https://gss0.bdstatic.com/-4o3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike80%2C5%2C5%2C80%2C26/sign=3d79f908cf11728b24208470a995a8ab/908fa0ec08fa513dcaee1a473f6d55fbb3fbd9e7.jpg"
+            mode="aspectFit"
+        ></image>
+    </view>
+    <view class="mf_list-item_content_summary">
+        上门造型师吴一凡
+    </view>
+    <view class="mf_list-item_content_meta">
+    </view>
+    <view class="mf_list-item_content_operations">
+        转发
+        评论
+        点赞
+    </view>
+</view>
+
+<view class="page_follow">
+    <view class="page_follow_online-list">
+        <scroll-view
+            scroll-x
+            enable-flex
+            class="page_follow_online-list__scroll"
+        >
+            <view
+                wx:for="{{ followers }}"
+                wx:for-item="follower"
+                wx:key="{{ follower.id }}"
+                class="page_follow_online-list_follower"
+            >
+                <view class="page_follow_online-list_follower-avatar">
+                    <avatar
+                        size="{{ 100 }}"
+                        url="{{ follower.user.avatar }}"
+                    ></avatar>
+                </view>
+                <view class="page_follow_online-list_follower-name" >
+                    {{ follower.user.name }}
+                </view>
+            </view>
+        </scroll-view>
+    </view>
+
+    <view class="page_follow_recommand">
+        <view class="page_follow_recommand_title">
+            <view class="page_follow_recommand_title__type">
+                你可能感兴趣的用户
+            </view>
+            <view class="page_follow_recommand_title__more">
+                <text>查看更多</text>
+                <mf-icon name="right-arrow" size="{{ 15 }}"></mf-icon>
+            </view>
+        </view>
+        <view class="page_follow_recommand_body">
+            <scroll-view
+                scroll-x
+                enable-flex
+                class="page_follow_recommand_list"
+            >
+                <view
+                    class="page_follow_recommand_list-user"
+                    wx:for="{{ recommand }}"
+                >
+                    <user-card user-info="{{ item.user }}" ></user-card>
+                </view>
+            </scroll-view>
+        </view>
+    </view>
+
+    <view class="page_follow_post">
+    </view>
+</view>
+
+<custom-tab-bar selected="{{ 1 }}"></custom-tab-bar>

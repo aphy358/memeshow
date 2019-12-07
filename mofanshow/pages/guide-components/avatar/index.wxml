@@ -1,0 +1,36 @@
+<!-- <view class="mf_components-test-module">
+    <view class="mf_components-test-module_title">Tips:</view>
+    <view>1. </view>
+</view> -->
+
+<view class="mf_components-test-module">
+    <view class="mf_components-test-module_title">默认头像</view>
+    <view class="mf_components-test-module_inline-item">
+        <avatar url="https://avatars3.githubusercontent.com/u/25254?s=460&v=4"></avatar>
+    </view>
+    <view class="mf_components-test-module_inline-item">
+        <avatar url="https://avatars3.githubusercontent.com/u/25254?s=460&v=4" size="{{ 100 }}" ></avatar>
+    </view>
+</view>
+
+<view class="mf_components-test-module">
+    <view class="mf_components-test-module_title">正方形头像</view>
+    <view class="mf_components-test-module_inline-item">
+        <avatar url="https://avatars3.githubusercontent.com/u/25254?s=460&v=4" mode="square"></avatar>
+    </view>
+    <view class="mf_components-test-module_inline-item">
+        <avatar url="https://avatars3.githubusercontent.com/u/25254?s=460&v=4" size="{{ 100 }}" mode="square"></avatar>
+    </view>
+</view>
+
+<view class="mf_components-test-module">
+    <view class="mf_components-test-module_title">带预览</view>
+    <view class="mf_components-test-module_inline-item">
+        <avatar url="https://avatars3.githubusercontent.com/u/25254?s=460&v=4" preview size="{{ 100 }}"></avatar>
+    </view>
+</view>
+
+<view class="mf_components-test-module">
+    <view class="mf_components-test-module_title">Todo:</view>
+    <view>1. 加载失败设置默认图片</view>
+</view>

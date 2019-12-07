@@ -1,0 +1,132 @@
+@import '@/assets/styles/index.scss';
+
+
+.suggest-res-bar {
+  position: relative;
+  background: $white;
+  height: 92rpx;
+  padding: 0 $spacing-xxl;
+  font-size: $font-size-base;
+  @include hairline($color: $color-grey-4, $position: bottom);
+}
+
+.suggest-result-nav {
+  padding: 0 4*$spacing-xxl;
+  font-size: $font-size-lg;
+
+  @at-root .suggest-result-nav-inner {
+    display: flex;
+    justify-content: space-between;
+    height: 100%;
+
+    .nav-item {
+      color: $color-text-lighter;
+      height: 100%;
+      line-height: 92rpx;
+      
+      &.active {
+        color: $color-text;
+        border-bottom: 4rpx solid $color-primary;
+
+      }
+    }
+  }
+}
+
+.suggest-result-subject {
+  overflow-x: scroll;
+
+  .subject-list {
+    height: 100%;
+    width: 300%;
+    padding-top: $spacing-xxl;
+
+    .subject-item {
+      float: left;
+      color: $color-text-link;
+      margin-right: $spacing-lg;
+    }
+  }
+}
+
+.suggest-order-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: $color-text-lighter;
+
+  .right {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.suggest-waterfall-list {
+  position: relative;
+  padding: $spacing-lg $spacing-lg 5*$spacing-lg;
+}
+
+.suggest-user-list {
+  background: $white;
+  padding: 0 $spacing-xxl;
+
+  .suggest-user-item {
+    position: relative;
+    height: 160rpx;
+    display: flex;
+    align-items: center;
+    @include hairline(#ddd);
+
+    .avatar {
+      width: 80rpx;
+      height: 80rpx;
+      border-radius: $border-radius-circle2;
+      overflow: hidden;
+    }
+
+    .brief-wrap {
+      flex-grow: 1;
+      padding: 0 $spacing-xxl;
+      color: $color-text-lighter;
+      font-size: $font-size-sm;
+
+      .nickName {
+        color: $color-text;
+        font-size: $font-size-lg;
+      }
+
+      .article-fans {
+        margin-right: $font-size-xxl;
+      }
+    }
+
+    .follow-btn {
+      background: $color-primary;
+      width: 120rpx;
+      color: $white;
+      font-size: $font-size-base;
+      height: 50rpx;
+      line-height: 50rpx;
+      border-radius: $border-radius-circle2;
+    }
+  }
+}
+
+
+.suggest-filter-wrap {
+  background: $color-bg-dark;
+
+  .suggest-filter-item {
+    position: relative;
+    text-align: center;
+    height: 92rpx;
+    line-height: 92rpx;
+    background: $white;
+    @include hairline(#ddd, top);
+
+    &.active {
+      color: $color-primary;
+    }
+  }
+}

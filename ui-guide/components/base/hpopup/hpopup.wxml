@@ -1,0 +1,25 @@
+
+<view 
+  class="hpopup-wrap" 
+  style="z-index: {{ zIndex }};{{ wrapStyle }}"
+  catch:touchmove="true"
+  catchtap="true"
+  >
+
+  <view 
+    wx:if="{{ mask }}" 
+    class="hpopup-mask {{ popupMaskClasses }}" 
+    bind:tap="tapMask" 
+    bind:touchend="touchendMask"
+    style="transition-duration:{{ currentDuration }}ms;"
+  ></view>
+
+  <view 
+    class="hpopup-body hpopup-body__{{ position }} {{ customAnimation ? '' : popupBodyClasses }}"
+    animation="{{ customAnimation }}" 
+    style="transition-duration:{{ currentDuration }}ms;"
+  >
+    <slot></slot>
+  </view>
+
+</view>

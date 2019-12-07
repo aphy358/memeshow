@@ -1,0 +1,35 @@
+/* component-address.wxss */
+.address {
+  background: #fff;
+  box-sizing: border-box;
+  padding: 0 20rpx;
+  font-size: 26rpx;
+}
+.list {
+  height: 80rpx;
+  border-bottom: 1rpx solid #e6e6e6;
+}
+.list:last-child {
+  border-bottom: none;
+}
+.label {
+  display: inline-block;
+  width: 160rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  vertical-align: middle;
+  color: rgba(0, 0, 0, 0.6);
+}
+.value {
+  display: inline-block;
+  width: 550rpx;
+  vertical-align: middle;
+  color: rgba(0, 0, 0, 0.8);
+}
+.value>input { 
+  width: 550rpx;
+  height: 80rpx; 
+}
+.placeholder {
+  color: rgba(0, 0, 0, 0.4)
+}

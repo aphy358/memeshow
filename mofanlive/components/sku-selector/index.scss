@@ -1,0 +1,136 @@
+@import "@/theme";
+
+.content {
+  width: 100%;
+  display: flex;
+  flex-flow: column;
+
+  position: fixed;
+  top: 0;
+  background-color: #fff;
+}
+
+/* info style begin */
+
+.info-container {
+  width: 100%;
+  padding: $spacing-v-lg $spacing-h-lg;
+  box-sizing: border-box;
+  display: flex;
+  flex-flow: row;
+}
+
+.info-image {
+  width: 180rpx;
+  height: 180rpx;
+}
+
+.info {
+  padding-left: $spacing-h-lg;
+  align-self: flex-end;
+}
+
+.info-price-container {
+  display: flex;
+  flex-flow: row;
+}
+
+.info-price,
+.info-price-tag {
+  font-family: $font-cn;
+  font-weight: bolder;
+  color: $color-error;
+  align-self: flex-end;
+}
+
+.info-price-tag {
+  font-size: $font-size-lg;
+}
+
+.info-price {
+  font-size: $font-size-xxl;
+}
+
+.info-selection {
+  font-size: $font-size-base;
+  font-family: $font-cn;
+  color: $color-text-placeholder;
+}
+
+/* info style end */
+
+/* skus style begin */
+
+.skus-container {
+  width: 100%;
+  height: 468rpx;
+  padding: 0 $spacing-h-lg;
+  box-sizing: border-box;
+}
+
+.skus-title {
+  font-size: $font-size-xl;
+  font-family: $font-cn;
+  color: $color-text-base;
+  margin: $spacing-v-md 0;
+}
+
+.skus-props-container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  align-content: flex-start;
+}
+
+.skus-prop {
+  height: 50rpx;
+  line-height: 50rpx;
+  padding: 0 $spacing-h-lg;
+  margin: $spacing-v-lg $spacing-h-lg $spacing-v-lg 0;
+  width: max-content;
+  font-size: $font-size-sm;
+  font-family: $font-cn;
+  border-radius: $border-radius-lg;
+  background-color: $color-icon-base;
+  color: $color-text-base;
+}
+
+.skus-prop-selected {
+  background-color: $color-brand;
+  color: $color-white;
+}
+
+.skus-prop-disabled {
+  opacity: $opacity-disabled;
+}
+
+/* skus style end */
+
+/* count selector style begin */
+
+.count-container {
+  width: 100%;
+  @include hairline-top-bottom;
+  padding: $spacing-v-xxl 0;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+}
+
+.count-title {
+  font-size: $font-size-lg;
+  font-family: $font-cn;
+  color: $color-text-base;
+  align-self: center;
+}
+
+/* count selector style end */
+
+/* action container style begin */
+
+.action-container {
+  width: 100%;
+  margin-top: $spacing-v-lg;
+}
+
+/* action container style end */

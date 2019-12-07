@@ -1,0 +1,106 @@
+@import "../variables/default.scss";
+@import "../mixins/index.scss";
+
+.grid {
+  // 行
+  &__row {
+    @include display-flex;
+
+    &:last-child {
+      .grid__cell::after {
+        border-bottom: none;
+      }
+    }
+  }
+
+  // 元素框架
+  &__cell {
+    @include flex(1);
+    @include hairline-surround();
+
+    &::after {
+      border-top: none;
+      border-left: none;
+    }
+
+    &:last-child::after {
+      border-right: none;
+    }
+
+    &--square {
+      &::before {
+        display: block;
+        content: " ";
+        padding-bottom: 100%;
+      }
+    }
+
+    &--rect {
+      @include grid-cell-rect($grid-rect-height);
+
+      .grid__content-inner {
+        flex-direction: row;
+        .grid__text {
+          margin-top: initial;
+          margin-left: $spacing-h-md;
+          text-align: left;
+          font-size: $grid-font-size-sm;
+        }
+        .grid__img {
+          width: $gird-img-size-sm;
+          height: $gird-img-size-sm;
+        }
+      }
+    }
+
+    &--no-border {
+      &::after {
+        border: none;
+      }
+    }
+
+    &--active {
+      background-color: $color-grey-6;
+    }
+  }
+
+  // 元素内容
+  &__content {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+
+    // 图文范例样式
+    &-inner {
+      @include display-flex;
+      @include align-items(center);
+      @include justify-content(center);
+      @include active;
+
+      height: 100%;
+      flex-direction: column;
+      overflow: hidden;
+
+      .grid__text {
+        flex: 0 0 auto;
+        margin-top: $spacing-v-lg;
+        color: $grid-text-color;
+        font-size: $grid-font-size;
+        line-height: $line-height-zh;
+        text-align: center;
+        @include line(2);
+      }
+      .grid__icon {
+        flex: 0 0 auto;
+        line-height: 1;
+      }
+
+      .grid__img {
+        width: $grid-img-size;
+        height: $grid-img-size;
+      }
+    }
+  }
+}

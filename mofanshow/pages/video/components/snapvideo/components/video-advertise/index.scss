@@ -1,0 +1,104 @@
+@import '@/assets/styles/index.scss';
+
+.ad-wrap{
+  position: absolute;
+  left: $spacing-lg;
+  width: calc(100% - 100px);
+  bottom: 4*$spacing-lg;
+  color: $white;
+  z-index: $zindex-indexes;
+
+  @at-root .ad-board-wrap{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    padding: $spacing-md;
+    background: $white;
+    top: -$spacing-xxl;
+    left: -$spacing-lg;
+    width: 404rpx;
+    height: 140rpx;
+    box-sizing: border-box;
+    transform: translate(-100%, -100%);
+
+    &::after{
+      content: '';
+      position: absolute;
+      bottom: -14rpx;
+      left: $spacing-lg;
+      display: block;
+      width: 0;
+      height: 0;
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+      border-top: 8px solid $white;
+    }
+
+    @at-root .ad-board-img{
+      width: 112rpx;
+      height: 112rpx;
+      border-radius: $border-radius-sm;
+    }
+
+    @at-root .ad-board-content-wrap{
+      padding: $spacing-md $spacing-lg;
+
+      @at-root .ad-board-content{
+        color: $color-text-lighter;
+        line-height: 42rpx;
+        font-size: $font-size-base;
+
+        &.price{
+          color: $color-primary;
+        }
+      }
+    }
+
+    @at-root .ad-close-btn.iconfont{
+      position: absolute;
+      right: 0;
+      top: 0;
+      color: $color-text-light;
+      font-size: 22rpx;
+      padding: $spacing-sm;
+    }
+  }
+
+  @at-root .ad-tag-wrap{
+    display: flex;
+    align-items: center;
+    max-width: 300rpx;
+    height: 56rpx;
+    background-color:rgba(0, 0, 0, 0.23);
+    border-radius: 0 $border-radius-sm $border-radius-sm 0;
+
+    .icon-shopping-cart{
+      padding: 0 $spacing-sm;
+      font-size: $font-size-xl;
+      color: rgb(249, 205, 52);
+    }
+
+    .ad-tag-text{
+      line-height: 56rpx;
+      font-size: $font-size-base;
+      @include no-wrap()
+    }
+  }
+
+  @at-root .ad-title{
+    float: left;
+    width: 100%;
+    font-size: $font-size-xl;
+    margin: $spacing-sm 0;
+
+    @include no-wrap()
+  }
+
+  @at-root .ad-content{
+    float: left;
+    font-size: $font-size-base;
+
+    @include multi-ellipsis(4)
+  }
+
+}

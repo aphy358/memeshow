@@ -1,0 +1,69 @@
+<!-- navigation bar component -->
+
+<wxs src="./index.wxs" module="shape"></wxs>
+
+<view
+    class="mf_navigation-bar"
+    style="padding-top:{{ statusBarHeight }}px;"
+>
+    <view
+        class="mf_navigation-bar_body"
+        style="height:{{ shape.setHeight(menuBtn, statusBarHeight) }}px;padding:{{ shape.getCrevice(menuBtn, statusBarHeight) }}px 0;"
+    >
+        <view
+            class='mf_navigation-bar_body_left'
+            style="width:{{ shape.setRightMargin(safeArea, menuBtn) }}px;"
+        >
+            <view
+                wx:if="{{ back }}"
+                bindtap="onBack"
+                class="mf_navigation-bar_body_left_back {{ home ? 'go-home' : '' }}"
+                style="width:{{ menuBtn.width }}px;height:{{ menuBtn.height }}px;text-shadow:{{ textShadow }};"
+            >
+                <view class="menu-bg" wx:if="{{ home }}" style="background:{{ menuBackground }}"></view>
+                
+                <mf-icon
+                    name="back"
+                    class="mf_navigation-bar-icon"
+                    size="{{ 38 }}"
+                    color="{{ color }}"
+
+                    bind:tap="goPrePage"
+                ></mf-icon>
+
+                <mf-icon
+                    wx:if="{{ home }}"
+                    name="home"
+                    class="mf_navigation-bar-icon"
+                    size="{{ 38 }}"
+                    color="{{ color }}"
+
+                    bind:tap="goHome"
+                ></mf-icon>
+            </view>
+            <view
+                wx:else
+                style="width:40rpx"
+            ></view>
+            <slot name="left"></slot>
+        </view>
+
+        <view
+            class="mf_navigation-bar_body_center"
+            style="margin-right:{{ shape.setRightMargin(safeArea, menuBtn) }}px"
+        >
+            <slot></slot>
+        </view>
+    </view>
+</view>
+
+<view
+    class="mf_navigation-bar_background"
+    style="height:{{ shape.setPlacehold(menuBtn, statusBarHeight) }}px;background:{{ background }};opacity: {{ bgOpacity }};"
+></view>
+
+<view
+    wx:if="{{ placehold }}"
+    class="mf_navigation-bar_placehold"
+    style="height:{{ shape.setPlacehold(menuBtn, statusBarHeight) }}px;"
+></view>

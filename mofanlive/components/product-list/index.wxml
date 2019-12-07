@@ -1,0 +1,34 @@
+<mf-popup open="{{open}}">
+    <scroll-view
+        class="product-list"
+        scroll-y
+        style="{{customStyle}}"
+    >
+        <block
+            wx:for="{{products}}"
+            wx:key="id"
+        >
+            <view
+                bind:tap="handleTapProduct"
+                class="product"
+                data-id="{{item.id}}"
+            >
+                <image
+                    class="product-img"
+                    src="{{item.imgUrl}}"
+                />
+                <view class="product-desc">
+                    <view class="product-desc-title">{{item.name}}</view>
+                    <view class="product-desc-price">￥{{item.price / 100}}</view>
+
+                    <!-- todo: use icon -->
+                    <view
+                        catch:tap="handleTapBuy"
+                        class="product-desc-buy"
+                        data-id="{{item.id}}"
+                    >buy</view>
+                </view>
+            </view>
+        </block>
+    </scroll-view>
+</mf-popup>

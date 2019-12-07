@@ -1,0 +1,22 @@
+@import "../variables/default.scss";
+@import "../mixins/index.scss";
+
+// reset default Switch style
+.wx-switch-input {
+    box-sizing: border-box;
+    background-color: $color-brand !important;
+    border-color: $form-color-border !important;
+}
+
+.wx-checkbox-input.wx-checkbox-input-checked::before {
+    color: $color-brand !important;
+}
+
+.switch {
+
+    // &--checkbox
+    /* modifiers */
+    &--disabled {
+        opacity: $opacity-disabled;
+    }
+}

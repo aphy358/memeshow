@@ -1,0 +1,104 @@
+
+<view 
+  wx:if="{{ !!item }}" 
+  class="snap-video-wrap"
+>
+  
+  <!-- 视频 -->
+  <view class="snap-video-inner" bindtap="tapVideo" bindlongpress="longpress">
+    <video 
+      wx:if="{{ ifShowVideo }}"
+      id="{{ 'videoId' + item.id }}" class="snap-video-video"
+      src="{{ item.url }}" 
+      controls="{{ false }}"
+      loop="{{ true }}"
+      enable-progress-gesture="{{ false }}"
+  
+      binderror="videoError"
+      bindtimeupdate="bindtimeupdate"
+      bindwaiting="videoWaiting"
+      bindprogress="videoProgress"
+    />
+    <view class="snap-video-cover"></view>
+
+    <text 
+      wx:if="{{ isVideoPaused }}" 
+      class="iconfont icon-play"
+    />
+  </view>
+
+
+  <!-- 右侧操作栏，包括点赞、评论、关注、转发等 -->
+  <operate-bar 
+    class="{{ !clearScreen && !touchProgress ? '' : 'visible-hidden' }}" 
+    video-active="{{ active }}" 
+    item="{{ item }}"
+    doubleTapPos="{{ doubleTapPos }}" 
+    bind:showCommentPopup="showCommentPopup" 
+  />
+
+
+  <!-- 广告 -->
+  <video-advertise 
+    class="{{ !clearScreen && !touchProgress ? '' : 'visible-hidden' }}" 
+    video-active="{{ active }}" 
+    bindlongpress="longpress"
+  />
+
+
+  <!-- 底部进度条 -->
+  <video-progress 
+    wx:if="{{ active }}"
+    class="{{ !clearScreen ? '' : 'visible-hidden' }}" 
+    active="{{ active }}"
+    touchEvent="{{ touchEvent }}" 
+    isLoading="{{ isLoading }}"
+    isVideoPaused="{{ isVideoPaused }}"
+    currentVideoTime="{{ currentVideoTime }}"
+    videoDuration="{{ videoDuration }}"
+
+    bind:preventSwipe="preventSwipe"
+    bind:progressPercentChanged="progressPercentChanged"
+    bind:touchingProgress="touchingProgress"
+  />
+
+
+  <!-- 评论弹出框 -->
+  <comment-popup
+    wx:if="{{ active }}"
+    generic:comment-list="comment-list-video"
+    comments="{{ comments }}"
+    show="{{ ifShowCommentPopup }}"
+    bind:hideCommentPopup="hideCommentPopup"
+    bind:switchStarStatus="switchStarStatus"
+    bind:showCommentInputPopup="showCommentInputPopup"
+  />
+
+
+  <!-- 评论输入弹出框 -->
+  <comment-input-popup
+    wx:if="{{ active }}"
+    show="{{ ifShowCommentInputPopup }}"
+    replyTo="{{ replyTo }}"
+    bind:hideCommentInputPopup="hideCommentInputPopup"
+    bind:createNewComment="createNewComment"
+  />
+
+
+  <!-- 屏幕上闪现的点赞红心 -->
+  <red-stars 
+    wx:if="{{ active }}"
+    doubleTapPos="{{ doubleTapPos }}" 
+    active="{{ active }}"
+  />
+
+
+  <!-- 更多操作弹层（不感兴趣等） -->
+  <not-interested-in 
+    wx:if="{{ active }}"
+    show="{{ showNotInterestedIn }}"
+    bind:hideNTIPopup="hideNTIPopup"
+  />
+
+</view>
+<view wx:else>占位</view>

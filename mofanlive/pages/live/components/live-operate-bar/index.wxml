@@ -1,0 +1,20 @@
+
+<view class="operate-bar-wrap">
+  <image class="operate-item" style="border-radius: 0;" src="../../assets/product-list.png" />
+
+  <view class="comment-input-wrap">
+    <input class="input" placeholder="说点什么..." />
+
+    <view class="img-wrap" bind:tap="sendVoice">
+      <image class="img" src="../../assets/voice.png" />
+    </view>
+  </view>
+
+  <view class="operate-item">
+    <image class="img" src="../../assets/share.png" />
+  </view>
+
+  <view class="operate-item">
+    <image class="img" src="../../assets/gift.png" />
+  </view>
+</view>

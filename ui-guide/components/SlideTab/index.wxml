@@ -1,0 +1,11 @@
+<!-- 自定义tab标签组件-->
+<!-- 标题列表-->
+<view class="scroll-view-wrap scroll-view-wrap-class">
+  <scroll-view scroll-with-animation="true" scroll-x="true" class="scroll-view-x-class scroll-view-x" wx:if="{{!ttype || ttype==2}}">
+    <view  class="{{currentTab == index ? 'active-class' : ''}} {{currentTab == index ? 'on' : ''}}" wx:for="{{tList}}" wx:key="*this"  bindtap="_swichNav" data-current="{{index}}">{{ !tname ? item.name : item[tname].name }}</view>
+  </scroll-view>
+</view>
+<!--内容列表-->
+<slot>
+</slot>
+

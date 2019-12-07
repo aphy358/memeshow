@@ -1,0 +1,13 @@
+
+var formatDuaration = (function(num) {
+  return num / 1000 << 1 >> 1
+});
+
+var getTimeDiff = t => {
+  return Date.now() - t
+}
+
+module.exports = ({
+  formatDuaration,
+  getTimeDiff
+});

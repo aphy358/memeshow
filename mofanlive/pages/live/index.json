@@ -1,0 +1,7 @@
+{
+  "navigationStyle": "custom",
+  "navigationBarTextStyle": "white",
+  "usingComponents": {
+    "live-swipe-cover": "./components/live-swipe-cover/index"
+  }
+}

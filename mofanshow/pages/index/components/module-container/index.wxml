@@ -1,0 +1,8 @@
+<!-- Module Container Component -->
+
+<view
+    class="mf_module-container mf-class"
+    style="{{ customize }}"
+>
+    <slot></slot>
+</view>

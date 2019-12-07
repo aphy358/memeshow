@@ -1,0 +1,50 @@
+
+<view class="my-shop-wrap">
+
+  <view class="my-shop-bg"></view>
+
+  <view class="white-board" style="margin-top: {{ navHeight + 60 }}px;">
+    <view class="my-shop-avatar">
+      <image class="avatar" src="https://hbimg.huabanimg.com/ef9978f541e23dca04f5658150ac06e79877fc709b33-NlsaW7" />
+    </view>
+    
+    <view class="my-shop-ffs">
+      <view class="item">
+        <view class="my-shop-ffs-text">关注</view>
+        <view class="my-shop-ffs-number">234w</view>
+      </view>
+
+      <view class="item">
+        <view class="my-shop-ffs-text">获赞</view>
+        <view class="my-shop-ffs-number">24w</view>
+      </view>
+
+      <view class="item">
+        <view class="my-shop-ffs-text">粉丝</view>
+        <view class="my-shop-ffs-number">27.6w</view>
+      </view>
+    </view>
+
+    <view class="my-shop-btn-wrap">
+      <button 
+        class="my-shop-btn my-shop" 
+        hover-class="btn-hover"
+        plain
+      >我的店铺</button>
+
+      <button 
+        class="my-shop-btn option" 
+        hover-class="btn-hover"
+        plain
+      >
+        <image class="img" src="../../assets/options.png" />
+      </button>
+    </view>
+
+    <view class="my-shop-sign-wrap">
+      <view class="my-shop-nickname">Jack</view>
+      <view class="my-shop-signature">人熊指端、没有爱好、没有兴趣、刷抖音！人熊指端、没有爱好、没有兴趣、刷抖音！人熊指端、没有爱好、没有兴趣、刷抖音！人熊指端、没有爱好、没有兴趣、刷抖音！人熊指端、没有爱好、没有兴趣、刷抖音！</view>
+    </view>
+  </view>
+
+</view>

@@ -1,0 +1,151 @@
+/* pages/ecommerse/checkout/index.wxss */
+.checkout-page {
+  box-sizing: border-box;
+  padding-bottom: 110rpx;
+}
+.shop-list {
+  box-sizing: border-box;
+  width: 100%;
+  background: #fff;
+  margin-top: 20rpx; 
+  padding: 0 20rpx;
+}
+.shop-list .top {
+  border-bottom: 2rpx solid #6b6b6b;
+}
+.shop-list .logo {
+  display: inline-block;
+  width: 180rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  margin-right: 30rpx;
+  vertical-align:middle;
+
+}
+.shop-list .logo image{ 
+  width: 200rpx;
+  height: 80rpx;
+}
+.shop-list .shop-name { 
+  display: inline-block;
+  width: 500rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  vertical-align:middle;
+  font-size: 24rpx;
+}
+.shop-list .list-item {
+  margin-top: 20rpx;
+  height: 200rpx;
+  padding: 20rpx 0;
+}
+.list-item .left {
+  width: 200rpx;
+  display: inline-block;
+  margin-right: 20rpx;
+  vertical-align: middle;
+} 
+.list-item .left image {
+  width: 200rpx;
+  height: 200rpx;
+  border-radius: 8rpx;
+}
+.list-item .right {
+  width: 490rpx;
+  display: inline-block;
+  font-size: 24rpx;
+  vertical-align: middle
+}
+.product-desc {
+  height: 60rpx;
+  line-height: 30rpx;
+}
+.product-desc .sign{
+  margin-right: 8rpx; 
+  background: #ff2741;
+  color: #fff;
+}
+.price-num {
+  margin-top: 100rpx;
+  height: 40rpx;
+}
+.price-num .price {
+  color: #ff2741;
+  margin-right: 20rpx;
+}
+.price-num .num {
+  color: rgba(0, 0, 0, 0.4)
+}
+.payment-info {
+  margin-top: 20rpx; 
+  background: #fff;
+}
+.payment-info .payment {
+  height: 80rpx;
+  border-bottom: 1rpx solid #e6e6e6; 
+  font-size: 24rpx;
+  line-height: 80rpx;
+  padding: 0 20rpx;
+}
+.payment .left text {
+  vertical-align: middle;
+  margin-right: 10rpx;
+}
+.payment .left .num {
+  color: #ff2741
+}
+.payment .left .postage {
+  font-size: 20rpx;
+  color: rgba(0, 0, 0, 0.4)
+}
+.payment-info .payment image {
+  margin-left: 10rpx; 
+  width: 30rpx;
+  height: 30rpx;
+  vertical-align: middle
+}
+.payment-info .paymethod {
+  height: 80rpx;
+  font-size: 24rpx;
+  line-height: 80rpx;
+  padding: 0 20rpx;
+}
+.paymethod .left text {
+  margin-right: 10rpx;
+  vertical-align: middle
+}
+.paymethod  image {
+  width: 30rpx;
+  height: 30rpx;
+  vertical-align: middle
+}
+.bottom { 
+  width: 100%;
+  height: 100rpx;
+  background: #fff;
+  position: fixed;
+  bottom: 0;
+  box-shadow: 0 -4rpx 6rpx 2rpx rgba(239,239,239,0.50);
+}
+.bottom .left {
+  display: inline-block;
+  width: 500rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+  box-sizing: border-box;
+  padding-left: 20rpx;
+  font-size: 28rpx;
+}
+.bottom .left text {
+  color: #ff2741;
+}
+.bottom .right {
+  display: inline-block;
+  width: 250rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+  text-align: center;
+  background: #ff7e8d;
+  font-size: 32rpx;
+  color: #fff;
+}

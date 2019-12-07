@@ -1,0 +1,7 @@
+@mixin grid-cell-rect($height) {
+  &::before {
+    display: block;
+    content: " ";
+    padding-bottom: $height;
+  }
+}

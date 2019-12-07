@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "component-header": "/components/header/index"
+  },
+  "navigationBarTitleText": "搜索"
+}

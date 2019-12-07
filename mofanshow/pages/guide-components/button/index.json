@@ -1,0 +1,5 @@
+{
+    "usingComponents": {
+        "mf-button": "../../../components/form/button/index"
+    }
+}

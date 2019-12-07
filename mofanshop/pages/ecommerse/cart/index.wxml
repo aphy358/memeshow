@@ -1,0 +1,36 @@
+<!--pages/ecommerse/cart/index.wxml-->
+<view class="container cart-page">
+  <view class="shop">
+    <checkbox class="checkbox" value="{{item.id}}"></checkbox>
+    <view class="desc">
+      <image src="/images/icon_ecommerse.png"></image>
+      <text class="text">魔范秀</text>
+      <text class="text sign">自营</text>
+    </view>
+  </view>
+  <checkbox-group class="cart-group">
+    <view class="cart-item" wx:for="{{carts}}" wx:key="{{item.id}}">
+      <checkbox class="checkbox" value="{{item.id}}"></checkbox>
+      <view class="product-image"><image mode="widthFix" src="{{item.src}}"></image></view>
+      <view class="product-detail">
+        <view class="desc line2ellipsis">{{item.subtitle}}</view>
+        <view class="bottom">
+          <view class="price">￥{{item.realPrice}}</view>
+          <view class="num-view">
+            <text class="reduce" data-num="{{item.num}}" id="{{item.id}}" catchtap="reduce">-</text>
+            <text class="num">{{item.num}}</text>
+            <text class="add" data-num="{{item.num}}" id="{{item.id}}" catchtap="add">+</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </checkbox-group>
+  <view class="bottom-btn">
+    <view class="left"><label><checkbox value="{{item.id}}"></checkbox><text>全选</text></label></view>
+    <view class="center">
+      <view class="count">总计：<text>￥198</text></view>
+      <view class="postage">免运费</view>
+    </view>
+    <view class="right" bindtap="switchToCheckout">结算</view>
+  </view> 
+</view>

@@ -1,0 +1,7 @@
+/* pages/ecommerse/index.wxss */
+.customer-header {
+  background: #fff;
+}
+.nav-active {
+  color: rgba(0, 0, 0, 0.9)
+}

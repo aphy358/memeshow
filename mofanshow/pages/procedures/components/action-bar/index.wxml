@@ -1,0 +1,20 @@
+<view
+    class="action-bar"
+    style="padding-bottom: {{isIPhoneX ? 68 : 0}}rpx;"
+>
+    <mf-button
+        bind:tap="handleTapDraft"
+        circle
+        class="draft"
+        loading="{{draftLoading}}"
+        size="large"
+        type="secondary"
+    >存草稿</mf-button>
+    <mf-button
+        bind:tap="handleTapSubmit"
+        circle
+        class="submit"
+        loading="{{submitLoading}}"
+        size="large"
+    >预览</mf-button>
+</view>

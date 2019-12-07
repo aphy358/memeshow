@@ -1,0 +1,15 @@
+<!--index.wxml-->
+<view class="container">
+  <view class="chooseImage">
+      <image bindtap="chooseImage" mode='aspectFit' class="plus" src="{{filePath}}"></image>
+  </view>
+  <view style='width: 90%'>
+
+    <view class="title">
+      <input placeholder="说点什么..." bindinput="bindKeyInput" auto-focus/>
+    </view>
+
+    <button type="primary" bindtap="applySubject"> 发布 </button>
+
+  </view>
+</view>

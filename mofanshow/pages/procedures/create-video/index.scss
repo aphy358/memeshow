@@ -1,0 +1,94 @@
+@import "@/assets/styles/index.scss";
+
+camera {
+  width: 100vw;
+  height: 100vh;
+}
+
+.cover {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  box-sizing: border-box;
+
+  .back {
+    width: $icon-size-lg;
+    height: $icon-size-lg;
+    position: absolute;
+    left: $spacing-xxl;
+    padding-top: $spacing-sm;
+
+    cover-image {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .tool-bar {
+    position: absolute;
+    top: 20%;
+    right: 0;
+    width: 20vw;
+    display: flex;
+    flex-flow: column nowrap;
+
+    .tool-item {
+      display: flex;
+      flex-flow: column nowrap;
+
+      .icon {
+        width: 18vw;
+        height: 18vw;
+      }
+
+      .text {
+        color: white;
+      }
+
+      .icon,
+      .text {
+        text-align: center;
+      }
+    }
+  }
+
+  .action-bar {
+    width: 100vw;
+    padding: $spacing-xxl 0;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    position: absolute;
+    bottom: $spacing-xxl;
+
+    .albums {
+      flex: 1;
+      display: flex;
+      flex-flow: column nowrap;
+      align-items: center;
+
+      .icon {
+        width: 10vw;
+        height: 10vw;
+      }
+
+      .text {
+        color: $white;
+        text-align: center;
+      }
+    }
+
+    .record-btn {
+      flex: 1;
+      text-align: center;
+
+      .icon {
+        width: 18vw;
+        height: 18vw;
+        border-radius: $border-radius-circle;
+        border: $spacing-sm $color-bg solid;
+        margin: 0 auto;
+      }
+    }
+  }
+}

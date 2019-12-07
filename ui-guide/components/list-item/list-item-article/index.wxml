@@ -1,0 +1,35 @@
+<!-- List Item Article Component -->
+
+<view class="mf_list-item-article">
+    <view class="mf_list-item-article_title">
+        {{ post.title }}
+    </view>
+    <view class="mf_list-item-article_summary">
+        {{ post.summary }}
+        <view class="mf_list-item-article_summary_readmore" bindtap="onReadmore">
+            阅读详情
+        </view>
+    </view>
+    <view class="mf_list-item-article_meta">
+        <view class="mf_list-item-article_meta-author">
+            <avatar url="{{ post.author.avatar }}" size="{{ 30 }}"></avatar>
+            <view>{{ post.author.name }}</view>
+        </view>
+        <view class="mf_list-item-article_meta-stats">
+            <block
+                wx:for="{{ post.statistics }}"
+                wx:for-item="stat"
+                wx:key="{{ post.stat.id }}"
+            >
+                <view class="mf_list-item-article_meta-stat">
+                    <view class="mf_list-item-article_meta-stat_number">
+                        {{ post.stat.number }}
+                    </view>
+                    <view class="mf_list-item-article_meta-stat_title">
+                        {{ post.stat.title }}
+                    </view>
+                </view>
+            </block>
+        </view>
+    </view>
+</view>

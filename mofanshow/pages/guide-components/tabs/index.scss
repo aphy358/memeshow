@@ -1,0 +1,21 @@
+@import "../../../assets/styles/index.scss";
+
+page {
+    box-sizing: border-box;
+}
+
+.mf_components-test-module {
+    padding: 20rpx 0;
+    margin: 30rpx 0;
+
+    &_title {
+        padding: 0 20rpx;
+        margin-bottom: 10rpx;
+    }
+
+    &_border {
+        border: 2rpx solid #ccc;
+        border-left: 0;
+        border-right: 0;
+    }
+}

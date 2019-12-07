@@ -1,0 +1,29 @@
+
+<view class="comment-panel-wrap">
+
+  <view class="welcome-tip" animation="{{ welcome.animation }}">欢迎 {{ welcome.name }} 进入直播间</view>
+
+  <scroll-view 
+    class="comment-panel-inner"
+    scroll-into-view="{{ toView }}"
+    scroll-with-animation
+    scroll-y
+    bindscroll="scrollComment"
+  >
+    <view 
+      class="comment-item"
+      id="{{ 'commentItem' + item.id }}"
+      wx:for="{{ comments }}"
+      wx:key="index"
+    >
+      <view class="comment-item-inner">
+        <text class="comment-author">{{ item.name + index }}</text>
+        <text class="comment-text">{{ item.text + index }}</text>
+      </view>
+    </view>
+  </scroll-view>
+
+  <view class="recommend-product" animation="{{ recommendAnimation }}">
+
+  </view>
+</view>

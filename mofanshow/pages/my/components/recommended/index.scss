@@ -1,0 +1,47 @@
+@import '@/assets/styles/index.scss';
+
+.recommended-list {
+  background: white;
+
+  @at-root .recommended-item {
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: $spacing-xxl;
+    @include hairline(#ddd, bottom);
+
+    &:last-child::after {
+      content: none;
+    }
+
+    .img {
+      width: 150rpx;
+      height: 150rpx;
+      margin-right: $spacing-lg;
+    }
+
+    @at-root .recommended-content-wrap {
+      flex-grow: 1;
+      height: 150rpx;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      font-size: $font-size-base;
+
+      .row-one {
+        color: #191919;
+      }
+
+      .row-two {
+        color: $color-text-lighter;
+        font-size: $font-size-sm;
+      }
+
+      .row-three {
+        color: $color-primary;
+      }
+
+    }
+  }
+}

@@ -1,0 +1,23 @@
+<view
+    class="action-bar"
+    style="padding-bottom: {{isIPhoneX ? 68 : 0}}rpx;"
+>
+    <view class="action-bar__left">
+        <view class="action-bar__left-btn">
+            <view class="action-bar__left-btn-icon">图标</view>
+            <view class="action-bar__left-btn-text">首页</view>
+        </view>
+        <view class="action-bar__left-btn">
+            <view class="action-bar__left-btn-icon">图标</view>
+            <view class="action-bar__left-btn-text">购物车</view>
+        </view>
+        <view class="action-bar__left-btn__cart" bind:tap="handleAddToCart">加购</view>
+    </view>
+    <button
+        class="button--primary buy"
+        hover-class="button--actived"
+        bind:tap="handleBuy"
+    >立即购买</button>
+
+    <button class="button">分享</button>
+</view>

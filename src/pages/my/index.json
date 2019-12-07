@@ -1,8 +1,0 @@
-{
-  "navigationBarTitleText": "我的中心",
-  "usingComponents": {
-    "slide-tab": "../../components/SlideTab/index",
-    "nav-bar": "../../components/navbar/index"
-  },
-  "enablePullDownRefresh": false
-}

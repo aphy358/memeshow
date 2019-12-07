@@ -1,0 +1,36 @@
+<!-- <view class="mf_components-test-module">
+    <view class="mf_components-test-module_title">Tips:</view>
+    <view>1.</view>
+</view> -->
+
+<view class="mf_components-test-module">
+    <view class="mf_components-test-module_title">默认 Radio</view>
+    <mf-radio-group>
+        <mf-radio value="{{ 1 }}" title="单选项1"></mf-radio>
+        <mf-radio value="{{ 2 }}" title="单选项2"></mf-radio>
+    </mf-radio-group>
+</view>
+
+<view class="mf_components-test-module">
+    <view class="mf_components-test-module_title">预选 Radio</view>
+    <mf-radio-group default="{{ 1 }}">
+        <mf-radio value="{{ 1 }}" title="单选项1"></mf-radio>
+        <mf-radio value="{{ 2 }}" title="单选项2"></mf-radio>
+    </mf-radio-group>
+</view>
+
+<view class="mf_components-test-module">
+    <view class="mf_components-test-module_title">带描述的 Radio</view>
+    <mf-radio-group default="{{ 1 }}">
+        <mf-radio value="{{ 1 }}" title="单选项1" desc="我就是选项1的描述"></mf-radio>
+        <mf-radio value="{{ 2 }}" title="单选项2"></mf-radio>
+    </mf-radio-group>
+</view>
+
+<view class="mf_components-test-module">
+    <view class="mf_components-test-module_title">Todo:</view>
+    <view>1. 支持自定义 Label</view>
+    <view>2. 支持取消选项</view>
+    <view>3. 单个 Radio 选项时提供完整功能</view>
+    <view>4. Radio 添加 border 接口</view>
+</view>

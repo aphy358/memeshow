@@ -1,0 +1,264 @@
+/* pages/ecommerse/detail/index.wxss */
+.detail-page {
+  padding-bottom: 120rpx;
+}
+.product-img {
+  width: 750rpx;
+  height: 750rpx;
+}
+.product-img .swiper {
+  width: 750rpx;
+  height: 750rpx;
+}
+.product-img .slide-image {
+  width: 750rpx;
+  height: 750rpx;
+}
+.product-info {
+  box-sizing: border-box;
+  padding: 20rpx;
+  background: #fff;
+}
+.product-info .fr-line {
+  height: 50rpx;
+}
+.product-info .fr-line .sign {
+  background: #ff2741;
+  padding: 0 6rpx;
+  border-radius: 4rpx;
+  color: #fff;
+  font-size: 20rpx;
+}
+.fr-line .salePrice {
+  font-size: 36rpx;
+  color: #ff2741
+}
+.fr-line .realPrice {
+  text-decoration: line-through #6b6b6b;
+}
+.fr-line text {
+  margin-right: 24rpx;
+  vertical-align: middle;
+}
+.product-info .title {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10rpx 0
+}
+.title .left {
+  font-size: 32rpx;
+  color: rgba(0, 0, 0, 0.8);
+  margin-right: 40rpx;
+}
+.title .right {
+  width: 100rpx;
+  font-size: 20rpx;
+}
+.title .right .icon{ 
+  text-align: center;
+}
+.title .right .icon image{ 
+  width: 40rpx;
+  height: 40rpx;
+} 
+.title .right .icon .text {
+  text-align: center;
+}
+.product-info .brand {
+  font-size: 24rpx;
+  color: #6b6b6b;
+  margin-top: 10rpx 0 20rpx 0;
+}
+.product-info .brand text{ 
+  margin-left: 10rpx;
+  color: #0b8eea
+}
+.statement {
+  margin-top: 20rpx;
+  background: #fff;
+  padding: 20rpx 20rpx;
+}
+.statement .declare{
+  font-size: 24rpx;
+  color: rgba(0, 0, 0, 0.8);
+  height: 40rpx;
+}
+.statement .declare text{
+  margin-right: 20rpx;
+}
+.statement .desc{ 
+  font-size: 20rpx;
+  color: rgba(0, 0, 0, 0.6 );
+}
+.right-arrow image{
+  width: 30rpx;
+  height: 30rpx;
+}
+.specifications {
+  margin-top: 20rpx;
+  background: #fff;
+  padding: 20rpx;
+  font-size: 20rpx;
+}
+.specifications .label{
+  color: rgba(0, 0, 0, 0.7 )
+}
+.specifications .value {
+  color: rgba(0, 0, 0, 0.9);
+  font-size: 24rpx;
+}
+.specifications .desc {
+  margin-top: 20rpx;
+}
+.shop {
+  margin-top: 20rpx;
+  background: #fff;
+  padding: 20rpx;
+}
+.shop .logo{
+  width: 260rpx;
+  height: 130rpx;
+  vertical-align: middle;
+  margin-right: 20rpx;
+}
+.shop .shop-name {
+  display: inline-block;
+  vertical-align: middle;
+}
+.shop .name{ 
+  font-size: 24rpx;
+  color: rgba(0, 0, 0, 0.9)
+}
+.shop .desc {
+  font-size: 20rpx;
+  color: rgba(0, 0, 0, 0.7 );
+}
+.shop .to-shop {
+  font-size: 24rpx;
+  color: rgba(0, 0, 0, 0.7 );
+}
+.shop .to-shop image {
+  display: inline-block;
+  vertical-align: middle;
+}
+.recommend-product {
+  margin-top: 20rpx;
+  padding: 20rpx;
+  background: #fff;
+}
+.recommend-product .lists {
+  height: 300rpx;
+}
+.recommend-product .sub-text {
+  font-size: 28rpx;
+  color: rgba(0, 0, 0, 0.9);
+  margin-bottom: 20rpx;
+}
+.list-item {
+  width: 200rpx;
+  margin-right: 20rpx;
+  height: 300rpx;
+  float: left;
+}
+.list-item .image {
+  width: 200rpx;
+  height: 200rpx;
+  overflow: hidden;
+}
+.list-item .image image {
+  width: 200rpx;
+}
+.list-item .desc {
+  height: 60rpx;
+  line-height: 30rpx;
+  font-size: 20rpx;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+.list-item .price .realPrice {
+  font-size: 28rpx;
+  color: #ff2741
+}
+.list-item .price .salePrice {
+  font-size: 20rpx;
+  color: #6b6b6b;
+  text-decoration: line-through #6b6b6b;
+}
+.product-detail {
+  margin-top: 20rpx;
+  padding: 20rpx;
+  background: #fff;
+
+}
+
+/*
+*商品详情底部操作按钮
+*/
+.bottom-btn {
+  position: fixed;
+  width: 100%;
+  height: 100rpx;
+  left: 0;
+  bottom: 0;
+  background: #fff;
+}
+.bottom-btn .left {
+  display: inline-block;
+  width: 200rpx;
+  height: 100rpx;
+  font-size: 22rpx;
+  color: rgba(0, 0, 0, 0.4)
+}
+.bottom-btn .left .to-shop {
+  width: 100rpx;
+  display: inline-block;
+  vertical-align: middle;
+}
+.bottom-btn .left .shop-icon {
+  text-align: center;
+}
+.bottom-btn .left .shop-icon image{
+  width: 38rpx;
+  height: 34rpx;
+}
+.bottom-btn .left .text {
+  text-align: center
+}
+.bottom-btn .left .to-cart {
+  width: 100rpx;
+  display: inline-block;
+  vertical-align: middle;
+}
+.bottom-btn .left .cart-icon {
+  text-align: center;
+}
+.bottom-btn .left .cart-icon image{
+  width: 40rpx;
+  height: 32rpx;
+  display: inline-block;
+}
+.bottom-btn .center {
+  display: inline-block;
+  width: 275rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+  color: #fff;
+  text-align: center;
+  background: #ff7e8d;
+  font-size: 28rpx;
+}
+.bottom-btn .right {
+  display: inline-block;
+  width: 275rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+  text-align: center;
+  background: #ff2741;
+  font-size: 28rpx;
+  color: #fff;
+}
+

@@ -1,0 +1,54 @@
+/* Text */
+
+// 大小
+.f-xs {
+  font-size: $font-size-xs;
+}
+.f-sm {
+  font-size: $font-size-sm;
+}
+.f-md {
+  font-size: $font-size-base;
+}
+.f-lg {
+  font-size: $font-size-lg;
+}
+.f-xl {
+  font-size: $font-size-xl;
+}
+.f-xxl {
+  font-size: $font-size-xxl;
+}
+
+// 颜色
+.f-base {
+  color: $color-text-base;
+}
+.f-base-inverse {
+  color: $color-text-base-inverse;
+}
+.f-secondary {
+  color: $color-text-secondary;
+}
+.f-placeholder {
+  color: $color-text-placeholder;
+}
+.f-disabled {
+  color: $color-text-disabled;
+}
+.f-title {
+  color: $color-text-title;
+}
+.f-paragraph {
+  color: $color-text-paragraph;
+}
+
+// 标题
+.h1 {
+  color: $color-text-title;
+  font-size: $font-size-xl;
+}
+.h2 {
+  color: $color-text-title;
+  font-size: $font-size-lg;
+}

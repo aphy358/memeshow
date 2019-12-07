@@ -1,0 +1,159 @@
+<view class="m-b-xl">
+    <view class="h2 m-b-sm m-h-lg">主操作</view>
+    <view class="m-v-sm">
+        <button class="button--primary" hover-class="button--actived">主操作按钮</button>
+    </view>
+    <view class="m-v-sm">
+        <button
+            loading
+            class="button--primary"
+            hover-class="button--actived"
+        >Loading</button>
+    </view>
+    <view class="m-v-sm">
+        <button class="button--primary button--disabled" disabled>不可点击</button>
+    </view>
+</view>
+
+<view class="m-b-xl">
+    <view class="h2 m-b-sm m-h-lg">次要操作</view>
+    <view class="m-v-sm">
+        <button
+            class="button--secondary"
+            hover-class="button--actived"
+        >次操作按钮</button>
+    </view>
+    <view class="m-v-sm">
+        <button
+            loading
+            class="button--secondary"
+            hover-class="button--actived"
+        >Loading</button>
+    </view>
+    <view class="m-v-sm">
+        <button
+            disabled
+            class="button--secondary button--disabled"
+        >不可点击</button>
+    </view>
+</view>
+
+<view class="m-b-xl">
+    <view class="h2 m-b-sm m-h-lg">次次要操作</view>
+    <view class="m-v-sm">
+        <button
+            class="button--tertiary"
+            hover-class="button--actived"
+        >次次操作按钮</button>
+    </view>
+    <view class="m-v-sm">
+        <button
+            loading
+            class="button--tertiary"
+            hover-class="button--actived"
+        >Loading</button>
+    </view>
+    <view class="m-v-sm">
+        <button
+            disabled
+            class="button--tertiary button--disabled"
+        >不可点击</button>
+    </view>
+</view>
+
+<view class="m-b-xl">
+    <view class="h2 m-b-sm m-h-lg">小按钮</view>
+    <view class="row m-b-md">
+        <view class="col m-r-md">
+            <button
+                class="button--primary button--mini"
+                hover-class="button--actived"
+            >小按钮</button>
+        </view>
+        <view class="col m-r-md">
+            <button
+                loading
+                class="button--primary button--mini"
+                hover-class="button--actived"
+            >小按钮</button>
+        </view>
+        <view class="col m-r-md">
+            <button
+                disabled
+                class="button--primary button--mini button--disabled"
+            >小按钮</button>
+        </view>
+    </view>
+    <view class="row m-b-md">
+        <view class="col m-r-md">
+            <button
+                class="button--secondary button--mini"
+                hover-class="button--actived"
+            >小按钮</button>
+        </view>
+        <view class="col m-r-md">
+            <button
+                loading
+                class="button--secondary button--mini"
+                hover-class="button--actived"
+            >小按钮</button>
+        </view>
+        <view class="col m-r-md">
+            <button
+                disabled
+                class="button--secondary button--mini button--disabled"
+            >小按钮</button>
+        </view>
+    </view>
+    <view class="row m-b-md">
+        <view class="col m-r-md">
+            <button
+                class="button--tertiary button--mini"
+                hover-class="button--actived"
+            >小按钮</button>
+        </view>
+        <view class="col m-r-md">
+            <button
+                loading
+                class="button--tertiary button--mini"
+                hover-class="button--actived"
+            >小按钮</button>
+        </view>
+        <view class="col m-r-md">
+            <button
+                disabled
+                class="button--tertiary button--mini button--disabled"
+            >小按钮</button>
+        </view>
+    </view>
+</view>
+
+<view class="m-b-xl">
+    <view class="h2 m-b-sm m-h-lg">圆角按钮</view>
+    <view class="row">
+        <view class="col m-r-md">
+            <button
+                class="button--primary button--mini button--circle"
+                hover-class="button--actived"
+            >小按钮</button>
+        </view>
+        <view class="col m-r-md">
+            <button
+                loading
+                class="button--primary button--mini button--circle"
+                hover-class="button--actived"
+            >小按钮</button>
+        </view>
+        <view class="col m-r-md">
+            <button
+                disabled
+                class="button--primary button--mini button--circle button--disabled"
+            >小按钮</button>
+        </view>
+    </view>
+</view>
+
+<view class="m-b-xl">
+    <view class="h2 m-b-sm m-h-lg">通栏</view>
+    <button class="button--secondary button--full" hover-class="button--actived">通栏按钮</button>
+</view>

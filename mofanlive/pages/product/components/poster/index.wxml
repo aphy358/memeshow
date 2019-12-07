@@ -1,0 +1,27 @@
+<view
+    class="posters"
+    style="{{customStyle}}"
+>
+    <swiper
+        autoplay="{{false}}"
+        circular="{{true}}"
+        duration="{{500}}"
+        indicator-dots="{{true}}"
+    >
+        <block
+            wx:for="{{posters}}"
+            wx:key="id"
+        >
+            <swiper-item>
+                <block wx:if="{{item.type == 'IMG'}}">
+                    <mf-poster-img
+                        bind:tap="handleShowImgPreview"
+                        id="{{item.id}}"
+                        src="{{item.thumbnail}}"
+                    ></mf-poster-img>
+                </block>
+                <block wx:if="{{item.type == 'VIDEO'}}"></block>
+            </swiper-item>
+        </block>
+    </swiper>
+</view>

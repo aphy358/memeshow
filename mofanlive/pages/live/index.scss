@@ -1,0 +1,28 @@
+
+.live-wrap {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  width: 100%;
+  height: 100vh;
+
+  .live-player {
+    width: 100%;
+    height: 100%;
+  }
+
+  .exit-img {
+    position: absolute;
+    left: 20rpx;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+
+    .img {
+      width: 40rpx;
+      height: 40rpx;
+    }
+  }
+}

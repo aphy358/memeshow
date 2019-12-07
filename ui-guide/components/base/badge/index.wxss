@@ -1,0 +1,19 @@
+/* Badge component */
+
+.badge-outer {
+    position: relative;
+}
+
+.mf_badge {
+    display: inline-block;
+    min-width: 30rpx;
+    min-height: 30rpx;
+    box-sizing: border-box;
+    background-color: #fa5151;
+    border-radius: 30rpx;
+    color: #fff;
+    line-height: 1.2;
+    text-align: center;
+    font-size: 12px;
+    vertical-align: middle;
+}

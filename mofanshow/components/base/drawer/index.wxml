@@ -1,0 +1,22 @@
+<!-- Drawer Component -->
+
+<view class="mf_drawer">
+    <view
+        class="mf_drawer-title"
+        bindtap="onSwitch"
+    >
+        <view wx:if="{{ title }}">{{ title }}</view>
+        <view wx:else>
+            <slot name="title"></slot>
+        </view>
+        <mf-icon
+            name="down-arrow"
+            class="mf_drawer-indicator {{ actived ? 'mf_drawer-indicator__actived' : '' }}"
+        ></mf-icon>
+    </view>
+    <view
+        class="mf_drawer-content {{ actived ? 'mf_drawer-content__actived' : '' }}"
+    >
+        <slot></slot>
+    </view>
+</view>

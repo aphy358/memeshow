@@ -1,0 +1,5 @@
+{
+    "usingComponents": {
+        "user-card-light": "../../../components/user-card-light/index"
+    }
+}

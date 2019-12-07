@@ -1,0 +1,202 @@
+@import "../mixins/_base.scss";
+
+/* Flex Container */
+@mixin flex-wrap($value: nowrap) {
+    flex-wrap: $value;
+}
+
+@mixin align-items($value: stretch) {
+    align-items: $value;
+    @if $value == flex-start {
+        -webkit-box-align: start;
+    } @else if $value == flex-end {
+        -webkit-box-align: end;
+    } @else {
+        -webkit-box-align: $value;
+    }
+}
+
+@mixin align-content($value: flex-start) {
+    align-content: $value;
+}
+
+@mixin justify-content($value: flex-start) {
+    justify-content: $value;
+    @if $value == flex-start {
+        -webkit-box-pack: start;
+    } @else if $value == flex-end {
+        -webkit-box-pack: end;
+    } @else if $value == space-between {
+        -webkit-box-pack: justify;
+    } @else {
+        -webkit-box-pack: $value;
+    }
+}
+
+/* Flex Item */
+@mixin flex-item($fg: 1, $fs: null, $fb: null) {
+    flex: $fg $fs $fb;
+    -webkit-box-flex: $fg;
+}
+
+@mixin flex-order($n) {
+    order: $n;
+    -webkit-box-ordinal-group: $n;
+}
+
+@mixin align-self($value: auto) {
+    align-self: $value;
+}
+
+.mf-flex-row {
+    display: flex;
+    box-sizing: border-box;
+    width: 100%;
+
+    &__direction {
+        &--row {
+            flex-direction: row;
+        }
+
+        &--column {
+            flex-direction: column;
+        }
+
+        &--row-reverse {
+            flex-direction: row-reverse;
+        }
+
+        &--column-reverse {
+            flex-direction: column-reverse;
+        }
+    }
+
+    &__align {
+        &--start {
+            @include align-items(flex-start);
+        }
+
+        &--end {
+            @include align-items(flex-end);
+        }
+
+        &--center {
+            @include align-items(center);
+        }
+
+        &--stretch {
+            @include align-items(stretch);
+        }
+
+        &--baseline {
+            @include align-items(baseline);
+        }
+    }
+
+    &__justify {
+        &--start {
+            @include justify-content(flex-start);
+        }
+
+        &--end {
+            @include justify-content(flex-end);
+        }
+
+        &--center {
+            @include justify-content(center);
+        }
+
+        &--between {
+            @include justify-content(space-between);
+        }
+
+        &--around {
+            @include justify-content(space-around);
+        }
+    }
+
+    &__align-content {
+        &--start {
+            @include align-content(flex-start);
+        }
+
+        &--end {
+            @include align-content(flex-end);
+        }
+
+        &--center {
+            @include align-content(center);
+        }
+
+        &--between {
+            @include align-content(space-between);
+        }
+
+        &--around {
+            @include align-content(space-around);
+        }
+
+        &--stretch {
+            @include align-content(stretch);
+        }
+    }
+
+    &--no-wrap {
+        @include flex-wrap(nowrap);
+    }
+
+    &--wrap {
+        @include flex-wrap(wrap);
+    }
+
+    &--wrap-reverse {
+        @include flex-wrap(wrap-reverse);
+    }
+}
+
+.mf-flex-col {
+    @include flex-item(1);
+
+    width: 100%;
+    display: block;
+    white-space: nowrap;
+    box-sizing: border-box;
+
+    @for $col from 1 through 12 {
+        $width: ($col / 12) * 100%;
+
+        &-#{$col} {
+            @include flex-item(0, 0, $width);
+
+            max-width: $width;
+        }
+
+        &__offset-#{$col} {
+            margin-left: $width;
+        }
+    }
+
+    &__align {
+        &--top {
+            @include align-self(flex-start);
+        }
+
+        &--bottom {
+            @include align-self(flex-end);
+        }
+
+        &--center {
+            @include align-self(center);
+        }
+    }
+
+    &--auto {
+        max-width: initial;
+        word-break: keep-all;
+    }
+
+    &--wrap {
+        white-space: normal;
+        word-wrap: break-word;
+    }
+}

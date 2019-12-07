@@ -1,0 +1,62 @@
+@import "@/assets/styles/index.scss";
+@import "../mixins.scss";
+
+.search {
+  @include search($color-bg);
+}
+
+.search-input {
+  flex: 1;
+}
+
+page {
+  background-color: white;
+}
+
+.list {
+  width: 100%;
+}
+
+.list-title {
+  width: 100%;
+  box-sizing: border-box;
+  padding: $spacing-xxl;
+  border-bottom: 1px solid $color-border;
+}
+
+.list-container {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 $spacing-xxl;
+}
+
+.list-item {
+  display: flex;
+  flex-flow: row nowrap;
+  padding: $spacing-lg 0;
+  align-items: center;
+}
+
+// .user-avatar {
+//   width: 75rpx;
+//   height: 75rpx;
+//   border-radius: $border-radius-circle;
+//   background-color: #666;
+//   margin-right: 30rpx;
+// }
+
+.user-info, .user-info__detail {
+  font-family: $font-cn;
+}
+
+.user-info {
+  flex: 1;
+  border-bottom: 1px solid $color-border;
+  color: $color-text;
+  font-size: $font-size-lg;
+}
+.user-info__detail {
+  padding: $spacing-sm 0 $spacing-xxl;
+  color: $color-text-light;
+  font-size: $font-size-base;
+}

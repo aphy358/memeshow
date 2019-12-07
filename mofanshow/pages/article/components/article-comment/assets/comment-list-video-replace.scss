@@ -1,0 +1,101 @@
+// comment-list-video 组件覆盖样式
+
+
+.comment-wrap {
+  color: $color-text;
+  background: $white;
+
+  @at-root .comment-item-wrap {
+
+    @at-root .comment-item {
+      &.level-one {}
+
+      &.level-two {}
+
+      @at-root .avatar-one {
+
+        image {}
+      }
+
+      @at-root .content-one-wrap {
+
+        @at-root .content-one-inner {
+
+          @at-root .content-nickname {
+            color: $color-text-lighter;
+          }
+
+          @at-root .content-comment {
+
+            @at-root .content-commenttime {
+              color: $color-text-lighter;
+            }
+
+            @at-root .content-reply-name {
+              color: $color-text-lighter;
+            }
+          }
+        }
+      }
+
+      @at-root .avatar-two {
+
+        image {}
+      }
+
+      @at-root .content-two-wrap {
+
+        @at-root .comment-star-wrap {
+
+          @at-root .iconheart {
+            color: $color-text-lighter;
+
+            &.stared {
+              color: $color-primary;
+            }
+          }
+
+          @at-root .comment-star-count {
+            color: $color-text-lighter;
+          }
+        }
+      }
+    }
+  }
+
+  @at-root .comment-title-wrap {
+    background: $white;
+
+    @at-root .comment-title {}
+
+    @at-root .comment-close-btn {
+
+      .icon-font {
+        color: $color-text;
+
+        &.icondelete {}
+      }
+    }
+  }
+
+  @at-root .comment-footer-wrap {
+    background: $white;
+
+    @include hairline($color: #eee, $position: top);
+
+    .icon-font {
+      color: $color-text-lighter;
+
+      &.iconat {}
+
+      &.iconface {}
+    }
+
+    @at-root .comment-footer-inner {
+
+      @at-root .comment-footer-text {
+        color: $color-text-lighter;
+      }
+    }
+  }
+}

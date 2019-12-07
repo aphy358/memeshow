@@ -1,0 +1,25 @@
+<navigation-bar back home />
+
+<view class="article-wrap">
+  <!-- 文章关注栏 -->
+  <article-follow />
+
+  <!-- 文章正文 -->
+  <article-content article="{{ article }}" />
+
+  <!-- 文章评论 -->
+  <article-comment comments="{{ comments }}" />
+
+  <!-- 文章推荐列表 -->
+  <view class="article-recommend-list">
+    <view class="article-recommend-title">相关推荐</view>
+    <article-recommend-list
+      waterfall
+      gap="{{ 20 }}"
+      col="{{ 2 }}"
+      appendList="{{ list }}"
+      generic:list-item="waterfall-item"
+    />
+  </view>
+
+</view>

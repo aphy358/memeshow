@@ -1,0 +1,21 @@
+<!--pages/search/index.wxml-->
+<view>
+  <view class="search-view">
+    <view class="search-icon"><image src="/images/search.png"></image></view>
+    <input class="search-btn" placeholder-class="placeholder" type="text" cursor="4" placeholder="大家都在搜索‘紫云系统’"></input>
+  </view>
+  <view class="search-list-container">
+    <view class="search-list">
+      <view class="title">历史搜索</view>
+      <view>
+        <view class="item" wx:for="{{hotSearchLists}}" wx:key="{{item.id}}">{{item.name}}</view>  
+      </view>
+    </view>
+    <view class="search-list">
+      <view class="title">热门搜索</view>
+      <view>
+        <view class="item" wx:for="{{historicalSearchLists}}" wx:key="{{item.id}}">{{item.name}}</view>
+      </view>
+    </view>
+  </view>
+</view>

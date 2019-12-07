@@ -1,0 +1,55 @@
+@import '@/assets/styles/index.scss';
+
+.profile-wrap {
+  padding: $spacing-xxl;
+
+  @at-root .profile-title {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: $font-size-xl;
+
+    .icon {
+      margin-right: $spacing-lg;
+      width: 50rpx;
+      height: 50rpx;
+      line-height: 50rpx;
+      text-align: center;
+      background: $white;
+      color: $color-text-light;
+      border-radius: $border-radius-circle2;
+    }
+  }
+
+  @at-root .profile-brief {
+    color: $color-text-lighter;
+    font-size: $font-size-base;
+    margin: $spacing-lg 0;
+  }
+
+  @at-root .profile-follow-wrap {
+    display: flex;
+    justify-content: space-between;
+    font-size: $font-size-base;
+
+    @at-root .profile-follow-left {
+      display: flex;
+      align-items: center;
+
+      @at-root .profile-follow-item {
+        margin-right: $spacing-xxl;
+      }
+    }
+
+    @at-root .profile-follow-btn {
+      border-radius: $border-radius-circle2;
+      background: $color-primary;
+      height: 60rpx;
+      line-height: 60rpx;
+      width: 160rpx;
+      font-size: $font-size-xl;
+      color: $white;
+      margin: 0;
+    }
+  }
+}

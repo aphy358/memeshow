@@ -1,0 +1,36 @@
+<view class="m-b-xl">
+    <view class="h2 m-b-sm m-h-lg">常规用法</view>
+    <view class="m-v-sm">
+        <switch checked></switch>
+    </view>
+    <view class="m-v-sm">
+        <switch></switch>
+    </view>
+</view>
+
+<view class="m-b-xl">
+    <view class="h2 m-b-sm m-h-lg">禁用</view>
+    <view class="m-v-sm">
+        <switch
+            checked
+            disabled
+            class="switch--disabled"
+        ></switch>
+    </view>
+    <view class="m-v-sm">
+        <switch
+            disabled
+            class="switch--disabled"
+        ></switch>
+    </view>
+</view>
+
+<view class="m-b-xl">
+    <view class="h2 m-b-sm m-h-lg">Checkbox</view>
+    <view class="m-v-sm">
+        <switch type="checkbox" checked></switch>
+    </view>
+    <view class="m-v-sm">
+        <switch type="checkbox"></switch>
+    </view>
+</view>

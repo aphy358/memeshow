@@ -1,0 +1,14 @@
+// Live List Component
+@import "@/assets/styles/index.scss";
+
+.mf_live-list {
+    background: $white;
+
+    &__scroll {
+        @include flex($align-items: flex-start);
+    }
+
+    &_rooms {
+        margin: 0 $spacing-sm;
+    }
+}

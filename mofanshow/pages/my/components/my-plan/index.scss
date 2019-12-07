@@ -1,0 +1,64 @@
+@import '@/assets/styles/index.scss';
+
+.my-plan {
+
+  @at-root .my-block-more {
+    color: #EF9209;
+  }
+
+  @at-root .my-plan-list {
+    margin: -$spacing-lg $spacing-xxl -$spacing-sm;
+    
+    @at-root .my-plan-item {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      height: 140rpx;
+
+      .item-img {
+        width: 76rpx;
+        height: 76rpx;
+        border-radius: $border-radius-circle2;
+      }
+
+      .brief-wrap {
+        flex-grow: 1;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 76rpx;
+        padding: 0 $spacing-xxl;
+        color: #5E5E5E;
+        font-size: $font-size-sm;
+
+        .row-two {
+          color: #EF9209;
+          font-size: $font-size-sm;
+        }
+      }
+
+      .btn {
+        width: 105rpx;
+        height: 46rpx;
+        line-height: 46rpx;
+        padding: 0;
+        font-size: $font-size-sm;
+        background: $color-primary;
+        border-radius: $border-radius-sm;
+
+        &::after {
+          content: none;
+        }
+      }
+
+    }
+  }
+
+  .gap-line {
+    position: relative;
+    width: 100%;
+
+    @include hairline(#ddd);
+  }
+}

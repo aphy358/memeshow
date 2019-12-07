@@ -1,0 +1,54 @@
+<view class="mf_components-test-module">
+    <view class="mf_components-test-module_title">Tips:</view>
+    <view>1. 你的内容应当放置在 col 内，并且只有 col 可以作为 row 的直接元素</view>
+	<view>2. 栅格系统中的列是用 1 到 12 的值来表示其跨域的范围</view>
+	<view>3. 规范依赖样式文件 `assets/styles/guides/flex.scss`（仅按需引用时需要）</view>
+</view>
+
+<view class="mf_components-test-module">
+    <view class="mf_components-test-module_title">一般用法</view>
+    <view class="mf-flex-row">
+        <view class="mf-flex-col mf-test_color1">col</view>
+        <view class="mf-flex-col mf-test_color2">col</view>
+    </view>
+</view>
+
+<view class="mf_components-test-module">
+    <view class="mf_components-test-module_title">指定宽度</view>
+    <view class="mf-flex-row">
+        <view class="mf-flex-col mf-flex-col-2 mf-test_color1">2</view>
+        <view class="mf-flex-col mf-flex-col-6 mf-test_color2">6</view>
+        <view class="mf-flex-col mf-flex-col-4 mf-test_color1">4</view>
+    </view>
+</view>
+
+<view class="mf_components-test-module">
+    <view class="mf_components-test-module_title">偏移</view>
+    <view class="mf-flex-row">
+        <view class="mf-flex-col mf-flex-col-2 mf-test_color1">2</view>
+        <view class="mf-flex-col mf-flex-col-4 mf-flex-col__offset-3 mf-test_color2">offset 3</view>
+    </view>
+</view>
+
+<view class="mf_components-test-module">
+    <view class="mf_components-test-module_title">超过 12 个单位换行</view>
+    <view class="mf-flex-row mf-flex-row--wrap">
+        <view class="mf-flex-col mf-flex-col-2 mf-test_color1">2</view>
+        <view class="mf-flex-col mf-flex-col-6 mf-test_color2">6</view>
+        <view class="mf-flex-col mf-flex-col-4 mf-test_color1">4</view>
+        <view class="mf-flex-col mf-flex-col-2 mf-test_color2">outside</view>
+    </view>
+</view>
+
+<view class="mf_components-test-module">
+    <view class="mf_components-test-module_title">改变主轴方向</view>
+    <view class="mf-flex-row mf-flex-row__justify--end">
+        <view class="mf-flex-col mf-flex-col-2 mf-test_color1">2</view>
+        <view class="mf-flex-col mf-flex-col-4 mf-test_color2">3</view>
+    </view>
+</view>
+
+<view class="mf_components-test-module">
+    <view class="mf_components-test-module_title">Todo:</view>
+    <view>1. 参考 TaroUI 补充所有文档</view>
+</view>

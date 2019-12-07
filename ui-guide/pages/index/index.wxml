@@ -1,0 +1,147 @@
+<view class="h1 tc m-b-xl">MoFan UI Components</view>
+
+<view class="m-b-xl">
+    <view class="h2 m-b-sm m-h-lg">基本</view>
+    <view class="cell__group">
+        <navigator url="/pages/button/index" class="cell cell--sub">
+            <view class="cell__header">
+                <view class="cell__title">Button</view>
+            </view>
+            <view class="cell__tail">
+                <view class="icon icon-chevron-right cell__icon-link"></view>
+            </view>
+        </navigator>
+        <navigator url="/pages/icon/index" class="cell cell--sub">
+            <view class="cell__header">
+                <view class="cell__title">Icon</view>
+            </view>
+            <view class="cell__tail">
+                <view class="icon icon-chevron-right cell__icon-link"></view>
+            </view>
+        </navigator>
+        <navigator url="/pages/popup/index" class="cell cell--sub">
+            <view class="cell__header">
+                <view class="cell__title">Popup</view>
+            </view>
+            <view class="cell__tail">
+                <view class="icon icon-chevron-right cell__icon-link"></view>
+            </view>
+        </navigator>
+    </view>
+</view>
+
+<view class="m-b-xl">
+    <view class="h2 m-b-sm m-h-lg">布局</view>
+    <view class="cell__group">
+        <navigator url="/pages/flex/index" class="cell cell--sub">
+            <view class="cell__header">
+                <view class="cell__title">Flex</view>
+            </view>
+            <view class="cell__tail">
+                <view class="icon icon-chevron-right cell__icon-link"></view>
+            </view>
+        </navigator>
+        <navigator url="/pages/grid/index" class="cell cell--sub">
+            <view class="cell__header">
+                <view class="cell__title">Grid</view>
+            </view>
+            <view class="cell__tail">
+                <view class="icon icon-chevron-right cell__icon-link"></view>
+            </view>
+        </navigator>
+        <navigator url="/pages/card/index" class="cell cell--sub">
+            <view class="cell__header">
+                <view class="cell__title">Card</view>
+            </view>
+            <view class="cell__tail">
+                <view class="icon icon-chevron-right cell__icon-link"></view>
+            </view>
+        </navigator>
+        <navigator url="/pages/cell/index" class="cell cell--sub">
+            <view class="cell__header">
+                <view class="cell__title">Cell</view>
+            </view>
+            <view class="cell__tail">
+                <view class="icon icon-chevron-right cell__icon-link"></view>
+            </view>
+        </navigator>
+        <navigator url="/pages/form/index" class="cell cell--sub">
+            <view class="cell__header">
+                <view class="cell__title">Form</view>
+            </view>
+            <view class="cell__tail">
+                <view class="icon icon-chevron-right cell__icon-link"></view>
+            </view>
+        </navigator>
+    </view>
+</view>
+
+<view class="m-b-xl">
+    <view class="h2 m-b-sm m-h-lg">表单元素</view>
+    <view class="cell__group">
+        <!-- <navigator url="/pages/input/index" class="cell cell--sub">
+            <view class="cell__header">
+                <view class="cell__title">Input</view>
+            </view>
+            <view class="cell__tail">
+                <view class="icon icon-chevron-right cell__icon-link"></view>
+            </view>
+        </navigator> -->
+        <navigator url="/pages/switch/index" class="cell cell--sub">
+            <view class="cell__header">
+                <view class="cell__title">Switch</view>
+            </view>
+            <view class="cell__tail">
+                <view class="icon icon-chevron-right cell__icon-link"></view>
+            </view>
+        </navigator>
+        <!-- <navigator url="/pages/radio/index" class="cell cell--sub">
+            <view class="cell__header">
+                <view class="cell__title">Radio</view>
+            </view>
+            <view class="cell__tail">
+                <view class="icon icon-chevron-right cell__icon-link"></view>
+            </view>
+        </navigator> -->
+    </view>
+</view>
+
+<!-- <view class="m-b-xl">
+    <view class="h2">Form</view>
+    <view class="m-b-sm">
+        <navigator url="/pages/guide-components/button/index">Button</navigator>
+    </view>
+    <view class="m-b-sm">
+        <navigator url="/pages/guide-components/input/index">Input</navigator>
+    </view>
+    <view class="m-b-sm">
+        <navigator url="/pages/guide-components/textarea/index">Textarea</navigator>
+    </view>
+    <view class="m-b-sm">
+        <navigator url="/pages/guide-components/radio/index">Radio</navigator>
+    </view>
+    <view class="m-b-sm">
+        <navigator url="/pages/guide-components/switch/index">Switch</navigator>
+    </view>
+</view>
+<view class="m-b-xl">
+    <view class="h2">Feedback</view>
+    <view class="mf_components-entry">
+        <navigator url="/pages/guide-components/button/index">Button</navigator>
+    </view>
+</view>
+<view class="m-b-xl">
+    <view class="h2">Navigation</view>
+    <view class="m-b-sm">
+        <navigator url="/pages/guide-components/tabs/index">Tabs</navigator>
+    </view>
+</view>
+<view class="m-b-xl">
+    <view class="h2">Top Level</view>
+    <view class="m-b-sm">
+        <navigator url="/pages/guide-components/avatar/index">Avatar</navigator>
+    </view>
+    <view class="m-b-sm">
+        <navigator url="/pages/guide-components/user-card-light/index">User Card Ⅱ</navigator>
+    </view>
+</view> -->

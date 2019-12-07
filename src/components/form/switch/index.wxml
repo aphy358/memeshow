@@ -1,9 +1,0 @@
-<!-- Switch Component -->
-
-<switch
-    checked="{{ on }}"
-    disabled="{{ disabled }}"
-    color="{{ disabled ? '#febfcb' : '#fe2c54'}}"
-    bindchange="onChange"
->
-</switch>

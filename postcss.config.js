@@ -3,7 +3,10 @@ module.exports = {
     "postcss-import": {},
     autoprefixer: {},
     cssnano: {
-      preset: 'default'
+      // 禁用 calc 插件，使得类似 width: calc(100% - 180rpx); 的代码不会报错
+      preset: ['default', {
+        calc: false,
+      }],
     }
   }
 };

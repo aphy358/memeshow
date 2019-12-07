@@ -1,0 +1,19 @@
+{
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "avatar": "../../components/avatar/index",
+    "navigation-bar": "../../components/navigation-bar/index",
+    "tab": "../../components/base/tab/index",
+    "tabs": "../../components/base/tabs/index",
+    "list": "../../components/base/list/index",
+    "waterfall-item": "../../components/list-item/list-item-post/index",
+    "article-item": "../../components/list-item/list-item-article/index",
+    "mf-icon": "../../components/base/icon/index",
+    "loading-more": "../../components/loading-more/index",
+
+    "mf-module": "./components/module-container/index",
+    "banner": "./components/banner/index",
+    "live-list": "../../components/live-list/index",
+    "activity-card": "./components/promo-card/index"
+  }
+}

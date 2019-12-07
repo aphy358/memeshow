@@ -1,0 +1,11 @@
+@import "@/assets/styles/variables/index.scss";
+
+@mixin search($background-color: $white) {
+  width: 100%;
+  padding: $spacing-lg $spacing-xxl;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  background-color: $background-color;
+  box-sizing: border-box;
+}

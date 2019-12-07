@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "mf-navigation-bar": "/components/navigation-bar/index"
+  },
+  "navigationStyle": "custom",
+  "disableScroll": true
+}

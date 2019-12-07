@@ -1,0 +1,122 @@
+<!-- Home Page -->
+
+<view class="home-page_header">
+    <navigation-bar >
+        <image
+            src="./logo.png"
+            slot="left"
+            mode="widthFix"
+            class="home-page-logo"
+            bindtap="onRedirect2Guide"
+        ></image>
+        <navigator url="/pages/suggest/index" class="mf-searchbar-wrap">
+            <view class="mf-searchbar">
+                <mf-icon name="search" size="{{ 16 }}"></mf-icon>
+                <input type="text" disabled placeholder="搜索"></input>
+            </view>
+        </navigator>
+    </navigation-bar>
+</view>
+
+<mf-module customize="margin-top: 0">
+    <live-list rooms="{{ liveList.list }}">
+        <view
+            slot="before"
+            class="home-page_live-list_home"
+        >
+            <view class="home-page_live-list_home_carousel">
+                <block
+                    wx:for="{{ liveHots }}"
+                    wx:key="{{ index }}"
+                >
+                    <view
+                        class="home-page_live-list_home_carousel_frame"
+                        style="{{ animations[index] }}"
+                    >
+                        <avatar
+                            url="{{ item.url }}"
+                            size="{{ 116 }}"
+                        ></avatar>
+                    </view>
+                </block>
+            </view>
+            <view class="home-page_live-list_home_title">
+                <text>进入直播频道</text>
+                <mf-icon name="right-arrow" size="{{ 10 }}"></mf-icon>
+            </view>
+        </view>
+    </live-list>
+</mf-module>
+
+<mf-module>
+    <banner
+        autoplay
+        circular
+        indicatorDots
+        indicatorActiveColor="#fe2c54"
+        list="{{ bannerList }}"
+    ></banner>
+    <view class="home-page_activities">
+        <view class="home-page_activities_item">
+            <activity-card
+                title="百元套餐"
+                desc="网罗最好的搭配"
+                image="//img.alicdn.com/tfs/TB1tqpnegMPMeJjy1XcXXXpppXa-148-48.png"
+            ></activity-card>
+        </view>
+
+        <view class="home-page_activities_item">
+            <activity-card
+                title="直播红人"
+                desc="主播秒杀好物"
+                image="//img.alicdn.com/tfs/TB1tqpnegMPMeJjy1XcXXXpppXa-148-48.png"
+            ></activity-card>
+        </view>
+    </view>
+</mf-module>
+
+<view class="home-page_channel-list">
+    <tabs
+        id="home-page_tabs"
+        scroll
+        sticky="{{ tabs.sticky }}"
+        offset="{{ tabs.offset }}"
+        bindchange="onChangeChannel"
+    >
+        <block
+            wx:for="{{ categories }}"
+            wx:for-item="cat"
+            wx:key="{{ index }}"
+        >
+            <tab
+                underline="{{ false }}"
+                index="{{ index }}"
+                class="actived-tab"
+            >
+                {{ cat.name }}
+            </tab>
+        </block>
+    </tabs>
+
+    <view class="home-page_list">
+        <block wx:if="{{ listState.waterfall }}">
+            <list
+                waterfall
+                gap="{{ 20 }}"
+                col="{{ 2 }}"
+                appendList="{{ list }}"
+                generic:list-item="waterfall-item"
+            ></list>
+        </block>
+        <block wx:else>
+            <list
+                waterfall="{{ false }}"
+                col="{{ 1 }}"
+                appendList="{{ list }}"
+                generic:list-item="article-item"
+            ></list>
+        </block>
+    </view>
+
+    <loading-more enloading></loading-more>
+</view>

@@ -1,0 +1,96 @@
+<view class="video-container">
+  <view class="video-view">
+    <video 
+      class="video {{hiddenClass}}"
+      id="myVideo"
+      src="http://cloudbrain-docs.oss-cn-shenzhen.aliyuncs.com/504df73ac7bdb24a26855474a8f4246b-1541658595592.mp4"
+      autoplay="{{true}}"
+      loop
+      objectFit="contain"
+      bindtimeupdate='timeupdate'
+      controls="{{false}}">
+    </video>
+  </view>
+  <!-- <view class="cover-img">
+    <image src="/images/yangmi.jpg" mode='aspectFill' class="slide-image" />
+  </view> -->
+  <!--BEGIN 右边工具栏显示-->
+  <cover-view class="tools" hidden="{{isHiddenControl}}">
+    <cover-view class="userinfo">
+      <cover-image class="userinfo-avatar"        src="http://wx.qlogo.cn/mmhead/ver_1/ZGUEsHq3NgPXs2YVpv7M57RYM1yWv8iaRzJP3NDNicMoKVue4m0XozfNf3ib4wMMQVvQGqCuuMUuibPTXuibDmCB5nJdtN36hVWBD1Z8TWokUCwc/96">      </cover-image>
+      <cover-image wx:if="{{!follow}}" class="add" bindtap="follow" src="/images/icon_follow.png"></cover-image>
+    </cover-view>
+    <cover-view class="operation-btn operation-like-view">
+        <cover-image wx:if="{{subject.like}}" class="icon right-icon like" src='/images/like_red.png' bindtap='like'>喜欢</cover-image>
+        <cover-image wx:if="{{!subject.like}}" class="icon right-icon" src='/images/icon_like.png' bindtap='like'>喜欢</cover-image>
+        <cover-view class="text" bindtap='like'>1128</cover-view>
+    </cover-view>
+    <cover-view class="operation-btn">
+        <cover-image class="icon right-icon talk" src="/images/icon_comment.png" data-animation="commentAnimation" data-bottom="0rpx" bindtap="popupBottom" >评论</cover-image>
+        <cover-view class="text" bindtap='apply'>116</cover-view>
+    </cover-view>
+    <cover-view class="operation-btn">
+        <cover-image class="icon right-icon share" src='/images/wechat.png' bindtap='share'>分享</cover-image>
+        <cover-view class="text">50</cover-view>
+    </cover-view>
+  </cover-view>
+  <!--END 右边工具栏显示-->
+
+  <!--BEGIN 发布者和描述 -->
+  <cover-view class="publish-info">
+    <cover-view class="product-barrage" data-animation="productAnimation" data-bottom="0rpx"  bindtap="popupBottom">
+      <cover-image class="image" src="/images/icon_shop.png"></cover-image>
+      <cover-view class="name">82年中央特供茅台酒</cover-view>
+    </cover-view>
+    <cover-view class="publisher">@刘诗诗</cover-view>
+    <cover-view class="desc">杨幂幂今日在武汉为某商场站台，一袭半透明的白色蕾丝吊带群，看上去十分性感，网友戏称：”杨幂幂要与网红抢饭碗“</cover-view>
+  </cover-view>
+  <!--END 发布者和描述 -->
+
+  <!--BEGIN 进度条 -->
+  <cover-view class="jindu-back"></cover-view>
+  <cover-view class="jindu" style='width: {{percent}}%'></cover-view>
+  <!--END 进度条 -->
+
+  <!--BEGIN 底部操作 -->
+  <cover-view>
+
+  </cover-view>
+  <!--END 底部操作 -->
+
+  <!--  商品广告  -->
+  <cover-view class="product" animation="{{animationData.productAnimation}}">
+    <cover-image class="close close-absolute" src="/images/close.png" data-animation="productAnimation" data-bottom="-600rpx" bindtap="popupBottom"></cover-image>
+    <cover-view class="title">明星同款小性感蕾丝</cover-view>
+    <cover-view class="product-info">
+      <cover-image class="product-image" src="//img12.360buyimg.com/n7/jfs/t1/10513/16/1964/511189/5bdfc471Ec52ee115/b004253040a8a6e0.jpg">
+      </cover-image>
+      <cover-view class="info">
+        <cover-view class="name">瑰若 情趣内衣女套装极度诱惑制服吊带性感睡衣</cover-view>
+        <cover-view class="sign">好友查看排行榜</cover-view>
+        <cover-view class="price">￥69</cover-view>
+      </cover-view>
+    </cover-view>
+    <cover-view class="btn">去看看</cover-view>
+    <cover-view class="more">
+      <cover-image class="avatar" src="http://wx.qlogo.cn/mmhead/ver_1/ZGUEsHq3NgPXs2YVpv7M57RYM1yWv8iaRzJP3NDNicMoKVue4m0XozfNf3ib4wMMQVvQGqCuuMUuibPTXuibDmCB5nJdtN36hVWBD1Z8TWokUCwc/96"></cover-image>
+      <cover-view class="text">更多商品</cover-view>
+    </cover-view>
+  </cover-view>
+  <!--  商品广告  -->
+
+  <!--BEGIN 评论， 这里的评论只适合跳转新页面去做，暂时先关闭这个评论-->
+  <!-- <view  class="comment-container" animation="{{animationData.commentAnimation}}">
+    <view class="comment-view">
+      <view class="close" bindtap="closeTalk">
+        <cover-image class="close-img" src="/images/close.png"></cover-image>
+      </view>
+      <view class="comment-num">4.5w条评论</view>
+      <view class="comment-content">
+        
+      </view>
+      <view></view>
+    </view>  
+  </view> -->
+  <!--END 评论-->
+</view>

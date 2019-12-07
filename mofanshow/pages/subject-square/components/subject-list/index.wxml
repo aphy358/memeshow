@@ -1,0 +1,16 @@
+
+
+<view class="subject-list-nav">
+  <view class="subject-nav-item active">最新</view>
+  <view class="subject-nav-item">最热</view>
+</view>
+
+<view class="subject-list-wrap">
+  <list
+    waterfall
+    gap="{{ 20 }}"
+    col="{{ 2 }}"
+    appendList="{{ list }}"
+    generic:list-item="waterfall-item"
+  ></list>
+</view>

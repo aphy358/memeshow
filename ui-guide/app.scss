@@ -1,0 +1,11 @@
+/* Base Styles */
+@import "ui-kit/style/index";
+
+/* Custom Theme */
+@import "@/theme";
+
+/* Custom Global Styles */
+Page {
+  color: $color-text-base;
+  background: $color-bg-base;
+}

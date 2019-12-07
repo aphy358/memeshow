@@ -1,0 +1,16 @@
+
+<view class="live-wrap">
+  <!-- <live-player 
+    class="live-player" 
+    id="player"
+    src="{{ playURL }}"
+    mode="RTC" autoplay
+  /> -->
+
+  <!-- 覆盖在 live-player 上，可通过滑动切换显示与隐藏的一层 -->
+  <live-swipe-cover />
+
+  <view class="exit-img" style="top:{{ menuBtn.top }}px;width:{{ menuBtn.height }}px;height:{{ menuBtn.height }}px;">
+    <image class="img" src="./assets/exit2.png" />
+  </view>
+</view>

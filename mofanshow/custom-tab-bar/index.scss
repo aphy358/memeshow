@@ -1,0 +1,49 @@
+@import "@/assets/styles/index.scss";
+
+/* custom-tab-bar/index.wxss */
+.tab-bar {
+  @include fixed-bottom;
+  left: 0;
+  right: 0;
+  height: 96rpx;
+  background: white;
+  display: flex;
+  box-shadow:0 -2rpx 6rpx 0 rgba(218,218,218,1);
+}
+
+.tab-bar.hidden {
+  display: none;
+}
+
+.tab-bar-border {
+  background-color: rgba(0, 0, 0, 0);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 2rpx;
+  transform: scaleY(0.5);
+}
+
+.tab-bar-item {
+  flex: 1;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.tab-bar-item cover-image {
+  width: 54rpx;
+  height: 54rpx;
+}
+
+.tab-bar-item .createBtn{
+  width: 80rpx;
+  height: 80rpx;
+}
+
+.tab-bar-item cover-view {
+  font-size: $font-size-xs;
+}

@@ -1,0 +1,275 @@
+<view class="m-b-xl">
+    <view class="h2 m-b-sm">正方形</view>
+    <view class="grid">
+        <view class="grid__row">
+            <view class="grid__cell grid__cell--square">
+                <view class="grid__content tc f-sm p-xs">A</view>
+            </view>
+            <view class="grid__cell grid__cell--square">
+                <view class="grid__content tc f-sm p-xs">B</view>
+            </view>
+            <view class="grid__cell grid__cell--square">
+                <view class="grid__content tc f-sm p-xs">C</view>
+            </view>
+            <view class="grid__cell grid__cell--square grid__cell--active">
+                <view class="grid__content tc f-sm p-xs">激活</view>
+            </view>
+            <view class="grid__cell grid__cell--square">
+                <view class="grid__content tc f-sm p-xs">E</view>
+            </view>
+        </view>
+        <view class="grid__row">
+            <view class="grid__cell grid__cell--square">
+                <view class="grid__content tc f-sm p-xs">F</view>
+            </view>
+            <view class="grid__cell grid__cell--square">
+                <view class="grid__content tc f-sm p-xs">G</view>
+            </view>
+            <view class="grid__cell grid__cell--square">
+                <view class="grid__content tc f-sm p-xs">H</view>
+            </view>
+            <view class="grid__cell grid__cell--square">
+                <view class="grid__content tc f-sm p-xs">I</view>
+            </view>
+            <view class="grid__cell grid__cell--square">
+                <view class="grid__content tc f-sm p-xs">J</view>
+            </view>
+        </view>
+    </view>
+</view>
+<view class="m-b-xl">
+    <view class="h2 m-b-sm">长方形</view>
+    <view class="grid">
+        <view class="grid__row">
+            <view class="grid__cell rect">
+                <view class="grid__content tc f-sm p-xs">A</view>
+            </view>
+            <view class="grid__cell rect">
+                <view class="grid__content tc f-sm p-xs">B</view>
+            </view>
+            <view class="grid__cell rect">
+                <view class="grid__content tc f-sm p-xs">C</view>
+            </view>
+            <view class="grid__cell rect">
+                <view class="grid__content tc f-sm p-xs">D</view>
+            </view>
+            <view class="grid__cell rect">
+                <view class="grid__content tc f-sm p-xs">E</view>
+            </view>
+        </view>
+        <view class="grid__row">
+            <view class="grid__cell rect">
+                <view class="grid__content tc f-sm p-xs">F</view>
+            </view>
+            <view class="grid__cell rect">
+                <view class="grid__content tc f-sm p-xs">G</view>
+            </view>
+            <view class="grid__cell rect">
+                <view class="grid__content tc f-sm p-xs">H</view>
+            </view>
+            <view class="grid__cell rect">
+                <view class="grid__content tc f-sm p-xs">I</view>
+            </view>
+            <view class="grid__cell rect">
+                <view class="grid__content tc f-sm p-xs">J</view>
+            </view>
+        </view>
+    </view>
+</view>
+<view class="m-b-xl">
+    <view class="h2 m-b-sm">无边框</view>
+    <view class="grid">
+        <view class="grid__row">
+            <view class="grid__cell rect grid__cell--no-border">
+                <view class="grid__content tc f-sm p-xs">A</view>
+            </view>
+            <view class="grid__cell rect grid__cell--no-border">
+                <view class="grid__content tc f-sm p-xs">B</view>
+            </view>
+            <view class="grid__cell rect grid__cell--no-border">
+                <view class="grid__content tc f-sm p-xs">C</view>
+            </view>
+            <view class="grid__cell rect grid__cell--no-border">
+                <view class="grid__content tc f-sm p-xs">D</view>
+            </view>
+            <view class="grid__cell rect grid__cell--no-border">
+                <view class="grid__content tc f-sm p-xs">E</view>
+            </view>
+        </view>
+        <view class="grid__row">
+            <view class="grid__cell rect grid__cell--no-border">
+                <view class="grid__content tc f-sm p-xs">F</view>
+            </view>
+            <view class="grid__cell rect grid__cell--no-border">
+                <view class="grid__content tc f-sm p-xs">G</view>
+            </view>
+            <view class="grid__cell rect grid__cell--no-border">
+                <view class="grid__content tc f-sm p-xs">H</view>
+            </view>
+            <view class="grid__cell rect grid__cell--no-border">
+                <view class="grid__content tc f-sm p-xs">I</view>
+            </view>
+            <view class="grid__cell rect grid__cell--no-border">
+                <view class="grid__content tc f-sm p-xs">J</view>
+            </view>
+        </view>
+    </view>
+</view>
+<view class="m-b-xl">
+    <view class="h2 m-b-sm">正方形图文</view>
+    <view class="grid">
+        <view class="grid__row">
+            <view class="grid__cell grid__cell--square">
+                <view class="grid__content">
+                    <view class="grid__content-inner">
+                        <view class="grid__icon">
+                            <image class="grid__img" src="https://img12.360buyimg.com/jdphoto/s72x72_jfs/t10660/330/203667368/1672/801735d7/59c85643N31e68303.png"></image>
+                        </view>
+                        <view class="grid__text">新品首发</view>
+                    </view>
+                </view>
+            </view>
+            <view class="grid__cell grid__cell--square">
+                <view class="grid__content">
+                    <view class="grid__content-inner">
+                        <view class="grid__icon">
+                            <image class="grid__img" src="https://img12.360buyimg.com/jdphoto/s72x72_jfs/t10660/330/203667368/1672/801735d7/59c85643N31e68303.png"></image>
+                        </view>
+                        <view class="grid__text">新品首发</view>
+                    </view>
+                </view>
+            </view>
+            <view class="grid__cell grid__cell--square">
+                <view class="grid__content">
+                    <view class="grid__content-inner">
+                        <view class="grid__icon">
+                            <image class="grid__img" src="https://img12.360buyimg.com/jdphoto/s72x72_jfs/t10660/330/203667368/1672/801735d7/59c85643N31e68303.png"></image>
+                        </view>
+                        <view class="grid__text">新品首发</view>
+                    </view>
+                </view>
+            </view>
+            <view class="grid__cell grid__cell--square">
+                <view class="grid__content">
+                    <view class="grid__content-inner">
+                        <view class="grid__icon">
+                            <image class="grid__img" src="https://img12.360buyimg.com/jdphoto/s72x72_jfs/t10660/330/203667368/1672/801735d7/59c85643N31e68303.png"></image>
+                        </view>
+                        <view class="grid__text">新品首发</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="grid__row">
+            <view class="grid__cell grid__cell--square">
+                <view class="grid__content">
+                    <view class="grid__content-inner">
+                        <view class="grid__icon">
+                            <image class="grid__img" src="https://img12.360buyimg.com/jdphoto/s72x72_jfs/t10660/330/203667368/1672/801735d7/59c85643N31e68303.png"></image>
+                        </view>
+                        <view class="grid__text">新品首发</view>
+                    </view>
+                </view>
+            </view>
+            <view class="grid__cell grid__cell--square">
+                <view class="grid__content">
+                    <view class="grid__content-inner">
+                        <view class="grid__icon">
+                            <image class="grid__img" src="https://img12.360buyimg.com/jdphoto/s72x72_jfs/t10660/330/203667368/1672/801735d7/59c85643N31e68303.png"></image>
+                        </view>
+                        <view class="grid__text">新品首发</view>
+                    </view>
+                </view>
+            </view>
+            <view class="grid__cell grid__cell--square">
+                <view class="grid__content">
+                    <view class="grid__content-inner">
+                        <view class="grid__icon">
+                            <image class="grid__img" src="https://img12.360buyimg.com/jdphoto/s72x72_jfs/t10660/330/203667368/1672/801735d7/59c85643N31e68303.png"></image>
+                        </view>
+                        <view class="grid__text">新品首发</view>
+                    </view>
+                </view>
+            </view>
+            <view class="grid__cell grid__cell--square">
+                <view class="grid__content">
+                    <view class="grid__content-inner">
+                        <view class="grid__icon">
+                            <image class="grid__img" src="https://img12.360buyimg.com/jdphoto/s72x72_jfs/t10660/330/203667368/1672/801735d7/59c85643N31e68303.png"></image>
+                        </view>
+                        <view class="grid__text">新品首发</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
+<view>
+    <view class="h2 m-b-sm">长方形图文</view>
+    <view class="grid">
+        <view class="grid__row">
+            <view class="grid__cell grid__cell--rect">
+                <view class="grid__content">
+                    <view class="grid__content-inner">
+                        <view class="grid__icon">
+                            <image class="grid__img" src="https://img12.360buyimg.com/jdphoto/s72x72_jfs/t10660/330/203667368/1672/801735d7/59c85643N31e68303.png"></image>
+                        </view>
+                        <view class="grid__text">新品首发</view>
+                    </view>
+                </view>
+            </view>
+            <view class="grid__cell grid__cell--rect">
+                <view class="grid__content">
+                    <view class="grid__content-inner">
+                        <view class="grid__icon">
+                            <image class="grid__img" src="https://img12.360buyimg.com/jdphoto/s72x72_jfs/t10660/330/203667368/1672/801735d7/59c85643N31e68303.png"></image>
+                        </view>
+                        <view class="grid__text">新品首发</view>
+                    </view>
+                </view>
+            </view>
+            <view class="grid__cell grid__cell--rect">
+                <view class="grid__content">
+                    <view class="grid__content-inner">
+                        <view class="grid__icon">
+                            <image class="grid__img" src="https://img12.360buyimg.com/jdphoto/s72x72_jfs/t10660/330/203667368/1672/801735d7/59c85643N31e68303.png"></image>
+                        </view>
+                        <view class="grid__text">新品首发</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="grid__row">
+            <view class="grid__cell grid__cell--rect">
+                <view class="grid__content">
+                    <view class="grid__content-inner">
+                        <view class="grid__icon">
+                            <image class="grid__img" src="https://img12.360buyimg.com/jdphoto/s72x72_jfs/t10660/330/203667368/1672/801735d7/59c85643N31e68303.png"></image>
+                        </view>
+                        <view class="grid__text">新品首发</view>
+                    </view>
+                </view>
+            </view>
+            <view class="grid__cell grid__cell--rect">
+                <view class="grid__content">
+                    <view class="grid__content-inner">
+                        <view class="grid__icon">
+                            <image class="grid__img" src="https://img12.360buyimg.com/jdphoto/s72x72_jfs/t10660/330/203667368/1672/801735d7/59c85643N31e68303.png"></image>
+                        </view>
+                        <view class="grid__text">新品首发</view>
+                    </view>
+                </view>
+            </view>
+            <view class="grid__cell grid__cell--rect">
+                <view class="grid__content">
+                    <view class="grid__content-inner">
+                        <view class="grid__icon">
+                            <image class="grid__img" src="https://img12.360buyimg.com/jdphoto/s72x72_jfs/t10660/330/203667368/1672/801735d7/59c85643N31e68303.png"></image>
+                        </view>
+                        <view class="grid__text">新品首发</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>

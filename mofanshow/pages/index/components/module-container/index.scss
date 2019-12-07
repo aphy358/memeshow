@@ -1,0 +1,11 @@
+// Module Container Component
+@import "@/assets/styles/index.scss";
+
+.mf_module-container {
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    padding: 0;
+    background: $white;
+    margin: $spacing-lg 0;
+}

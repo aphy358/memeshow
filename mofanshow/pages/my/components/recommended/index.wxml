@@ -1,0 +1,53 @@
+
+
+<view class="recommended-list">
+  <view class="recommended-item">
+    <image class="img" src="https://hbimg.huabanimg.com/ef9978f541e23dca04f5658150ac06e79877fc709b33-NlsaW7" />
+
+    <view class="recommended-content-wrap">
+      <view class="row-one">Starbucks特选综合研磨咖啡粉...</view>
+      <view class="row-two">数量2万个  单价15.5元  分润10%</view>
+      <view class="row-three">¥ 5000/短视频</view>
+    </view>
+  </view>
+
+  <view class="recommended-item">
+    <image class="img" src="https://hbimg.huabanimg.com/ef9978f541e23dca04f5658150ac06e79877fc709b33-NlsaW7" />
+
+    <view class="recommended-content-wrap">
+      <view class="row-one">Starbucks特选综合研磨咖啡粉...</view>
+      <view class="row-two">数量2万个  单价15.5元  分润10%</view>
+      <view class="row-three">¥ 5000/短视频</view>
+    </view>
+  </view>
+
+  <view class="recommended-item">
+    <image class="img" src="https://hbimg.huabanimg.com/ef9978f541e23dca04f5658150ac06e79877fc709b33-NlsaW7" />
+
+    <view class="recommended-content-wrap">
+      <view class="row-one">Starbucks特选综合研磨咖啡粉...</view>
+      <view class="row-two">数量2万个  单价15.5元  分润10%</view>
+      <view class="row-three">¥ 5000/短视频</view>
+    </view>
+  </view>
+
+  <view class="recommended-item">
+    <image class="img" src="https://hbimg.huabanimg.com/ef9978f541e23dca04f5658150ac06e79877fc709b33-NlsaW7" />
+
+    <view class="recommended-content-wrap">
+      <view class="row-one">Starbucks特选综合研磨咖啡粉...</view>
+      <view class="row-two">数量2万个  单价15.5元  分润10%</view>
+      <view class="row-three">¥ 5000/短视频</view>
+    </view>
+  </view>
+
+  <view class="recommended-item">
+    <image class="img" src="https://hbimg.huabanimg.com/ef9978f541e23dca04f5658150ac06e79877fc709b33-NlsaW7" />
+
+    <view class="recommended-content-wrap">
+      <view class="row-one">Starbucks特选综合研磨咖啡粉...</view>
+      <view class="row-two">数量2万个  单价15.5元  分润10%</view>
+      <view class="row-three">¥ 5000/短视频</view>
+    </view>
+  </view>
+</view>

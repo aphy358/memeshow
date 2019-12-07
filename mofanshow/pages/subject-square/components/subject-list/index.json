@@ -1,0 +1,8 @@
+{
+  "component": true,
+  "usingComponents": {
+    "list": "/components/base/list/index",
+    "waterfall-item": "/components/list-item/list-item-post/index",
+    "article-item": "/components/list-item/list-item-article/index"
+  }
+}

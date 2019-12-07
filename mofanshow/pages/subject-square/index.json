@@ -1,0 +1,7 @@
+{
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "profile": "./components/profile/index",
+    "subject-list": "./components/subject-list/index"
+  }
+}

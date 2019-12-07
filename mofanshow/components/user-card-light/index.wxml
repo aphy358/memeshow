@@ -1,0 +1,11 @@
+<!-- User Card Light Component -->
+
+<view class="mf_user-card-light mf_user-card-light__{{ mode }} mf-class" bindtap="onClick">
+    <avatar
+        url="{{ avatar }}"
+        size="{{ size }}"
+        preview="{{ preview }}"
+        class="avatar-class"
+    ></avatar>
+    <view class="mf_user-card-light_name font-class">{{ name }}</view>
+</view>

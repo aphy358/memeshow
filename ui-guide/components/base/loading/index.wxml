@@ -1,0 +1,16 @@
+<view
+    class="mf_loading"
+    style="width: {{ sizeWithUnit }}; height: {{ sizeWithUnit }}"
+>
+    <view
+        class="mf-loading__spinner mf-loading__spinner--{{ type }}"
+        style="color:{{ color }};"
+    >
+        <view
+            wx:if="{{ type === 'spinner' }}"
+            wx:for="item in 12"
+            wx:key="index"
+            class="mf-loading__dot"
+        ></view>
+    </view>
+</view>

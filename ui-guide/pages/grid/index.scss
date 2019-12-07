@@ -1,0 +1,14 @@
+/* Theme */
+@import "@/theme";
+
+/* Mixins */
+@import "ui-kit/style/mixins/index";
+
+/* Page Styles */
+Page {
+  padding: $padding-lg;
+}
+
+.rect {
+  @include grid-cell-rect(size(30));
+}

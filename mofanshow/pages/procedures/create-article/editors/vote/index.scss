@@ -1,0 +1,100 @@
+@import "@/assets/styles/index.scss";
+
+page {
+  background-color: $color-bg;
+}
+
+.gap-right {
+  margin-right: $spacing-xxl;
+}
+
+.gap-right {
+  margin-left: $spacing-xxl;
+}
+
+.card-gap-top {
+  margin-top: $spacing-xxl;
+  display: block;
+}
+
+.vote-option {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  box-sizing: border-box;
+
+  .option-circle {
+    $size: $icon-size-sm;
+
+    width: $size;
+    height: $size;
+    border-radius: $border-radius-circle;
+    border: $color-border 2rpx solid;
+    align-self: center;
+  }
+
+  .option-text {
+    flex: 1;
+  }
+
+  // todo
+  .option-remove {
+    width: $icon-size-sm;
+    height: $icon-size-sm;
+    line-height: $icon-size-sm;
+    background-color: $color-bg;
+    border-radius: $border-radius-circle;
+    align-self: center;
+    text-align: center;
+  }
+}
+
+.add {
+  width: max-content;
+  margin: 0 auto;
+  padding: $spacing-xxl 0;
+  color: $color-text-link;
+}
+
+.option {
+  padding: $spacing-xxl 0;
+  width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+
+  picker {
+    flex: 1;
+  }
+
+  .vote-text {
+    color: $color-text;
+  }
+
+  .vote-text__placeholder {
+    color: $color-text-placeholder;
+  }
+}
+
+.vote-hint {
+  color: $color-text;
+}
+
+.border-bottom {
+  border-bottom: $color-border 2rpx solid;
+}
+
+.submit {
+  width: 100%;
+  background-color: $white;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  border-radius: 0;
+}
+
+.submit::after {
+  border: none;
+}

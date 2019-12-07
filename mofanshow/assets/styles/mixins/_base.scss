@@ -1,0 +1,66 @@
+// @mixin font($type: "base") {
+//     font-family: $font-default;
+//     font-size: $font-size-#{$type};
+//     line-height: $line-height-#{$type};
+// }
+
+@mixin transition($animation) {
+    transition-timing-function: $animation;
+}
+
+/* 占满全屏 */
+@mixin full-screen() {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+/* Flexible 布局 */
+@mixin flex(
+    $direction: row,
+    $wrap: nowrap,
+    $justify: flex-start,
+    $align-items: stretch
+) {
+    display: flex;
+    flex-flow: $direction $wrap;
+    justify-content: $justify;
+    align-items: $align-items;
+}
+
+/* 文本不换行 */
+@mixin no-wrap() {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+/* 针对 iPhoneX 的吸底适配 */
+@mixin fixed-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+    position: fixed;
+    bottom: 0;
+}
+
+/* 去掉按钮默认样式，转化为文本，但保留可点击的属性，可设置 hover-class */
+@mixin button2text() {
+    margin: 0;
+    padding: 0;
+    position: relative;
+    display: inline;
+    background-color: transparent;
+    font-size: inherit;
+    color: inherit;
+    line-height: inherit;
+    text-align: inherit;
+    text-decoration: inherit;
+    border-radius: inherit;
+    -webkit-tap-highlight-color: inherit;
+    overflow: inherit;
+
+    &::after{
+        content: none;
+    }
+}

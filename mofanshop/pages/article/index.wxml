@@ -1,0 +1,13 @@
+<!--pages/article/index.wxml-->
+<video
+    animation="{{animationData.videoAnimation}}" 
+    class="video"
+    id="myVideo"
+    src="http://cloudbrain-docs.oss-cn-shenzhen.aliyuncs.com/564735c99c6abefbee7ca32db6b2e2f2-1541658644065.mp4"
+    autoplay
+    loop="{false}"
+    objectFit="contain"
+    bindtimeupdate="timeupdate"
+    controls="{{false}}">
+  </video>
+  <input class="input"></input>

@@ -1,0 +1,103 @@
+@import "../../assets/styles/index.scss";
+
+.mf_list-item_content {
+    background: $white;
+    margin-bottom: 1000rpx;
+
+    &_head {
+        @include flex($justify: space-between, $align-items: center);
+        padding: $spacing-md $spacing-lg;
+    }
+}
+
+
+$page: page_follow;
+
+.#{$page}_online-list {
+    border-top: 1rpx solid $color-border;
+    border-bottom: 1rpx solid $color-border;
+    padding: $spacing-sm;
+
+    &__scroll {
+        @include flex($align-items: flex-start);
+    }
+
+    &_follower {
+        padding: $spacing-md;
+        @include flex(column, nowrap, flex-start, center);
+
+        &-avatar {
+            // animation: pound 0.8s infinite 0.1s ease-out;
+            // padding: $spacing-base;
+            // border: 1rpx solid $color-primary;
+            // border-radius: 100%;
+            margin-bottom: $spacing-base;
+            // @include flex($justify: center, $align-items: center);
+        }
+
+        &-name {
+            @include ellipsis();
+            font-size: $font-size-xs;
+        }
+    }
+}
+
+.#{$page}_recommand {
+    padding: $spacing-xl 0;
+    background: $color-bg;
+
+    &_title {
+        margin: $spacing-xl $spacing-xxl;
+        @include flex($justify: space-between, $align-items: center);
+        font-size: $font-size-base;
+        line-height: $line-height-base;
+        color: $color-text;
+
+        &__type {
+            font-weight: bold;
+        }
+
+        &__more {
+            @include flex($align-items: center);
+
+            > text {
+                margin-right: $spacing-base;
+            }
+        }
+    }
+
+    &_list {
+        @include flex($align-items: flex-start);
+
+        &-user {
+            margin: 0 $spacing-base;
+        }
+    }
+}
+
+@keyframes pound {
+    from {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(0.9);
+    }
+    to {
+        transform: scale(1);
+    }
+}
+
+@keyframes wavy {
+    from {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(0.428571429);
+    }
+    to {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+}

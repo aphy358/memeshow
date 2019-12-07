@@ -1,0 +1,32 @@
+<!--pages/address /index.wxml-->
+<view class="container">
+  <view class="items">
+    <radio-group class="group">
+      <view class="item" wx:for="{{addresses}}" wx:key="{{item.id}}">
+        <label>
+          <view class="lr-flex">
+            <view class="left">
+              <view class="fr-line">
+                <view class=""><text decode="{{true}}">{{item.name}}&nbsp;&nbsp;{{item.mobile}}</text></view>
+                <view class="edit" catchtap="editAddress" id="{{item.id}}">
+                  <image src="/images/edit.png"></image>
+                  编辑
+                </view>
+              </view>
+              <view class="se-line">
+                <text decode="{{true}}">{{item.province}}&nbsp;&nbsp;{{item.city}}&nbsp;&nbsp;{{item.area}}&nbsp;&nbsp;{{item.detail}}</text>
+              </view>
+            </view>
+            <view class="right">
+              <radio checked="{item.checked}"></radio>
+            </view>
+          </view>
+        </label>
+      </view>
+    </radio-group>
+  </view>
+  <view class="add" bindtap="addAddress">
+    <image src="/images/add_red.png"></image>
+    <text>添加新地址</text> 
+  </view>
+</view>

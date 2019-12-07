@@ -1,0 +1,48 @@
+@import '@/assets/styles/index.scss';
+
+.my-profit {
+
+  @at-root .my-profit-list {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+
+    .profit-item {
+      width: 33.33333%;
+      
+      .item-name {
+        font-size: $font-size-base;
+        color: $color-text-light;
+      }
+
+      .item-content {
+        font-size: $font-size-xs;
+      }
+
+      .item-number {
+        font-size: $font-size-lg;
+        font-weight: bold;
+        margin-right: $spacing-base;
+
+        &.red {
+          color: $color-primary;
+        }
+      }
+
+      &.middle {
+        position: relative;
+        @include hairlineVertical($color: #dddddd, $position: left);
+        @include hairlineVertical($color: #dddddd, $position: right, $element: after);
+
+        &::before,
+        &::after {
+          top: 50%;
+          height: 80%;
+          transform: scaleX(.5) translateY(-50%);
+        }
+      }
+
+    }
+  }
+}

@@ -1,0 +1,26 @@
+<!--pages/ecommerse/order/index.wxml-->
+<view class="container">
+  <view class="nav" bindtap="clickNav">
+    <view class="type {{currentStatus === 'all' ? 'active' : ''}}" data-status="all">全部</view>
+    <view wx:for="{{orderStatusToArray}}" wx:key="{{item.value}}" class="type {{item.value === currentStatus ? 'active' : ''}}" data-status="{{item.value}}">{{item.text}}</view>
+  </view>
+  <view class="order-lists" wx:for="{{orders}}" wx:key="order_{{item.id}}">
+    <view class="top-content lr-flex">
+      <view class="left">下单时间：{{item.ctime}}</view>
+      <view class="right type_{{item.type}}">{{orderStatus[item.type].text}}</view>
+    </view>
+    <view wx:if="{{item.products.length === 1}}" class="middle-content package lr-flex">
+      <view class="left image-border"><image mode="widthFix" src="{{item.products[0].src}}"></image></view>
+      <view class="right line2ellipsis">{{item.products[0].subtitle}}</view>
+    </view>
+    <view wx:else class="middle-content">
+      <scroll-view  scroll-x class="scroll-view-H">
+        <view class="image-view image-border" wx:for="{{item.products}}" wx:for-item="product"><image mode="widthFix" src="{{product.src}}"></image></view>
+      </scroll-view>
+    </view>
+    <view class="bottom-content lr-flex">
+      <view class="left">实付：￥{{item.amount}}<text class="num">共{{item.products.length}}件商品</text></view>
+      <view wx:if="{{item.type==='pending'}}" class="right payment">抢先支付</view>
+    </view>
+  </view>
+</view>

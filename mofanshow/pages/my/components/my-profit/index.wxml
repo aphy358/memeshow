@@ -1,0 +1,32 @@
+
+<view class="my-profit my-block">
+  <view class="my-block-title">
+    <text class="title">我的收益</text>
+    <view class="my-block-more">
+      <navigator url="" class="my-block-more-btn" hover-class="button-hover">查看更多</navigator>
+    </view>
+  </view>
+
+  <view class="my-profit-list">
+    <view class="profit-item">
+      <view class="item-name">佣金收入</view>
+      <view class="item-content">
+        <text class="item-number">498</text>元
+      </view>
+    </view>
+
+    <view class="profit-item middle">
+      <view class="item-name">广告收入</view>
+      <view class="item-content">
+        <text class="item-number red">1000</text>元
+      </view>
+    </view>
+
+    <view class="profit-item">
+      <view class="item-name">可提现</view>
+      <view class="item-content">
+        <text class="item-number">6000</text>元
+      </view>
+    </view>
+  </view>
+</view>

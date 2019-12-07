@@ -1,0 +1,251 @@
+.video-container {
+  height: 100vh;
+}
+.video-view {
+  width: 100%;
+  height: 100%;
+}
+.video {
+  width: 100%;
+  height: 100%;
+}
+.tools {
+  position: absolute;
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  top: 316rpx;
+  right: 14rpx;
+}
+
+.add {
+  position: absolute;
+  width: 46rpx;
+  height: 46rpx;
+  left: 24rpx;
+  top: 71rpx;
+  z-index: 300;
+}
+.userinfo {
+  height: 117rpx;
+}
+.userinfo-avatar {
+  width: 94rpx;
+  height: 94rpx;
+  border-radius: 100%;
+}
+.operation-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 40rpx;
+  width: 94rpx;
+}
+.operation-like-view {
+  margin-top: 63rpx;
+}
+.icon {
+  width: 66rpx;
+}
+.like {
+  height: 70rpx; 
+}
+.talk {
+  height: 68rpx;
+}
+.share {
+  height: 68rpx;
+}
+.tools .text {
+  color: white;
+  width: 100rpx;
+  text-align: center;
+  font-size: 26rpx;
+  margin-top: 10rpx;
+}
+.publish-info {
+  width: 500rpx;
+  position: absolute;
+  left: 0;
+  bottom: 120rpx;
+  color: #fff;
+  z-index: 200;
+  padding-left: 24rpx;
+}
+.publisher {
+  font-size: 32rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}
+.desc {
+  font-size: 24rpx;
+  white-space: pre-wrap
+}
+
+/* 进度条  */
+
+.jindu {
+  position: absolute;
+  bottom: 100rpx;
+  height: 3rpx;
+  background-color: white;
+}
+
+.jindu-back {
+  position: absolute;
+  bottom: 100rpx;
+  width: 100%;
+  height: 3rpx;
+  background-color: gray;
+}
+
+/* 评论 */
+.comment-container {
+  position: fixed;
+  z-index: 300;
+  bottom: -820rpx;
+  width: 100%;
+}
+.comment-view {
+  width: 100%;
+  height: 800rpx;
+  background: #fff;
+  border-top-left-radius: 12rpx;
+  border-top-right-radius: 12rpx;
+}
+.close {
+  width: 20rpx;
+  height: 20rpx;
+  position:absolute;
+  z-index: 500;
+  padding: 20rpx 20rpx 40rpx 40rpx;
+  top: 0;
+  right: 0
+}
+.comment-num {
+  width: 400rpx;
+  margin: 0 auto;
+  height: 100rpx;
+  line-height: 100rpx;
+  text-align: center;
+  font-size: 26rpx;
+}
+.cover-img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: -100;
+}
+.cover-img image {
+  width: 100%;
+  height: 100%;
+}
+.product-barrage {
+  height: 60rpx;
+  line-height: 60rpx;
+  background: rgba(0,0,0, 0.23);
+  border-radius: 8rpx;
+  padding: 0 4rpx;
+  font-size: 24rpx;
+  max-width: 500rpx;
+  display: inline-block;
+}
+.product-barrage .image {
+  width: 44rpx;
+  height: 44rpx;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 8rpx;
+}
+.product-barrage .name {
+  display: inline-block;
+  vertical-align: middle;
+}
+.product {
+  position: fixed;
+  width: 100%;
+  height: 588rpx;
+  z-index: 400;
+  bottom: -600rpx;
+  border-top-left-radius: 8rpx;
+  border-top-right-radius: 8rpx;
+  background: #fff;
+}
+.product .product-info {
+  display: flex;
+  flex-direction: row;
+  padding: 30rpx;
+}
+.product .title {
+  height:60rpx;
+  line-height:60rpx;
+  text-align:center;
+  font-size:26rpx;
+  color: #323232
+}
+.product-info .product-image{
+  width: 240rpx;
+  height: 240rpx;
+  border-radius: 8rpx;
+}
+.product-info .info {
+  width: 450rpx;
+  padding: 0 16rpx;
+  font-size: 24rpx;
+  color: #101010;
+}
+.info .name {
+  height: 110rpx;
+  line-height: 36rpx;
+  white-space: pre-wrap;
+}
+.info .sign {
+  height: 70rpx;
+  white-space: pre-wrap;
+  color: #999999;
+}
+.info .price {
+  height: 60rpx;
+  line-height: 60rpx;
+  font-size: 36rpx;
+  color: #9A001D;
+}
+.product .btn {
+  width: 690rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  background: #ff2741;
+  border-radius: 4rpx;
+  text-align: center;
+  margin: 0 auto;
+  font-size: 30rpx;
+  color: #fff;
+}
+.product .more {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  height: 100rpx;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  box-shadow: 0 -4rpx 12rpx 0 rgba(239, 239, 239, 0.5);
+  background: #fff;
+  border-radius: 10rpx;
+}
+.product .more .avatar {
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 100%;
+}
+.product .more .text {
+  font-size: 30rpx;
+  color: #ff2741;
+}

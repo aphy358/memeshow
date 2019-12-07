@@ -1,0 +1,118 @@
+@import '@/assets/styles/index.scss';
+
+.my-shop-wrap {
+
+  @at-root .my-shop-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 1000rpx;
+    background-image: linear-gradient(to bottom right, rgb(140, 122, 238), rgb(252, 1, 210));
+    z-index: -1;
+  }
+
+  .white-board {
+    position: relative;
+    min-height: 240rpx;
+    padding-bottom: $spacing-lg;
+    background: white;
+
+    @at-root .my-shop-avatar {
+      position: absolute;
+      left: $spacing-xxl;
+      top: -4*$spacing-lg;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 200rpx;
+      height: 200rpx;
+      border-radius: $border-radius-circle;
+      background: white;
+
+      .avatar {
+        width: 180rpx;
+        height: 180rpx;
+        border-radius: $border-radius-circle;
+        overflow: hidden;
+      }
+    }
+
+    @at-root .my-shop-ffs {
+      position: absolute;
+      right: 70rpx;
+      top: -3*$spacing-xxl;
+      width: calc(100% - 360rpx);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .item {
+        text-align: center;
+        color: $white;
+        font-size: $font-size-base;
+
+        @at-root .my-shop-ffs-text {
+
+        }
+
+        @at-root .my-shop-ffs-number {
+          
+        }
+      }
+    }
+
+    @at-root .my-shop-btn-wrap {
+      position: absolute;
+      right: $spacing-xxl;
+      top: $spacing-xxl;
+
+      @at-root .my-shop-btn {
+        float: left;
+        height: 64rpx;
+        line-height: 64rpx;
+        font-size: $font-size-lg;
+        border-radius: $border-radius-circle2;
+        border-color: #d2d2d2!important;
+        margin-left: $spacing-xxl;
+
+        &.btn-hover {
+          border-color: $color-text-lighter!important;
+          color: $color-text-light;
+        }
+
+        &.my-shop {
+          width: 266rpx;
+        }
+
+        &.option {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 64rpx;
+          padding: 0;
+
+          .img {
+            width: 36rpx;
+            height: 36rpx;
+          }
+        }
+      }
+    }
+
+    @at-root .my-shop-sign-wrap {
+      font-size: $font-size-sm;
+      padding: 130rpx $spacing-xxl 0;
+
+      @at-root .my-shop-nickname {
+        font-size: $font-size-xl;
+        margin-bottom: $spacing-sm;
+      }
+
+      @at-root .my-shop-signature {
+        color: $color-text-light;
+        @include multi-ellipsis(2);
+      }
+    }
+  }
+}

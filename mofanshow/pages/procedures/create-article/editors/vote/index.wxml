@@ -1,0 +1,96 @@
+<form
+    bindsubmit="submit"
+    class="vote"
+>
+    <mf-card class="card-gap-top">
+        <view class="vote-options">
+            <view class="border-bottom">
+                <mf-input
+                    bind:change="handleTitleInput"
+                    class="border-bottom"
+                    clearable
+                    placeholder="输入投票主题"
+                    title="投票描述"
+                    type="text"
+                ></mf-input>
+            </view>
+            <view
+                class="vote-option border-bottom"
+                wx:for="{{options}}"
+                wx:key="{{index}}"
+            >
+                <view class="option-circle gap-right gap-left"></view>
+                <view class="option-text">
+                    <mf-input
+                        bindchange="handleOptionInput"
+                        data-index="{{index}}"
+                        placeholder="选项 {{index + 1}}"
+                        value="{{item.text}}"
+                    ></mf-input>
+                </view>
+                <view
+                    bind:tap="handleRemoveOption"
+                    class="option-remove"
+                    data-index="{{index}}"
+                    wx:if="{{index > 1}}"
+                >
+                    <mf-icon
+                        name="close"
+                        size="18"
+                    ></mf-icon>
+                </view>
+            </view>
+            <view
+                bind:tap="handleAddOption"
+                class="add"
+            >+ 添加选项</view>
+        </view>
+    </mf-card>
+
+    <mf-card class="card-gap-top">
+        <view class="option border-bottom">
+            <view class="vote-hint gap-right">截止日期</view>
+            <picker
+                bindchange="handleDateChange"
+                mode="date"
+                name="date"
+                start="{{end.date.start}}"
+                value="{{end.date.content}}"
+            >
+                <view
+                    class="vote-text{{end.date.content ? '' : '__placeholder'}}"
+                >{{end.date.content ? end.date.content : '无截止日期'}}</view>
+            </picker>
+        </view>
+        <view class="option border-bottom">
+            <view class="vote-hint gap-right">截止时间</view>
+            <picker
+                bindchange="handleTimeChange"
+                mode="time"
+                name="time"
+                value="{{end.time.content}}"
+            >
+                <view
+                    class="vote-text{{end.time.content ? '' : '__placeholder'}}"
+                >{{end.time.content ? end.time.content : '无截止时间'}}</view>
+            </picker>
+        </view>
+        <view class="option">
+            <view class="vote-hint gap-right">投票类型</view>
+            <picker
+                bindchange="handleTypeChange"
+                mode="selector"
+                name="type"
+                range="{{type.range}}"
+                value="{{type.value}}"
+            >
+                <view class="vote-text">{{type.range[type.value]}}</view>
+            </picker>
+        </view>
+    </mf-card>
+
+    <button
+        class="submit"
+        form-type="submit"
+    >完成</button>
+</form>

@@ -1,0 +1,17 @@
+
+<view class="profile-wrap">
+  <view class="profile-title">
+    <text class="icon">#</text>
+    <text class="">霍曼宠物自动饮水器</text>
+  </view>
+
+  <view class="profile-brief">霍曼自动饮水器，为每个养宠家庭带来安全、方便、清洁的饮水环境，保证每只宠物的饮水健康。</view>
+
+  <view class="profile-follow-wrap">
+    <view class="profile-follow-left">
+      <text class="profile-follow-item">15人参与</text>
+      <text class="profile-follow-item">6.4w次浏览</text>
+    </view>
+    <button class="profile-follow-btn">关注</button>
+  </view>
+</view>

@@ -1,0 +1,12 @@
+{
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "navigation-bar": "/components/navigation-bar/index",
+    "my-shop": "./components/my-shop/index",
+    "my-profit": "./components/my-profit/index",
+    "my-plan": "./components/my-plan/index",
+    "best-seller": "./components/best-seller/index",
+    "recommended": "./components/recommended/index",
+    "seller-menus": "./components/seller-menus/index"
+  }
+}

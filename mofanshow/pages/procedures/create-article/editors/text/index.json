@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "mf-textarea": "/components/form/textarea/index",
+    "mf-button": "/components/form/button/index"
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/video/index",
+    "pages/video/apply",
+    "pages/video/getuserinfo",
+    "pages/my/index",
+    "pages/ecommerse/index",
+    "pages/article/index",
+    "pages/search/index",
+    "pages/customer/index",
+    "pages/ecommerse/detail/index",
+    "pages/ecommerse/cart/index",
+    "pages/ecommerse/checkout/index",
+    "pages/address/index",
+    "pages/address/edit",
+    "pages/ecommerse/order/index",
+    "pages/live/play",
+    "pages/live/push"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "魔范秀",
+    "backgroundColor": "#eeeeee",
+    "backgroundTextStyle": "light",
+    "enablePullDownRefresh": true
+  },
+  "tabBar": {
+    "color": "#a9b7b7",
+    "selectedColor": "#11cd6e",
+    "borderStyle": "white",
+    "backgroundColor": "#fff",
+    "list": [
+      {
+        "selectedIconPath": "images/icon_index_HL.png",
+        "iconPath": "images/icon_index.png",
+        "pagePath": "pages/index/index",
+        "text": "首页"
+      },
+      {
+        "selectedIconPath": "images/icon_ecommerse_HL.png",
+        "iconPath": "images/icon_ecommerse.png",
+        "pagePath": "pages/ecommerse/index",
+        "text": "商城"
+      },
+      {
+        "selectedIconPath": "images/icon_my_HL.png",
+        "iconPath": "images/icon_my.png",
+        "pagePath": "pages/my/index",
+        "text": "我的"
+      }
+    ]
+  }
+}

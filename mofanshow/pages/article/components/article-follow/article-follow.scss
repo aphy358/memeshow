@@ -1,0 +1,53 @@
+@import '@/assets/styles/index.scss';
+
+
+// 文章关注栏
+.article-tab-wrap{
+  position: fixed;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: $spacing-sm 2*$spacing-lg;
+  background: $white;
+  box-sizing: border-box;
+  overflow: hidden;
+  z-index: $zindex-tab;
+
+  @include hairline($color-border, bottom);
+
+  @at-root .article-tab-avatar-wrap{
+    display: flex;
+    align-items: center;
+
+    @at-root .article-tab-avatar{
+      width: 66rpx;
+      height: 66rpx;
+      border-radius: $border-radius-circle;
+    }
+
+    @at-root .article-author-nickname{
+      margin-left: $spacing-lg;
+    }
+  }
+
+  @at-root .article-follow-share{
+    display: flex;
+    align-items: center;
+
+    @at-root .article-follow-btn{
+      width: 124rpx;
+      height: 50rpx;
+      line-height: 50rpx;
+      border-radius: $border-radius-circle2;
+      color: $color-grey-6;
+      margin-right: $spacing-xxl;
+      text-align: center;
+      background: $color-primary;
+    }
+
+    @at-root .article-share{
+      font-size: 46rpx;
+      color: $color-text-light;
+    }
+  }
+}

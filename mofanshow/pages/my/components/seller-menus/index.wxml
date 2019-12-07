@@ -1,0 +1,57 @@
+
+
+<view class="seller-menus">
+  <view class="seller-menus-list">
+    <!-- <navigator 
+      class="seller-menus-nav" 
+      wx:for="{{ menuList }}"
+      wx:key="{{ index }}"
+      url="{{ item.url }}"
+    >
+      <view class="seller-menus-item">
+        <image class="img" src="{{ item.img }}" />
+        <text class="text">{{ item.text }}</text>
+      </view>
+    </navigator> -->
+
+    <view class="seller-menus-item">
+      <image class="img" src="/assets/images/background/text.png" />
+      <text class="text">拼团</text>
+    </view>
+
+    <view class="seller-menus-item">
+      <image class="img" src="/assets/images/background/video.png" />
+      <text class="text">优惠券</text>
+    </view>
+
+    <view class="seller-menus-item">
+      <image class="img" src="/assets/images/background/text.png" />
+      <text class="text">红包</text>
+    </view>
+
+    <view class="seller-menus-item">
+      <image class="img" src="/assets/images/background/video.png" />
+      <text class="text">推广</text>
+    </view>
+
+    <view class="seller-menus-item">
+      <image class="img" src="/assets/images/text-icon.png" />
+      <text class="text">商品管理</text>
+    </view>
+
+    <view class="seller-menus-item">
+      <image class="img" src="/assets/images/background/text.png" />
+      <text class="text">订单管理</text>
+    </view>
+
+    <view class="seller-menus-item">
+      <image class="img" src="/assets/images/shop1.png" />
+      <text class="text">客户管理</text>
+    </view>
+
+    <view class="seller-menus-item">
+      <image class="img" src="/assets/images/text-icon.png" />
+      <text class="text">全部</text>
+    </view>
+  </view>
+</view>

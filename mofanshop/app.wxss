@@ -1,0 +1,300 @@
+page {
+  width: 100%;
+  height: 100%;
+}
+
+.loading {
+  position: absolute;
+  width: 100%;  
+  height: 100%; 
+}
+
+/*
+* 页面整体背景、宽度、高度
+*/
+.container {
+  width: 100%;
+  min-height: 100vh;
+  background: #f5f5f5;
+}
+
+/*
+* 搜索框和导航栏组合的样式
+*/
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+.header {
+  position: fixed;
+  width: 100%;
+  height: 158rpx;
+  left: 0;
+  top: 0;
+  z-index: 500;
+  background: #fff;
+}
+.search-view{
+  position: relative;
+  width: 690rpx;
+  height: 64rpx;
+  margin: 10rpx auto;
+  /* box-shadow: 0 4rpx 12rpx 0 rgb(239, 239, 239, 0.5); */
+}
+
+.search-icon {
+  position: absolute;
+  width: 36rpx;
+  height: 36rpx;
+  top: 14rpx;
+  left: 26rpx;
+  z-index: 200;
+}
+.search-icon image {
+  width: 100%;
+  height: 100%;
+}
+.search-view input {
+  height: 64rpx;
+  border-radius: 32rpx;
+  background: #f5f5f5;
+  padding-left: 68rpx;
+}
+.category {
+  width: 100%;
+  height: 74rpx;
+  background: rgb(250, 250, 250);
+  font-size: 26rpx;
+  color: #999999;
+  white-space: nowrap;
+  box-sizing: border-box;
+  padding: 12rpx 0; 
+}
+.category-item {
+  display: inline-block;
+  vertical-align: middle;
+  height: 50rpx;
+  padding: 10rpx 30rpx;
+}
+.placeholder {
+  font-size: 30rpx;
+  color: #999999;
+}
+/*
+* 列表item 瀑布流
+*/
+.medium-container {
+  position: relative;
+   -webkit-column-width: 345rpx;
+  -moz-column-width: 345rpx;
+  column-width: 345rpx; 
+  padding: 20rpx;
+  -webkit-column-gap: 20rpx;
+  -moz-column-gap: 20rpx;
+  column-gap: 20rpx;
+}
+.item-box {
+  position: relative;
+  display: inline-block;
+  width: 345rpx;
+  background-color: #fff;
+  overflow: hidden;
+  margin-bottom: 10rpx; 
+  border-radius: 8rpx; 
+}
+.video-btn {
+  position: absolute;
+  width: 40rpx;
+  height: 40rpx;
+  top: 30rpx;
+  right: 30rpx;
+  z-index: 100;
+}
+.video-btn image {
+  width: 40rpx;
+  height: 40rpx;
+}
+.item-box .image-box {
+  width: 345rpx;
+}
+
+.item-box .image-box image{
+  width: 345rpx;
+  margin: 0 auto;
+}
+.desc-box {
+  padding:20rpx 40rpx
+}
+.item-desc {
+  padding: 0 20rpx;
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  white-space: normal !important;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  font-size: 26rpx;
+  color: #333333;
+}
+.item-info {
+  padding: 14rpx 20rpx;
+  display: flex;
+  justify-content: space-between;  
+  flex-wrap:wrap;
+  align-items:center;
+  box-sizing: content-box;
+}
+.item-info .belonger {
+  height: 36rpx;
+  max-width: 200rpx;
+  overflow: hidden;
+  font-size: 20rpx;
+  color: #666666;
+}
+.item-info .belonger image {
+  width: 36rpx;
+  height: 36rpx;
+  border-radius: 100%;
+  vertical-align: middle;
+  margin-right: 10rpx;
+}
+.item-info .like {
+  height: 26rpx;
+  overflow: hidden;
+  font-size: 20rpx;
+  color: #666666;
+}
+.item-info .like image {
+  width: 26rpx;
+  height: 26rpx;
+  vertical-align: middle;
+  margin-right: 8rpx;
+}
+
+/*
+* 列表item 等高布局
+*/
+.product-list {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 20rpx;
+  flex-wrap: wrap;
+}
+.product-item {
+  width: 344rpx;
+  height: 550rpx;
+  border-radius: 8rpx;
+  background: #fff;
+  margin-bottom: 20rpx;
+}
+.product-item .image {
+  width: 344rpx;
+  height: 344rpx;
+  overflow: hidden;
+}
+.product-item .image image {
+  width: 344rpx;
+}
+.product-item .info {
+  padding: 20rpx 28rpx;
+  font-size: 24rpx;
+  color: #666666;
+}
+.info .title {
+  color: #333333;
+  height: 40rpx;
+  line-height: 40rpx;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.info .subtitle {
+  height: 60rpx;
+  line-height: 30rpx;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;  
+}
+.info .price {
+  height: 66rpx;
+  line-height: 66rpx;
+}
+.info .price .sale-price {
+  color: #ff2741;
+  font-size: 30rpx;
+  margin-right: 20rpx;
+}
+.info .price .real-price {
+  color: #999999;
+  font-size: 26rpx;
+  text-decoration: line-through #999999;
+}
+
+/*
+*24rpx大小的灰色字体
+*/
+.gray {
+  font-size: 20rpx;
+  color: #6b6b6b;
+}
+
+/*
+* 红色边框，红色小字体 如包邮、包税字体等
+*/
+.red-text {
+  padding: 0 4rpx;
+  font-size: 20rpx;
+  color: #ff2741;
+  border: 2rpx solid #ff2741;
+  border-radius: 4rpx;
+}
+
+/*
+* flex 左右布局 两边对齐 left-right-flex
+*/
+.lr-flex {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/*  重写 checkbox 样式  */
+/* 未选中的 背景样式 */
+checkbox .wx-checkbox-input{
+   border-radius: 50%;/* 圆角 */
+   width: 30rpx; /* 背景的宽 */
+   height: 30rpx; /* 背景的高 */
+}
+/* 选中后的 背景样式 （红色背景 无边框 可根据UI需求自己修改） */
+checkbox .wx-checkbox-input.wx-checkbox-input-checked{
+   border: none;
+   background: #ff2741;
+}
+/* 选中后的 对勾样式 （白色对勾 可根据UI需求自己修改） */
+checkbox .wx-checkbox-input.wx-checkbox-input-checked::before{
+   border-radius: 50%;/* 圆角 */
+   width: 30rpx;/* 选中后对勾大小，不要超过背景的尺寸 */
+   height: 30rpx;/* 选中后对勾大小，不要超过背景的尺寸 */
+   line-height: 30rpx;
+   text-align: center;
+   font-size:20rpx; /* 对勾大小 30rpx */
+   color:#fff; /* 对勾颜色 白色 */
+   background: transparent;
+   transform:translate(-50%, -50%) scale(1);
+   -webkit-transform:translate(-50%, -50%) scale(1);
+}
+
+/*
+*默认显示两行，超出两行显示省略号
+*/
+.line2ellipsis {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}

@@ -1,0 +1,205 @@
+@import '@/assets/styles/index.scss';
+
+@keyframes scaleOut {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  100% {
+    transform: translate(-50%, -50%) scale(0);
+  }
+}
+
+@keyframes popIn {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+  }
+
+  50% {
+    transform: translate(-50%, -50%) scale(1.2);
+  }
+
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@keyframes toggleScale {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(.85);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes enlargeOut {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  40% {
+    opacity: 0.8;
+    transform: scale(1.15);
+  }
+
+  80% {
+    opacity: 0;
+    transform: scale(1.2);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(1);
+  }
+}
+
+.operate-bar-wrap{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  width: 90rpx;
+  right: $spacing-md;
+  bottom: 10*$spacing-xxl;
+  z-index: $zindex-nav;
+
+  @at-root .operate-item{
+    position: relative;
+    text-align: center;
+    color: white;
+    margin-top: $spacing-md;
+
+    @at-root .avatar-outer {
+      position: relative;
+      width: 86rpx;
+      height: 86rpx;
+      border: 2rpx solid white;
+      margin-bottom: 2*$spacing-lg;
+      border-radius: $border-radius-circle;
+
+      &.live {
+        border: 2rpx solid rgb(231, 27, 102);
+      }
+
+      @at-root .avatar-img-wrap {
+        position: absolute;
+        width: 82rpx;
+        height: 82rpx;
+        border-radius: $border-radius-circle;
+        overflow: hidden;
+        
+        &.live {
+          animation: toggleScale 800ms ease-in-out 0ms infinite;
+        }
+
+        @at-root .avatar-live-text {
+          position: absolute;
+          left: 50%;
+          width: 50rpx;
+          height: 20rpx;
+          line-height: 20rpx;
+          font-size: 16rpx;
+          color: white;
+          background: rgb(231, 27, 102);
+          border-radius: $border-radius-circle2;
+          transform: translate(-50%, 0);
+        }
+
+        .avatar-img{
+          width: 100%;
+          height: 100%;
+        }
+      }
+
+      @at-root .avatar-out-circle {
+        width: 82rpx;
+        height: 82rpx;
+        border-radius: $border-radius-circle;
+        transform: scale(1.2);
+        border: 1rpx solid rgb(231, 27, 102);
+        animation: enlargeOut 800ms ease-out 200ms infinite;
+      }
+    }
+
+    .follow-wrap-img{
+      position: absolute;
+      width: 40rpx;
+      height: 40rpx;
+      bottom: 0;
+      left: 50%;
+      transform: translate(-50%, 50%);
+      margin-bottom: 2*$spacing-lg;
+    }
+
+    @at-root .operate-item-img-wrap{
+      position: relative;
+      width: 84rpx;
+      height: 84rpx;
+      margin-bottom: $spacing-sm;
+
+      @at-root .operate-item-img{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 84rpx;
+        height: 84rpx;
+        transform: translate(-50%, -50%);
+
+        &.heart-red{
+          transform: translate(-50%, -50%) scale(0);
+
+          &.star-yes{
+            animation: popIn 200ms ease-out 100ms forwards;
+          }
+
+          &.star-no{
+            z-index: 1;
+            animation: scaleOut 100ms linear 0s forwards;
+          }
+        }
+
+        &.heart-white{
+          transform: translate(-50%, -50%) scale(1);
+
+          &.star-yes{
+            animation: scaleOut 100ms ease 0s forwards;
+          }
+
+          &.star-no{
+            transform: translate(-50%, -50%) scale(1);
+          }
+        }
+      }
+    }
+
+    @at-root .operate-icon{
+      display: block;
+      font-size: 80rpx;
+      text-shadow: 0 0 10rpx #ddd;
+    }
+
+    @at-root .operate-item-text{
+      position: relative;
+      top: -16rpx;
+      font-size: $font-size-base;
+      text-shadow: 2rpx 2rpx 2rpx #333;
+    }
+
+    @at-root .share-button-mask{
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background: transparent;
+      opacity: 0;
+    }
+  }
+}

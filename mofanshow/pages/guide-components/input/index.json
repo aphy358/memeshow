@@ -1,0 +1,5 @@
+{
+    "usingComponents": {
+        "mf-input": "../../../components/form/input/index"
+    }
+}

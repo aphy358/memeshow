@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "address-component": "/components/address/address"
+  },
+  "navigationBarTitleText": "订单支付"
+}

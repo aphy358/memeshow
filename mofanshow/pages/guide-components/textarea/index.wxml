@@ -1,0 +1,31 @@
+<view class="mf_components-test-module">
+    <view class="mf_components-test-module_title">Tips:</view>
+    <view>1. 多行输入框。该组件是原生组件，使用时请注意相关限制</view>
+    <view>2. Textarea 组件内部没有 border，以下 border 效果仅作为展示效果</view>
+</view>
+
+<view class="mf_components-test-module">
+    <view class="mf_components-test-module_title">默认 Textarea</view>
+    <view class="mf_components-test-module_border">
+        <mf-textarea></mf-textarea>
+    </view>
+</view>
+
+<view class="mf_components-test-module">
+    <view class="mf_components-test-module_title">带字数统计</view>
+    <view class="mf_components-test-module_border">
+        <mf-textarea height="{{ 100 }}" counter></mf-textarea>
+    </view>
+</view>
+
+<view class="mf_components-test-module">
+    <view class="mf_components-test-module_title">自定义高度</view>
+    <view class="mf_components-test-module_border">
+        <mf-textarea height="{{ 500 }}" counter></mf-textarea>
+    </view>
+</view>
+
+<!-- <view class="mf_components-test-module">
+    <view class="mf_components-test-module_title">Todo:</view>
+    <view>1. </view>
+</view> -->

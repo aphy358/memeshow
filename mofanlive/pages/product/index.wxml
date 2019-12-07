@@ -1,0 +1,40 @@
+<mf-poster posters="{{medias}}"></mf-poster>
+
+<view class="desc">
+    <view class="desc-price desc-price__current">￥{{price / 100}}</view>
+    <view class="desc-price desc-price__origin">￥{{originPrice / 100}}</view>
+    <view class="desc-title">{{title}}</view>
+    <view class="desc-sold">已售{{soldCount}}次</view>
+    <view class="desc-favorite">收藏</view>
+</view>
+
+<view class="qualification">
+    <view
+        wx:for="{{['正品保障', '全场包邮', '七天退换', '先行赔付']}}"
+        wx:key="*this"
+    >{{item}}</view>
+</view>
+
+<mf-action-group bind:click="handleAction"></mf-action-group>
+
+<view class="detail-title">宝贝详情</view>
+
+<mf-detail data="{{desc}}"></mf-detail>
+
+<mf-action-bar
+    bind:buy="handleBuy"
+    bind:cart="toggleSelector"
+></mf-action-bar>
+
+<mf-sku-selector
+    open="{{selector.open}}"
+    images="{{skuImages}}"
+    skus="{{skus}}"
+    visibility="{{selector.visibility}}"
+    avatar="{{avatar}}"
+    bind:change="handleSelectSku"
+    bind:cancel="toggleSelector"
+>
+    <!-- action bar -->
+    <button class="button--primary" bind:tap="handleSelectorConfirm">确定</button>
+</mf-sku-selector>

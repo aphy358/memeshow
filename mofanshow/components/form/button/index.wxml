@@ -1,0 +1,19 @@
+<!-- Button Component -->
+
+<view style="{{ size === 'mini' ? 'display:inline' : '' }}">
+    <button
+        form-type="{{ formType }}"
+        open-type="{{ openType }}"
+        plain="{{ type !== 'primary' }}"
+        size="{{ size === 'mini' ? size : 'default' }}"
+        disabled="{{ disabled }}"
+        loading="{{ loading }}"
+        lang="{{ lang }}"
+        class="mf-button mf-button_{{ type }} mf-button_{{ size }} {{ circle ? 'mf-button__circle' : '' }} {{ disabled ? 'mf-button__disabled' : '' }} mf-class"
+        hover-class="mf-button__actived mf-class__hover"
+        hover-start-time="{{ hoverStartTime }}"
+        hover-stay-time="{{ hoverStayTime }}"
+        hover-stop-propagation="{{ hoverStopPropagation }}"
+        bindtap="onClick"
+    ><slot wx:if="{{ !(loading && size === 'mini')}}"></slot></button>
+</view>

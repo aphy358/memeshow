@@ -1,0 +1,7 @@
+{
+    "component": true,
+    "usingComponents": {
+        "avatar": "../../avatar/index",
+        "mf-icon": "../../base/icon/index"
+    }
+}

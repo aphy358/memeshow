@@ -1,0 +1,76 @@
+/**
+ * 0.5px 宽的横线
+ * $position: top/bottom
+ * $element: before/after
+ */
+
+@mixin hairline(
+    $color: #eee, 
+    $position: top, 
+    $element: before
+) {
+    &::#{$element} {
+        @include _hairline($color);
+        #{$position}: 0;
+        left: 0;
+        width: 100%;
+        height: 1rpx;
+        transform: scaleY(0.5);
+    }
+}
+
+/**
+ * 0.5px 宽的竖线
+ * $position: left/right
+ * $element: before/after
+ */
+
+@mixin hairlineVertical(
+    $color: #eee, 
+    $position: left, 
+    $element: before
+) {
+    &::#{$element} {
+        @include _hairline($color);
+        #{$position}: 0;
+        top: 0;
+        width: 1rpx;
+        height: 100%;
+        transform: scaleX(0.5);
+    }
+}
+
+@mixin _hairline($color: #eee) {
+    content: "";
+    position: absolute;
+    background: $color;
+}
+
+/**
+ * 细边框 
+ * $element: before/after
+ */
+@mixin hairlineBorder(
+    $color: #cccccc, 
+    $border-radius: 0, 
+    $element: before
+) {
+    &::#{$element} {
+        @include _hairlineBorder($color, $border-radius);
+    }
+}
+
+@mixin _hairlineBorder(
+    $color: #cccccc, 
+    $border-radius: 0
+) {
+    content: '';
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    top: 0;
+    left: 0;
+    transform: scale(.5) translate(-50%, -50%);
+    border: 1rpx solid $color;
+    border-radius: $border-radius;
+}

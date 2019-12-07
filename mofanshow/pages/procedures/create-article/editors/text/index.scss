@@ -1,0 +1,32 @@
+@import "@/assets/styles/index.scss";
+
+page {
+  background-color: $color-bg;
+}
+
+.input-area {
+  width: 100%;
+  padding: $spacing-xl $spacing-xl 0;
+  background-color: $white;
+  display: block;
+}
+
+.action {
+  width: 100%;
+  padding: 0 $spacing-xl;
+  box-sizing: border-box;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-end;
+  margin-top: $spacing-xl;
+
+  .submit {
+    background-color: $color-text-link;
+    width: 130rpx;
+    border-radius: $border-radius-circle2;
+    padding: $spacing-sm;
+    text-align: center;
+    color: $white;
+    font-size: $font-size-lg;
+  }
+}

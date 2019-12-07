@@ -1,0 +1,30 @@
+@import '@/assets/styles/index.scss';
+
+
+.suggest-module {
+  padding: 0 $spacing-xxl;
+  color: $color-text;
+  font-size: $font-size-base;
+  background: $white;
+
+  @at-root .suggest-module-title {
+    font-size: $font-size-lg;
+    padding: $spacing-lg 0;
+  }
+
+  @at-root .suggest-keyword-round-list {
+    display: flex;
+    flex-wrap: wrap;
+    padding-bottom: $spacing-sm;
+
+    @at-root .suggest-res-item {
+      position: relative;
+      padding: $spacing-base $spacing-xxl;
+      margin-right: $spacing-lg;
+      margin-bottom: $spacing-lg;
+      border-radius: $border-radius-circle2;
+    
+      @include hairlineBorder($color-text-placeholder, $border-radius-circle2);
+    }
+  }
+}

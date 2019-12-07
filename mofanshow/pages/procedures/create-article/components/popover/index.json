@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "mf-icon": "../../../../../components/base/icon/index"
+  }
+}

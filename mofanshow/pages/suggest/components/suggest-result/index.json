@@ -1,0 +1,8 @@
+{
+  "component": true,
+  "usingComponents": {
+    "article-recommend-list" : "/components/base/list/index",
+    "waterfall-item": "/components/list-item/list-item-post/index",
+    "hpopup": "/components/base/hpopup/hpopup"
+  }
+}

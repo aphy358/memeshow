@@ -1,0 +1,89 @@
+<!--pages/ecommerse/detail/index.wxml-->
+<view class="container detail-page">
+  <view class="product-img">
+    <swiper  class="swiper" indicator-dots indicator-active-color="#ffffff">
+      <block> 
+        <swiper-item wx:for="{{imageUrls}}" wx:key="index" >
+          <image class="slide-image" src="{{item}}"></image>
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+  <view class="product-info">
+    <view class="fr-line">
+      <text class="sign">限时特价</text>
+      <text class="salePrice">￥35</text>
+      <text class="realPrice gray">￥59</text>
+      <text class="discount gray">6折</text>
+      <text class="red-text">包税</text>
+      <text class="red-text">包邮</text>
+    </view>
+    <view class="title">
+      <view class="left">茄菲萝9213清润造型啫喱水 强力保湿柔亮塑形啫喱膏 发胶 750ml</view>
+      <view class="right">
+        <view class="icon"><image src="/images/icon_ecommerse.png"></image></view>
+        <view class="text">心愿单</view>
+      </view>
+    </view>
+    <view class="brand">
+      品牌来自广州 <text>金利来</text> 
+    </view>
+  </view>
+  <view class="statement lr-flex">
+    <view class="left">
+      <view class="declare">
+        <text><icon></icon>假一赔十</text>
+        <text><icon></icon>一贵就陪</text>
+      </view>
+      <view class="desc">保税仓发货.新人满39包邮.包税.7天无理由退货</view> 
+    </view>
+    <view class="right right-arrow"><image src="/images/right_arrow.png"></image></view>
+  </view>
+  <view class="specifications">
+    <view class="lr-flex">
+      <view class="left">
+        <text class="label">已选：</text><text class="value">x2 160ml</text>
+      </view>
+      <view class="right right-arrow"><image src="/images/right_arrow.png"></image></view>
+    </view>
+    <view class="desc">复古格纹风衣套宽松外套外加一套加绒牛仔裤2018春季新款韩版赫本小黑裙修身显瘦长袖打底针织鱼尾裙蕾丝连衣裙子女，2018春季新款韩版赫本小黑裙修身显瘦长袖打底针织鱼尾裙蕾丝连衣裙子女，2018春季新款韩版赫本小黑裙修身显瘦长袖打底针织鱼尾裙蕾丝连衣裙子女，2018春季新款韩版赫本小黑裙修身显瘦长袖打底针织鱼尾裙蕾丝连衣裙子女，2018春季新款韩版赫本小黑裙修身显瘦长袖打底针织鱼尾裙蕾丝连衣裙子女</view>
+  </view>
+  <view class="shop lr-flex" bindtap="intoShop">
+    <view class="left">
+      <image class="logo" src="//goss2.vcg.com/cms/image/image/691f2139d93143ae9498ec9eb0de8589.jpg"></image>
+      <view class="shop-name">
+        <view class="name">未来智商管理商店</view>
+        <view class="desc">在售商品11931件</view>
+      </view>
+    </view>
+    <view class="right right-arrow to-shop">进店逛逛<image src="/images/right_arrow.png"></image></view>
+  </view>
+  <view class="recommend-product">
+    <view class="sub-text">看了这件商品的人也看了</view>
+    <scroll-view class="lists" scroll-x>
+      <view class="list-item" wx:for="{{productList}}" wx:key="{{item.id}}">
+        <view class="image"><image mode="widthFix" src="{{item.src}}"></image></view>
+        <view class="desc">{{item.subtitle}}</view>
+        <view class="price">
+          <text class="realPrice">￥{{item.realPrice}}</text>
+          <text class="salePrice">￥{{item.salePrice}}</text>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+  <view class="product-detail">图文详情</view>
+  <view class="bottom-btn">
+    <view class="left">
+      <view class="to-shop" bindtap="intoShop">
+        <view class="shop-icon"><image src="/images/icon_ecommerse.png"></image></view>
+        <view class="text" >店铺</view>
+      </view>
+      <view class="to-cart" bindtap="toCart">
+        <view class="cart-icon"><image src="/images/icon_shop.png"></image></view>
+        <view class="text">购物车</view>
+      </view>
+    </view>
+    <view class="center" catchtap="addCart">加入购物车</view>
+    <view class="right">立即购买</view>
+  </view>
+</view>

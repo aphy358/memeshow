@@ -1,0 +1,77 @@
+<view class="mf_components-test-module">
+    <view class="mf_components-test-module_title">Tips:</view>
+    <view>1. 目前设置了 form-type 的 button 只会对当前组件中的 form 有效。因而，将 button 封装在自定义组件中，而 from 在自定义组件外，将会使这个 button 的 form-type 失效。</view>
+</view>
+
+<view class="mf_components-test-module">
+    <view class="mf_components-test-module_title">主色调，大按钮</view>
+    <mf-button>Button</mf-button>
+</view>
+
+<view class="mf_components-test-module">
+    <view class="mf_components-test-module_title">次色调，大按钮</view>
+    <mf-button type="secondary">Button</mf-button>
+</view>
+
+<view class="mf_components-test-module">
+    <view class="mf_components-test-module_title">次次色调，大按钮</view>
+    <mf-button type="tertiary">Button</mf-button>
+</view>
+
+<view class="mf_components-test-module">
+    <view class="mf_components-test-module_title">圆角，大按钮</view>
+    <mf-button circle>Button</mf-button>
+</view>
+
+<view class="mf_components-test-module">
+    <view class="mf_components-test-module_title">禁用，大按钮</view>
+    <mf-button disabled>Button</mf-button>
+</view>
+
+<view class="mf_components-test-module">
+    <view class="mf_components-test-module_title">加载中，大按钮（点击切换）</view>
+    <mf-button loading="{{ largeLoading }}" bindclick="onClickLargeLoadingBtn">
+        Button
+    </mf-button>
+</view>
+
+<view class="mf_components-test-module">
+    <view class="mf_components-test-module_title">主色调，小按钮</view>
+    <mf-button size="mini">Button</mf-button>
+</view>
+
+<view class="mf_components-test-module">
+    <view class="mf_components-test-module_title">次色调，小按钮</view>
+    <mf-button size="mini" type="secondary">Button</mf-button>
+</view>
+
+<view class="mf_components-test-module">
+    <view class="mf_components-test-module_title">次次色调，小按钮</view>
+    <mf-button size="mini" type="tertiary">Button</mf-button>
+</view>
+
+<view class="mf_components-test-module">
+    <view class="mf_components-test-module_title">圆角，小按钮</view>
+    <mf-button size="mini" circle>Button</mf-button>
+</view>
+
+<view class="mf_components-test-module">
+    <view class="mf_components-test-module_title">禁用，小按钮</view>
+    <mf-button size="mini" disabled>Button</mf-button>
+</view>
+
+<view class="mf_components-test-module">
+    <view class="mf_components-test-module_title">加载中，小按钮（点击切换）</view>
+    <mf-button
+        size="mini"
+        loading="{{ miniLoading }}"
+        bindclick="onClickMiniLoadingBtn"
+    >Button</mf-button>
+</view>
+
+<view class="mf_components-test-module">
+    <view class="mf_components-test-module_title">Todo:</view>
+    <view>1. 完全兼容微信 Button 组件的拓展能力</view>
+    <view>2. Loading 样式优化，loading 颜色和固定宽度</view>
+    <view>3. 行高和字体问题</view>
+</view>

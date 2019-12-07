@@ -1,0 +1,32 @@
+@import '@/assets/styles/index.scss';
+
+.suggest-keyword-list {
+  background: $white;
+  padding: 0 $spacing-xxl $spacing-lg;
+
+  @at-root .suggest-keyword-item {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 92rpx;
+    @include hairline($color: $color-grey-4, $position: bottom);
+
+    .navigator {
+      flex-grow: 1;
+      height: 100%;
+      line-height: 92rpx;
+      font-size: $font-size-lg;
+
+      .key-word {
+        color: $color-primary;
+      }
+    }
+
+    .check-more-btn {
+      @include button2text();
+      color: $color-text-lighter;
+      font-size: $font-size-base;
+    }
+  }
+}

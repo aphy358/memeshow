@@ -1,0 +1,26 @@
+@import './assets/iconfont.css';
+@import '@/assets/styles/index.scss';
+
+
+.article-wrap{
+  padding-bottom: 5*$spacing-lg;
+}
+
+.article-recommend-list{
+  position: relative;
+  padding: 0 $spacing-lg 5*$spacing-lg;
+  @include hairline();
+
+  .article-recommend-title{
+    color: $color-text;
+    font-size: $font-size-lg;
+    padding: $spacing-lg $spacing-sm;
+  }
+}
+
+// 覆盖掉原组件的默认样式
+.comment-popup-wrap .hpopup-body{
+  height: 850rpx;
+  border-top-left-radius: 20rpx;
+  border-top-right-radius: 20rpx;
+}

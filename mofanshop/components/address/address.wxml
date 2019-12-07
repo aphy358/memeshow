@@ -1,0 +1,19 @@
+<!--component-address-->
+<view class="address">
+    <view class="name list">
+      <view class="label">收货人</view>
+      <view class="value"><input placeholder-class="placeholder" placeholder="请使用真实姓名"></input></view>
+    </view>
+    <view class="mobile list">
+      <view class="label">联系电话</view>
+      <view class="value"><input placeholder-class="placeholder" placeholder="收货人电话号码"></input></view>
+    </view>
+    <view class="area list">
+      <view class="label">所在地区</view>
+      <view class="value"><input placeholder-class="placeholder" placeholder="省/市/区"></input></view>
+    </view>
+    <view class="detail list">
+      <view class="label">详细地址</view>
+      <view class="value"><input placeholder-class="placeholder" placeholder="收货人详细地址"></input></view>
+    </view>
+</view>

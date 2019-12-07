@@ -1,0 +1,74 @@
+<view class="m-b-xl">
+    <view class="h2 m-b-sm m-h-lg">基本用法</view>
+    <view class="form">
+        <view class="form__item p-v-sm">
+            <view class="form__label f-lg f-base">标准五个字</view>
+            <view class="form__content">
+                <input type="text" placeholder="预设内容"></input>
+            </view>
+        </view>
+        <view class="form__item p-v-sm">
+            <view class="form__label f-lg f-base">标题特别特别长的情况下会换行</view>
+            <view class="form__content">
+                <input type="text" placeholder="预设内容"></input>
+            </view>
+        </view>
+        <view class="form__item p-v-sm">
+            <view class="form__label f-lg f-base">标准五个字</view>
+            <view class="form__content">
+                <input type="text" placeholder="预设内容"></input>
+            </view>
+            <view class="form__tail">
+                <view class="icon icon-close"></view>
+            </view>
+        </view>
+        <view class="form__item p-v-sm">
+            <view class="form__label f-lg f-base">手机号</view>
+            <view class="form__content">
+                <input type="text" placeholder="预设内容"></input>
+            </view>
+        </view>
+        <view class="form__item p-v-sm form__item--error">
+            <view class="form__label f-lg f-base">错误状态</view>
+            <view class="form__content">
+                <input type="text" value="错误的输入值"></input>
+            </view>
+        </view>
+        <view class="form__item p-v-sm form__item--disabled">
+            <view class="form__label f-lg f-base">禁止输入</view>
+            <view class="form__content">
+                <input disabled type="text" value="禁止输入状态"></input>
+            </view>
+        </view>
+    </view>
+</view>
+
+<view class="m-b-xl">
+    <view class="h2 m-b-sm m-h-lg">无 border</view>
+    <view class="form form--no-border">
+        <view class="form__item p-v-sm">
+            <view class="form__label f-lg f-base">单项输入</view>
+            <view class="form__content">
+                <input type="text" placeholder="预设内容"></input>
+            </view>
+        </view>
+        <view class="form__item p-v-sm">
+            <view class="form__label f-lg f-base">手机号</view>
+            <view class="form__content">
+                <input type="text" placeholder="预设内容"></input>
+            </view>
+        </view>
+        <view class="form__item p-v-sm form__item--error">
+            <view class="form__label f-lg f-base">错误状态</view>
+            <view class="form__content">
+                <input type="text" value="错误的输入值"></input>
+            </view>
+        </view>
+        <view class="form__item p-v-sm form__item--disabled">
+            <view class="form__label f-lg f-base">禁止输入</view>
+            <view class="form__content">
+                <input disabled type="text" value="禁止输入状态"></input>
+            </view>
+        </view>
+    </view>
+</view>

@@ -1,0 +1,19 @@
+<view class="swiper">
+  <navigation-bar 
+    back
+    background="transparent"
+    placehold="{{ false }}"
+    color="white"
+    text-shadow="1px 1px 2px black"
+  />
+
+  <hswiper 
+    generic:hswiper-item="snapvideo" 
+    items="{{items}}"
+    bindbeforeSwipe="beforeSwipe" 
+    bindafterSwipe="afterSwipe" 
+    binditemsExhausted="itemsExhausted"
+    bindactiveItem="activeItem" 
+    bindmove="swiperMove"
+  />
+</view>

@@ -1,0 +1,22 @@
+
+<view class="">
+
+  <!-- 导航栏 -->
+  <navigation-bar 
+    class="suggest-nav" 
+    back home placehold
+    bgOpacity="{{ navOpcity }}"
+  >
+    <view class=""></view>
+  </navigation-bar>
+
+
+  <!-- 简介 -->
+  <profile />
+
+
+  <!-- 话题列表 -->
+  <subject-list />
+
+  
+</view>

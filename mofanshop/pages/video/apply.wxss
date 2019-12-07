@@ -1,0 +1,8 @@
+/* pages/apply/apply.wxss */
+.plus{
+  max-height: 400rpx;
+}
+
+.title{
+  margin: 100rpx 0rpx;
+}

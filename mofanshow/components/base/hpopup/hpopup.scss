@@ -1,0 +1,167 @@
+@import '@/assets/styles/index.scss';
+
+.hpopup-wrap {
+
+  @at-root .hpopup-mask{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: black;
+    opacity: 0;
+
+    &.mask-enter,
+    &.mask-leave-to{
+      opacity: 0;
+    }
+
+    &.mask-enter-to,
+    &.mask-leave{
+      opacity: .3;
+    }
+  }
+
+  @at-root .hpopup-body {
+    position: fixed;
+    background: #fff;
+    min-height: 200rpx;
+    transition-timing-function: "ease-out";
+    overflow: hidden;
+
+    &__center {
+      top: 50%;
+      left: 50%;
+      transform: translate3d(-50%, -50%, 0);
+    }
+
+    &__top {
+      top: 0;
+      bottom: auto;
+      left: 0;
+      right: 0;
+    }
+
+    &__bottom {
+      bottom: 0;
+      top: auto;
+      left: 0;
+      right: 0;
+    }
+
+    &__left {
+      left: 0;
+      top: 0;
+      bottom: 0;
+      right: auto;
+    }
+
+    &__right {
+      right: 0;
+      top: 0;
+      bottom: 0;
+      left: auto;
+    }
+  }
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition-property: opacity;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.fade-bottom-enter-active,
+.fade-bottom-leave-active,
+.fade-left-enter-active,
+.fade-left-leave-active,
+.fade-right-enter-active,
+.fade-right-leave-active,
+.fade-top-enter-active,
+.fade-top-leave-active,
+.fade-center-enter-active,
+.fade-center-leave-active,
+.mask-enter,
+.mask-leave-to,
+.mask-enter-to,
+.mask-leave {
+  transition-property: opacity, -webkit-transform;
+  transition-property: opacity, transform;
+  transition-property: opacity, transform, -webkit-transform;
+}
+
+.fade-center-enter,
+.fade-center-leave-to {
+  opacity: 0;
+}
+
+.fade-top-enter,
+.fade-top-leave-to {
+  opacity: 0;
+  -webkit-transform: translate3d(0, 100%, 0);
+  transform: translate3d(0, 100%, 0);
+}
+
+.fade-bottom-enter,
+.fade-bottom-leave-to {
+  opacity: 0;
+  -webkit-transform: translate3d(0, -100%, 0);
+  transform: translate3d(0, -100%, 0);
+}
+
+.fade-left-enter,
+.fade-left-leave-to {
+  opacity: 0;
+  -webkit-transform: translate3d(-100%, 0, 0);
+  transform: translate3d(-100%, 0, 0);
+}
+
+.fade-right-enter,
+.fade-right-leave-to {
+  opacity: 0;
+  -webkit-transform: translate3d(100%, 0, 0);
+  transform: translate3d(100%, 0, 0);
+}
+
+.slide-bottom-enter-active,
+.slide-bottom-leave-active,
+.slide-left-enter-active,
+.slide-left-leave-active,
+.slide-right-enter-active,
+.slide-right-leave-active,
+.slide-top-enter-active,
+.slide-top-leave-active,
+.slide-center-enter-active,
+.slide-center-leave-active {
+  transition-property: -webkit-transform;
+  transition-property: transform;
+  transition-property: transform, -webkit-transform;
+}
+
+.slide-top-enter,
+.slide-top-leave-to {
+  -webkit-transform: translate3d(0, -100%, 0);
+  transform: translate3d(0, -100%, 0);
+}
+
+.slide-bottom-enter,
+.slide-bottom-leave-to {
+  -webkit-transform: translate3d(0, 100%, 0);
+  transform: translate3d(0, 100%, 0);
+}
+
+.slide-left-enter,
+.slide-left-leave-to {
+  -webkit-transform: translate3d(-100%, 0, 0);
+  transform: translate3d(-100%, 0, 0);
+}
+
+.slide-right-enter,
+.slide-right-leave-to {
+  -webkit-transform: translate3d(100%, 0, 0);
+  transform: translate3d(100%, 0, 0);
+}

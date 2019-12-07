@@ -1,0 +1,6 @@
+<view
+    class="mf-safe-bottom"
+    style="background: {{background}}; padding-bottom: {{isIPhoneX && !disabled ? 68 : 0}}rpx;"
+>
+    <slot></slot>
+</view>

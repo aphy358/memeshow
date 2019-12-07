@@ -1,0 +1,51 @@
+<!--index.wxml-->
+<!-- ipone6 1rpx=0.5px"  1px = 750/375 = 2rpx;-->
+<view class="container" style="padding-top: 158rpx;">
+  <!-- BEGIN 首页banner-->
+  <view class="header">
+    <view class="search-view" bindtap="search">
+      <view class="search-icon"><image src="/images/search.png"></image></view>
+      <input class="search-btn" placeholder-class="placeholder" type="text" cursor="4" placeholder="大家都在搜索‘紫云系统’" disabled></input>
+    </view>
+    <scroll-view class="category" scroll-x>
+      <view wx:for="{{categories}}" wx:key="{{item.id}}" class="category-item {{navId==item.id ? 'nav-active' : ''}}" id="{{item.id}}" bindtap="switchNav">{{item.name}}</view>
+    </scroll-view>
+  </view>
+  <!-- END 首页banner-->
+
+  <!-- BEGIN 视频列表   -->
+    <view class="medium-container">
+        <!-- <scroll-view scroll-y > -->
+        <block>
+          <view class="item-box" wx:for="{{mediumItems}}" wx:key="{{item.id}}" wx:if="{{index%2===0}}">
+            <navigator url="/pages/{{item.type}}/index?id={{item.videoValue}}" hover-class="item-hover">
+              <view wx:if="{{item.type == 'video'}}" class="video-btn"><image src="/images/play.png"></image></view>
+              <view class="image-box">
+                <image mode="widthFix" src="{{item.url}}" ></image>
+              </view>
+              <view class="item-desc">{{item.des}}</view>
+              <view class="item-info">
+                <view class="belonger" catchtap="toCustomer"><image src="{{item.user.avatar}}"></image>{{item.user.name}}</view>
+                <view class="like" catchtap="like"><image src="/images/like.png"></image>{{item.likes}}</view>
+              </view>
+            </navigator>
+          </view>
+        </block>
+        <block>
+          <view class="item-box" wx:for="{{mediumItems}}" wx:key="{{item.id}}" wx:if="{{index%2!==0}}">
+            <navigator url="/pages/{{item.type}}/index?id={{item.videoValue}}" hover-class="item-hover">
+              <view wx:if="{{item.type == 'video'}}" class="video-btn"><image src="/images/play.png"></image></view>
+              <view class="image-box">
+                <image mode="widthFix" src="{{item.url}}" ></image>
+              </view>
+              <view class="item-desc">{{item.des}}</view>
+              <view class="item-info">
+                <view class="belonger"><image src="{{item.user.avatar}}"></image>{{item.user.name}}</view>
+                <view class="like"><image src="/images/like.png"></image>{{item.likes}}</view>
+              </view>
+            </navigator>
+          </view>
+        </block>
+      <!-- </scroll-view> -->
+    </view>
+  </view>

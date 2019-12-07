@@ -1,0 +1,18 @@
+page {
+    padding: 0 20rpx;
+    box-sizing: border-box;
+}
+
+.mf_components-test-module {
+    padding: 20rpx 0;
+    margin: 30rpx 0;
+
+    &_title {
+        margin-bottom: 10rpx;
+    }
+
+    &_inline-item {
+        display: inline-block;
+        margin-right: 40rpx;
+    }
+}

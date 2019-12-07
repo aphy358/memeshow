@@ -1,0 +1,61 @@
+/* pages/address /index.wxss */
+.items {
+  background: #fff;
+  padding: 0 20rpx;
+}
+.items .item {
+  padding: 20rpx 0;
+  font-size: 24rpx;
+  border-bottom: 1rpx solid #e6e6e6;
+}
+.item .left {
+  width: 640rpx;
+}
+.left .fr-line {
+  height: 50rpx;
+  font-size: 30rpx;
+  color: rgba(0, 0, 0, 0.9);
+}
+.left .fr-line view {
+  height: 50rpx;
+  line-height: 50rpx;
+  display: inline-block;
+  vertical-align: middle;
+}
+.left .fr-line .edit {
+  color: rgba(0, 0, 0, 0.4);
+  font-size: 26rpx;
+  margin-left: 40rpx;
+}
+.left .fr-line .edit image{
+    width: 30rpx;
+    height: 30rpx;
+    vertical-align: middle;
+}
+.left .fr-line .edit text {
+  vertical-align: middle;
+}
+.left .se-line { 
+  font-size: 28rpx;
+  color: grba(0, 0, 0, 0.8)
+}
+.item .right {
+  width: 60rpx;
+  text-align: right
+}
+.add {
+  height: 80rpx;
+  line-height: 80rpx;
+  background: #fff;
+  padding: 0 20rpx;
+}
+.add image {
+  width: 40rpx;
+  height: 40rpx;
+  margin-right: 30rpx;
+  vertical-align: middle
+}
+.add text {
+  font-size: 26rpx;
+  color: rgba(0, 0, 0, 0.6)
+}

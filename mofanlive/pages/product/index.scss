@@ -1,0 +1,96 @@
+@import "@/theme";
+
+page {
+  background-color: $color-bg-base;
+}
+
+.desc {
+  width: 100%;
+  box-sizing: border-box;
+  position: relative;
+  padding: $spacing-v-lg $spacing-h-lg;
+  background-color: $color-white;
+
+  &-price {
+    display: inline-block;
+
+    &__current {
+      font-size: $font-size-xxl;
+      font-family: $font-cn;
+      font-weight: bolder;
+      color: $color-error;
+    }
+
+    &__origin {
+      font-size: $font-size-lg;
+      font-family: $font-cn;
+      color: $color-grey-2;
+      margin-left: $spacing-h-lg;
+      text-decoration: line-through;
+    }
+  }
+
+  &-title {
+    width: 100%;
+    font-size: $font-size-lg;
+    font-family: $font-cn;
+    color: $color-text-base;
+    margin: $spacing-v-lg 0;
+  }
+
+  &-sold {
+    font-size: $font-size-base;
+    font-family: $font-cn;
+    color: $color-text-placeholder;
+  }
+
+  &-favorite {
+    position: absolute;
+    top: $spacing-v-lg;
+    right: $spacing-h-lg;
+  }
+}
+
+.qualification {
+  width: 100%;
+  box-sizing: border-box;
+  padding: $spacing-v-sm $spacing-h-lg;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+
+  view {
+    font-size: $font-size-base;
+    font-family: $font-cn;
+    color: $color-text-base;
+  }
+}
+
+.detail-title {
+  width: 100%;
+  padding: $spacing-v-md $spacing-h-lg;
+  text-align: center;
+  box-sizing: border-box;
+  vertical-align: middle;
+  color: $color-text-base;
+
+  &::before {
+    content: "";
+    width: 20%;
+    height: 2rpx;
+    background-color: $color-border-base;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: $spacing-h-lg;
+  }
+
+  &::after {
+    content: "";
+    width: 20%;
+    height: 2rpx;
+    background-color: $color-border-base;
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: $spacing-h-lg;
+  }
+}

@@ -1,0 +1,54 @@
+
+<view class="my-plan my-block">
+  <view class="my-block-title">
+    <text class="title">今日计划</text>
+    <view class="my-block-more">
+      <navigator url="" class="my-block-more-btn" hover-class="button-hover">今天有16项任务，完成赚更多钱哦</navigator>
+    </view>
+  </view>
+
+  <view class="my-plan-list">
+    <view class="my-plan-item">
+      <image class="item-img" src="/assets/images/background/live.png" />
+
+      <view class="brief-wrap">
+        <view class="row-one">1000元的广告订单</view>
+        <view class="row-two">要求代言3款商品</view>
+      </view>
+
+      <button class="btn" type="primary">
+        去完成
+      </button>
+    </view>
+
+    <view class="gap-line"></view>
+
+    <view class="my-plan-item">
+      <image class="item-img" src="/assets/images/background/text.png" />
+
+      <view class="brief-wrap">
+        <view class="row-one">1000元的广告订单</view>
+        <view class="row-two">要求代言3款商品</view>
+      </view>
+
+      <button class="btn" type="primary">
+        去完成
+      </button>
+    </view>
+
+    <view class="gap-line"></view>
+
+    <view class="my-plan-item">
+      <image class="item-img" src="/assets/images/background/video.png" />
+
+      <view class="brief-wrap">
+        <view class="row-one">1000元的广告订单</view>
+        <view class="row-two">要求代言3款商品</view>
+      </view>
+
+      <button class="btn" type="primary">
+        去完成
+      </button>
+    </view>
+  </view>
+</view>

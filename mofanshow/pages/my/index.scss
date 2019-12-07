@@ -1,0 +1,45 @@
+@import '@/assets/styles/index.scss';
+
+.my-center-wrap {
+  background: rgb(236, 236, 236);
+
+  @at-root .my-center-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: $zindex-nav;
+  }
+
+  @at-root .my-block {
+    position: relative;
+    background: white;
+    padding: $spacing-lg 0;
+    color: $color-text;
+
+    @at-root .my-block-title {
+      position: relative;
+      padding: 0 $spacing-xxl;
+      margin-bottom: $spacing-xxl;
+
+      .title {
+        font-size: $font-size-lg;
+      }
+    }
+
+    @at-root .my-block-more {
+      position: absolute;
+      top: 0;
+      right: $spacing-xxl;
+      font-size: $font-size-sm;
+
+      @at-root .my-block-more-btn {
+        @include button2text();
+        color: #ef9209;
+
+        &.button-hover {
+          color: #e7bd7d;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,21 @@
+
+<view class="suggest-keyword-list">
+  <view 
+    class="suggest-keyword-item"
+    wx:for="{{ resList }}"
+    wx:key="{{ index }}"
+  >
+    <navigator class="navigator" url="{{ item.url }}">
+      <text 
+        wx:for="{{ item.textNodes }}" 
+        wx:key="{{ index }}" 
+        wx:for-item="textItem"
+        class="{{ textItem.iskey ? 'key-word' : '' }}"
+      >{{ textItem.text }}</text>
+    </navigator>
+
+    <button wx:if="{{ item.checkMore }}" class="check-more-btn">
+      {{ item.checkMore.text }}
+    </button>
+  </view>
+</view>

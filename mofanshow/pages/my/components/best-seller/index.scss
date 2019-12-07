@@ -1,0 +1,28 @@
+@import '@/assets/styles/index.scss';
+
+.best-seller {
+
+  @at-root .best-seller-outer {
+    overflow-x: scroll;
+    -webkit-overflow-scrolling: touch;
+    padding: 0 $spacing-xxl;
+
+    @at-root .best-seller-list {
+      width: 400%;
+  
+      @at-root .best-seller-item {
+        float: left;
+        width: 190rpx;
+        height: 190rpx;
+        margin-right: $spacing-lg;
+        border-radius: $border-radius-lg;
+        overflow: hidden;
+  
+        .img {
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
+  }
+}

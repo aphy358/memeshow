@@ -1,0 +1,14 @@
+<view
+    class="node"
+>
+    <image
+        catch:tap="emitEditEvent"
+        data-type="picture"
+        src="{{content.pic || defaultPic}}"
+    />
+    <view
+        catch:tap="emitEditEvent"
+        class="content"
+        data-type="text"
+    >{{content.text}}</view>
+</view>

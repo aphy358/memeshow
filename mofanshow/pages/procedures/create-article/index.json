@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "mf-article-node": "./components/article-node/index",
+    "mf-popover": "./components/popover/index",
+    "mf-input": "../../../components/form/input/index",
+    "mf-action-bar": "../components/action-bar/index"
+  },
+  "disableScroll": true
+}

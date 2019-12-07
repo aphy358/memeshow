@@ -1,0 +1,28 @@
+<!--pages/my/index.js.wxml-->
+<view class="container">
+  <view class="me-info">
+    <view class="info-header">
+      <view class="image"><image src="http://wx.qlogo.cn/mmhead/ver_1/BUaRoIYqibL7Qq7Bu5DmZAJl6HPNHBXCWNaBAflvcUUsuMePO33QpDugMtVwYckPS8NZOwJqeKpRoLbrNWs45MCuPXYu86o3JLbowtolibr8U/132"></image></view>
+      <view class="follow">我的关注(16)</view>
+    </view>
+    <view class="info-account">浮生若梦，无你何欢</view>
+  </view>
+  <view class="me-list">
+    <view class=" item story" catchtap="switchTo" data-url="">
+      <view class="left"><image src="/images/icon_index.png"></image><text>我收藏的Story</text></view>
+      <view class="right"><image src="/images/right_arrow.png"></image></view>
+    </view>
+    <view class="item order" catchtap="switchTo" data-url="/pages/ecommerse/order/index">
+      <view class="left"><image src="/assets/images/order1.png"></image>我的订单</view>
+      <view class="right"><image src="/images/right_arrow.png"></image></view>
+    </view>
+    <view class="item address" catchtap="switchTo" data-url="/pages/address/index">
+      <view class="left"><image src="/images/address.png"></image>收货地址</view>
+      <view class="right"><image src="/images/right_arrow.png"></image></view>
+    </view>
+    <view class="item feedback" catchtap="switchTo" data-url="/pages/order/index">
+      <view class="left"><image src="/images/feedback.png"></image>意见反馈</view>
+      <view class="right"><image src="/images/right_arrow.png"></image></view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,2 @@
+<!--components/index.wxml-->
+<rich-text nodes="{{nodes}}"></rich-text>
