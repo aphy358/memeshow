@@ -11,16 +11,25 @@
 $hd: 2 !default;
 $unit: 1rpx !default;
 
+// 基本色
+$color-white: #fff !default;
+
 // 品牌主色
-$color-brand: #FE2C54 !default;
-$color-brand-light: #78a4f4 !default;
-$color-brand-dark: #346fc2 !default;
+$color-brand: #fe2c54 !default;
+$color-brand-light: #78a4f4 !default; // todo
+$color-brand-dark: #346fc2 !default; // todo
 
 // 功能色
-$color-success: #13ce66 !default;
+$color-info: #78a4fa !default;
 $color-error: #ff4949 !default;
 $color-warning: #ffc82c !default;
-$color-info: #78a4fa !default;
+$color-success: #13ce66 !default;
+
+// 功能色 - 备选
+$color-roof: #c2abc7 !default;
+$color-wall: #eef0f0 !default;
+$color-door: #f1e4ed !default;
+$color-curtain: #f0d0d5 !default;
 
 // 中性色 - 黑色蒙层
 $color-black-0: #000 !default;
@@ -37,10 +46,8 @@ $color-grey-4: #e5e5e5 !default;
 $color-grey-5: #f0f0f0 !default;
 $color-grey-6: #f7f7f7 !default;
 
-$color-white: #fff !default;
-
 /* 边框颜色 */
-$color-border-base: #c5d9e8 !default;
+$color-border-base: #dedede !default; // todo
 $color-border-split: tint($color-border-base, 20%) !default; // 分割线
 $color-border-light: tint($color-border-base, 30%) !default;
 $color-border-lighter: tint($color-border-base, 50%) !default;
@@ -57,7 +64,7 @@ $color-text-title: #2c405a !default; // 文章标题
 $color-text-paragraph: #3f536e !default; // 文章段落
 
 /* Link */
-$color-link: #FE2C54 !default;
+$color-link: #1890ff !default;
 $color-link-hover: #79a1eb !default;
 $color-link-active: #4f7de2 !default;
 $color-link-disabled: #bfbfbf !default;
@@ -97,7 +104,13 @@ $font-size-xl: size(18) !default; // 大标题
 $font-size-xxl: size(20) !default; // 用于大号的数字
 
 /* Line Height */
-$line-height-base: 1 !default; // 单行
+$line-height-base: $font-size-base + size(7) !default;
+$line-height-xs: $font-size-xs + size(5) !default;
+$line-height-sm: $font-size-sm + size(6) !default;
+$line-height-lg: $font-size-lg + size(8) !default;
+$line-height-xl: $font-size-xl + size(9) !default;
+$line-height-xxl: $font-size-xxl + size(10) !default;
+$line-height-line: 1 !default; // 单行
 $line-height-en: 1.3 !default; // 英文多行
 $line-height-zh: 1.5 !default; // 中文多行
 
@@ -199,10 +212,10 @@ $cell-color-border: #ddd !default;
 $cell-color-actived: $color-grey-6 !default;
 
 /* Form */
-$form-spacing-h: size(10) !default;
+$form-spacing-h: size(20) !default;
 $form-color-border: #ddd !default;
-$form-label-min-width: size(96) !default;
-$form-label-max-width: size(112) !default;
+$form-label-min-width: size(80) !default;
+$form-label-max-width: size(100) !default;
 
 /* Card */
 $card-color-bg: $color-white !default;
@@ -221,9 +234,53 @@ $popup-layout-timer: 500ms !default;
 $popup-height-min: size(300) !default;
 $popup-height-max: size(450) !default;
 
-/* Switch */
-$switch-height: size(25) !default;
-$switch-width:  size(15) !default;
+/* Input */
+$input-color-border: $color-border-grey !default;
+
+/* InputNumber */
+$input-number-height: size(35) !default;
+$input-number-width-min: size(60) !default;
+$input-number-color-btn: $color-text-base !default;
+$input-number-color-border: $color-border-base !default;
+$input-number-btn-size: $font-size-base !default;
+// $input-number-height-lg: size(60) !default;
+// $input-number-width-min-lg: size(60) !default;
+
+/* Textarea */
+$textarea-font-size: $font-size-lg !default;
+$textarea-line-height: $line-height-lg !default;
+$textarea-bg-color: $color-bg !default;
+$textarea-border-color: $color-border-base !default;
+$textarea-height: size(300) !default;
+$textarea-counter-color: $color-text-placeholder !default;
+$textarea-counter-size: $font-size-base !default;
+
+/* Checkbox */
+$checkbox-circle-size: size(20) !default;
+$checkbox-icon-size: $font-size-sm !default;
+$checkbox-icon-color: $color-brand !default;
+$checkbox-icon-color-checked: $color-white !default;
+$checkbox-title-color: $color-text-base !default;
+$checkbox-title-font-size: $font-size-lg !default;
+$checkbox-desc-font-size: $font-size-sm !default;
+$checkbox-desc-color: $color-grey-2 !default;
+
+/* Radio */
+$radio-color-bg: $color-white !default;
+$radio-check-color: $color-brand !default;
+
+/* Avatar */
+$avatar-size-base: size(40) !default;
+$avatar-size-sm: size(30) !default;
+$avatar-size-lg: size(60) !default;
+
+/* Tabs */
+$tabs-width-min: size(50) !default;
+$tabs-height: size(45) !default;
+$tabs-height-dash: size(1) !default;
+$tabs-color-active: $color-brand !default;
+$tabs-color-dash: $color-brand !default;
+
 
 // /* FloatLayout */
 // $float-layout-header-bg-color: $color-bg-grey !default;
@@ -237,13 +294,6 @@ $switch-width:  size(15) !default;
 // /* Activity Indicator */
 // $at-activity-indicator-font-size: 28px !default;
 // $at-activity-indicator-font-color: $color-grey-2 !default;
-
-// /* Avatar */
-// $at-avatar-color: $color-white !default;
-// $at-avatar-bg-color: $color-grey-4 !default;
-// $at-avatar-size-sm: 80px !default;
-// $at-avatar-size-md: 100px !default;
-// $at-avatar-size-lg: 120px !default;
 
 // /* Badge */
 // $at-badge-color: $color-white !default;
@@ -269,17 +319,6 @@ $switch-width:  size(15) !default;
 // $at-calendar-header-color: #b8bfc6 !default;
 // $at-calendar-main-color: $color-brand !default;
 // $at-calendar-day-color: #7c86a2 !default;
-
-// /* Checkbox */
-// $at-checkbox-circle-size: 40px !default;
-// $at-checkbox-icon-size: $font-size-sm !default;
-// $at-checkbox-icon-color: $color-brand !default;
-// $at-checkbox-icon-color-checked: $color-white !default;
-// $at-checkbox-title-color: $color-text-base !default;
-// $at-checkbox-title-font-size: $font-size-lg !default;
-// $at-checkbox-desc-font-size: $font-size-sm !default;
-// $at-checkbox-desc-color: $color-grey-2 !default;
-
 // /* Countdown */
 // $at-countdown-font-size: $font-size-lg !default;
 // $at-countdown-num-color: $color-text-base !default;
@@ -298,7 +337,6 @@ $switch-width:  size(15) !default;
 // /* Drawer */
 // $at-drawer-content-width: 460px !default;
 
-
 // /* ImagePicker */
 // $at-image-picker-btn-add-color: $color-grey-3 !default;
 // $at-image-picker-btn-remove-color: $color-white !default;
@@ -310,22 +348,6 @@ $switch-width:  size(15) !default;
 // $at-indexes-title-color: $color-black-2 !default;
 // $at-indexes-title-font-size: $font-size-sm !default;
 // $at-indexes-title-bg-color: $color-grey-6 !default;
-
-// /* InputNumber */
-// $at-input-number-text-color: $color-text-base !default;
-// $at-input-number-font-size: $font-size-base !default;
-// $at-input-number-font-size-lg: $font-size-xl !default;
-// $at-input-number-btn-color: $color-brand !default;
-// $at-input-number-btn-size: 30px !default;
-// $at-input-number-btn-size-lg: 36px !default;
-// $at-input-number-width-min: 80px !default;
-// $at-input-number-width-min-lg: 120px !default;
-
-// /* Input */
-// $at-input-label-color: $color-text-base !default;
-// $at-input-text-color: $color-text-base !default;
-// $at-input-font-size: $font-size-lg !default;
-// $at-input-placeholder-color: $color-grey-3 !default;
 
 // /* LoadMore */
 // $at-load-more-height: 80px !default;
@@ -377,13 +399,6 @@ $switch-width:  size(15) !default;
 // $at-progress-bar-bg-color: $color-brand-light !default;
 // $at-progress-bar-bg-color-active: $color-white !default;
 
-// /* Radio */
-// $at-radio-title-color: $color-text-base !default;
-// $at-radio-title-size: $font-size-lg !default;
-// $at-radio-desc-color: $color-grey-2 !default;
-// $at-radio-desc-size: $font-size-sm !default;
-// $at-radio-check-color: $color-brand !default;
-
 // /* Range */
 // $at-range-slider-size: 28px !default;
 // $at-range-rail-height: 2px !default;
@@ -430,8 +445,6 @@ $switch-width:  size(15) !default;
 // $at-swipe-action-bg-color: $color-white !default;
 // $at-swipe-action-option-bg-color: $color-grey-2 !default;
 
-
-
 // /* TabBar */
 // $at-tab-bar-bg-color: $color-white !default;
 // $at-tab-bar-color: $color-text-base !default;
@@ -440,14 +453,6 @@ $switch-width:  size(15) !default;
 // $at-tab-bar-icon-color: $color-grey-0 !default;
 // $at-tab-bar-icon-font-size: 48px !default;
 // $at-tab-bar-icon-image-size: 50px !default;
-
-// /* Tabs */
-// $at-tabs-color: $color-text-base !default;
-// $at-tabs-color-active: $color-brand !default;
-// $at-tabs-font-size: $font-size-base !default;
-// $at-tabs-line-height: 1px !default;
-// $at-tabs-underline-color: $color-grey-5 !default;
-// $at-tabs-bg-color: $color-bg !default;
 
 // /* Tag */
 // $at-tag-height: 60px !default;
@@ -465,11 +470,6 @@ $switch-width:  size(15) !default;
 // $at-tag-border-color: $at-tag-bg-color !default;
 // $at-tag-border-color-primary: $at-tag-bg-color !default;
 // $at-tag-border-color-active: $at-tag-color-active !default;
-
-// /* Textarea */
-// $at-textarea-font-size: $font-size-lg !default;
-// $at-textarea-tips-color: $color-text-placeholder !default;
-// $at-textarea-tips-size: $font-size-base !default;
 
 // /* Timeline */
 // $at-timeline-offset-left: 40px !default;

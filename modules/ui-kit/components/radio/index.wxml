@@ -1,0 +1,15 @@
+<!-- Radio Component -->
+
+<view
+    hover-class="radio--actived"
+    class="radio {{ disabled ? 'radio--disabled' : '' }}"
+    bindtap="onTap"
+>
+    <view class="radio__title">
+        <text class="radio__label">{{ title }}</text>
+        <text wx:if="{{ desc }}" class="radio__desc">{{ desc }}</text>
+    </view>
+    <view class="radio__icon">
+        <view class="icon {{ checked ? 'icon-check' : '' }}"></view>
+    </view>
+</view>

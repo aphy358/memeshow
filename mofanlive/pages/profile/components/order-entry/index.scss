@@ -1,0 +1,30 @@
+@import "@/theme";
+
+.white-back {
+  background-color: $color-white;
+}
+
+.margin-top {
+  margin-top: $spacing-v-lg;
+}
+
+.entries {
+  @include flex-row-nowrap;
+  justify-content: space-between;
+}
+
+.entry {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+
+  &__icon {
+    width: $icon-size-lg;
+    height: $icon-size-lg;
+    border-radius: $icon-size-lg;
+
+    background-color: #999;
+  }
+}
+
+

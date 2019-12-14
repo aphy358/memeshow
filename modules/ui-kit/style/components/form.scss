@@ -1,51 +1,131 @@
 @import "../variables/default.scss";
 @import "../mixins/index.scss";
+@import "../components/icon";
 
 .form {
     @include hairline-top-bottom($color: $form-color-border);
 
     &__item {
         @include display-flex();
+        @include justify-content(space-between);
         @include align-items(center);
         @include hairline-bottom-relative(
             $left: $form-spacing-h,
             $color: $form-color-border
         );
+        box-sizing: border-box;
+        min-height: size(50);
         padding: 0 $form-spacing-h;
-        line-height: 40rpx;
+        padding-right: size(5);
+        line-height: 1;
 
-        &:last-child::after {
-            display: none;
+        &__label {
+            @include flex(0, 0, auto);
+            @include display-flex();
+            @include align-items(center);
+            @include justify-content(flex-start);
+            min-width: $form-label-min-width;
+            max-width: $form-label-max-width;
+            margin-right: $spacing-h-lg;
+            padding: size(15) 0;
+            font-size: $font-size-lg;
+            line-height: size(20);
+            color: $color-text-base;
+        }
+
+        &__content {
+            @include flex(1, 1, auto);
+        }
+
+        &__tail {
+            @include flex(0, 0, auto);
+            @include display-flex();
+            @include align-items(center);
+            @include justify-content(flex-end);
+        }
+
+        &__verify {
+            display: block;
+            width: size(70);
+            height: size(35);
         }
 
         &--disabled {
-            .form__label,
-            .form__content {
+            .form__item__label,
+            .form__item__content {
                 color: $color-text-disabled;
             }
         }
 
         &--error {
-            .form__label,
-            .form__content {
+            .form__item__label,
+            .form__item__content {
                 color: $color-error;
             }
         }
+
+        &:last-child::after {
+            display: none;
+        }
     }
 
-    &__label {
-        @include flex(0, 0, auto);
-        min-width: $form-label-min-width;
-        max-width: $form-label-max-width;
-        margin-right: $spacing-h-md;
+    &__item__picker {
+        @include display-flex();
+        @include align-items(center);
+        position: relative;
+        width: 100%;
+        min-height: size(50);
+
+        // 依赖 ui-kit icon
+        &::before {
+            content: "\e913";
+            font: {
+                family: iconfont;
+                style: normal;
+                weight: 400;
+                variant: normal;
+            }
+            position: absolute;
+            right: 0;
+            display: inline-block;
+            color: $color-text-disabled;
+        }
+
+        &__value,
+        &__placeholder {
+            max-width: size(220);
+            @include line(1);
+        }
+
+        &__value {
+            color: $color-text-base;
+        }
+
+        &__placeholder {
+            color: $color-text-placeholder;
+        }
     }
 
-    &__content {
-        @include flex(auto);
-    }
+    &__agreement {
+        @include display-flex();
+        @include align-items(center);
+        padding: $spacing-v-xl $form-spacing-h;
+        padding-right: size(5);
 
-    &__tail {
-        @include flex(0, 0, auto);
+        &__checkbox {
+            flex: 0, 0, auto;
+            margin-right: $spacing-v-sm;
+        }
+
+        // &__checkbox.wx-checkbox-input.wx-checkbox-input-checked::before {
+        //     width: size(13);
+        //     height: size(13);
+        // }
+
+        &__content {
+            flex: 1, 1, auto;
+            font-size: $font-size-sm;
+        }
     }
 
     &--no-border {
@@ -59,3 +139,14 @@
         }
     }
 }
+
+// checkbox.form__agreement {
+//     width: size(13) !important;
+//     height: size(13) !important;
+// }
+
+// checkbox.form__agreement .wx-checkbox-input {
+//     // border-radius: 50%;/* 圆角 */
+//     width: size(13); /* 背景的宽 */
+//     height: size(13); /* 背景的高 */
+// }

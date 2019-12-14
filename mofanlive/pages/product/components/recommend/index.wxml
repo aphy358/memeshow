@@ -1,0 +1,21 @@
+<view class="recommend">
+    <view class="recommend-header">
+        <view class="recommend-header__title">店铺推荐</view>
+        <view class="recommend-header__tail">查看更多 ></view>
+    </view>
+    <view class="recommend-content">
+        <view
+            class="recommend-item"
+            wx:for="{{list}}"
+            wx:key="id"
+        >
+            <view class="recommend-item__image__wrapper"></view>
+            <image
+                class="recommend-item__image"
+                src="{{item.imgUrl}}"
+            />
+            <view class="recommend-item__title">{{item.name}}</view>
+            <view class="recommend-item__price">￥{{item.price/100}}</view>
+        </view>
+    </view>
+</view>

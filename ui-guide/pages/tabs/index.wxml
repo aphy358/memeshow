@@ -1,0 +1,113 @@
+<view class="m-b-xl">
+    <view class="h2 m-b-sm m-h-lg">默认用法</view>
+    <tabs>
+        <tab key="1">标题1</tab>
+        <tab key="2">标题2</tab>
+        <tab key="3">标题3</tab>
+    </tabs>
+</view>
+
+<view class="m-b-xl">
+    <view class="h2 m-b-sm m-h-lg">带预选项</view>
+    <tabs default="2">
+        <tab key="1">标题1</tab>
+        <tab key="2">标题2</tab>
+        <tab key="3">标题3</tab>
+    </tabs>
+</view>
+
+<view class="m-b-xl">
+    <view class="h2 m-b-sm m-h-lg">带禁用选项</view>
+    <tabs default="1">
+        <tab key="1">标题1</tab>
+        <tab key="2">标题2</tab>
+        <tab key="3" disabled>禁用标题</tab>
+    </tabs>
+</view>
+
+<view class="m-b-xl">
+    <view class="h2 m-b-sm m-h-lg">支持 scroll</view>
+    <tabs default="1" scroll>
+        <tab key="1">标题</tab>
+        <tab key="2">标题</tab>
+        <tab key="3">标题</tab>
+        <tab key="4">标题</tab>
+        <tab key="5">标题</tab>
+        <tab key="6">标题</tab>
+        <tab key="7">标题</tab>
+        <tab key="8">标题</tab>
+        <tab key="9">标题</tab>
+        <tab key="10">标题</tab>
+    </tabs>
+</view>
+
+<view class="m-b-xl">
+    <view class="h2 m-b-sm m-h-lg">吸附效果</view>
+    <tabs default="1" scroll stickable>
+        <tab key="1">标题</tab>
+        <tab key="2">标题</tab>
+        <tab key="3">标题</tab>
+        <tab key="4">标题</tab>
+        <tab key="5">标题</tab>
+        <tab key="6">标题</tab>
+        <tab key="7">标题</tab>
+        <tab key="8">标题</tab>
+        <tab key="9">标题</tab>
+        <tab key="10">标题</tab>
+    </tabs>
+</view>
+
+<view class="m-b-xl">
+    <view class="h2 m-b-sm m-h-lg">插槽内容: before</view>
+    <tabs default="1">
+        <image
+            src="./logo.png"
+            class="m-h-md"
+            style="height:90rpx;width:90rpx;"
+        ></image>
+        <tab key="1">标题1</tab>
+        <tab key="2">标题2</tab>
+        <tab key="3" disabled>禁用标题</tab>
+    </tabs>
+</view>
+
+<view class="m-b-xl">
+    <view class="h2 m-b-sm m-h-lg">插槽内容: after</view>
+    <tabs default="1" scroll>
+        <tab key="1">标题</tab>
+        <tab key="2">标题</tab>
+        <tab key="3">标题</tab>
+        <tab key="4">标题</tab>
+        <tab key="5">标题</tab>
+        <tab key="6">标题</tab>
+        <tab key="7">标题</tab>
+        <tab key="8">标题</tab>
+        <tab key="9">标题</tab>
+        <tab key="10">标题</tab>
+        <view style="height:100%;display:flex;justify-content:center;align-items:center;">
+            <view class="icon icon-chevron-down p-h-md"></view>
+        </view>
+    </tabs>
+</view>
+
+<view class="m-b-xl">
+    <view class="h2 m-b-sm m-h-lg">支持的事件</view>
+    <tabs
+        default="1"
+        scroll
+        bindchange="onChange"
+        binddisabled="onError"
+    >
+        <tab key="1">标题1</tab>
+        <tab key="2">标题2</tab>
+        <tab key="3">标题3</tab>
+        <tab key="4">标题4</tab>
+        <tab key="5">标题5</tab>
+        <tab key="6">标题6</tab>
+        <tab key="7">标题7</tab>
+        <tab key="8">标题8</tab>
+        <tab key="9" disabled>标题9</tab>
+    </tabs>
+</view>
+
+<view style="height: 1000rpx"></view>

@@ -2,22 +2,24 @@
     class="action-bar"
     style="padding-bottom: {{isIPhoneX ? 68 : 0}}rpx;"
 >
-    <view class="action-bar__left">
-        <view class="action-bar__left-btn">
-            <view class="action-bar__left-btn-icon">图标</view>
-            <view class="action-bar__left-btn-text">首页</view>
-        </view>
-        <view class="action-bar__left-btn">
-            <view class="action-bar__left-btn-icon">图标</view>
-            <view class="action-bar__left-btn-text">购物车</view>
-        </view>
-        <view class="action-bar__left-btn__cart" bind:tap="handleAddToCart">加购</view>
+    <view class="action-bar__btn">
+        <view class="action-bar__btn-icon">图标</view>
+        <view class="action-bar__btn-text">首页</view>
     </view>
-    <button
-        class="button--primary buy"
-        hover-class="button--actived"
-        bind:tap="handleBuy"
-    >立即购买</button>
-
-    <button class="button">分享</button>
+    <view class="action-bar__btn">
+        <view class="action-bar__btn-icon">图标</view>
+        <view class="action-bar__btn-text">购物车</view>
+    </view>
+    <view class="shopping-btn">
+        <button
+            bind:tap="handleAddToCart"
+            class="button--secondary button--full shopping-btn__cart"
+            hover-class="button--actived"
+        >加入购物车</button>
+        <button
+            bind:tap="handleBuy"
+            class="button--primary button--full"
+            hover-class="button--actived"
+        >立即购买</button>
+    </view>
 </view>

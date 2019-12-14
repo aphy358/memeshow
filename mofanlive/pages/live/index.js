@@ -1,18 +1,20 @@
 import { connect } from "libs/redux/index.js"
-import { menuBtn } from "ui-kit/behaviors/menuBtn"
-
-const app = getApp()
-const store = app.store
+import { menuBtn, safeArea } from "ui-kit/behaviors/index"
+import { productList } from "@/data/product"
 
 
 let pageConfig = {
-  behaviors: [menuBtn()],
+  behaviors: [menuBtn(), safeArea()],
 
   data: {
     playURL: 'rtmp://pili-live-rtmp.mofanbaby.tv/mofanbaby/test-1',
+
+    // 新增评论
+    newComment: null
   },
 
   onLoad: function (options) {
+    this.fetchProductList()
   },
 
   onReady: function () {
@@ -58,11 +60,56 @@ let pageConfig = {
 
   stopLivePlayer(e) {
     this.playContext.stop()
-  }
+  },
+
+  createNewComment(e) {
+    this.setData({ newComment: e.detail })
+  },
+
+  /**
+   * 跳转到商品详情页
+   * @param {event} e 
+   */
+  navToProduct(e) {
+    const id = e.detail.id
+    wx.navigateTo({
+      url: `/pages/product/index?id=${id}`,
+      fail(err){
+        console.error(err)
+      }
+    })
+  },
 }
 
-const mapStateToData = state => ({})
-const mapDispatchToPage = dispatch => ({})
+const mapStateToData = state => ({
+  productListVisibility: state.LIVE.productListVisibility,
+  productList: state.LIVE.productList,
+  showCommentInputPopup: state.LIVE.showCommentInputPopup,
+})
+const mapDispatchToPage = dispatch => ({
+  hideCommentInputPopup(e) {
+    dispatch({
+      type: "LIVE_SWITCH_COMMENT_INPUT_POPUP",
+      payload: false
+    })
+  },
+
+  fetchProductList(e) {
+    dispatch({
+      type: "LIVE_REDUCE_PRODUCT_LIST",
+      payload: {
+        products: productList
+      }
+    })
+  },
+
+  // 当商品列表关闭的时候
+  handleProductListClose() {
+    dispatch({
+      type: "LIVE_CLOSE_PRODUCT_LIST"
+    })
+  },
+})
 
 let connectedConfig = connect(
   mapStateToData,

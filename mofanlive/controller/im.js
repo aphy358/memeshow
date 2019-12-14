@@ -191,7 +191,7 @@ export default class IMController {
     })
     let pages = getCurrentPages()
     let currentPage = pages[pages.length - 1]
-    if (currentPage.route.includes('login') || currentPage.route.includes('register')) {
+    if (currentPage.route.includes('login_pre') || currentPage.route.includes('register_pre')) {
       wx.switchTab({
         url: '/pages/recentchat/recentchat',
       })

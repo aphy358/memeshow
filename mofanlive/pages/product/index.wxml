@@ -1,4 +1,4 @@
-<mf-poster posters="{{medias}}"></mf-poster>
+<poster posters="{{medias}}"></poster>
 
 <view class="desc">
     <view class="desc-price desc-price__current">￥{{price / 100}}</view>
@@ -15,26 +15,31 @@
     >{{item}}</view>
 </view>
 
-<mf-action-group bind:click="handleAction"></mf-action-group>
+<action-group actions="{{actions}}" bind:click="handleAction"></action-group>
+
+<recommend list="{{recommend.list}}"></recommend>
 
 <view class="detail-title">宝贝详情</view>
 
-<mf-detail data="{{desc}}"></mf-detail>
+<detail data="{{desc}}"></detail>
 
-<mf-action-bar
+<action-bar
     bind:buy="handleBuy"
     bind:cart="toggleSelector"
-></mf-action-bar>
+></action-bar>
 
-<mf-sku-selector
-    open="{{selector.open}}"
+<sku-selector
+    avatar="{{avatar}}"
+    bind:cancel="toggleSelector"
+    bind:change="handleSelectSku"
     images="{{skuImages}}"
+    open="{{selector.open}}"
     skus="{{skus}}"
     visibility="{{selector.visibility}}"
-    avatar="{{avatar}}"
-    bind:change="handleSelectSku"
-    bind:cancel="toggleSelector"
 >
-    <!-- action bar -->
-    <button class="button--primary" bind:tap="handleSelectorConfirm">确定</button>
-</mf-sku-selector>
+    <button
+        bind:tap="handleSelectorConfirm"
+        class="button--primary {{!selector.selection.sku ? 'button--disabled' : ''}}"
+        disabled="{{!selector.selection.sku}}"
+    >确定</button>
+</sku-selector>

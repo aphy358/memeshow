@@ -1,0 +1,91 @@
+<view
+    bind:tap="chooseWechatAddress"
+    class="cell wechat"
+>
+    <view class="cell__header">
+        <view class="cell__title">使用微信地址</view>
+    </view>
+    <view class="cell__tail">
+        <view class="icon icon-chevron-right cell__icon-link"></view>
+    </view>
+</view>
+<view class="form white-back margin-top">
+    <form bindsubmit="submit">
+        <view class="form__item">
+            <view class="form__item__label">收货人姓名</view>
+            <view class="form__item__content">
+                <input
+                    class="input"
+                    name="name"
+                    placeholder="请输入姓名"
+                    placeholder-class="input__placeholder"
+                    type="text"
+                />
+            </view>
+        </view>
+
+        <view class="form__item">
+            <view class="form__item__label">手机号码</view>
+            <view class="form__item__content">
+                <input
+                    class="form-input"
+                    name="tel"
+                    placeholder="请输入手机号码"
+                    placeholder-class="form-placeholder"
+                    type="number"
+                    value="{{tel}}"
+                />
+            </view>
+        </view>
+        <view class="form__item">
+            <view class="form__item__label">所在地区</view>
+            <view class="form__item__content">
+                <picker
+                    bindchange="handleRegionChange"
+                    mode="region"
+                    value="{{region}}"
+                >
+                    <view class="form__item__picker">
+                        <view
+                            class="form__item__picker__{{region[0] == '' ? 'placeholder' : 'value'}}"
+                        >{{region[0] == '' ? '请选择' : region[0]+' '+region[1]+' '+region[2]}}</view>
+                    </view>
+                </picker>
+            </view>
+        </view>
+        <view class="form__item">
+            <view class="form__item__label">详细地址</view>
+            <view class="form__item__content">
+                <textarea
+                    auto-height="true"
+                    class="form-input"
+                    maxlength="36"
+                    name="address"
+                    placeholder="请输入详细地址"
+                    placeholder-class="form-placeholder"
+                    value="{{address}}"
+                />
+            </view>
+        </view>
+        <view class="form__item">
+            <view class="form__item__label">设为默认地址</view>
+            <view class="form__item__tail">
+                <switch
+                    checked="{{false}}"
+                    class="switch"
+                    name="isDefault"
+                    value="{{isDefault}}"
+                ></switch>
+            </view>
+        </view>
+
+        <view class="btn">
+            <button
+                class="button--primary"
+                disabled="{{disabled}}"
+                form-type="submit"
+                loading="{{loading}}"
+            >保存</button>
+        </view>
+    </form>
+</view>

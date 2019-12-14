@@ -1,8 +1,9 @@
 {
   "component": true,
   "usingComponents": {
-    "comment-input-popup": "/components/comment/comment-input-popup/comment-input-popup",
     "comment-popup": "/components/comment/comment-popup/comment-popup",
+    "comment-input-popup": "/_modules/ui-kit/components/comment/comment-input-popup/index",
+    "common-comment-input-area": "/_modules/ui-kit/components/comment/common-comment-input-area/index",
     "comment-list-video": "/components/comment/comment-list-video/index",
     "comment-list-article": "../comment-list-article/comment-list-article"
   }

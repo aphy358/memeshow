@@ -17,18 +17,6 @@ export const productList = [
     price: 99900,
     imgUrl: "http://img.alicdn.com/bao/uploaded/i1/679679787/TB1Bufcd7fb_uJkSnaVXXXFmVXa_!!0-item_pic.jpg_400x400q90.jpg",
   },
-  {
-    id: 4,
-    name: "名字超级长超级长超级长超级长超级长的散热器",
-    price: 99900,
-    imgUrl: "http://img.alicdn.com/bao/uploaded/i1/679679787/TB1Bufcd7fb_uJkSnaVXXXFmVXa_!!0-item_pic.jpg_400x400q90.jpg",
-  },
-  {
-    id: 5,
-    name: "名字超级长超级长超级长超级长超级长的散热器",
-    price: 99900,
-    imgUrl: "http://img.alicdn.com/bao/uploaded/i1/679679787/TB1Bufcd7fb_uJkSnaVXXXFmVXa_!!0-item_pic.jpg_400x400q90.jpg",
-  },
 ]
 
 export const product = {
@@ -47,7 +35,7 @@ export const product = {
     "createTime": 0,
     "updateTime": 0,
     "shop": {
-      "name": "魔范小店",
+      "name": "开个蛇皮店",
       "avatar": "",
       "id": "mofanshop",
     },
@@ -184,4 +172,62 @@ export const product = {
       "isFavorite": true
     }
   }
-} 
+}
+
+export const trades = [
+  {
+    shop: {
+      id: 'mafanshop',
+      name: '开tm蛇皮店',
+      avatar: '',
+    },
+    items: [
+      {
+        "title": "正宗龙窑柴烧建盏落灰杯纯手工粗陶自然落灰釉裸烧茶杯铁胎禅定杯",
+        price: 12300,
+        stock: 99,
+        quantity: 2,
+        id: 'skuId1',
+        "thumbnail": "https://gd2.alicdn.com/imgextra/i4/208763083/TB2cd_mdGQoBKNjSZJnXXaw9VXa_!!208763083.jpg_400x400.jpg",
+        productId: 'productId1',
+        "specs": [
+          {
+            "kid": "k1",
+            "vid": "v2",
+            "k": "颜色",
+            "v": "蓝色"
+          },
+          {
+            "kid": "k2",
+            "vid": "v4",
+            "k": "尺码",
+            "v": "小杯"
+          }
+        ],
+      },
+      {
+        "title": "正宗龙窑柴烧建盏落灰杯纯手工粗陶自然落灰釉裸烧茶杯铁胎禅定杯",
+        price: 12300,
+        stock: 99,
+        quantity: 2,
+        id: 'skuId2',
+        "thumbnail": "https://gd2.alicdn.com/imgextra/i4/208763083/TB2cd_mdGQoBKNjSZJnXXaw9VXa_!!208763083.jpg_400x400.jpg",
+        productId: 'productId1',
+        "specs": [
+          {
+            "kid": "k1",
+            "vid": "v2",
+            "k": "颜色",
+            "v": "蓝色"
+          },
+          {
+            "kid": "k2",
+            "vid": "v4",
+            "k": "尺码",
+            "v": "小杯"
+          }
+        ],
+      }
+    ]
+  }
+]

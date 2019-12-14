@@ -2,6 +2,7 @@
 .comment-panel-wrap {
   position: fixed;
   left: 30rpx;
+  bottom: calc(140rpx);
   bottom: calc(140rpx + constant(safe-area-inset-bottom));
   bottom: calc(140rpx + env(safe-area-inset-bottom));
   width: 70%;
@@ -19,13 +20,14 @@
   }
 
   .comment-panel-inner {
-    height: 380rpx;
+    height: 480rpx;
     width: calc(100% + 10px);
     padding-top: 70rpx;
+    box-sizing: border-box;
 
     .comment-item {
       overflow: hidden;
-      margin-bottom: 8rpx;
+      padding-bottom: 8rpx;
       margin-right: 10px;
 
       .comment-item-inner {

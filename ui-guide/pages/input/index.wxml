@@ -1,0 +1,126 @@
+<view class="m-b-xl">
+    <view class="h2 m-b-sm m-h-lg">常规用法</view>
+    <view class="m-v-sm">
+        <input
+            type="text"
+            placeholder="placeholder"
+            class="input"
+            placeholder-class="input__placeholder"
+        ></input>
+    </view>
+</view>
+
+<view class="m-b-xl">
+    <view class="h2 m-b-sm m-h-lg">带边框</view>
+    <view class="m-v-sm">
+        <input
+            type="text"
+            placeholder="placeholder"
+            class="input input--border"
+            placeholder-class="input__placeholder"
+        ></input>
+    </view>
+</view>
+
+<view class="m-b-xl">
+    <view class="h2 m-b-sm m-h-lg">聚焦</view>
+    <view class="m-v-sm">
+        <input
+            type="text"
+            value="预设输入"
+            class="input input input--focus"
+            placeholder-class="input__placeholder"
+        ></input>
+    </view>
+        <view class="m-v-sm">
+        <input
+            type="text"
+            value="预设输入"
+            class="input input--border input--focus"
+            placeholder-class="input__placeholder"
+        ></input>
+    </view>
+</view>
+
+<view class="m-b-xl">
+    <view class="h2 m-b-sm m-h-lg">输入错误</view>
+    <view class="m-v-sm">
+        <input
+            type="text"
+            value="错误的输入"
+            class="input input--error"
+            placeholder-class="input__placeholder"
+        ></input>
+    </view>
+    <view class="m-v-sm">
+        <input
+            type="text"
+            value="错误的输入"
+            class="input input--border input--error"
+            placeholder-class="input__placeholder"
+        ></input>
+    </view>
+</view>
+
+<view class="m-b-xl">
+    <view class="h2 m-b-sm m-h-lg">禁止输入</view>
+    <view class="m-v-sm">
+        <input
+            type="text"
+            value="预设输入"
+            disabled
+            class="input input--disabled"
+            placeholder-class="input__placeholder"
+        ></input>
+    </view>
+    <view class="m-v-sm">
+        <input
+            type="text"
+            value="预设输入"
+            disabled
+            class="input input--border input--disabled"
+            placeholder-class="input__placeholder"
+        ></input>
+    </view>
+</view>
+
+<view class="m-b-xl">
+    <view class="h2 m-b-sm m-h-lg">小尺寸</view>
+    <view class="row m-v-sm">
+        <view class="col-6 m-h-sm">
+            <input
+                type="text"
+                placeholder="placeholder"
+                class="input input--sm"
+                placeholder-class="input__placeholder"
+            ></input>
+        </view>
+        <view class="col-6 m-h-sm">
+            <input
+                type="text"
+                placeholder="placeholder"
+                class="input input--border input--sm"
+                placeholder-class="input__placeholder"
+            ></input>
+        </view>
+    </view>
+    <view class="row m-v-sm">
+        <view class="col-6 m-h-sm">
+            <input
+                type="text"
+                value="错误的输入"
+                placeholder="placeholder"
+                class="input input--border input--sm input--error"
+                placeholder-class="input__placeholder"
+            ></input>
+        </view>
+        <view class="col-6 m-h-sm">
+            <input
+                type="text"
+                value="预设输入"
+                class="input input--border input--sm input--disabled"
+                placeholder-class="input__placeholder"
+            ></input>
+        </view>
+    </view>
+</view>

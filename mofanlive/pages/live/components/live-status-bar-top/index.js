@@ -1,5 +1,5 @@
 import { connect } from "libs/redux/index.js"
-import { menuBtn } from "ui-kit/behaviors/menuBtn"
+import { menuBtn } from "ui-kit/behaviors/index"
 const app = getApp()
 const store = app.store
 

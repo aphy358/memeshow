@@ -1,0 +1,3 @@
+<view class="recycle-list-item">
+    <slot></slot>
+</view>

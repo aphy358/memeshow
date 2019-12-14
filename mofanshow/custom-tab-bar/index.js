@@ -1,6 +1,6 @@
 // custom-tab-bar/index.js
 import config from "../config/config.js"
-import { safeArea } from "behaviors/index"
+import { safeArea } from "ui-kit/behaviors/index"
 
 const { tabBar } = config
 

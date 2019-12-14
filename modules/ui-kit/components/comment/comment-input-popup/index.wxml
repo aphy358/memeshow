@@ -1,0 +1,29 @@
+
+<view class="comment-input-popup-wrap">
+  <hpopup
+    show="{{ show }}"
+    position="bottom"
+    custom-animation="{{ customAnimation }}"
+    bind:touchendMask="hideCommentInputPopup"
+  >
+  
+    <view class="comment-input-wrap">
+      <!-- 自定义评论输入区域的布局，以抽象节点的形式传入 -->
+      <view class="comment-input-inner">
+        <comment-input-area
+          adjustPosition="{{ adjustPosition }}" 
+          holdKeyboard="{{ holdKeyboard }}" 
+          show="{{ show }}"
+          replyTo="{{ replyTo }}"
+          
+          bind:showCommentInputPopup="showCommentInputPopup"
+          bind:hideCommentInputPopup="hideCommentInputPopup"
+          bind:createNewComment="createNewComment"
+        />
+      </view>
+
+      <!-- 占位元素，给它设置一个高度，这样当切换输入法键盘高度发生变化时，就不会因为输入框和键盘衔接不上而产生怪异的视觉效果 -->
+      <view class="comment-input-pholder"></view>
+    </view>
+  </hpopup>
+</view>

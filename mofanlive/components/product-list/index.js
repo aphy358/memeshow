@@ -29,6 +29,14 @@ Component({
       this.triggerEvent("buy", {
         id
       })
+    },
+
+    emitClose() {
+      this.triggerEvent("close")
     }
+  },
+
+  options: {
+    addGlobalClass: true
   }
 })

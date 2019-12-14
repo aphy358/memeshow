@@ -58,6 +58,7 @@
     "dateformat": "^3.0.3",
     "iview-weapp": "^2.0.0",
     "lodash": "^4.17.11",
-    "miniprogram-computed": "0.0.7"
+    "miniprogram-computed": "0.0.7",
+    "qs": "^6.9.1"
   }
 }

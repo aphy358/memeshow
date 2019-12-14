@@ -1,0 +1,7 @@
+<view class="action-bar" style="padding-bottom: {{isIPhoneX ? 68 : 0}}rpx;">
+  <view class="total">
+    <view class="total__label">共计：</view>
+    <view class="total__content">￥{{total/100}}</view>
+  </view>
+  <button class="button--primary button--mini" bind:tap="emitConfirm">提交订单</button>
+</view>

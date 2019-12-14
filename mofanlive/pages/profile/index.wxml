@@ -1,0 +1,21 @@
+<header
+    background-img="{{''}}"
+    user="{{userInfo}}"
+></header>
+
+<order-entry entry="{{orderEntry}}"></order-entry>
+
+<view class="cell__group white-back margin-top">
+    <view
+        class="cell"
+        wx:for="{{actions}}"
+        wx:key="title"
+    >
+        <view class="cell__header">
+            <view class="cell__title">{{item.title}}</view>
+        </view>
+        <view class="cell__tail">
+            <view class="icon icon-chevron-right cell__icon-link"></view>
+        </view>
+    </view>
+</view>

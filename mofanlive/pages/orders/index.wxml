@@ -1,0 +1,9 @@
+<view class="orders">
+    <block
+        wx:for="{{orders.list}}"
+        wx:for-item="order"
+        wx:key="id"
+    >
+        <order order="{{order}}"></order>
+    </block>
+</view>

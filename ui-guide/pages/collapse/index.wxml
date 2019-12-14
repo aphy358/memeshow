@@ -1,0 +1,8 @@
+<view class="m-b-xl">
+    <view class="h2 m-b-sm m-h-lg">一般用法</view>
+    <collapse>
+        <collapse-item title="标题1" key="key1">
+            内容
+        </collapse-item>
+    </collapse>
+</view>

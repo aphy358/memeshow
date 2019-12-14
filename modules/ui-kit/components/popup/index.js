@@ -41,12 +41,7 @@ Component({
     },
 
     // 阻止 touch move 事件穿透
-    onPreventDefault(e) {
-      console.log(e)
-      // if (e.mask.scrolltarget)
-
-      // e.stopPropagation()
-    }
+    onPreventDefault(e) {}
   },
 
   options: {

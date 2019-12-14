@@ -1,0 +1,11 @@
+.recycle-list-view {
+    position: relative;
+    height: 1000rpx;
+    overflow: hidden;
+}
+
+.recycle-list-item {
+    position: absolute;
+    width: 100%;
+    height: 300rpx;
+}

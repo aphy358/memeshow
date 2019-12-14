@@ -1,4 +1,4 @@
-import { safeArea, menuBtn } from "behaviors/index"
+import { safeArea, menuBtn } from "ui-kit/behaviors/index"
 import { connect } from "libs/redux/index.js"
 const app = getApp()
 const store = app.store

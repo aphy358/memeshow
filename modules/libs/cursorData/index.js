@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import { arrayLenthLimit } from './util'
+import { arrayLenthLimit } from '../utils'
 
 
 /**

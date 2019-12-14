@@ -1,0 +1,9 @@
+<view class="m-b-xl">
+    <view class="h2 m-b-sm m-h-lg">基本用法</view>
+    <view class="m-v-sm">
+        <checkbox-group>
+            <checkbox-item value="{{ 1 }}" title="多选项1"></checkbox-item>
+            <checkbox-item value="{{ 2 }}" title="多选项2"></checkbox-item>
+        </checkbox-group>
+    </view>
+</view>

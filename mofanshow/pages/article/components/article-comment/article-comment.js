@@ -1,5 +1,5 @@
 import { switchStarStatus, addNewComment } from '@/components/comment/commentHelper.js'
-import { safeArea } from "behaviors/index"
+import { safeArea } from "ui-kit/behaviors/index"
 
 Component({
   behaviors: [safeArea()],

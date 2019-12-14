@@ -1,0 +1,65 @@
+<view class="m-b-xl">
+    <view class="h2 m-b-sm m-h-lg">基本用法</view>
+    <view class="m-v-sm">
+        <mf-textarea placeholder="placeholder"></mf-textarea>
+    </view>
+</view>
+
+<view class="m-b-xl">
+    <view class="h2 m-b-sm m-h-lg">字数统计</view>
+    <view class="m-v-sm">
+        <mf-textarea counter placeholder="placeholder"></mf-textarea>
+    </view>
+</view>
+
+<view class="m-b-xl">
+    <view class="h2 m-b-sm m-h-lg">带边框</view>
+    <view class="m-v-sm">
+        <mf-textarea border counter placeholder="placeholder"></mf-textarea>
+    </view>
+</view>
+
+<view class="m-b-xl">
+    <view class="h2 m-b-sm m-h-lg">高度自定义</view>
+    <view class="m-v-sm">
+        <mf-textarea
+            border
+            counter
+            height="600"
+            placeholder="placeholder"
+        ></mf-textarea>
+    </view>
+</view>
+
+<view class="m-b-xl">
+    <view class="h2 m-b-sm m-h-lg">错误状态</view>
+    <view class="m-v-sm">
+        <mf-textarea
+            border
+            counter
+            error
+            value="预设输入"
+        ></mf-textarea>
+    </view>
+</view>
+
+<view class="m-b-xl">
+    <view class="h2 m-b-sm m-h-lg">禁用状态</view>
+    <view class="m-v-sm">
+        <mf-textarea
+            border
+            counter
+            disabled
+            value="预设输入"
+        ></mf-textarea>
+    </view>
+</view>
+
+<view class="m-b-xl">
+    <view class="h2 m-b-sm">支持的事件</view>
+    <view class="m-v-sm">focus</view>
+    <view class="m-v-sm">blur</view>
+    <view class="m-v-sm">lineChange</view>
+    <view class="m-v-sm">confirm</view>
+    <view class="m-v-md">事件参数参考官方组件对应事件</view>
+</view>

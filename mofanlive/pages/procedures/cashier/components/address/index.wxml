@@ -1,0 +1,21 @@
+<view
+    class="cell white-background margin-top-bottom"
+    wx:if="{{!addr.name}}"
+    catch:tap="addAddress"
+>
+    <view class="cell__header">
+        <view class="cell__title">请添加地址</view>
+    </view>
+</view>
+<view
+    class="cell white-background margin-top-bottom"
+    wx:else
+    catch:tap="selectAddress"
+>
+    <view class="cell__header">
+        <view class="cell__title--multi">
+            <view class="cell__title">{{addr.name + ' ' + addr.tel}}</view>
+            <view class="cell__desc">{{addr.province + addr.city + addr.district + addr.address}}</view>
+        </view>
+    </view>
+</view>

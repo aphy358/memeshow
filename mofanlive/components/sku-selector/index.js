@@ -1,6 +1,6 @@
 import computedBehavior from 'miniprogram-computed'
-import { safeArea } from 'ui-kit/behaviors/safeArea'
-const _ = require('lodash')
+import { safeArea } from 'ui-kit/behaviors/index'
+import _ from 'lodash'
 
 Component({
   behaviors: [safeArea(), computedBehavior],
@@ -179,54 +179,52 @@ Component({
       const index = _.findIndex(selectedProp, o => {
         return o.kid == kid
       });
-      (index === -1) ? addProp(selectedProp, kid, vid) : modifyProp(selectedProp, index, kid, vid)
 
-      if (selectedProp.length === this.data.props.length) {
-        updateSkuId(this.data)
-      } else {
-        this.data.id = ""
-      }
-      this.setData({
-        selectedProp
-      })
-      this.emitSelectEvent()
-
-      function addProp(selectedProp, kid, vid) {
+      if (index === -1) {
+        // 属性值未选择
         selectedProp.push({
           kid: kid,
           vid: vid
         })
-      }
-
-      function modifyProp(selectedProp, index, kid, vid) {
+      } else {
         selectedProp[index].vid == vid ? selectedProp.splice(index, 1) : selectedProp.splice(index, 1, {
           kid: kid,
           vid: vid
         })
       }
+      // (index === -1) ? addProp(selectedProp, kid, vid) : modifyProp(selectedProp, index, kid, vid)
 
-      function updateSkuId(data) {
-        const selectedProp = data.selectedProp
-        var skus = data.skus
+      if (selectedProp.length === this.data.props.length) {
+        let skus = this.data.skus
         selectedProp.forEach(prop => {
           skus = _.filter(skus, sku => {
             return (_.findIndex(sku.specs, spec => spec.vid == prop.vid) != -1)
           })
         })
-        data.id = skus[0].id
+        this.data.id = skus[0].id
+      } else {
+        this.data.id = ""
       }
+      this.setData({
+        selectedProp
+      }, () => {
+        this.emitSelectEvent()
+      })
     },
 
     changeQuantity({
       detail
     }) {
+      const quantity = detail.value != NaN ? detail.value : 1
       this.setData({
-        quantity: detail
+        quantity
+      }, () => {
+        this.emitSelectEvent()
       })
     },
 
     emitSelectEvent() {
-      this.triggerEvent('selectedSku', {
+      this.triggerEvent('change', {
         sku: (this.data.selectedProp.length < this.data.props.length ? null : _.find(this.data.skus, ['id', this.data.id])),
         quantity: this.data.quantity
       })

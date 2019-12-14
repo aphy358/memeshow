@@ -1,0 +1,9 @@
+{
+  "component": true,
+  "componentGenerics": {
+    "comment-input-area": true
+  },
+  "usingComponents": {
+    "hpopup": "../../hpopup/index"
+  }
+}

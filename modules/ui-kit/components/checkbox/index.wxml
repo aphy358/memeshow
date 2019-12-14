@@ -1,0 +1,14 @@
+<!-- Checkbox Component -->
+
+<view
+    class="checkbox {{ disabled ? 'checkbox--disabled' : '' }}"
+    bindtap="onTap"
+>
+    <view class="checkbox__title">
+        <text class="checkbox__label">{{ title }}</text>
+        <text wx:if="{{ desc }}" class="checkbox__desc">{{ desc }}</text>
+    </view>
+    <view class="checkbox__icon">
+        <view class="icon {{ checked ? 'icon-check' : '' }}"></view>
+    </view>
+</view>

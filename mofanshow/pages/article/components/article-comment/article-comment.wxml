@@ -75,6 +75,7 @@
 <!-- 评论输入弹出框 -->
 <comment-input-popup
   show="{{ ifShowCommentInputPopup }}"
+  generic:comment-input-area="common-comment-input-area"
   replyTo="{{ replyTo }}"
   bind:hideCommentInputPopup="hideCommentInputPopup"
   bind:createNewComment="createNewComment"

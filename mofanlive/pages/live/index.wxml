@@ -8,7 +8,61 @@
   /> -->
 
   <!-- 覆盖在 live-player 上，可通过滑动切换显示与隐藏的一层 -->
-  <live-swipe-cover />
+  <swiper 
+    class="live-cover-wrap"
+    duration="{{ 300 }}"
+    current="{{ 1 }}"
+  >
+    <swiper-item></swiper-item>
+
+    <swiper-item>
+
+      <!-- 顶部状态栏 -->
+      <live-status-bar-top />
+
+
+      <!-- 弹幕 -->
+      <live-bullet />
+
+
+      <!-- 直播评论列表面板 -->
+      <live-comment-panel newComment="{{ newComment }}" />
+
+
+      <!-- 直播促销 -->
+      <live-promotion />
+
+
+      <!-- 直播公告 -->
+      <live-announcement />
+
+
+      <!-- 直播弹窗 -->
+      <live-popup />
+
+
+      <!-- 底部操作栏 -->
+      <live-operate-bar />
+
+
+      <!-- 评论输入弹出框 -->
+      <comment-input-popup
+        generic:comment-input-area="live-comment-input-area"
+        show="{{ showCommentInputPopup }}"
+        bind:hideCommentInputPopup="hideCommentInputPopup"
+        bind:createNewComment="createNewComment"
+      />
+
+      <mf-product-list
+        bind:close="handleProductListClose"
+        bind:product="navToProduct"
+        open="{{productListVisibility}}"
+        products="{{productList}}"
+      />
+    </swiper-item>
+
+    <swiper-item></swiper-item>
+  </swiper>
 
   <view class="exit-img" style="top:{{ menuBtn.top }}px;width:{{ menuBtn.height }}px;height:{{ menuBtn.height }}px;">
     <image class="img" src="./assets/exit2.png" />

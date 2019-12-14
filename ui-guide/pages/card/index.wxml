@@ -32,7 +32,7 @@
     <view class="card">
         <view class="card__header">
             <view class="card__title">这里是标题</view>
-            <view class="ccard__extra">额外文本</view>
+            <view class="card__extra">额外文本</view>
         </view>
         <view class="card__content">
             <view class="card__info">

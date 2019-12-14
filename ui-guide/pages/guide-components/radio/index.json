@@ -1,6 +1,0 @@
-{
-  "usingComponents": {
-    "mf-radio-group": "../../../components/form/radio-group/index",
-    "mf-radio": "../../../components/form/radio/index"
-  }
-}

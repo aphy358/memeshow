@@ -1,0 +1,20 @@
+<view class="input-number {{ disabled ? 'inputnumber--disabled' : '' }} {{ error ? 'inputnumber--error' : '' }}">
+    <view
+        class="input-number__btn input-number__btn-sub {{ value <= min ? 'input-number__btn--disabled' : '' }}"
+        bindtap="onMinus"
+    >
+        <view class="icon icon-subtract"></view>
+    </view>
+    <input
+        value="{{ value }}"
+        type="{{ digit ? 'digit' : 'number' }}"
+        class="input-number__input"
+        bindinput="onInput"
+    ></input>
+    <view
+        class="input-number__btn input-number__btn-add {{ value >= max ? 'input-number__btn--disabled' : '' }}"
+        bindtap="onPlus"
+    >
+        <view class="icon icon-add"></view>
+    </view>
+</view>

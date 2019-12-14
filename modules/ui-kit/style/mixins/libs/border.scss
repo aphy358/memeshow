@@ -3,24 +3,37 @@
  */
 @import "./size.scss";
 
-@mixin border-thin($color: $color-border-light, $style: solid, $directions: top bottom right left, $width: 1) {
-  @each $value in $directions {
-    border-#{$value}: size($width) $color $style;
-  }
+@mixin border-thin(
+    $color: $color-border-light,
+    $style: solid,
+    $directions: top bottom right left,
+    $width: 1
+) {
+    @each $value in $directions {
+        border-#{$value}: size($width) $color $style;
+    }
 }
 
 @mixin border-thin-top($color: $color-border-light, $style: solid, $width: 1) {
-  @include border-thin($color, $style, top, $width);
+    @include border-thin($color, $style, top, $width);
 }
 
 @mixin border-thin-left($color: $color-border-light, $style: solid, $width: 1) {
-  @include border-thin($color, $style, left, $width);
+    @include border-thin($color, $style, left, $width);
 }
 
-@mixin border-thin-right($color: $color-border-light, $style: solid, $width: 1) {
-  @include border-thin($color, $style, right, $width);
+@mixin border-thin-right(
+    $color: $color-border-light,
+    $style: solid,
+    $width: 1
+) {
+    @include border-thin($color, $style, right, $width);
 }
 
-@mixin border-thin-bottom($color: $color-border-light, $style: solid, $width: 1) {
-  @include border-thin($color, $style, bottom, $width);
+@mixin border-thin-bottom(
+    $color: $color-border-light,
+    $style: solid,
+    $width: 1
+) {
+    @include border-thin($color, $style, bottom, $width);
 }

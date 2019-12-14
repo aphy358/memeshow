@@ -1,0 +1,40 @@
+<view class="m-b-xl">
+    <view class="h2 m-b-sm m-h-lg">基本用法</view>
+    <view class="m-v-sm">
+        <radio-group>
+            <radio-item value="{{ 1 }}" title="单选项1"></radio-item>
+            <radio-item value="{{ 2 }}" title="单选项2"></radio-item>
+        </radio-group>
+    </view>
+</view>
+
+<view class="m-b-xl">
+    <view class="h2 m-b-sm m-h-lg">预选</view>
+    <view class="m-v-sm">
+        <radio-group default="{{ 1 }}">
+            <radio-item value="{{ 1 }}" title="单选项1"></radio-item>
+            <radio-item value="{{ 2 }}" title="单选项2"></radio-item>
+        </radio-group>
+    </view>
+</view>
+
+<view class="m-b-xl">
+    <view class="h2 m-b-sm m-h-lg">禁用某个选项</view>
+    <view class="m-v-sm">
+        <radio-group>
+            <radio-item value="{{ 1 }}" title="禁用项" disabled></radio-item>
+            <radio-item value="{{ 2 }}" title="单选项2"></radio-item>
+            <radio-item value="{{ 3 }}" title="单选项3"></radio-item>
+        </radio-group>
+    </view>
+</view>
+
+<view class="m-b-xl">
+    <view class="h2 m-b-sm m-h-lg">带描述</view>
+    <view class="m-v-sm">
+        <radio-group default="{{ 1 }}">
+            <radio-item value="{{ 1 }}" title="单选项1" desc="我就是选项1的描述"></radio-item>
+            <radio-item value="{{ 2 }}" title="单选项2"></radio-item>
+        </radio-group>
+    </view>
+</view>

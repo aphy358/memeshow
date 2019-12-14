@@ -1,76 +1,40 @@
-@import '../variables/default.scss';
-@import '../mixins/index.scss';
+@import "../variables/default.scss";
+@import "../mixins/index.scss";
 
-.at-radio {
-  position: relative;
-  background-color: $color-bg;
-  @include hairline-top-relative();
-  @include hairline-bottom-relative();
+.radio-group {
+    background: $radio-color-bg;
+}
 
-  /* elements */
-  &__option-wrap {
-    padding: $spacing-v-lg $spacing-h-xl $spacing-v-lg 0;
-  }
+.radio {
+    @include display-flex();
+    @include justify-content(space-between);
+    padding: $spacing-v-md $spacing-h-lg;
 
-  &__option-container {
-    display: flex;
-  }
-
-  &__title {
-    flex: 6;
-    color: $at-radio-title-color;
-    font-size: $at-radio-title-size;
-    text-align: left;
-    line-height: $line-height-zh;
-    word-break: break-all;
-  }
-
-  &__icon {
-    flex: 1;
-    font-size: $at-radio-title-size;
-    text-align: right;
-    overflow: hidden;
-    visibility: hidden;
-
-    &--checked {
-      visibility: visible;
+    &__title {
+        @include display-flex();
+        flex-flow: column nowrap;
     }
 
-    .at-icon {
-      color: $at-radio-check-color;
+    &__label {
+        font-size: $font-size-lg;
+        line-height: $line-height-lg;
     }
-  }
 
-  &__desc {
-    display: block;
-    width: 86%;
-    color: $at-radio-desc-color;
-    font-size: $at-radio-desc-size;
-    text-align: left;
-    line-height: $line-height-zh;
-    letter-spacing: 0;
-    word-break: break-all;
-  }
+    &__desc {
+        margin-top: $spacing-text-base;
+        font-size: $font-size-sm;
+        line-height: $line-height-sm;
+        color: $color-text-placeholder;
+    }
 
-  &__option {
-    padding-left: $spacing-h-xl;
-    @include active;
+    &__icon {
+        min-width: size(20);
+        min-height: size(20);
+        color: $radio-check-color;
+        font-size: $icon-size-sm;
+    }
 
     &--disabled {
-      .at-radio__option-container,
-      .at-radio__desc {
         opacity: $opacity-disabled;
-      }
-
-      &:active {
-        background-color: inherit;
-      }
     }
-  }
-
-  &__option + &__option {
-    .at-radio__option-wrap {
-      @include hairline-top();
-    }
-  }
 }

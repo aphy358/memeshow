@@ -1,0 +1,117 @@
+@import "@/theme";
+
+.order {
+  width: 100%;
+  @include hairline-bottom;
+  margin: $spacing-v-sm 0;
+
+  &-header {
+    width: 100%;
+    box-sizing: border-box;
+    padding-bottom: $spacing-v-lg;
+    @include flex-row-nowrap;
+    @include hairline-bottom;
+
+    &__title {
+      font-size: $font-size-lg;
+      font-family: $font-cn;
+      color: $color-text-base;
+    }
+  }
+
+  &-content {
+    width: 100%;
+    box-sizing: border-box;
+    padding: $spacing-v-lg 0;
+    @include hairline-bottom;
+
+    &__item {
+      width: 100%;
+      box-sizing: border-box;
+      @include flex-row-nowrap;
+
+      &-thumbnail {
+        $thumbnail-size: 200rpx;
+
+        width: $thumbnail-size;
+        height: $thumbnail-size;
+        margin-right: $spacing-h-lg;
+      }
+
+      &-detail {
+        position: relative;
+        flex: 1;
+
+        &__title {
+          font-size: $font-size-lg;
+          font-family: $font-cn;
+          color: $color-text-base;
+          display: -webkit-box;
+          -webkit-box-orient: vertical;
+          -webkit-line-clamp: 1;
+          overflow: hidden;
+        }
+
+        &__specs {
+          font-size: $font-size-base;
+          font-family: $font-cn;
+          color: $color-text-placeholder;
+          margin-top: $spacing-v-sm;
+        }
+
+        &__price {
+          font-size: $font-size-xxl;
+          font-family: $font-cn;
+          color: $color-error;
+          position: absolute;
+          bottom: 0;
+          left: 0;
+        }
+
+        &__quantity {
+          font-size: $font-size-base;
+          font-family: $font-cn;
+          color: $color-text-base;
+          position: absolute;
+          bottom: 0;
+          right: 0;
+        }
+      }
+    }
+  }
+
+  &-tail {
+    width: 100%;
+
+    &__total {
+      @include flex-row-nowrap;
+      @include hairline-bottom;
+      justify-content: flex-end;
+      align-items: baseline;
+      padding: $spacing-v-lg 0;
+
+      &-quantity {
+        font-size: $font-size-base;
+        color: $color-text-base;
+        font-family: $font-cn;
+        margin-right: $spacing-h-sm;
+      }
+
+      &-amount {
+        font-size: $font-size-xxl;
+        color: $color-error;
+        font-family: $font-cn;
+      }
+    }
+
+    &__actions {
+      @include flex-row-nowrap;
+      justify-content: flex-end;
+      padding-top: $spacing-v-lg;
+
+      button {
+        margin-right: $spacing-h-sm;
+      }
+    }
+  }
+}

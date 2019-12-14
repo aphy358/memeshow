@@ -1,78 +1,73 @@
-@import '../variables/default.scss';
-@import '../mixins/index.scss';
+@import "../variables/default.scss";
+@import "../mixins/index.scss";
 
-$component: '.at-input-number';
-$at-input-number-btn-padding: 12px;
-$at-input-number-btn-padding-lg: 20px;
-
-#{$component} {
-  display: inline-flex;
-  @include border-thin($width: 1PX);
-
-  font-size: $at-input-number-font-size;
-  border-radius: $border-radius-md;
-  background-color: $color-bg;
-  overflow: hidden;
-
-  /* elements */
-  &__btn {
-    position: relative;
+.input-number {
+    height: $input-number-height;
     display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: $at-input-number-btn-padding;
-    color: $at-input-number-btn-color;
-    font-size: 0;
-    text-align: center;
-    line-height: $line-height-base;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
     overflow: hidden;
-    @include active;
+    font-size: $font-size-base;
+    line-height: $line-height-line;
 
-    &-subtract,
-    &-add {
-      font-size: $at-input-number-btn-size;
-      line-height: $at-input-number-btn-size;
-    }
-  }
+    &__btn {
+        display: flex;
+        overflow: hidden;
+        justify-content: center;
+        align-items: center;
+        padding: 0 size(10);
+        border: size(1) solid $input-number-color-border;
+        color: $input-number-color-btn;
+        text-align: center;
 
-  &__input,
-  input {
-    display: inline-block;
-    width: $at-input-number-width-min;
-    height: auto;
-    border-radius: 0;
-    color: $at-input-number-text-color;
-    font-size: $at-input-number-font-size;
-    text-align: center;
-    line-height: $line-height-zh;
-    @include border-thin($width: 1PX, $directions: left right);
-  }
+        &-sub,
+        &-add {
+            font-size: $input-number-btn-size;
+            line-height: $input-number-btn-size;
+        }
 
-  /* modifiers */
-  &--disabled {
-    color: $color-text-disabled;
-
-    &:active {
-      background-color: inherit;
-    }
-  }
-
-  &--lg {
-    #{$component}__btn {
-      padding: $at-input-number-btn-padding-lg;
-      font-size: $at-input-number-font-size-lg;
-
-      &-subtract,
-      &-add {
-        font-size: $at-input-number-btn-size-lg;
-      }
+        &--disabled {
+            color: $color-text-disabled;
+            border-color: $color-text-disabled;
+        }
     }
 
-    input,
-    #{$component}__input {
-      padding: $spacing-v-sm;
-      font-size: $at-input-number-font-size-lg;
-      width: $at-input-number-width-min-lg;
+    &__input,
+    input {
+        height: auto;
+        width: $input-number-width-min;
+        border-top: size(1) solid $input-number-color-border;
+        border-bottom: size(1) solid $input-number-color-border;
+        border-radius: 0;
+        color: $color-text-base;
+        text-align: center;
     }
-  }
+
+    // /* modifiers */
+    // &--disabled {
+    //     color: $color-text-disabled;
+
+    //     &:active {
+    //         background-color: inherit;
+    //     }
+    // }
+
+    // &--lg {
+    //     .input-number__btn {
+    //         padding: $input-number-btn-padding-lg;
+    //         font-size: $input-number-font-size-lg;
+
+    //         &-subtract,
+    //         &-add {
+    //             font-size: $input-number-btn-size-lg;
+    //         }
+    //     }
+
+    //     input,
+    //     .input-number__input {
+    //         padding: $spacing-v-sm;
+    //         font-size: $input-number-font-size-lg;
+    //         width: $input-number-width-min-lg;
+    //     }
+    // }
 }

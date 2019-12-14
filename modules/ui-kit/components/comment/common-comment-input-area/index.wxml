@@ -1,0 +1,21 @@
+
+<input 
+  class="comment-input" type="text" 
+
+  focus="{{ show }}"
+  hold-keyboard="{{ holdKeyboard }}"
+  adjust-position="{{ adjustPosition }}" 
+  value="{{ inputContent }}"
+  placeholder="{{ inputPlaceholder }}" 
+
+  bindkeyboardheightchange="keyboardheightchange" 
+  bindinput="bindinput"
+  bindfocus="bindfocus"
+  bindblur="bindblur"
+  bindconfirm="bindconfirm"
+/>
+
+<view class="footer-wrap">
+  <text class="footer-send-btn{{ inputContent === '' ? '' : ' active' }}" bind:tap="confirmInput">发表</text>
+  <text class="footer-note">请少于100字</text>
+</view>

@@ -1,0 +1,11 @@
+.recycle-list-item {
+    height: 300rpx;
+    width: 100%;
+    background-color: #fff;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 32rpx;
+    color: #333;
+}

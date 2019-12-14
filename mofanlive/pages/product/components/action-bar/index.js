@@ -1,4 +1,4 @@
-import { safeArea } from "ui-kit/behaviors/safeArea"
+import { safeArea } from "ui-kit/behaviors/index"
 
 Component({
   methods: {

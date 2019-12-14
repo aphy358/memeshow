@@ -1,0 +1,21 @@
+<view class="header">
+    <view
+        class="header-title"
+        style="padding-top: {{safeArea.top}}px;"
+    >魔范秀</view>
+    <view class="header-user">
+        <view class="header-user__avatar"></view>
+        <view class="header-user__detail">
+            <block wx:if="{{!user}}">
+                <view
+                    bind:tap="login"
+                    class="header-user__detail-login"
+                >登录</view>
+            </block>
+            <block wx:else>
+                <view class="header-user__detail-name">hhh</view>
+                <view class="header-user__detail-desc">deschh</view>
+            </block>
+        </view>
+    </view>
+</view>

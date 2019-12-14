@@ -1,4 +1,4 @@
-import { safeArea } from "behaviors/index"
+import { safeArea } from "ui-kit/behaviors/index"
 import { animateTo } from 'libs/utils'
 import HTouch from 'libs/hTouch.js'
 const touchHandle = new HTouch()

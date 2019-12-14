@@ -7,8 +7,8 @@
     "not-interested-in": "./components/not-interested-in/index",
     "video-progress": "./components/video-progress/index",
     "red-stars": "./components/red-stars/index",
-    
-    "comment-input-popup": "/components/comment/comment-input-popup/comment-input-popup",
+    "comment-input-popup": "ui-kit/components/comment/comment-input-popup/index",
+    "common-comment-input-area": "ui-kit/components/comment/common-comment-input-area/index",
     "comment-popup": "/components/comment/comment-popup/comment-popup"
   }
 }

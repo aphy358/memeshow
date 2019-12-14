@@ -9,7 +9,7 @@ Component({
         },
         {
           type: 'shop',
-          avatar: "./logo.png",
+          avatar: "",
           name: "魔范小店",
         }
       ]

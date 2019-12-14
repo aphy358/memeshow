@@ -1,7 +1,7 @@
 <mf-popup
+    catch:close="emitCancel"
     closable
     open="{{open}}"
-    catch:close="emitCancel"
 >
     <view
         class="info-container"
@@ -40,9 +40,19 @@
         </view>
         <view class="count-container">
             <view class="count-title">购买数量</view>
+            <input-number
+                bind:change="changeQuantity"
+                step="{{1}}"
+                value="{{quantity}}"
+                min="{{1}}"
+            ></input-number>
         </view>
     </view>
-    <view class="action-container" slot="footer" style="padding-bottom: {{isIPhoneX ? 68 : 0}}rpx;">
+    <view
+        class="action-container"
+        slot="footer"
+        style="padding-bottom: {{isIPhoneX ? 68 : 0}}rpx;"
+    >
         <slot></slot>
     </view>
 </mf-popup>

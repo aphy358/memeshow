@@ -1,0 +1,65 @@
+<address
+    address="{{addr}}"
+    bind:change="changeAddress"
+></address>
+
+<view class="trades">
+    <view
+        class="white-back"
+        wx:for="{{trades}}"
+        wx:for-item="trade"
+        wx:key="shop.id"
+    >
+        <view class="card card--full">
+            <view class="card__header">
+                <image
+                    class="card__thumb"
+                    src="{{trade.shop.avatar}}"
+                />
+                <view class="card__title">{{trade.shop.name}}</view>
+            </view>
+            <view class="card__content">
+                <view class="card__info">
+                    <view
+                        class="sku {{skuIdx == trade.items.length-1 ? '' : 'hairline-bottom'}}"
+                        wx:for="{{trade.items}}"
+                        wx:for-index="skuIdx"
+                        wx:for-item="sku"
+                        wx:key="id"
+                    >
+                        <image
+                            class="sku-image"
+                            src="{{sku.thumbnail}}"
+                        />
+                        <view class="sku-detail">
+                            <view class="sku-detail-title">{{sku.title}}</view>
+                            <view class="sku-detail-spec">{{sku.spec}}</view>
+                            <view class="sku-detail-price">￥ {{sku.price}}</view>
+                        </view>
+                    </view>
+                </view>
+                <view class="form trade-form">
+                    <view class="form__item">
+                        <view class="form__item__label">备注</view>
+                        <view class="form__item__content">
+                            <input
+                                class="input"
+                                placeholder="选填，请先和卖家协商一致"
+                                placeholder-class="input__placeholder"
+                            />
+                        </view>
+                    </view>
+                </view>
+                <view class="subtotal">
+                    <view class="subtotal-quantity">共2件</view>
+                    <view class="subtotal-cost">
+                        <view class="subtotal-cost__label">小计：</view>
+                        <view class="subtotal-cost__content">￥246</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
+
+<action-bar catch:confirm="handleConfirm"></action-bar>

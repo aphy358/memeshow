@@ -1,0 +1,90 @@
+@import "@/theme";
+
+.white-back {
+  background-color: #fff;
+}
+
+.trades {
+  width: 100%;
+}
+
+.sku {
+  @include flex-row-nowrap;
+  $sku-image-size: 200rpx;
+
+  &-image {
+    width: $sku-image-size;
+    height: $sku-image-size;
+    margin-right: $spacing-h-lg;
+    align-self: center;
+  }
+
+  &-detail {
+    flex: 1;
+    display: flex;
+    flex-flow: column nowrap;
+    position: relative;
+    align-self: center;
+
+    &-title {
+      font-family: $font-cn;
+      font-size: $font-size-lg;
+      color: $color-text-base;
+    }
+
+    &-spec {
+      font-family: $font-cn;
+      font-size: $font-size-sm;
+      color: $color-text-placeholder;
+    }
+
+    &-price {
+      font-size: $font-size-xxl;
+      font-family: $font-cn;
+      color: $color-error;
+      margin-top: $spacing-v-lg;
+    }
+  }
+}
+
+.trade-form {
+  margin-top: $spacing-v-lg;
+}
+
+.subtotal {
+  width: 100%;
+  padding-top: $spacing-v-lg;
+  @include flex-row-nowrap;
+  justify-content: flex-end;;
+  align-items: baseline;
+
+  &-quantity {
+    font-size: $font-size-sm;
+    font-family: $font-cn;
+    color: $color-text-placeholder;
+  }
+
+  &-cost {
+    @include flex-row-nowrap;
+
+    &__label,
+    &__content {
+      font-size: $font-size-base;
+      font-family: $font-cn;
+    }
+
+    &__label {
+      color: $color-text-base;
+    }
+
+    &__content{
+      color: $color-error;
+    }
+  }
+}
+
+.hairline-bottom {
+  padding-bottom: $spacing-v-md;
+  margin-bottom: $spacing-v-md;
+  @include hairline-bottom;
+}

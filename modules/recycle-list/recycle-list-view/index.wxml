@@ -1,0 +1,14 @@
+<scroll-view
+    scroll-y
+    class="recycle-list-view"
+>
+    <view
+        wx:for="{{ size }}"
+        wx:key="*this"
+        class="recycle-list-item"
+        id="{{ 'recycle-list-item_' + item }}"
+        style="top:{{ renderData[item].offset }}rpx"
+    >
+        {{ renderData[item].title }}
+    </view>
+</scroll-view>

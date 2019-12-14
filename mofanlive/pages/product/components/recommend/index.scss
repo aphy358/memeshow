@@ -1,0 +1,61 @@
+@import "@/theme";
+
+.recommend {
+  width: 100%;
+  background-color: $color-white;
+
+  &-header {
+    width: 100%;
+    padding: $spacing-v-lg $spacing-h-lg;
+    box-sizing: border-box;
+    @include flex-row-nowrap;
+    justify-content: space-between;
+    align-items: center;
+
+    &__title {
+      font-size: $font-size-lg;
+      color: $color-text-base;
+      font-family: $font-cn;
+    }
+
+    &__tail {
+      font-size: $font-size-sm;
+      color: $color-text-placeholder;
+      font-family: $font-cn;
+    }
+  }
+
+  &-content {
+    @include flex-row-nowrap;
+  }
+
+  &-item {
+    flex: 1;
+    display: flex;
+    flex-flow: column nowrap;
+    padding: $spacing-v-sm $spacing-h-sm;
+
+    &__image {
+      $image-size: 220rpx;
+
+      width: $image-size;
+      height: $image-size;
+      align-self: center;
+    }
+
+
+    &__title {
+      font-size: $font-size-lg;
+      font-family: $font-cn;
+      color: $color-text-base;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      overflow: hidden;
+    }
+
+    &__price {
+      color: $color-error;
+    }
+  }
+}

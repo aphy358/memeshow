@@ -1,4 +1,7 @@
-import apis from "../../api/index"
+// import apis from "../../api/index"
+const procedures = wx.X.procedures
+
+import { productList, product } from "@/data/product"
 
 Page({
 
@@ -12,10 +15,14 @@ Page({
    * @param {string} desc - 商品详情 富文本
    * @param {array} skus - 商品规格列表
    * @param {array} skusImages - 商品不同规格对应的图片
+   * @param {object} shop - { id, name, avatar }
    */
   data: {
     id: "",
 
+    recommend: {
+      list: productList, // TODO use real Data
+    },
     selector: {
       // 标记当前弹出规格选项窗是否直接购买
       isBuying: false,
@@ -23,14 +30,27 @@ Page({
       // 标记是否弹出
       open: false,
       selection: {
-        skuId: "",
-        count: 0,
+        sku: null,
+        quantity: 0,
       }
     },
+    actions: [
+      {
+        type: 'spec',
+        content: "颜色 尺码",
+      },
+      {
+        type: 'shop',
+        avatar: "",
+        name: "",
+        id: "",
+      }
+    ]
   },
 
   onLoad(options) {
     this.data.id = options.id
+    console.log(this.data.id)
   },
 
   onReady() {
@@ -38,20 +58,28 @@ Page({
   },
 
   async init() {
-    const product = await apis.product.getProduct(this.data.id)
-    console.log(product)
-    this.setData(_.pick(product, [
+    // const product = await apis.product.getProduct(this.data.id)
+    const p = product.data
+    console.log(p)
+    const data = Object.assign(this.data, _.pick(p, [
       "title",
       "price",
       "originPrice",
       "soldCount",
       "medias",
       "desc",
-      "shop",
       "skus",
       "skuImages",
       "avatar",
+      "shop",
     ]))
+    const index = _.findIndex(data.actions, it => it.type === 'shop')
+    data.actions[index] = {
+      type: 'shop',
+      ...(p.shop)
+    }
+
+    this.setData(data)
   },
 
   handleAction(e) {
@@ -59,7 +87,7 @@ Page({
     const type = e.detail.type
 
     switch (type) {
-      case 'spec': this.toggleSelector(); break;
+      case 'spec': this.toggleSelector(true); break;
       case 'shop': this.navToShop(); break;
     }
   },
@@ -93,11 +121,37 @@ Page({
    */
   handleSelectorConfirm() {
     const isBuying = this.data.selector.isBuying
-    console.log(isBuying)
 
     // do somthing
+    isBuying ? this.navToCashier() : this.addToCart()
 
     this.toggleSelector()
+  },
+
+  /**
+   * 跳转到结算页面
+   */
+  navToCashier() {
+    const instance = procedures.open('cashier')
+    const emitter = instance.asCaller()
+
+    const selection = this.data.selector.selection
+
+    emitter.emit('init', {
+      [this.data.shop.id]: [
+        {
+          skuId: selection.sku.id,
+          quantity: selection.quantity,
+        }
+      ]
+    })
+  },
+
+  /**
+   * 将选择的sku添加到购物车
+   */
+  addToCart() {
+
   },
 
   /**
@@ -105,6 +159,9 @@ Page({
    * @param {*} e 
    */
   handleSelectSku(e) {
-    console.log(e)
+    console.log(e.detail)
+    this.setData({
+      "selector.selection": e.detail
+    })
   }
 })

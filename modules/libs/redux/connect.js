@@ -28,10 +28,10 @@ function connect(mapStateToProps, mapDispatchToProps) {
       attached: _attached,
       dettached: _dettached,
       lifetimes,
-      properties
+      properties,
     } = pageConfig
 
-    if (properties) isComponent = true
+    if (properties || lifetimes) isComponent = true
 
     function handleChange(options) {
       if (!this.unsubscribe) return
@@ -52,8 +52,8 @@ function connect(mapStateToProps, mapDispatchToProps) {
         handleChange.call(this, options)
       }
 
-      if (this.watch || this.data.watch) {
-        setWatcher(this)
+      if (pageConfig.watch) {
+        setWatcher(this, pageConfig.watch)
       }
 
       if (lifetimes && typeof lifetimes.attached === 'function') {
@@ -80,8 +80,12 @@ function connect(mapStateToProps, mapDispatchToProps) {
 
       typeof this.unsubscribe === 'function' && this.unsubscribe()
     }
-
-    if (isComponent) return assign({}, pageConfig, mapDispatch(app.store.dispatch), { attached: onLoad, dettached: onUnload })
+    
+    if (isComponent) {
+      pageConfig.methods = assign({}, pageConfig.methods, mapDispatch(app.store.dispatch))
+      pageConfig.lifetimes = assign({}, pageConfig.lifetimes, { attached: onLoad, dettached: onUnload })
+      return assign({}, pageConfig)
+    }
     return assign({}, pageConfig, mapDispatch(app.store.dispatch), { onLoad, onUnload })
   }
 }

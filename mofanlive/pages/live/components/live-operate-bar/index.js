@@ -8,7 +8,7 @@ let componentConfig = {
     // 允许页面的样式影响到组件
     styleIsolation: 'apply-shared'
   },
-  
+
   properties: {
 
   },
@@ -19,14 +19,36 @@ let componentConfig = {
 
   methods: {
     sendVoice(e) {
-      
-    }
 
-  }
+    },
+
+    openProductList() {
+      store.dispatch({
+        type: "LIVE_OPEN_PRODUCT_LIST"
+      })
+    },
+
+  },
+
+  lifetimes: {
+    ready() {
+    },
+    attached() {
+    },
+    detached() {
+    }
+  },
 }
 
 const mapStateToData = state => ({})
-const mapDispatchToPage = dispatch => ({})
+const mapDispatchToPage = dispatch => ({
+  showCommentInputPopup: () => {
+    dispatch({
+      type: "LIVE_SWITCH_COMMENT_INPUT_POPUP",
+      payload: true
+    })
+  }
+})
 
 let connectedConfig = connect(
   mapStateToData,

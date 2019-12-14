@@ -1,0 +1,12 @@
+<!-- Tab Component -->
+
+<view
+    id="tab-{{ index }}"
+    bindtap="onTap"
+    class="tab {{ disabled ? 'tab__disabled' : '' }} {{ activation ? 'tab__on' : '' }}"
+>
+    <view class="tab_content">
+        <slot></slot>
+    </view>
+    <view class="tab_dash" wx:if="{{ activation }}"></view>
+</view>

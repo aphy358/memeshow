@@ -1,5 +1,0 @@
-{
-    "usingComponents": {
-        "mf-switch": "../../../components/form/switch/index"
-    }
-}

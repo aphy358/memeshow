@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "header": "./components/header/index",
+    "order-entry": "./components/order-entry/index"
+  },
+  "navigationStyle": "custom",
+  "disableScroll": true
+}

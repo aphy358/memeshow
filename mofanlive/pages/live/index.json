@@ -2,6 +2,15 @@
   "navigationStyle": "custom",
   "navigationBarTextStyle": "white",
   "usingComponents": {
-    "live-swipe-cover": "./components/live-swipe-cover/index"
+    "live-status-bar-top": "./components/live-status-bar-top/index",
+    "live-comment-panel": "./components/live-comment-panel/index",
+    "live-promotion": "./components/live-promotion/index",
+    "live-announcement": "./components/live-announcement/index",
+    "live-popup": "./components/live-popup/index",
+    "live-operate-bar": "./components/live-operate-bar/index",
+    "mf-product-list": "/components/product-list/index",
+    "live-bullet": "./components/live-bullet/index",
+    "comment-input-popup": "ui-kit/components/comment/comment-input-popup/index",
+    "live-comment-input-area": "./components/live-comment-input-area/index"
   }
 }

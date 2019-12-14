@@ -1,6 +1,0 @@
-{
-    "usingComponents": {
-        "tabs": "../../../components/base/tabs/index",
-        "tab": "../../../components/base/tab/index"
-    }
-}

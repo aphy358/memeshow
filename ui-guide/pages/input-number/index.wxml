@@ -1,0 +1,85 @@
+<view class="m-b-xl">
+    <view class="h2 m-b-sm">基本用法</view>
+    <view class="m-v-sm">默认 min = 0,max = 9999 </view>
+    <view class="m-v-sm">
+        <input-number></input-number>
+    </view>
+</view>
+
+<view class="m-b-xl">
+    <view class="h2 m-b-sm">自定义初始值</view>
+    <view class="m-v-sm">
+        <input-number value="{{ 5 }}"></input-number>
+    </view>
+</view>
+
+<view class="m-b-xl">
+    <view class="h2 m-b-sm">自定义范围</view>
+    <view class="m-v-sm"> min = 0,max = 3 </view>
+    <view class="m-v-sm">
+        <input-number max="{{ 3 }}"></input-number>
+    </view>
+</view>
+
+<view class="m-b-xl">
+    <view class="h2 m-b-sm">自定义步进</view>
+    <view class="m-v-sm">
+        <view class="row">
+            <view class="col-6">
+                <input-number step="{{ 2 }}"></input-number>
+            </view>
+            <view class="col-6">
+                <input-number step="{{ 5 }}"></input-number>
+            </view>
+        </view>
+    </view>
+</view>
+
+<view class="m-b-xl">
+    <view class="h2 m-b-sm">支持小数</view>
+    <view class="m-v-sm">
+        <input-number digit step="{{ 0.1 }}" value="{{ 1 }}"></input-number>
+    </view>
+</view>
+
+<view class="m-b-xl">
+    <view class="h2 m-b-sm">todo :支持起步价</view>
+    <view class="m-v-sm">
+        <input-number step="{{ 0.1 }}" value="{{ 1 }}"></input-number>
+    </view>
+</view>
+
+
+<view class="m-b-xl">
+    <view class="h2 m-b-md">支持的事件</view>
+        <view class="row m-v-sm">
+        <view class="col-2">
+            focus
+        </view>
+        <view class="col-6">
+            event.detail={value,height}
+        </view>
+        <view class="col-4">
+            height 为键盘高度
+        </view>
+    </view>
+    <view class="row m-v-sm">
+        <view class="col-2">
+            focus
+        </view>
+        <view class="col-6">
+            event.detail={value,height}
+        </view>
+        <view class="col-4">
+            height 为键盘高度
+        </view>
+    </view>
+    <view class="row m-v-sm">
+        <view class="col-2">
+            blur
+        </view>
+        <view class="col-6">
+            event.detail={value}
+        </view>
+    </view>
+</view>

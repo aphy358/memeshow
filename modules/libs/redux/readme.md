@@ -116,11 +116,11 @@ let componentConfig = {
 
   data: {
     testData: 0,
+  },
 
-    // 这里可以对 data 里的数据项进行 watch，注意这里的 watch 是作为 data 的一个属性存在的，这是和页面中写法不同的地方
-    watch: {
-      testData(newVal, oldVal){}
-    },
+  // 这里可以对 data 里的数据项进行 watch
+  watch: {
+    testData(newVal, oldVal){}
   },
 
   methods: {

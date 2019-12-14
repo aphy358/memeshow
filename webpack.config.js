@@ -88,17 +88,21 @@ const walkProject = () => {
 }
 
 const walkPage = path => {
-  const context = setEntry(path)
+  const context = distContext(path)
   if (!context) return
-  walkComponentsRecursively(path, context)
+  if (setEntry(context)) {
+    walkComponentsRecursively(path, context)
+  }
 }
 
 const walkComponent = (path, configContext, originalPath) => {
-  const context = setEntry(path)
+  const context = distContext(path)
   if (!context) return
-  // 配置文件中公共组件路径替换为真实路径
+  // 配置文件中组件路径替换为真实路径
   setResolves(context, configContext, originalPath)
-  walkComponentsRecursively(path, context)
+  if (setEntry(context)) {
+    walkComponentsRecursively(path, context)
+  }
 }
 
 const walkComponentsRecursively = (path, context) => {
@@ -138,16 +142,15 @@ const walkComponentsRecursively = (path, context) => {
   })
 }
 
-const setEntry = path => {
-  const context = distContext(path)
-  if (!context) return
+const setEntry = context => {
   // 打包入口名需要去除文件后缀
   const { dir, name } = parse(context.distPath)
   const entryName = relative(dist, resolve(dir, name))
   if (!entries[entryName]) {
-    entries[entryName] = path
-    return context
+    entries[entryName] = context.path
+    return true
   }
+  return false
 }
 
 const distContext = path => {

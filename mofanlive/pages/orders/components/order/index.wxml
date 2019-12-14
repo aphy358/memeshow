@@ -1,0 +1,38 @@
+<view class="order">
+    <view class="order-header">
+        <view class="order-header__title">{{order.shop.name}}</view>
+    </view>
+    <view class="order-content">
+        <view
+            class="order-content__item"
+            wx:for="{{order.items}}"
+            wx:key="skuId"
+        >
+            <image
+                class="order-content__item-thumbnail"
+                src="{{item.thumbnail}}"
+            />
+            <view class="order-content__item-detail">
+                <view class="order-content__item-detail__title">{{item.title}}</view>
+                <view class="order-content__item-detail__specs">{{item.specs}}</view>
+                <view class="order-content__item-detail__price">￥{{item.price}}</view>
+                <view class="order-content__item-detail__quantity">x{{item.quantity}}</view>
+            </view>
+        </view>
+    </view>
+    <view class="order-tail">
+        <view class="order-tail__total">
+            <view class="order-tail__total-quantity">共 {{order.quantity}} 件</view>
+            <view class="order-tail__total-amount">￥{{order.finalAmount}}</view>
+        </view>
+        <view class="order-tail__actions">
+            <block
+                wx:for="{{order.actions}}"
+                wx:for-item="action"
+                wx:key="*this"
+            >
+                <button class="button--secondary button--mini button--circle">{{actionMap[action]}}</button>
+            </block>
+        </view>
+    </view>
+</view>

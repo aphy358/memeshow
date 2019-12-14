@@ -2,7 +2,7 @@
  * List component
  */
 
-import { baseBehavior } from "behaviors/index"
+import { baseBehavior } from "ui-kit/behaviors/index"
 // es6 module 兼用性问题
 // import Column from "./Column"
 const Column = require("./Column")

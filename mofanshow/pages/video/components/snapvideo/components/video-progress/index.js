@@ -1,7 +1,7 @@
 import { connect } from "libs/redux/index.js"
 const app = getApp()
 const store = app.store
-import { safeArea } from "behaviors/index"
+import { safeArea } from "ui-kit/behaviors/index"
 import { animateTo } from 'libs/utils.js';
 
 let componentConfig = {

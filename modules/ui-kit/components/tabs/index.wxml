@@ -1,0 +1,40 @@
+<!-- Tabs Component -->
+<view
+    wx:if="{{ stickable }}"
+    class="tabs__observer__placeholder"
+    style="height: 1rpx"
+></view>
+
+<view
+    class="tabs {{ sticky ? 'tabs__sticky' : '' }}"
+    style="{{ sticky ? ('top:' + offset + 'px') : '' }}"
+>
+    <view class="tabs-left">
+        <slot name="before"></slot>
+    </view>
+    <scroll-view
+        wx:if="{{ scroll }}"
+        enable-flex
+        scroll-x
+        scroll-into-view="{{ 'tab-' + current }}"
+        scroll-with-animation
+        class="tabs-content__scroll"
+    >
+        <slot></slot>
+    </scroll-view>
+    <view
+        wx:else
+        class="tabs-content"
+    >
+        <slot></slot>
+    </view>
+    <view class="tabs-right">
+        <slot name="after"></slot>
+    </view>
+</view>
+
+<view
+    wx:if="{{ sticky }}"
+    class="tabs__placeholder"
+>
+</view>

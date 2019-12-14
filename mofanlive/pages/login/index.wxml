@@ -1,0 +1,19 @@
+
+<view class="login-outer">
+  
+  <view class="login-inner">
+    <view class="logo-wrap">
+      <image class="img" src="{{ avatar }}" />
+    </view>
+    
+    <button 
+      class="login-btn" 
+      type="primary"
+      open-type="getUserInfo"
+      bindgetuserinfo="getuserinfo"
+    >微信登录</button>
+
+    <button class="login-btn plain" plain bind:tap="gotoRegister">手机号登录/注册</button>
+  </view>
+
+</view>

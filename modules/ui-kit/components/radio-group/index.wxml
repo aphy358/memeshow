@@ -1,0 +1,5 @@
+<!-- Radio Group Component -->
+
+<view class="radio-group">
+    <slot></slot>
+</view>

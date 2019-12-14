@@ -1,4 +1,4 @@
-import { safeArea } from "behaviors/index"
+import { safeArea } from "ui-kit/behaviors/index"
 import { switchStarStatus, addNewComment } from '@/components/comment/commentHelper.js'
 import { animateTo } from 'libs/utils.js';
 import CommentCursorDataDelegator from './assets/commentCursorDataDelegator.js'

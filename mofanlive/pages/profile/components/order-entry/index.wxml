@@ -1,0 +1,24 @@
+<view class="card white-back margin-top">
+    <view class="card__header">
+        <view class="card__title">我的订单</view>
+        <view
+            bind:tap="navToOrders"
+            class="card__extra"
+            data-type="all"
+        >全部 ></view>
+    </view>
+    <view class="card__content">
+        <view class="card__info entries">
+            <view
+                bind:tap="navToOrders"
+                class="entry"
+                data-type="{{item.type}}"
+                wx:for="{{entry}}"
+                wx:key="title"
+            >
+                <view class="entry__icon">icon</view>
+                <view class="entry__title">{{item.title}}</view>
+            </view>
+        </view>
+    </view>
+</view>

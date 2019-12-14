@@ -1,6 +1,7 @@
 {
   "component": true,
   "usingComponents": {
-    "mf-popup": "ui-kit/components/popup/index"
+    "mf-popup": "ui-kit/components/popup/index",
+    "input-number": "ui-kit/components/input-number/index"
   }
 }

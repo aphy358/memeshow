@@ -4,7 +4,7 @@
 .at-activity-indicator {
   @include display-flex();
 
-  line-height: $line-height-base;
+  line-height: $line-height-line;
 
   /* elements */
   &__body {

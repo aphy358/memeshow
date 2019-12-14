@@ -1,179 +1,87 @@
-@import '../variables/default.scss';
-@import '../mixins/index.scss';
+@import "../variables/default.scss";
+@import "../mixins/index.scss";
 
-$component:'.at-tabs';
-$at-tabs-pane-min-height: 100px;
-
-#{$component} {
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-
-  /* elements */
-  &__item {
+.tabs {
+    @include display-flex();
+    @include justify-content(space-between);
     position: relative;
-    flex: 1;
-    padding: $spacing-v-lg $spacing-h-lg;
-    color: $at-tabs-color;
-    font-size: $at-tabs-font-size;
-    text-overflow: ellipsis;
-    overflow: hidden;
-
-    &-underline {
-      display: block;
-      position: absolute;
-      left: 0;
-      bottom: 0;
-      width: 100%;
-      height: $at-tabs-line-height;
-      background-color: $at-tabs-color-active;
-      transform: scaleX(0);
-      transition: all 0.15s;
-    }
-
-    &--active {
-      color: $at-tabs-color-active;
-
-      #{$component}__item-underline {
-        transform: scaleX(1);
-      }
-    }
-  }
-
-  &__header {
-    position: relative;
-    display: flex;
     width: 100%;
-    text-align: center;
-    white-space: nowrap;
-    background-color: $at-tabs-bg-color;
-    box-sizing: border-box;
-    overflow: -moz-scrollbars-none;
-
-    &::-webkit-scrollbar {
-      display: none;
-      width: 0 !important;
-      height: 0 !important;
-      background: transparent;
-    }
-  }
-
-  &__body {
-    display: block;
-    width: 100%;
-    white-space: nowrap;
-    transition: all 0.3s;
-    will-change: transform, left, top;
-    overflow: visible;
-  }
-
-  &__underline {
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: auto;
-    right: auto;
-    width: 600%;
-    height: $at-tabs-line-height;
-    background-color: $at-tabs-underline-color;
-  }
-
-  /* modifiers */
-  &--scroll {
-    #{$component}__header {
-      overflow-x: scroll;
-      -webkit-overflow-scrolling: touch;
-      white-space: nowrap;
-    }
-
-    #{$component}__item {
-      display: inline-block;
-      overflow: visible;
-    }
-  }
-
-  &--vertical {
-    display: flex;
-    flex: 1;
+    height: $tabs-height;
     overflow: hidden;
+    background: $color-white;
+    z-index: $zindex-tab;
 
-    #{$component}__body {
-      display: inline-block;
-      flex: 1;
-      height: $at-tabs-pane-min-height;
-      width: auto;
-    }
+    &-content {
+        align-self: stretch;
+        flex: 1;
+        @include display-flex();
+        @include justify-content(space-between);
+        @at-root &__scroll {
+            flex: 1;
+            @include display-flex();
 
-    #{$component}__underline {
-      top: 0;
-      left: 0;
-      bottom: auto;
-      width: $at-tabs-line-height;
-      height: 100%;
-    }
-
-    #{$component}__header {
-      display: inline-block;
-      width: auto;
-    }
-
-    #{$component}__item {
-      display: flex;
-      justify-content: center;
-      width: auto;
-      align-items: center;
-
-      &-underline {
-        display: block;
-        top: 0;
-        right: 0;
-        bottom: auto;
-        left: auto;
-        width: $at-tabs-line-height;
-        height: 100%;
-        transform: scaleY(0);
-      }
-
-      &--active {
-        #{$component}__item-underline {
-          transform: scaleY(1);
+            // scroll view 中出现中文会折行
+            white-space: nowrap;
         }
-      }
     }
-  }
+
+    &__sticky {
+        position: fixed;
+        z-index: $zindex-nav;
+    }
+
+    &__placeholder {
+        width: 100%;
+        height: $tabs-height;
+    }
+
+    &-left,
+    &-right {
+        @include display-flex();
+        @include justify-content(center);
+        height: auto;
+        width: auto;
+    }
 }
 
-/* hack SWAN */
-
-#{$component}--scroll#{$component}--horizontal#{$component}--SWAN {
-  #{$component}__item-underline {
-    bottom: $at-tabs-line-height;
-  }
-}
-
-/* hack SWAN */
-
-.at-tabs-pane {
-  display: inline-block;
-  width: 100%;
-  box-sizing: border-box;
-  white-space: initial;
-  vertical-align: top;
-
-  /* modifiers */
-  &--active {
-    height: auto;
-  }
-
-  &--inactive {
-    height: 0;
-    overflow: hidden;
-  }
-
-  &--vertical {
-    display: block;
+.tab {
+    position: relative;
+    min-width: $tabs-width-min;
+    width: 100%;
     height: 100%;
-    overflow: scroll;
-  }
+    overflow: hidden;
+    @include line(1);
+
+    // scroll view 中使用 view 会出现问题
+    display: inline-block;
+
+    &_content {
+        @include display-flex();
+        @include justify-content(center);
+        @include align-items(center);
+        min-width: $tabs-width-min;
+        height: 100%;
+        padding: 20rpx;
+        font-size: $font-size-base;
+        line-height: $line-height-base;
+        text-align: center;
+    }
+
+    &_dash {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: $tabs-height-dash;
+        background: $tabs-color-dash;
+        margin: auto;
+    }
+
+    &__on {
+        color: $tabs-color-active;
+    }
+
+    &__disabled {
+        color: $color-text-disabled;
+    }
 }

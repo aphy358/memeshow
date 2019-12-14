@@ -78,6 +78,7 @@
   <!-- 评论输入弹出框 -->
   <comment-input-popup
     wx:if="{{ active }}"
+    generic:comment-input-area="common-comment-input-area"
     show="{{ ifShowCommentInputPopup }}"
     replyTo="{{ replyTo }}"
     bind:hideCommentInputPopup="hideCommentInputPopup"

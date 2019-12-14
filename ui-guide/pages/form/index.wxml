@@ -1,74 +1,99 @@
 <view class="m-b-xl">
     <view class="h2 m-b-sm m-h-lg">基本用法</view>
     <view class="form">
-        <view class="form__item p-v-sm">
-            <view class="form__label f-lg f-base">标准五个字</view>
-            <view class="form__content">
-                <input type="text" placeholder="预设内容"></input>
+        <view class="form__item">
+            <view class="form__item__content">
+                <input
+                    type="text"
+                    placeholder="无 label"
+                    class="input"
+                    placeholder-class="input__placeholder"
+                ></input>
             </view>
         </view>
-        <view class="form__item p-v-sm">
-            <view class="form__label f-lg f-base">标题特别特别长的情况下会换行</view>
-            <view class="form__content">
-                <input type="text" placeholder="预设内容"></input>
+        <view class="form__item">
+            <view class="form__item__label">手机号</view>
+            <view class="form__item__content">
+                <input
+                    type="text"
+                    placeholder="预设内容"
+                    class="input"
+                    placeholder-class="input__placeholder"
+                ></input>
             </view>
         </view>
-        <view class="form__item p-v-sm">
-            <view class="form__label f-lg f-base">标准五个字</view>
-            <view class="form__content">
-                <input type="text" placeholder="预设内容"></input>
-            </view>
-            <view class="form__tail">
-                <view class="icon icon-close"></view>
-            </view>
-        </view>
-        <view class="form__item p-v-sm">
-            <view class="form__label f-lg f-base">手机号</view>
-            <view class="form__content">
-                <input type="text" placeholder="预设内容"></input>
+        <view class="form__item">
+            <view class="form__item__label">标准五个字</view>
+            <view class="form__item__content">
+                <input
+                    type="text"
+                    placeholder="预设内容"
+                    class="input"
+                    placeholder-class="input__placeholder"
+                ></input>
             </view>
         </view>
-        <view class="form__item p-v-sm form__item--error">
-            <view class="form__label f-lg f-base">错误状态</view>
-            <view class="form__content">
-                <input type="text" value="错误的输入值"></input>
+        <view class="form__item">
+            <view class="form__item__label">picker</view>
+            <view class="form__item__content">
+                <picker mode="time">
+                    <view class="form__item__picker">
+                        <!-- <view class="form__item__picker__value">
+                            深圳，中国
+                        </view> -->
+                        <view class="form__item__picker__placeholder">
+                            请选择
+                        </view>
+                    </view>
+                </picker>
             </view>
         </view>
-        <view class="form__item p-v-sm form__item--disabled">
-            <view class="form__label f-lg f-base">禁止输入</view>
-            <view class="form__content">
-                <input disabled type="text" value="禁止输入状态"></input>
+        <view class="form__item form__item--error">
+            <view class="form__item__label">错误状态</view>
+            <view class="form__item__content">
+                <input
+                    type="text"
+                    value="预设内容"
+                    class="input input--error"
+                    placeholder-class="input__placeholder"
+                ></input>
+            </view>
+        </view>
+        <view class="form__item form__item--disabled">
+            <view class="form__item__label">禁止输入</view>
+            <view class="form__item__content">
+                <input
+                    type="text"
+                    disabled
+                    value="预设内容"
+                    class="input input--disabled"
+                    placeholder-class="input__placeholder"
+                ></input>
+            </view>
+        </view>
+        <view class="form__item">
+            <view class="form__item__label">开启</view>
+            <view class="form__item__tail">
+                <switch class="switch" checked></switch>
+            </view>
+        </view>
+        <view class="form__item">
+            <view class="form__item__label">验证码</view>
+            <view class="form__item__content">
+                <input
+                    type="text"
+                    placeholder="请输入验证码"
+                    class="input"
+                    placeholder-class="input__placeholder"
+                ></input>
+            </view>
+            <view class="form__item__tail">
+                <image class="form__item__verify" src="tail.jpg" mode="aspectFill"></image>
             </view>
         </view>
     </view>
-</view>
-
-<view class="m-b-xl">
-    <view class="h2 m-b-sm m-h-lg">无 border</view>
-    <view class="form form--no-border">
-        <view class="form__item p-v-sm">
-            <view class="form__label f-lg f-base">单项输入</view>
-            <view class="form__content">
-                <input type="text" placeholder="预设内容"></input>
-            </view>
-        </view>
-        <view class="form__item p-v-sm">
-            <view class="form__label f-lg f-base">手机号</view>
-            <view class="form__content">
-                <input type="text" placeholder="预设内容"></input>
-            </view>
-        </view>
-        <view class="form__item p-v-sm form__item--error">
-            <view class="form__label f-lg f-base">错误状态</view>
-            <view class="form__content">
-                <input type="text" value="错误的输入值"></input>
-            </view>
-        </view>
-        <view class="form__item p-v-sm form__item--disabled">
-            <view class="form__label f-lg f-base">禁止输入</view>
-            <view class="form__content">
-                <input disabled type="text" value="禁止输入状态"></input>
-            </view>
-        </view>
-    </view>
+    <!-- <view class="form__agreement">
+        <checkbox class="form__agreement__checkbox"></checkbox>
+        <view class="form__agreement__content">阅读并同意《用户授权协议》</view>
+    </view> -->
 </view>

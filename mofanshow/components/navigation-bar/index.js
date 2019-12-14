@@ -7,7 +7,7 @@
  * @event NavigationBar#back
  */
 
-import { safeArea, menuBtn } from "behaviors/index"
+import { safeArea, menuBtn } from "ui-kit/behaviors/index"
 
 Component({
   properties: {

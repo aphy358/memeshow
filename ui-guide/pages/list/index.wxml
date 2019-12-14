@@ -1,0 +1,8 @@
+<view class="m-b-xl">
+    <view class="h2 m-b-xl">列表的无限加载</view>
+    <list
+        list="{{ list }}"
+        threshold-top="200"
+        threshold-bottom="200"
+    ></list>
+</view>

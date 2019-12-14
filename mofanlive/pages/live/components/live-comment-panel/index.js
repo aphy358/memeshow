@@ -1,7 +1,14 @@
 import { connect } from "libs/redux/index.js"
 import { animateTo } from 'libs/utils.js'
-const app = getApp()
-const store = app.store
+
+import _comments from './_comments'
+
+import BigListScroller from 'libs/bigListScroller/index.js'
+const liveBigListScroller = new BigListScroller({
+  dataList: 'comments',
+  itemSelector: '.comment-item',
+  listHeight: 300
+})
 
 let id = 10
 let componentConfig = {
@@ -11,50 +18,29 @@ let componentConfig = {
   },
   
   properties: {
-
+    // 新增评论
+    newComment: {
+      type: Object,
+      value: null,
+      observer: 'addComment'
+    },
   },
 
   data: {
-    comments: [
-      {
-        id: 1,
-        name: 'Joker',
-        text: '想要购买，价格如何？想要购买，价格如何？想要购买，价格如何？'
-      },
-      {
-        id: 2,
-        name: 'Joker',
-        text: '呵呵'
-      },
-      {
-        id: 3,
-        name: 'Joker',
-        text: '呵呵'
-      },
-      {
-        id: 4,
-        name: 'Joker',
-        text: '呵呵'
-      },
-      {
-        id: 5,
-        name: 'Joker',
-        text: '呵呵'
-      },
-    ],
-
-    toView: null,
+    toView: 'listBottom',
 
     welcome: {
       name: '随缘',
       animation: null
     },
 
-    recommendAnimation: null
+    recommendAnimation: null,
   },
 
   methods: {
     scrollComment(e) {
+      liveBigListScroller.scrollList(e, this.data.scrolling)
+      
       clearTimeout(this.data.scrollTimeOut)
       this.data.scrolling = true
       this.data.scrollTimeOut = setTimeout(() => {
@@ -65,7 +51,7 @@ let componentConfig = {
     showWelcomeTip() {
       let { welcome } = this.data
 
-      welcome.name = '随缘' + id
+      welcome.name = '随缘' + id++
       welcome.animation = animateTo({'translateX': '0%'})
       this.setData({ welcome })
 
@@ -80,22 +66,15 @@ let componentConfig = {
       this.setData({ welcome })
     },
 
-    addComment() {
-      let { comments } = this.data
-
-      let comment = {
-        id: id++,
-        name: 'Rita',
-        text: '猪猪侠飞过来了～'
-      }
-
-      comments.push(comment)
-      this.setData({ comments })
+    addComment(comment) {
+      console.log('addComment', comment);
+      
+      liveBigListScroller.addItems(comment)
 
       if (!this.data.scrolling) {
         setTimeout(() => {
-          this.setData({ toView: 'commentItem' + comment.id })
-        }, 100);
+          this.setData({ toView: 'listBottom' })
+        }, 500);
       }
     },
 
@@ -118,16 +97,19 @@ let componentConfig = {
 
   lifetimes: {
     ready() {
-      setInterval(() => {
-        this.addComment()
-      }, 3000);
+      liveBigListScroller.bindContext(this)
+      liveBigListScroller.addItems(_comments)
 
       setInterval(() => {
-        this.showWelcomeTip()
+        // this.addComment()
+      }, 2000);
+
+      setInterval(() => {
+        // this.showWelcomeTip()
       }, 4000);
 
       setInterval(() => {
-        this.showRecommend()
+        // this.showRecommend()
       }, 8000);
     },
     detached() {
