@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "更改简介",
+  "usingComponents": {
+    "mf-textarea": "ui-kit/components/textarea/index"
+  }
+}

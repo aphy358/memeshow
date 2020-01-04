@@ -1,0 +1,13 @@
+<view class="card card--no-border white-back margin-top">
+    <view class="card__content info">
+        <view
+            bind:tap="copy"
+            class="info-copy"
+        >复制</view>
+        <view
+            class="card__info"
+            wx:for="{{info}}"
+            wx:key="label"
+        >{{item.label}}: {{item.content}}</view>
+    </view>
+</view>

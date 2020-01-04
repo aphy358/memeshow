@@ -1,0 +1,12 @@
+<trade-group
+    id="trades"
+    list="{{trades}}"
+    bind:checkall="setCheckAllState"
+></trade-group>
+
+<action-bar
+    bind:check="checkAll"
+    bind:submit="submit"
+    total="{{19900}}"
+    all="{{checkAllState}}"
+></action-bar>

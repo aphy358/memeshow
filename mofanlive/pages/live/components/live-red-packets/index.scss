@@ -1,0 +1,72 @@
+
+@import '@/assets/styles/animations/index.scss';
+
+.live-red-packets-wrap {
+
+  &.bounce-in {
+    .hpopup-body__center{
+      @include bounce-in($translate: translate3d(-50%, -50%, 0));
+    }
+  }
+  
+  &.bounce-out {
+    .hpopup-body__center{
+      @include bounce-out($translate: translate3d(-50%, -50%, 0));
+    }
+  }
+  
+  .live-red-packets-inner {
+    position: relative;
+    width: 500rpx;
+    background: rgb(242, 95, 82);
+    color: rgb(235, 205, 154);
+    font-size: 28rpx;
+    text-align: center;
+    border-radius: 10rpx;
+    overflow: hidden;
+  
+    .lighter {
+      color: rgb(237, 145, 113);
+    }
+  
+    .title {
+      padding: 60rpx 20rpx;
+      margin-bottom: -20rpx;
+    }
+  
+    .sub-title {
+      font-size: 36rpx;
+    }
+  
+    .center {
+      width: 80%;
+      background: rgb(240, 86, 73);
+      border-radius: 10rpx;
+      margin: 20rpx auto;
+  
+      .big-number {
+        font-size: 160rpx;
+        font-weight: bold;
+      }
+    }
+  
+    .bottom {
+      background: rgb(240, 86, 73);
+      line-height: 100rpx;
+      margin-top: 60rpx;
+    }
+  
+  }
+  
+  .close-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translate(40%, -40%);
+    height: 60rpx;
+    width: 60rpx;
+    background: rgb(70, 70, 70);
+    opacity: .5;
+    border-radius: 9999px;
+  }
+}

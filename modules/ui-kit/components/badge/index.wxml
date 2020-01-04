@@ -1,0 +1,5 @@
+<view class="badge">
+    <slot></slot>
+    <view wx:if="{{ dot }}" class="badge--dot"></view>
+    <view wx:else class="badge--num">{{ value }}</view>
+</view>

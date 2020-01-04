@@ -1,0 +1,11 @@
+
+const getStarCountText = num => {
+  if (num >= 10000) {
+    num = parseFloat((num / 10000).toFixed(2)) + '万'
+  }
+  return num
+}
+
+module.exports = {
+  getStarCountText,
+}

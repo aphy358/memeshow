@@ -1,0 +1,8 @@
+<view>
+    procedures page 2
+    <input
+        type="text"
+        placeholder="修改 proce1 的文字"
+        bindinput="onInput"></input>
+    <button bindtap="sendMessage">确认修改</button>
+</view>

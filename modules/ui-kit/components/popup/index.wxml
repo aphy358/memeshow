@@ -1,10 +1,16 @@
-<view class="popup {{ open ? 'popup--actived' : '' }}">
+<view
+    class="popup {{ open ? 'popup--actived' : '' }}"
+    style="transition:visibility {{ duration }}ms cubic-bezier(0.36, 0.66, 0.04, 1);"
+>
     <view
         class="{{ mask ? 'popup__overlay' : 'popup__overlay--opacity' }}"
         catchtouchmove="onPreventDefault"
         catchtap="onTapMask"
     ></view>
-    <view class="popup__content">
+    <view
+        class="popup__content popup-content"
+        style="transition: transform {{ duration }}ms cubic-bezier(0.36, 0.66, 0.04, 1);{{ height ? 'height:' + height : '' }};{{ contentStyle }}"
+    >
         <view class="popup__header">
             <view
                 wx:if="{{ !!title }}"
@@ -19,7 +25,7 @@
                 catchtap="onClose"
             ></view>
         </view>
-        <view class="popup__body" mark:scrolltarget="popup-content">
+        <view class="popup__body popup-body">
             <slot></slot>
         </view>
         <view class="popup__footer">

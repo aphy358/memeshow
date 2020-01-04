@@ -1,0 +1,37 @@
+<!-- todo -->
+
+<wxs
+    module="accurate2"
+    src="/components/common/wxs/accurate.wxs"
+></wxs>
+
+<view bind:tap="emitClick" class="coupon">
+    <view class="coupon-left">
+        <view class="coupon-label">{{coupon.source}}</view>
+        <view class="coupon-content">
+            <view class="coupon-content-price">
+                <text class="coupon-content-price__label">￥</text>
+                <text class="coupon-content-price__price f-price">{{coupon.price / 100}}</text>
+            </view>
+            <view class="coupon-content-desc">
+                <view class="coupon-content-desc__condition">{{coupon.condition}}</view>
+                <view class="coupon-content-desc__time">{{coupon.expiry}}</view>
+            </view>
+        </view>
+    </view>
+    <view class="coupon-right">已领取</view>
+</view>
+
+<!-- <view class="coupon-body">
+            <view
+                class="coupon-price {{coupon.disabled ? 'coupon-price__disabled' : ''}}"
+            >{{accurate2(coupon.price/100)}}</view>
+            <view
+                class="coupon-title {{coupon.disabled ? 'coupon-title__disabled' : ''}}"
+            >{{coupon.name}}</view>
+            <view class="coupon-source">{{coupon.source}}</view>
+            <view class="coupon-condition">{{coupon.condition}}</view>
+        </view>
+        <view class="coupon-tail {{coupon.disabled ? 'coupon-tail__disabled' : ''}}">
+          <view>有效期：{{coupon.expiry}}</view>
+</view>-->

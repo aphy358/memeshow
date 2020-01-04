@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "add-btn": "./components/add-btn/index",
+    "checkbox-item": "ui-kit/components/checkbox/index"
+  }
+}

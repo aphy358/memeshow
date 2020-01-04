@@ -36,7 +36,14 @@
 </view>
 
 <view class="m-b-xl">
-    <view class="h2 m-b-sm">支持小数</view>
+    <view class="h2 m-b-sm">灰色背景</view>
+    <view class="m-v-sm">
+        <input-number dark step="{{ 1 }}" value="{{ 1 }}"></input-number>
+    </view>
+</view>
+
+<view class="m-b-xl">
+    <view class="h2 m-b-sm">todo: 支持小数</view>
     <view class="m-v-sm">
         <input-number digit step="{{ 0.1 }}" value="{{ 1 }}"></input-number>
     </view>

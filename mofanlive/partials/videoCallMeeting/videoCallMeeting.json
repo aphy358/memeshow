@@ -1,6 +1,0 @@
-{
-  "usingComponents": {
-    "yunxin-player": "/components/yunxin-player/yunxin-player",
-    "yunxin-pusher": "/components/yunxin-pusher/yunxin-pusher"
-  }
-}

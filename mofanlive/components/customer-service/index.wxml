@@ -1,0 +1,6 @@
+
+<view class="service">
+  <view class="icon icon-phone white"></view>
+  <view class="f-cn f-xs white">客服</view>
+  <button class="contact-btn" open-type="contact"></button>
+</view>

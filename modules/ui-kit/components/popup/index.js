@@ -23,10 +23,30 @@ Component({
       value: false
     },
 
+    // 动画的持续时间，单位 ms
+    duration: {
+      type: Number,
+      value: 500
+    },
+
     title: {
       type: String,
       value: ""
-    }
+    },
+
+    // 自定义 content 区域的样式
+    contentStyle: {
+      type: String,
+      value: ""
+    },
+
+    height: String
+  },
+
+  externalClasses: ["popup-content", "popup-body"],
+
+  data: {
+    _progress: false
   },
 
   methods: {
@@ -36,8 +56,12 @@ Component({
     },
 
     onClose() {
-      this.setData({ open: false })
+      if (this.data._progress) return
+      this.data._progress = true
       this.triggerEvent("close")
+      this.setData({ open: false }, () => {
+        setTimeout(() => (this.data._progress = false), this.data.duration)
+      })
     },
 
     // 阻止 touch move 事件穿透
@@ -45,6 +69,7 @@ Component({
   },
 
   options: {
-    multipleSlots: true
+    multipleSlots: true,
+    pureDataPattern: /^_/
   }
 })

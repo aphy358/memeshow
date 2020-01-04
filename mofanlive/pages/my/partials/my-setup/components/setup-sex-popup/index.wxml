@@ -1,0 +1,15 @@
+
+<popup 
+  open="{{ show }}" 
+  bind:close="onHideGenderPopup"
+  contentStyle="background: transparent;height: 400rpx;min-height: 400rpx;"
+>
+  <view class="m-v-xl sex-group-wrap">
+    <radio-group default="{{ userProfile.gender }}" bindchange="onToggleSex">
+      <radio-item value="{{ 1 }}" title="男"></radio-item>
+      <radio-item value="{{ 2 }}" title="女"></radio-item>
+    </radio-group>
+  </view>
+
+  <button class="button-confirm" hover-class="button--actived" bind:tap="onHideGenderPopup">确定</button>
+</popup>

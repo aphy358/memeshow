@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "编辑设置",
+  "usingComponents": {
+    "setup-avatar": "./components/setup-avatar/index",
+    "setup-items": "./components/setup-items/index",
+    "setup-sex-popup": "./components/setup-sex-popup/index"
+  }
+}

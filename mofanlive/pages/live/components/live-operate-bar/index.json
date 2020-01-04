@@ -1,4 +1,7 @@
 {
   "component": true,
-  "usingComponents": {}
+  "usingComponents": {
+    "live-poster": "../live-poster/index",
+    "hpopup": "/_modules/ui-kit/components/hpopup/index"
+  }
 }

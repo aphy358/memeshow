@@ -1,0 +1,28 @@
+<view class="card card--no-border white-back margin-top">
+    <view class="card__header">
+        <view class="card__thumb">
+            <icon
+                size="50"
+                type="warn"
+            />
+        </view>
+        <view>
+            <view class="title">等待商家处理退款申请</view>
+            <view class="expiry">
+                <view class="color-grey">若卖家在</view>
+                <view class="color-red">06天20小时22分57秒</view>
+                <view class="color-grey">内未处理，则申请达成并退款给您</view>
+            </view>
+        </view>
+    </view>
+    <view class="card__content base-text">
+        <view class="row">
+            <view class="col--auto label">如商家同意：</view>
+            <view class="color-grey">申请将达成并发送退货地址给买家</view>
+        </view>
+        <view class="row">
+            <view class="col--auto label">如商家拒绝：</view>
+            <view class="color-grey">买家需要重新修改退款申请或申请维权</view>
+        </view>
+    </view>
+</view>

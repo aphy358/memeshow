@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "trade-group": "./components/trade-group/index",
+    "action-bar": "./components/action-bar/index"
+  }
+}

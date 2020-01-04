@@ -1,0 +1,143 @@
+@import "@/theme";
+
+.white-back {
+  background-color: #fff;
+}
+
+.grey-back {
+  background-color: #fbfbfb;
+}
+
+.cashier-header {
+  width: 100%;
+  padding: $spacing-v-lg 0;
+  text-align: center;
+  font-size: $font-size-lg;
+}
+
+.trades {
+  width: 100%;
+  padding-bottom: 40rpx;
+}
+
+.sku {
+  @include flex-row-nowrap;
+  $sku-image-size: 182rpx;
+  padding: $spacing-v-xl 0;
+
+  &-image {
+    width: $sku-image-size;
+    height: $sku-image-size;
+    margin-right: $spacing-h-lg;
+    align-self: center;
+    border-radius: $border-radius-md;
+  }
+
+  &-detail {
+    flex: 1;
+    font-size: $font-size-base;
+    line-height: $line-height-base;
+
+    &-title {
+      font-family: $font-cn;
+      color: $color-text-base;
+    }
+
+    &-spec {
+      font-family: $font-cn;
+      color: $color-text-placeholder;
+    }
+
+    &-quantity,
+    &-spec {
+      display: inline-block;
+    }
+
+    &-quantity {
+      float: right;
+    }
+
+    &-price {
+      font-size: $font-size-base;
+      color: $color-price;
+      width: 100%;
+      text-align: right;
+    }
+  }
+}
+
+.bill-row {
+  @include flex-row-nowrap;
+  justify-content: space-between;
+  font-size: $font-size-base;
+  color: $color-text-base;
+  padding: $spacing-v-md 0;
+
+  &__header {
+    align-self: center;
+
+    view {
+      display: inline;
+    }
+  }
+
+  &__desc {
+    color: $color-text-placeholder;
+  }
+
+  &__tail {
+    @include flex-row-nowrap;
+    align-items: center;
+
+    &__full {
+      flex: 1;
+
+      input {
+        width: 100%;
+      }
+    }
+
+  }
+}
+
+
+.subtotal {
+  width: 100%;
+  padding-top: $spacing-v-lg;
+  @include flex-row-nowrap;
+  justify-content: flex-end;
+  align-items: baseline;
+
+  &-quantity {
+    font-size: $font-size-sm;
+    font-family: $font-cn;
+    color: $color-text-placeholder;
+  }
+
+  &-cost {
+    @include flex-row-nowrap;
+
+    &__label,
+    &__content {
+      font-size: $font-size-base;
+      font-family: $font-cn;
+    }
+
+    &__label {
+      color: $color-text-base;
+    }
+
+    &__content {
+      color: $color-error;
+    }
+  }
+}
+
+.hairline-bottom {
+  @include hairline-bottom;
+}
+
+.popup-radius {
+  border-top-left-radius: $border-radius-xxl;
+  border-top-right-radius: $border-radius-xxl;
+}

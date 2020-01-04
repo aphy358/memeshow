@@ -4,7 +4,7 @@
   align-items: center;
   justify-content: flex-start;
   position: absolute;
-  left: 40px;
+  left: 90rpx;
 
   .status-bar-inner {
     display: flex;
@@ -13,18 +13,19 @@
     padding: 0 8rpx;
     font-size: 24rpx;
     color: white;
-    background: rgba(0, 0, 0, 0.3);
     border-radius: 9999px;
     overflow: hidden;
 
     .sb-avatar {
-      width: 50rpx;
-      height: 50rpx;
+      width: 60rpx;
+      height: 60rpx;
+      border: 1rpx solid white;
+      border-radius: 9999px;
+      overflow: hidden;
 
       .img {
         width: 100%;
         height: 100%;
-        border-radius: 9999px;
       }
     }
 

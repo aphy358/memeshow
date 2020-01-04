@@ -1,0 +1,42 @@
+// 隐藏
+@mixin bounce-out($translate: translate(0, 0), $duration: 0.3s) {
+
+  @keyframes bounceOut {
+    from {
+      opacity: 1;
+      transform: $translate scale(1);
+    }
+
+    to {
+      opacity: 0;
+      transform: $translate scale(0.01);
+    }
+  }
+
+  opacity: 0;
+  animation: bounceOut $duration ease 0s forwards;
+}
+
+// 弹出
+@mixin bounce-in($translate: translate(0, 0), $duration: 0.3s) {
+
+  @keyframes bounceIn {
+    from {
+      opacity: 0.2;
+      transform: $translate scale(0.1);
+    }
+
+    50%,
+    55% {
+      transform: $translate scale(1.1);
+    }
+
+    to {
+      opacity: 1;
+      transform: $translate scale(1);
+    }
+  }
+
+  opacity: 1;
+  animation: bounceIn $duration ease 0s forwards;
+}

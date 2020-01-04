@@ -1,0 +1,22 @@
+<view class="swipe-out">
+    <view
+        bind:touchend="release"
+        bind:touchmove="move"
+        bind:touchstart="touch"
+        class="content"
+        style="transform: translateX({{offset + 'px'}});"
+    >
+        <slot></slot>
+    </view>
+    <view class="menu">
+        <view
+            class="menu-item"
+            bind:tap="clickMenu"
+            data-index="{{index}}"
+            wx:for="{{menu}}"
+            wx:key="key"
+            style="background-color: {{item.color}};"
+        >
+        <view class="f-cn f-md">{{item.title}}</view></view>
+    </view>
+</view>

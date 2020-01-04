@@ -1,0 +1,11 @@
+@import "@/theme";
+
+.card {
+  margin: $spacing-v-lg 0;
+}
+
+.title {
+  padding: $spacing-v-lg $spacing-h-lg;
+  width: 100%;
+  text-align: center;
+}

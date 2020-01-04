@@ -4,15 +4,15 @@
   "description": "mapp.mofanshow",
   "main": "./dist/app.js",
   "scripts": {
-    "dev": "webpack --env.NODE_ENV=development --env.development --progress --watch",
-    "dev:ui": "npm run dev -- --proj ui-guide",
-    "build": "webpack --env.NODE_ENV=production --env.production --progress",
+    "dev": "webpack --env.NODE_ENV=development --env.development --env.profile=dev --progress --watch",
+    "build": "webpack --env.NODE_ENV=production --env.production --env.profile=prod --progress",
     "debug": "sudo node-nightly --inspect-brk ./webpack.config.js",
     "lint": "eslint ./src --ext .js",
-    "mofanshow": "npm run dev -- --proj mofanshow",
-    "mofanshow_b": "npm run build -- --proj mofanshow",
-    "mofanlive": "npm run dev -- --proj mofanlive",
-    "mofanlive_b": "npm run build -- --proj mofanlive"
+    "dev:ui": "npm run dev -- --proj ui-guide",
+    "dev:live": "npm run dev -- --proj mofanlive",
+    "build:live": "npm run build -- --proj mofanlive",
+    "dev:show": "npm run dev -- --proj mofanshow",
+    "build:show": "npm run build -- --proj mofanshow"
   },
   "repository": {
     "type": "git",
@@ -22,6 +22,7 @@
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.4.3",
+    "@babel/plugin-proposal-class-properties": "^7.7.4",
     "@babel/plugin-transform-modules-commonjs": "^7.4.3",
     "@babel/plugin-transform-regenerator": "^7.4.3",
     "@babel/plugin-transform-runtime": "^7.4.3",
@@ -55,10 +56,13 @@
     "axios": "^0.19.0",
     "axios-miniprogram-adapter": "^0.2.4",
     "colors": "^1.4.0",
+    "cos-wx-sdk-v5": "^0.7.8",
     "dateformat": "^3.0.3",
     "iview-weapp": "^2.0.0",
     "lodash": "^4.17.11",
-    "miniprogram-computed": "0.0.7",
-    "qs": "^6.9.1"
+    "miniprogram-computed": "^2.1.1",
+    "redux": "^4.0.5",
+    "redux-thunk": "^2.3.0",
+    "tim-wx-sdk": "^2.3.2"
   }
 }

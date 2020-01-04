@@ -1,0 +1,32 @@
+
+<view class="my-order-outline">
+  <view class="order-outline-header">
+    <view class="title">我的订单</view>
+    <navigator class="check-more-order" url="/pages/orders/index?type=all" hover-class="navigator-hover">
+      <text class="">查看全部订单</text>
+      <view class="icon icon-chevron-right cell__icon-link"></view>
+    </navigator>
+  </view>
+
+  <view class="order-outline-body">
+    <navigator class="order-outline-item" url="/pages/orders/index?type=unpaid" hover-class="navigator-hover">
+      <image class="img" src="../../assets/tobePay.png" />
+      <text class="text">待付款</text>
+    </navigator>
+
+    <navigator class="order-outline-item" url="/pages/orders/index?type=undeliver" hover-class="navigator-hover">
+      <image class="img" src="../../assets/tobeDelivery.png" />
+      <text class="text">待发货</text>
+    </navigator>
+
+    <navigator class="order-outline-item" url="/pages/orders/index?type=delivering" hover-class="navigator-hover">
+      <image class="img" src="../../assets/tobeReceive.png" />
+      <text class="text">待收货</text>
+    </navigator>
+
+    <navigator class="order-outline-item" url="/pages/orders/index?type=refund" hover-class="navigator-hover">
+      <image class="img" src="../../assets/refund.png" />
+      <text class="text">售后/退款</text>
+    </navigator>
+  </view>
+</view>

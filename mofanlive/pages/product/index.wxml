@@ -1,23 +1,19 @@
+<wxs src="/components/common/wxs/accurate.wxs" module="accurate2"></wxs>
+
 <poster posters="{{medias}}"></poster>
 
-<view class="desc">
-    <view class="desc-price desc-price__current">￥{{price / 100}}</view>
-    <view class="desc-price desc-price__origin">￥{{originPrice / 100}}</view>
-    <view class="desc-title">{{title}}</view>
-    <view class="desc-sold">已售{{soldCount}}次</view>
-    <view class="desc-favorite">收藏</view>
-</view>
-
-<view class="qualification">
-    <view
-        wx:for="{{['正品保障', '全场包邮', '七天退换', '先行赔付']}}"
-        wx:key="*this"
-    >{{item}}</view>
+<view class="desc m-b-lg">
+    <view class="desc-price f-price">￥{{accurate2(price / 100)}}</view>
+    <view class="desc-title f-cn f-lg f-base">{{title}}</view>
+    <view class="desc-service">
+        <view class="icon icon-phone"></view>
+        <view class="desc-service--title f-sm">客服</view>
+    </view>
 </view>
 
 <action-group actions="{{actions}}" bind:click="handleAction"></action-group>
 
-<recommend list="{{recommend.list}}"></recommend>
+<recommend list="{{recommend.list}}" shop="{{recommend.shop}}"></recommend>
 
 <view class="detail-title">宝贝详情</view>
 

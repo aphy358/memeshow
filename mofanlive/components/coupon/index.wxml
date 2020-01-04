@@ -1,0 +1,17 @@
+<view style="padding-bottom: {{isIPhoneX ? 68 : 0}}rpx;">
+    <!-- <view
+        bind:tap="{{emitClearCoupon}}"
+        class="card"
+    >
+        <view class="card__header">
+            <view class="card__title">不使用优惠券</view>
+        </view>
+    </view> -->
+
+        <coupon-card
+            catch:click="emitClick"
+            coupon="{{item}}"
+            wx:for="{{coupon}}"
+            wx:key="id"
+        ></coupon-card>
+</view>

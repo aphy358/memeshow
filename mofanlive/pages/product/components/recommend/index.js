@@ -3,6 +3,13 @@ Component({
     list: {
       type: Object,
       value: []
+    },
+    shop: {
+      type: Object,
+      value: {}
     }
+  },
+  options: {
+    addGlobalClass: true
   }
 })

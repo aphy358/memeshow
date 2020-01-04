@@ -1,3 +1,6 @@
 {
-  "component": true
+  "component": true,
+  "usingCompoents": {
+    "list-item": "../recycle-list-item/index"
+  }
 }

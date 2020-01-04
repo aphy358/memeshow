@@ -1,0 +1,35 @@
+const genders = ['未设置', '男', '女']
+
+const getGenderText = (gender) => {
+  gender = gender || 0
+  return genders[gender]
+}
+
+const getRegionText = user => {
+  if (user && user.province) {
+    let regionArr = [user.province, user.city, user.district]
+    return regionArr.join('·')
+  }
+  return '未设置'
+}
+
+const getRegionArr = user => {
+  if (user && user.province) {
+    let regionArr = [user.province, user.city, user.district]
+    return regionArr
+  }
+  return ''
+}
+
+const getPhoneText = user => {
+  let phone = user && user.mobile
+  if (!phone) return '未设置'
+  return phone
+}
+
+module.exports = {
+  getGenderText,
+  getRegionText,
+  getPhoneText,
+  getRegionArr,
+}

@@ -2,9 +2,9 @@
 <view class="m-b-xl">
     <view class="h2 m-b-sm m-h-lg">基本</view>
     <view class="cell__group">
-        <navigator url="/pages/avatar/index" class="cell cell--sub">
+        <navigator url="/pages/font/index" class="cell cell--sub">
             <view class="cell__header">
-                <view class="cell__title">Avatar</view>
+                <view class="cell__title">Font</view>
             </view>
             <view class="cell__tail">
                 <view class="icon icon-chevron-right cell__icon-link"></view>
@@ -26,17 +26,17 @@
                 <view class="icon icon-chevron-right cell__icon-link"></view>
             </view>
         </navigator>
-        <navigator url="/pages/popup/index" class="cell cell--sub">
+        <navigator url="/pages/avatar/index" class="cell cell--sub">
             <view class="cell__header">
-                <view class="cell__title">Popup</view>
+                <view class="cell__title">Avatar</view>
             </view>
             <view class="cell__tail">
                 <view class="icon icon-chevron-right cell__icon-link"></view>
             </view>
         </navigator>
-        <navigator url="/pages/list/index" class="cell cell--sub">
+        <navigator url="/pages/badge/index" class="cell cell--sub">
             <view class="cell__header">
-                <view class="cell__title">Recycle List</view>
+                <view class="cell__title">Badge</view>
             </view>
             <view class="cell__tail">
                 <view class="icon icon-chevron-right cell__icon-link"></view>
@@ -72,14 +72,6 @@
                 <view class="icon icon-chevron-right cell__icon-link"></view>
             </view>
         </navigator>
-        <navigator url="/pages/collapse/index" class="cell cell--sub">
-            <view class="cell__header">
-                <view class="cell__title">Collapse</view>
-            </view>
-            <view class="cell__tail">
-                <view class="icon icon-chevron-right cell__icon-link"></view>
-            </view>
-        </navigator>
         <navigator url="/pages/cell/index" class="cell cell--sub">
             <view class="cell__header">
                 <view class="cell__title">Cell</view>
@@ -88,9 +80,33 @@
                 <view class="icon icon-chevron-right cell__icon-link"></view>
             </view>
         </navigator>
+        <navigator url="/pages/collapse/index" class="cell cell--sub">
+            <view class="cell__header">
+                <view class="cell__title">Collapse</view>
+            </view>
+            <view class="cell__tail">
+                <view class="icon icon-chevron-right cell__icon-link"></view>
+            </view>
+        </navigator>
         <navigator url="/pages/form/index" class="cell cell--sub">
             <view class="cell__header">
                 <view class="cell__title">Form</view>
+            </view>
+            <view class="cell__tail">
+                <view class="icon icon-chevron-right cell__icon-link"></view>
+            </view>
+        </navigator>
+        <navigator url="/pages/popup/index" class="cell cell--sub">
+            <view class="cell__header">
+                <view class="cell__title">Popup</view>
+            </view>
+            <view class="cell__tail">
+                <view class="icon icon-chevron-right cell__icon-link"></view>
+            </view>
+        </navigator>
+        <navigator url="/pages/list/index" class="cell cell--sub">
+            <view class="cell__header">
+                <view class="cell__title">Recycle List</view>
             </view>
             <view class="cell__tail">
                 <view class="icon icon-chevron-right cell__icon-link"></view>
@@ -159,6 +175,20 @@
         <navigator url="/pages/tabs/index" class="cell cell--sub">
             <view class="cell__header">
                 <view class="cell__title">Tabs</view>
+            </view>
+            <view class="cell__tail">
+                <view class="icon icon-chevron-right cell__icon-link"></view>
+            </view>
+        </navigator>
+    </view>
+</view>
+
+<view class="m-b-xl">
+    <view class="h2 m-b-sm m-h-lg">通用业务</view>
+    <view class="cell__group">
+        <navigator url="/pages/procedures/index" class="cell cell--sub">
+            <view class="cell__header">
+                <view class="cell__title">Procedures</view>
             </view>
             <view class="cell__tail">
                 <view class="icon icon-chevron-right cell__icon-link"></view>

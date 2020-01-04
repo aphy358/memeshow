@@ -5,6 +5,7 @@
  * @event Textarea#blur
  * @event Textarea#lineChange
  * @event Textarea#confirm
+ * @event Textarea#input
  */
 
 Component({
@@ -168,6 +169,7 @@ Component({
 
     onInput({ detail }) {
       this.updateLength(detail.value)
+      this.triggerEvent("input", detail)
     },
 
     onConfirm({ detail }) {

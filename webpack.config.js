@@ -306,6 +306,7 @@ const resolveFullScriptPath = (root, ...segments) => {
 const build = env => {
   const mode = env.NODE_ENV
   const prod = mode === "production"
+  const profile = env.profile || 'prod'
 
   // 构建前先清理
   removeSync(dist)
@@ -331,7 +332,9 @@ const build = env => {
       // 设置别名
       alias: {
         // 项目根目录
-        '@': src
+        '@': src,
+        // 配置文件
+        'config$': resolve(src, `configs/${profile}.js`)
       }
     },
     module: {

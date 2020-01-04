@@ -1,0 +1,99 @@
+@import "@/theme";
+
+.white-back {
+  background-color: white;
+}
+
+.margin-top {
+  margin-top: $spacing-v-lg;
+}
+
+.text-base {
+  font-size: $font-size-base;
+  font-family: $font-cn;
+}
+
+.padding {
+  padding: 0 $spacing-h-lg $spacing-v-lg;
+}
+
+.padding-top {
+  padding-top: $spacing-v-lg;
+
+  &-sm {
+    padding-top: $spacing-v-sm;
+  }
+}
+
+.border-bottom {
+  @include hairline-bottom;
+}
+
+.card__content {
+  padding: 0;
+}
+
+.red {
+  color: $color-error;
+}
+
+.grey {
+  color: $color-grey-3;
+}
+
+.flex-row {
+  @include flex-row-nowrap;
+}
+
+.only-2-line {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.products {
+  width: 100%;
+
+  .product {
+    background-color: $color-grey-7;
+    .img {
+      $img-size: 130rpx;
+
+      width: $img-size;
+      height: $img-size;
+      border-radius: $border-radius-md;
+      overflow: hidden;
+      margin-right: $spacing-h-md;
+
+      image {
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    .desc {
+      width: 340rpx;
+    }
+
+    .account {
+      flex: 1;
+    }
+  }
+}
+
+.btn {
+  justify-content: flex-end;
+
+  button {
+    margin: 0;
+  }
+}
+
+.row {
+  padding-bottom: $spacing-v-md;
+}

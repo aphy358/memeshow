@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "popup": "ui-kit/components/popup/index",
+    "coupon-card": "./components/coupon-card/index"
+  }
+}

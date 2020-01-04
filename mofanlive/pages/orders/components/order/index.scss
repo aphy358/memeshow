@@ -1,55 +1,87 @@
 @import "@/theme";
 
+.hairline-vertical {
+  @include hairline-top-bottom;
+}
+
+.hairline-bottom {
+  @include hairline-bottom;
+}
+
+.button__fixed-width {
+  width: 144rpx;
+}
+
 .order {
   width: 100%;
-  @include hairline-bottom;
-  margin: $spacing-v-sm 0;
+  margin: 0;
+  background-color: $color-white;
+  margin-bottom: $spacing-v-md;
 
   &-header {
     width: 100%;
-    box-sizing: border-box;
-    padding-bottom: $spacing-v-lg;
-    @include flex-row-nowrap;
-    @include hairline-bottom;
+    justify-content: space-between;
 
     &__title {
-      font-size: $font-size-lg;
-      font-family: $font-cn;
       color: $color-text-base;
+      line-height: $line-height-base;
+      flex: 1;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+
+    &__state {
+      font-size: $font-size-base;
+      font-family: $font-cn;
+
+      &__red {
+        color: $color-error;
+      }
     }
   }
 
   &-content {
     width: 100%;
     box-sizing: border-box;
-    padding: $spacing-v-lg 0;
-    @include hairline-bottom;
 
     &__item {
       width: 100%;
       box-sizing: border-box;
+      padding: $spacing-v-lg;
       @include flex-row-nowrap;
+      background-color: $color-grey-7;
+      align-items: flex-start;
 
       &-thumbnail {
-        $thumbnail-size: 200rpx;
+        flex: 0 0 auto;
+        $thumbnail-size: 130rpx;
 
         width: $thumbnail-size;
         height: $thumbnail-size;
         margin-right: $spacing-h-lg;
+        border-radius: $border-radius-md;
+        overflow: hidden;
+
+        image {
+          width: 100%;
+          height: 100%;
+        }
       }
 
       &-detail {
-        position: relative;
         flex: 1;
+        position: relative;
+        width: 340rpx;
 
         &__title {
-          font-size: $font-size-lg;
+          font-size: $font-size-base;
           font-family: $font-cn;
           color: $color-text-base;
-          display: -webkit-box;
-          -webkit-box-orient: vertical;
-          -webkit-line-clamp: 1;
-          overflow: hidden;
+          line-height: $line-height-base;
+          width: 100%;
+          max-height: 2 * $line-height-base; // todo
+          @include line(2);
         }
 
         &__specs {
@@ -58,23 +90,22 @@
           color: $color-text-placeholder;
           margin-top: $spacing-v-sm;
         }
+      }
+
+      &-bill {
+        flex: 0 0 auto;
+
+        view {
+          width: 100%;
+          text-align: right;
+        }
 
         &__price {
-          font-size: $font-size-xxl;
-          font-family: $font-cn;
           color: $color-error;
-          position: absolute;
-          bottom: 0;
-          left: 0;
         }
 
         &__quantity {
-          font-size: $font-size-base;
-          font-family: $font-cn;
           color: $color-text-base;
-          position: absolute;
-          bottom: 0;
-          right: 0;
         }
       }
     }
@@ -82,35 +113,47 @@
 
   &-tail {
     width: 100%;
+    padding-top: $spacing-v-md;
 
-    &__total {
-      @include flex-row-nowrap;
-      @include hairline-bottom;
-      justify-content: flex-end;
-      align-items: baseline;
-      padding: $spacing-v-lg 0;
+    &__bill {
+      width: 100%;
+      padding: 0 $spacing-h-lg $spacing-v-lg;
+      position: relative;
 
-      &-quantity {
+      &-poster {
+        position: absolute;
+        top: 0;
+        left: $spacing-h-lg;
+        font-size: $font-size-base;
+        color: $color-text-placeholder;
+        font-family: $font-cn;
+        display: inline-block;
+        vertical-align: middle;
+
+        image {
+          width: 26rpx;
+          height: 22rpx;
+        }
+      }
+
+      &-item {
+        width: 100%;
         font-size: $font-size-base;
         color: $color-text-base;
         font-family: $font-cn;
-        margin-right: $spacing-h-sm;
-      }
-
-      &-amount {
-        font-size: $font-size-xxl;
-        color: $color-error;
-        font-family: $font-cn;
+        text-align: right;
       }
     }
 
+
     &__actions {
       @include flex-row-nowrap;
+      @include hairline-top;
+      padding: $spacing-v-md $spacing-h-lg;
       justify-content: flex-end;
-      padding-top: $spacing-v-lg;
 
       button {
-        margin-right: $spacing-h-sm;
+        margin: 0 0 0 $spacing-h-lg;
       }
     }
   }

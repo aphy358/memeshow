@@ -11,4 +11,11 @@
   @include flex-direction(row);
 }
 
+@mixin ellipsis($line: 2) {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $line;
+  overflow: hidden;
+}
+
 /* Custom Variables */

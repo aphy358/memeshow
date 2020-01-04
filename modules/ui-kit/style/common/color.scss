@@ -18,6 +18,17 @@
   background-color: $color-brand-dark;
 }
 
+// 背景色
+.bg-base {
+  background: $color-bg;
+}
+.bg-dark {
+  background: $color-bg-dark;
+}
+.bg-light {
+  background: $color-bg-light;
+}
+
 // 功能色
 .color-success {
   color: $color-success;
@@ -128,7 +139,6 @@
 }
 
 // 调色板
-
 .color-blue-1 {
   color: $blue-1;
 }

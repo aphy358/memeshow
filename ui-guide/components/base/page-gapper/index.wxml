@@ -1,6 +1,0 @@
-<!-- icon component -->
-
-<view 
-    class="mf-page-gapper mf-class {{ 'border-' + border }}"
-    style="height:{{ height }};background: {{ background }};"
-/>

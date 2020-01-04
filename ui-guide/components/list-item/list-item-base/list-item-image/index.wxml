@@ -1,9 +1,0 @@
-<!-- List Item Image Component -->
-
-<view class="mf_list-item-image">
-    <image
-        src="{{ url }}"
-        mode="widthFix"
-    >
-    </image>
-</view>

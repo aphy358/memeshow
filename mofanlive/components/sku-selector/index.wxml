@@ -1,32 +1,37 @@
+<wxs
+    module="accurate2"
+    src="/components/common/wxs/accurate.wxs"
+></wxs>
 <mf-popup
     catch:close="emitCancel"
     closable
+    height="66vh"
     open="{{open}}"
+    popup-content="popup-radius"
 >
-    <view
-        class="info-container"
-        slot="header"
-    >
-        <image
-            class="info-image"
-            src="{{image}}"
-        />
+    <view slot="header">
+        <view class="header-title f-cn f-lg">选择商品</view>
         <view class="info">
-            <view class="info-price-container">
-                <view class="info-price-tag">￥</view>
-                <view class="info-price">{{price / 100}}</view>
+            <image
+                class="info-image"
+                src="{{image}}"
+            />
+            <view class="info-detail">
+                <view class="info-title f-cn pa-md">{{title}}</view>
+                <view class="info-price f-price">{{price}}</view>
+                <view class="info-selection">已选择 {{skuSelected}}</view>
             </view>
-            <view class="info-selection">已选择 {{skuSelected}}</view>
         </view>
     </view>
-    <view class="skus-container">
+    <view class="skus">
         <view
-            style="display: inline;"
+            class="skus-k"
+            style="{{index == 0 ? '' : 'padding-top: 30rpx;'}}"
             wx:for="{{displayProps}}"
             wx:key="kid"
         >
-            <view class="skus-title">{{item.k}}</view>
-            <view class="skus-props-container">
+            <view class="skus-k-title">{{item.k}}</view>
+            <view class="skus-props">
                 <view
                     bind:tap="onTapVal"
                     class="skus-prop {{value.isSelected ? 'skus-prop-selected' : ''}} {{value.isSoldOut ? 'skus-prop-disabled' : ''}}"
@@ -42,16 +47,17 @@
             <view class="count-title">购买数量</view>
             <input-number
                 bind:change="changeQuantity"
+                dark
+                min="{{1}}"
                 step="{{1}}"
                 value="{{quantity}}"
-                min="{{1}}"
             ></input-number>
         </view>
     </view>
     <view
         class="action-container"
         slot="footer"
-        style="padding-bottom: {{isIPhoneX ? 68 : 0}}rpx;"
+        style="{{isIPhoneX ? 'padding-bottom: 68rpx;' : ''}}"
     >
         <slot></slot>
     </view>

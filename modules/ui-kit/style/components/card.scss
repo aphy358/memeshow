@@ -3,7 +3,8 @@
 
 .card {
     @include border-thin($color: $card-color-border);
-    margin: 0 $card-grap;
+    margin: 0 $card-gap;
+    background: $card-color-bg;
     border-radius: $card-border-radius;
 
     /* elements */
@@ -13,25 +14,30 @@
         @include border-thin-bottom();
         width: 100%;
         padding: $padding-sm $padding-md;
+
+        &--no-border {
+            border: 0;
+        }
     }
 
     &__title,
     &__extra {
         @include line;
-        line-height: size(25);
+        line-height: 1;
     }
 
     &__title {
         @include flex(auto);
-        font-size: $font-size-lg;
+        font-family: $font-bold $font-sans;
+        font-size: $card-font-size;
         color: $color-text-title;
     }
 
     &__extra {
         @include flex(0, 0, auto);
         max-width: size(100);
-        margin-left: $card-grap;
-        font-size: $font-size-base;
+        margin-left: $card-gap;
+        font-size: $card-font-size;
         color: $color-text-base;
     }
 
@@ -65,5 +71,13 @@
         border-radius: 0;
         border-left: none;
         border-right: none;
+    }
+
+    &--no-border {
+        border: 0;
+    }
+
+    &--no-gap {
+        margin: 0;
     }
 }

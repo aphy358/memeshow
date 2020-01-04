@@ -1,0 +1,3 @@
+<view class="collapse__group">
+    <slot></slot>
+</view>

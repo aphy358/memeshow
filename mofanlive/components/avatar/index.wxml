@@ -1,0 +1,7 @@
+<navigator url="{{live ? '/pages/live/index?id=' + liveid : '/pages/my/index?id=' + userid}}" class="avatar" hover-class="navigator-hover">
+  <view class="avatar-border-outside {{live ? 'border-ani' : ''}}"></view>
+  <view class="avatar-img">
+    <image class="{{live ? 'img-ani' : ''}}" src="{{url}}" />
+  </view>
+  <view wx:if="{{live}}" class="avatar-live">直播中</view>
+</navigator>

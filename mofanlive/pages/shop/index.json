@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "actions": "./components/actions/index",
+    "list": "./components/list/index",
+    "avatar": "/components/avatar/index"
+  }
+}

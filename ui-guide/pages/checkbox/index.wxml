@@ -1,9 +1,28 @@
 <view class="m-b-xl">
-    <view class="h2 m-b-sm m-h-lg">基本用法</view>
+    <view class="h2 m-b-sm m-h-lg">单个 checkbox</view>
     <view class="m-v-sm">
-        <checkbox-group>
-            <checkbox-item value="{{ 1 }}" title="多选项1"></checkbox-item>
-            <checkbox-item value="{{ 2 }}" title="多选项2"></checkbox-item>
-        </checkbox-group>
+        <checkbox-item value="1" title="单个勾选框"></checkbox-item>
+    </view>
+</view>
+
+<view class="m-b-xl">
+    <view class="h2 m-b-sm m-h-lg">单个 checkbox - 带描述</view>
+    <view class="m-v-sm">
+        <checkbox-item
+            value="1"
+            title="单个勾选框"
+            desc="选项的描述内容"
+        ></checkbox-item>
+    </view>
+</view>
+
+<view class="m-b-xl">
+    <view class="h2 m-b-sm m-h-lg">支持的 Event</view>
+    <view class="m-v-sm">
+        <checkbox-item
+            value="1"
+            title="单个 change"
+            bindchange="singleCheckboxChange"
+        ></checkbox-item>
     </view>
 </view>

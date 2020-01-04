@@ -1,54 +1,119 @@
 /* Text */
 
+// 文本段落间距
+.text-gap-b {
+    margin-bottom: $spacing-text-base;
+}
+.text-gap-t {
+    margin-top: $spacing-text-base;
+}
+
+// 通用业务
+.f-price {
+    font-family: $font-price, $font-sans;
+    color: $color-price;
+}
+
+// 字体
+.f-nu {
+    font-family: $font-nu, $font-sans;
+}
+.f-en {
+    font-family: $font-en, $font-sans;
+}
+.f-cn {
+    font-family: $font-cn, $font-sans;
+}
+.f-bold {
+    font-family: $font-bold, $font-sans;
+}
+.f-default {
+    font-family: $font-default;
+}
+
 // 大小
 .f-xs {
-  font-size: $font-size-xs;
+    font-size: $font-size-xs;
 }
 .f-sm {
-  font-size: $font-size-sm;
+    font-size: $font-size-sm;
 }
 .f-md {
-  font-size: $font-size-base;
+    font-size: $font-size-base;
 }
 .f-lg {
-  font-size: $font-size-lg;
+    font-size: $font-size-lg;
 }
 .f-xl {
-  font-size: $font-size-xl;
+    font-size: $font-size-xl;
 }
 .f-xxl {
-  font-size: $font-size-xxl;
+    font-size: $font-size-xxl;
 }
 
 // 颜色
 .f-base {
-  color: $color-text-base;
+    color: $color-text-base;
 }
 .f-base-inverse {
-  color: $color-text-base-inverse;
+    color: $color-text-base-inverse;
 }
 .f-secondary {
-  color: $color-text-secondary;
+    color: $color-text-secondary;
 }
 .f-placeholder {
-  color: $color-text-placeholder;
+    color: $color-text-placeholder;
 }
 .f-disabled {
-  color: $color-text-disabled;
+    color: $color-text-disabled;
 }
 .f-title {
-  color: $color-text-title;
+    color: $color-text-title;
 }
 .f-paragraph {
-  color: $color-text-paragraph;
+    color: $color-text-paragraph;
+}
+
+// 粗细
+.f-w-b {
+    font-weight: bold;
+}
+.f-w-l {
+    font-weight: lighter;
 }
 
 // 标题
 .h1 {
-  color: $color-text-title;
-  font-size: $font-size-xl;
+    color: $color-text-title;
+    font-size: $font-size-xl;
 }
 .h2 {
-  color: $color-text-title;
-  font-size: $font-size-lg;
+    color: $color-text-title;
+    font-size: $font-size-lg;
+}
+
+// 文本段落
+.pa-xs {
+    font-size: $font-size-xs;
+    line-height: $line-height-xs;
+}
+.pa-sm {
+    font-size: $font-size-sm;
+    line-height: $line-height-sm;
+}
+.pa-md {
+    font-size: $font-size-base;
+    line-height: $line-height-base;
+}
+.pa-lg {
+    font-size: $font-size-lg;
+    line-height: $line-height-lg;
+}
+.pa-xl {
+    font-size: $font-size-xl;
+    line-height: $line-height-xl;
+}
+.pa-xxl {
+    font-size: $font-size-xxl;
+    line-height: $line-height-xxl;
 }

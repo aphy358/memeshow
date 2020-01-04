@@ -1,23 +1,71 @@
 {
   "pages": [
+    "pages/my/index",
     "pages/live/index",
-    "pages/register/index",
-    "pages/index/index",
-    "pages/profile/index",
-    "pages/notifications/privacyPolicy/index",
-    "pages/notifications/userProtocol/index",
-    "pages/login/index",
+    "pages/my/partials/my-setup/index",
     "pages/product/index",
+    "pages/cart/index",
+    "pages/shop/index",
+    "pages/delivery/index",
+    "pages/coupon/index",
+    "pages/order/index",
+    "pages/refund/index",
     "pages/orders/index",
-    "pages/procedures/select-address/index",
-    "pages/procedures/add-address/index",
-    "pages/procedures/cashier/index"
+    "pages/my/partials/my-nickname/index",
+    "pages/my/partials/my-profile/index",
+    "pages/my/partials/my-verify-account/index",
+    "pages/my/partials/my-change-mobile/index",
+    "pages/refund-record/index",
+    "pages/index/index",
+    "pages/procedures/create-refund/index",
+    "pages/procedures/create-refund-message/index"
   ],
   "window": {
     "backgroundColor": "#f0f0f0",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "魔范秀直播",
     "navigationBarTextStyle": "black"
+  },
+  "usingComponents": {
+    "list": "recycle-list/recycle-list-view/index",
+    "tabs": "ui-kit/components/tabs/index",
+    "tab": "ui-kit/components/tab/index",
+    "collapse-group": "ui-kit/components/collapse-group/index",
+    "collapse": "ui-kit/components/collapse/index",
+    "popup": "ui-kit/components/popup/index",
+    "mf-textarea": "ui-kit/components/textarea/index",
+    "input-number": "ui-kit/components/input-number/index",
+    "checkbox-group": "ui-kit/components/checkbox-group/index",
+    "checkbox-item": "ui-kit/components/checkbox/index",
+    "radio-group": "ui-kit/components/radio-group/index",
+    "radio-item": "ui-kit/components/radio/index",
+    "customer-service": "/components/customer-service/index"
+  },
+  "tabBar": {
+    "color": "#999999",
+    "selectedColor": "#333333",
+    "borderStyle": "white",
+    "backgroundColor": "#fff",
+    "list": [
+      {
+        "selectedIconPath": "assets/images/tabbar/home2.png",
+        "iconPath": "assets/images/tabbar/home1.png",
+        "pagePath": "pages/shop/index",
+        "text": "首页"
+      },
+      {
+        "selectedIconPath": "assets/images/tabbar/cart2.png",
+        "iconPath": "assets/images/tabbar/cart1.png",
+        "pagePath": "pages/cart/index",
+        "text": "购物车"
+      },
+      {
+        "selectedIconPath": "assets/images/tabbar/user2.png",
+        "iconPath": "assets/images/tabbar/user1.png",
+        "pagePath": "pages/my/index",
+        "text": "我的"
+      }
+    ]
   },
   "networkTimeout": {
     "request": 500

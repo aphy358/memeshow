@@ -1,7 +1,7 @@
 @import "@/theme";
 
 page {
-  background-color: $color-bg-base;
+  padding-bottom: 200rpx;
 }
 
 .desc {
@@ -12,30 +12,14 @@ page {
   background-color: $color-white;
 
   &-price {
-    display: inline-block;
-
-    &__current {
-      font-size: $font-size-xxl;
-      font-family: $font-cn;
-      font-weight: bolder;
-      color: $color-error;
-    }
-
-    &__origin {
-      font-size: $font-size-lg;
-      font-family: $font-cn;
-      color: $color-grey-2;
-      margin-left: $spacing-h-lg;
-      text-decoration: line-through;
-    }
+    font-size: 52rpx;
+    font-weight: bolder;
   }
 
   &-title {
-    width: 100%;
-    font-size: $font-size-lg;
-    font-family: $font-cn;
-    color: $color-text-base;
-    margin: $spacing-v-lg 0;
+    width: 90%;
+    line-height: $line-height-lg;
+    @include line(2);
   }
 
   &-sold {
@@ -44,10 +28,22 @@ page {
     color: $color-text-placeholder;
   }
 
-  &-favorite {
+  &-service {
     position: absolute;
-    top: $spacing-v-lg;
+    top: $spacing-v-xxl;
     right: $spacing-h-lg;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
+
+    .icon {
+      font-size: 40rpx;
+    }
+
+    view {
+      color: #B0AFB6;
+    }
   }
 }
 

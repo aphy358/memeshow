@@ -1,0 +1,7 @@
+<view class="info">
+    <view
+        class="info-item"
+        wx:for="{{info}}"
+        wx:key="label"
+    >{{item.label}}{{item.content}}</view>
+</view>

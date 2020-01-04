@@ -1,7 +1,7 @@
 <view class="m-b-xl">
     <view class="h2 m-b-sm m-h-lg">默认用法</view>
     <image
-        src="./logo.png"
+        src="../../assets/logo.png"
         class="avatar"
         mode="aspectFill"
     ></image>
@@ -10,7 +10,7 @@
 <view class="m-b-xl">
     <view class="h2 m-b-sm m-h-lg">正方形</view>
     <image
-        src="./logo.png"
+        src="../../assets/logo.png"
         class="avatar avatar--square"
         mode="aspectFill"
     ></image>
@@ -19,12 +19,12 @@
 <view class="m-b-xl">
     <view class="h2 m-b-sm m-h-lg">large</view>
     <image
-        src="./logo.png"
+        src="../../assets/logo.png"
         class="avatar avatar--large m-r-lg"
         mode="aspectFill"
     ></image>
     <image
-        src="./logo.png"
+        src="../../assets/logo.png"
         class="avatar avatar--square avatar--large"
         mode="aspectFill"
     ></image>
@@ -33,12 +33,12 @@
 <view class="m-b-xl">
     <view class="h2 m-b-sm m-h-lg">small</view>
     <image
-        src="./logo.png"
+        src="../../assets/logo.png"
         class="avatar avatar--small m-r-lg"
         mode="aspectFill"
     ></image>
     <image
-        src="./logo.png"
+        src="../../assets/logo.png"
         class="avatar avatar--square avatar--small"
         mode="aspectFill"
     ></image>

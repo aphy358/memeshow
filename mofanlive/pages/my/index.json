@@ -1,0 +1,8 @@
+{
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "my-header": "./components/my-header/index",
+    "my-order-outline": "./components/my-order-outline/index",
+    "my-links": "./components/my-links/index"
+  }
+}

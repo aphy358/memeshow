@@ -37,12 +37,18 @@ Component({
     avatar: {
       type: String,
       value: ''
+    },
+    // 商品的标题
+    title: {
+      type: String,
+      value: ''
     }
   },
   computed: {
-    displayProps() {
-      const result = _.cloneDeep(this.data.props)
-      const selectedProp = this.data.selectedProp
+    displayProps(data) {
+      if (!data) return
+      const result = _.cloneDeep(data.props || {})
+      const selectedProp = data.selectedProp
 
       // 遍历每个属性项
       for (let i = 0; i < result.length; i++) {
@@ -53,7 +59,7 @@ Component({
           result[i].values[j].isSelected = (index === -1 ? false : result[i].values[j].vid === selectedProp[index].vid)
 
           // 过滤出与该属相项和属性值相关的skus
-          let relatedSkus = _.filter(this.data.skus, sku => _.findIndex(sku.specs, it => it.vid === result[i].values[j].vid) != -1)
+          let relatedSkus = _.filter(data.skus, sku => _.findIndex(sku.specs, it => it.vid === result[i].values[j].vid) != -1)
           // 其他属性项中已选的属性值
           const otherSelectedProps = _.filter(selectedProp, it => it.kid != result[i].kid)
           // 若没有选择其他属性项则为相关skus库存总和
@@ -68,44 +74,52 @@ Component({
 
       return result
     },
-    image() {
+    image(data) {
+      if (!data) return
       // 若没有选择sku 或者没有sku图片 则返回item头像
-      if (this.data.selectedProp.length < 1 || this.data.images.length < 1) {
-        return this.data.avatar
+      if (data.selectedProp.length < 1 || data.images.length < 1) {
+        return data.avatar
       }
       let index = 0,
         flag = -1
-      for (; index < this.data.selectedProp.length; index++) {
-        flag = _.findIndex(this.data.images, o => {
-          return (o.kid == this.data.selectedProp[index].kid && o.vid == this.data.selectedProp[index].vid)
+      for (; index < data.selectedProp.length; index++) {
+        flag = _.findIndex(data.images, o => {
+          return (o.kid == data.selectedProp[index].kid && o.vid == data.selectedProp[index].vid)
         })
         if (flag != -1) {
           break;
         }
       }
-      return index === this.data.selectedProp.length ? this.data.avatar : this.data.images[flag].thumbnail
+      return index === data.selectedProp.length ? data.avatar : data.images[flag].thumbnail
     },
-    price() {
-      if (this.data.id != '') {
-        const index = _.findIndex(this.data.skus, o => {
-          return o.id == this.data.id
+    price(data) {
+      if (!data) return
+      if (data.id != '') {
+        const index = _.findIndex(data.skus, o => {
+          return o.id == data.id
         })
-        return this.data.skus[index].price
+        return "￥" + (data.skus[index].price / 100).toFixed(2)
       }
-      return 0;
+      const min = _.minBy(data.skus, 'price')
+      const max = _.maxBy(data.skus, 'price')
+      if (min && max) {
+        return `￥${(min.price / 100).toFixed(2)}-￥${(max.price / 100).toFixed(2)}`
+      }
+      return '￥0'
     },
-    skuSelected() {
+    skuSelected(data) {
+      if (!data) return
       let str = ''
-      const len = this.data.selectedProp.length
+      const len = data.selectedProp.length
       if (len === 0) return str
 
-      this.data.props.forEach(item => {
-        const index = _.findIndex(this.data.selectedProp, o => {
+      data.props.forEach(item => {
+        const index = _.findIndex(data.selectedProp, o => {
           return o.kid == item.kid
         })
         if (index != -1) {
           const vid = _.findIndex(item.values, o => {
-            return o.vid == this.data.selectedProp[index].vid
+            return o.vid == data.selectedProp[index].vid
           })
           str += item.values[vid].v + ' '
         }
@@ -137,7 +151,7 @@ Component({
       })
 
       this.setData({
-        props
+        props,
       })
     },
     'selectionId': function (selectionId) {
@@ -160,7 +174,7 @@ Component({
       this.setData({
         quantity
       })
-    }
+    },
   },
   /**
    * 组件的方法列表
@@ -231,7 +245,15 @@ Component({
     },
 
     emitCancel() {
+      this.setData({
+        selectedProp: [],
+        id: "",
+        quantity: 1,
+      })
       this.triggerEvent('cancel')
     }
+  },
+  options: {
+    addGlobalClass: true
   }
 })

@@ -1,0 +1,121 @@
+@import "@/theme";
+
+$tabbar-height: 90rpx;
+$item-color: #B0AFB6;
+$item-size: 40rpx;
+
+.action-bar {
+  height: $tabbar-height;
+  position: fixed;
+  bottom: 0;
+  left: $spacing-v-xl;
+  right: $spacing-v-xl;
+  padding: 0 0 $spacing-v-xl;
+  @include flex-row-nowrap;
+  justify-content: space-between;
+  box-sizing: content-box;
+}
+
+.action-bar-left {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  background-color: white;
+  border-radius: $tabbar-height;
+  height: $tabbar-height;
+  padding-left: 30rpx;
+}
+
+.action-bar-left-item {
+  width: 100rpx;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+
+  .icon {
+    width: $item-size;
+    height: $item-size;
+    font-size: $item-size;
+    color: $item-color;
+  }
+}
+
+.action-bar-item-title {
+    color: $item-color;
+}
+
+
+.action-bar-left-add-cart {
+  background: linear-gradient(to right, #FDCC14, #F99903);
+  color: #fff;
+  height: $tabbar-height;
+  line-height: $tabbar-height;
+  border-radius: $tabbar-height;
+  width: 150rpx;
+  text-align: center;
+}
+
+.action-bar-confirm {
+  height: $tabbar-height;
+  line-height: $tabbar-height;
+  border-radius: $tabbar-height;
+  background: $color-brand;
+  width: 270rpx;
+  text-align: center;
+  color: #fff;
+  margin-left: $spacing-v-md;
+}
+
+.shadow {
+  box-shadow: 0 6rpx 20rpx rgba($color: #000000, $alpha: 0.3);
+}
+
+// .action-bar {
+//   width: 100%;
+//   padding-left: $spacing-h-lg;
+//   padding-right: $spacing-h-lg;
+//   padding-top: $spacing-v-lg;
+//   box-sizing: border-box;
+//   @include flex-row-nowrap;
+//   position: fixed;
+//   bottom: 0;
+//   left: 0;
+//   right: 0;
+//   background-color: $color-white;
+
+//   &__btn {
+//     display: flex;
+//     flex-flow: column nowrap;
+//     align-items: center;
+//     padding-right: $spacing-h-lg;
+//     align-self: center;
+
+//     &-icon {
+//       width: $icon-size-md;
+//       height: $icon-size-md;
+
+//       color: #000;
+//       background-color: $color-grey-5;
+//       font-size: $font-size-xs;
+//     }
+
+//     &-text {
+//       color: $color-text-base;
+//       font-size: $font-size-sm;
+//     }
+//   }
+// }
+
+// .shopping-btn {
+//   flex: 1;
+//   box-sizing: content-box;
+//   @include flex-row-nowrap;
+//   border-radius: 999rpx;
+//   overflow: hidden;
+
+//   &__cart {
+//     border-left: $color-brand 1rpx solid;
+//     border-top-left-radius: 999rpx !important;
+//     border-bottom-left-radius: 999rpx !important;
+//   }
+// }

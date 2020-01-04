@@ -1,0 +1,52 @@
+@import "@/theme";
+
+.white-background {
+  background-color: white;
+}
+
+.cell {
+  @include hairline-bottom;
+  min-height: 120rpx;
+
+  &__thumb {
+    width: $icon-size-lg;
+    height: $icon-size-lg;
+    font-size: $icon-size-lg;
+  }
+}
+
+.address {
+  width: 100%;
+  background-color: white;
+  @include flex-row-nowrap;
+  align-items: center;
+  padding-bottom: $spacing-v-xl;
+  @include hairline-bottom;
+
+  &-header {
+    flex: 1;
+
+    &--name {
+      display: inline-block;
+    }
+  }
+}
+
+.bold {
+  font-weight: bolder;
+}
+
+.f-base {
+  line-height: $line-height-base;
+  font-family: $font-cn;
+  font-size: $font-size-base;
+  color: $color-text-base;
+}
+
+.big-icon {
+  font-size: 60rpx;
+}
+
+.grey {
+  color: $color-text-placeholder;
+}

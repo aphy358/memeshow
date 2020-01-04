@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "hpopup": "/_modules/ui-kit/components/hpopup/index"
+  }
+}

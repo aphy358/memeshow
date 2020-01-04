@@ -1,14 +1,19 @@
 <scroll-view
     scroll-y
     class="recycle-list-view"
+    bindscrolltoupper="onScrollTop"
+    bindscrolltolower="onScrollBottom"
 >
     <view
         wx:for="{{ size }}"
         wx:key="*this"
         class="recycle-list-item"
         id="{{ 'recycle-list-item_' + item }}"
-        style="top:{{ renderData[item].offset }}rpx"
+        data-index="{{ item }}"
+        style="top:{{ renderList[item].offset }}rpx"
     >
-        {{ renderData[item].title }}
+        <list-item
+            post="{{ renderList[item].content }}"
+        ></list-item>
     </view>
 </scroll-view>

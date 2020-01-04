@@ -1,0 +1,67 @@
+@import "@/theme";
+
+.container {
+  background-color: #fafafa;
+  padding: 0;
+  height: 100vh;
+  display: block;
+}
+
+component {
+  background-color: #fafafa;
+}
+
+.m-l-xxl {
+  margin-left: 50rpx;
+}
+
+.f-base {
+  line-height: $line-height-base;
+  font-family: $font-cn;
+  font-size: $font-size-base;
+  color: $color-text-base;
+}
+
+.address {
+  width: 100%;
+  padding: $spacing-v-xl;
+  padding-bottom: $spacing-v-md;
+  margin-bottom: $spacing-v-md;
+  background-color: white;
+
+  &-header {
+    @include hairline-bottom;
+    padding-bottom: $spacing-v-md;
+
+    &--name {
+      display: inline-block;
+    }
+  }
+
+  &-actions {
+    width: 100%;
+    padding-top: $spacing-v-md;
+    @include flex-row-nowrap;
+
+    &--item {
+      @include flex-row-nowrap;
+      align-items: center;
+
+      .icon {
+        font-size: 40rpx;
+      }
+    }
+  }
+}
+
+.icon-color {
+  color: $color-brand;
+}
+
+.bold {
+  font-weight: bolder;
+}
+
+.flex-1 {
+  flex: 1;
+}

@@ -1,0 +1,85 @@
+<wxs module="formatter" src="./index.wxs" ></wxs>
+
+<view class="setup-items">
+  <view class="cell__group bg-white">
+    <navigator url="/pages/my/partials/my-nickname/index" class="cell">
+      <view class="cell__header">
+        <view class="cell__title">昵称</view>
+      </view>
+      <view class="cell__tail">
+        <view class="cell__detail">{{ userProfile.nickname || userProfile.openUsers.weixinApp.nickname }}</view>
+        <view class="icon icon-chevron-right cell__icon-link"></view>
+      </view>
+    </navigator>
+
+    <view class="cell">
+      <view class="cell__header">
+        <view class="cell__title">用户ID</view>
+      </view>
+      <view class="cell__tail">
+        <view class="cell__detail">{{ userProfile.id }}</view>
+      </view>
+    </view>
+
+    <navigator url="/pages/my/partials/my-profile/index" class="cell">
+      <view class="cell__header">
+        <view class="cell__title">简介</view>
+      </view>
+      <view class="cell__tail">
+        <view class="cell__detail">{{ userProfile.signature || '未设置' }}</view>
+        <view class="icon icon-chevron-right cell__icon-link"></view>
+      </view>
+    </navigator>
+  
+    <view class="cell" bind:tap="onShowGenderPopup">
+      <view class="cell__header">
+        <view class="cell__title">性别</view>
+      </view>
+      <view class="cell__tail">
+        <view class="cell__detail">{{ formatter.getGenderText(userProfile.gender) }}</view>
+        <view class="icon icon-chevron-right cell__icon-link"></view>
+      </view>
+    </view>
+
+    <view class="cell">
+      <view class="cell__header">
+        <view class="cell__title">生日</view>
+      </view>
+      <view class="cell__tail">
+        <view class="cell__detail">{{ userProfile.birthday }}</view>
+        <view class="icon icon-chevron-right cell__icon-link"></view>
+      </view>
+
+      <picker mode="date" class="picker" value="{{ userProfile.birthday }}" bindchange="onSetBirthday">
+        占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位
+      </picker>
+    </view>
+
+    <view class="cell">
+      <view class="cell__header">
+        <view class="cell__title">地区</view>
+      </view>
+      <view class="cell__tail">
+        <view class="cell__detail">{{ formatter.getRegionText(userProfile) }}</view>
+        <view class="icon icon-chevron-right cell__icon-link"></view>
+      </view>
+
+      <picker mode="region" class="picker" bindchange="onSetRegion" value="{{ formatter.getRegionArr(userProfile) }}">
+        占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位
+      </picker>
+    </view>
+  </view>
+</view>
+
+<view class="cell bg-white">
+  <view class="cell__header">
+    <view class="cell__title">手机号</view>
+  </view>
+  <view class="cell__tail">
+    <view class="cell__detail">{{ formatter.getPhoneText(userProfile) }}</view>
+    <view class="icon icon-chevron-right cell__icon-link"></view>
+  </view>
+
+  <view wx:if="{{ formatter.getPhoneText(userProfile) !== '未设置' }}" class="picker" bind:tap="wantToChangeMobile"></view>
+  <button wx:else class="picker" open-type="getPhoneNumber" bindgetphonenumber="onGetPhoneNumber"></button>
+</view>

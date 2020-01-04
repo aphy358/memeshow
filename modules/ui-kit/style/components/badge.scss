@@ -1,41 +1,37 @@
-@import '../variables/default.scss';
-@import '../mixins/index.scss';
+@import "../variables/default.scss";
+@import "../mixins/index.scss";
 
-$at-badge-border-radius: $at-badge-font-size * 0.7;
-$at-badge-box-shadow: 0 4px 8px 0 rgba($color: $at-badge-bg-color, $alpha: 0.2);
+.badge {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
 
-.at-badge {
-  position: relative;
-  display: inline-block;
-  font-size: 0;
-  vertical-align: middle;
+    /* elements */
+    &--dot {
+        position: absolute;
+        top: -$badge-dot-size / 4;
+        right: -$badge-dot-size / 2;
+        width: $badge-dot-size;
+        height: $badge-dot-size;
+        border-radius: $border-radius-circle;
+        overflow: hidden;
+        background: $badge-color-bg;
+    }
 
-  /* elements */
-  &__dot {
-    position: absolute;
-    right: -6px;
-    top: -6px;
-    width: $at-badge-dot-size;
-    height: $at-badge-dot-size;
-    border-radius: 50%;
-    overflow: hidden;
-    background: $at-badge-bg;
-    box-shadow: $at-badge-box-shadow;
-  }
+    &--num {
+        position: absolute;
+        top: -$badge-dot-size / 2;
+        right: -$badge-dot-size / 2;
+        overflow: hidden;
+        background: $badge-color-bg;
+        padding: 0 $spacing-h-sm;
+        border-radius: $badge-border-radius;
+        color: $badge-color-text;
+        font-size: $badge-font-size;
+        line-height: 1.4;
+        transform: translate(50%, 0);
 
-  &__num {
-    position: absolute;
-    padding: 0 $spacing-h-sm;
-    top: -$at-badge-border-radius;
-    right: -6PX;
-    color: $at-badge-color;
-    font-size: $at-badge-font-size;
-    line-height: 1.4;
-    border-radius: $at-badge-border-radius $at-badge-border-radius $at-badge-border-radius 0;
-    background: $at-badge-bg;
-    box-shadow: $at-badge-box-shadow;
-    transform: translate(50%, 0);
-    overflow: hidden;
-    z-index: 1;
-  }
+        //   box-shadow: $at-badge-box-shadow;
+        //   z-index: 1;
+    }
 }

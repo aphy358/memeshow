@@ -1,6 +1,7 @@
 /**
  * Default variables
  */
+
 @import "../mixins/libs/size";
 @import "../mixins/libs/tint";
 
@@ -25,6 +26,9 @@ $color-error: #ff4949 !default;
 $color-warning: #ffc82c !default;
 $color-success: #13ce66 !default;
 
+// 功能色 - 通用业务
+$color-price: #fe2c54 !default;
+
 // 功能色 - 备选
 $color-roof: #c2abc7 !default;
 $color-wall: #eef0f0 !default;
@@ -45,6 +49,7 @@ $color-grey-3: #ccc !default;
 $color-grey-4: #e5e5e5 !default;
 $color-grey-5: #f0f0f0 !default;
 $color-grey-6: #f7f7f7 !default;
+$color-grey-7: #fbfbfb !default;
 
 /* 边框颜色 */
 $color-border-base: #dedede !default; // todo
@@ -58,31 +63,36 @@ $color-border-grey: #ccc !default;
 $color-text-base: #333 !default; // 文字的基本色
 $color-text-base-inverse: #fff !default; // 反色
 $color-text-secondary: #36d57d !default; // 辅助色
-$color-text-placeholder: #c9c9c9 !default;
-$color-text-disabled: #ccc !default;
-$color-text-title: #2c405a !default; // 文章标题
+$color-text-title: #2b2b2b !default; // 文章标题
 $color-text-paragraph: #3f536e !default; // 文章段落
+$color-text-placeholder: #cfcfcf !default;
+$color-text-disabled: #ccc !default;
 
 /* Link */
+// todo: 设计稿未给出
 $color-link: #1890ff !default;
 $color-link-hover: #79a1eb !default;
 $color-link-active: #4f7de2 !default;
 $color-link-disabled: #bfbfbf !default;
 
 /* 背景色 */
-$color-bg: rgb(37, 28, 28) !default;
-$color-bg-base: #fafbfc !default;
-$color-bg-light: #ecf5fd !default;
-$color-bg-lighter: tint($color-bg-light, 50%) !default;
-$color-bg-grey: #f7f7f7 !default;
+$color-bg: $color-white !default;
+$color-bg-dark: #f4f4f6 !default;
+// $color-bg-darker: #??? todo 设计稿暂未给出
+$color-bg-light: #ecf5fd !default; // todo:
+$color-bg-lighter: tint($color-bg-light, 50%) !default; // todo:
 
 /* 图标颜色 */
 $color-icon-base: #ccc !default;
+$color-icon-white: $color-white !default;
+// $color-icon-inverse: $color-white !default; todo
 
 /* Border Radius */
 $border-radius-sm: size(2) !default;
 $border-radius-md: size(4) !default;
 $border-radius-lg: size(6) !default;
+$border-radius-xl: size(8) !default;
+$border-radius-xxl: size(16) !default;
 $border-radius-circle: 50% !default;
 
 /* 透明度 */
@@ -90,11 +100,13 @@ $opacity-active: 0.6 !default; // Button 等组件点击态额透明度
 $opacity-disabled: 0.3 !default; // Button 等组件禁用态的透明度
 
 /* Font */
-$font-en: "-apple-system-font", "Helvetica Neue"; // 英文
-$font-cn: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei"; // 中文
+$font-en: "-apple-system-font", "Microsoft YaHei", "Helvetica Neue"; // 英文
+$font-cn: "PingFangSC-Regular", "Microsoft YaHei", "Hiragino Sans GB"; // 中文
 $font-nu: "Helvetica Neue"; // 阿拉伯数字的字体
+$font-bold: "PingFangSC-Semibold"; // 加粗
+$font-price: "DINAlternate-Bold"; // 价格
 $font-sans: sans-serif; // 默认
-$font-default: $font-en, $font-cn, $font-sans;
+$font-default: $font-cn, $font-en, $font-sans;
 
 $font-size-xs: size(10) !default; // 非常用字号，用于标签
 $font-size-sm: size(12) !default; // 用于辅助信息
@@ -133,7 +145,7 @@ $spacing-text-base: size(5) !default;
 
 // vertical paddings
 $padding-lg: size(24) !default; // containers
-$padding-md: size(16) !default; // small containers and buttons
+$padding-md: size(15) !default; // small containers and buttons
 $padding-sm: size(12) !default; // Form controls and items
 $padding-xs: size(8) !default; // small items
 
@@ -210,39 +222,48 @@ $cell-spacing-h: $padding-md !default; // 列表缩进
 $cell-size-img: size(28) !default;
 $cell-color-border: #ddd !default;
 $cell-color-actived: $color-grey-6 !default;
+$cell-link-color: $color-grey-2 !default;
 
 /* Form */
 $form-spacing-h: size(20) !default;
 $form-color-border: #ddd !default;
 $form-label-min-width: size(80) !default;
 $form-label-max-width: size(100) !default;
+$form-font-size: $font-size-lg !default;
 
 /* Card */
+$card-gap: size(12) !default;
 $card-color-bg: $color-white !default;
 $card-color-border: $color-border-base !default;
-$card-grap: size(15) !default;
+
+$card-font-size: $font-size-base !default;
+
 $card-border-radius: size(10) !default;
 $card-thumb-size: $icon-size-sm !default;
 $card-icon-size: $icon-size-sm !default;
 
 /* Button */
 $button-height: size(45) !default;
-$button-height-sm: size(30) !default;
+$button-height-sm: size(28) !default;
+$button-mini-font-size: $font-size-base !default;
+$button-mini-font-family: $font-cn !default;
 
 /* Popup */
-$popup-layout-timer: 500ms !default;
 $popup-height-min: size(300) !default;
-$popup-height-max: size(450) !default;
+// $popup-height-max: size(450) !default;
+$popup-height-max: 66vh !default;
+$popup-content-padding: size(15) !default;
 
 /* Input */
 $input-color-border: $color-border-grey !default;
 
 /* InputNumber */
-$input-number-height: size(35) !default;
-$input-number-width-min: size(60) !default;
+$input-number-height: size(32) !default;
+$input-number-width-min: size(32) !default;
 $input-number-color-btn: $color-text-base !default;
 $input-number-color-border: $color-border-base !default;
 $input-number-btn-size: $font-size-base !default;
+
 // $input-number-height-lg: size(60) !default;
 // $input-number-width-min-lg: size(60) !default;
 
@@ -256,12 +277,11 @@ $textarea-counter-color: $color-text-placeholder !default;
 $textarea-counter-size: $font-size-base !default;
 
 /* Checkbox */
-$checkbox-circle-size: size(20) !default;
-$checkbox-icon-size: $font-size-sm !default;
+$checkbox-icon-size: size(10) !default;
 $checkbox-icon-color: $color-brand !default;
 $checkbox-icon-color-checked: $color-white !default;
 $checkbox-title-color: $color-text-base !default;
-$checkbox-title-font-size: $font-size-lg !default;
+$checkbox-title-font-size: $font-size-base !default;
 $checkbox-desc-font-size: $font-size-sm !default;
 $checkbox-desc-color: $color-grey-2 !default;
 
@@ -276,31 +296,25 @@ $avatar-size-lg: size(60) !default;
 
 /* Tabs */
 $tabs-width-min: size(50) !default;
-$tabs-height: size(45) !default;
-$tabs-height-dash: size(1) !default;
-$tabs-color-active: $color-brand !default;
+$tabs-height: size(40) !default;
+$tabs-height-dash: size(2) !default;
+$tabs-width-dash: size(30) !default;
+$tabs-color-active: $color-text-base !default;
+$tabs-color-normal: #a6a6a6 !default;
 $tabs-color-dash: $color-brand !default;
+$tabs-font-family: $font-bold !default;
+$tabs-font-size: $font-size-lg !default;
 
-
-// /* FloatLayout */
-// $float-layout-header-bg-color: $color-bg-grey !default;
-// $float-layout-title-color: $color-text-base !default;
-// $float-layout-title-font-size: $font-size-lg !default;
-// $float-layout-btn-color: $color-grey-3 !default;
-
-// /* Accordion */
-// $at-accordion-color-arrow: $color-grey-3 !default;
+/* Badge */
+$badge-color-bg: $color-error !default;
+$badge-color-text: $color-white !default;
+$badge-dot-size: size(10) !default;
+$badge-font-size: $font-size-xs !default;
+$badge-border-radius: $border-radius-md !default;
 
 // /* Activity Indicator */
 // $at-activity-indicator-font-size: 28px !default;
 // $at-activity-indicator-font-color: $color-grey-2 !default;
-
-// /* Badge */
-// $at-badge-color: $color-white !default;
-// $at-badge-bg-color: $color-error !default;
-// $at-badge-bg: $at-badge-bg-color !default;
-// $at-badge-font-size: $font-size-xs !default;
-// $at-badge-dot-size: 20px !default;
 
 // /* Float Button */
 // $at-fab-size: 56px * $hd !default;

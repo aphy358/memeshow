@@ -1,8 +1,52 @@
+@import "@/theme";
 $poster-height: 750rpx;
 
 .posters {
   width: 100%;
   height: $poster-height;
+  position: relative;
+
+  .switch {
+    height: 44rpx;
+    position: absolute;
+    bottom: 46rpx;
+    left: 0;
+    right: 0;
+    z-index: 9;
+    @include flex-row-nowrap;
+    justify-content: center;
+
+    .icon {
+      align-self: center;
+    }
+
+    &-item {
+      width: 94rpx;
+      height: 100%;
+      border-radius: 44rpx;
+      text-align: center;
+      background: #B6B6B6;
+      color: white;
+      @include flex-row-nowrap;
+      justify-content: center;
+      align-items: center;
+    }
+
+    &-item-active {
+      background: $color-brand !important;
+    }
+
+    &-counter {
+      width: 94rpx;
+      height: 44rpx;
+      position: absolute;
+      right: $spacing-h-lg;
+      background-color: rgba($color: #000000, $alpha: 0.3);
+      color: white;
+      border-radius: 44rpx;
+      text-align: center;
+    }
+  }
 
   swiper {
     width: 100%;
@@ -17,5 +61,11 @@ $poster-height: 750rpx;
         height: 100%;
       }
     }
+  }
+
+  .video {
+    background-color: #000;
+    width: 100%;
+    height: 100%;
   }
 }

@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "checkbox-item": "/ui-kit/components/checkbox/index"
+  }
+}

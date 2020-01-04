@@ -1,0 +1,14 @@
+<view class="card card--no-border white-back margin-top">
+    <view class="card__content">
+        <view class="card__info row">
+            <view class="icon icon-map-pin m-r-md"></view>
+            <view class="address col--auto">
+                <view class="address__name m-r-md">{{address.name}}</view>
+                <view class="address__tel">{{address.tel}}</view>
+                <view
+                    class="address__item"
+                >{{address.province+address.city+address.district+address.address}}</view>
+            </view>
+        </view>
+    </view>
+</view>

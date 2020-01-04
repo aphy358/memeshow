@@ -1,0 +1,19 @@
+<popup
+    open="{{ open }}"
+    mask="{{ false }}"
+    maskClosable="{{ maskClosable }}"
+    closable="{{ closable }}"
+    duration="{{ duration }}"
+    title="{{ title }}"
+    contentStyle="{{ contentStyle }}"
+>
+    <view slot="header">
+        <slot name="header"></slot>
+    </view>
+    <view>
+        <slot></slot>
+    </view>
+    <view slot="footer">
+        <slot name="footer"></slot>
+    </view>
+</popup>

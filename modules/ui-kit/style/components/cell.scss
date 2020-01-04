@@ -20,7 +20,7 @@
         @include display-flex();
         @include align-items(center);
         @include justify-content(flex-end);
-        max-width: 30%;
+        max-width: 50%;
         margin-left: $spacing-h-lg;
         overflow: hidden;
     }
@@ -39,7 +39,6 @@
 
     &__detail {
         font-size: $font-size-base;
-        color: $color-text-paragraph;
     }
 
     &__img {
@@ -55,7 +54,7 @@
         margin: $spacing-v-xs 0;
         line-height: $font-size-base;
         font-size: $font-size-sm;
-        color: $color-text-paragraph;
+        color: $color-grey-1;
     }
 
     &__title--multi {
@@ -73,11 +72,17 @@
     &__icon-link {
         margin-left: $spacing-v-sm;
         font-size: $font-size-base;
-        color: $font-size-base;
+        color: $cell-link-color;
     }
 
     &--actived {
         background-color: $cell-color-actived;
+    }
+
+    &--no-border {
+        &::after {
+            display: none;
+        }
     }
 }
 

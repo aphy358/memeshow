@@ -40,6 +40,8 @@ Component({
     }
   },
 
+  externalClasses: ["tabs-class"],
+
   relations: {
     "../tab/index": {
       type: "child",

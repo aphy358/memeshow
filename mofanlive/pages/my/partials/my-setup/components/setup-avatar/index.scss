@@ -1,0 +1,26 @@
+
+.my-setup-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 80rpx 0;
+
+  .header-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .img {
+      width: 140rpx;
+      height: 140rpx;
+      border-radius: 9999px;
+      overflow: hidden;
+      margin-bottom: 20rpx;
+    }
+
+    .text {
+      font-size: 32rpx;
+      color: #999999;
+    }
+  }
+}

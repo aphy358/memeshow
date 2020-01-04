@@ -3,7 +3,7 @@
   class="status-bar-wrap"
   style="width: {{ menuBtn.left - 40 }}px;height: {{ menuBtn.height }}px;top: {{ menuBtn.top }}px;"
 >
-  <view class="status-bar-inner">
+  <navigator url="/pages/shop/index" open-type="switchTab" hover-class="navigator-hover" class="status-bar-inner">
     <!-- 主播头像 -->
     <view class="sb-avatar">
       <image class="img" src="https://gd2.alicdn.com/imgextra/i4/208763083/TB2cd_mdGQoBKNjSZJnXXaw9VXa_!!208763083.jpg_400x400.jpg" />
@@ -16,7 +16,7 @@
     </view>
 
     <!-- 关注按钮 -->
-    <view class="sb-follow-wrap">关注</view>
-  </view>
+    <!-- <view class="sb-follow-wrap">关注</view> -->
+  </navigator>
 
 </view>

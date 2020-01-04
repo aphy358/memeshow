@@ -1,0 +1,7 @@
+<trade
+    trade="{{item}}"
+    wx:for="{{list}}"
+    wx:key="id"
+    id="{{item.shop.id}}"
+    bind:checktrade="checkWholeTrade"
+></trade>

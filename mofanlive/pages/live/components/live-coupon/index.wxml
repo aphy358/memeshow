@@ -1,0 +1,15 @@
+
+<view class="coupon-wrap {{ couponClazz }}">
+  <image class="img" src="../../assets/coupon.png" />
+  <image class="img-close" src="../../assets/coupon-close.png" bind:tap="hideCoupon" />
+
+  <view class="coupon-content-wrap">
+    <view class="content-row-1">¥<text class="coupon-amount">10</text> </view>
+    <view class="content-row-2">满100元可用</view>
+    <view class="content-row-3">本店优惠券</view>
+  </view>
+
+  <view class="coupon-seconds-wrap">
+    {{ secondLeft }}s
+  </view>
+</view>

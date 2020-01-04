@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "info": "./components/refund-info/index",
+    "image-selector": "./components/image-selector/index"
+  }
+}

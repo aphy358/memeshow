@@ -1,0 +1,22 @@
+<wxs
+    module="accurate2"
+    src="/components/common/wxs/accurate.wxs"
+></wxs>
+
+<view class="action-bar">
+    <view class="left p-h-md">
+        <checkbox-item
+            bind:change="emitCheckAll"
+            checked="{{all}}"
+            title="全选"
+        ></checkbox-item>
+        <view class="total">
+            <view class="f-cn f-md f-base m-r-md">总计</view>
+            <view class="f-price f-md">￥{{accurate2(total/100)}}</view>
+        </view>
+    </view>
+    <button
+        bind:tap="emitSubmit"
+        class="button--primary button--mini button--full"
+    >结算</button>
+</view>

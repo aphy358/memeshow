@@ -1,0 +1,44 @@
+@import "@/theme";
+
+.sku {
+  background-color: white;
+  @include flex-row-nowrap;
+  align-items: center;
+
+  &-check {
+
+  }
+
+  image {
+    $img-size: 180rpx;
+
+    width: $img-size;
+    height: $img-size;
+    border-radius: $border-radius-md;
+  }
+
+  &-info {
+    flex: 1;
+    position: relative;
+    align-self: stretch;
+
+    &--title {
+      line-height: $line-height-base;
+      @include line(2);
+    }
+
+    &--price, &--number {
+      bottom: 0;
+      position: absolute;
+    }
+
+    &--price {
+      left: 0;
+      line-height: 1;
+    }
+
+    &--number {
+      right: 0;
+    }
+  }
+}

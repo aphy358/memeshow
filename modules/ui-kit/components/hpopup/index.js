@@ -27,8 +27,8 @@ Component({
 
     // 用户自定义动画
     customAnimation: {
-      type: Object,
-      value: null
+      type: [Object, Boolean],
+      value: false
     },
 
     // 弹出层的位置：`top`, `bottom`, `left`, `right`, `center`
@@ -165,11 +165,7 @@ Component({
         })
       }
 
-      // 这里延后 `300ms` 将 `transforming` 的值设为 `false` 是为了避免频繁的触发 `tapMask`、`touchendMask` 等事件
-      setTimeout(() => {
-        this.data.transforming = false
-      }, 300);
-
+      this.data.transforming = false
       this.triggerEvent(eventType)
     },
 

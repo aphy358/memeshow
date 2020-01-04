@@ -7,7 +7,10 @@ var getTimeDiff = t => {
   return Date.now() - t
 }
 
+var accurate2 = num => num.toFixed(2)
+
 module.exports = ({
   formatDuaration,
-  getTimeDiff
+  getTimeDiff,
+  accurate2,
 });

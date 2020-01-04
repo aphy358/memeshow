@@ -1,5 +1,6 @@
 
 .hpopup-wrap {
+  position: relative;
 
   @at-root .hpopup-mask{
     position: fixed;
@@ -23,15 +24,13 @@
 
   @at-root .hpopup-body {
     position: fixed;
-    background: #fff;
     min-height: 200rpx;
     transition-timing-function: "ease-out";
-    overflow: hidden;
 
     &__center {
       top: 50%;
       left: 50%;
-      transform: translate3d(-50%, -50%, 0);
+      transform: translate(-50%, -50%);
     }
 
     &__top {
@@ -101,29 +100,29 @@
 .fade-top-enter,
 .fade-top-leave-to {
   opacity: 0;
-  -webkit-transform: translate3d(0, 100%, 0);
-  transform: translate3d(0, 100%, 0);
+  -webkit-transform: translate(0, 100%);
+  transform: translate(0, 100%);
 }
 
 .fade-bottom-enter,
 .fade-bottom-leave-to {
   opacity: 0;
-  -webkit-transform: translate3d(0, -100%, 0);
-  transform: translate3d(0, -100%, 0);
+  -webkit-transform: translate(0, -100%);
+  transform: translate(0, -100);
 }
 
 .fade-left-enter,
 .fade-left-leave-to {
   opacity: 0;
-  -webkit-transform: translate3d(-100%, 0, 0);
-  transform: translate3d(-100%, 0, 0);
+  -webkit-transform: translate(-100%, 0);
+  transform: translate(-100%, 0);
 }
 
 .fade-right-enter,
 .fade-right-leave-to {
   opacity: 0;
-  -webkit-transform: translate3d(100%, 0, 0);
-  transform: translate3d(100%, 0, 0);
+  -webkit-transform: translate(100%, 0);
+  transform: translate(100%, 0);
 }
 
 .slide-bottom-enter-active,
@@ -143,24 +142,24 @@
 
 .slide-top-enter,
 .slide-top-leave-to {
-  -webkit-transform: translate3d(0, -100%, 0);
-  transform: translate3d(0, -100%, 0);
+  -webkit-transform: translate(0, -100%);
+  transform: translate(0, -100%);
 }
 
 .slide-bottom-enter,
 .slide-bottom-leave-to {
-  -webkit-transform: translate3d(0, 100%, 0);
-  transform: translate3d(0, 100%, 0);
+  -webkit-transform: translate(0, 100%);
+  transform: translate(0, 100%);
 }
 
 .slide-left-enter,
 .slide-left-leave-to {
-  -webkit-transform: translate3d(-100%, 0, 0);
-  transform: translate3d(-100%, 0, 0);
+  -webkit-transform: translate(-100%, 0);
+  transform: translate(-100%, 0);
 }
 
 .slide-right-enter,
 .slide-right-leave-to {
-  -webkit-transform: translate3d(100%, 0, 0);
-  transform: translate3d(100%, 0, 0);
+  -webkit-transform: translate(100%, 0);
+  transform: translate(100%, 0);
 }

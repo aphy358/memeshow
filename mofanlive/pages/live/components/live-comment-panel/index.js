@@ -1,4 +1,4 @@
-import { connect } from "libs/redux/index.js"
+import { connectComponent } from "wx-redux"
 import { animateTo } from 'libs/utils.js'
 
 import _comments from './_comments'
@@ -10,13 +10,19 @@ const liveBigListScroller = new BigListScroller({
   listHeight: 300
 })
 
+const welcomeColors = ['rgba(202, 35, 46, 0.6)', 'rgba(202, 35, 46, 0.6)']
+
 let id = 10
-let componentConfig = {
+
+const mapStateToProps = state => ({})
+const mapDispatchToProps = dispatch => ({})
+
+Component(connectComponent(mapStateToProps, mapDispatchToProps)({
   options: {
     // 允许页面的样式影响到组件
     styleIsolation: 'apply-shared'
   },
-  
+
   properties: {
     // 新增评论
     newComment: {
@@ -29,10 +35,10 @@ let componentConfig = {
   data: {
     toView: 'listBottom',
 
-    welcome: {
-      name: '随缘',
-      animation: null
-    },
+    userTrend: null,
+
+    // 用户动态队列，需要排队的一个个显示，已经显示过的清除
+    userTrends: [],
 
     recommendAnimation: null,
   },
@@ -40,36 +46,62 @@ let componentConfig = {
   methods: {
     scrollComment(e) {
       liveBigListScroller.scrollList(e, this.data.scrolling)
-      
-      clearTimeout(this.data.scrollTimeOut)
-      this.data.scrolling = true
-      this.data.scrollTimeOut = setTimeout(() => {
-        this.data.scrolling = false
-      }, 2000);
+      if (!this.data.addingComment) {
+        clearTimeout(this.data.scrollTimeOut)
+        this.data.scrolling = true
+        this.data.scrollTimeOut = setTimeout(() => {
+          this.data.scrolling = false
+        }, 2000);
+      } else {
+        this.data.addingComment = false
+      }
     },
 
-    showWelcomeTip() {
-      let { welcome } = this.data
+    // 添加用户动态
+    addUserTrends() {
+      let ran = Math.floor(Math.random() * 8) + 1
 
-      welcome.name = '随缘' + id++
-      welcome.animation = animateTo({'translateX': '0%'})
-      this.setData({ welcome })
+      let userTrend = {
+        type: ran,
+        bgColor: welcomeColors[ran % 2],
+        name: '哦破ID旅客' + id++,
+        t: 0
+      }
 
-      setTimeout(() => {
-        this.hideWelcomeTip()
-      }, 2000);
+      this.data.userTrends.push(userTrend)
+      this.trendsInterval()
     },
 
-    hideWelcomeTip() {
-      let { welcome } = this.data
-      welcome.animation = animateTo({'translateX': '-100%'})
-      this.setData({ welcome })
+    // 用户动态轮询
+    trendsInterval(e) {
+      if (!this.data.trendsInterval) {
+        this.data.trendsInterval = setInterval(() => {
+          const { userTrend, userTrends } = this.data
+
+          if (userTrends.length > 0) {
+            if (!userTrend || Date.now() - userTrend.t > 2000) {
+              this.processUserTrends()
+            }
+          } else {
+            clearInterval(this.data.trendsInterval)
+            this.data.trendsInterval = null
+          }
+        }, 100);
+      }
+    },
+
+    // 处理用户动态
+    processUserTrends() {
+      this.setData({ userTrend: null })
+
+      let userTrend = this.data.userTrends.shift()
+      userTrend.t = Date.now()
+      this.setData({ userTrend })
     },
 
     addComment(comment) {
-      console.log('addComment', comment);
-      
       liveBigListScroller.addItems(comment)
+      this.data.addingComment = true
 
       if (!this.data.scrolling) {
         setTimeout(() => {
@@ -80,7 +112,7 @@ let componentConfig = {
 
     showRecommend() {
       let { recommendAnimation } = this.data
-      recommendAnimation = animateTo({'height': '80px'})
+      recommendAnimation = animateTo({ 'height': '160rpx' })
       this.setData({ recommendAnimation })
 
       setTimeout(() => {
@@ -90,39 +122,37 @@ let componentConfig = {
 
     hideRecommend() {
       let { recommendAnimation } = this.data
-      recommendAnimation = animateTo({'height': '0'})
+      recommendAnimation = animateTo({ 'height': '0' })
       this.setData({ recommendAnimation })
     },
   },
 
+  ready() {
+    liveBigListScroller.bindContext(this)
+    liveBigListScroller.addItems(_comments)
+
+    setInterval(() => {
+      let type = Math.floor(Math.random() * 3)
+      let comment = {
+        color: '2',
+        nickName: 'Joker',
+        comment: '呵呵🐂皮评论',
+        type
+      }
+
+      this.addComment(comment)
+    }, 2000);
+
+    setInterval(() => {
+      this.addUserTrends()
+    }, 1000);
+
+    setInterval(() => {
+      this.showRecommend()
+    }, 8000);
+  },
   lifetimes: {
-    ready() {
-      liveBigListScroller.bindContext(this)
-      liveBigListScroller.addItems(_comments)
-
-      setInterval(() => {
-        // this.addComment()
-      }, 2000);
-
-      setInterval(() => {
-        // this.showWelcomeTip()
-      }, 4000);
-
-      setInterval(() => {
-        // this.showRecommend()
-      }, 8000);
-    },
     detached() {
     },
   }
-}
-
-const mapStateToData = state => ({})
-const mapDispatchToPage = dispatch => ({})
-
-let connectedConfig = connect(
-  mapStateToData,
-  mapDispatchToPage
-)(componentConfig, true)
-
-Component(connectedConfig)
+}))

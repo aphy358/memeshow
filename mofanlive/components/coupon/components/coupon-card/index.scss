@@ -1,0 +1,86 @@
+@import "@/theme";
+
+.coupon {
+    @include display-flex();
+    overflow: hidden;
+    padding: 0;
+    background-color: #fef5f1;
+    border-radius: $border-radius-lg;
+    margin-bottom: $spacing-v-lg;
+    font-family: $font-cn;
+    font-size: $font-size-base;
+
+    &-left {
+        flex: 1;
+        position: relative;
+    }
+
+    &-right {
+        @include display-flex();
+        align-items: center;
+        flex: 0 0 auto;
+        padding: 0 size(20);
+        border-left: $color-brand size(1) dashed;
+        margin: $spacing-h-md 0;
+        font-family: $font-bold $font-sans;
+        color: $color-price;
+        font-size: $font-size-lg;
+        text-align: center;
+    }
+
+    &-content {
+        @include display-flex();
+        align-items: center;
+        padding: $spacing-v-xxl 0 size(10);
+
+        &-price {
+            flex: 0 0 auto;
+            @include line(1);
+            width: size(90);
+            overflow: hidden;
+            color: $color-price;
+            font-family: $font-bold;
+            text-align: center;
+
+            &__price {
+                font-size: size(30);
+            }
+        }
+
+        &-desc {
+            color: $color-brand;
+
+            &__time,
+            &__condition {
+                @include line(1);
+                line-height: 1;
+            }
+
+            &__condition {
+                margin-bottom: 15rpx;
+            }
+
+            &__time {
+                font-size: $font-size-sm;
+            }
+        }
+    }
+
+    &-label {
+        @include line(1);
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: size(80);
+        height: size(15);
+        overflow: hidden;
+        background-color: #fee6e6;
+        border-bottom-right-radius: $border-radius-lg;
+        font-size: $font-size-xs;
+        line-height: size(15);
+        font-family: $font-cn;
+        color: $color-brand;
+        text-align: center;
+    }
+}
+

@@ -1,17 +1,17 @@
-import { connect } from "libs/redux/index.js"
+import { connectComponent } from "wx-redux"
 import { menuBtn } from "ui-kit/behaviors/index"
-const app = getApp()
-const store = app.store
 
+const mapStateToProps = state => ({})
+const mapDispatchToProps = dispatch => ({})
 
-let componentConfig = {
+Component(connectComponent(mapStateToProps, mapDispatchToProps)({
   behaviors: [menuBtn()],
 
   options: {
     // 允许页面的样式影响到组件
     styleIsolation: 'apply-shared'
   },
-  
+
   properties: {
 
   },
@@ -23,14 +23,4 @@ let componentConfig = {
   methods: {
 
   }
-}
-
-const mapStateToData = state => ({})
-const mapDispatchToPage = dispatch => ({})
-
-let connectedConfig = connect(
-  mapStateToData,
-  mapDispatchToPage
-)(componentConfig, true)
-
-Component(connectedConfig)
+}))

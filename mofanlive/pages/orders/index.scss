@@ -1,8 +1,9 @@
 @import "@/theme";
 
-.order {
+.orders {
   width: 100%;
   box-sizing: border-box;
-  background-color: $color-white;
-  padding: $spacing-v-lg $spacing-h-lg;
+  position: relative;
+  background-color: $color-bg-dark;
+  display: block;
 }

@@ -1,0 +1,36 @@
+@import "@/theme";
+
+.swipe-out {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.menu {
+  position: absolute;
+  height: 100%;
+  width: 100px;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 1;
+  @include flex-row-nowrap;
+  justify-content: stretch;
+
+  &-item {
+    flex: 1;
+    @include flex-row-nowrap;
+    justify-content: center;
+    align-items: center;
+
+    view {
+      color: white;
+    }
+  }
+}
+
+.content {
+  position: relative;
+  z-index: 2;
+}

@@ -1,10 +1,8 @@
 
 .announcement-wrap {
-  position: fixed;
+  position: absolute;
   right: 30rpx;
-  top: calc(240rpx);
-  top: calc(240rpx + constant(safe-area-inset-top));
-  top: calc(240rpx + env(safe-area-inset-top));
+  top: 240rpx;
   width: 280rpx;
   height: 300rpx;
   background: rgba(231, 123, 123, 0.445);

@@ -2,7 +2,7 @@ Component({
   properties: {
     list: Array,
 
-    // 上边界，超过这个高度的元素被标记为 dirty
+    // 上边界，超过这个高度的元素被标记为 outer
     // thresholdBottom 同理
     thresholdTop: Number,
 
@@ -11,95 +11,176 @@ Component({
 
   data: {
     height: 300,
-    size: 7,
-    renderData: []
+
+    size: 10,
+
+    // 当前渲染的数据
+    renderList: [],
+
+    // renderList head 在 list 的位置
+    _positon: 0,
+
+    // 偏移量
+    _offset_min: 0,
+    _offset_max: 0
   },
 
   lifetimes: {
     attached() {
-      this.initWindow()
-      this._observer = this.setIntersectionObserver()
+      this.initRenderList()
+      this.setIntersectionObserver()
     },
 
     detached() {
-      this._observer.disconnect()
+      this.removeIntersectionObserver()
     }
   },
 
   methods: {
-    // 第一次渲染
-    initWindow() {
-      const { size, height, list } = this.data
-      const sliceData = list.slice(0, size)
-      sliceData.forEach((item, index) => {
-        item.offset = index * this.data.height
-      })
-      this.setData({ renderData: sliceData })
+    /**
+     * 判断是否超过了阈值
+     *
+     * @returns {boolean}
+     */
+
+    isOverThreshold() {
+      // todo 这部分应该是 cursor data 要做的
+      return Boolean(false)
     },
 
-    // 监听相交的情况
-    setIntersectionObserver() {
-      if (this._observer) this._observer.disconnect()
-      return this.createIntersectionObserver({ observeAll: true })
-        .relativeTo(".recycle-list-view", {
-          top: this.data.thresholdTop,
-          bottom: this.data.thresholdBottom
-        })
-        .observe(".recycle-list-item", res => {
-          if (res.intersectionRatio <= 0) {
-            const { renderData, height } = this.data
-            if (res.relativeRect.top > res.boundingClientRect.bottom) {
-              console.log("超出上边界：", res)
-              // 超出上边界
-              const $dom = renderData.shift()
-              $dom.offset = renderData[renderData.length - 1].offset + height
-              renderData.push($dom)
-            } else if (res.relativeRect.bottom < res.boundingClientRect.top) {
-              // 超出下边界
-              console.log("超出下边界：", res)
-              const $dom = renderData.pop()
-              $dom.offset = renderData[0].offset - height
-              renderData.unshift($dom)
-            }
-            this.setData({ renderData })
-          }
-        })
-    }
+    /**
+     * 从 List 加载下一个数据
+     *
+     * @returns {any}
+     */
 
-    // onScrollBottom() {
-    //   this.setData(
-    //     {
-    //       list: this.data.list.concat([
-    //         {
-    //           id: randomString(2),
-    //           title: randomString(2)
-    //         },
-    //         {
-    //           id: randomString(2),
-    //           title: randomString(2)
-    //         }
-    //       ])
-    //     },
-    //     () => this.setIntersectionObserver()
-    //   )
-    // }
+    loadNext() {
+      const { list, _position, size } = this.data
+      const index = _position + size
+
+      if (this.isOverThreshold(index)) {
+        // todo load next List
+      } else { this.data._position = _position + 1 }
+      return list[index]
+    },
+
+    /**
+     * 从 List 加载上一个数据
+     *
+     * @returns
+     */
+
+    loadPrev() {
+      const { list, _position } = this.data
+      const index = _position
+
+      if (this.isOverThreshold(index)) {
+        // todo
+      } else { this.data._position = _position - 1 }
+      return list[index]
+    },
+
+    /**
+     * 将下一个数据加入 render list
+     */
+
+    renderNext(index) {
+      let { renderList, height, _offset_max } = this.data
+      const $dom = renderList[index]
+
+      $dom.content = this.loadNext()
+      $dom.offset = _offset_max
+      $dom.status = "outer-bottom"
+
+      this.data._offset_max += height
+      this.data._offset_min += height
+    },
+
+    /**
+r    * 将上一个数据加入 render list
+     */
+
+    renderPrev(index) {
+      let { renderList, height, _offset_min } = this.data
+      let $dom = renderList[index]
+
+      $dom.content = this.loadPrev()
+      $dom.offset = _offset_min
+      $dom.status = "outer-top"
+
+      this.data._offset_min -= height
+      this.data._offset_max -= height
+    },
+
+    setIntersectionObserver() {
+      this.removeIntersectionObserver()
+      this._observer = this.createIntersectionObserver({
+        initialRatio: 0,
+        observeAll: true,
+        thresholds: [0, 1]
+      }).relativeTo(".recycle-list-view", {
+        top: this.data.thresholdTop,
+        bottom: this.data.thresholdBottom
+      })
+      this._observer.observe(".recycle-list-item", res => {
+        const { renderList } = this.data
+        const index = res.dataset.index
+        if (res.intersectionRatio <= 0) {
+          if (res.relativeRect.top >= res.boundingClientRect.bottom) {
+            renderList[index].status = "outer-top"
+          } else if (res.relativeRect.bottom <= res.boundingClientRect.top) {
+            renderList[index].status = "outer-bottom"
+            renderList.forEach(($dom, i) => {
+              if ($dom.status === "outer-bottom") this.renderPrev(i)
+            })
+            this.setData({ renderList })
+          }
+        } else {
+          renderList[index].status = "inner"
+        }
+      })
+    },
+
+    removeIntersectionObserver() {
+      if (this._observer) this._observer.disconnect()
+    },
+
+    onScrollBottom(e) {
+      const { renderList } = this.data
+
+      renderList.forEach(($dom, i) => {
+        if ($dom.status === "outer-top") this.renderNext(i)
+      })
+
+      this.setData({ renderList })
+    },
+
+    onScrollTop(e) {
+      // todo: load prev list item
+    },
+
+    // 第一次渲染，初始化 renderList
+    initRenderList() {
+      const { size, height, list } = this.data
+      const sliceList = list.slice(0, size)
+      const renderList = []
+
+      sliceList.forEach((item, index) => {
+        renderList[index] = {
+          status: "",
+          content: item,
+          offset: index * height
+        }
+      })
+
+      this.data._position = 0
+      this.data._offset_min = 0
+      this.data._offset_max = height * size
+      this.setData({ renderList })
+    }
   },
 
-  observers: {
-    slides() {
-      // 窗口大小改变后重启 observer
-      this._observer = this.setIntersectionObserver()
-    }
+  options: {
+    pureDataPattern: /^_/
   }
 })
-
-function randomString(len) {
-  len = len || 32
-  var $chars = "ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678"
-  var maxPos = $chars.length
-  var pwd = ""
-  for (var i = 0; i < len; i++) {
-    pwd += $chars.charAt(Math.floor(Math.random() * maxPos))
-  }
-  return pwd
-}

@@ -7,7 +7,7 @@
                     type="text"
                     placeholder="无 label"
                     class="input"
-                    placeholder-class="input__placeholder"
+                    placeholder-class="form__placeholder"
                 ></input>
             </view>
         </view>
@@ -18,7 +18,7 @@
                     type="text"
                     placeholder="预设内容"
                     class="input"
-                    placeholder-class="input__placeholder"
+                    placeholder-class="form__placeholder"
                 ></input>
             </view>
         </view>
@@ -29,7 +29,7 @@
                     type="text"
                     placeholder="预设内容"
                     class="input"
-                    placeholder-class="input__placeholder"
+                    placeholder-class="form__placeholder"
                 ></input>
             </view>
         </view>
@@ -55,7 +55,7 @@
                     type="text"
                     value="预设内容"
                     class="input input--error"
-                    placeholder-class="input__placeholder"
+                    placeholder-class="form__placeholder"
                 ></input>
             </view>
         </view>
@@ -67,7 +67,7 @@
                     disabled
                     value="预设内容"
                     class="input input--disabled"
-                    placeholder-class="input__placeholder"
+                    placeholder-class="form__placeholder"
                 ></input>
             </view>
         </view>
@@ -77,6 +77,31 @@
                 <switch class="switch" checked></switch>
             </view>
         </view>
+         <view class="form__item">
+            <view class="form__item__label">验证码</view>
+            <view class="form__item__content">
+                <input
+                    type="text"
+                    placeholder="请输入验证码"
+                    class="input"
+                    placeholder-class="form__placeholder"
+                ></input>
+            </view>
+            <view class="form__item__tail">
+                <button
+                    class="form__item__tail__button button--mini button--tertiary"
+                    hover-class="button-hover"
+                >
+                    获取验证码
+                </button>
+                 <!-- <button
+                    class="form__item__tail__button form__item__tail__button--disabled button--mini button--tertiary"
+                    hover-class="button-hover"
+                >
+                    15s
+                </button> -->
+            </view>
+        </view>
         <view class="form__item">
             <view class="form__item__label">验证码</view>
             <view class="form__item__content">
@@ -84,7 +109,7 @@
                     type="text"
                     placeholder="请输入验证码"
                     class="input"
-                    placeholder-class="input__placeholder"
+                    placeholder-class="form__placeholder"
                 ></input>
             </view>
             <view class="form__item__tail">

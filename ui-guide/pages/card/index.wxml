@@ -16,7 +16,7 @@
     <view class="h2 m-b-sm m-h-lg">title 带有图标</view>
     <view class="card">
         <view class="card__header">
-            <image class="card__thumb" src="./logo.png"></image>
+            <image class="card__thumb" src="../../assets/logo.png"></image>
             <view class="card__title">这里是标题</view>
         </view>
         <view class="card__content">
@@ -63,9 +63,66 @@
     <view class="h2 m-b-sm m-h-lg">包含所有元素</view>
     <view class="card">
         <view class="card__header">
-            <image class="card__thumb" src="./logo.png"></image>
+            <image class="card__thumb" src="../../assets/logo.png"></image>
             <view class="card__title">这里是标题</view>
-            <view class="ccard__extra">额外文本</view>
+            <view class="card__extra">额外文本</view>
+        </view>
+        <view class="card__content">
+            <view class="card__info">
+                这里是卡片的内容区
+            </view>
+            <view class="card__note">
+                这里是提示
+            </view>
+        </view>
+    </view>
+</view>
+
+<view class="m-b-xl">
+    <view class="h2 m-v-sm m-h-lg">头部无边框</view>
+    <view class="card">
+        <view class="card__header card__header--no-border">
+            <image class="card__thumb" src="../../assets/logo.png"></image>
+            <view class="card__title">这里是标题</view>
+            <view class="card__extra">额外文本</view>
+        </view>
+        <view class="card__content">
+            <view class="card__info">
+                这里是卡片的内容区
+            </view>
+            <view class="card__note">
+                这里是提示
+            </view>
+        </view>
+    </view>
+</view>
+
+<view class="m-b-xl p-v-lg bg-dark">
+    <view class="h2 m-v-sm m-h-lg">无边框</view>
+    <view class="card card--no-border">
+        <view class="card__header">
+            <image class="card__thumb" src="../../assets/logo.png"></image>
+            <view class="card__title">这里是标题</view>
+            <view class="card__extra">额外文本</view>
+        </view>
+        <view class="card__content">
+            <view class="card__info">
+                这里是卡片的内容区
+            </view>
+            <view class="card__note">
+                这里是提示
+            </view>
+        </view>
+    </view>
+</view>
+
+<view class="m-b-xl">
+    <view class="h2 m-b-sm m-h-lg">无间距</view>
+    <view class="card card--no-gap">
+        <view class="card__header">
+            <image class="card__thumb" src="../../assets/logo.png"></image>
+            <view class="card__title">这里是标题</view>
+            <view class="card__extra">额外文本</view>
         </view>
         <view class="card__content">
             <view class="card__info">
@@ -82,9 +139,27 @@
     <view class="h2 m-b-sm m-h-lg">通栏</view>
     <view class="card card--full">
         <view class="card__header">
-            <image class="card__thumb" src="./logo.png"></image>
+            <image class="card__thumb" src="../../assets/logo.png"></image>
             <view class="card__title">这里是标题</view>
-            <view class="ccard__extra">额外文本</view>
+            <view class="card__extra">额外文本</view>
+        </view>
+        <view class="card__content">
+            <view class="card__info">
+                这里是卡片的内容区
+            </view>
+            <view class="card__note">
+                这里是提示
+            </view>
+        </view>
+    </view>
+</view>
+
+<view class="m-b-xl">
+    <view class="h2 m-b-sm m-h-lg">覆盖初始设置</view>
+    <view class="card">
+        <view class="card__header">
+            <view class="card__title f-w-b">这里是标题</view>
+            <view class="card__extra color-brand">额外文本</view>
         </view>
         <view class="card__content">
             <view class="card__info">

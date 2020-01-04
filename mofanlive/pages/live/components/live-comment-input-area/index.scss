@@ -1,12 +1,15 @@
 
-.comment-input{
-  height: 100rpx;
-  width: calc(100% - 20px);
-  padding: 0 20rpx;
-  margin: 10rpx 10rpx 0;
-  box-sizing: border-box;
-  background: #f5f5f5;
-  border-radius: 6rpx;
+.comment-input-wrap {
+  margin: 20rpx;
+
+  .comment-input{
+    height: 100rpx;
+    width: 100%;
+    padding: 0 20rpx;
+    background: #f5f5f5;
+    border-radius: 6rpx;
+    box-sizing: border-box;
+  }
 }
 
 .footer-wrap{

@@ -1,7 +1,0 @@
-{
-    "component": true,
-    "usingComponents": {
-        "mf-icon": "../base/icon/index",
-        "live-room": "../user-card-light/index"
-    }
-}

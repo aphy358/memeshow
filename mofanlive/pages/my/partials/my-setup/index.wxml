@@ -1,0 +1,13 @@
+
+<view class="my-setup">
+  
+  <!-- 设置头像 -->
+  <setup-avatar />
+
+  <!-- 各个设置项 -->
+  <setup-items bind:onShowGenderPopup="showGenderPopup" />
+
+  <!-- 性别弹框 -->
+  <setup-sex-popup show="{{ showGender }}" bind:onHideGenderPopup="hideGenderPopup"  />
+
+</view>

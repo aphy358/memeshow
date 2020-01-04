@@ -1,0 +1,16 @@
+@import "@/theme";
+
+.actions {
+  padding: $spacing-v-lg $spacing-h-lg;
+  background-color: $color-white;
+  @include flex-row-nowrap;
+  justify-content: flex-end;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  button {
+    margin: 0;
+  }
+}

@@ -4,58 +4,92 @@
   width: 100%;
   background-color: $color-white;
 
-  &-header {
-    width: 100%;
-    padding: $spacing-v-lg $spacing-h-lg;
-    box-sizing: border-box;
-    @include flex-row-nowrap;
-    justify-content: space-between;
-    align-items: center;
+  &-shop {
+    padding: $spacing-v-xl $spacing-v-xl $spacing-h-md;
 
-    &__title {
-      font-size: $font-size-lg;
-      color: $color-text-base;
-      font-family: $font-cn;
+    &--header {
+      $avatar-size: 98rpx;
+      @include flex-row-nowrap;
+      align-items: center;
+
+      image {
+        border-radius: $border-radius-md;
+        width: $avatar-size;
+        height: $avatar-size;
+      }
+
+      &__content {
+        flex: 1;
+      }
     }
 
-    &__tail {
-      font-size: $font-size-sm;
-      color: $color-text-placeholder;
-      font-family: $font-cn;
+    &--content {
+      @include flex-row-nowrap;
+      justify-content: space-between;
+      align-items: center;
+
+      &__item {
+        display: flex;
+        flex-flow: column nowrap;
+        align-items: center;
+        justify-content: center;
+      }
     }
   }
 
   &-content {
     @include flex-row-nowrap;
+    width: 100%;
+    overflow: scroll;
+    padding: $spacing-h-lg $spacing-v-xl;
   }
 
   &-item {
-    flex: 1;
+    $item-size: 162rpx;
+
+    width: $item-size;
     display: flex;
     flex-flow: column nowrap;
-    padding: $spacing-v-sm $spacing-h-sm;
 
     &__image {
-      $image-size: 220rpx;
-
-      width: $image-size;
-      height: $image-size;
+      width: $item-size;
+      height: $item-size;
       align-self: center;
+      border-radius: $border-radius-md;
     }
 
 
     &__title {
-      font-size: $font-size-lg;
-      font-family: $font-cn;
       color: $color-text-base;
-      display: -webkit-box;
-      -webkit-box-orient: vertical;
-      -webkit-line-clamp: 2;
+      line-height: $line-height-base;
+      width: 100%;
       overflow: hidden;
-    }
-
-    &__price {
-      color: $color-error;
+      white-space: nowrap;
+      text-overflow: ellipsis;
     }
   }
+}
+
+.rate {
+  &-item {
+    @include flex-row-nowrap;
+    align-items: center;
+  }
+
+  &-label {
+    $label-size: 32rpx;
+    width: $label-size;
+    height: $label-size;
+    line-height: $label-size;
+    text-align: center;
+    color: $color-brand;
+    border: 2rpx solid $color-brand;
+    border-radius: $border-radius-md;
+  }
+}
+
+.line {
+  width: 2rpx;
+  height: 128rpx;
+  background-color: #f4f4f4;
 }

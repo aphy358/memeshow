@@ -1,11 +1,48 @@
+<wxs
+    module="accurate2"
+    src="/components/common/wxs/accurate.wxs"
+></wxs>
+
 <view class="recommend">
-    <view class="recommend-header">
-        <view class="recommend-header__title">店铺推荐</view>
-        <view class="recommend-header__tail">查看更多 ></view>
+    <view class="recommend-shop">
+        <view class="recommend-shop--header p-b-md">
+            <image src="{{shop.avatar}}" />
+            <view class="recommend-shop--header__content m-l-lg">
+                <view class="f-cn f-base f-lg">{{shop.name}}</view>
+                <view class="f-cn f-placeholder f-sm">{{shop.desc}}</view>
+            </view>
+            <button
+                bind:tap="navToShop"
+                class="button--primary button--mini m-0 button--circle"
+            >进店逛逛</button>
+        </view>
+        <view class="recommend-shop--content p-h-lg">
+            <view class="recommend-shop--content__item">
+                <view class="f-nu f-xxl f-base">{{shop.productsCount}}</view>
+                <view class="f-cn f-md f-base">全部商品</view>
+            </view>
+            <view class="line"></view>
+            <view class="recommend-shop--content__item">
+                <view class="f-nu f-xxl f-base">{{shop.followers}}</view>
+                <view class="f-cn f-md f-base">关注人数</view>
+            </view>
+            <view class="line"></view>
+            <view class="recommend-shop--content__item">
+                <view
+                    class="rate-item"
+                    wx:for="{{shop.rates}}"
+                    wx:key="title"
+                >
+                    <view class="f-cn f-base f-md">{{item.title}}</view>
+                    <view class="f-price f-md m-h-md">{{item.rate}}</view>
+                    <view class="rate-label f-xs f-cn">{{item.level}}</view>
+                </view>
+            </view>
+        </view>
     </view>
     <view class="recommend-content">
         <view
-            class="recommend-item"
+            class="recommend-item m-r-md"
             wx:for="{{list}}"
             wx:key="id"
         >
@@ -14,8 +51,8 @@
                 class="recommend-item__image"
                 src="{{item.imgUrl}}"
             />
-            <view class="recommend-item__title">{{item.name}}</view>
-            <view class="recommend-item__price">￥{{item.price/100}}</view>
+            <view class="recommend-item__title f-cn f-base m-v-md">{{item.name}}</view>
+            <view class="f-price">￥{{accurate2(item.price/100)}}</view>
         </view>
     </view>
 </view>

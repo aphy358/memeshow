@@ -1,5 +1,0 @@
-<!-- Radio Group Component -->
-
-<view class="mf-radio_group">
-    <slot></slot>
-</view>

@@ -2,9 +2,7 @@
 .promotion-wrap {
   position: fixed;
   left: 30rpx;
-  top: calc(240rpx);
-  top: calc(240rpx + constant(safe-area-inset-top));
-  top: calc(240rpx + env(safe-area-inset-top));
+  top: 240rpx;
   width: 180rpx;
   height: 200rpx;
   background: rgba(231, 123, 123, 0.445);

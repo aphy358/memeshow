@@ -1,0 +1,26 @@
+@import "@/theme";
+
+.add-btn {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: white;
+
+  padding: $spacing-v-xl;
+  @include flex-row-nowrap;
+  justify-content: flex-end;
+  align-items: center;
+
+  button {
+    margin: 0;
+    margin-left: 40rpx;
+    height: 72rpx;
+  }
+}
+
+.button--green {
+  background-color: #23c422 !important;
+  border-color: #23c422 !important;
+}

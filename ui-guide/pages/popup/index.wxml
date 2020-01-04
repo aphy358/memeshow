@@ -112,3 +112,22 @@
     </view>
     <button slot="footer" class="button--primary button--mini">加入购物车</button>
 </popup>
+
+<view class="m-b-xl">
+    <view class="h2 m-b-sm m-h-lg">自定义样式</view>
+    <button
+        class="button--tertiary"
+        hover-class="button--actived"
+        bindtap="onCustomizeStyle"
+    >点击打开</button>
+</view>
+
+<popup
+    popup-body="no-padding"
+    open="{{ entry_style }}"
+    title="这里是标题"
+    closable
+    contentStyle="border-radius:20rpx;background:yellow;"
+>
+    <view>内容区域可自定义</view>
+</popup>

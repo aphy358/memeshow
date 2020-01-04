@@ -5,7 +5,7 @@ Component({
     // 允许页面的样式影响到组件
     styleIsolation: 'shared'
   },
-  
+
   properties: {
     show: {
       type: Boolean,
@@ -47,7 +47,7 @@ Component({
       })
       this.hidePopup()
     },
-    
+
     // 直播创作
     addLive(e) {
 

@@ -1,0 +1,19 @@
+<view class="m-b-xl">
+    <view class="h2 m-b-sm m-h-lg">默认用法</view>
+    <view class="m-r-md" style="display: inline-block;">
+        <badge dot><view style="border: 1px solid black">点我</view></badge>
+    </view>
+    <view class="m-r-md" style="display: inline-block;">
+        <badge dot><text class="icon icon-calendar" style="font-size: 32px"></text></badge>
+    </view>
+</view>
+
+<view class="m-b-xl">
+    <view class="h2 m-b-sm m-h-lg">数字</view>
+    <view class="m-r-md" style="display: inline-block;">
+        <badge number="{{ 3 }}"><view style="border: 1px solid black">点我</view></badge>
+    </view>
+    <view class="m-r-md" style="display: inline-block;">
+        <badge number="{{ 100 }}"><view style="border: 1px solid black">点我</view></badge>
+    </view>
+</view>

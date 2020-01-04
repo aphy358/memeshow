@@ -1,0 +1,8 @@
+{
+  "component": true,
+  "usingComponents": {
+    "info": "./components/info/index",
+    "record": "./components/record/index",
+    "actions": "./components/actions/index"
+  }
+}

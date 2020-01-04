@@ -58,11 +58,13 @@ button {
 
     // 小按钮
     &--mini {
-        display: inline-block;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
         width: auto;
         height: $button-height-sm;
-        padding: size(7) $padding-sm;
-        font-size: $font-size-base;
+        font-family: $button-mini-font-family;
+        font-size: $button-mini-font-size;
         &[loading]::before {
             width: $font-size-base !important;
             height: $font-size-base !important;

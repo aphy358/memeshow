@@ -1,0 +1,23 @@
+<view class="header-placeholder"></view>
+
+<list list="{{list}}"></list>
+
+<view class="header">
+    <view class="header-user">
+            <avatar url="{{seller.avatar}}" live="{{seller.live}}"></avatar>
+        <view class="header-user--info">
+            <view class="header-user--name f-cn f-base f-lg f-bold">美丽的韩美娟</view>
+            <view class="header-user--followers f-cn f-sm">9021人关注</view>
+        </view>
+        <!-- <view class="header-user--service icon icon-message">
+            <button class="contact-btn" open-type="contact"></button>
+        </view> -->
+    </view>
+    <actions
+        catch:search="search"
+        class="actions"
+    ></actions>
+</view>
+
+<!-- 客服 -->
+<customer-service />

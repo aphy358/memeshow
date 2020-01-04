@@ -5,43 +5,42 @@
  */
 
 Component({
-  // properties: {
-  //   name: String
-  // },
+  properties: {
+    name: String
+  },
 
-  // relations: {
-  //   "../checkbox/index": {
-  //     type: "child",
+  relations: {
+    "../checkbox/index": {
+      type: "child",
 
-  //     linked(target) {
-  //       if (target.checked) this.data._checkedList.push(target.value)
-  //     }
-  //   }
-  // },
+      linked(target) {
+        if (target.checked) this.data._checkedList.push(target.value)
+      }
+    }
+  },
 
-  // data: {
-  //   _checkedList: []
-  // },
+  data: {
+    // { value }
+    _checkedList: []
+  },
 
-  // methods: {
-  //   // 暴露的接口
-  //   changeCurrent(value) {
-  //     if (value === this.data._current) return
-  //     this.data._current = value
-  //     this.walkChild(value)
-  //     this.triggerEvent("change", {
-  //       value,
-  //       name: this.data.name
-  //     })
-  //   },
+  methods: {
+    // 暴露到 children 的接口
+    changeCurrent({ name, value, isChecked }) {
 
-  //   walkChild(value) {
-  //     const $radios = this.getRelationNodes("../radio/index")
-  //     $radios.forEach($radio => $radio.changeState($radio.data.value === value))
-  //   }
-  // },
+      this.triggerEvent("change")
+    }
 
-  // options: {
-  //   pureDataPattern: /^_/
-  // }
+    // walkChild(value) {
+    //   const $children = this.getRelationNodes("../checkbox/index")
+
+    //   $children.forEach($checkbox =>
+    //     $checkbox.changeState($radio.data.value === value)
+    //   )
+    // }
+  },
+
+  options: {
+    pureDataPattern: /^_/
+  }
 })

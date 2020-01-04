@@ -62,9 +62,11 @@
         min-width: $tabs-width-min;
         height: 100%;
         padding: 20rpx;
-        font-size: $font-size-base;
+        font-family: $tabs-font-family;
+        font-size: $tabs-font-size;
         line-height: $line-height-base;
         text-align: center;
+        color: $tabs-color-normal;
     }
 
     &_dash {
@@ -72,16 +74,21 @@
         bottom: 0;
         left: 0;
         right: 0;
+        max-width: $tabs-width-dash;
         height: $tabs-height-dash;
         background: $tabs-color-dash;
         margin: auto;
     }
 
     &__on {
-        color: $tabs-color-active;
+        .tab_content {
+            color: $tabs-color-active;
+        }
     }
 
     &__disabled {
-        color: $color-text-disabled;
+        .tab_content {
+            color: $color-text-disabled;
+        }
     }
 }

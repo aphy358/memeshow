@@ -1,0 +1,29 @@
+<view class="m-b-xl">
+    <view class="h2 m-b-sm m-h-lg">基于页面的 Procedures</view>
+    <view class="m-v-md">
+        <button bindtap="onOpenPage">开启页面 procedures</button>
+    </view>
+</view>
+
+<view class="m-b-xl">
+    <view class="h2 m-b-sm m-h-lg">基于 popup 的 Procedures</view>
+    <view class="m-v-md">
+        <button bindtap="onOpenPopup">开启 popup procedures</button>
+    </view>
+</view>
+
+<popup-provider frame="{{ popupNext }}">
+    <popup-frame key="f1">
+        我是 Frame 1
+        <button bindtap="openF2">打开 Frame2</button>
+    </popup-frame>
+    <popup-frame key="f2">
+        我是 Frame 2
+        <button bindtap="openF3">打开 Frame3</button>
+    </popup-frame>
+    <popup-frame key="f3">
+        我是 Frame 3
+        <input type="text" placeholder="点击修改 frame2 的 text"></input>
+        <button>确认修改</button>
+    </popup-frame>
+</popup-provider>

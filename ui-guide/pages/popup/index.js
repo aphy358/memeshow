@@ -7,7 +7,8 @@ Page({
     entry_noMask: false,
     entry_height: false,
     entry_header: false,
-    entry_footer: false
+    entry_footer: false,
+    entry_style: false
   },
 
   onBasis() {
@@ -40,5 +41,9 @@ Page({
 
   onFooter() {
     this.setData({ entry_footer: true })
+  },
+
+  onCustomizeStyle() {
+    this.setData({ entry_style: true })
   }
 })

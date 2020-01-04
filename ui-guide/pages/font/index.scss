@@ -1,0 +1,11 @@
+/* Theme */
+@import "@/theme";
+
+/* Page Styles */
+Page {
+  padding: $padding-lg;
+}
+
+.test-text {
+  @include line(2)
+}

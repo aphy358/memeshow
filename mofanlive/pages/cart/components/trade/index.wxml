@@ -1,0 +1,55 @@
+<wxs
+    module="accurate2"
+    src="/components/common/wxs/accurate.wxs"
+></wxs>
+
+<view class="card card--no-border m-t-lg">
+    <view class="card__header">
+        <checkbox-item
+            bindchange="checkTradeAll"
+            checked="{{checkAll}}"
+        />
+        <view class="f-cn">{{trade.shop.name}}</view>
+        <view class="icon icon-chevron-right"></view>
+    </view>
+    <view class="card__content">
+        <view
+            class="{{index != 0 ? '' : 'p-b-md'}}"
+            wx:for="{{trade.list}}"
+            wx:for-item="sku"
+            wx:key="skuId"
+        >
+            <swipe-out menu="{{actions}}">
+                <view class="sku">
+                    <view class="sku-check">
+                        <checkbox-item
+                            bindchange="checkSku"
+                            checked="{{skuCheckState[sku.skuId]}}"
+                            data-index="{{index}}"
+                        />
+                    </view>
+                    <image
+                        class="m-r-md"
+                        src="{{sku.thumbnail}}"
+                    />
+                    <view class="sku-info">
+                        <view class="f-cn f-base f-md p-b-xs sku-info--title">{{sku.title}}</view>
+                        <view class="f-cn f-placeholder f-md">规格： {{sku.specs}}</view>
+                        <view
+                            class="sku-info--price f-price f-base f-md"
+                        >￥{{accurate2(sku.price/100)}}</view>
+                        <view class="sku-info--number">
+                            <input-number
+                                bind:change="changeQuantity"
+                                dark
+                                min="{{1}}"
+                                step="{{1}}"
+                                value="{{sku.quantity}}"
+                            />
+                        </view>
+                    </view>
+                </view>
+            </swipe-out>
+        </view>
+    </view>
+</view>

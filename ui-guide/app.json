@@ -1,32 +1,46 @@
 {
   "pages": [
     "pages/index/index",
+
+    "pages/procedures/index",
+
+    "pages/procedures/proce1/index",
+    "pages/procedures/proce2/index",
+
+    "pages/font/index",
+    "pages/button/index",
+    "pages/icon/index",
+    "pages/avatar/index",
+    "pages/badge/index",
+
     "pages/flex/index",
     "pages/grid/index",
     "pages/card/index",
-    "pages/collapse/index",
     "pages/cell/index",
+    "pages/collapse/index",
     "pages/form/index",
     "pages/popup/index",
     "pages/list/index",
-    "pages/avatar/index",
-    "pages/button/index",
-    "pages/icon/index",
+
     "pages/switch/index",
     "pages/input/index",
     "pages/input-number/index",
     "pages/textarea/index",
     "pages/checkbox/index",
     "pages/radio/index",
+
     "pages/tabs/index"
   ],
   "usingComponents": {
+    "badge": "ui-kit/components/badge/index",
     "list": "recycle-list/recycle-list-view/index",
     "tabs": "ui-kit/components/tabs/index",
     "tab": "ui-kit/components/tab/index",
+    "collapse-group": "ui-kit/components/collapse-group/index",
     "collapse": "ui-kit/components/collapse/index",
-    "collapse-item": "ui-kit/components/collapse-item/index",
     "popup": "ui-kit/components/popup/index",
+    "popup-provider": "/components/popup/provider/index",
+    "popup-frame": "/components/popup/frame/index",
     "mf-textarea": "ui-kit/components/textarea/index",
     "input-number": "ui-kit/components/input-number/index",
     "checkbox-group": "ui-kit/components/checkbox-group/index",

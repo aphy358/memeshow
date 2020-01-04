@@ -1,0 +1,42 @@
+@import "@/theme";
+
+.white-back {
+  background-color: white;
+}
+
+.card__thumb {
+  height: auto;
+}
+
+.margin-top {
+  margin-top: $spacing-v-lg;
+}
+
+.color-grey {
+  color: $color-grey-3;
+}
+
+.color-red {
+  color: $color-error;
+}
+
+.expiry view {
+  display: inline;
+  font-size: $font-size-sm;
+  line-height: $line-height-sm;
+}
+
+.base-text {
+  font-size: $font-size-base;
+  font-family: $font-cn;
+}
+
+.title {
+  font-size: $font-size-xl;
+  margin-bottom: $spacing-v-md;
+}
+
+.row {
+  line-height: $line-height-base;
+  font-size: $font-size-base;
+}

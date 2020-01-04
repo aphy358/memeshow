@@ -21,6 +21,30 @@ Page({
     id: "",
 
     recommend: {
+      shop: {
+        avatar: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1577450822914&di=44b4e3df9b107ca7b1c3d4297de2bf68&imgtype=0&src=http%3A%2F%2Fpics5.baidu.com%2Ffeed%2F9825bc315c6034a8d0d8b3b3a93b2751092376f3.png%3Ftoken%3D45f963d33a1ad7a88e263b0ba3b73aee%26s%3DC3A8BB47323A279A5808C9B00300F053",
+        name: "美丽的韩美娟",
+        desc: "天道好轮回",
+        productsCount: 124,
+        followers: 2847,
+        rates: [
+          {
+            title: '用户口碑',
+            rate: 4.47,
+            level: '高',
+          },
+          {
+            title: '服务态度',
+            rate: 4.47,
+            level: '高',
+          },
+          {
+            title: '发货速度',
+            rate: 4.47,
+            level: '高',
+          },
+        ]
+      },
       list: productList, // TODO use real Data
     },
     selector: {
@@ -36,15 +60,26 @@ Page({
     },
     actions: [
       {
-        type: 'spec',
-        content: "颜色 尺码",
+        type: 'sold',
+        content: {
+          title: '全国包邮',
+          sold: '已售' + 8 + '件'
+        }
       },
       {
-        type: 'shop',
-        avatar: "",
-        name: "",
-        id: "",
-      }
+        type: 'coupon',
+        content: {
+          tag: "店铺券",
+          coupons: ['满99减3', '满100减10'],
+        }
+      },
+      {
+        type: 'service',
+        content: ['假一赔三', '7天退货', '消费者保障服务']
+      },
+      {
+        type: 'spec',
+      },
     ]
   },
 

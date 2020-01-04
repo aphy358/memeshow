@@ -1,63 +1,75 @@
 import promisify from 'wx-promisify'
-import axios from 'axios'
-import axiosAdapter from 'axios-miniprogram-adapter'
 
-import { Provider } from "libs/redux/index.js"
-import createStore from "libs/redux/createStore.js"
-import reducer from "@/redux/reducers/index.js"
+import { createStore, applyMiddleware } from 'redux'
+import thunk from 'redux-thunk'
+import { Provider } from 'wx-redux'
+import reducer from './redux/reducer'
+import state from './redux/state'
+import Action from './redux/action'
+
+import IM from './im'
+import { IMPlatforms } from 'im'
 
 import procedures from 'procedures'
 
-import ENVIRONMENT_CONFIG from './config/envConfig.js'
-import PAGE_CONFIG from './config/pageConfig.js'
+import Api from './api'
+
+import timer from './components/common/timer'
+
+import Config from 'config'
 
 // 扩展wx的回调接口为promise，以支持await/async
 promisify(wx)
 
-// 配置 axios adapter & baseURL
-axios.defaults.adapter = axiosAdapter
-// axios.defaults.baseURL = 'http://192.168.0.92:10240'
-wx.axios = axios
-
 // 应用全局命名空间
 wx.X = wx.X || {}
-wx.X.procedures = procedures
 
-const store = createStore(reducer)
+// redux store
+const store = createStore(reducer, state, applyMiddleware(thunk))
+wx.X.store = wx.X.store || store
+
+// IM系统
+wx.X.IM = wx.X.IM || new IM(IMPlatforms.Tim, Config.tim)
+
+wx.X.procedures = wx.X.procedures || procedures
+wx.X.timer = timer
+
+// 初始化API 
+Api.BaseApi.init({
+  async onFailed(response) {
+    wx.showToastAsync({
+      title: `请求服务错误(${response.data.code}): ${response.data.msg}`,
+      icon: 'none',
+      duration: 2000
+    })
+  },
+  async onError(error) {
+    wx.showToastAsync({
+      title: `网络错误: ${error.message}`,
+      icon: 'none',
+      duration: 2000
+    })
+  }
+})
+wx.X.Api = wx.X.Api || Api
 
 App(
   Provider(store)({
-    onLaunch: function (e) {
-      let userInfo = wx.getStorageSync('userInfo')
-      if (userInfo) {
-        this.globalData.userInfo = userInfo
-      }
-      let systemInfo = wx.getSystemInfoSync()
-      this.globalData.videoContainerSize = {
-        width: systemInfo.windowWidth,
-        height: systemInfo.windowHeight
-      }
-      this.globalData.isPushBeCallPage = false
-    },
 
-    onShow: function (e) {
-      if (e.scene == 1007 || e.scene == 1008) {
-        try {
-          this.globalData.netcall && this.globalData.netcall.destroy()
-          this.globalData.nim && this.globalData.nim.destroy({
-            done: function () {
-            }
-          })
-        } catch (e) {
+    onLaunch: async function (e) {
+      const res = await wx.loginAsync()
+      if (res && res.code) {
+        const userProfile = await Api.auth.loginByCode(res.code)
+        if (!!userProfile) {
+          // 已注册用户直接登录成功
+          store.dispatch(Action.userProfile.update(userProfile))
         }
       }
     },
 
-    onHide() { },
+    onShow: function (e) { },
 
-    /**
-     * 404 重定向到首页
-     */
+    onHide() { },
 
     onPageNotFound() {
       wx.redirectTo({
@@ -67,11 +79,7 @@ App(
 
     onError() { },
 
-    globalData: {
-      emitter: null,
-      netcallController: null,
-      ENVIRONMENT_CONFIG,
-      PAGE_CONFIG
-    },
+    globalData: {}
+
   })
 )

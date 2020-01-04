@@ -1,0 +1,1 @@
+module.exports = (num, accurate = 2) => num.toFixed(accurate)

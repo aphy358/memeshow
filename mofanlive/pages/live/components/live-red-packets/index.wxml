@@ -1,0 +1,30 @@
+
+<view class="live-red-packets-wrap {{ popClazz }}">
+  <hpopup
+    show="{{ show }}"
+    mask="{{ false }}"
+    position="center"
+    custom-animation
+  >
+  
+    <view class="live-red-packets-inner">
+  
+      <view class="title lighter">
+        欢迎好嗨哦光临我的店铺欢迎好嗨哦光临我的店铺
+      </view>
+  
+      <view class="sub-title">恭喜获得</view>
+  
+      <view class="center">
+        ¥<text class="big-number">10</text>元红包
+      </view>
+  
+      <view class="">满20元可用</view>
+  
+      <view class="bottom lighter">{{ timer }}秒后自动关闭</view>
+    </view>
+  
+    <view class="close-btn" bind:tap="hidePop">
+    </view>
+  </hpopup>
+</view>

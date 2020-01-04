@@ -1,0 +1,15 @@
+<view
+    class="actions"
+    style="{{isIPhoneX ? 'padding-bottom: 68rpx;' : ''}}"
+>
+    <block
+        wx:for="{{btns}}"
+        wx:key="key"
+    >
+        <button
+            bind:tap="click"
+            class="button--secondary button--mini button--circle"
+            data-key="{{item.key}}"
+        >{{item.title}}</button>
+    </block>
+</view>

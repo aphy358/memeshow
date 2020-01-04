@@ -1,12 +1,30 @@
-<view
-    class="posters"
-    style="{{customStyle}}"
->
+<view class="posters">
+    <view class="switch">
+        <view
+            bind:tap="switchToVideo"
+            class="switch-item m-r-lg {{type == 'video' ? 'switch-item-active' : ''}}"
+        >
+            <view class="icon icon-play f-xs"></view>
+            <view class="f-cn f-xs">视频</view>
+        </view>
+        <view
+            bind:tap="switchToImg"
+            class="switch-item {{type == 'img' ? 'switch-item-active' : ''}}"
+        >
+            <view class="f-cn f-xs">图片</view>
+        </view>
+        <view
+            class="switch-counter"
+            wx:if="{{type == 'img'}}"
+        >{{counter}}/{{posters.length}}</view>
+    </view>
     <swiper
         autoplay="{{false}}"
         circular="{{true}}"
         duration="{{500}}"
-        indicator-dots="{{true}}"
+        indicator-dots="{{false}}"
+        wx:if="{{type == 'img'}}"
+        bindchange="swiperChange"
     >
         <block
             wx:for="{{posters}}"
@@ -14,14 +32,20 @@
         >
             <swiper-item>
                 <block wx:if="{{item.type == 'IMG'}}">
-                    <mf-poster-img
+                    <image
                         bind:tap="handleShowImgPreview"
                         id="{{item.id}}"
                         src="{{item.thumbnail}}"
-                    ></mf-poster-img>
+                    />
                 </block>
                 <block wx:if="{{item.type == 'VIDEO'}}"></block>
             </swiper-item>
         </block>
     </swiper>
+    <view
+        class="video"
+        wx:else
+    >
+        <video id="poster-video" />
+    </view>
 </view>

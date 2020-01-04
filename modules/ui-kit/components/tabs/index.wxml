@@ -6,7 +6,7 @@
 ></view>
 
 <view
-    class="tabs {{ sticky ? 'tabs__sticky' : '' }}"
+    class="tabs {{ sticky ? 'tabs__sticky' : '' }} ' tabs-class'"
     style="{{ sticky ? ('top:' + offset + 'px') : '' }}"
 >
     <view class="tabs-left">

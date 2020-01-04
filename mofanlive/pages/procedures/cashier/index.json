@@ -1,8 +1,0 @@
-{
-  "component": true,
-  "usingComponents": {
-    "address": "./components/address/index",
-    "action-bar": "./components/action-bar/index"
-  },
-  "navigationBarTitleText": "确认订单"
-}

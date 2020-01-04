@@ -1,182 +1,97 @@
-import _ from 'lodash'
+import EventBus from "EventBus"
 
-// 选择器实例
-const instanceMap = {}
+export default class Procedures {
+  constructor() {
+    this.uid = new Date().getTime()
+    this.bus = new EventBus()
+    this.process = []
 
-// 选择器管理
-const procedures = {
+    Object.defineProperty(this, "active", {
+      get() {
+        const { process } = this
+        const length = process.length
+        if (length) return process[length - 1]
+        else return null
+      },
 
-	/**
-	 * 获取选择器实例
-	 * 
-	 * @param {Number} id 
-	 */
-	get(id) {
-		return instanceMap[id]
-	},
+      set(instance) {
+        this.process.push(instance)
+      },
 
-	/**
-	 * 打开选择器
-	 * 
-	 * @param {String} type 类型
-	 * @param {Object} args 参数
-	 * @param {Function} onComplete 完成回调
-	 * @param {Function} onError 错误处理回调 TODO: 找到可能出现的错误
-	 */
-	open(type, args, onComplete, onError) {
+      configurable: true,
+      enumerable: true
+    })
+  }
 
-		// 选择器数据
-		const instanceData = {
-			id: new Date().getTime(),
-			caller: {
-				channel: null,
-				waitEmit: {},
-				waitOn: {},
-				wiatOnce: {}
-			},
-			procedure: {
-				channel: null,
-				waitEmit: {},
-				waitOn: {},
-				wiatOnce: {}
-			}
-		}
+  // 将 instance 加入到 process 流程中
+  register(instance, events = {}) {
+    if (!instance || typeof instance !== "object")
+      throw new Error("<Procedures>.register 要求一个页面或组件的实例作为参数!")
 
-		// 通信渠道，允许发送用户数据
-		const callerEmitter = createEmmiter(instanceData.caller)
-		const procedureEmitter = createEmmiter(instanceData.procedure)
+    this.active = instance
 
-		// 选择器实例
-		const instance = {
+    if (Object.keys(events).length > 0) {
+      this.bus.register({
+        instance,
+        events
+      })
+    }
+  }
 
-			get id() {
-				return instanceData.id
-			},
+  // 注销当前 instance
+  unRegister(instance) {
+    if (Object.is(instance, this.active)) {
+      this.process.pop()
+    }
+  }
 
-			get args() { return args },
+  // 获取通信通道
+  getChannel(instance) {
+    return (function(self) {
+      return {
+        target: self.process[self.process.length - 2],
 
-			register(page) {
-				const channel = page.getOpenerEventChannel()
-				setEmmiterChannel(channel, instanceData.procedure)
-				return this
-			},
+        emit(event, data) {
+          // 如果 emit 的调用者不是 active，静默失败
+          if (instance !== self.active) return
 
-			asCaller() {
-				return callerEmitter
-			},
+          self.bus.postToTarget(this.target, "on", event, data)
+        }
+      }
+    })(this)
+  }
 
-			asProcedure() {
-				return procedureEmitter
-			}
-		}
+  open({ target, type = "page" }) {
+    if (!target) throw new Error("open 必须传入目标参数!")
 
-		// 打开选择器页面
-		wx.navigateTo({
-			url: `/pages/procedures/${type}/index?sid=${instance.id}`,
-			success: res => {
-				instanceMap[instance.id] = instance
+    const adapter = this.getAdapter(type)
+    adapter.generate(target)
+  }
 
-				const channel = res.eventChannel
-				setEmmiterChannel(channel, instanceData.caller)
-
-				// 选择结果
-				channel.once('complete', result => {
-					delete instanceMap[instance.id]
-					onComplete && onComplete(result)
-				})
-
-				// 错误处理
-				channel.once('error', err => {
-					delete instanceMap[instance.id]
-					onError && onError(err)
-				})
-			},
-			fail: err => onError(err)
-		})
-
-		return instance
-	}
+  getAdapter(type) {
+    // todo adapter
+    if (type == "page") {
+      return {
+        generate(target) {
+          wx.navigateTo({
+            url: `/pages/procedures/${target}/index`,
+            fail: err => rejected(err)
+          })
+        }
+      }
+    } else if (type == "popup") {
+      const provider = this.process[0]
+      return {
+        generate(target) {
+          const frames = provider.getRelationNodes("../frame/index")
+          for (let i = 0; i < frames.length; i++) {
+            if (frames[i].data.key && frames[i].data.key === target) {
+              frames[i].open()
+              break
+            }
+          }
+        }
+      }
+    }
+  }
 }
-
-const createEmmiter = function (emitterData) {
-
-	return {
-
-		emit(evt, data) {
-			const channel = emitterData.channel
-			const waitEmit = emitterData.waitEmit
-			if (channel) {
-				channel.emit(evt, data)
-			} else {
-				waitEmit[evt] = waitEmit[evt] || []
-				waitEmit[evt].push(data)
-			}
-			return this
-		},
-
-		off(evt, fn) {
-			const channel = emitterData.channel
-			const waitOn = emitterData.waitOn
-			const waitOnce = emitterData.waitOnce
-			if (channel) {
-				channel.off(evt, fn)
-			} else {
-				if (!fn) {
-					delete waitOn[evt]
-					delete waitOnce[evt]
-				} else {
-					waitOn[evt] && _.remove(waitOn[evt], it => it === fn)
-					waitOnce[evt] && _.remove(waitOnce[evt], it => it === fn)
-				}
-			}
-			return this
-		},
-
-		on(evt, fn) {
-			const channel = emitterData.channel
-			const waitOn = emitterData.waitOn
-			if (channel) {
-				channel.on(evt, fn)
-			} else {
-				waitOn[evt] = _.uniq(_.concat(waitOn[evt] || [], [fn]))
-			}
-			return this
-		},
-
-		once(evt, fn) {
-			const channel = emitterData.channel
-			const waitOnce = emitterData.waitOnce
-			if (channel) {
-				channel.once(evt, fn)
-			} else {
-				waitOnce[evt] = _.uniq(_.concat(waitOnce[evt] || [], [fn]))
-			}
-			return this
-		}
-	}
-
-}
-
-const setEmmiterChannel = function (channel, emitterData) {
-	emitterData.channel = channel
-
-	const waitOn = emitterData.waitOn
-	for (const evt in waitOn) {
-		waitOn[evt].forEach(it => channel.on(evt, it))
-	}
-	emitterData.waitOn = {}
-
-	const waitOnce = emitterData.wiatOnce
-	for (const evt in waitOnce) {
-		waitOnce[evt].forEach(it => channel.once(evt, it))
-	}
-	emitterData.waitOnce = {}
-
-	const waitEmit = emitterData.waitEmit
-	for (const evt in waitEmit) {
-		waitEmit[evt].forEach(it => channel.emit(evt, it))
-	}
-	emitterData.waitEmit = {}
-}
-
-export default procedures

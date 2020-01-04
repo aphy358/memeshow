@@ -1,85 +1,58 @@
-@import '../variables/default.scss';
-@import '../mixins/index.scss';
+@import "../variables/default.scss";
+@import "../mixins/index.scss";
 
 .checkbox {
-  position: relative;
-  background-color: $color-bg;
-  @include hairline-top-relative();
-  @include hairline-bottom-relative();
+    @include display-flex();
 
-  /* elements */
-  &__option-wrap {
-    padding: $spacing-v-lg $spacing-h-xl $spacing-v-lg 0;
-  }
+    &__left {
+        flex: 0 0 auto;
+        margin-right: size(10);
+    }
 
-  &__option-cnt {
-    display: flex;
-  }
+    &__right {
+        flex: 1;
+        @include display-flex();
+        overflow: hidden;
+        flex-flow: column nowrap;
+    }
 
-  &__title {
-    display: inline-flex;
-    color: $checkbox-title-color;
-    font-size: $checkbox-title-font-size;
-    line-height: $line-height-zh;
-    text-align: left;
-  }
+    &__icon {
+        @include display-flex();
+        @include align-items(center);
+        padding: size(3);
+        border: size(1) solid $color-text-base;
+        border-radius: $border-radius-circle;
 
-  &__icon-cnt {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: size(2);
-    margin-right: $spacing-h-lg;
-    width: $checkbox-circle-size;
-    min-width: $checkbox-circle-size;
-    height: $checkbox-circle-size;
-    color: transparent;
-    font-size: $checkbox-icon-size;
-    line-height: 1;
-    border: size(1) solid rgba($color: $checkbox-icon-color, $alpha: 0.2);
-    border-radius: $border-radius-circle;
-    background-color: $color-bg;
-    box-sizing: border-box;
-    transition: all 0.2s;
-  }
+        &__icon {
+            visibility: hidden;
+            font-size: $checkbox-icon-size;
+            color: $checkbox-icon-color-checked;
+        }
 
-  &__desc {
-    display: block;
-    padding-left: $checkbox-circle-size + $spacing-h-lg;
-    color: $checkbox-desc-color;
-    font-size: $checkbox-desc-font-size;
-    text-align: left;
-    line-height: $line-height-zh;
-    letter-spacing: 0;
-  }
+        &--checked {
+            border-color: $checkbox-icon-color;
+            background: $checkbox-icon-color;
 
-  &__option {
-    padding-left: $spacing-h-xl;
-    @include active;
+            .checkbox__icon__icon {
+                visibility: visible;
+            }
+        }
+    }
+
+    &__label {
+        @include line();
+        font-size: $checkbox-title-font-size;
+        color: $checkbox-title-color;
+        line-height: $line-height-zh;
+    }
+
+    &__desc {
+        font-size: $font-size-sm;
+        line-height: $line-height-sm;
+        color: $color-text-placeholder;
+    }
 
     &--disabled {
-      .checkbox__option-cnt,
-      .checkbox__desc {
         opacity: $opacity-disabled;
-      }
-
-      &:active {
-        background-color: $color-bg;
-      }
     }
-
-    &--selected {
-      .checkbox__icon-cnt {
-        color: $checkbox-icon-color-checked;
-        border: none;
-        background-color: $checkbox-icon-color;
-      }
-    }
-  }
-
-  &__option + &__option {
-    .checkbox__option-wrap {
-      @include hairline-top();
-    }
-  }
 }

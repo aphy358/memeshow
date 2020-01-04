@@ -1,5 +1,7 @@
 {
   "usingComponents": {
-    "order": "./components/order/index"
+    "order": "./components/order/index",
+    "tabs": "ui-kit/components/tabs/index",
+    "tab": "ui-kit/components/tab/index"
   }
 }

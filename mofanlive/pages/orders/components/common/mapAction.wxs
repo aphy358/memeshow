@@ -1,5 +1,0 @@
-var mapping = require("../../../../mapping.wxs")
-
-console.log(hello)
-
-module.exports = (type) => mapping.actions[type]

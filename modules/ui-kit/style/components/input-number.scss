@@ -11,12 +11,14 @@
     line-height: $line-height-line;
 
     &__btn {
-        display: flex;
+        box-sizing: border-box;
+        display: inline-flex;
         overflow: hidden;
         justify-content: center;
         align-items: center;
-        padding: 0 size(10);
+        padding: 0 size(8);
         border: size(1) solid $input-number-color-border;
+        border-radius: $border-radius-sm;
         color: $input-number-color-btn;
         text-align: center;
 
@@ -34,13 +36,23 @@
 
     &__input,
     input {
+        box-sizing: border-box;
         height: auto;
         width: $input-number-width-min;
-        border-top: size(1) solid $input-number-color-border;
-        border-bottom: size(1) solid $input-number-color-border;
-        border-radius: 0;
+        border: size(1) solid $input-number-color-border;
+        border-radius: $border-radius-sm;
+        margin: 0 size(10);
         color: $color-text-base;
         text-align: center;
+        font-family: $font-nu;
+    }
+
+    &--inverse {
+        .input-number__btn,
+        .input-number__input {
+            background: $color-bg-dark;
+            border: 0;
+        }
     }
 
     // /* modifiers */

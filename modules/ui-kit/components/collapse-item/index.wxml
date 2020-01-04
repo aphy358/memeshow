@@ -1,8 +1,0 @@
-<view class="collapse-item">
-    <view class="collapse-item__header">
-        <view class="collapse-item__title">{{ title }}</view>
-    </view>
-    <view class="collapse-item__body">
-        <slot></slot>
-    </view>
-</view>

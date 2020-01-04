@@ -1,4 +1,4 @@
-<view class="input-number {{ disabled ? 'inputnumber--disabled' : '' }} {{ error ? 'inputnumber--error' : '' }}">
+<view class="input-number {{ dark ? ' input-number--inverse' : '' }} {{ disabled ? ' input-number--disabled' : '' }} {{ error ? ' input-number--error' : '' }}">
     <view
         class="input-number__btn input-number__btn-sub {{ value <= min ? 'input-number__btn--disabled' : '' }}"
         bindtap="onMinus"

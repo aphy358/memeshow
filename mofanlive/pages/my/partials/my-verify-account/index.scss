@@ -1,0 +1,12 @@
+
+.button--mini {
+  padding: 12rpx 20rpx;
+  margin-right: 30rpx;
+
+  &.button--secondary {
+    &.disabled {
+      color: #999999!important;
+      border-color: #999999;
+    }
+  }
+}

@@ -6,9 +6,9 @@
 }
 
 .product {
-  $product-img-size: 200rpx;
+  $product-img-size: 132rpx;
 
-  padding: $spacing-v-lg $spacing-h-lg;
+  padding: $spacing-v-lg 0;
   width: 100%;
   box-sizing: border-box;
 
@@ -18,8 +18,8 @@
   &-img {
     width: $product-img-size;
     height: $product-img-size;
-    margin-right: $spacing-h-lg;
-    border-radius: $border-radius-lg;
+    margin-right: $spacing-h-md;
+    border-radius: $border-radius-md;
   }
 
   &-desc {
@@ -29,27 +29,25 @@
 
     &-title {
       width: 100%;
-      color: $color-grey-0;
+      color: $color-text-base;
       font-family: $font-cn;
-      font-size: $font-size-lg;
+      font-size: $font-size-base;
+      @include line(2);
     }
 
     &-price {
-      color: $color-error;
-      font-size: $font-size-xxl;
-      font-family: $font-en;
+      color: $color-price;
+      font-size: $font-size-lg;
       position: absolute;
       bottom: 0;
+      line-height: 1;
     }
 
     &-buy {
+      width: 120rpx;
       position: absolute;
       bottom: 0;
       right: 0;
-      width: max-content;
-      height: max-content;
-      box-sizing: content-box;
-      padding: $spacing-v-sm $spacing-h-sm;
     }
   }
 }

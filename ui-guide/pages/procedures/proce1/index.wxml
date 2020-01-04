@@ -1,0 +1,4 @@
+<view>
+    {{ text }}
+    <button bindtap="onOpen">open next</button>
+</view>

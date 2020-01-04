@@ -3,45 +3,71 @@
  */
 
 Component({
-  // properties: {
-  //   title: String,
+  properties: {
+    name: String,
 
-  //   value: {
-  //     type: String,
-  //     optionalTypes: [String, Number]
-  //   },
+    title: String,
 
-  //   disabled: {
-  //     type: Boolean,
-  //     value: false
-  //   },
+    value: {
+      type: String,
+      optionalTypes: [String, Number]
+    },
 
-  //   desc: {
-  //     type: String,
-  //     value: ""
-  //   }
-  // },
+    checked: {
+      type: Boolean,
+      value: false
+    },
 
-  // relations: {
-  //   "../checkbox-group/index": {
-  //     type: "parent"
-  //   }
-  // },
+    disabled: {
+      type: Boolean,
+      value: false
+    },
 
-  // data: {
-  //   checked: false
-  // },
+    desc: {
+      type: String,
+      value: ""
+    }
+  },
 
-  // methods: {
-  //   onTap() {
-  //     if (this.data.disabled) return
-  //     const $group = this.getRelationNodes("../radio-group/index")[0]
-  //     $group && $group.changeCurrent(this.data.value)
-  //   },
+  externalClasses: ["title-class", "desc-class"],
 
-  //   // 暴露的接口
-  //   changeState(tag) {
-  //     this.setData({ checked: tag })
-  //   }
-  // }
+  relations: {
+    "../checkbox-group/index": {
+      type: "parent"
+    }
+  },
+
+  methods: {
+    onTap() {
+      if (this.data.disabled) return this.emitDisabled()
+      else {
+        if (!this.hasParent()) {
+          this.setData(
+            {
+              checked: !this.data.checked
+            },
+            () => this.emitChange()
+          )
+        } else {
+          // todo
+        }
+      }
+    },
+
+    emitChange() {
+      this.triggerEvent("change", {
+        name: this.data.name,
+        value: this.data.value,
+        checked: this.data.checked
+      })
+    },
+
+    emitDisabled() {
+      this.triggerEvent("disabled")
+    },
+
+    hasParent() {
+      return this.getRelationNodes("../checkbox-group/index").length > 0
+    }
+  }
 })

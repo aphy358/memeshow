@@ -1,8 +1,0 @@
-<!-- icon component -->
-
-<view class="mf_icon">
-    <text
-        class="mf_icon_body mf_icon-{{ name }}"
-        style="font-size:{{ size }}px;{{ color ? 'color:' + color : '' }}"
-    ></text>
-</view>

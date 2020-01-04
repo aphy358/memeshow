@@ -17,6 +17,20 @@
 </view>
 
 <view class="m-b-xl">
+    <view class="h2 m-b-sm m-h-lg">动态设置选中项</view>
+    <tabs default="{{ actived }}">
+        <tab key="1">标题1</tab>
+        <tab key="2">标题2</tab>
+        <tab key="3">标题3</tab>
+    </tabs>
+    <button
+        class="button--primary button--mini"
+        hover-class="button--actived"
+        bindtap="onChangCurrent"
+    >点击改变选中项</button>
+</view>
+
+<view class="m-b-xl">
     <view class="h2 m-b-sm m-h-lg">带禁用选项</view>
     <tabs default="1">
         <tab key="1">标题1</tab>
@@ -61,7 +75,7 @@
     <view class="h2 m-b-sm m-h-lg">插槽内容: before</view>
     <tabs default="1">
         <image
-            src="./logo.png"
+            src="../../assets/logo.png"
             class="m-h-md"
             style="height:90rpx;width:90rpx;"
         ></image>
@@ -87,6 +101,22 @@
         <view style="height:100%;display:flex;justify-content:center;align-items:center;">
             <view class="icon icon-chevron-down p-h-md"></view>
         </view>
+    </tabs>
+</view>
+
+<view class="m-b-xl">
+    <view class="h2 m-b-sm m-h-lg">拓展类</view>
+     <tabs default="1" scroll tabs-class="border-bottom">
+        <tab key="1">标题</tab>
+        <tab key="2">标题</tab>
+        <tab key="3">标题</tab>
+        <tab key="4">标题</tab>
+        <tab key="5">标题</tab>
+        <tab key="6">标题</tab>
+        <tab key="7">标题</tab>
+        <tab key="8">标题</tab>
+        <tab key="9">标题</tab>
+        <tab key="10">标题</tab>
     </tabs>
 </view>
 

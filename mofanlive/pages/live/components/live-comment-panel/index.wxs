@@ -1,0 +1,36 @@
+
+const getFloatTagText = type => {
+  switch (type) {
+    case 1: {
+      return '从微信来了'
+    }
+    case 2: {
+      return '从推广来了'
+    }
+    case 3: {
+      return '从同城来了'
+    }
+    case 4: {
+      return '来了'
+    }
+    case 5: {
+      return '从关注来了'
+    }
+    case 6: {
+      return '关注了主播'
+    }
+    case 7: {
+      return '加入购物车'
+    }
+    case 8: {
+      return '下单了'
+    }
+    default: {
+      return '来了'
+    }
+  } 
+}
+
+module.exports = {
+  getFloatTagText,
+}

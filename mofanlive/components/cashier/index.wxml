@@ -1,0 +1,95 @@
+<wxs
+    module="accurate2"
+    src="/components/common/wxs/accurate.wxs"
+></wxs>
+
+<popup
+    bind:close="emitCancel"
+    closable
+    height="66vh"
+    open="{{open}}"
+    popup-content="popup-radius"
+    title="快捷下单"
+>
+    <address
+        addr="{{address}}"
+        bind:change="changeAddress"
+    ></address>
+
+    <view class="trades">
+        <view
+            class="white-back"
+            wx:for="{{trades}}"
+            wx:for-item="trade"
+            wx:key="shop.id"
+        >
+            <view class="card card--full card--no-border">
+                <view>
+                    <view class="card__info">
+                        <view
+                            class="sku {{skuIdx == trade.items.length-1 ? '' : 'hairline-bottom'}}"
+                            wx:for="{{trade.items}}"
+                            wx:for-index="skuIdx"
+                            wx:for-item="sku"
+                            wx:key="id"
+                        >
+                            <image
+                                class="sku-image"
+                                src="{{sku.thumbnail}}"
+                            />
+                            <view class="sku-detail">
+                                <view class="sku-detail-title">{{sku.title}}</view>
+                                <view class="sku-detail-spec">{{sku.specs}}</view>
+                                <view class="sku-detail-quantity">x{{sku.quantity}}</view>
+                                <view class="sku-detail-price">￥{{accurate2(sku.price/100)}}</view>
+                            </view>
+                        </view>
+                    </view>
+                    <view
+                        bind:tap="emitCoupon"
+                        class="bill-row"
+                        data-id="{{trade.shop.id}}"
+                    >
+                        <view class="bill-row__header">
+                            <view class="bill-row__title">优惠券:</view>
+                        </view>
+                        <view class="bill-row__tail">
+                            <view>￥10.00</view>
+                            <view class="icon icon-chevron-right"></view>
+                        </view>
+                    </view>
+                    <view class="bill-row">
+                        <view class="bill-row__header">
+                            <view class="bill-row__title">快递运费：</view>
+                            <view class="bill-row__desc">全国包邮</view>
+                        </view>
+                        <view class="bill-row__tail">￥0.00</view>
+                    </view>
+                    <view class="bill-row">
+                        <view class="bill-row__header">
+                            <view class="bill-row__title">小计：</view>
+                        </view>
+                        <view class="bill-row__tail">￥124.00</view>
+                    </view>
+                    <view class="bill-row">
+                        <view class="bill-row__header">
+                            <view class="bill-row__title">备注：</view>
+                        </view>
+                        <view class="bill-row__tail bill-row__tail__full">
+                            <input
+                                placeholder="选填，请先和卖家协商一致"
+                                placeholder-class="input__placeholder"
+                            />
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+
+    <action-bar
+        catch:confirm="handleConfirm"
+        slot="footer"
+        total="{{24500}}"
+    ></action-bar>
+</popup>

@@ -1,5 +1,3 @@
-import { isTag } from "postcss-selector-parser"
-
 /**
  * InputNumber Component
  *
@@ -36,6 +34,12 @@ Component({
 
     //  支持小数
     digit: {
+      type: Boolean,
+      value: false
+    },
+
+    // 灰色背景
+    dark: {
       type: Boolean,
       value: false
     }

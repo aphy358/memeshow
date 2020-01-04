@@ -37,7 +37,7 @@
 | 参数 | 说明 | 类型 | 默认值 | 版本 |
 |------|------|------|------|------|------|
 | show | 用来控制 `popup` 的显示和隐藏，`true` 为显示，`false` 为隐藏 | *Boolean* | `false` | - |
-| customAnimation | 用户自定义动画 | *Object* | `null` | - |
+| customAnimation | 用户自定义动画，当设置了自定义动画，则默认动画不生效 | *Object* | `null` | - |
 | position | `popup` 出现的位置：`top`, `bottom`, `left`, `right`, `center` | *String* | `'center'` | - |
 | animateType | 动画类型：`fade`, `slide` | *String* | `'slide'` | - |
 | duration | 动画持续时间 | *Object \| Number* | `300` | - |

@@ -1,0 +1,31 @@
+@import "@/theme";
+
+.action-bar {
+  width: 100%;
+  padding: $spacing-v-md $spacing-h-lg;
+  box-sizing: border-box;
+  background-color: $color-white;
+  @include flex-row-nowrap;
+  justify-content: flex-end;
+  align-items: baseline;
+
+  .total {
+    @include flex-row-nowrap;
+    margin-right: $spacing-h-lg;
+    align-items: baseline;
+    justify-content: flex-end;
+    flex: 1;
+
+    &__label {
+      font-size: $font-size-lg;
+      font-family: $font-cn;
+      color: $color-text-base;
+    }
+
+    &__content {
+      font-size: $font-size-lg;
+      font-family: $font-cn;
+      color: $color-error;
+    }
+  }
+}

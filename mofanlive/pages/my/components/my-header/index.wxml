@@ -1,0 +1,34 @@
+
+<view class="my-header-wrap">
+  <view class="my-header-inner">
+    <!-- 设置按钮 -->
+    <view class="my-option" style="width: {{ menuBtn.left - 40 }}px;height: {{ menuBtn.height }}px;top: {{ menuBtn.top }}px;">
+      <navigator wx:if="{{ userProfile.id}}" class="flex-wrap" url="/pages/my/partials/my-setup/index" hover-class="navigator-hover">
+        <image class="img" src="../../assets/option.png" />
+      </navigator>
+      <view wx:else class="flex-wrap">
+        <image class="img" src="../../assets/option.png" />
+      </view>
+    </view>
+
+    <view class="avatar" style="flex-shrink: 0;">
+      <navigator wx:if="{{ userProfile.id }}" class="flex-wrap" url="/pages/my/partials/my-setup/index" hover-class="navigator-hover">
+        <image wx:if="{{ userProfile.avatarLarger || userProfile.openUsers.weixinApp.avatar }}" class="img" src="{{ userProfile.avatarLarger || userProfile.openUsers.weixinApp.avatar }}" />
+        <image wx:else class="img" src="/assets/images/default-icon.png" />
+      </navigator>
+      <view wx:else class="flex-wrap">
+        <image class="img" src="/assets/images/default-icon.png" />
+      </view>
+    </view>
+
+    <view class="my-header-btns">
+      <view wx:if="{{ !userProfile.id }}" class="my-header-btn">
+        登录/注册
+      </view>
+      <view wx:else class="my-header-btn mid-item">
+        <view class="">{{ userProfile.nickname || userProfile.openUsers.weixinApp.nickname }}</view>
+        <view class="f-sm color-grey-2">{{ userProfile.signature || '还没有设置签名！' }}</view>
+      </view>
+    </view>
+  </view>
+</view>

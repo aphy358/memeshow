@@ -1,23 +1,20 @@
-export const productList = [
-  {
-    id: 1,
-    name: "超级散热器",
-    price: 99900,
-    imgUrl: "http://img.alicdn.com/bao/uploaded/i1/679679787/TB1Bufcd7fb_uJkSnaVXXXFmVXa_!!0-item_pic.jpg_400x400q90.jpg",
-  },
-  {
-    id: 2,
-    name: "名字超级长超级长超级长超级长超级长的散热器",
-    price: 99900,
-    imgUrl: "http://img.alicdn.com/bao/uploaded/i1/679679787/TB1Bufcd7fb_uJkSnaVXXXFmVXa_!!0-item_pic.jpg_400x400q90.jpg",
-  },
-  {
-    id: 3,
-    name: "名字超级长超级长超级长超级长超级长的散热器",
-    price: 99900,
-    imgUrl: "http://img.alicdn.com/bao/uploaded/i1/679679787/TB1Bufcd7fb_uJkSnaVXXXFmVXa_!!0-item_pic.jpg_400x400q90.jpg",
-  },
-]
+import _ from 'lodash'
+
+var i = 0
+export const productList = _.map(new Array(10), () => ({
+  id: i++,
+  name: "正宗龙窑柴烧建盏落灰杯纯手工粗陶自然落灰釉裸烧茶杯铁胎禅定杯",
+  price: 99900,
+  imgUrl: "https://gd2.alicdn.com/imgextra/i4/208763083/TB2cd_mdGQoBKNjSZJnXXaw9VXa_!!208763083.jpg_400x400.jpg",
+  thumbnail: "https://gd2.alicdn.com/imgextra/i4/208763083/TB2cd_mdGQoBKNjSZJnXXaw9VXa_!!208763083.jpg_400x400.jpg",
+  tips: [
+    {
+      title: "立减10",
+      id: 'tip1'
+    }
+  ],
+  live: true
+}))
 
 export const product = {
   "code": 0,
@@ -35,7 +32,7 @@ export const product = {
     "createTime": 0,
     "updateTime": 0,
     "shop": {
-      "name": "开个蛇皮店",
+      "name": "魔范小店",
       "avatar": "",
       "id": "mofanshop",
     },
@@ -178,7 +175,7 @@ export const trades = [
   {
     shop: {
       id: 'mafanshop',
-      name: '开tm蛇皮店',
+      name: '魔范小店',
       avatar: '',
     },
     items: [
@@ -190,20 +187,7 @@ export const trades = [
         id: 'skuId1',
         "thumbnail": "https://gd2.alicdn.com/imgextra/i4/208763083/TB2cd_mdGQoBKNjSZJnXXaw9VXa_!!208763083.jpg_400x400.jpg",
         productId: 'productId1',
-        "specs": [
-          {
-            "kid": "k1",
-            "vid": "v2",
-            "k": "颜色",
-            "v": "蓝色"
-          },
-          {
-            "kid": "k2",
-            "vid": "v4",
-            "k": "尺码",
-            "v": "小杯"
-          }
-        ],
+        "specs": "蓝色 小杯",
       },
       {
         "title": "正宗龙窑柴烧建盏落灰杯纯手工粗陶自然落灰釉裸烧茶杯铁胎禅定杯",
@@ -213,21 +197,29 @@ export const trades = [
         id: 'skuId2',
         "thumbnail": "https://gd2.alicdn.com/imgextra/i4/208763083/TB2cd_mdGQoBKNjSZJnXXaw9VXa_!!208763083.jpg_400x400.jpg",
         productId: 'productId1',
-        "specs": [
-          {
-            "kid": "k1",
-            "vid": "v2",
-            "k": "颜色",
-            "v": "蓝色"
-          },
-          {
-            "kid": "k2",
-            "vid": "v4",
-            "k": "尺码",
-            "v": "小杯"
-          }
-        ],
+        "specs": "蓝色 小杯",
       }
+    ],
+    coupon: [
+      {
+        id: 'stupidcoupon1',
+        price: 500,
+        source: '平台优惠券',
+        name: '用了变傻逼券',
+        expiry: "2019.12.30-2020.1.1",
+        condition: "满200使用",
+        disabled: false,
+        used: true,
+      },
+      {
+        id: 'stupidcoupon2',
+        price: 2200,
+        source: '商家优惠券',
+        expiry: "2019.12.30-2020.11.30",
+        condition: "满200使用",
+        disabled: true,
+        used: false,
+      },
     ]
   }
 ]

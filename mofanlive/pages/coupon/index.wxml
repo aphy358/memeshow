@@ -1,0 +1,3 @@
+<view class="p-h-lg p-v-lg white">
+    <coupon coupon="{{coupon}}"></coupon>
+</view>

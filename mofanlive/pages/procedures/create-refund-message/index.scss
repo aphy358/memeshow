@@ -1,0 +1,26 @@
+@import "@/theme";
+
+.white-back {
+  background-color: white;
+}
+
+.textarea {
+  width: 100%;
+  margin: $spacing-v-lg 0 0;
+  padding: $spacing-v-lg $spacing-h-lg;
+}
+
+.images {
+  width: 100%;
+  padding: $spacing-v-lg $spacing-h-lg;
+  margin: 0 0 $spacing-v-lg;
+}
+
+.btns {
+  padding: $spacing-v-lg $spacing-h-lg 0;
+  width: 100%;
+
+  button {
+    margin-bottom: $spacing-v-lg;
+  }
+}

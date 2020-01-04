@@ -1,0 +1,67 @@
+@import "@/theme";
+
+.header {
+  $header-height: 266rpx;
+
+  height: $header-height;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: white;
+  display: flex;
+  flex-flow: column nowrap;
+
+  .actions {
+    flex: 1;
+  }
+
+  &-placeholder {
+    height: $header-height;
+    width: 100%;
+    box-sizing: content-box;
+  }
+
+  &-user {
+    padding: 20rpx 40rpx 20rpx 50rpx;
+    @include hairline-bottom;
+    @include flex-row-nowrap;
+    align-items: center;
+
+    &--avatar {
+      $avatar-size: 132rpx;
+
+      width: $avatar-size;
+      height: $avatar-size;
+      background-color: $color-text-placeholder;
+    }
+
+    &--info {
+      flex: 1;
+      padding: 0 $spacing-h-lg;
+    }
+
+    &--followers {
+      color: #a0a0a0;
+    }
+
+    &--service {
+      position: relative;
+      $service-size: 48rpx;
+
+      width: $service-size;
+      height: $service-size;
+      font-size: $service-size;
+
+      
+      @at-root .contact-btn {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: transparent;
+      }
+    }
+  }
+}

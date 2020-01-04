@@ -1,0 +1,14 @@
+<wxs
+    module="accurate2"
+    src="/components/common/wxs/accurate.wxs"
+></wxs>
+
+<view
+    class="action-bar"
+    style="{{isIPhoneX ? 'padding-bottom: 68rpx;': ''}}"
+>
+    <button
+        bind:tap="emitConfirm"
+        class="button--primary button--circle"
+    >立即支付：￥{{accurate2(total/ 100)}}</button>
+</view>

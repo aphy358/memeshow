@@ -1,0 +1,8 @@
+{
+  "component": true,
+  "usingComponents": {
+    "address": "./components/address/index",
+    "action-bar": "./components/action-bar/index",
+    "popup": "ui-kit/components/popup/index"
+  }
+}

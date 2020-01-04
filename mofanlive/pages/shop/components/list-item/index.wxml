@@ -1,0 +1,34 @@
+<wxs
+    module="accurate2"
+    src="/components/common/wxs/accurate.wxs"
+></wxs>
+
+<view
+    bind:tap="navToProduct"
+    class="product"
+>
+    <image
+        class="product-img"
+        src="{{product.thumbnail}}"
+    />
+    <view
+        class="product-live f-cn f-xs"
+        wx:if="{{product.live}}"
+    >直播中</view>
+    <view class="product-info">
+        <view class="product-info--title f-cn f-md">{{product.name}}</view>
+        <view class="product-info--tip">
+            <view
+                wx:for="{{product.tips}}"
+                wx:for-item="tip"
+                wx:key="id"
+            >{{tip.title}}</view>
+        </view>
+        <view class="product-info--bottom">
+            <view class="f-price f-lg">￥{{accurate2(product.price /100)}}</view>
+            <view class="product-info--buy">
+                <view class="icon icon-shopping-cart"></view>
+            </view>
+        </view>
+    </view>
+</view>

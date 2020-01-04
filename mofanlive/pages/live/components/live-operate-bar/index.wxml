@@ -1,20 +1,75 @@
+<wxs module="formator" src="/utils/formator.wxs" />
+<wxs module="formatter" src="./index.wxs" ></wxs>
 
-<view class="operate-bar-wrap">
-  <image class="operate-item" style="border-radius: 0;" src="../../assets/product-list.png" bind:tap="openProductList" />
+<view class="operate-bar-wrap" style="padding-left: 30rpx;">
+  <view class="operate-item" bind:tap="emitProducts">
+    <image class="img" src="../../assets/shop-cart.png" style="width: 110rpx;height: 110rpx;position: absolute;" />
+    <view class="shop-cart-count">23</view>
+  </view>
 
-  <view class="comment-input-wrap">
-    <input class="input" disabled placeholder="说点什么..." bind:tap="showCommentInputPopup" />
+  <view class="comment-input-wrap" style="margin-left: 10rpx;">
+    <input class="input" disabled value="说点什么..." bind:tap="showCommentInputPopup" />
 
-    <view class="img-wrap" bind:tap="sendVoice">
-      <image class="img" src="../../assets/voice.png" />
+    <view class="img-wrap">
+      <image 
+        class="img" 
+        bind:touchstart="recordVoice"
+        bind:touchend="sendVoice" 
+        src="../../assets/voice.png" 
+      />
+      <view class="record-outer" wx:if="{{ isRecordVoice }}">
+        <view class="record-inner"></view>
+      </view>
     </view>
   </view>
 
-  <view class="operate-item" >
-    <image class="img" src="../../assets/share.png" />
+  <view class="operate-item" bind:tap="emitCoupons">
+    <image class="img" src="../../assets/coupons.png" />
+  </view>
+
+  <view class="operate-item" bind:tap="emitOrders" >
+    <image class="img" src="../../assets/order.png" />
   </view>
 
   <view class="operate-item">
-    <image class="img" src="../../assets/gift.png" />
+    <image class="img" src="../../assets/share.png" bind:tap="showShareChoicePop" />
+  </view>
+
+  <view class="operate-item">
+    <block wx:for="{{ popStars }}" wx:key="index" wx:if="{{ formator.getTimeDiff(item.t) < 2000 }}">
+      <view class="pop-star {{ 'star-' + item.clazz }}" >
+        <image 
+          class="img" 
+          src="{{ item.icon === 1 ? '../../assets/hart1.png' : '../../assets/hart2.png' }}" 
+          style="transform: rotate({{ item.rotate }}deg);width: {{ item.diameter }}rpx;height:{{ item.diameter * 7 / 8 }}rpx;"
+        />
+      </view>
+    </block>
+    <image class="img" src="../../assets/like.png" bind:tap="tapStar" />
+    <view class="star-count">
+      <view>{{ formatter.getStarCountText(starCount) }}</view>
+    </view>
   </view>
 </view>
+
+<hpopup
+  show="{{ isShowShareChoice }}"
+  bind:tapMask="hideShareChoicePop"
+  position="bottom"
+>
+  <view class="live-share-packets-inner">
+    <view class="share-item" bind:tap="hideShareChoicePop">
+      <image class="img" src="../../assets/share-choice-1.png" />
+      <text class="text">分享好友</text>
+      <button class="share-mask" open-type="share"></button>
+    </view>
+
+    <view class="share-item" bind:tap="showPosterPop">
+      <image class="img" src="../../assets/share-choice-2.png" />
+      <text class="text">保存海报</text>
+    </view>
+  </view>
+</hpopup>
+
+<!-- 海报 -->
+<live-poster show="{{ ifShowPoster }}" bind:hidePoster="hidePosterPop" />

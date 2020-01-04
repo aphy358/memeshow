@@ -1,0 +1,8 @@
+{
+  "component": true,
+  "usingComponents": {
+    "checkbox-item": "/ui-kit/components/checkbox/index",
+    "input-number": "/ui-kit/components/input-number/index",
+    "swipe-out": "/components/swipe-out/index"
+  }
+}

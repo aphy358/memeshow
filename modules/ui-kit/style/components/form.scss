@@ -4,6 +4,8 @@
 
 .form {
     @include hairline-top-bottom($color: $form-color-border);
+    font-family: $font-cn;
+    font-size: $form-font-size;
 
     &__item {
         @include display-flex();
@@ -42,6 +44,20 @@
             @include display-flex();
             @include align-items(center);
             @include justify-content(flex-end);
+
+            &__button {
+                @include active();
+                height: size(35);
+                width: size(90);
+                padding: 0;
+                border-color: $form-color-border;
+
+                &--disabled {
+                    &:active {
+                        background-color: initial;
+                    }
+                }
+            }
         }
 
         &__verify {
@@ -137,6 +153,10 @@
         .form__item::after {
             display: none;
         }
+    }
+
+    &__placeholder {
+        color: $color-text-placeholder;
     }
 }
 

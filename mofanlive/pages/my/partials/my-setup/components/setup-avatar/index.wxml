@@ -1,0 +1,7 @@
+
+<view class="my-setup-avatar">
+  <view class="header-inner" bind:tap="chooseImg">
+    <image class="img" src="{{ userProfile.avatarLarger || userProfile.openUsers.weixinApp.avatar || '/assets/images/default-icon.png' }}" />
+    <text class="text">点击更换头像</text>
+  </view>
+</view>

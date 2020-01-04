@@ -1,0 +1,11 @@
+<popup
+    bind:close="toggleService"
+    title="服务说明"
+>
+    <view class="action" slot="footer">
+        <button
+            bind:tap="toggleService"
+            class="button--primary button-circle"
+        ></button>
+    </view>
+</popup>

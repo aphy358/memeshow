@@ -6,3 +6,7 @@ Page {
 //   padding: $padding-lg;
     padding: $padding-lg 0;
 }
+
+.border-bottom {
+    border-bottom: 1px solid $color-border-base;
+}

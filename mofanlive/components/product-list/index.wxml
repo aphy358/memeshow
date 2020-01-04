@@ -1,33 +1,31 @@
-<mf-popup
-    bind:close="emitClose"
-    closable
-    open="{{open}}"
-    title="商品列表"
->
-    <view
-        class="product-list"
-        style="{{customStyle}}"
-    >
-        <block
-            wx:for="{{products}}"
-            wx:key="id"
-        >
-            <view class="product">
-                <image
-                    class="product-img"
-                    src="{{item.imgUrl}}"
-                />
-                <view class="product-desc">
-                    <view class="product-desc-title">{{item.name}}</view>
-                    <view class="product-desc-price">￥{{item.price / 100}}</view>
+<wxs
+    module="accurate2"
+    src="/components/common/wxs/accurate.wxs"
+></wxs>
 
-                    <view
-                        bind:tap="handleTapProduct"
-                        class="product-desc-buy button--secondary button-mini"
-                        data-id="{{item.id}}"
-                    >去购买</view>
-                </view>
+<view class="product-list">
+    <block
+        wx:for="{{products}}"
+        wx:key="id"
+    >
+        <view
+            class="product"
+            data-id="{{item.id}}"
+            style="{{index == 0 ? 'padding-top: 0;' : ''}}"
+        >
+            <image
+                class="product-img"
+                src="{{item.imgUrl}}"
+            />
+            <view class="product-desc">
+                <view class="product-desc-title">{{item.name}}</view>
+                <view class="product-desc-price f-price">￥{{accurate2(item.price / 100)}}</view>
+
+                <button
+                    catch:tap="handleTapBuy"
+                    class="product-desc-buy button--primary button--mini button--circle"
+                >购买</button>
             </view>
-        </block>
-    </view>
-</mf-popup>
+        </view>
+    </block>
+</view>

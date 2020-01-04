@@ -8,3 +8,37 @@
   margin-left: $spacing-h-lg;
 }
 
+.cell__title, .cell__detail {
+  color: $color-grey-2;
+}
+
+.coupon {
+  &__tag, &__content {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  &__tag {
+    padding: 0 $spacing-v-sm;
+    background-color: $color-brand;
+    border-radius: $border-radius-md;
+    color: white;
+    margin-right: $spacing-h-lg;
+  }
+
+  &__content {
+    line-height: $line-height-base;
+    @include line(1);
+  }
+}
+
+.service {
+  @include flex-row-nowrap;
+  align-items: center;
+
+  .icon {
+    border: 2rpx $color-brand solid;
+    color: $color-brand;
+    border-radius: 999rpx;
+  }
+}

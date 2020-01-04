@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "popup": "/ui-kit/components/popup/index"
+  }
+}

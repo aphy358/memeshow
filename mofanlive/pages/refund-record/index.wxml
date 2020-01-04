@@ -1,0 +1,7 @@
+<info info="{{info}}"></info>
+
+<block wx:for="{{record}}" wx:key="id">
+  <record record="{{item}}"></record>
+</block>
+
+<actions bind:createmessage="createMessage"></actions>

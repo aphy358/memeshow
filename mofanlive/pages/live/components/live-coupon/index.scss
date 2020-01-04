@@ -1,0 +1,99 @@
+
+@keyframes bounceIn {
+  0% {
+    transform: translate(-50%, -50%) scale(0.1, 0.1);
+    opacity: 1;
+  }
+
+  50%,
+  55% {
+    transform: translate(-50%, -50%) scale(1.1, 1.1);
+  }
+
+  100% {
+    transform: translate(-50%, -50%) scale(1, 1);
+    opacity: 1;
+
+  }
+}
+
+@keyframes backfall {
+  0% {
+    transform: translate(-50%, -50%) scale(1, 1);
+    opacity: 1;
+  }
+
+  99% {
+    transform: translate(-50%, -50%) scale(0.01, 0.01);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate(-50%, -50%) scale(0, 0);
+    left: 58%;
+    top: calc(100% - 60rpx);
+    top: calc(100% - 60rpx - constant(safe-area-inset-bottom));
+    top: calc(100% - 60rpx - env(safe-area-inset-bottom));
+    opacity: 0;
+  }
+}
+
+.coupon-wrap {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  opacity: 0;
+
+  &.coupon-animate-1 {
+    animation: bounceIn 450ms ease 0s forwards;
+  }
+
+  &.coupon-animate-2 {
+    animation: backfall 600ms ease 0s forwards;
+  }
+
+  .coupon-content-wrap {
+    position: absolute;
+    width: 100%;
+    top: 30rpx;
+    left: 0;
+    color: rgb(157, 72, 0);
+    font-size: 24rpx;
+    text-align: center;
+
+    .content-row-2 {
+      font-size: 28rpx;
+    }
+
+    .coupon-amount {
+      font-size: 100rpx;
+    }
+  }
+
+  .coupon-seconds-wrap {
+    position: absolute;
+    width: 100%;
+    bottom: 60rpx;
+    left: 0;
+    text-align: center;
+    font-size: 36rpx;
+    color: rgba(157, 73, 0, 0.5);
+  }
+
+  .img {
+    float: left;
+    width: 390rpx;
+    height: 460rpx;
+  }
+
+  .img-close {
+    position: absolute;
+    width: 60rpx;
+    height: 60rpx;
+    top: -70rpx;
+    right: -40rpx;
+    transform: scale(1.5);
+  }
+}

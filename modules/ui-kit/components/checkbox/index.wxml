@@ -4,11 +4,16 @@
     class="checkbox {{ disabled ? 'checkbox--disabled' : '' }}"
     bindtap="onTap"
 >
-    <view class="checkbox__title">
-        <text class="checkbox__label">{{ title }}</text>
-        <text wx:if="{{ desc }}" class="checkbox__desc">{{ desc }}</text>
+    <view class="checkbox__left">
+        <view class="checkbox__icon {{ checked ? 'checkbox__icon--checked' : '' }}">
+            <view class="icon icon-check checkbox__icon__icon"></view>
+        </view>
     </view>
-    <view class="checkbox__icon">
-        <view class="icon {{ checked ? 'icon-check' : '' }}"></view>
+    <view class="checkbox__right">
+        <view class="checkbox__label title-class">{{ title }}</view>
+        <view
+            wx:if="{{ desc }}"
+            class="checkbox__desc desc-class"
+        >{{ desc }}</view>
     </view>
 </view>

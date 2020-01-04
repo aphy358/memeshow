@@ -1,3 +1,17 @@
-<view class="collapse">
-    <slot></slot>
+<view class="collapse {{ disabled ? 'collapse--disabled' : '' }}">
+    <view
+        class="collapse__header"
+        bindtap="onToggle"
+    >
+        <view class="collapse__title">{{ title }}</view>
+        <view class="icon icon-chevron-down collapse__icon {{ open ? 'collapse__icon--reverse': '' }}"></view>
+    </view>
+    <view
+        class="collapse__body {{ open ? '' : 'collapse__body--inactive' }}"
+        style="{{ contentStyle }}"
+    >
+        <view class="collapse__content">
+            <slot></slot>
+        </view>
+    </view>
 </view>
