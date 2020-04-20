@@ -1,0 +1,25 @@
+<wxs
+    module="priceFormat"
+    src="/components/common/wxs/accurate.wxs"
+></wxs>
+
+<view class="explaining">
+    <image
+        class="explaining--img"
+        src="{{product.image.medium}}"
+    />
+    <view class="explaining--order f-nu">{{sort}}</view>
+    <view class="explaining--hint f-cn">
+        <view class="explaining--hint__dot"></view>
+        <view class="explaining--hint__text f-cn">讲解中</view>
+    </view>
+    <view class="explaining--detail">
+        <view class="explaining--title f-cn">{{product.title}}</view>
+        <view class="explaining--sold f-cn f-base">{{product.soldCount}}人付款</view>
+        <view class="explaining--price f-price">￥{{priceFormat.accurate(product.price)}}</view>
+    </view>
+    <button
+        bind:tap="handleTapBuy"
+        class="explaining--buy button--circle button--secondary button--mini"
+    >购买</button>
+</view>

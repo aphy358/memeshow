@@ -1,0 +1,196 @@
+<wxs module="formator" src="/utils/formator.wxs"></wxs>
+
+<live-pusher
+  url="{{ roomInfo.streamUrl.rtmpPushUrl }}"
+  id="pusher"
+  mode="FHD"
+  enable-camera="{{settings.enableCamera}}"
+  device-position="{{settings.devicePosition}}"
+  enable-mic="{{settings.enableMic}}"
+  remote-mirror="{{settings.mirror}}"
+  local-mirror="{{settings.mirror ? 'enable' : 'disable'}}"
+  beauty="{{settings.beauty? 9 : 0}}"
+  bindstatechange="statechange"
+  bindnetstatus="onNetStatus"
+  binderror="onError"
+  style="width: 100vw; height: 100vh;"
+/>
+
+<view class="live-page" style="{{ isIPhoneX ? 'padding-bottom: 68rpx' : ''}}">
+    <statusbar
+        timer="{{ timer.clock }}"
+        bindclose="onCloseLive"
+    >
+        <view class="live_status">
+            <view class="live_status-item">
+                <view class="live_status-item-num">3132</view>
+                <view class="live_status-item-desc live_status-item-link">
+                    累计观看
+                </view>
+            </view>
+             <view class="live_status-item">
+                <view class="live_status-item-num">18</view>
+                <view class="live_status-item-desc">支付订单数</view>
+            </view>
+             <view class="live_status-item">
+                <view class="live_status-item-num">200.90</view>
+                <view class="live_status-item-desc">支付金额</view>
+            </view>
+             <view class="live_status-item">
+                <view class="live_status-item-num">3123</view>
+                <view class="live_status-item-desc live_status-item-link">
+                    粉丝数
+                </view>
+            </view>
+        </view>
+    </statusbar>
+
+    <view class="live-tools">
+        <toolbar
+            settings="{{ settings }}"
+            current-product="{{ currentProduct }}"
+            product-count="{{ products.length }}"
+            bindbag=""
+            bindshop="onClickShop"
+            bindchange="onSettingsChange"
+        ></toolbar>
+    </view>
+
+    <!-- 直播评论列表面板 -->
+    <live-comment-panel textMessage="{{ textMessage }}" />
+</view>
+
+<!-- 拼单动态 -->
+<live-join-order catch:buy="buyProduct" />
+
+<popup
+    height="75vh"
+    closable="{{false}}"
+    open="{{showProducts}}"
+    popup-content="product-popup"
+    popup-body="no-padding"
+    bindclose="onClosePopup"
+>
+    <view class="product-popup-header" slot="header">
+        <text class="popup-close icon icon-close" bindtap="onClickClosePopup"></text>
+        <view class="product-add" bindtap="onAddProduct">添加商品</view>
+        <view class="product-popup-header-title">
+            <text wx:if="{{products.length}}">直播商品({{products.length}})</text>
+            <text wx:else>直播商品</text>
+        </view>
+    </view>
+    <view>
+        <view
+            wx:if="{{currentProduct}}"
+            class="product-current"
+        >
+            <view class="product-alive-item">
+                <image class="product-image" src="{{currentProduct.image.medium}}"></image>
+                <view class="product-info">
+                    <view class="product-name">{{currentProduct.title}}</view>
+                    <view class="product-extra">
+                        <view class="product-price">¥{{formator.formatPrice(currentProduct.price)}}</view>
+                        <button
+                            class="product-button button--mini button--circle button--secondary"
+                            bindtap="onCloseProduct"
+                        >结束讲解</button>
+                    </view>
+                </view>
+                <view class="product-tag">{{currentProduct.position}}</view>
+            </view>
+        </view>
+        <view class="product-alive-list">
+            <block wx:if="{{products.length}}">
+                <view
+                    wx:for="{{products}}"
+                    wx:key="id"
+                    wx:for-item="product"
+                    data-index="{{index}}"
+                    data-startx="{{product.startX}}"
+                    data-starty="{{product.startY}}"
+                    bindtouchstart="onSlideStart"
+                    bindtouchmove="onSlideMove"
+                    class="touch-move-wrap {{product.isTouchMove ? 'touch-move-wrap--active' : ''}}"
+                >
+                    <view class="product-alive-item touch-move-wrap--content">
+                        <image class="product-image" src="{{product.image.medium}}"></image>
+                        <view class="product-info">
+                            <view class="product-name">{{product.title}}</view>
+                            <view class="product-extra">
+                                <view class="product-price">¥{{formator.formatPrice(product.price)}}</view>
+                                <button
+                                    class="product-button button--mini button--circle {{product.id == currentProduct.id ? 'button--secondary' : 'button--primary'}}"
+                                    data-index="{{index}}"
+                                    bindtap="onSelectProduct"
+                                >
+                                    {{product.id == currentProduct.id ? '结束讲解' : '立即讲解'}}
+                                </button>
+                            </view>
+                        </view>
+                        <view class="product-tag">{{index+1}}</view>
+                    </view>
+                    <view
+                        class="touch-move-wrap--tail"
+                        data-index="{{index}}"
+                        bindtap="onDelProduct"
+                    >
+                        删除
+                    </view>
+                </view>
+            </block>
+            <no-records wx:else type="1"  />
+        </view>
+    </view>
+</popup>
+
+<popup
+    height="75vh"
+    closable="{{false}}"
+    open="{{showProductSelector}}"
+    popup-content="product-popup"
+    popup-body="no-padding"
+    bindclose="onCloseSelector"
+>
+    <view class="product-popup-header" slot="header">
+        <text class="popup-close icon icon-chevron-left" bindtap="onClickCloseSelector"></text>
+        <view class="product-popup-header-title">
+            选择直播商品
+            <text
+                class="product-selector-header-button"
+                bindtap="onConfirmSelector"
+            >{{ cacheProducts.length ? '确定(' + cacheProducts.length + ')' : '确定'}}</text>
+        </view>
+        <view class="product-popup-header-tab">
+            <tabs default="{{1}}">
+                <tab key="{{1}}">播过的商品</tab>
+                <tab key="{{2}}">我的店铺</tab>
+                <tab key="{{3}}">付费推广</tab>
+            </tabs>
+        </view>
+    </view>
+    <view>
+        <view class="selector-group product-selector" bindtap="onSelect">
+            <view
+                wx:for="{{selectorProducts}}"
+                wx:key="id"
+                wx:for-item="product"
+                class="selector-item product-item"
+                mark:index="{{index}}"
+            >
+                <view class="selector-item--icon">
+                    <image
+                        wx:if="{{ product.ischecked }}"
+                        class="selector-item--icon-image"
+                        src="/assets/images/checked.png"
+                    ></image>
+                    <view wx:else class="selector-item--icon-circle"></view>
+                </view>
+                <image class="selector-item--image" src="{{product.image.medium}}"></image>
+                <view class="selector-item--info">
+                    <view class="product-name">{{product.title}}</view>
+                    <view class="product-price">¥{{formator.formatPrice(product.price)}}</view>
+                </view>
+            </view>
+        </view>
+    </view>
+</popup>

@@ -1,0 +1,13 @@
+<view
+    class="fixed-btns"
+    style="{{isIPhoneX ? 'padding-bottom: 84rpx;' : ''}}"
+>
+    <button
+        bind:tap="onTasksTap"
+        class="button--secondary button--circle button--mini tasks"
+    >任务</button>
+    <button
+        bind:tap="onReleaseTap"
+        class="button--primary button--circle"
+    >发布合作任务</button>
+</view>

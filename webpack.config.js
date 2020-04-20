@@ -80,11 +80,11 @@ const walkProject = () => {
   // 分包
   subpackages.forEach(it => walkSubpackage(it))
 
-  // js关联的 .json .wxml .wxss .scss ...
-  walkEntries()
-
   // tabbar 资源
   walkTabBar(tabBar)
+
+  // js关联的 .json .wxml .wxss .scss ...
+  walkEntries()
 }
 
 const walkPage = path => {
@@ -239,13 +239,23 @@ const walkEntries = () => {
 }
 
 const walkTabBar = tabBar => {
-  const assets = _.uniq(
-    _.filter(_.flattenDeep(_.map(tabBar.list || [], it => [
-      resolveFullResourcePath(src, it.iconPath), resolveFullResourcePath(src, it.selectedIconPath)
-    ])))
-  )
-  if (!_.isEmpty(assets)) {
-    entries._assets = _.concat(entries._assets || [], assets)
+  if (tabBar.custom) {
+    const path = resolveFullScriptPath(src, '/custom-tab-bar/index.js')
+    if (!path) {
+      console.log(colors.yellow(`can't find custom tabBar: ${path}`))
+      return
+    }
+    walkPage(path)
+  } else {
+    // 非自定义 tabBar
+    const assets = _.uniq(
+      _.filter(_.flattenDeep(_.map(tabBar.list || [], it => [
+        resolveFullResourcePath(src, it.iconPath), resolveFullResourcePath(src, it.selectedIconPath)
+      ])))
+    )
+    if (!_.isEmpty(assets)) {
+      entries._assets = _.concat(entries._assets || [], assets)
+    }
   }
 }
 
@@ -450,7 +460,8 @@ const build = env => {
           // 避免循环引用
           if (depChunks.indexOf(path) >= 0) return ''
 
-          return depChunks.map(it => `require("${relative(dirname(path), it)}");`).join('')
+          // windows下路径分隔符需要替换为/
+          return depChunks.map(it => `require("${relative(dirname(path), it).replace(/\\/g, '/')}");`).join('')
         },
         raw: true,
         entryOnly: true

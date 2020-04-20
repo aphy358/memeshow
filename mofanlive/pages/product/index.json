@@ -2,10 +2,12 @@
   "navigationBarTitleText": "商品详情",
   "usingComponents": {
     "poster": "./components/poster/index",
-    "action-group": "./components/action-group/index",
     "detail": "./components/detail/index",
     "action-bar": "./components/action-bar/index",
+    "action-bar-voucher": "./components/action-bar-voucher/index",
     "sku-selector": "../../components/sku-selector/index",
-    "recommend": "./components/recommend/index"
+    "recommend": "./components/recommend/index",
+    "shareDialog": "./components/shareDialog/index",
+    "voucher": "./components/voucher/index"
   }
 }

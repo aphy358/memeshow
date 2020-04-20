@@ -57,7 +57,7 @@
 
 <view class="m-b-xl">
     <view class="h2 m-b-sm m-h-lg">吸附效果</view>
-    <tabs default="1" scroll stickable>
+    <tabs default="1" scroll sticky>
         <tab key="1">标题</tab>
         <tab key="2">标题</tab>
         <tab key="3">标题</tab>

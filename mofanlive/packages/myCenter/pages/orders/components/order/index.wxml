@@ -1,0 +1,70 @@
+<wxs
+    module="priceFormat"
+    src="/components/common/wxs/accurate.wxs"
+></wxs>
+
+<view class="order card card--no-border">
+    <view class="order-header card__header" bind:tap="navToShop">
+        <view class="order-header__title card__title">
+            <image class="icon-shop" mode="aspectFit" src="/assets/images/orders/shop.png" />
+            <view class="card__title shop-name">{{ order.shop.name }}</view>
+            <image class="icon-right" mode="aspectFit" src="/assets/images/arrow.png" />
+        </view>
+        <view
+            wx:if="{{ !!order.orderId }}"
+            class="order-header__state order-header__state__{{RefundStateText[order.state].Class}}"
+        >{{RefundStateText[order.state].Title}}</view>
+        <view
+            wx:else
+            class="order-header__state order-header__state__{{OrderStateText[order.state].Class}}"
+        >{{OrderStateText[order.state].Title}}</view>
+    </view>
+    <view
+        bind:tap="navToOrderDetail"
+        class="order-content card__content__items"
+    >
+        <view
+            class="order-content__item"
+            wx:for="{{order.items}}"
+            wx:key="skuId"
+        >
+            <view class="order-content__item-thumbnail">
+                <image mode="aspectFill" src="{{item.picture}}" />
+            </view>
+            <view class="order-content__item-detail">
+                <view class="order-content__item-detail__title">{{item.title}}</view>
+                <!-- <view class="order-content__item-detail__specs">{{item.specs}}</view> -->
+                
+                <view class="order-content__item-bill">
+                    <text class="order-content__item-bill__price">￥{{priceFormat.accurate((item.finalPrice))}}</text>
+                    <text class="ocib-original-price">￥{{priceFormat.accurate(item.price)}}</text>
+                    <text class="order-content__item-bill__quantity">x{{item.num}}</text>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="order-tail">
+        <view class="order-tail__bill">
+            <view class="order-tail__bill-poster">
+                <image mode="aspectFit" src="/assets/images/poster.png" />
+                <text>快递费：¥ {{priceFormat.accurate(order.postage)}}</text>
+            </view>
+            <view
+                class="order-tail__bill-item"
+            >
+                <text>共{{order.itemNum}}件商品 合计:</text>
+                <text class="red">￥<text class="price-big">{{priceFormat.priceStr1((order.finalAmount))}}</text>.{{priceFormat.priceStr2((order.finalAmount))}}</text>
+            </view>
+        </view>
+        <view wx:if="{{ order.refunds && order.refunds.length > 0 }}" class="order-tail__bill addon">有{{ order.refunds.length }}笔退款</view>
+
+        <view class="order-tail__actions">
+            <!-- 前端判断的不同类型订单所配备的操作按钮 -->
+            <block wx:for="{{ !!order.orderId ? RefundListActions[order.state] : OrderListActions[order.state] }}" wx:key="*this">
+                <button wx:if="{{ !(item.Title === OAT.CheckLogistics && !order.hasDeliveryDist) }}" bind:tap="handleAction" class="button--{{ item.Class }} button--mini button--circle button__fixed-width" data-action="{{ item.Title }}">
+                    {{ item.Title }}
+                </button>
+            </block>
+        </view>
+    </view>
+</view>

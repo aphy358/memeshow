@@ -1,0 +1,13 @@
+{
+  "usingComponents": {
+    "tabs": "ui-kit/components/tabs/index",
+    "tab": "ui-kit/components/tab/index",
+    "fixed-btns": "./components/fixed-btns/index",
+    "list": "./components/list/index",
+    "filter-menu": "./components/filter-menu/index"
+  },
+  "navigationBarBackgroundColor": "#111111",
+  "backgroundColorTop": "#111111",
+  "navigationBarTextStyle": "white",
+  "navigationBarTitleText": "网红云分销"
+}

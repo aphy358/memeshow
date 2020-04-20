@@ -1,0 +1,18 @@
+<wxs
+    module="priceFormat"
+    src="/components/common/wxs/accurate.wxs"
+></wxs>
+
+<view
+    class="actions actions-shadow"
+    style="{{isIPhoneX ? 'padding-bottom: 90rpx;' : ''}}"
+>
+    <!-- 前端判断的不同类型订单所配备的操作按钮 -->
+    <button
+        wx:for="{{ OrderDetailActions[orderDetail.state] }}"
+        wx:key="*this"
+        bind:tap="handleAction"
+        class="button--{{ item.Class }} button--mini button--circle button__fixed-width"
+        data-action="{{ item.Title }}"
+    >{{ item.Title }}</button>
+</view>

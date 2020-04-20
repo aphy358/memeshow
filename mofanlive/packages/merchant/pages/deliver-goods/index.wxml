@@ -1,0 +1,25 @@
+<view class="deliver-goods-wrap">
+
+  <!-- 收货人信息 -->
+  <buyer-address order="{{ order }}" />
+
+  <!-- 物流信息 -->
+  <logistics 
+    needLogistics="{{ needLogistics }}"
+    bind:expressChange="onExpressChange" 
+    bind:switchExpressNecessary="onSwitchExpressNecessary"
+    bind:inputExpressNo="onInputExpressNo"
+  />
+
+  <!-- 订单信息 -->
+  <order-info 
+    order="{{ order }}" 
+    bind:selectChange="onSelectChange"
+  />
+
+  <view class="page-fixed-bottom-actions">
+    <button class="button--primary button--circle" bind:tap="handleSubmit">发货</button>
+    <view class="iphoneX-holder"></view>
+  </view>
+
+</view>

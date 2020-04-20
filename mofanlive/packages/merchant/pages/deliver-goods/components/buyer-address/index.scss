@@ -1,0 +1,35 @@
+@import "@/theme";
+
+.buyer-address-wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+  padding: 20rpx 30rpx;
+  @include hairline-top;
+
+  @at-root .ba-left {
+    flex: 1;
+
+    @at-root .ba-contact-person {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      font-size: 28rpx;
+      font-weight: bold;
+      color: #2D2D2D;
+      margin-bottom: 16rpx;
+      line-height: 32rpx;
+  
+      .name {
+        margin-right: 60rpx;
+      }
+    }
+  
+    @at-root .ba-contact-address {
+      font-size: 24rpx;
+      color: #2D2D2D;
+      line-height: 32rpx;
+    }
+  }
+}

@@ -1,0 +1,96 @@
+@import "../../../../kol.scss";
+
+.item {
+  width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+
+  &__avatar {
+    $avatar-size: 92rpx;
+    width: 92rpx;
+    height: 92rpx;
+    border-radius: 50%;
+    border: 1rpx solid white;
+    overflow: hidden;
+    box-sizing: content-box;
+    margin-right: 30rpx;
+
+    image {
+      width: 92rpx;
+      height: 92rpx;
+    }
+  }
+
+  &__detail {
+    flex: 1;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    padding: 40rpx 30rpx 40rpx 0;
+    border-bottom: 1rpx solid #444;
+  }
+}
+
+.detail {
+  &__content {
+    flex: 1;
+    position: relative;
+  }
+
+  &__name {
+    font-size: 32rpx;
+    line-height: 32rpx;
+    color: #FFFFFF;
+    margin-bottom: 10rpx;
+  }
+
+  &__fan-num-and-rate {
+    font-size: 24rpx;
+    color: #999999;
+
+    &--highlight {
+      color: #FE2C54;
+    }
+  }
+
+  &__tags {
+    width: 100%;
+    margin-top: 10rpx;
+    display: flex;
+    flex-flow: row nowrap;
+    overflow: hidden;
+  }
+
+  &__tag {
+    padding: 0 10rpx;
+    height: 30rpx;
+    text-align: center;
+    line-height: 30rpx;
+    background: #333333;
+    border-radius: 2rpx;
+    font-size: 20rpx;
+    color: #999999;
+    margin-right: 8rpx;
+  }
+}
+
+.invite-btn {
+  width: 240rpx;
+  height: 56rpx;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(to top, #F32953, #FF6484);
+  border-radius: 28rpx;
+  color: white;
+  font-size: 28rpx;
+
+  image {
+    $icon-size: 24rpx;
+    width: 24rpx;
+    height: 24rpx;
+    margin-right: 8rpx;
+  }
+}

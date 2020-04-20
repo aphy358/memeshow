@@ -1,3 +1,5 @@
+const Api = wx.X.Api
+
 Component({
   properties: {
     addr: {
@@ -7,48 +9,50 @@ Component({
   },
 
   methods: {
-    selectAddress() {
+    /**
+      selectAddress() {
       wx.getSetting({
         success: res => {
           if (!res.authSetting['scope.address']) {
             wx.authorize({
               scope: "scope.address",
-              success: res => {
-                console.log(res)
+              success: response => {
                 this.selectAddress()
               },
               fail: () => {
-                console.log('emit')
-                this.triggerEvent('address', {}, { bubbles: true, composed: true })
+                this.openAddressSeletor()
               }
             })
           } else {
             wx.chooseAddress({
-              success: res => {
-                this.emitAddress({
+              success: async res => {
+                const addr = {
                   name: res.userName,
                   tel: res.telNumber,
                   province: res.provinceName,
                   city: res.cityName,
                   district: res.countyName,
                   address: res.detailInfo,
-                })
-                // TODO: upload to server
+                  isDefault: true,
+                }
+
+                const rsp = await Api.UserProfile.createAddress(addr)
+                if (!!rsp.id) {
+                  this.triggerEvent('change', rsp)
+                }
               }
             })
           }
         }
       })
     },
+    **/
 
-    emitAddress(addr) {
-      this.triggerEvent('change', addr)
-    },
-  },
-
-  lifetimes: {
-    ready() {
-      // this.init()
+    openAddressSelector() {
+      const instance = wx.X.procedures.open("address-selector")
+      instance.asCaller().on("complete", (addr) => {
+        this.triggerEvent('change', addr)
+      })
     }
   },
 

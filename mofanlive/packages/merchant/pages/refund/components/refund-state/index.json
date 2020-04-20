@@ -1,0 +1,14 @@
+{
+  "component": true,
+  "usingComponents": {
+    "state-unconfirmed": "./components/state-unconfirmed/index",
+    "state-rejected": "./components/state-rejected/index",
+    "state-confirmed": "./components/state-confirmed/index",
+    "state-returning": "./components/state-returning/index",
+    "state-returned": "./components/state-returned/index",
+    "state-refunding": "./components/state-refunding/index",
+    "state-complete": "./components/state-complete/index",
+    "state-closed": "./components/state-closed/index",
+    "state-custom-service": "./components/state-custom-service/index"
+  }
+}

@@ -1,41 +1,97 @@
-<wxs src="/components/common/wxs/accurate.wxs" module="accurate2"></wxs>
+<wxs
+    module="priceFormat"
+    src="/components/common/wxs/accurate.wxs"
+></wxs>
 
 <poster posters="{{medias}}"></poster>
 
-<view class="desc m-b-lg">
-    <view class="desc-price f-price">￥{{accurate2(price / 100)}}</view>
+<view class="desc">
+    <view class="desc-price f-price">
+        ￥
+        <text>{{priceFormat.accurate(price)}}</text>
+    </view>
     <view class="desc-title f-cn f-lg f-base">{{title}}</view>
-    <view class="desc-service">
-        <view class="icon icon-phone"></view>
-        <view class="desc-service--title f-sm">客服</view>
+    <view class="desc-actions">
+        <button
+            bind:tap="collect"
+            class="desc-service reset"
+            style="margin-right: 40rpx;"
+        >
+            <image
+                class="icon"
+                src="./assets/collect_checked.png"
+                wx:if="{{collected}}"
+            />
+            <image
+                class="icon"
+                src="./assets/collect.png"
+                wx:else
+            />
+            <view class="f-cn f-base text">收藏</view>
+        </button>
+        <button
+            class="desc-service reset"
+            open-type="share"
+        >
+            <image
+                class="icon"
+                src="./assets/share.png"
+            />
+            <view class="f-cn f-base text">分享</view>
+        </button>
+    </view>
+    <view class="rule-area">
+        <view class="rule-tag">1</view>
+        <view class="rule-text f-cn">员工发起内购</view>
+        <view class="rule-tag">2</view>
+        <view class="rule-text f-cn">使用内购券购买</view>
+        <view class="rule-tag">3</view>
+        <view class="rule-text f-cn">支付完成发货</view>
     </view>
 </view>
 
-<action-group actions="{{actions}}" bind:click="handleAction"></action-group>
+<voucher></voucher>
 
-<recommend list="{{recommend.list}}" shop="{{recommend.shop}}"></recommend>
+<!-- <action-group actions="{{actions}}" bind:click="handleAction"></action-group> -->
 
-<view class="detail-title">宝贝详情</view>
+<view class="detail-content">
+    <detail data="{{desc}}"></detail>
+</view>
 
-<detail data="{{desc}}"></detail>
-
-<action-bar
+<action-bar-voucher
     bind:buy="handleBuy"
-    bind:cart="toggleSelector"
-></action-bar>
+    neigou="{{neigouPrice}}"
+    price="{{price}}"
+></action-bar-voucher>
 
 <sku-selector
-    avatar="{{avatar}}"
-    bind:cancel="toggleSelector"
+    avatar="{{image}}"
+    bind:cancel="onCloseSelector"
     bind:change="handleSelectSku"
     images="{{skuImages}}"
+    is-neigou="{{selector.isNeigou}}"
     open="{{selector.open}}"
     skus="{{skus}}"
-    visibility="{{selector.visibility}}"
+    title="{{title}}"
 >
-    <button
-        bind:tap="handleSelectorConfirm"
-        class="button--primary {{!selector.selection.sku ? 'button--disabled' : ''}}"
-        disabled="{{!selector.selection.sku}}"
-    >确定</button>
+    <authorized-button>
+        <button
+            bind:tap="handleSelectorConfirm"
+            class="button--primary button--circle {{!selector.selection.sku ? 'button--disabled' : ''}}"
+        >{{selector.isNeigou ? '参与内购':'确定'}}</button>
+    </authorized-button>
 </sku-selector>
+
+<shareDialog
+    bindclose="handleCloseDialog"
+    count="{{ neigou.count }}"
+    vouchercount="{{voucherDialogcount}}"
+    wx:if="{{voucherDialog}}"
+></shareDialog>
+
+<image
+    bind:tap="goTop"
+    class="go-top-btn reset"
+    src="./assets/top.png"
+    wx:if="{{goTopVisibility}}"
+/>

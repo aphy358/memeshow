@@ -1,0 +1,17 @@
+@import "@/theme";
+.price {
+  @include flex-row-nowrap;
+  align-items: baseline;
+
+  .title {
+    color: #2d2d2d;
+  }
+
+  .tag, .decimal {
+    font-size: 24rpx;
+  }
+
+  .tag, .integer, .decimal {
+    font-family: $font-bold;
+  }
+}

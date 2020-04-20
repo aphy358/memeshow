@@ -1,0 +1,31 @@
+<view class="mc-product-descriptor">
+    <view class="module">
+        <view class="title">描述</view>
+        <mf-textarea
+            counter
+            value="{{ text }}"
+            placeholder="请输入商品描述"
+            placeholder-style="color:#999999;font-size:28rpx;"
+            maxlength="{{300}}"
+            height="{{300}}"
+            bindinput="onChangeDesc"
+        ></mf-textarea>
+    </view>
+    <view class="module">
+        <image-uploader
+            bindchange="onChangeImages"
+            init-images="{{ initImages }}"
+            maxlength="{{20}}"
+            count="{{9}}"
+        ></image-uploader>
+    </view>
+</view>
+
+<view class="fixed-bottom-actions">
+    <button
+        class="button--primary button--circle"
+        bindtap="onSave"
+    >
+        保存
+    </button>
+</view>

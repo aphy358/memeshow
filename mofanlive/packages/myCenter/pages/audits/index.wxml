@@ -1,0 +1,12 @@
+<view class="audits-wrap">
+
+  <!-- 售后单信息 -->
+  <refund-info />
+
+  <!-- 退货协商记录 -->
+  <audits-records audits="{{ audits }}" />
+
+  <!-- 底部操作按钮 -->
+  <audits-actions />
+
+</view>

@@ -1,0 +1,65 @@
+@import "../../kol";
+
+.message {
+  width: 100%;
+  padding: 0 30rpx;
+  position: relative;
+  height: 88rpx;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  background: rgba(243, 41, 83, 0.20);
+
+  &__icon {
+    $icon-size: 36rpx;
+    width: $icon-size;
+    height: $icon-size;
+    margin-right: 12rpx;
+  }
+
+  &__text {
+    font-size: 28rpx;
+    color: #F32953;
+  }
+}
+
+.form {
+  background-color: #1D1D1D;
+
+  &::after {
+    display: none;
+  }
+
+  &__placeholder {
+    font-size: 28rpx;
+  }
+
+  &__item {
+    &::after {
+      border-color: #444;
+    }
+
+    &__label {
+      color: white;
+      font-size: 32rpx;
+    }
+
+    &__tail {
+      margin-right: 30rpx;
+      color: #999;
+      font-size: 24rpx;
+    }
+  }
+}
+
+.input {
+  color: white;
+}
+
+.image-uploader {
+  width: 100%;
+}
+
+.wrap {
+  flex-wrap: wrap;
+}

@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "text-editor": "ui-kit/components/textarea/index"
+  }
+}

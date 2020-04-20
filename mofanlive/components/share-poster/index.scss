@@ -1,0 +1,45 @@
+@import "@/theme.scss";
+
+.dialog-mask {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #000;
+    opacity: 0.8;
+    z-index: $zindex-modal;
+}
+
+.share-img-cmp {
+    position: fixed;
+    display: block;
+    width: 556rpx;
+    z-index: $zindex-modal + 1;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-48%);
+    border-radius: 12px;
+}
+
+.share-img-cmp-bg {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+}
+
+.share-img-cmp-opt {
+    display: block;
+    width: 320rpx;
+    height: 92rpx;
+    margin: 66rpx auto 0;
+    background-image: url('https://pinduoduoimg.yangkeduo.com/wxappimg/neigou3/radButton.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 46rpx;
+    line-height: 92rpx;
+    font-family: PingFangSC-Medium;
+    font-size: 32rpx;
+    color: #fff;
+    text-align: center;
+}

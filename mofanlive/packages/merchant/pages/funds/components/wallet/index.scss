@@ -1,0 +1,35 @@
+.wallet {
+    padding: 40rpx 30rpx;
+    box-shadow: 0 2px 18px 0 rgba(255,102,131,0.35);
+    border-radius: 6px;
+    background-image:url('https://wwj-products.mofanbaby.com/7e602e0ab69841f185ffbf99039719c7.jpg');
+    color: #FFFFFF;
+
+    &__title {
+        margin-bottom: 30rpx;
+        font-family: "PingFangSC-Regular" "Microsoft YaHei" sans-serif;
+        font-size: 14px;
+        line-height: 1;
+    }
+
+    &__amount {
+        margin-bottom: 30rpx;
+        font-family: "SFUIDisplay-Medium" "PingFangSC-Medium" "Microsoft YaHei" sans-serif;
+        font-size: 40px;
+        line-height: 40px;
+    }
+
+    &__btn {
+        width: 88px;
+        height: 34px;
+        background: #FFFFFF;
+        border-radius: 22px;
+        margin-left: unset;
+        margin-right: unset;
+
+        font-family: "PingFangSC-Regular" "Microsoft YaHei" sans-serif;
+        font-size: 14px;
+        color: #F32953;
+        text-align: center;
+    }
+}

@@ -14,6 +14,12 @@ Component({
     max: {
       type: Number,
       value: 99
+    },
+
+    // 是否显示
+    visibility: {
+      type: Boolean,
+      value: true,
     }
   },
 

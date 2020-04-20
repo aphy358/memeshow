@@ -1,0 +1,12 @@
+{
+    "navigationBarTitleText": "店铺主页",
+    "navigationBarTextStyle": "white",
+    "navigationBarBackgroundColor": "#F32953",
+    "backgroundColorTop": "#F32953",
+    "usingComponents": {
+        "my-header": "./components/my-header/index",
+        "my-order-outline": "./components/my-order-outline/index",
+        "my-tools": "./components/my-tools/index",
+        "my-switch": "./components/my-switch/index"
+    }
+}

@@ -24,12 +24,12 @@ export function safeArea(options = {}) {
 
     data: {
       safeArea: {
+        top: 20,
         bottom: 667,
-        height: 647,
         left: 0,
         right: 375,
-        top: 20,
-        width: 375
+        width: 375,
+        height: 647
       },
       isIPhoneX: false,
       isIPhone: false,
@@ -44,7 +44,7 @@ export function safeArea(options = {}) {
           isIPhone,
           statusBarHeight
         } = res
-        
+
         this.setData({
           safeArea,
           isIPhoneX,

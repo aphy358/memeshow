@@ -27,7 +27,7 @@ export default class Subscriber {
     if (this.hasEvent(type, event)) {
       events[type][event].call(context, message)
     } else {
-      // todo 静默失败？
+      // 静默失败
     }
   }
 

@@ -1,5 +1,5 @@
 <wxs
-    module="accurate2"
+    module="priceFormat"
     src="/components/common/wxs/accurate.wxs"
 ></wxs>
 
@@ -7,8 +7,25 @@
     class="action-bar"
     style="{{isIPhoneX ? 'padding-bottom: 68rpx;': ''}}"
 >
+    <view class="check-box">
+        <checkbox-item
+            bind:change="checkAll"
+            checked="{{checked}}"
+            title="全选"
+        ></checkbox-item>
+    </view>
+    <view class="f-cn">合计：</view>
+    <view class="price f-nu m-r-md">
+        ￥{{priceFormat.accurate(total)}}
+        <!-- <price
+            color="#FE2C54"
+            price="{{total}}"
+            title="合计"
+            size="{{40}}"
+        ></price> -->
+    </view>
     <button
         bind:tap="emitConfirm"
-        class="button--primary button--circle"
-    >立即支付：￥{{accurate2(total/ 100)}}</button>
+        class="button--primary button--circle button--mini"
+    >提交订单({{quantity}})</button>
 </view>

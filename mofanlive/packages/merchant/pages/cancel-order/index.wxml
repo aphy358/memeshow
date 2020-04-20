@@ -1,0 +1,27 @@
+<view class="cancel-order-wrap">
+
+  <form bindsubmit="handleSubmit">
+    <view class="cell cancel-order-cell">
+      <view class="cell__head__rated">
+        <view class="cell__title">关闭理由</view>
+      </view>
+      <view class="cell__tail__rated">
+        <view class="cell__detail" wx:if="{{cancelReason.selected}}">{{cancelReason.selected}}</view>
+        <view class="cell__detail pholder" wx:else>请选择</view>
+        <view class="icon icon-chevron-right cell__icon-link"></view>
+      </view>
+
+      <picker bind:change="handleCancelReasonChange" class="picker-mask" mode="selector" name="cancelReason" range="{{cancelReason.range}}">
+        占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位占位
+      </picker>
+    </view>
+
+    <view class="page-fixed-bottom-actions">
+      <button class="button--primary button--circle" form-type="submit">确定关闭</button>
+      <view class="iphoneX-holder"></view>
+    </view>
+  </form>
+
+  <order order="{{ order }}" />
+
+</view>

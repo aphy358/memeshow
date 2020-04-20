@@ -1,0 +1,8 @@
+<view class="refund-state-wrap">
+  <view class="refund-state-block">
+    <view class="title">等待魔范秀客服处理</view>
+  </view>
+  <view class="refund-state-block">
+    <view class="refund-state-note">魔范秀客服已收到您的申请，将在3-5个工作日内与商家沟通处理，请耐心等待。</view>
+  </view>
+</view>

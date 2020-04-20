@@ -9,7 +9,11 @@
     height: $tabs-height;
     overflow: hidden;
     background: $color-white;
-    z-index: $zindex-tab;
+
+    &__sticky {
+        position: fixed;
+        z-index: $zindex-nav;
+    }
 
     &-content {
         align-self: stretch;
@@ -23,11 +27,6 @@
             // scroll view 中出现中文会折行
             white-space: nowrap;
         }
-    }
-
-    &__sticky {
-        position: fixed;
-        z-index: $zindex-nav;
     }
 
     &__placeholder {
@@ -61,7 +60,7 @@
         @include align-items(center);
         min-width: $tabs-width-min;
         height: 100%;
-        padding: 20rpx;
+        padding: 32rpx 20rpx;
         font-family: $tabs-font-family;
         font-size: $tabs-font-size;
         line-height: $line-height-base;
@@ -72,17 +71,19 @@
     &_dash {
         position: absolute;
         bottom: 0;
-        left: 0;
-        right: 0;
-        max-width: $tabs-width-dash;
+        left: 50%;
+        width: $tabs-width-dash;
         height: $tabs-height-dash;
+        transform: translateX(-50%);
         background: $tabs-color-dash;
-        margin: auto;
+        border-radius: $tabs-height-dash;
+        overflow: hidden;
     }
 
     &__on {
         .tab_content {
             color: $tabs-color-active;
+            font-size: $tabs-font-size-active;
         }
     }
 

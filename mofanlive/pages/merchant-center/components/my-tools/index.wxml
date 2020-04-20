@@ -1,0 +1,61 @@
+<view class="card card--no-border">
+    <view class="order-outline-header">
+        <view class="title">经营工具</view>
+    </view>
+    <view
+        class="card__content"
+        style="padding: 0 10rpx;"
+    >
+        <view class="card__info">
+            <authorized-button class="item">
+                <navigator url="/packages/merchant/pages/edit-live/index">
+                    <image src="../../assets/live.png" />
+                    <view class="f-cn">开直播</view>
+                </navigator>
+            </authorized-button>
+
+            <authorized-button class="item">
+                <view bindtap="onAddProduct">
+                    <image src="../../assets/public.png" />
+                    <view class="f-cn">发布商品</view>
+                </view>
+            </authorized-button>
+
+            <authorized-button class="item">
+                <navigator url="/packages/merchant/pages/product/index">
+                    <image src="../../assets/manage_product.png" />
+                    <view class="f-cn">商品管理</view>
+                </navigator>
+            </authorized-button>
+
+            <authorized-button class="item">
+                <view bind:tap="manageShop">
+                    <image src="../../assets/manage_shop.png" />
+                    <view class="f-cn">店铺管理</view>
+                </view>
+            </authorized-button>
+
+            <authorized-button class="item">
+                <button
+                    class="reset"
+                    open-type="share"
+                >
+                    <image src="../../assets/ledger.png" />
+                    <view class="f-cn">数据报表</view>
+                </button>
+            </authorized-button>
+
+            <view class="item">
+                <image src="../../assets/manage_buyer.png" />
+                <view class="f-cn">客户管理</view>
+            </view>
+
+            <authorized-button class="item">
+                <navigator url="/packages/kol/pages/kol-list/index">
+                    <image src="../../assets/podcast.png" />
+                    <view class="f-cn">网红合作</view>
+                </navigator>
+            </authorized-button>
+        </view>
+    </view>
+</view>

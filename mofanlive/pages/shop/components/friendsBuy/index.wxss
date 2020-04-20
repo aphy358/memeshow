@@ -1,0 +1,49 @@
+.friends-buy {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    font-size: 24rpx;
+    height: 36rpx;
+    line-height: 36rpx;
+}
+
+.friends-buy-avatars {
+    display: flex;
+    max-width: 120rpx;
+    margin-right: 12rpx;
+    margin-left: 8rpx;
+}
+
+.friends-item {
+    width: 32rpx;
+    height: 32rpx;
+    margin-left: -8rpx;
+    border-radius: 18rpx;
+    border: 1px solid #fff;
+}
+
+.friends-buy-description {
+    height: 34rpx;
+    line-height: 34rpx;
+    color: #999999;
+}
+
+.employee-buy-description {
+    display: flex;
+    max-width: 248rpx;
+    height: 34rpx;
+    line-height: 34rpx;
+    color: #999999;
+}
+
+.boldPinText {
+    font-weight: 500;
+}
+
+.normalText {
+    color: #999999;
+}
+
+.redText {
+    color: #f00;
+}

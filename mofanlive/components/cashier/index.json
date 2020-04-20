@@ -3,6 +3,8 @@
   "usingComponents": {
     "address": "./components/address/index",
     "action-bar": "./components/action-bar/index",
-    "popup": "ui-kit/components/popup/index"
+    "item": "./components/item/index",
+    "checkbox-item": "/ui-kit/components/checkbox/index",
+    "price": "/components/price/index"
   }
 }

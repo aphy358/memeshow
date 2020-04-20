@@ -1,0 +1,36 @@
+<view
+    class="tabbar"
+    style="padding-bottom: {{isIPhoneX ? 68 : 0}}rpx;"
+>
+    <view class="tabbar--item" bind:tap="redirectToMarket">
+        <image
+            class="tabbar--image"
+            src="./assets/market_selected.png"
+            wx:if="{{current == 'market'}}"
+        />
+        <image
+            class="tabbar--image"
+            src="./assets/market.png"
+            wx:else
+        />
+        <view class="f-cn tabbar--text {{current == 'market' ? 'selected' : ''}}">选货市场</view>
+    </view>
+    <view class="tabbar--item">
+        <view class="tabbar--item__round" bind:tap="openLive">
+            <image src="./assets/live.png" class="tabbar--image__live" />
+        </view>
+    </view>
+    <view class="tabbar--item" bind:tap="redirectToProfile">
+        <image
+            class="tabbar--image"
+            src="./assets/profile_selected.png"
+            wx:if="{{current == 'profile'}}"
+        />
+        <image
+            class="tabbar--image"
+            src="./assets/profile.png"
+            wx:else
+        />
+        <view class="f-cn tabbar--text {{current == 'profile' ? 'selected' : ''}}">我的小店</view>
+    </view>
+</view>

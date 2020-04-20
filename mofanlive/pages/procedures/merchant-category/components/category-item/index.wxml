@@ -1,0 +1,9 @@
+<view class="category-item">
+    <view class="category-item_name">
+        {{ name }}
+    </view>
+    <view class="category-item_actions">
+        <text>编辑</text>
+        <text>删除</text>
+    </view>
+</view>

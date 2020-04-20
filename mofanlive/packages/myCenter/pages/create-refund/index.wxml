@@ -1,0 +1,95 @@
+<wxs module="priceFormat" src="/components/common/wxs/accurate.wxs"></wxs>
+
+<info productItem="{{order.thatItem}}"></info>
+
+<form bindsubmit="handleSubmit">
+  <view class="form bg-white">
+    <view class="form__item" wx:if="{{ order.state === OAK.WaitDelivery }}">
+      <view class="form__item__label">处理方式</view>
+      <view class="form__item__content">仅退款</view>
+    </view>
+    <view class="form__item" wx:elif="{{ !!order.thatRefundDetail }}">
+      <view class="form__item__label">处理方式</view>
+      <view class="form__item__content">{{ order.thatRefundDetail.type === 1 ? '退款退货' : '仅退款' }}</view>
+    </view>
+    <view class="form__item" wx:else>
+      <view class="form__item__label">处理方式</view>
+      <view class="form__item__content">
+        <picker bind:change="handleTypeChange" mode="selector" name="type" range="{{type.range}}">
+          <view class="form__item__picker">
+            <view class="form__item__picker__value" wx:if="{{type.selected}}">{{type.selected}}</view>
+            <view class="form__item__picker__placeholder" wx:else>请选择</view>
+          </view>
+        </picker>
+      </view>
+    </view>
+
+    <!-- 只有已发货且选择了‘仅退款’时才渲染 -->
+    <view class="form__item" wx:if="{{ order.state !== OAK.WaitDelivery && type.value === 2 }}">
+      <view class="form__item__label">货物状态</view>
+      <view class="form__item__content">
+        <picker bind:change="handleReceiveChange" mode="selector" name="receive" range="{{receive.range}}">
+          <view class="form__item__picker">
+            <view class="form__item__picker__value" wx:if="{{receive.selected}}">{{receive.selected}}</view>
+            <view class="form__item__picker__placeholder" wx:else>请选择</view>
+          </view>
+        </picker>
+      </view>
+    </view>
+
+    <view class="form__item">
+      <view class="form__item__label">退款原因</view>
+      <view class="form__item__content">
+        <picker bind:change="handleReasonChange" mode="selector" name="reason" range="{{reason.range}}">
+          <view class="form__item__picker">
+            <view class="form__item__picker__value" wx:if="{{reason.selected}}">{{reason.selected}}</view>
+            <view class="form__item__picker__placeholder" wx:else>请选择</view>
+          </view>
+        </picker>
+      </view>
+    </view>
+  </view>
+
+  <view class="form bg-white">
+    <view class="form__item">
+      <view class="form__item__label">退款金额</view>
+      <view class="form__item__content price-red">¥{{priceFormat.accurate(order.thatItem.finalPrice)}}</view>
+    </view>
+
+    <view class="cell__note">最多可退¥{{priceFormat.accurate(order.thatItem.finalPrice)}} (含运费 ¥{{priceFormat.accurate(order.thatItem.finalPrice)}})。退款将返还实际支付金额。</view>
+
+    <view class="form__item">
+      <view class="form__item__label">手机号码</view>
+      <view class="form__item__content">
+        <input class="input" name="mobile" placeholder="请输入手机号" placeholder-class="form__placeholder" />
+      </view>
+    </view>
+
+    <view class="form__item">
+      <view class="form__item__label">退款说明</view>
+      <view class="form__item__content">
+        <input name="remark" class="input" placeholder="选填，最多200字" placeholder-class="form__placeholder" />
+      </view>
+    </view>
+
+    <view class="form__item addon">
+      <view class="form__item__label">上传凭证</view>
+      <view class="form__item__content pholder">
+        可上传5张图片
+      </view>
+    </view>
+    <view class="form__item">
+      <view class="form__item__label"></view>
+      <view class="form__item__content">
+        <image-uploader bind:change="handleProofChange"></image-uploader>
+      </view>
+    </view>
+  </view>
+
+  <view class="page-fixed-bottom-actions">
+    <button class="button--primary button--circle" form-type="submit">提交</button>
+    <view class="iphoneX-holder"></view>
+  </view>
+</form>
+
+<view style="height: 100px;"></view>

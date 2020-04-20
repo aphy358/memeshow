@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "no-records": "/components/no-records/index"
+  },
+  "navigationBarBackgroundColor": "#111111",
+  "backgroundColorTop": "#111111",
+  "navigationBarTextStyle": "white",
+  "navigationBarTitleText": "任务列表"
+}

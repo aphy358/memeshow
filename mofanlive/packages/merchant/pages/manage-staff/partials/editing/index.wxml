@@ -1,0 +1,147 @@
+<view class="form">
+    <view class="form__item">
+        <view class="form__item__label">员工号</view>
+        <view class="form__item__tail">
+            <checkbox-item
+                bind:change="changeWechatType"
+                checked="{{type == 2}}"
+                class="m-r-lg"
+                desc="企业微信号"
+                value="{{2}}"
+            ></checkbox-item>
+            <checkbox-item
+                bind:change="changeWechatType"
+                checked="{{type == 1}}"
+                desc="个人微信号"
+                value="{{1}}"
+            ></checkbox-item>
+        </view>
+    </view>
+    <view
+        class="form__item"
+        wx:if="{{type == 1}}"
+    >
+        <!-- 个人微信号 -->
+        <view class="form__item__label"></view>
+        <view class="form__item__content}}">
+            <input
+                bind:input="changeWechat"
+                class="input"
+                placeholder="请输入个人微信号"
+                placeholder-class="form__placeholder"
+                type="text"
+                value="{{wechat}}"
+            />
+        </view>
+    </view>
+
+    <view
+        class="form__item"
+        wx:if="{{type == 2}}"
+    >
+        <view class="form__item__label"></view>
+        <view class="form__item__content">
+            <input
+                bind:input="changeWechat"
+                class="input"
+                placeholder="请输入企业微信号"
+                placeholder-class="form__placeholder"
+                type="text"
+                value="{{wechat}}"
+            />
+        </view>
+    </view>
+
+    <view
+        bind:tap="changeImage"
+        class="form__item"
+        data-field="wechatCode"
+    >
+        <view class="form__item__label">二维码图片</view>
+        <view class="form__item__content">
+            <view class="avatar m-v-lg {{wechatCode?'' :'placeholder'}}">
+                <image src="{{wechatCode}}" />
+            </view>
+        </view>
+    </view>
+
+    <view class="form__item">
+        <view class="form__item__label">员工名称</view>
+        <view class="form__item__content">
+            <input
+                bind:input="changeName"
+                class="input"
+                placeholder="请输入员工名称"
+                placeholder-class="form__placeholder"
+                type="text"
+                value="{{name}}"
+            />
+        </view>
+    </view>
+    <view class="form__item">
+        <view class="form__item__label">员工职位</view>
+        <view class="form__item__content">
+            <input
+                bind:input="changeRole"
+                class="input"
+                placeholder="请输入员工职位"
+                placeholder-class="form__placeholder"
+                type="text"
+                value="{{role}}"
+            />
+        </view>
+    </view>
+    <view class="form__item">
+        <view class="form__item__label">员工工号</view>
+        <view class="form__item__content">
+            <input
+                bind:input="changeSn"
+                class="input"
+                placeholder="请输入员工工号"
+                placeholder-class="form__placeholder"
+                type="text"
+                value="{{sn}}"
+            />
+        </view>
+    </view>
+    <view class="form__item">
+        <view class="form__item__label">员工部门</view>
+        <view class="form__item__content">
+            <input
+                bind:input="changeDepartment"
+                class="input"
+                placeholder="请输入员工部门"
+                placeholder-class="form__placeholder"
+                type="text"
+                value="{{department}}"
+            />
+        </view>
+    </view>
+    <view
+        bind:tap="changeImage"
+        class="form__item"
+        data-field="avatar"
+    >
+        <view class="form__item__label">员工头像</view>
+        <view class="form__item__content">
+            <view class="m-v-md">
+                <avatar
+                    circle
+                    size="100rpx"
+                    type="1"
+                    url="{{ avatar }}"
+                />
+            </view>
+        </view>
+    </view>
+</view>
+
+<view
+    class="btn"
+    style="{{isIPhoneX ? 'padding-bottom: 68rpx;' : ''}}"
+>
+    <button
+        bind:tap="update"
+        class="button--primary button--circle"
+    >保存</button>
+</view>

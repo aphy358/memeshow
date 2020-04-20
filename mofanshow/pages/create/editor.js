@@ -516,7 +516,7 @@ Page({
                 success: function(a) {
                   a.confirm &&
                     (t.getDraftsCallback && t.getDraftsCallback(),
-                    wx.switchTab({
+                    wx.navigateTo({
                       url: "../me/me"
                     })),
                     a.cancel && wx.setStorageSync(e, n)
@@ -549,7 +549,7 @@ Page({
                 success: function(a) {
                   a.confirm &&
                     (t.getDraftsCallback && t.getDraftsCallback(),
-                    wx.switchTab({
+                    wx.navigateTo({
                       url: "../me/me"
                     })),
                     a.cancel && wx.removeStorageSync(s)
@@ -580,7 +580,7 @@ Page({
               a.confirm &&
                 (wx.setStorageSync(r, l),
                 t.getDraftsCallback && t.getDraftsCallback(),
-                wx.switchTab({
+                wx.navigateTo({
                   url: "../me/me"
                 }))
             }
@@ -605,7 +605,7 @@ Page({
                 time: e.substr(6)
               }),
                 t.getDraftsCallback && t.getDraftsCallback(),
-                wx.switchTab({
+                wx.navigateTo({
                   url: "../me/me"
                 })
             }

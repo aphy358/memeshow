@@ -1,0 +1,11 @@
+
+<view class="buyer-address-wrap">
+  <view class="ba-left">
+    <view class="ba-contact-person">
+      <view class="name">收货人：{{ order.address.name }}</view>
+      <view class="mobile">{{ order.address.tel }}</view>
+    </view>
+  
+    <view class="ba-contact-address">{{ order.address.province + order.address.city + order.address.district + order.address.address }}</view>
+  </view>
+</view>

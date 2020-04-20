@@ -1,0 +1,16 @@
+<view class="verify-wrap">
+  <view class="verify-icon">
+    <image src="../../assets/under-review.png" />
+  </view>
+
+  <view class="verify-title">审核中</view>
+
+  <view class="verify-note">
+    您提交的认证申请正在审核中，我们会在24小时内处理完毕并发送短信通知审核结果，请耐心等待。
+  </view>
+</view>
+
+<view class="page-fixed-bottom-actions">
+  <button class="button--primary button--circle" form-type="submit">返回</button>
+  <view class="iphoneX-holder"></view>
+</view>

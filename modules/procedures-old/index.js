@@ -53,7 +53,9 @@ const procedures = {
 				return instanceData.id
 			},
 
-			get args() { return args },
+			get args() {
+				return args
+			},
 
 			register(page) {
 				const channel = page.getOpenerEventChannel()
@@ -75,7 +77,6 @@ const procedures = {
 			url: `/pages/procedures/${type}/index?sid=${instance.id}`,
 			success: res => {
 				instanceMap[instance.id] = instance
-
 				const channel = res.eventChannel
 				setEmmiterChannel(channel, instanceData.caller)
 
@@ -93,7 +94,6 @@ const procedures = {
 			},
 			fail: err => onError(err)
 		})
-
 		return instance
 	}
 }

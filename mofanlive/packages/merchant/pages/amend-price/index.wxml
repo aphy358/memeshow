@@ -1,0 +1,34 @@
+<wxs module="priceFormat" src="/components/common/wxs/accurate.wxs"></wxs>
+
+<form bindsubmit="handleSubmit">
+  <view class="cell__note">订单原价（含运费）¥ {{priceFormat.accurate(order.finalAmount)}}</view>
+
+  <view class="form bg-white">
+    <view class="form__item">
+      <view class="form__item__label">现价</view>
+      <view class="form__item__content">
+        <input class="input" name="adjustAmount" placeholder="请输入价格" placeholder-class="form__placeholder" bindinput="inputAdjustAmount" />
+      </view>
+    </view>
+
+    <view class="form__item">
+      <view class="form__item__label">现运费</view>
+      <view class="form__item__content">
+        <input class="input" name="postage" placeholder="请输入运费" placeholder-class="form__placeholder" bindinput="inputPostage" />
+      </view>
+    </view>
+
+    <view class="form__item">
+      <view class="form__item__label">总价</view>
+      <view class="form__item__content">
+        <view class="price-red">¥ {{priceFormat.accurate(totalAount * 100)}}</view>
+      </view>
+    </view>
+
+  </view>
+
+  <view class="page-fixed-bottom-actions">
+    <button class="button--primary button--circle" form-type="submit">确定修改</button>
+    <view class="iphoneX-holder"></view>
+  </view>
+</form>

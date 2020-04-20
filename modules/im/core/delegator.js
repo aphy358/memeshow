@@ -11,5 +11,14 @@ export default class IMDelegator {
 	async loginCredentials() {
 		throw new Error('not implemented!')
 	}
-	
+
+	/**
+	 * 创建用户自定义消息
+	 * 
+	 * @param {*} type 
+	 * @param {*} payload 
+	 */
+	createCustomMessage(type, payload) {
+		throw new Error('not implemented!')
+	}
 }

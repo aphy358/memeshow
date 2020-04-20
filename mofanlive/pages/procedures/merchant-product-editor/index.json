@@ -1,0 +1,7 @@
+{
+    "navigationBarTitleText": "新建商品",
+    "usingComponents": {
+        "image-uploader": "/components/image-uploader/index",
+        "checkbox-item": "/ui-kit/components/checkbox/index"
+    }
+}

@@ -1,0 +1,5 @@
+<cashier
+    bind:shop="navigateToShop"
+    bind:order="redirectToOrder"
+    id="cashier"
+></cashier>

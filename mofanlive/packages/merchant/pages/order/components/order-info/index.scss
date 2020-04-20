@@ -1,0 +1,35 @@
+@import "@/theme";
+
+.info {
+  position: relative;
+  width: 100%;
+  padding: 24rpx;
+
+  &-copy {
+    position: absolute;
+    right: $spacing-h-lg;
+    border-radius: $border-radius-md;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 24rpx;
+    width: 104rpx;
+    height: 44rpx;
+    padding: 0;
+    color: #232032;
+    border: 1rpx solid #CACBCC;
+    font-size: 20rpx;
+
+  }
+
+  .card__info {
+    color: #969799;
+    font-size: 24rpx;
+    line-height: 50rpx;
+  }
+}
+
+.card-info-label {
+  margin-right: 8rpx;
+}

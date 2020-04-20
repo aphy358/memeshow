@@ -1,0 +1,14 @@
+<wxs
+    module="remarkFormat"
+    src="/utils/remarkFormator.wxs"
+></wxs>
+
+<view class="merchant-remark-wrap">
+    <image
+      src="./flag.png"
+      mode="widthFix"
+      lazy-load="false">
+    </image>
+
+    <text class="remark">{{ remarkFormat.getMerchantRemark(orderDetail.remarks) }}</text>
+</view>

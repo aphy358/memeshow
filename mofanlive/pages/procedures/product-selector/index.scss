@@ -1,0 +1,89 @@
+@import "@/theme";
+
+.fixed-bottom-actions {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 16rpx 24rpx;
+    z-index:100;
+    background: #fff;
+}
+
+.selector-group {
+
+    .selector-item {
+        display: flex;
+        flex-flow: row nowrap;
+
+        &--icon {
+            flex: 0 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 30rpx;
+
+            &-circle {
+                width: 32rpx;
+                height: 32rpx;
+                background: #fff;
+                border: 4rpx solid #999;
+                border-radius: 100%;
+            }
+
+            &-image {
+                width: 32rpx;
+                height: 32rpx;
+            }
+        }
+
+        &--image {
+            flex: 0 0 auto;
+            width: 200rpx;
+            height: 200rpx;
+            border-radius: 6rpx;
+        }
+
+        &--info {
+            flex: 1;
+            overflow: hidden;
+            margin: 0 30rpx 0 20rpx;
+        }
+    }
+
+    &--empty {
+        margin: 40rpx auto;
+        color: #999;
+        font-size: 28rpx;
+        text-align: center;
+    }
+}
+
+.selector-tabs {
+    @include hairline-bottom();
+}
+
+.product-selector {
+    background: #fff;
+
+    .product-item {
+        padding: 30rpx 0 12rpx;
+        @include hairline-bottom-relative($left: 300rpx);
+    }
+
+    .product-name {
+        @include line(2);
+        margin-bottom: 15rpx;
+        font-family: $font-cn;
+        font-size: 32rpx;
+        color: #333;
+        line-height: 44rpx;
+    }
+
+    .product-price {
+        font-family:  "SFUIDisplay-Medium" $font-price;
+        color: $color-price;
+        font-size: 32rpx;
+        line-height: 1;
+    }
+}

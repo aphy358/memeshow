@@ -1,4 +1,11 @@
-import { assign, shallowEqual, warning, wrapActionCreators, at, set } from "../utils"
+import {
+  assign,
+  shallowEqual,
+  warning,
+  wrapActionCreators,
+  at,
+  set
+} from "../utils"
 
 const defaultMapStateToProps = state => ({}) // eslint-disable-line no-unused-vars
 const defaultMapDispatchToProps = dispatch => ({ dispatch })
@@ -35,14 +42,24 @@ function createConnect(mapConfig) {
         if (this.activeState) {
           // 激活，直接更新
           if (!shallowEqual(this.data, mappedState)) {
+            // _setData.call(this, mappedState)
             this.setData(mappedState)
           }
         } else {
           // 未激活，先缓存状态，等激活后一次性更新
-          if (!this.delayedState || !shallowEqual(this.delayedState, mappedState)) {
+          if (
+            !this.delayedState ||
+            !shallowEqual(this.delayedState, mappedState)
+          ) {
             this.delayedState = mappedState
           }
         }
+      }
+
+      // 同步更新 this.data; 异步更新 webview ?? todo 为什么没出现 setData 异步的问题?
+      function _setData(data) {
+        this.data = assign(this.data, data)
+        this.setData(data)
       }
 
       function active() {
@@ -50,6 +67,7 @@ function createConnect(mapConfig) {
         if (!this.data) return
         if (this.delayedState && !shallowEqual(this.data, this.delayedState)) {
           this.setData(this.delayedState)
+          // _setData.call(this, this.delayedState)
           this.delayedState = null
         }
       }
@@ -61,9 +79,8 @@ function createConnect(mapConfig) {
 
       // 从Store中拉取数据，注册监听
       function mount() {
-        if (!this.store) {
-          !!app.store ? (this.store = app.store) : warning("Store 对象未定义")
-        }
+        if (!this.store) !!app.store ? (this.store = app.store) : warning("Store 对象未定义")
+        if (!mapConfig.onShow) active.call(this)
         // subscribe mapstate
         if (shouldSubscribe) {
           this.unsubscribe = this.store.subscribe(handleChange.bind(this))
@@ -107,15 +124,19 @@ function createConnect(mapConfig) {
 
       const lifetimes = {}
       set(lifetimes, onLoad, mapConfig.load)
-      set(lifetimes, onUnload, mapConfig.unload)
       set(lifetimes, onShow, mapConfig.show)
       set(lifetimes, onHide, mapConfig.hide)
+      set(lifetimes, onUnload, mapConfig.unload)
 
       const dispatches = mapDispatch(app.store.dispatch)
       let methods
       if (mapConfig.methods) {
         methods = {}
-        set(methods, assign({}, at(config, mapConfig.methods) || {}, dispatches), mapConfig.methods)
+        set(
+          methods,
+          assign({}, at(config, mapConfig.methods) || {}, dispatches),
+          mapConfig.methods
+        )
       } else {
         methods = dispatches
       }
@@ -126,16 +147,23 @@ function createConnect(mapConfig) {
 }
 
 export const connectPage = createConnect({
-  load: 'onLoad',
-  unload: 'onUnload',
-  show: 'onShow',
-  hide: 'onHide',
-  methods: ''
+  load: "onLoad",
+  unload: "onUnload",
+  show: "onShow",
+  hide: "onHide",
+  methods: ""
 })
 export const connectComponent = createConnect({
-  load: 'lifetimes.attached',
-  unload: 'lifetimes.detached',
-  show: 'pageLifetimes.show',
-  hide: 'pageLifetimes.hide',
-  methods: 'methods'
+  load: "lifetimes.attached",
+  unload: "lifetimes.detached",
+  show: "pageLifetimes.show",
+  hide: "pageLifetimes.hide",
+  methods: "methods"
+})
+export const connectBehavior = createConnect({
+  load: "attached",
+  unload: "detached",
+  show: "",
+  hide: "",
+  methods: "methods"
 })

@@ -5,6 +5,11 @@
  */
 
 Component({
+  options: {
+    // 允许页面的样式影响到组件
+    styleIsolation: 'apply-shared'
+  },
+
   properties: {
     key: {
       type: String,
@@ -16,6 +21,8 @@ Component({
       value: false
     }
   },
+
+  externalClasses: ["tab-class", "tab-content-class"],
 
   data: {
     activation: false

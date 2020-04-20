@@ -1,0 +1,8 @@
+{
+  "component": true,
+  "usingComponents": {
+    "item": "../list-item/index",
+    "no-records": "/components/no-records/index",
+    "no-more": "/components/no-more/index"
+  }
+}

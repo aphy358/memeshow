@@ -1,5 +1,0 @@
-<view class="list">
-  <block wx:for="{{list}}" wx:key="id">
-    <item product="{{item}}"></item>
-  </block>
-</view>

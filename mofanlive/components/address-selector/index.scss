@@ -24,10 +24,30 @@ component {
 
 .address {
   width: 100%;
-  padding: $spacing-v-xl;
-  padding-bottom: $spacing-v-md;
+  padding: $spacing-v-xl $spacing-v-xl 0;
   margin-bottom: $spacing-v-md;
   background-color: white;
+
+  &--empty {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    padding-top: 288rpx;
+
+    image {
+      width: 148rpx;
+      height: 148rpx;
+      margin: 0 auto;
+    }
+
+    view {
+      margin-top: 52rpx;
+      width: 100%;
+      font-size: 32rpx;
+      color: #CCCCCC;
+      text-align: center;
+    }
+  }
 
   &-header {
     @include hairline-bottom;
@@ -40,7 +60,6 @@ component {
 
   &-actions {
     width: 100%;
-    padding-top: $spacing-v-md;
     @include flex-row-nowrap;
 
     &--item {
@@ -55,7 +74,7 @@ component {
 }
 
 .icon-color {
-  color: $color-brand;
+  color: #C7C5CA;
 }
 
 .bold {
@@ -64,4 +83,8 @@ component {
 
 .flex-1 {
   flex: 1;
+}
+
+.padding-bottom {
+  padding-bottom: 200rpx;
 }

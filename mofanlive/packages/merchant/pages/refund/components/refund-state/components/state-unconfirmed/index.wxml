@@ -1,0 +1,17 @@
+<!-- unconfirmed:买家提交申请,等待卖家审核 -->
+<view class="refund-state-wrap">
+  <view class="refund-state-block">
+    <view class="title">退款申请待商家处理</view>
+    <view class="refund-state-note">若您在 {{ countDown }} 内未处理，则视为默认同意退款申请。</view>
+  </view>
+  <view class="refund-state-block">
+    <block wx:if="{{ refundDetail.itemState == 1 }}">
+      <view class="refund-state-note">如您同意，申请将达成并发送退货地址给买家</view>
+      <view class="refund-state-note">如您拒绝，买家需要重新修改退款申请或申请维权</view>
+    </block>
+    <block wx:else>
+      <view class="refund-state-note">如您同意，申请将达成并退款给买家</view>
+      <view class="refund-state-note">如您拒绝，买家需要重新修改退款申请或申请维权</view>
+    </block>
+  </view>
+</view>

@@ -1,0 +1,71 @@
+// @import "@/theme";
+@import "ui-kit/style/index";
+
+.status_bar {
+    overflow: hidden;
+    color: #fff;
+    font-family: $font-cn;
+
+    &-general {
+        overflow: hidden;
+        display: flex;
+    }
+
+    &-extra {
+        width: 100;
+        height: auto;
+    }
+
+    &-back,
+    &-tabs {
+        display: flex;
+        align-items: center;
+    }
+
+    &-back {
+        margin: 0 30rpx;
+        font-size: 48rpx;
+    }
+
+    &-tab {
+        flex: 0 0 auto;
+        overflow: hidden;
+        margin-right: 10rpx;
+        border-radius: 4rpx;
+        font-size: 24rpx;
+    }
+}
+
+.network,
+.live_status {
+    display: flex;
+    line-height: 40rpx;
+    text-align: center;
+}
+
+.live_status {
+    &-desc {
+        padding: 0 10rpx;
+        background-color: #f32953;
+    }
+
+    &-timer {
+        padding: 0 10rpx;
+        background: rgba(0, 0, 0, 0.25);
+        font-family: $font-nu;
+    }
+}
+
+.network {
+    padding: 0 10rpx;
+    background-color: #1bac1b;
+    display: flex;
+    align-items: center;
+
+    &_icon {
+        display: inline-block;
+        width: 30rpx;
+        height: 20rpx;
+        margin: 0 10rpx;
+    }
+}

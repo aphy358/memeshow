@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "address-editor": "/components/address-editor/index"
+  },
+  "navigationBarTitleText": "编辑地址"
+}

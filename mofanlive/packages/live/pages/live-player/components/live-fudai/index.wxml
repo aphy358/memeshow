@@ -1,0 +1,12 @@
+
+<view class="fudai-wrap" wx:if="{{ visible }}">
+  <image class="fudai-img" src="../../../../assets/bag.png" />
+  <view class="fudai-count">
+    <image src="../../../../assets/fudai-number.png" />
+    <text class="text">8</text>
+  </view>
+  <view class="fudai-time-count">
+    <image src="../../../../assets/fudai-timer.png" />
+    <text class="text">{{ timeCount }}</text>
+  </view>
+</view>

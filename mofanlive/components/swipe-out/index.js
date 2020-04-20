@@ -1,5 +1,8 @@
 Component({
   properties: {
+    /**
+     * [{ key, title, color, bg }]
+     */
     menu: {
       type: Object,
       value: []
@@ -15,7 +18,7 @@ Component({
   methods: {
     clickMenu(e) {
       const index = e.currentTarget.dataset.index
-
+      this.triggerEvent("click", this.data.menu[index])
     },
     touch(e) {
       this.setData({

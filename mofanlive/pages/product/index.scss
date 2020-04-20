@@ -1,92 +1,152 @@
 @import "@/theme";
 
 page {
-  padding-bottom: 200rpx;
+    padding-bottom: 200rpx;
 }
 
 .desc {
-  width: 100%;
-  box-sizing: border-box;
-  position: relative;
-  padding: $spacing-v-lg $spacing-h-lg;
-  background-color: $color-white;
+    width: 100%;
+    box-sizing: border-box;
+    position: relative;
+    padding: $spacing-v-lg 30rpx 0;
+    background-color: $color-white;
 
-  &-price {
-    font-size: 52rpx;
-    font-weight: bolder;
-  }
+    &-price {
+        font-size: 32rpx;
 
-  &-title {
-    width: 90%;
-    line-height: $line-height-lg;
-    @include line(2);
-  }
-
-  &-sold {
-    font-size: $font-size-base;
-    font-family: $font-cn;
-    color: $color-text-placeholder;
-  }
-
-  &-service {
-    position: absolute;
-    top: $spacing-v-xxl;
-    right: $spacing-h-lg;
-    display: flex;
-    flex-flow: column nowrap;
-    align-items: center;
-    justify-content: center;
-
-    .icon {
-      font-size: 40rpx;
+        text {
+            font-size: 52rpx;
+            font-weight: bolder;
+        }
     }
 
-    view {
-      color: #B0AFB6;
+    &-title {
+        width: 500rpx;
+        line-height: $line-height-lg;
+        @include line(2);
     }
-  }
+
+    &-sold {
+        font-size: $font-size-base;
+        font-family: $font-cn;
+        color: $color-text-placeholder;
+    }
+
+    &-actions {
+        position: absolute;
+        top: $spacing-v-xxl;
+        right: 30rpx;
+
+        @include flex-row-nowrap;
+    }
+
+    &-service {
+        display: flex;
+        flex-flow: column nowrap;
+        align-items: center;
+        justify-content: center;
+
+        .icon {
+            width: 44rpx;
+            height: 44rpx;
+        }
+
+        .text {
+            margin-top: 10rpx;
+            font-size: 28rpx;
+        }
+    }
 }
 
 .qualification {
-  width: 100%;
-  box-sizing: border-box;
-  padding: $spacing-v-sm $spacing-h-lg;
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: space-between;
+    width: 100%;
+    box-sizing: border-box;
+    padding: $spacing-v-sm $spacing-h-lg;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
 
-  view {
-    font-size: $font-size-base;
-    font-family: $font-cn;
-    color: $color-text-base;
-  }
+    view {
+        font-size: $font-size-base;
+        font-family: $font-cn;
+        color: $color-text-base;
+    }
 }
 
 .detail-title {
-  width: 100%;
-  padding: $spacing-v-md $spacing-h-lg;
-  text-align: center;
-  box-sizing: border-box;
-  vertical-align: middle;
-  color: $color-text-base;
-
-  &::before {
-    content: "";
-    width: 20%;
-    height: 2rpx;
-    background-color: $color-border-base;
-    display: inline-block;
+    width: 100%;
+    padding: $spacing-v-md $spacing-h-lg;
+    text-align: center;
+    box-sizing: border-box;
     vertical-align: middle;
-    margin-right: $spacing-h-lg;
-  }
+    color: $color-text-base;
 
-  &::after {
-    content: "";
-    width: 20%;
-    height: 2rpx;
-    background-color: $color-border-base;
-    display: inline-block;
-    vertical-align: middle;
-    margin-left: $spacing-h-lg;
-  }
+    &::before {
+        content: "";
+        width: 20%;
+        height: 2rpx;
+        background-color: $color-border-base;
+        display: inline-block;
+        vertical-align: middle;
+        margin-right: $spacing-h-lg;
+    }
+
+    &::after {
+        content: "";
+        width: 20%;
+        height: 2rpx;
+        background-color: $color-border-base;
+        display: inline-block;
+        vertical-align: middle;
+        margin-left: $spacing-h-lg;
+    }
+}
+
+.detail-content {
+    padding-bottom: 200rpx;
+    ;
+}
+
+.rule {
+    &-area {
+        position: relative;
+        margin-top: 22rpx;
+        padding: 26rpx 0;
+        box-sizing: border-box;
+        @include flex-row-nowrap;
+        align-items: center;
+    }
+
+    &-tag {
+        $tag-size: 28rpx;
+        width: $tag-size;
+        height: $tag-size;
+        line-height: 26rpx;
+        border-radius: 50%;
+        border: 1rpx #999 solid;
+        color: #999;
+        font-size: 20rpx;
+        text-align: center;
+        margin-right: 10rpx;
+    }
+
+    &-text {
+        margin-right: 18rpx;
+        color: #999;
+        font-size: 24rpx;
+        line-height: 36rpx;
+    }
+}
+
+.go-top-btn {
+    border-radius: 50% !important;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.20);
+    width: 84rpx;
+    height: 84rpx;
+
+    position: fixed;
+    right: 30rpx;
+    bottom: 208rpx;
+    bottom: calc(208rpx + constant(safe-area-inset-bottom));
+    bottom: calc(208rpx + env(safe-area-inset-bottom));
 }

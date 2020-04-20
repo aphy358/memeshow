@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "发表留言",
+  "usingComponents": {
+    "image-uploader": "/components/image-uploader/index"
+  }
+}

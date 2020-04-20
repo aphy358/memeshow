@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "ticketButton": "/components/ticket-button/index"
+  },
+  "component": true
+}

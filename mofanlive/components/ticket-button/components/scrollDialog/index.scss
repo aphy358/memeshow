@@ -1,0 +1,49 @@
+@import "@/theme.scss";
+
+.mask {
+    position: fixed;
+    top: -1px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #000;
+    z-index: $zindex-popup;
+    opacity: 0.8;
+}
+
+.content {
+    transform: translate3d(0,100%,0);
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 750rpx;
+    z-index: $zindex-popup + 1;
+    overflow: hidden;
+    background: white;
+}
+
+.content-transition {
+    transition: all 0.3s ease;
+}
+
+.content-in {
+    transform: translate3d(0,0,0);
+}
+
+.close-area {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 130rpx;
+    height: 130rpx;
+    padding: 40rpx;
+    text-align: right;
+    box-sizing: border-box;
+    z-index: 99;
+}
+
+.close-img {
+    display: inline-block;
+    width: 50rpx;
+    height: 50rpx;
+}

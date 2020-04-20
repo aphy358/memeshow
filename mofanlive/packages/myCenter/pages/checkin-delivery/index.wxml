@@ -1,0 +1,47 @@
+<form bindsubmit="handleSubmit">
+  <view class="form bg-white">
+    <view class="form__item">
+      <view class="form__item__label">物流公司</view>
+      <view class="form__item__content">
+        <picker bind:change="handleLogisticsChange" mode="selector" name="logistics" range="{{ logistics.range }}">
+          <view class="form__item__picker">
+            <view class="form__item__picker__value" wx:if="{{ logistics.selected }}">{{ logistics.selected }}</view>
+            <view class="form__item__picker__placeholder" wx:else>请选择</view>
+          </view>
+        </picker>
+      </view>
+    </view>
+
+    <view class="form__item">
+      <view class="form__item__label">物流单号</view>
+      <view class="form__item__content">
+        <input class="input" name="expressNo" placeholder="请输入物流单号" placeholder-class="form__placeholder" />
+      </view>
+    </view>
+
+    <view class="form__item">
+      <view class="form__item__label">物流说明</view>
+      <view class="form__item__content">
+        <input class="input" name="remark" placeholder="选填，最多200个字" placeholder-class="form__placeholder" />
+      </view>
+    </view>
+
+    <view class="form__item">
+      <view class="form__item__label">上传凭证</view>
+      <view class="form__item__content pholder">
+        可上传5张图片
+      </view>
+    </view>
+    <view class="form__item cell__addon">
+      <view class="form__item__label"></view>
+      <view class="form__item__content">
+        <image-uploader bind:change="handleProofChange"></image-uploader>
+      </view>
+    </view>
+  </view>
+
+  <view class="page-fixed-bottom-actions">
+    <button class="button--primary button--circle" form-type="submit">提交</button>
+    <view class="iphoneX-holder"></view>
+  </view>
+</form>

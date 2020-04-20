@@ -1,0 +1,20 @@
+@import "@/theme";
+
+.actions {
+  padding: 16rpx $spacing-h-lg;
+  background-color: $color-white;
+  @include flex-row-nowrap;
+  justify-content: flex-end;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  button {
+    margin: 0;
+    margin-left: 12rpx;
+    height: 56rpx;
+    min-width: 150rpx;
+    padding: 0 10rpx;
+  }
+}

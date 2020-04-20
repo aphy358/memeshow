@@ -1,0 +1,17 @@
+<view class="card card--no-border">
+    <view class="card__content" style="padding: 20rpx 10rpx;">
+        <view class="card__info">
+            <authorized-button class="item">
+                <view bind:tap="navigateToAddress">
+                    <image src="../../assets/location.png" />
+                    <view class="f-cn">收货地址</view>
+                </view>
+            </authorized-button>
+
+            <view class="item">
+                <image src="../../assets/service.png" />
+                <view class="f-cn">联系客服</view>
+            </view>
+        </view>
+    </view>
+</view>

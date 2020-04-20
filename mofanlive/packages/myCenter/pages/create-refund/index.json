@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "info": "./components/refund-info/index",
+    "image-uploader": "/components/image-uploader/index"
+  },
+  "navigationBarTitleText": "创建售后单"
+}

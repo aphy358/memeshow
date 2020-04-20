@@ -14,12 +14,53 @@ import { IMTextMessage, IMImageMessage, IMVideoMessage, IMFileMessage, IMCustomM
  */
 export default class TimAdaptor extends IMAdaptor {
 
-	constructor(options, delegator) {
-		super(options, delegator)
+	constructor(options, delegator, events) {
+		super(options, delegator, events)
 		const tim = TIM.create({ SDKAppID: options.appId })
 		tim.setLogLevel(options.logLevel || 0)
 		tim.registerPlugin({ 'cos-wx-sdk': COS });
 		this.tim = tim
+		this.listenEvents()
+	}
+
+	listenEvents() {
+
+		this.tim.on(TIM.EVENT.SDK_READY, () => this.events.emit(Constant.IMEvent.Ready))
+
+		this.tim.on(TIM.EVENT.SDK_NOT_READY, () => this.events.emit(Constant.IMEvent.Unready))
+
+		this.tim.on(TIM.EVENT.ERROR, evt => this.events.emit(Constant.IMEvent.Error, _.pick(evt.data, ["code", "message"])))
+
+		this.tim.on(TIM.EVENT.KICKED_OUT, evt => {
+			switch (evt.data.type) {
+				case TIM.TYPES.KICKED_OUT_MULT_ACCOUNT: {
+					this.events.emit(Constant.IMEvent.KickedOut, Constant.IMKickedOutReason.MultiLogin)
+					break
+				}
+				case TIM.TYPES.KICKED_OUT_MULT_DEVICE: {
+					this.events.emit(Constant.IMEvent.KickedOut, Constant.IMKickedOutReason.MultiDevice)
+					break
+				}
+				case TIM.TYPES.KICKED_OUT_USERSIG_EXPIRED: {
+					this.events.emit(Constant.IMEvent.KickedOut, Constant.IMKickedOutReason.SignExpired)
+					break
+				}
+				default: {
+					this.events.emit(Constant.IMEvent.KickedOut, Constant.IMKickedOutReason.Unknown)
+					break
+				}
+			}
+		})
+
+		this.tim.on(TIM.EVENT.GROUP_LIST_UPDATED, evt => {
+			this.events.emit(Constant.IMEvent.Groups, _.map(evt.data, this.toIMGroup.bind(this)))
+		})
+
+		this.tim.on(TIM.EVENT.CONVERSATION_LIST_UPDATED, evt => this.events.emit(Constant.IMEvent.Sessions, _.map(evt.data, this.toIMSession.bind(this))))
+
+		this.tim.on(TIM.EVENT.MESSAGE_RECEIVED, evt => this.events.emit(Constant.IMEvent.Messages, _.map(evt.data, this.toIMMessage.bind(this))))
+
+		this.tim.on(TIM.EVENT.GROUP_SYSTEM_NOTICE_RECEIVED, evt => this.events.emit(Constant.IMEvent.Messages, [this.toIMMessage(evt.data.message)]))
 	}
 
 	async login() {
@@ -31,10 +72,68 @@ export default class TimAdaptor extends IMAdaptor {
 		return await this.tim.logout()
 	}
 
+	async dismissGroup(groupID) {
+		return await this.tim.dismissGroup(groupID)
+	}
+
 	async fetchSessions() {
 		const rsp = await this.tim.getConversationList()
 		const conversationList = rsp.data.conversationList
 		return _.map(conversationList, this.toIMSession)
+	}
+
+	async fetchSessionInfo(sessionId) {
+		const rsp = await this.tim.getConversationProfile(sessionId)
+		return this.toIMSession(rsp.data.conversation)
+	}
+
+	async deleteSession(sessionId) {
+		const rsp = await this.tim.deleteConversation(sessionId)
+		const { conversationID } = rsp.data
+		return sessionId === conversationID
+	}
+
+	async fetchSessionMessages(sessionId, cursor, limit) {
+		let rsp
+		if (!cursor) {
+			// 打开某个会话时，第一次拉取消息列表
+			rsp = await this.tim.getMessageList({ conversationID: sessionId, count: limit })
+		} else {
+			// 下拉查看更多消息
+			rsp = await this.tim.getMessageList({ conversationID: sessionId, nextReqMessageID: cursor, count: limit })
+		}
+		return {
+			messages: _.map(rsp.data.messageList, this.toIMMessage),
+			cursor: rsp.data.nextReqMessageID,
+			more: !imResponse.data.isCompleted
+		}
+	}
+
+	async setSessionRead(sessionId) {
+		// 将某会话下所有未读消息已读上报
+		await this.tim.setMessageRead({ conversationID: sessionId })
+	}
+
+	async fetchMyInfo() {
+		const rsp = await this.tim.getMyProfile()
+		return this.toIMUser(rsp.data)
+	}
+
+	async fetchUserInfos(userIds) {
+		const rsp = await this.tim.getUserProfile({ userIDList: userIds })
+		return _.map(rsp.data, this.toIMUser)
+	}
+
+	async sendMessageToUser(userId, message) {
+		return await this.sendMessage(this.toTimMessage(userId, TIM.TYPES.CONV_C2C, message))
+	}
+
+	async sendMessageToGroup(groupId, message) {
+		return await this.sendMessage(this.toTimMessage(groupId, TIM.TYPES.CONV_GROUP, message))
+	}
+
+	async sendMessage(message) {
+		await this.tim.sendMessage(message);
 	}
 
 	async joinPublicGroup(groupID, applyMessage) {
@@ -46,15 +145,15 @@ export default class TimAdaptor extends IMAdaptor {
 		switch (rsp.data.status) {
 			case TIM.TYPES.JOIN_STATUS_WAIT_APPROVAL: {
 				// 等待审核
-				return { result: Constant.IMJoinGroupResult.WaitApproval, group: null }
+				return { result: Constant.IMJoinGroupResult.WaitApproval }
 			}
 			case TIM.TYPES.JOIN_STATUS_SUCCESS: {
 				// 加群成功
-				return { result: Constant.IMJoinGroupResult.Success, group: this.toIMGroup(rsp.data.group) }
+				return { result: Constant.IMJoinGroupResult.Success }
 			}
 			case TIM.TYPES.JOIN_STATUS_ALREADY_IN_GROUP: {
 				// 已经在群中
-				return { result: Constant.IMJoinGroupResult.AlreadyJoined, group: null }
+				return { result: Constant.IMJoinGroupResult.AlreadyJoined }
 			}
 			default: {
 				throw new Error(`加入公开群组结果异常：${rsp.data.status}`)
@@ -71,11 +170,11 @@ export default class TimAdaptor extends IMAdaptor {
 		switch (rsp.data.status) {
 			case TIM.TYPES.JOIN_STATUS_SUCCESS: {
 				// 加群成功
-				return { result: Constant.IMJoinGroupResult.Success, group: this.toIMGroup(rsp.data.group) }
+				return { result: Constant.IMJoinGroupResult.Success }
 			}
 			case TIM.TYPES.JOIN_STATUS_ALREADY_IN_GROUP: {
 				// 已经在群中
-				return { result: Constant.IMJoinGroupResult.AlreadyJoined, group: null }
+				return { result: Constant.IMJoinGroupResult.AlreadyJoined }
 			}
 			default: {
 				throw new Error(`加入聊天室结果异常：${rsp.data.status}`)
@@ -85,18 +184,18 @@ export default class TimAdaptor extends IMAdaptor {
 
 	async joinLiveRoom(groupID) {
 		const rsp = await this.tim.joinGroup({
-			groupID,
-			applyMessage: "",
+			groupID: groupID,
 			type: TIM.TYPES.GRP_AVCHATROOM
 		})
+		
 		switch (rsp.data.status) {
 			case TIM.TYPES.JOIN_STATUS_SUCCESS: {
 				// 加群成功
-				return { result: Constant.IMJoinGroupResult.Success, group: this.toIMGroup(rsp.data.group) }
+				return { result: Constant.IMJoinGroupResult.Success }
 			}
 			case TIM.TYPES.JOIN_STATUS_ALREADY_IN_GROUP: {
 				// 已经在群中
-				return { result: Constant.IMJoinGroupResult.AlreadyJoined, group: null }
+				return { result: Constant.IMJoinGroupResult.AlreadyJoined }
 			}
 			default: {
 				throw new Error(`加入直播间结果异常：${rsp.data.status}`)
@@ -108,9 +207,34 @@ export default class TimAdaptor extends IMAdaptor {
 		await this.tim.quitGroup(groupID)
 	}
 
+	async fetchGroups() {
+		const rsp = await this.tim.getGroupList()
+		return _.map(rsp.data.groupList, this.toIMGroup)
+	}
+
 	async fetchGroupInfo(groupID) {
 		const rsp = await this.tim.getGroupProfile({ groupID })
 		return this.toIMGroup(rsp.data.group)
+	}
+
+	async fetchGroupMembersPage(groupId, pageNo, pageSize) {
+		const rsp = await this.tim.getGroupMemberList({ groupID: groupId, count: pageSize, offset: (pageNo - 1) * pageSize })
+		return _.map(rsp.data.memberList, this.toIMGroupMember)
+	}
+
+	async fetchGroupMemberInfos(groupId, userIds) {
+		const rsp = await this.tim.getGroupMemberProfile({ groupID: groupId, userIDList: userIds })
+		return _.map(rsp.data.memberList, this.toIMGroupMember)
+	}
+
+	toIMGroupMember(timMember) {
+		const member = new IMGroupMember()
+		member.userId = timMember.userID
+		member.avatar = timMember.avatar
+		member.nickname = timMember.nick
+		member.isAdmin = timMember.role === TIM.TYPES.GRP_MBR_ROLE_ADMIN
+		member.isOwner = timMember.role === TIM.TYPES.GRP_MBR_ROLE_OWNER
+		return member
 	}
 
 	toIMSession(timConversation) {
@@ -126,7 +250,7 @@ export default class TimAdaptor extends IMAdaptor {
 				break
 			}
 			case TIM.TYPES.CONV_GROUP: {
-				switch (timConversation.subType) {
+				switch (timConversation.groupProfile.type) {
 					case TIM.TYPES.GRP_PRIVATE: {
 						session = new IMPrivateGroupSession()
 						break
@@ -150,6 +274,8 @@ export default class TimAdaptor extends IMAdaptor {
 				session.group = this.toIMGroup(timConversation.groupProfile)
 			}
 			default: {
+				// TODO 很多类型未处理
+				return
 				throw new Error(`未知会话类型: ${timConversation.type}`)
 			}
 		}
@@ -160,14 +286,14 @@ export default class TimAdaptor extends IMAdaptor {
 		return session
 	}
 
-	toIMTextMessage(timMessage) {
+	toIMTextMessage(payload) {
 		const message = new IMTextMessage()
-		message.text = timMessage.payload.text
+		message.clz = IMTextMessage.clz
+		message.text = payload.text
 		return message
 	}
 
-	toIMImageMessage(timMessage) {
-		const payload = timMessage.payload
+	toIMImageMessage(payload) {
 		const message = new IMImageMessage()
 		message.imageId = payload.uuid
 		message.format = payload.imageFormat
@@ -183,8 +309,7 @@ export default class TimAdaptor extends IMAdaptor {
 		return message
 	}
 
-	toIMAudioMessage(timMessage) {
-		const payload = timMessage.payload
+	toIMAudioMessage(payload) {
 		const message = new IMAudioMessage()
 		message.audioId = payload.uuid
 		message.url = payload.url
@@ -193,8 +318,7 @@ export default class TimAdaptor extends IMAdaptor {
 		return message
 	}
 
-	toIMVideoMessage(timMessage) {
-		const payload = timMessage.payload
+	toIMVideoMessage(payload) {
 		const message = new IMVideoMessage()
 		message.format = payload.videoFormat
 		message.duration = payload.videoSecond
@@ -209,8 +333,7 @@ export default class TimAdaptor extends IMAdaptor {
 		return message
 	}
 
-	toIMFileMessage(timMessage) {
-		const payload = timMessage.payload
+	toIMFileMessage(payload) {
 		const message = new IMFileMessage()
 		message.fileId = payload.uuid
 		message.name = payload.fileName
@@ -220,12 +343,17 @@ export default class TimAdaptor extends IMAdaptor {
 	}
 
 	toIMCustomMessage(timMessage) {
-		const message = new IMCustomMessage()
-		return message
+		const data = timMessage.data
+		try {
+			const parsed = JSON.parse(data)
+			if (parsed.type) {
+				return this.delegator.createCustomMessage(parsed.type, parsed.payload || {})
+			}
+		} catch (e) { }
+		throw new Error(`invalid custom message: ${ JSON.stringify(timMessage) }`)
 	}
 
-	toIMGeoMessage(timMessage) {
-		const payload = timMessage.payload
+	toIMGeoMessage(payload) {
 		const message = new IMGeoMessage()
 		message.location = payload.description
 		message.latitude = payload.latitude
@@ -233,8 +361,7 @@ export default class TimAdaptor extends IMAdaptor {
 		return message
 	}
 
-	toIMGroupTipMessage(timMessage) {
-		const payload = timMessage.payload
+	toIMGroupTipMessage(payload) {
 		let message
 		switch (payload.operationType) {
 			case TIM.TYPES.GRP_TIP_MBR_JOIN: {
@@ -318,12 +445,11 @@ export default class TimAdaptor extends IMAdaptor {
 		return message
 	}
 
-	toIMGroupNotifyMessage(timMessage) {
-		const payload = timMessage.payload
+	toIMGroupNotifyMessage(payload) {
 		let message
 		switch (payload.operationType) {
 			case 1: {
-				message = new IMGroupJoinNotifyMessage()
+				message = new IMGroupJoinNotifyMessage(payload)
 				const user = new IMUser()
 				user.id = payload.operatorID
 				message.user = user
@@ -331,65 +457,70 @@ export default class TimAdaptor extends IMAdaptor {
 				break
 			}
 			case 2: {
-				message = new IMGroupJoinApprovedNotifyMessage()
+				message = new IMGroupJoinApprovedNotifyMessage(payload)
 				const operator = new IMUser()
 				operator.id = payload.operatorID
 				message.operator = operator
 				break
 			}
 			case 3: {
-				message = new IMGroupJoinDeclinedNotifyMessage()
+				message = new IMGroupJoinDeclinedNotifyMessage(payload)
 				const operator = new IMUser()
 				operator.id = payload.operatorID
 				message.operator = operator
 				break
 			}
 			case 4: {
-				message = new IMGroupKickedOutNotifyMessage()
+				message = new IMGroupKickedOutNotifyMessage(payload)
 				const operator = new IMUser()
 				operator.id = payload.operatorID
 				message.operator = operator
 				break
 			}
 			case 5: {
-				message = new IMGroupDismissedNotifyMessage()
+				message = new IMGroupDismissedNotifyMessage(payload)
 				const operator = new IMUser()
 				operator.id = payload.operatorID
 				message.operator = operator
 				break
 			}
 			case 6: {
-				message = new IMGroupCreatedNotifyMessage()
+				message = new IMGroupCreatedNotifyMessage(payload)
 				break
 			}
 			case 7: {
-				message = new IMGroupInviteNotifyMessage()
+				message = new IMGroupInviteNotifyMessage(payload)
 				const invitor = new IMUser()
 				invitor.id = payload.operatorID
 				message.invitor = invitor
 				break
 			}
 			case 8: {
-				message = new IMGroupQuitNotifyMessage()
+				message = new IMGroupQuitNotifyMessage(payload)
 				break
 			}
 			case 9: {
-				message = new IMGroupSetAdminNotifyMessage()
+				message = new IMGroupSetAdminNotifyMessage(payload)
 				const operator = new IMUser()
 				operator.id = payload.operatorID
 				message.operator = operator
 				break
 			}
 			case 10: {
-				message = new IMGroupUnsetAdminNotifyMessage()
+				message = new IMGroupUnsetAdminNotifyMessage(payload)
 				const operator = new IMUser()
 				operator.id = payload.operatorID
 				message.operator = operator
 				break
 			}
 			case 255: {
-				message = new IMGroupCustomNotifyMessage()
-				break
+				try {
+					const parsed = JSON.parse(payload.data)
+					if (parsed.type) {
+						return this.delegator.createCustomMessage(parsed.type, parsed.payload || {})
+					}
+				} catch (e) { }
+				throw new Error(`invalid custom message payload: ${payload}`)
 			}
 			default: {
 				throw new Error(`未知的群通知类型: ${payload.operationType}`)
@@ -401,48 +532,50 @@ export default class TimAdaptor extends IMAdaptor {
 
 	toIMMessage(timMessage) {
 		let message
+		const payload = timMessage.payload
 		switch (timMessage.type) {
 			case TIM.TYPES.MSG_TEXT: {
-				message = this.toIMTextMessage(timMessage)
+				message = this.toIMTextMessage(payload)
 				break
 			}
 			case TIM.TYPES.MSG_IMAGE: {
-				message = this.toIMImageMessage(timMessage)
+				message = this.toIMImageMessage(payload)
 				break
 			}
 			case TIM.TYPES.MSG_AUDIO: {
-				message = this.toIMAudioMessage(timMessage)
+				message = this.toIMAudioMessage(payload)
 				break
 			}
 			case TIM.TYPES.MSG_VIDEO: {
-				message = this.toIMVideoMessage(timMessage)
+				message = this.toIMVideoMessage(payload)
 				break
 			}
 			case TIM.TYPES.MSG_FILE: {
-				message = this.toIMFileMessage(timMessage)
+				message = this.toIMFileMessage(payload)
 				break
 			}
 			case TIM.TYPES.MSG_CUSTOM: {
-				message = this.toIMCustomMessage(timMessage)
+				message = this.toIMCustomMessage(payload)
 				break
 			}
 			case TIM.TYPES.MSG_GEO: {
-				message = this.toIMGeoMessage(timMessage)
+				message = this.toIMGeoMessage(payload)
 				break
 			}
 			case TIM.TYPES.MSG_GRP_TIP: {
-				message = this.toIMGroupTipMessage(timMessage)
+				message = this.toIMGroupTipMessage(payload)
 				break
 			}
 			case TIM.TYPES.MSG_GRP_SYS_NOTICE: {
-				message = this.toIMGroupNotifyMessage(timMessage)
+				message = this.toIMGroupNotifyMessage(payload)
 				break
 			}
 			default: {
 				throw new Error(`未知的消息类型: ${timMessage.type}`)
 			}
 		}
-		return message
+
+		return this.toIMMessagePayload(timMessage, message)
 	}
 
 	toIMUser(timUserProfile) {
@@ -454,6 +587,9 @@ export default class TimAdaptor extends IMAdaptor {
 	}
 
 	toIMGroup(timGroup) {
+		// TODO 测试，原本返回的数据不知为何 type 为空，先写死
+		timGroup.type = TIM.TYPES.GRP_AVCHATROOM
+		
 		let group
 		switch (timGroup.type) {
 			case TIM.TYPES.GRP_PRIVATE: {
@@ -484,6 +620,98 @@ export default class TimAdaptor extends IMAdaptor {
 		group.intro = timGroup.introduction
 		group.announcement = timGroup.notification
 		return group
+	}
+
+	toTimMessage(to, conversationType, message) {
+
+		// 用户自定义消息
+		if (message.isCustomMessage && message.isCustomMessage()) {
+			return this.tim.createCustomMessage({
+				to,
+				conversationType,
+				payload: {
+					data: JSON.stringify({
+						type: message.type,
+						payload: message.toPayload()
+					})
+				}
+			})
+		}
+
+		if (this.instanceOf(message, IMTextMessage)) {
+			return this.tim.createTextMessage({
+				to,
+				conversationType,
+				payload: {
+					text: message.text
+				}
+			})
+		}
+
+		if (this.instanceOf(message, IMImageMessage)) {
+			// TODO @fioman
+			throw new Error('not implemented!')
+		}
+
+		if (this.instanceOf(message, IMAudioMessage)) {
+			// TODO @fioman
+			throw new Error('not implemented!')
+		}
+
+		if (this.instanceOf(message, IMVideoMessage)) {
+			// TODO @fioman
+			throw new Error('not implemented!')
+		}
+
+		if (this.instanceOf(message, IMFileMessage)) {
+			// TODO @fioman
+			throw new Error('not implemented!')
+		}
+
+		if (this.instanceOf(message, IMGeoMessage)) {
+			// TODO @fioman
+			throw new Error('not implemented!')
+		}
+
+		if (this.instanceOf(message, IMGroupCustomNotifyMessage)) {
+			// TODO @fioman
+			throw new Error('not implemented!')
+		}
+
+		throw new Error(`不支持发送消息: ${message}`)
+	}
+
+	/**
+	 * 小程序Page会创建新的上下文，导致原型链检查类型比较不一致
+	 * 
+	 * @param {*} message
+	 * @param {*} clz 
+	 */
+	instanceOf(message, clz) {
+		return message.messageType() === new clz().messageType()
+	}
+
+	/**
+	 * 给目标信息赋值
+	 * 
+	 * @param {*} timMessage - 接收到的信息
+	 * @param {*} message - 目标信息
+	 */
+	toIMMessagePayload(timMessage, message) {
+		message.id = timMessage.ID
+		message.seq = timMessage.sequence
+		message.sessionId = timMessage.conversationID
+		message.fromId =  timMessage.from
+		message.fromName =  timMessage.nick
+		message.fromAvatar =  timMessage.avatar
+		message.toId = timMessage.to
+		message.direction = timMessage.flow
+		message.sendTime = timMessage.time
+		message.isRead = timMessage.isRead
+		message.isResend = timMessage.isResend
+		message.status = timMessage.status
+
+		return message
 	}
 
 }

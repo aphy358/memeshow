@@ -1,0 +1,81 @@
+.getmore-ticket-item {
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    margin-top: 24rpx;
+    height: 164rpx;
+    background: #f5f7fb;
+    border-radius: 20rpx;
+    padding: 0 26rpx;
+}
+
+.ticket-item-avatar {
+    display: inline-block;
+    width: 100rpx;
+    height: 100rpx;
+    margin-right: 20rpx;
+    border-radius: 50rpx;
+    overflow: hidden;
+}
+
+.ticket-item-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 360rpx;
+    height: 164rpx;
+}
+
+.inviter-name-line {
+    max-width: 360rpx;
+    height: 44rpx;
+    display: flex;
+    align-items: center;
+}
+
+.inviter-name {
+    display: inline-block;
+    max-width: 240rpx;
+    height: 44rpx;
+    font-family: PingFangSC-Medium;
+    font-size: 32rpx;
+    color: #212121;
+    letter-spacing: 0;
+}
+
+.inviter-name-line.invite-friend {
+    font-family: PingFangSC-Medium;
+    font-size: 32rpx;
+    color: #41464a;
+    letter-spacing: 0;
+}
+
+.ticket-item-detail {
+    max-width: 360rpx;
+    height: 34rpx;
+    margin-top: 4rpx;
+    font-family: PingFangSC-Regular;
+    font-size: 24rpx;
+    color: #9c9c9c;
+    letter-spacing: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.getmore-btn {
+    width: 158rpx;
+    height: 60rpx;
+    border-radius: 30rpx;
+    font-family: PingFangSC-Medium;
+    font-size: 26rpx;
+    color: #fff;
+    letter-spacing: 0;
+    line-height: 60rpx;
+    text-align: center;
+}
+
+.getmore-btn::after {
+    border: none;
+}

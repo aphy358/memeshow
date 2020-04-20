@@ -8,10 +8,10 @@ const registries = {
 	[IMPlatforms.Tim]: TimAdaptor
 }
 
-export default function createAdaptor(platform, options, delegator) {
+export default function createAdaptor(platform, options, delegator, events) {
 	const clz = registries[platform]
 	if (!clz) {
 		throw new Error(`Unsupported IM Platform ${platform}`)
 	}
-	return new clz(options, delegator)
+	return new clz(options, delegator, events)
 }

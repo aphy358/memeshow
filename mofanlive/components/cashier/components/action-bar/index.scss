@@ -2,12 +2,14 @@
 
 .action-bar {
   width: 100%;
-  padding: $spacing-v-md $spacing-h-lg;
+  padding: 16rpx 30rpx;
   box-sizing: border-box;
-  background-color: $color-white;
+  background-color: white;
   @include flex-row-nowrap;
-  justify-content: flex-end;
-  align-items: baseline;
+  align-items: center;
+  position: fixed;
+  bottom: 0;
+  z-index: 999;
 
   .total {
     @include flex-row-nowrap;
@@ -27,5 +29,24 @@
       font-family: $font-cn;
       color: $color-error;
     }
+
+  }
+
+  .price {
+    font-weight: bold;
+    font-size: 48rpx;
+    color: #F32953;
+  }
+
+  .check-box {
+    flex: 1;
+  }
+
+  button {
+    width: 220rpx;
+    height: 68rpx;
+    margin: 0;
+    font-size: 32rpx;
+    padding: 0;
   }
 }

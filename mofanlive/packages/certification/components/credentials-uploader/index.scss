@@ -1,0 +1,58 @@
+@import "@/theme";
+
+.certification-img-inner {
+  display: flex;
+  justify-content: space-between;
+
+  @at-root .certification-img-item {
+    position: relative;
+    width: 332rpx;
+    height: 200rpx;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    border-radius: 8rpx;
+    overflow: hidden;
+
+    .tmp-path {
+      width: 100%;
+      height: 100%;
+    }
+
+    &.dashed {
+      border: 1rpx dashed #999999;
+    }
+
+    .icon {
+      width: 72rpx;
+      height: 72rpx;
+      margin-bottom: 20rpx;
+    }
+
+    .text {
+      font-size: 24rpx;
+      color: #999999;
+    }
+  }
+}
+
+.img-loading-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 4rpx;
+
+  image {
+    animation: loading 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    width: 46rpx;
+    height: 46rpx;
+  }
+}

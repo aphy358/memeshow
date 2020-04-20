@@ -1,0 +1,138 @@
+@import "ui-kit/style/index";
+
+.form__item {
+    @include hairline-bottom();
+    padding-left: 0;
+}
+
+.product-card {
+    width: 100%;
+    overflow: hidden;
+    padding: 20rpx;
+    padding-top: 25rpx;
+    background-color: #fff;
+    border-radius: 8rpx;
+
+    &-info {
+        display: flex;
+        flex-flow: row nowrap;
+    }
+
+    &__image {
+        flex: 0 0 auto;
+        width: 120rpx;
+        height: 120rpx;
+    }
+
+    &__detail {
+        flex: 1 1 auto;
+        height: 120rpx;
+        overflow: hidden;
+        margin-left: 20rpx;
+
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: space-between;
+
+        &__title {
+            @include line();
+            font-family: "PingFangSC-Regular";
+            font-size: $font-size-base;
+            color: #222222;
+            line-height: 1;
+        }
+
+        &__number {
+            display: flex;
+            flex-flow: row nowrap;
+            font-size: 24rpx;
+            color: #999999;
+            line-height: 1;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        &__price {
+            color: #F32953;
+        }
+
+        &__count {
+            display: flex;
+            flex-flow: row nowrap;
+        }
+
+        &__sales {
+            margin-left: 30rpx;
+        }
+    }
+
+    &-actions {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-between;
+        align-items: center;
+        font-family: "PingFangSC-Regular";
+        margin-top: 40rpx;
+
+        &__more {
+            font-size: 26rpx;
+            color: #666666;;
+        }
+
+        &__btns {
+            flex:1;
+            text-align: right;
+
+            > button {
+                margin-left: 24rpx;
+            }
+        }
+    }
+}
+
+.product-card_modal {
+    padding: 30rpx 60rpx;
+
+    &-switch {
+        &-title {
+            font-family: PingFangSC-Regular;
+            font-size: 14px;
+            color: #333333;
+            line-height: 14px;
+        }
+
+        &-content {
+            display: flex;
+            flex-flow: row nowrap;
+        }
+
+        &-item {
+            margin-right: 30rpx;
+        }
+    }
+
+    &-wrap {
+        min-height: 250rpx;
+        padding-bottom: 60rpx
+    }
+
+    &-tips {
+        margin-top: 24rpx;
+        font-family: PingFangSC-Regular;
+        font-size: 12px;
+        color: #999;
+        line-height: 12px;
+    }
+
+    &-help {
+        margin-top: 18rpx;
+        font-family: PingFangSC-Regular;
+        font-size: 12px;
+        color: #333333;
+        line-height: 12px;
+
+        > text {
+            margin-left: 8rpx;
+        }
+    }
+}

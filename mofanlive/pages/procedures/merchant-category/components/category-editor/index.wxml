@@ -1,0 +1,9 @@
+<view class="category-editor">
+    <input
+        type="text"
+        bindconfirm="onChange"
+        bindblur="onChange"
+    ></input>
+    <view bindtap="onConfirm">确定</view>
+    <view bindtap="onCancel">取消</view>
+</view>

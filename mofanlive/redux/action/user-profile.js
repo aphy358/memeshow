@@ -4,8 +4,8 @@ export default {
 
 	/**
 	 * 全量更新用户资料
-	 * 
-	 * @param {*} userProfile 
+	 *
+	 * @param {*} userProfile
 	 */
 	update(userProfile) {
 		return {
@@ -13,5 +13,4 @@ export default {
 			payload: userProfile
 		}
 	}
-
 }

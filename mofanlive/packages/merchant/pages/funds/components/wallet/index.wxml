@@ -1,0 +1,7 @@
+<view class="wallet">
+    <view class="wallet__title">可提现金额(元)</view>
+    <view class="wallet__amount">{{ amount }}</view>
+    <view class="wallet__action">
+        <button class="wallet__btn" bindtap="onWithdraw">提现</button>
+    </view>
+</view>

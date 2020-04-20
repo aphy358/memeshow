@@ -1,0 +1,16 @@
+const reasonMap = {
+  sign_in: "领",
+  invite: "邀",
+  accept_invitation: "领",
+  auto_expire: "扣",
+  register: "领",
+  consume: "扣"
+}
+
+function getType(reason) {
+  return reasonMap[reason]
+}
+
+module.exports = {
+  getType
+}

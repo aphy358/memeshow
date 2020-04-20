@@ -1,0 +1,47 @@
+<!-- 订单和优惠券弹框 -->
+<popup
+    catch:close="emitClose"
+    duration="{{250}}"
+    height="66vh"
+    open="{{visibility}}"
+    popup-body="live-products-popup-body"
+    popup-content="popup-radius"
+>
+    <view
+        class="list-popup-title"
+        slot="header"
+    >
+        <view class="list-popup-title__name m-l-md f-cn f-lg">全部商品{{livePlayer.products.length}}</view>
+        <view
+            bind:tap="switchToShop"
+            class="list-popup-title__tail"
+            hover-class="navigator-hover"
+        >
+            <image
+                class="list-popup-title__icon"
+                src="../../../../assets/shop_icon.png"
+            />
+            <view class="f-cn f-base">进店逛逛</view>
+        </view>
+    </view>
+    <introducing-product
+        product="{{introducingProduct}}"
+        sort="{{introducingSort}}"
+        wx:if="{{!!introducingProduct}}"
+    ></introducing-product>
+    <product-list
+        bind:product="navToProduct"
+        products="{{products}}"
+        wx:if="{{products.length > 0}}"
+    ></product-list>
+    <view
+        class="empty-hint"
+        wx:else
+    >
+        <image
+            class="empty-hint--image"
+            src="/assets/images/empty.png"
+        />
+        <view class="empty-hint--text">这里空空如也~</view>
+    </view>
+</popup>

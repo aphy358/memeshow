@@ -1,0 +1,67 @@
+@import "../../../../kol.scss";
+
+.item {
+  width: 226rpx;
+  border-radius: 8rpx;
+  overflow: hidden;
+  position: relative;
+  background-color: white;
+}
+
+.image-container {
+  $img-size: 226rpx;
+  width: $img-size;
+  height: $img-size;
+  position: relative;
+
+  image {
+    width: $img-size;
+    height: $img-size;
+  }
+
+  .check {
+    top: 18rpx;
+    left: 18rpx;
+    position: absolute;
+  }
+
+  .bonus {
+    font-size: 20rpx;
+    width: 100%;
+    height: 36rpx;
+    line-height: 36rpx;
+    color: white;
+    background-color: rgba(0, 0, 0, .5);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding-left: 13rpx;
+  }
+}
+
+.detail {
+  padding: 12rpx;
+  position: relative;
+
+  &__title {
+    width: 100%;
+    font-size: 24rpx;
+    @include line(1);
+  }
+
+  &__price {
+    font-size: 24rpx;
+    line-height: 24rpx;
+    color: #F32953;
+    margin-top: 8rpx;
+  }
+
+  &__sold {
+    font-size: 20rpx;
+    line-height: 24rpx;
+    color: #999999;
+    position: absolute;
+    right: 12rpx;
+    bottom: 12rpx;
+  }
+}

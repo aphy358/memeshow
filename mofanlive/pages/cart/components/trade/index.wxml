@@ -1,5 +1,5 @@
 <wxs
-    module="accurate2"
+    module="priceFormat"
     src="/components/common/wxs/accurate.wxs"
 ></wxs>
 
@@ -37,7 +37,7 @@
                         <view class="f-cn f-placeholder f-md">规格： {{sku.specs}}</view>
                         <view
                             class="sku-info--price f-price f-base f-md"
-                        >￥{{accurate2(sku.price/100)}}</view>
+                        >￥{{priceFormat.accurate(sku.price/100)}}</view>
                         <view class="sku-info--number">
                             <input-number
                                 bind:change="changeQuantity"

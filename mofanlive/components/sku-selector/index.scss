@@ -1,10 +1,11 @@
 @import "@/theme";
 
-$img-size: 182rpx;
+$img-size: 200rpx;
 
 .popup-radius {
   border-top-left-radius: $border-radius-xxl;
   border-top-right-radius: $border-radius-xxl;
+  height: 890rpx;
 }
 
 .header-title {
@@ -18,9 +19,8 @@ $img-size: 182rpx;
 /* info style begin */
 .info {
   width: 100%;
-  padding: $spacing-v-xl $spacing-h-xl;
+  padding: 30rpx 30rpx 22rpx;
   @include flex-row-nowrap;
-  @include hairline-bottom;
 
   &-image {
     width: $img-size;
@@ -31,16 +31,19 @@ $img-size: 182rpx;
 
   &-detail {
     flex: 1;
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: space-between;
   }
 
   &-title {
-    @include line(2);
+    font-size: 28rpx;
+    line-height: 36rpx;
+    height: 72rpx;
+    width: 400rpx;
+    overflow: hidden;
   }
 
   &-price {
+    position: absolute;
+    bottom: 27rpx;
     font-size: $font-size-xxl;
     color: $color-brand;
   }
@@ -49,6 +52,7 @@ $img-size: 182rpx;
     font-size: $font-size-base;
     color: $color-text-placeholder;
     font-family: $font-cn;
+    margin-top: 8rpx;
   }
 }
 
@@ -59,10 +63,11 @@ $img-size: 182rpx;
 .skus {
   width: 100%;
   box-sizing: border-box;
-  padding-top: 6rpx;
+  @include hairline-top;
 
   &-k {
     width: 100%;
+    padding: 20rpx 34rpx 30rpx;
 
     &-title {
       width: 100%;
@@ -74,27 +79,28 @@ $img-size: 182rpx;
   }
 
   &-props {
-    @include flex-row-nowrap;
-    justify-content: flex-start;
-    align-content: flex-start;
+    display: flex;
+    flex-flow: row wrap;
+  }
+
+  &-prop {
+    padding: 10rpx 22rpx;
+    margin-right: $spacing-v-xxl;
+    margin-top: $spacing-v-lg;
+    font-size: 24rpx;
+    line-height: 24rpx;
+    font-family: $font-cn;
+    border-radius: 4rpx;
+    background-color: $color-bg-dark;
+    color: $color-text-base;
+    border: 1rpx solid $color-bg-dark;
   }
 }
 
-.skus-prop {
-  padding: $spacing-v-sm $spacing-h-md;
-  margin-right: $spacing-v-xxl;
-  margin-top: $spacing-v-lg;
-  font-size: $font-size-base;
-  line-height: $line-height-base;
-  font-family: $font-cn;
-  border-radius: $border-radius-lg;
-  background-color: $color-bg-dark;
-  color: $color-text-base;
-}
-
 .skus-prop-selected {
-  background-color: $color-brand;
-  color: $color-white;
+  border: 1rpx solid $color-brand;
+  color: $color-brand;
+  background-color: $color-white;
 }
 
 .skus-prop-disabled {
@@ -107,14 +113,15 @@ $img-size: 182rpx;
 
 .count-container {
   width: 100%;
-  padding: $spacing-v-xxl 0;
+  padding: 28rpx 34rpx;
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
+  @include hairline-top();
 }
 
 .count-title {
-  font-size: $font-size-lg;
+  font-size: 28rpx;
   font-family: $font-cn;
   color: $color-text-base;
   align-self: center;
@@ -126,8 +133,24 @@ $img-size: 182rpx;
 
 .action-container {
   width: 100%;
-  margin-top: $spacing-v-lg;
-  padding: $spacing-v-xl $spacing-h-xl;
+  padding: 30rpx 24rpx;
 }
 
 /* action container style end */
+
+
+.sell-tip {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: row;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 30rpx 24rpx 24rpx;
+  font-size: 28rpx;
+  color: #F32953;
+}
+
+.no-padding {
+  padding: 0 !important;
+}

@@ -1,0 +1,50 @@
+
+<view wx:if="{{ false }}">
+  <view class="form white-back">
+    <view class="form__item">
+      <view class="form__item__label">姓名</view>
+      <view class="form__item__content">
+        夏大的
+      </view>
+    </view>
+    <view class="form__item">
+      <view class="form__item__label">身份证号</view>
+      <view class="form__item__content">
+        874832635772374274247
+      </view>
+    </view>
+  </view>
+
+  <view class="verifyed-note">
+    实名信息认证后不能修改，<text class="red">点击联系客服</text>
+  </view>
+</view>
+
+<view>
+  <view class="form white-back">
+    <view class="form__item">
+      <view class="form__item__label">企业名称</view>
+      <view class="form__item__content">
+        某某公司
+      </view>
+    </view>
+    
+    <view class="form__item">
+      <view class="form__item__label">法人姓名</view>
+      <view class="form__item__content">
+        厦大的
+      </view>
+    </view>
+
+    <view class="form__item">
+      <view class="form__item__label">身份证号</view>
+      <view class="form__item__content">
+        874832635772374274247
+      </view>
+    </view>
+  </view>
+
+  <view class="verifyed-note">
+    企业信息认证后不能修改，<text class="red">点击联系客服</text>
+  </view>
+</view>

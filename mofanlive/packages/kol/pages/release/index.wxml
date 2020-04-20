@@ -1,0 +1,111 @@
+<view class="form__item border-t m-b">
+    <view class="form__item__label">需求内容</view>
+    <view class="form__item__content demand">
+        <checkbox-item
+            bind:change="onDemandChecked"
+            checked="{{demand == 'video'}}"
+            title="定制短视频"
+            title-class="checkbox__title"
+            value="video"
+        />
+        <checkbox-item
+            bind:change="onDemandChecked"
+            checked="{{demand == 'live'}}"
+            class="m-l-lg"
+            title="定制直播卖货"
+            title-class="checkbox__title"
+            value="live"
+        />
+    </view>
+</view>
+
+<view class="form__item">
+    <view class="form__item__label">预算金额</view>
+    <view class="form__item__content">
+        <input
+            bind:blur="onBudgetBlur"
+            bind:input="onBudgetInput"
+            class="input"
+            placeholder="输入价格"
+            placeholder-class="form__placeholder"
+            type="number"
+            value="{{budget}}"
+        />
+    </view>
+</view>
+<view class="budget-hint">预算包含制作短视频与发布</view>
+
+<view class="form__item m-b flex-wrap">
+    <view class="form__item__label">选择商品</view>
+    <view
+        bind:tap="onSelectProductTap"
+        class="form__item__content products"
+    >
+        <view
+            class="products__count {{products.length > 0 ? '' : 'products__count--placeholder'}}"
+        >{{products.length > 0 ? products.length + "个" : "未选择"}}</view>
+        <view class="icon icon-chevron-right cell__icon-link"></view>
+    </view>
+    <view
+        class="products__preview"
+        wx:if="{{products.length > 0}}"
+    >
+        <products
+            bind:more="onSelectProductTap"
+            products="{{products}}"
+        ></products>
+    </view>
+</view>
+
+<view class="form__item m-b">
+    <view class="form__item__label">分润空间</view>
+    <view class="form__item__content">
+        <input
+            bind:blur="onBonusRateBlur"
+            bind:focus="onBonusRateFocus"
+            bind:input="onBonusRateInput"
+            class="input"
+            placeholder="填写分润占比"
+            placeholder-class="form__placeholder"
+            type="number"
+            value="{{bonusRate}}"
+        />
+    </view>
+</view>
+
+<view class="form__item m-b">
+    <view class="form__item__label">期望时间</view>
+    <view class="form__item__content">
+        <picker
+            bind:change="onDateChange"
+            mode="date"
+            start="{{today}}"
+        >
+            <view class="form__item__picker">
+                <view
+                    class="form__item__picker__value"
+                    wx:if="{{date}}"
+                >{{date}}</view>
+                <view
+                    class="form__item__picker__placeholder"
+                    wx:else
+                >请选择</view>
+            </view>
+        </picker>
+    </view>
+</view>
+
+<view class="form__item">
+    <view class="form__item__label">样本体验</view>
+    <view class="form__item__content">
+        <checkbox-item
+            bind:change="onSampleChecked"
+            checked="{{sample}}"
+            title="提供样品"
+            title-class="checkbox__title"
+            value="sample"
+        ></checkbox-item>
+    </view>
+</view>
+
+<fixed-btns bind:confirm="onConfirm"></fixed-btns>

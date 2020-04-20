@@ -1,0 +1,77 @@
+<wxs module="formator" src="/utils/formator.wxs"></wxs>
+
+<view>
+<view class="mc-funds__entire">
+    <wallet amount="{{ formator.formatPrice(fund.balance) }}"></wallet>
+</view>
+
+<view class="mc-funds__acounting">
+    <view class="cell__group cell__group--no-border">
+        <navigator
+            class="cell"
+            url="/packages/merchant/pages/funds/deposit/index"
+        >
+            <view class="cell__header">
+                <view class="cell__title mc-funds__acounting--title">保证金</view>
+            </view>
+            <view class="cell__tail">
+                <view class="cell__detail f-price">¥ {{ formator.formatPrice(fund.deposit) }}</view>
+                <view class="icon icon-chevron-right cell__icon-link"></view>
+            </view>
+        </navigator>
+        <navigator
+            class="cell"
+            url="/packages/merchant/pages/funds/list/index?type=unsettled"
+        >
+            <view class="cell__header">
+                <view class="cell__title mc-funds__acounting--title">待结算收入</view>
+            </view>
+            <view class="cell__tail">
+                <view class="cell__detail f-price">¥ {{ formator.formatPrice(fund.unsettled) }}</view>
+                <view class="icon icon-chevron-right cell__icon-link"></view>
+            </view>
+        </navigator>
+        <navigator
+            class="cell"
+            url="/packages/merchant/pages/funds/history/index?type=checking"
+        >
+            <view class="cell__header">
+                <view class="cell__title mc-funds__acounting--title">收支明细</view>
+            </view>
+            <view class="cell__tail">
+                <view class="icon icon-chevron-right cell__icon-link"></view>
+            </view>
+        </navigator>
+        <navigator
+            class="cell"
+            url="/packages/merchant/pages/funds/history/index?type=checking"
+        >
+            <view class="cell__header">
+                <view class="cell__title mc-funds__acounting--title">提现记录</view>
+            </view>
+            <view class="cell__tail">
+                <view class="icon icon-chevron-right cell__icon-link"></view>
+            </view>
+        </navigator>
+        <navigator
+            class="cell"
+            url="/packages/merchant/pages/funds/history/index?type=checking"
+        >
+            <view class="cell__header">
+                <view class="cell__title mc-funds__acounting--title">我的银行卡</view>
+            </view>
+            <view class="cell__tail">
+                <view class="icon icon-chevron-right cell__icon-link"></view>
+            </view>
+        </navigator>
+    </view>
+</view>
+
+<view class="mc-funds__tips">
+    <view class="mc-funds__tips--desc">小店销售收入将显示在这里，已结算收入可以随时申请提心</view>
+    <view class="mc-funds__tips--link">
+        <text>收入结算规则</text>
+        <text>交易手续费说明</text>
+    </view>
+</view>
+</view>

@@ -1,0 +1,16 @@
+@import "@/theme";
+
+
+.price-red {
+  color: #F94959;
+}
+
+.form {
+  margin-top: 24rpx;
+}
+
+.form__item {
+  &.addon::after {
+    content: none;
+  }
+}

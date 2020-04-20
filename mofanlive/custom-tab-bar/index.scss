@@ -1,0 +1,83 @@
+.menu-button-outer {
+  position: fixed;
+  left: 30rpx;
+  bottom: 36rpx;
+  bottom: calc(36rpx + constant(safe-area-inset-bottom));
+  bottom: calc(36rpx + env(safe-area-inset-bottom));
+  z-index: 9;
+}
+
+.menu-button-inner {
+  height: 100rpx;
+  width: 260rpx;
+  background-color: #fff;
+  border-top-left-radius: 50rpx;
+  border-bottom-left-radius: 50rpx;
+
+  display: flex;
+  flex-flow: row nowrap;
+  padding-left: 20rpx;
+  box-shadow: 0 6rpx 40rpx 0 rgba(0,0,0,0.24);
+}
+
+.menu-button {
+  width: 100rpx;
+  background-size: cover;
+  display: flex;
+  flex-flow: column center;
+  align-items: center;
+  justify-content: center;
+}
+
+.menu-button image {
+  width: 48rpx;
+  height: 48rpx;
+}
+
+.menu-button text {
+  font-size: 24rpx;
+  font-family: PingFangTC-Regular;
+}
+
+.menu-button__current {
+  color: #F32953;
+}
+
+.menu-button__silent {
+  color: #646E79;
+}
+
+.menu-button--hidden {
+  display: none;
+}
+
+.menu-button--active {
+  display: inline-block;
+}
+
+.bottom-mask-half1 {
+  position: fixed;
+  z-index: 8;
+  bottom: 70rpx;
+  height: 100rpx;
+  width: 100%;
+  bottom: calc(70rpx + constant(safe-area-inset-bottom));
+  bottom: calc(70rpx + env(safe-area-inset-bottom));
+  background: linear-gradient(180deg,rgba(245,247,251,0) 0%,rgba(245,247,251,1) 100%);
+}
+
+.bottom-mask-half2 {
+  position: fixed;
+  z-index: 8;
+  bottom: 0rpx;
+  height: 70rpx;
+  height: calc(70rpx + constant(safe-area-inset-bottom));
+  height: calc(70rpx + env(safe-area-inset-bottom));
+  left: 0;
+  right: 0;
+  background-color: #f5f7fb;
+}
+
+.hidden {
+  display: none;
+}

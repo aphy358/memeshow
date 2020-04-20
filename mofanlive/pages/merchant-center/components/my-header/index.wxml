@@ -1,0 +1,45 @@
+<view class="my-header-wrap">
+    <authorized-button>
+        <view class="my-header-inner">
+            <view
+                class="flex-wrap"
+                hover-class="navigator-hover"
+            >
+                <avatar
+                    type="2"
+                    circle
+                    size="112rpx"
+                    url="{{ userProfile.avatarMedium }}"
+                    border="4rpx solid white"
+                />
+            </view>
+
+            <view class="my-header-btns">
+                <view
+                    class="my-header-btn"
+                    wx:if="{{ !userProfile.id }}"
+                >登录/注册</view>
+                <view
+                    class="my-header-btn mid-item"
+                    wx:else
+                >
+                    <view class="color-white">
+                        <text>{{ userProfile.nickname }}</text>
+                        <view style="position:relative;">
+                            <image 
+                                class="my-header-update-btn" 
+                                src="/assets/images/update-user.png" 
+                            />
+                            <button 
+                                class="authorized-button"
+                                open-type="getUserInfo" 
+                                bindgetuserinfo="getUserInfo"
+                            />
+                        </view>
+                    </view>
+                    <view class="f-sm color-white">用户ID：{{ userProfile.shortId }}</view>
+                </view>
+            </view>
+        </view>
+    </authorized-button>
+</view>

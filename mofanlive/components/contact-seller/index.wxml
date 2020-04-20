@@ -1,0 +1,24 @@
+
+<view class="contact-seller-popup-wrap">
+  <hpopup
+    show="{{ show }}"
+    position="center"
+    custom-animation="{{ customAnimation }}"
+    bind:touchendMask="hidePopup"
+  >
+    <view class="contact-seller-wrap">
+      <view class="csp-body">
+        <view class="csp-shop-name">小姐姐的店</view>
+        <view class="csp-wechat-qrcode">
+          <image src="{{ shopInfo.wechatCode }}" />
+        </view>
+        <view class="csp-note">保存二维码至相册，使用微信扫一扫，或复制商家微信号：{{ shopInfo.wechat }}</view>
+      </view>
+
+      <view class="csp-footer">
+        <view class="csp-btn" bind:tap="hidePopup">取消</view>
+        <view class="csp-btn red" bind:tap="copyWechatNo">一键复制微信号</view>
+      </view>
+    </view>
+  </hpopup>
+</view>

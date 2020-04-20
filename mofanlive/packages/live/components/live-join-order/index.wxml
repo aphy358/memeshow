@@ -1,0 +1,14 @@
+
+<view 
+  wx:if="{{ joinOrder }}" 
+  class="join-order-wrap"
+  catch:tap="handleTapBuy"
+  data-id="{{joinOrder.id}}"
+>
+  <image class="join-order-img" src="{{ joinOrder.img }}" />
+  <view class="join-order-content-wrap">
+    <view class="order-text one-line">{{ joinOrder.name }} 购买了</view>
+    <view class="order-text one-line">{{ joinOrder.content }}</view>
+    <view class="join-order-btn">去抢购</view>
+  </view>
+</view>

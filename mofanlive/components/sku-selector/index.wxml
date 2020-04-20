@@ -1,36 +1,50 @@
 <wxs
-    module="accurate2"
+    module="priceFormat"
     src="/components/common/wxs/accurate.wxs"
 ></wxs>
 <mf-popup
     catch:close="emitCancel"
     closable
-    height="66vh"
     open="{{open}}"
+    popup-body="no-padding"
     popup-content="popup-radius"
 >
     <view slot="header">
-        <view class="header-title f-cn f-lg">选择商品</view>
+        <!-- <view class="header-title f-cn f-lg">选择商品</view> -->
         <view class="info">
             <image
                 class="info-image"
                 src="{{image}}"
             />
             <view class="info-detail">
-                <view class="info-title f-cn pa-md">{{title}}</view>
+                <view class="info-title f-cn">{{title}}</view>
+                <view class="info-selection">{{selectedSpecs}}</view>
                 <view class="info-price f-price">{{price}}</view>
-                <view class="info-selection">已选择 {{skuSelected}}</view>
             </view>
         </view>
     </view>
-    <view class="skus">
+
+    <block wx:if="{{isNeigou && !!skus[0].neigou}}">
+        <view
+            class="sell-tip f-cn"
+            wx:if="{{selectedSku.neigou.couponCount > neigou.count}}"
+        >内购券不足，内购还需 {{selectedSku ? selectedSku.neigou.couponCount : skus[0].neigou.couponCount}} 张内购券</view>
+        <view
+            class="sell-tip f-cn"
+            wx:else
+        >参与内购，下单将扣除 {{selectedSku ? selectedSku.neigou.couponCount : skus[0].neigou.couponCount}} 张内购券</view>
+    </block>
+    <view
+        class="skus"
+        wx:if="{{displayProps.length > 0}}"
+    >
         <view
             class="skus-k"
             style="{{index == 0 ? '' : 'padding-top: 30rpx;'}}"
             wx:for="{{displayProps}}"
             wx:key="kid"
         >
-            <view class="skus-k-title">{{item.k}}</view>
+            <view class="skus-k-title">{{displayProps.length == 1 ? "商品规格" : item.k}}</view>
             <view class="skus-props">
                 <view
                     bind:tap="onTapVal"
@@ -43,16 +57,16 @@
                 >{{value.v}}</view>
             </view>
         </view>
-        <view class="count-container">
-            <view class="count-title">购买数量</view>
-            <input-number
-                bind:change="changeQuantity"
-                dark
-                min="{{1}}"
-                step="{{1}}"
-                value="{{quantity}}"
-            ></input-number>
-        </view>
+    </view>
+    <view class="count-container">
+        <view class="count-title">购买数量</view>
+        <input-number
+            bind:change="changeQuantity"
+            dark
+            min="{{1}}"
+            step="{{1}}"
+            value="{{quantity}}"
+        ></input-number>
     </view>
     <view
         class="action-container"

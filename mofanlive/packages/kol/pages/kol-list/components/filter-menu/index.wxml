@@ -1,0 +1,47 @@
+<drawer
+    drawer-class="drawer-container"
+    open="{{open}}"
+>
+    <view class="drawer">
+        <view class="drawer__filters">
+            <view
+                class="drawer__filter"
+                wx:for="{{filters}}"
+                wx:for-item="filter"
+                wx:key="id"
+            >
+                <view class="filter__title f-cn">{{filter.name}}</view>
+                <view class="filter__items">
+                    <view
+                        bind:tap="tapItem"
+                        class="filter__item f-cn {{selected[filter.id] == 'all' ? 'filter__item--selected' : ''}}"
+                        data-kid="{{filter.id}}"
+                        data-vid="all"
+                    >不限</view>
+                    <view
+                        bind:tap="tapItem"
+                        class="filter__item f-cn {{selected[filter.id] == val.id ? 'filter__item--selected' : ''}}"
+                        data-kid="{{filter.id}}"
+                        data-vid="{{val.id}}"
+                        wx:for="{{filter.values}}"
+                        wx:for-item="val"
+                        wx:key="id"
+                    >{{val.name}}</view>
+                </view>
+            </view>
+        </view>
+        <view
+            class="drawer__btns"
+            style="{{isIPhoneX ? 'padding-bottom: 68rpx;' : ''}}"
+        >
+            <button
+                bind:tap="reset"
+                class="button--secondary button--circle drawer__btns--reset"
+            >重置</button>
+            <button
+                bind:tap="confirm"
+                class="button--primary button--circle"
+            >确定</button>
+        </view>
+    </view>
+</drawer>

@@ -1,0 +1,27 @@
+<block wx:if="{{list == null}}">
+    <view class="loading">正在加载中..</view>
+</block>
+<block wx:else>
+    <block wx:if="{{list.length > 0}}">
+        <view class="list">
+            <view
+                class="item"
+                wx:for="{{list}}"
+                wx:key="id"
+            >
+                <item
+                    bind:checked="onItemChecked"
+                    checked="{{selected[item.id]}}"
+                    content="{{item}}"
+                ></item>
+            </view>
+        </view>
+        <no-more
+            color="#999999"
+            font-size="{{24}}"
+        ></no-more>
+    </block>
+    <view wx:else>
+        <no-records type="{{1}}"></no-records>
+    </view>
+</block>

@@ -6,7 +6,9 @@
 
 Component({
   properties: {
-    name: String
+    name: String,
+
+    checked: Array
   },
 
   relations: {
@@ -14,30 +16,49 @@ Component({
       type: "child",
 
       linked(target) {
-        if (target.checked) this.data._checkedList.push(target.value)
+        if (this.data._checkedList.includes(target.data.value))
+          target.$emitSwitch(true)
       }
     }
   },
 
   data: {
-    // { value }
     _checkedList: []
   },
 
-  methods: {
-    // 暴露到 children 的接口
-    changeCurrent({ name, value, isChecked }) {
-
-      this.triggerEvent("change")
+  lifetimes: {
+    attached() {
+      this.data._checkedList = this.data.checked || []
     }
+  },
 
-    // walkChild(value) {
-    //   const $children = this.getRelationNodes("../checkbox/index")
+  methods: {
+    changeCurrent({ name, value, isChecked }) {
+      this.triggerEvent("change")
+    },
 
-    //   $children.forEach($checkbox =>
-    //     $checkbox.changeState($radio.data.value === value)
-    //   )
-    // }
+    // 暴露到 children 的接口
+    $emitChange(key) {
+      const index = this.data._checkedList.indexOf(key)
+      const children = this.getRelationNodes("../checkbox/index")
+      if (index >= 0) {
+        this.data._checkedList.splice(index, 1)
+        children.forEach(item => {
+          if (item.data.value == key) item.$emitSwitch(false)
+        })
+      } else {
+        this.data._checkedList.push(key)
+        children.forEach(item => {
+          if (item.data.value == key) item.$emitSwitch(true)
+        })
+      }
+      this.emitChange()
+    },
+
+    // 暴露到外层的接口
+    emitChange() {
+      this.triggerEvent("change", { value: this.data._checkedList })
+    }
   },
 
   options: {

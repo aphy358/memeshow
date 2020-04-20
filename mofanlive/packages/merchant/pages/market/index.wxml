@@ -1,0 +1,6 @@
+<image
+    src="https://cos.ap-guangzhou.myqcloud.com/mofanshow-avatar-1252461817/wx8fba36125c622563.o6zAJs2-ytkTcFWlildF1ZHipNKY.RoJvaGlIiwNN3d6d6f70f78569acf461f09a1766dfc3.png"
+    style="width: 100vw; height: 100vh;"
+/>
+
+<tabbar current="{{currentTab}}"></tabbar>

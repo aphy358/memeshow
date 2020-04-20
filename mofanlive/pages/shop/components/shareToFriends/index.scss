@@ -1,0 +1,194 @@
+@import "@/theme";
+
+.share-to-friends-cmp {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 622rpx;
+    padding-bottom: 48rpx;
+    box-sizing: border-box;
+    transform: translateX(-50%) translateY(-50%);
+    background: #fff;
+    border-radius: 32rpx;
+    text-align: center;
+    z-index: $zindex-popup + 1;
+}
+
+.share-to-friends-cmp-title {
+    font-size: 36rpx;
+    line-height: 50rpx;
+    color: #000;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 64rpx;
+}
+
+.close-area {
+    position: absolute;
+    top: 0rpx;
+    right: 0rpx;
+    width: 82rpx;
+    height: 82rpx;
+    padding-top: 32rpx;
+    padding-right: 32rpx;
+    z-index: 203;
+    box-sizing: border-box;
+}
+
+.close-img {
+    width: 50rpx;
+    height: 50rpx;
+    z-index: 203;
+}
+
+.share-to-friends-cmp-desc {
+    margin-top: 16rpx;
+    font-size: 32rpx;
+    line-height: 44rpx;
+    color: #7b869a;
+    font-family: PingFangSC-Regular;
+    text-align: center;
+}
+
+.share-to-friends-cmp-title text {
+    color: #ff5668;
+}
+
+.thumbnail {
+    width: 300rpx;
+    height: 300rpx;
+    margin: 32rpx auto;
+    margin-bottom: 0;
+}
+
+.thumbnail image {
+    width: 100%;
+    height: 100%;
+}
+
+.goods-name {
+    height: 56rpx;
+    font-size: 40rpx;
+    line-height: 56rpx;
+    color: #000;
+    font-weight: bold;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: clip;
+    white-space: normal;
+    word-break: break-all;
+    word-wrap: break-word;
+    margin: 0 60rpx 4rpx;
+}
+
+.price-info {
+    font-size: 28rpx;
+    line-height: 40rpx;
+    color: #7b869a;
+    text-align: center;
+    margin-bottom: 8rpx;
+}
+
+.price-sign {
+    color: #f00;
+    font-family: PingFangSC-Semibold;
+}
+
+.discount-price {
+    font-family: PingFangSC-Semibold;
+    display: inline-block;
+    font-size: 40rpx;
+    line-height: 64rpx;
+    color: #f00;
+    font-weight: bold;
+    margin-right: 8rpx;
+    transform: translateY(2rpx);
+}
+
+.share-desc {
+    font-size: 28rpx;
+    line-height: 40rpx;
+    color: #7b869a;
+    text-align: center;
+    margin-bottom: 20rpx;
+}
+
+.share-gray-text {
+    color: #7b869a;
+    font-family: PingFangSC-Regular;
+    font-size: 28rpx;
+    line-height: 44rpx;
+    margin-bottom: 16rpx;
+}
+
+.share-btn {
+    width: 526rpx;
+    height: 92rpx;
+    font-size: 32rpx;
+    color: #fff;
+    line-height: 92rpx;
+    text-align: center;
+    margin: 0 auto;
+    border-radius: 46rpx;
+    background-image: url('https://pinduoduoimg.yangkeduo.com/wxappimg/neigou3/radButton.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    box-sizing: border-box;
+    font-weight: bolder;
+}
+
+.share-img-btn {
+    width: 526rpx;
+    height: 92rpx;
+    font-size: 32rpx;
+    color: #ff5668;
+    line-height: 92rpx;
+    border: 1px solid #ff5668;
+    text-align: center;
+    margin: 0 auto;
+    border-radius: 46rpx;
+    background: #fff;
+    box-sizing: border-box;
+    margin-top: 32rpx;
+    font-family: FingFangSC-Semibold;
+    font-weight: bolder;
+}
+
+.show-poster {
+    position: absolute;
+    display: inline-block;
+    width: 450rpx;
+    bottom: -96rpx;
+    left: 100rpx;
+    vertical-align: middle;
+}
+
+.show-poster-text {
+    font-size: 32rpx;
+    line-height: 84rpx;
+    color: #fff;
+    vertical-align: middle;
+}
+
+.right-arrow {
+    display: inline-block;
+    width: 6rpx;
+    height: 6rpx;
+    line-height: 44rpx;
+    border-top: 1px solid #fff;
+    border-right: 1px solid #fff;
+    transform: rotate(-315deg);
+    vertical-align: middle;
+    margin: 2px 0 2px 12rpx;
+}
+
+.employee-info-mask {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #000;
+    opacity: 0.8;
+    z-index: $zindex-popup;
+}

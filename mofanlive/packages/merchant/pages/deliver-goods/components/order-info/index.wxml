@@ -1,0 +1,79 @@
+<wxs module="priceFormat" src="/components/common/wxs/accurate.wxs"></wxs>
+<wxs module="formator" src="/utils/formator.wxs"></wxs>
+
+<view class="order card card--no-border">
+  <view class="order-header card__header" bind:tap="navToShop">
+    <checkbox-item
+      bind:change="switchSelectAll"
+      checked="{{ orderToShow.selectAll }}"
+      disabled="{{ orderToShow.selectAllDisable }}"
+      title="全选"
+    ></checkbox-item>
+
+    <view class="order-header__state order-header__state">
+      共{{ orderToShow.totalNum }}件
+    </view>
+  </view>
+
+  <view bind:tap="navToOrderDetail" class="order-content card__content__items">
+    <view class="order-content__item" wx:for="{{orderToShow.items}}" wx:key="skuId">
+      <checkbox-item
+        bind:change="switchSelectItem"
+        checked="{{ item.selected }}"
+        data-item="{{ item }}"
+        disabled="{{ item.canDeliverNum < 1 }}"
+      ></checkbox-item>
+      
+      <view class="order-content__item-thumbnail">
+        <image src="{{ item.picture }}" />
+      </view>
+
+      <view class="order-content__item-detail">
+        <view class="order-content__item-detail__title">{{ item.title }}</view>
+        <view class="order-content__item-detail__specs">
+          <text>{{item.specs}}</text>
+          <text wx:if="{{ item.state }}" class="order-item-state">{{ OIS[item.state] }}</text>
+        </view>
+        <view class="order-content__item-bill">
+          <!-- <text class="order-content__item-bill__price">
+            <text>￥</text>
+            <text class="price-big">{{ priceFormat.priceStr1((item.finalPrice)) }}</text>
+            <text>.{{ priceFormat.priceStr2((item.finalPrice)) }}</text>
+          </text> -->
+          <text class="order-content__item-bill__price">￥{{priceFormat.accurate((item.finalPrice))}}</text>
+          <text class="ocib-original-price">￥{{ priceFormat.accurate(item.price) }}</text>
+          <text class="order-content__item-bill__quantity">x{{item.num}}</text>
+        </view>
+      </view>
+
+    </view>
+
+    <view class="cell" style="margin-top: -2rpx;" bind:tap="navToDeliveryDetail">
+      <view class="cell__head__rated" style="width: 400rpx;">
+        <view class="cell__title">已发货的包裹</view>
+      </view>
+      <view class="cell__tail__rated" style="text-align: right;">
+        <view class="cell__detail">{{ order.deliveryOrders.length }}个</view>
+        <view class="icon icon-chevron-right cell__icon-link"></view>
+      </view>
+    </view>
+  </view>
+
+  <view class="order-tail">
+    <view class="card__content info">
+      <view class="card__info">
+        <text class="card-info-label">订单编号:</text>
+        <text>{{ orderToShow.orderId }}</text>
+      </view>
+      <view wx:if="{{ !!orderToShow.ctime }}" class="card__info">
+        <text class="card-info-label">创建时间:</text>
+        <text>{{ formator.getTimeStr(orderToShow.ctime) }}</text>
+      </view>
+      <view wx:if="{{ !!orderToShow.payTime }}" class="card__info">
+        <text class="card-info-label">付款时间:</text>
+        <text>{{ formator.getTimeStr(orderToShow.payTime) }}</text>
+      </view>
+    </view>
+  </view>
+
+</view>

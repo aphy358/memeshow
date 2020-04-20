@@ -1,0 +1,58 @@
+<view class="goods-list" catchclickProduct="onClickProduct" style="{{listStyle}}">
+    <block
+        wx:for="{{ list }}"
+        wx:key="id"
+        wx:for-item="product"
+    >
+        <!-- <view
+            class="home-top-module"
+            style="margin-bottom:{{marginBottom}}rpx"
+            wx:if="{{item.type===6&&item.special_area_info_list&&item.draw_entrance_vo}}"
+        >
+            <freeGoodsItem
+                bindgolottery="goLottery"
+                freeData="{{item.draw_entrance_vo}}"
+                page_el_sn_impr="1349620"
+                wx:if="{{item.draw_entrance_vo}}"
+            ></freeGoodsItem>
+            <bannerSub
+                bannerData="{{item.special_area_info_list}}"
+                wx:if="{{item.special_area_info_list}}"
+            ></bannerSub>
+        </view> -->
+        <!-- <view
+            class="to-wx-app"
+            wx:if="{{item.type===5&&item.live_show_vo}}"
+        >
+            <navigateWxApp
+            app_id="{{item.live_show_vo&&item.live_show_vo.app_id}}"
+            ext_params_impr="{{banner_id:item.live_show_vo.banner_id}}"
+            image_url="{{item.live_show_vo&&item.live_show_vo.image_url}}" jump_url="{{item.live_show_vo&&item.live_show_vo.jump_url}}" page_el_sn_impr="1874701"></navigateWxApp>
+        </view> -->
+        <!-- <block wx:if="{{item.type===0&&item.rec_goods_vo}}"> -->
+            <!-- <secretGoods
+                bindclick="onGoodsDetail"
+                dateStr="{{dateStr}}"
+                ext_params_click="{{goods_id:item.rec_goods_vo.goods_id,idx:index,goods_welfare:item.rec_goods_vo.goods_welfare}}"
+                ext_params_impr="{{goods_id:item.rec_goods_vo.goods_id,idx:index,goods_welfare:item.rec_goods_vo.goods_welfare}}"
+                goods="{{item.rec_goods_vo}}"
+                listIndex="{{index}}"
+                page_el_sn_click="1041021"
+                page_el_sn_impr="1041021"
+                platform="{{systemInfo.platform}}"
+                showShakeDialog="{{showShakeDialog}}"
+                wx:if="{{item.rec_goods_vo.welfare_mode===2&&dateStr>(welfareModeShowDateMap[item.rec_goods_vo.goods_id]||'1999/1/1')}}"
+            ></secretGoods> -->
+            <goodsItem
+                product="{{ product }}"
+                marginBottom="{{ marginBottom }}"
+            ></goodsItem>
+        <!-- </block> -->
+        <!-- <subjectItem background="{{item.special_info_vo.special_back_ground_img}}" ext_params_click="{{ads_id:item.special_info_vo.special_id}}" ext_params_impr="{{ads_id:item.special_info_vo.special_id}}" goodsArr="{{item.special_info_vo.show_goods_list}}" page_el_sn_click="1415294" page_el_sn_impr="1415294" subject_bg="{{item.special_info_vo.special_goods_list_back_ground_img}}" subject_id="{{item.special_info_vo.special_id}}" subject_name="{{item.special_info_vo.special_platform_name}}" subject_share_img="{{item.special_info_vo.special_platform_shareimg}}" subject_share_text="{{item.special_info_vo.special_platform_sharetext}}" subject_tag_img="{{item.special_info_vo.special_goods_list_tag}}" wx:elif="{{item.type===1&&item.special_info_vo}}"></subjectItem> -->
+        <!-- <recommendMod page_el_sn_impr="1811673" recommendData="{{item.tab_list_vo.tab_vos}}" wx:elif="{{item.type===4&&item.tab_list_vo.tab_vos}}"></recommendMod> -->
+
+    </block>
+    <no-records type="1" wx:if="{{!list.length && !isLoading}}" />
+    <view class="loading" wx:if="{{isLoading}}">正在加载中...</view>
+    <no-more wx:if="{{!isLoading && noMore}}"></no-more>
+</view>

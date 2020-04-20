@@ -1,0 +1,12 @@
+<view class="fixed-btns">
+    <view class="btn-bg">
+        <button
+            bind:tap="onTap"
+            class="button--primary button--circle"
+        >确定({{number}})</button>
+    </view>
+    <view
+        class="placeholder"
+        style="{{isIPhoneX ? 'height: 68rpx;' : ''}}"
+    ></view>
+</view>

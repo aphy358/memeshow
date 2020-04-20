@@ -1,0 +1,26 @@
+<view
+    bindtap="onClose"
+    catchtouchmove="true"
+    class="dialog-mask"
+></view>
+
+<view
+    catchtouchmove="true"
+    class="container dialog-style"
+>
+    <image class="close-img" src="{{closeImg}}"></image>
+    <view bindtap="onClose" class="close-area"></view>
+    <view class="title">拼内购还需<text class="num"> {{vouchercount-count}} </text>张内购券</view>
+    <view class="desc">请好友助力，好友助力后各得1-5张</view>
+    <view class="progress-unit">
+        <view class="line-progress-container">
+            <view class="line-progress" style="width:{{count/vouchercount*408<0.05?count/vouchercount*408+10:count/vouchercount*408}}rpx"></view>
+        </view>
+        <view class="need-count-tag" style="left:{{count/vouchercount*408<0.05?count/vouchercount*408-46+86:count/vouchercount*408-56+86}}rpx">还需{{vouchercount-count}}张</view>
+    </view>
+    <view class="button-area">
+        <button bindtap="shareToFriends" class="share-btn" openType="share">
+            请好友助力，都得内购券
+        </button>
+    </view>
+</view>

@@ -1,0 +1,20 @@
+<view class="modal_confirm">
+
+<view class="mask"></view>
+
+<view class="modal_confirm-dialog">
+  <view class="modal_confirm-body">
+    <view class="modal_confirm-body-content">
+      {{ content }}
+    </view>
+    <view wx:if="{{ tips }}" class="modal_confirm-body-tips">
+      {{ tips }}
+    </view>
+  </view>
+  <view class="modal_confirm-buttons">
+    <button>取消</button>
+    <button>确定</button>
+  </view>
+</view>
+
+</view>

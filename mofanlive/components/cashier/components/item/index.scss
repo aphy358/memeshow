@@ -1,0 +1,56 @@
+@import "@/theme";
+
+.white-bg {
+  background-color: #fafafa;
+}
+
+.sku {
+  @include flex-row-nowrap;
+  $sku-image-size: 176rpx;
+  padding: $spacing-v-xs 0 $spacing-v-xl;
+
+  &-checkbox {
+    align-self: center;
+  }
+
+  &-image {
+    width: $sku-image-size;
+    height: $sku-image-size;
+    margin-right: $spacing-h-lg;
+    align-self: center;
+    border-radius: $border-radius-md;
+  }
+
+  &-detail {
+    flex: 1;
+    font-size: $font-size-base;
+    line-height: $line-height-base;
+    display: inline-block;
+    position: relative;
+
+    &-title {
+      font-family: $font-cn;
+      color: $color-text-base;
+    }
+
+    &-spec {
+      font-family: $font-cn;
+      color: $color-text-placeholder;
+    }
+
+    &-price {
+      font-size: 32rpx;
+      color: $color-price;
+      font-weight: bold;
+      position: absolute;
+      bottom: 0;
+    }
+  }
+
+  &-quantity {
+    width: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-end;
+  }
+}

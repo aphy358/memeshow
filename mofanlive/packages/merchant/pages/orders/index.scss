@@ -1,0 +1,22 @@
+@import "@/theme";
+
+.merchant-orders-wrap {
+  padding-top: 200rpx;
+}
+
+.merchant-tab-wrap {
+  position: fixed;
+  top: 112rpx;
+  width: 100%;
+  z-index: 9;
+}
+
+.orders {
+  width: 100%;
+  box-sizing: border-box;
+  position: relative;
+  background-color: $color-bg-dark;
+  display: block;
+  margin-bottom: -24rpx;
+  padding-bottom: 0;
+}

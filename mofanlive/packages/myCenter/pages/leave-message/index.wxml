@@ -1,0 +1,42 @@
+<form bindsubmit="handleSubmit">
+  <view class="cell__group bg-white">
+    <view class="cell">
+      <view class="cell__tail__rated" style="margin-left: 0;">
+        <view class="cell__detail">
+          <mf-textarea 
+            height="{{ 200 }}" 
+            placeholder="为了保证您的权益，请详细的提交留言信息。" 
+            placeholder-class="form__placeholder"
+            bind:input="onInputTextArea"
+            counter
+            maxlength="{{ 300 }}"
+          />
+        </view>
+      </view>
+    </view>
+
+    <view class="cell">
+      <view class="cell__head__rated">
+        <view class="cell__title">上传凭证</view>
+      </view>
+      <view class="cell__tail__rated">
+        <view class="cell__detail pholder">
+          可上传5张图片
+        </view>
+      </view>
+    </view>
+    <view class="cell cell__addon">
+      <view class="cell__head__rated">
+        <view class="cell__title"></view>
+      </view>
+      <view class="cell__tail__rated">
+        <image-uploader bind:change="handleProofChange"></image-uploader>
+      </view>
+    </view>
+  </view>
+
+  <view class="page-fixed-bottom-actions">
+    <button class="button--primary button--circle" form-type="submit">提交</button>
+    <view class="iphoneX-holder"></view>
+  </view>
+</form>

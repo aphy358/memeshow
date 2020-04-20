@@ -1,0 +1,21 @@
+<view class="refund-wrap" wx:if="{{ refundDetail }}">
+
+  <!-- 状态 -->
+  <refund-state refundDetail="{{ refundDetail }}" />
+
+  <!-- 退货地址 -->
+  <logistics-address 
+    wx:if="{{ refundDetail.returnAddress && refundDetail.state === RSK.Confirmed && refundDetail.type === 1 }}" 
+    refundDetail="{{ refundDetail }}" 
+  />
+
+  <!-- 协商记录 -->
+  <refund-negotiation refundDetail="{{ refundDetail }}" />
+
+  <!-- 退款信息 -->
+  <refund-info bind:records="navToRecords" refundDetail="{{ refundDetail }}" />
+
+  <!-- 操作按钮 -->
+  <refund-actions refundDetail="{{ refundDetail }}" bind:refreshRefund="onRefreshRefund" />
+
+</view>

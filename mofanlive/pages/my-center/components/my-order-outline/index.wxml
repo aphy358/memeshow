@@ -1,0 +1,81 @@
+<view class="my-order-outline">
+    <view class="order-outline-header">
+        <view class="title">我的订单</view>
+        <authorized-button>
+            <navigator
+                class="check-more-order"
+                hover-class="navigator-hover"
+                url="/packages/myCenter/pages/orders/index?type=all"
+            >
+                <text class>查看全部订单</text>
+                <view class="icon icon-chevron-right cell__icon-link"></view>
+            </navigator>
+        </authorized-button>
+    </view>
+
+    <view class="order-outline-body">
+        <authorized-button class="order-outline-item">
+            <navigator
+                class="order-outline-inner"
+                hover-class="navigator-hover"
+                url="/packages/myCenter/pages/orders/index?type=unpaid"
+            >
+                <badge number="{{unpaid}}" visibility="{{!!unpaid}}">
+                    <image
+                        class="img"
+                        src="../../assets/tobePay.png"
+                    />
+                </badge>
+                <text class="text">待付款</text>
+            </navigator>
+        </authorized-button>
+
+        <authorized-button class="order-outline-item">
+            <navigator
+                class="order-outline-inner"
+                hover-class="navigator-hover"
+                url="/packages/myCenter/pages/orders/index?type=undelivered"
+            >
+                <badge number="{{undeliver}}" visibility="{{!!undeliver}}">
+                    <image
+                        class="img"
+                        src="../../assets/tobeDelivery.png"
+                    />
+                </badge>
+                <text class="text">待发货</text>
+            </navigator>
+        </authorized-button>
+
+        <authorized-button class="order-outline-item">
+            <navigator
+                class="order-outline-inner"
+                hover-class="navigator-hover"
+                url="/packages/myCenter/pages/orders/index?type=delivering"
+            >
+                <badge number="{{delivered}}" visibility="{{!!delivered}}">
+                    <image
+                        class="img"
+                        src="../../assets/tobeReceive.png"
+                    />
+                </badge>
+                <text class="text">待收货</text>
+            </navigator>
+        </authorized-button>
+
+        <authorized-button class="order-outline-item">
+            <navigator
+                class="order-outline-inner"
+                hover-class="navigator-hover"
+                url="/packages/myCenter/pages/refunds/index?type=all"
+            >
+                <badge number="{{refund}}" visibility="{{!!refund}}">
+                    <image
+                        class="img"
+                        src="../../assets/refund.png"
+                    />
+                </badge>
+                <text class="text">退款/售后</text>
+            </navigator>
+        </authorized-button>
+    </view>
+</view>

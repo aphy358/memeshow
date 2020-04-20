@@ -1,0 +1,32 @@
+function formatTime() {
+  var nowTime = getDate()
+  var year = nowTime.getFullYear()
+  var month = nowTime.getMonth() + 1
+  var date = nowTime.getDate()
+
+  if (month < 10) {
+    month = "0" + month
+  }
+
+  if (date < 10) {
+    date = "0" + date
+  }
+
+  return year + "-" + month + "-" + date
+}
+
+function formatPrice(cents) {
+  if (!cents) return ""
+  cents = (cents / 100).toFixed(2) + ""
+  var cents_array = cents.split('.')
+  if (cents_array[1] && cents_array[1] == '00') {
+    cents_array.pop()
+  }
+  cents = cents_array.join('.')
+  return cents
+}
+
+module.exports = {
+  formatTime,
+  formatPrice
+}

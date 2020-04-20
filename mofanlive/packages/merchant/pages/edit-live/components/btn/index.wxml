@@ -1,0 +1,26 @@
+<view class="btns" style="{{isIPhoneX ? 'padding-bottom: 68rpx;' : ''}}">
+    <view
+        bind:tap="oneClickCreateLive"
+        class="one-click"
+    >
+        <view class="icon icon-chevron-right cell__icon-link"></view>
+        <view class="one-click--hint f-cn">一键开播</view>
+    </view>
+    <view class="confirm-btn">
+        <button
+            bind:tap="confirm"
+            class="button--primary button--circle"
+        >创建直播</button>
+    </view>
+</view>
+
+<view
+    class="navigator"
+    style="top: {{statusBarHeight}}px;"
+>
+    <view
+        bind:tap="navigateBack"
+        class="icon icon-chevron-left cell__icon-link back"
+    ></view>
+    <view class="navigator--title f-cn">创建直播</view>
+</view>

@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "填写退货物流",
+  "usingComponents": {
+    "image-uploader": "/components/image-uploader/index"
+  }
+}

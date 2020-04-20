@@ -1,0 +1,7 @@
+{
+    "navigationBarTitleText": "编辑商品详情",
+    "usingComponents": {
+        "image-uploader": "/components/image-uploader/index",
+        "mf-textarea": "ui-kit/components/textarea/index"
+    }
+}

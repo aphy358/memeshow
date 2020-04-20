@@ -1,0 +1,32 @@
+<view class="refunds-wrap">
+  <view class="refunds-tab-wrap">
+    <tabs 
+      class="tabs" 
+      bind:change="onTabChange" 
+      default="{{ currentType }}"
+    >
+      <tab 
+        wx:for="{{ RefundTabs }}" 
+        wx:key="index" 
+        key="{{ item.Key }}"
+      >{{ item.Title }}</tab>
+    </tabs>
+  </view>
+
+  <view class="refunds p-sm">
+    <refund 
+      wx:for="{{ refunds.content }}" 
+      wx:key="index" 
+      refund="{{ item }}" 
+    />
+  </view>
+
+  <!-- 正在加载中... -->
+  <view class="loading" wx:if="{{ isLoading }}">正在加载中...</view>
+
+  <!-- 没有更多了 -->
+  <no-more wx:if="{{ !refunds.hasMore && refunds.content.length > 0 }}" />
+
+  <!-- 无相关订单 -->
+  <no-records type="2" wx:if="{{ !refunds.hasMore && refunds.content.length === 0 }}" />
+</view>

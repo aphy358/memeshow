@@ -1,0 +1,190 @@
+<wxs
+    module="reducer"
+    src="./reducerUtil.wxs"
+></wxs>
+
+<view class="form">
+    <view
+        bind:tap="changeAvatar"
+        class="form__item large-line"
+    >
+        <view class="form__item__label">店铺头像</view>
+        <view class="form__item__content">
+            <view class="avatar">
+                <avatar
+                    type="3"
+                    circle
+                    size="100rpx"
+                    url="{{ avatar }}"
+                />
+            </view>
+        </view>
+        <view class="form__item__tail">
+            <view class="icon icon-chevron-right cell__icon-link"></view>
+        </view>
+    </view>
+    <view
+        bind:tap="changeText"
+        class="form__item"
+        data-field="name"
+        data-single="1"
+    >
+        <view class="form__item__label">店铺名称</view>
+        <view
+            class="form__item__content"
+            wx:if="{{name}}"
+        >{{name}}</view>
+        <view
+            class="form__item__content form__placeholder"
+            wx:else
+        >未设置</view>
+        <view class="form__item__tail">
+            <view class="icon icon-chevron-right cell__icon-link"></view>
+        </view>
+    </view>
+    <view
+        bind:tap="changeText"
+        class="form__item"
+        data-field="description"
+        data-single="0"
+    >
+        <view class="form__item__label">店铺介绍</view>
+        <view
+            class="form__item__content"
+            wx:if="{{description}}"
+        >{{description}}</view>
+        <view
+            class="form__item__content form__placeholder"
+            wx:else
+        >请填写店铺介绍（35字以内）</view>
+        <view class="form__item__tail">
+            <view class="icon icon-chevron-right cell__icon-link"></view>
+        </view>
+    </view>
+    <view class="form__item">
+        <view class="form__item__label">主营类目</view>
+        <view class="form__item__content">
+            <!-- {{categories.length == 0 ? reducer.categories(categories) : "请选择主营类目，加大类目曝光"}} -->
+            <picker
+                bindchange="changeCategory"
+                bindcolumnchange="updateCategoryColumn"
+                mode="multiSelector"
+                range="{{ category.range }}"
+                range-key="name"
+                value="{{ category.current }}"
+            >
+                <view
+                    class="{{ category.text ? '' : 'form__placeholder' }}"
+                >{{ category.text ? category.text : '请选择商品类目'}}</view>
+            </picker>
+        </view>
+        <view class="form__item__tail">
+            <view class="icon icon-chevron-right cell__icon-link"></view>
+        </view>
+    </view>
+    <view
+        bind:tap="changeText"
+        class="form__item"
+        data-field="wechat"
+        data-single="1"
+    >
+        <view class="form__item__label">店主微信号</view>
+        <view
+            class="form__item__content"
+            wx:if="{{wechat}}"
+        >{{wechat}}</view>
+        <view
+            class="form__item__content form__placeholder"
+            wx:else
+        >未设置微信号</view>
+        <view class="form__item__tail">
+            <view class="icon icon-chevron-right cell__icon-link"></view>
+        </view>
+    </view>
+    <view
+        bind:tap="changeText"
+        class="form__item"
+        data-field="mobile"
+        data-single="1"
+    >
+        <view class="form__item__label">联系手机号</view>
+        <view
+            class="form__item__content"
+            wx:if="{{mobile}}"
+        >{{mobile}}</view>
+        <view
+            class="form__item__content form__placeholder"
+            wx:else
+        >未设置手机号</view>
+        <view class="form__item__tail">
+            <view class="icon icon-chevron-right cell__icon-link"></view>
+        </view>
+    </view>
+    <view
+        bind:tap="changeAddress"
+        class="form__item"
+    >
+        <view class="form__item__label">退货地址</view>
+        <view
+            class="form__item__content"
+            wx:if="{{returnAddress && returnAddress.province}}"
+        >{{reducer.location(returnAddress)}}</view>
+        <view
+            class="form__item__content form__placeholder"
+            wx:else
+        >未设置退货地址</view>
+        <view class="form__item__tail">
+            <view class="icon icon-chevron-right cell__icon-link"></view>
+        </view>
+    </view>
+    <navigator url="/packages/merchant/pages/manage-staff/index">
+        <view class="form__item">
+            <view class="form__item__label">员工管理</view>
+            <view class="form__item__tail">
+                <view class="icon icon-chevron-right cell__icon-link"></view>
+            </view>
+        </view>
+    </navigator>
+</view>
+
+<view class="form m-t-lg">
+    <view
+        bind:tap="changeBackground"
+        class="form__item"
+    >
+        <view class="form__item__label">店铺背景图</view>
+        <view class="form__item__tail">
+            <view class="icon icon-chevron-right cell__icon-link"></view>
+        </view>
+    </view>
+    <view class="shop-preview">
+        <view
+            class="shop-bg"
+            style="background: url({{background}}) no-repeat;background-size: 100% 100%;"
+        >
+            <view class="shop-bg--mask"></view>
+            <!-- <image src="{{background}}" /> -->
+        </view>
+        <view class="shop-avatar">
+            <avatar
+                type="3"
+                circle
+                size="120rpx"
+                url="{{ avatar }}"
+            />
+        </view>
+        <view class="shop-hint f-cn">不同手机型号顶部文字图标位置会有所差异</view>
+    </view>
+</view>
+
+<view style="width: 100%; height: 200rpx;"></view>
+
+<view
+    class="bottom-btn"
+    style="{{isIPhoneX ? 'padding-bottom:68rpx;': ''}}"
+>
+    <button
+        bind:tap="updateUserInfo"
+        class="button--primary button--circle"
+    >保存</button>
+</view>

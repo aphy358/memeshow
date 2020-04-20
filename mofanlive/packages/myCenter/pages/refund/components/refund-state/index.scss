@@ -1,0 +1,91 @@
+@import "@/theme";
+
+.refund-state-wrap {
+  @include hairline-top;
+  background: white;
+
+  @at-root .refund-state-block {
+    margin-left: 30rpx;
+    padding: 20rpx 30rpx 20rpx 0;
+    @include hairline-bottom;
+
+    &:last-child::after {
+      content: none;
+    }
+
+    .title {
+      color: #333333;
+      font-size: 32rpx;
+      font-weight: bold;
+    }
+
+    @at-root .refunding-status-bar-wrap {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10rpx;
+
+      @at-root .rsb-dot {
+        width: 10rpx;
+        height: 10rpx;
+        border-radius: 9999px;
+        background: #969799;
+
+        &.active {
+          background: #47BE48;
+        }
+      }
+
+      @at-root .rsb-state-now {
+        width: 24rpx;
+        height: 24rpx;
+        background: #47BE48;
+        border-radius: 9999px;
+      }
+
+      @at-root .rsb-line {
+        position: relative;
+        height: 1rpx;
+        width: 42%;
+        @include hairline-top($color: #969799);
+
+        &.active {
+          @include hairline-top($color: #47BE48);
+        }
+      }
+    }
+
+    @at-root .refunding-status-note-wrap {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #969799;
+
+      .note-active {
+        color: #47BE48;
+      }
+
+      @at-root .note-row-one {
+        font-size: 24rpx;
+      }
+
+      @at-root .note-row-two {
+        font-size: 20rpx;
+      }
+    }
+  }
+
+  @at-root .refund-state-note {
+    font-size: 24rpx;
+    color: #6A6A6A;
+    line-height: 40rpx;
+  }
+}
+
+.align-center {
+  text-align: center;
+}
+
+.align-right {
+  text-align: right;
+}

@@ -1,0 +1,43 @@
+<wxs
+    module="priceFormat"
+    src="/components/common/wxs/accurate.wxs"
+></wxs>
+
+<swipe-out
+    bind:click="handleClickMenu"
+    menu="{{actions}}"
+>
+    <view class="white-bg p-v-xs p-h-md">
+        <view class="sku">
+            <view class="sku-checkbox">
+                <checkbox-item
+                    bind:change="handleCheck"
+                    checked="{{sku.selected}}"
+                ></checkbox-item>
+            </view>
+            <image
+                class="sku-image"
+                src="{{sku.thumbnail}}"
+            />
+            <view class="sku-detail">
+                <view class="sku-detail-title">{{sku.title}}</view>
+                <view class="sku-detail-spec">{{sku.specs}}</view>
+                <view class="sku-detail-price f-nu">
+                    ￥{{priceFormat.accurate(sku.type == 0 ? sku.price : sku.discountPrice)}}
+                    <!-- <price
+                        color="#141414"
+                        price="{{sku.type == 0 ? sku.price : sku.discountPrice}}"
+                    ></price>-->
+                </view>
+            </view>
+        </view>
+        <view class="sku-quantity">
+            <input-number
+                bind:change="changeQuantity"
+                class="sku-detail-quantity"
+                min="{{1}}"
+                value="{{sku.quantity}}"
+            ></input-number>
+        </view>
+    </view>
+</swipe-out>

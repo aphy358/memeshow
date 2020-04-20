@@ -11,7 +11,6 @@
     &__header {
         @include display-flex;
         @include align-items(center);
-        @include border-thin-bottom();
         width: 100%;
         padding: $padding-sm $padding-md;
 

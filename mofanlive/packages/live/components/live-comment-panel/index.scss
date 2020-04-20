@@ -1,0 +1,225 @@
+@import '@/assets/styles/iconfont.scss';
+
+@keyframes userTrendAnimate {
+  0% {
+    transform: translateX(-100%);
+    opacity: 1;
+  }
+
+  10% {
+    transform: translateX(0%);
+    opacity: 1;
+  }
+
+  70% {
+    transform: translateX(0%);
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+.user-trend-tip {
+  position: absolute;
+  left: 30rpx;
+  bottom: 530rpx;
+  bottom: calc(530rpx + constant(safe-area-inset-bottom));
+  bottom: calc(530rpx + env(safe-area-inset-bottom));
+
+  float: left;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  animation: userTrendAnimate 2000ms ease 0s forwards;
+
+  @at-root .user-trend-tip-inner {
+    color: white;
+    background: rgba(0, 0, 0, 0.70);
+    border-radius: 8rpx;
+    padding: 0 12rpx;
+    font-size: 28rpx;
+    height: 56rpx;
+    line-height: 56rpx;
+
+    @at-root .user-trend-avatar {
+      float: left;
+      margin-top: 12rpx;
+      width: 32rpx;
+      height: 32rpx;
+      border-radius: 9999px;
+      margin-right: 10rpx;
+    }
+
+    @at-root .user-trend-icon {
+      float: left;
+      height: 60rpx;
+      width: 34rpx;
+      margin-left: 10rpx;
+    }
+
+    @at-root .user-trend-name {
+      float: left;
+      color: #DDDDDD;
+      margin-right: 10rpx;
+    }
+
+    @at-root .user-trend-text {
+      float: left;
+    }
+
+    .comment-icon {
+      position: absolute;
+      margin-left: 10rpx;
+      width: 34rpx;
+      height: 34rpx;
+      margin-top: 2rpx;
+
+      &.icon-1 {
+        margin-top: 4rpx;
+        width: 30rpx;
+        height: 30rpx;
+      }
+    }
+  }
+}
+
+.comment-panel-wrap {
+  position: absolute;
+  left: 30rpx;
+  bottom: 140rpx;
+  bottom: calc(140rpx + constant(safe-area-inset-bottom));
+  bottom: calc(140rpx + env(safe-area-inset-bottom));
+  width: 70%;
+  overflow: hidden;
+
+  @at-root .comment-panel-inner {
+    height: 380rpx;
+    width: calc(100% + 10px);
+    box-sizing: border-box;
+
+    mask-size: 100% 380rpx;
+    -webkit-mask-size: 100% 380rpx;
+    mask-image: linear-gradient(transparent, blue, blue, blue, blue, blue);
+    -webkit-mask-image: linear-gradient(transparent, blue, blue, blue, blue, blue);
+    mask-repeat: no-repeat;
+    -webkit-mask-repeat: no-repeat;
+    mask-position: top;
+    -webkit-mask-position: top;
+
+    .comment-items {
+      min-height: 380rpx;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+
+    .comment-item {
+      overflow: hidden;
+      padding-bottom: 10rpx;
+      margin-right: 88rpx;
+
+      @at-root .comment-item-inner {
+        position: relative;
+        float: left;
+        padding: 8rpx 20rpx 8rpx 12rpx;
+        border-radius: 28rpx;
+        background: rgba(0, 0, 0, 0.25);
+        font-size: 28rpx;
+
+        .comment-avatar {
+          position: absolute;
+          left: 12rpx;
+          top: 12rpx;
+          width: 32rpx;
+          height: 32rpx;
+          border-radius: 9999px;
+        }
+
+        .comment-author {
+          margin-right: 10rpx;
+          color: #DDDDDD;
+          padding-left: 42rpx;
+        }
+
+        .comment-text {
+          color: white;
+        }
+      }
+    }
+  }
+
+  @at-root .recommend-product-outer {
+    height: 0;
+
+    @at-root .recommend-product {
+      display: flex;
+      align-items: center;
+      position: relative;
+      width: 404rpx;
+      height: 140rpx;
+      border-radius: 4rpx;
+      background: white;
+
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: -14rpx;
+        left: 10rpx;
+        display: block;
+        width: 0;
+        height: 0;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-top: 8px solid white;
+      }
+
+      .rp-img {
+        width: 100rpx;
+        height: 100rpx;
+        border-radius: 4rpx;
+        overflow: hidden;
+        margin: 0 20rpx;
+      }
+
+      @at-root .rp-content-wrap {
+        font-size: 26rpx;
+        display: flex;
+        height: 70rpx;
+        flex-direction: column;
+        justify-content: space-between;
+
+        .rp-content {
+          color: #BAB9BE;
+          line-height: 26rpx;
+          height: 26rpx;
+
+          &.price {
+            color: #FB3E4A;
+          }
+        }
+      }
+
+      @at-root .rp-close-wrap {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 70rpx;
+        height: 70rpx;
+
+        @at-root .rp-close-btn {
+          position: absolute;
+          top: 0;
+          right: 0;
+          width: 45rpx;
+          height: 45rpx;
+          line-height: 45rpx;
+          font-size: 24rpx;
+          color: #999999;
+          text-align: center;
+        }
+      }
+    }
+  }
+}

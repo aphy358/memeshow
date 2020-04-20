@@ -1,0 +1,54 @@
+<wxs module="priceFormat" src="/components/common/wxs/accurate.wxs"></wxs>
+
+<view class="order card card--no-border">
+  <view class="order-header card__header" bind:tap="navToShop">
+    <view class="order-header__title card__title">
+      <image class="icon-shop" mode="aspectFit" src="/assets/images/orders/user-card.png" />
+      <view class="card__title shop-name">{{ order.user.nickname }}</view>
+    </view>
+    <view class="order-header__state order-header__state__{{OrderStateText[order.state].Class}}">
+      {{OrderStateText[order.state].Title}}
+    </view>
+  </view>
+
+  <view bind:tap="navToOrderDetail" class="order-content card__content__items">
+    <view class="order-content__item" wx:for="{{order.items}}" wx:key="skuId">
+      <view class="order-content__item-thumbnail">
+        <image src="{{item.picture}}" />
+      </view>
+      <view class="order-content__item-detail">
+        <view class="order-content__item-detail__title">{{item.title}}</view>
+        <view class="order-content__item-detail__specs">{{item.specs}}</view>
+        <view class="order-content__item-bill">
+          <!-- <text class="order-content__item-bill__price">
+            <text>￥</text>
+            <text class="price-big">{{priceFormat.priceStr1((item.finalPrice))}}</text>
+            <text>.{{priceFormat.priceStr2((item.finalPrice))}}</text>
+          </text> -->
+          <text class="order-content__item-bill__price">￥{{priceFormat.accurate((item.finalPrice))}}</text>
+          <text class="ocib-original-price">￥{{priceFormat.accurate(item.price)}}</text>
+          <text class="order-content__item-bill__quantity">x{{item.num}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="order-tail">
+
+    <view class="order-tail__bill">
+      <view class="order-tail__bill-poster">
+        <image mode="aspectFit" src="/assets/images/poster.png" />
+        <text>快递费：¥ {{priceFormat.accurate(order.postage)}}</text>
+      </view>
+      <view class="order-tail__bill-item">
+        <text>共{{order.itemNum}}件商品 合计:</text>
+        <text class="red">
+          <text>￥</text>
+          <text class="price-big">{{priceFormat.priceStr1((order.finalAmount))}}</text>
+          <text>.{{priceFormat.priceStr2((order.finalAmount))}}</text>
+        </text>
+      </view>
+    </view>
+  </view>
+
+</view>

@@ -1,0 +1,21 @@
+<wxs
+    module="priceFormat"
+    src="/components/common/wxs/accurate.wxs"
+></wxs>
+
+<view class="order-content__item">
+    <view class="order-content__item-thumbnail">
+        <image src="{{productItem.picture}}" />
+    </view>
+    <view class="order-content__item-detail">
+        <view class="order-content__item-detail__title">{{productItem.title}}</view>
+        <view class="order-content__item-detail__specs">{{productItem.specs}}</view>
+        
+        <view class="order-content__item-bill">
+            <!-- <text class="order-content__item-bill__price">￥<text class="price-big">{{priceFormat.priceStr1((productItem.finalPrice))}}</text>.{{priceFormat.priceStr2((productItem.finalPrice))}}</text> -->
+            <text class="order-content__item-bill__price">￥{{priceFormat.accurate((item.finalPrice))}}</text>
+            <text class="ocib-original-price">￥{{priceFormat.accurate(productItem.price)}}</text>
+            <text class="order-content__item-bill__quantity">x{{productItem.num}}</text>
+        </view>
+    </view>
+</view>

@@ -143,7 +143,7 @@ Component({
           })
         })
         .then(NEXT_TICK)
-        .then(() => setTimeout(() => this.onTransitionEnd('leave'), currentDuration))
+        .then(() => setTimeout(() => this.onTransitionEnd('leave'), 0))
         .then(() => {
           this.setData({
             popupBodyClasses: classNames["leave-to"],

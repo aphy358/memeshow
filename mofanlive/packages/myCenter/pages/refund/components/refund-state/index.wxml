@@ -1,0 +1,49 @@
+<!-- 客服介入 -->
+<block wx:if="{{ refundDetail.isAdminInvolved }}">
+  <state-custom-service refundDetail="{{ refundDetail }}" />
+</block>
+
+<block wx:else>
+
+  <!-- 待审核 -->
+  <block wx:if="{{ refundDetail.state === RSK.Unconfirmed }}">
+    <state-unconfirmed refundDetail="{{ refundDetail }}" />
+  </block>
+
+  <!-- 已拒绝/拒收 -->
+  <block wx:if="{{ refundDetail.state === RSK.Rejected || refundDetail.state === RSK.ReturnRejected }}">
+    <state-rejected refundDetail="{{ refundDetail }}" />
+  </block>
+
+  <!-- 待退货/待退款 -->
+  <block wx:if="{{ refundDetail.state === RSK.Confirmed }}">
+    <state-confirmed wx:if="{{ refundDetail.type == 1 }}" refundDetail="{{ refundDetail }}" />
+    <state-returned wx:else refundDetail="{{ refundDetail }}" />
+  </block>
+
+  <!-- 退货中 -->
+  <block wx:if="{{ refundDetail.state === RSK.Returning }}">
+    <state-returning refundDetail="{{ refundDetail }}" />
+  </block>
+
+  <!-- 待退款 -->
+  <block wx:if="{{ refundDetail.state === RSK.Returned }}">
+    <state-returned refundDetail="{{ refundDetail }}" />
+  </block>
+
+  <!-- 退款中 -->
+  <block wx:if="{{ refundDetail.state === RSK.Refunding }}">
+    <state-refunding refundDetail="{{ refundDetail }}" />
+  </block>
+
+  <!-- 完成 -->
+  <block wx:if="{{ refundDetail.state === RSK.Complete }}">
+    <state-complete refundDetail="{{ refundDetail }}" />
+  </block>
+
+  <!-- 关闭 -->
+  <block wx:if="{{ refundDetail.state === RSK.Closed }}">
+    <state-closed refundDetail="{{ refundDetail }}" />
+  </block>
+
+</block>

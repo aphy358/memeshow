@@ -1,0 +1,70 @@
+<wxs
+    module="format"
+    src="/utils/formator.wxs"
+></wxs>
+
+<view
+    class="action-bar"
+    style="{{isIPhoneX ? 'padding-bottom: 68rpx' : ''}}"
+>
+    <view class="action-bar-left">
+        <button
+            class="reset action-bar-left-item"
+            open-type="contact"
+        >
+            <image
+                class="action-bar-item__icon"
+                src="../../assets/service.png"
+            />
+            <view
+                class="action-bar-item__title f-base f-cn f-sm"
+                style="font-size: 24rpx;"
+            >咨询商家</view>
+        </button>
+    </view>
+    <block wx:if="{{neigou < 1}}">
+        <view
+            catch:tap="handleBuyByDefault"
+            class="only-original"
+        >
+            <view
+                class="f-nu f-base"
+                style="font-size:40rpx; font-weight: bold;"
+            >¥{{format.formatPrice(price)}}</view>
+            <view
+                class="f-cn f-base m-l-lg"
+                style="font-size:32rpx;"
+            >立即购买</view>
+        </view>
+    </block>
+    <block wx:else>
+        <view
+            catch:tap="handleBuyByDefault"
+            class="action-bar-btn original-price"
+            data-from="cart"
+        >
+            <view
+                class="f-nu action-bar-btn__title"
+                style="font-size:40rpx; font-weight: bold; line-height: 48rpx;"
+            >¥{{format.formatPrice(price)}}</view>
+            <view
+                class="action-bar-btn__title f-cn"
+                style="font-size:28rpx;"
+            >原价</view>
+        </view>
+        <view
+            catch:tap="handleBuyByVoucher"
+            class="action-bar-btn neigou-price"
+            data-from="buy"
+        >
+            <view
+                class="action-bar-btn__price f-nu"
+                style="font-size:40rpx; font-weight: bold; line-height: 48rpx;"
+            >¥{{format.formatPrice(neigou == 0 ? price : neigou)}}</view>
+            <view
+                class="action-bar-btn__title f-cn"
+                style="font-size:28rpx;"
+            >内购价</view>
+        </view>
+    </block>
+</view>

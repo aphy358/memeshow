@@ -1,0 +1,26 @@
+<view class="text-editor">
+    <input
+        bind:input="onEditorChange"
+        wx:if="{{singleLine}}"
+        placeholder="{{placeholder}}"
+        value="{{text}}"
+    />
+    <text-editor
+        bind:input="onEditorChange"
+        counter
+        maxlength="{{max}}"
+        placeholder="{{placeholder}}"
+        value="{{text}}"
+        wx:else
+    ></text-editor>
+</view>
+
+<view
+    class="btn"
+    style="{{isIPhoneX ? 'padding-bottom:68rpx;': ''}}"
+>
+    <button
+        bind:tap="submit"
+        class="button--primary button--circle"
+    >保存</button>
+</view>

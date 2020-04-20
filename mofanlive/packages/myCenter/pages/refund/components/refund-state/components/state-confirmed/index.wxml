@@ -1,0 +1,11 @@
+<!-- confirmed:卖家同意申请,等待买家发货或者直接退款 -->
+<view class="refund-state-wrap">
+  <view class="refund-state-block">
+    <view class="title">请退货并填写物流信息</view>
+    <view class="refund-state-note">商家已同意退货申请，请在 {{ countDown }} 内响应</view>
+  </view>
+  <view class="refund-state-block">
+    <view class="refund-state-note">未与商家协商一致，请勿使用到付或平邮，以免商家拒签货物</view>
+    <view class="refund-state-note">请填写真实物流信息，逾期未填写，本次申请将自动撤销</view>
+  </view>
+</view>

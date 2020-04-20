@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "cashier": "/components/cashier/index"
+  },
+  "navigationBarTitleText": "确认订单"
+}

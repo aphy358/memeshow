@@ -1,0 +1,23 @@
+
+<view class="comment-input-wrap">
+  <view class="m-v-sm">
+    <switch class="switch" bindchange="toggleBarrage"></switch>
+  </view>
+
+  <input 
+    class="comment-input" type="text" 
+  
+    focus="{{ show }}"
+    hold-keyboard="{{ holdKeyboard }}"
+    adjust-position="{{ adjustPosition }}" 
+    value="{{ inputContent }}"
+    placeholder="{{ inputPlaceholder }}" 
+    placeholder-class="form__placeholder"
+  
+    bindkeyboardheightchange="keyboardheightchange" 
+    bindinput="bindinput"
+    bindfocus="bindfocus"
+    bindblur="bindblur"
+    bindconfirm="bindconfirm"
+  />
+</view>

@@ -1,0 +1,60 @@
+@import "@/theme";
+
+.contact-seller-wrap {
+  width: 640rpx;
+  border-radius: 8rpx;
+  background: white;
+
+  @at-root .csp-body {
+
+    @at-root .csp-shop-name {
+      color: #323233;
+      font-size: 32rpx;
+      font-weight: bold;
+      text-align: center;
+      padding: 30rpx;
+    }
+
+    @at-root .csp-wechat-qrcode {
+      width: 380rpx;
+      height: 380rpx;
+      margin: auto;
+
+      image {
+        width: 380rpx;
+        height: 380rpx;
+      }
+    }
+
+    @at-root .csp-note {
+      width: 380rpx;
+      margin: auto;
+      color: #969799;
+      font-size: 24rpx;
+      padding: 30rpx 0;
+    }
+  }
+
+  @at-root .csp-footer {
+    @include hairline-top;
+    display: flex;
+    align-items: center;
+    height: 100rpx;
+   
+    @at-root .csp-btn {
+      color: #333333;
+      font-size: 32rpx;
+      width: 50%;
+      display: flex;
+      align-items: center;
+      text-align: center;
+      justify-content: center;
+      height: 100%;
+
+      &.red {
+        color: #FE2C54;
+        @include hairline-left;
+      }
+    }
+  }
+}

@@ -1,0 +1,74 @@
+.ticket-button {
+    position: fixed;
+    right: 32rpx;
+    bottom: 30rpx;
+    bottom: calc(30rpx + constant(safe-area-inset-bottom));
+    bottom: calc(30rpx + env(safe-area-inset-bottom));
+    z-index: 10;
+}
+
+.ticket-button-inner {
+    width: 460rpx;
+    height: 112rpx;
+    background: linear-gradient(to right, #FA538B, #F32953);
+    box-shadow: 0 6px 10px 0 rgba(179,186,201,0.5);
+    border-radius: 56rpx;
+    text-align: center;
+    padding-left: 40rpx;
+    padding-right: 32rpx;
+    box-sizing: border-box;
+    padding-top: 16rpx;
+}
+
+.left-button-area {
+    text-align: left;
+}
+
+.left-button-area .big-text {
+    font-family: PingFangSC-Semibold;
+    line-height: 44rpx;
+    font-size: 32rpx;
+    color: #fff;
+}
+
+.left-button-area .small-text {
+    line-height: 34rpx;
+    font-size: 24rpx;
+    color: #fff;
+}
+
+.bottom-time {
+    display: inline-block;
+    /* width: 110rpx; */
+}
+
+.right-button-area {
+    position: absolute;
+    right: 30rpx;
+    top: 24rpx;
+    width: 200rpx;
+    height: 64rpx;
+    border-radius: 32rpx;
+    background-color: #fff;
+}
+
+.get-more {
+    color: #F32953;
+    font-size: 28rpx;
+    line-height: 64rpx;
+    text-align: center;
+    font-family: PingFangSC-Medium;
+    vertical-align: middle;
+}
+
+.right-arrow {
+    display: inline-block;
+    width: 8rpx;
+    height: 8rpx;
+    line-height: 64rpx;
+    border-top: 2px solid #F32953;
+    border-right: 2px solid #F32953;
+    transform: rotate(-315deg);
+    vertical-align: middle;
+    margin: 1px 0 1px 18rpx;
+}

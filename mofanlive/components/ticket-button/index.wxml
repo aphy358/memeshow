@@ -1,0 +1,4 @@
+<ticketButton
+    count="{{ neigou.count }}"
+    expire="{{ neigou.willExpireAt }}"
+></ticketButton>

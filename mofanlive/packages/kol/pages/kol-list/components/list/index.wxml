@@ -1,0 +1,16 @@
+<block wx:if="{{!!content && content.length > 0}}">
+    <view class="list">
+        <item
+            kol="{{item}}"
+            wx:for="{{content}}"
+            wx:key="id"
+        ></item>
+    </view>
+    <no-more
+        color="#999999"
+        font-size="{{24}}"
+    ></no-more>
+</block>
+<block wx:else>
+    <view class="loading">正在加载中..</view>
+</block>

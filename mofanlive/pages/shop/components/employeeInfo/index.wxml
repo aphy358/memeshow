@@ -1,0 +1,42 @@
+<view
+    bindtap="click"
+    catchtouchmove="move"
+    class="employee-info-mask"
+></view>
+
+<view
+    catchtouchmove="move"
+    class="employee-info-content"
+>
+    <view class="employee-head">
+        <avatar
+            type="2"
+            circle
+            size="120rpx"
+            url="{{ employee.avatar }}"
+        />
+        <image class="employee-tag" src="./../../assets/employeetag.png"></image>
+    </view>
+    <view class="employee-name">{{ employee.name }}</view>
+    <view
+        wx:if="{{employee.position || employee.department}}"
+        class="employee-desc">{{ (employee.position || "") + " " + (employee.department || "") + " " + (employee.sn || "")}}</view>
+    <button
+        showMessageCard
+        bindtap="click"
+        class="employee-opt"
+        openType="contact"
+        sendMessageImg="{{ shareImg }}"
+        sendMessagePath="{{'/pages/shop/index?shopId=' + context.shopId + '&from=contact'}}"
+    >咨询员工</button>
+    <!-- <view class="employee-opt">
+        <cell
+            bind:startmessage='startmessage'
+            bind:completemessage="completemessage"
+            plugid='c7627a27521145b6062a10ff6a1014b8'
+            styleType="{{2}}"
+            buttonText="{{3}}"
+            blockStyle="button"
+        />
+    </view> -->
+</view>

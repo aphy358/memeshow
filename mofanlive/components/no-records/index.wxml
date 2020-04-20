@@ -1,0 +1,10 @@
+
+<view class="no-records-wrap">
+  <image 
+    class="img" mode="widthFix" 
+    src="{{ './assets/no-record-' + type + '.png' }}" 
+    style="width: {{ imgWidth }}rpx;" 
+  />
+  
+  <text class="text">{{ defaultText[type] }}</text>
+</view>

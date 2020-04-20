@@ -1,0 +1,17 @@
+<view class="card card--no-border white-back margin-top">
+    <view class="card__content">
+        <view class="order-detail-state">
+            <view class="od-icon gray">
+                <image class="img" src="/assets/images/orders/waitPay.png" />
+            </view>
+            <view class="od-content">
+                <view class="od-content-title">等待买家付款</view>
+                <!-- <view class="od-content-detail">
+                    <text>请在</text>
+                    <text class="count-down"> {{ countDown }} </text>
+                    <text>内付款，超时订单将自动取消</text>
+                </view> -->
+            </view>
+        </view>
+    </view>
+</view>

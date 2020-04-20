@@ -1,0 +1,29 @@
+<view
+    class="title-cmp"
+    style="height:{{titleHeight}}px;"
+    wx:if="{{show}}"
+>
+    <view
+        class="navigation-class navigation-bar"
+        style="height:{{navBarHeight}}px;background: {{bgColor}};"
+    >
+        <view
+            class="status-bar"
+            style="height: {{statusBarHeight}}px"
+        ></view>
+        <view
+            class="title-bar"
+            style="height: {{titleBarHeight}}px;line-height: {{titleBarHeight}}px;color: {{fontColor}}"
+        >
+            <slot name="title-content"></slot>
+            {{title}}
+        </view>
+    </view>
+    <view
+        class="attatched-content"
+        style="height: {{attatchSlotHeight}}px;top: {{navBarHeight}}px;"
+        wx:if="{{attatchSlotHeight>0}}"
+    >
+        <slot name="attatch-content"></slot>
+    </view>
+</view>

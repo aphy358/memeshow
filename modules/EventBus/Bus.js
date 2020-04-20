@@ -1,5 +1,12 @@
 import Subscriber from "./Subscriber"
 
+/**
+ * 小程序 EventBus 通信
+ *
+ * @export
+ * @class EventBus
+ */
+
 export default class EventBus {
   constructor() {
     this.uid = new Date().getTime()
@@ -11,7 +18,7 @@ export default class EventBus {
    *
    * @public
    * @param {object} subscriberConfig
-   * @param {object} subscriberConfig.context - 订阅的对象，可以是一个页面或者组件
+   * @param {object} subscriberConfig.instance - 订阅的对象，可以是一个页面或者组件
    * @param {object} subscriberConfig.events  - 订阅的事件，使用 `context` 作为 `this` 的值
    * @memberof EventBus
    */
@@ -22,7 +29,7 @@ export default class EventBus {
     if (context && !this.has(context)) {
       this.subscribe(this.wrap(subscriberConfig))
     } else {
-      // todo
+      // 静默失败
     }
   }
 
@@ -62,7 +69,6 @@ export default class EventBus {
   /**
    * 触发指定 `context` 事件
    *
-   * @todo
    * @public
    * @param {object} context
    * @param {string} type
@@ -77,30 +83,6 @@ export default class EventBus {
       this.subscriptions[index].call(type, event, message)
     }
   }
-
-  /**
-   * Top Level
-   * 调用类型为 on 的 `event` 事件
-   *
-   * @todo
-   * @param {strign} event
-   * @param {object} [message={}]
-   * @memberof EventBus
-   */
-
-  on(event, message = {}) {}
-
-  /**
-   * Top Level
-   * 调用类型为 on 的 `event` 事件
-   *
-   * @todo
-   * @param {strign} event
-   * @param {object} [message={}]
-   * @memberof EventBus
-   */
-
-  once(event, message = {}) {}
 
   /**
    * 将 subscriber 加入订阅者列表

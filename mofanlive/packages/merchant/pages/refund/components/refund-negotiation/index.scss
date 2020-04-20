@@ -1,0 +1,18 @@
+@import "@/theme";
+
+.refund-negotiation-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 28rpx;
+  color: #000000;
+  background: white;
+  padding: 24rpx 30rpx;
+  height: 96rpx;
+  margin-top: 16rpx;
+
+  image {
+    width: 16rpx;
+    height: 24rpx;
+  }
+}

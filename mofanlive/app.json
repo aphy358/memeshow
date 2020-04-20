@@ -1,32 +1,32 @@
 {
   "pages": [
-    "pages/my/index",
-    "pages/live/index",
-    "pages/my/partials/my-setup/index",
-    "pages/product/index",
-    "pages/cart/index",
-    "pages/shop/index",
-    "pages/delivery/index",
-    "pages/coupon/index",
-    "pages/order/index",
-    "pages/refund/index",
-    "pages/orders/index",
-    "pages/my/partials/my-nickname/index",
-    "pages/my/partials/my-profile/index",
-    "pages/my/partials/my-verify-account/index",
-    "pages/my/partials/my-change-mobile/index",
-    "pages/refund-record/index",
     "pages/index/index",
-    "pages/procedures/create-refund/index",
-    "pages/procedures/create-refund-message/index"
+    "pages/shop/index",
+    "pages/product/index",
+    "pages/merchant-center/index",
+    "pages/my-center/index",
+    "pages/procedures/merchant-category/index",
+    "pages/procedures/merchant-platm-category/index",
+    "pages/procedures/merchant-product-descriptor/index",
+    "pages/procedures/merchant-product-editor/index",
+    "pages/procedures/address-editor/index",
+    "pages/procedures/address-selector/index",
+    "pages/procedures/product-selector/index",
+    "pages/procedures/edit-shop/index",
+    "pages/procedures/cashier/index",
+    "pages/procedures/text-editor/index"
   ],
   "window": {
     "backgroundColor": "#f0f0f0",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "魔范秀直播",
+    "navigationBarTitleText": "魔范秀",
     "navigationBarTextStyle": "black"
   },
   "usingComponents": {
+    "no-more": "/components/no-more/index",
+    "no-records": "/components/no-records/index",
+    "authorized-button": "/components/authorized-button/index",
+    "avatar": "/components/avatar/index",
     "list": "recycle-list/recycle-list-view/index",
     "tabs": "ui-kit/components/tabs/index",
     "tab": "ui-kit/components/tab/index",
@@ -41,34 +41,121 @@
     "radio-item": "ui-kit/components/radio/index",
     "customer-service": "/components/customer-service/index"
   },
+  "subpackages": [
+    {
+      "root": "packages/merchant",
+      "name": "merchant",
+      "pages": [
+        "pages/audits/index",
+        "pages/remark/index",
+        "pages/reject-apply/index",
+        "pages/deliver-goods/index",
+        "pages/cancel-order/index",
+        "pages/amend-price/index",
+        "pages/refund/index",
+        "pages/refunds/index",
+        "pages/order/index",
+        "pages/orders/index",
+        "pages/funds/index",
+        "pages/funds/deposit/index",
+        "pages/funds/list/index",
+        "pages/product/index",
+        "pages/manage-staff/index",
+        "pages/manage-staff/partials/editing/index",
+        "pages/edit-live/index",
+        "pages/market/index"
+      ]
+    },
+    {
+      "root": "packages/myCenter",
+      "name": "myCenter",
+      "pages": [
+        "pages/audits/index",
+        "pages/checkin-delivery/index",
+        "pages/create-refund/index",
+        "pages/cs-intervene/index",
+        "pages/delivery/index",
+        "pages/leave-message/index",
+        "pages/my-setup/index",
+        "pages/my-nickname/index",
+        "pages/my-profile/index",
+        "pages/my-verify-account/index",
+        "pages/my-change-mobile/index",
+        "pages/order/index",
+        "pages/orders/index",
+        "pages/refund/index",
+        "pages/refunds/index"
+      ]
+    },
+    {
+      "root": "packages/certification",
+      "name": "certification",
+      "pages": [
+        "pages/index/index",
+        "pages/verifying/index",
+        "pages/verify-fail/index",
+        "pages/verifyed/index",
+        "pages/artificial/index"
+      ]
+    },
+    {
+      "root": "packages/live",
+      "name": "live",
+      "pages": [
+        "pages/live-pusher/index",
+        "pages/live-player/index"
+      ]
+    },
+    {
+      "root": "packages/kol",
+      "name": "kol",
+      "pages": [
+        "pages/kol-list/index",
+        "pages/product-creator/index",
+        "pages/product-selector/index",
+        "pages/release/index",
+        "pages/task-detail/index",
+        "pages/task-list/index",
+        "pages/task-products/index",
+        "pages/kol-detail/index"
+      ]
+    }
+  ],
   "tabBar": {
-    "color": "#999999",
-    "selectedColor": "#333333",
-    "borderStyle": "white",
-    "backgroundColor": "#fff",
+    "custom": true,
+    "color": "#000000",
+    "selectedColor": "#000000",
+    "backgroundColor": "#000000",
     "list": [
       {
-        "selectedIconPath": "assets/images/tabbar/home2.png",
-        "iconPath": "assets/images/tabbar/home1.png",
         "pagePath": "pages/shop/index",
-        "text": "首页"
+        "text": "店铺",
+        "iconPath": "custom-tab-bar/assets/tabbar/home_default.png",
+        "selectedIconPath": "custom-tab-bar/assets/tabbar/home_active.png"
       },
       {
-        "selectedIconPath": "assets/images/tabbar/cart2.png",
-        "iconPath": "assets/images/tabbar/cart1.png",
-        "pagePath": "pages/cart/index",
-        "text": "购物车"
+        "pagePath": "pages/merchant-center/index",
+        "text": "我的",
+        "iconPath": "custom-tab-bar/assets/tabbar/user_default.png",
+        "selectedIconPath": "custom-tab-bar/assets/tabbar/user_active.png"
       },
       {
-        "selectedIconPath": "assets/images/tabbar/user2.png",
-        "iconPath": "assets/images/tabbar/user1.png",
-        "pagePath": "pages/my/index",
-        "text": "我的"
+        "pagePath": "pages/my-center/index",
+        "text": "我的",
+        "iconPath": "custom-tab-bar/assets/tabbar/user_default.png",
+        "selectedIconPath": "custom-tab-bar/assets/tabbar/user_active.png"
       }
     ]
   },
   "networkTimeout": {
-    "request": 500
+    "request": 10000,
+    "downloadFile": 10000
+  },
+  "plugins": {
+    "contactPlugin": {
+      "version": "1.3.0",
+      "provider": "wx104a1a20c3f81ec2"
+    }
   },
   "sitemapLocation": "sitemap.json"
 }

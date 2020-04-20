@@ -1,0 +1,76 @@
+<wxs module="formator" src="/utils/formator.wxs" />
+<wxs module="formatter" src="./index.wxs" ></wxs>
+
+<view class="operate-bar-wrap">
+  
+  <view class="comment-input-wrap">
+    <input class="input" disabled value="和主播聊聊" bind:tap="showCommentInputPopup" placeholder-class="form__placeholder" />
+
+    <view class="img-wrap">
+      <image 
+        class="img" 
+        bind:touchstart="recordVoice"
+        bind:touchend="sendVoice" 
+        src="../../../../assets/voice.png" 
+      />
+      <view class="record-outer" wx:if="{{ isRecordVoice }}">
+        <view class="record-inner"></view>
+      </view>
+    </view>
+  </view>
+
+  <view class="operate-item" style="margin:0 24rpx;">
+    <image class="img" src="../../../../assets/share.png" bind:tap="showShareChoicePop" />
+  </view>
+
+  <!-- 购物袋 -->
+  <view class="operate-item">
+    <image bind:tap="emitProducts" class="img" src="../../../../assets/shopCart.png" style="width:100%;height:100%;">
+      <view class="shop-cart-count">{{ products.length }}</view>
+    </image>
+
+    <!-- 主播正推荐的商品 -->
+    <view 
+      wx:if="{{ introduceProductVisible }}"
+      class="recommend-wrap"
+      catch:tap="handleTapBuy"
+      data-id="{{ '41760912347136' }}"
+    >
+      <view class="recommend-inner">
+        <view class="recommend-title">
+          讲解中
+        </view>
+        <view class="recommend-body">
+          <image class="recommend-img" src="{{ introduceProduct.image.medium }}" />
+        </view>
+      </view>
+    </view>
+  </view>
+
+</view>
+
+<hpopup
+  show="{{ isShowShareChoice }}"
+  bind:tapMask="hideShareChoicePop"
+  position="bottom"
+>
+  <view class="live-share-packets-inner">
+    <view class="share-item" bind:tap="hideShareChoicePop">
+      <image class="img" src="../../../../assets/share-choice-1.png" />
+      <text class="text">分享好友</text>
+      <button class="share-mask" open-type="share"></button>
+    </view>
+
+    <view class="share-item" bind:tap="showPosterPop">
+      <image class="img" src="../../../../assets/share-choice-2.png" />
+      <text class="text">保存海报</text>
+    </view>
+  </view>
+</hpopup>
+
+<!-- 海报 -->
+<share-poster 
+  wx:if="{{ ifShowPoster }}" 
+  bind:close="hidePosterPop" 
+  image="{{ shareImg }}"
+/>

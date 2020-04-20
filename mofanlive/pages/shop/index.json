@@ -1,7 +1,18 @@
 {
   "usingComponents": {
-    "actions": "./components/actions/index",
-    "list": "./components/list/index",
-    "avatar": "/components/avatar/index"
-  }
+    "homeTitle": "./components/homeTitle/index",
+    "feeds": "./components/goodsItemList/index",
+    "shareLink": "./components/shareLink/index",
+    "shareToFriends": "./components/shareToFriends/index",
+    "employeeInfo": "./components/employeeInfo/index",
+    "live-player-custom": "/components/live-player-custom/index",
+    "avatar-live": "/components/avatar-live/index",
+    "hpopup": "/_modules/ui-kit/components/hpopup/index"
+  },
+  "navigationStyle": "custom",
+  "navigationBarTextStyle": "black",
+  "navigationBarBackgroundColor": "#FFF",
+  "backgroundTextStyle": "dark",
+  "onReachBottomDistance": 40,
+  "enablePullDownRefresh": true
 }

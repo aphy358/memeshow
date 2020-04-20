@@ -8,12 +8,25 @@ Component({
     total: {
       type: Number,
       value: 0
+    },
+
+    quantity: {
+      type: Number,
+      value: 0
+    },
+
+    checked: {
+      type: Boolean,
+      value: false
     }
   },
 
   methods: {
     emitConfirm() {
       this.triggerEvent("confirm")
+    },
+    checkAll() {
+      this.triggerEvent("check")
     }
   },
 

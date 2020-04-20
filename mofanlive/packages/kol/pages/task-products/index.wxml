@@ -1,0 +1,13 @@
+<wxs src="../../utils/format.wxs" module="format"></wxs>
+
+<view class="products">
+  <view wx:for="{{products}}" wx:key="id" class="product">
+    <view class="product__avatar">
+      <image src="{{item.avatar.thumbnail}}" />
+    </view>
+    <view class="product__detail {{index != 0 ? 'b-t' : ''}}">
+      <view class="product__title">{{item.title}}</view>
+      <view class="product__price">￥{{format.price(item.price)}}</view>
+    </view>
+  </view>
+</view>

@@ -1,95 +1,131 @@
 <wxs
-    module="accurate2"
+    module="priceFormat"
     src="/components/common/wxs/accurate.wxs"
 ></wxs>
 
-<popup
-    bind:close="emitCancel"
-    closable
-    height="66vh"
-    open="{{open}}"
-    popup-content="popup-radius"
-    title="快捷下单"
->
-    <address
-        addr="{{address}}"
-        bind:change="changeAddress"
-    ></address>
+<address
+    addr="{{address}}"
+    bind:change="changeAddress"
+    id="address"
+></address>
 
-    <view class="trades">
-        <view
-            class="white-back"
-            wx:for="{{trades}}"
-            wx:for-item="trade"
-            wx:key="shop.id"
-        >
-            <view class="card card--full card--no-border">
-                <view>
-                    <view class="card__info">
-                        <view
-                            class="sku {{skuIdx == trade.items.length-1 ? '' : 'hairline-bottom'}}"
-                            wx:for="{{trade.items}}"
-                            wx:for-index="skuIdx"
-                            wx:for-item="sku"
-                            wx:key="id"
-                        >
-                            <image
-                                class="sku-image"
-                                src="{{sku.thumbnail}}"
-                            />
-                            <view class="sku-detail">
-                                <view class="sku-detail-title">{{sku.title}}</view>
-                                <view class="sku-detail-spec">{{sku.specs}}</view>
-                                <view class="sku-detail-quantity">x{{sku.quantity}}</view>
-                                <view class="sku-detail-price">￥{{accurate2(sku.price/100)}}</view>
-                            </view>
-                        </view>
-                    </view>
-                    <view
-                        bind:tap="emitCoupon"
-                        class="bill-row"
-                        data-id="{{trade.shop.id}}"
-                    >
-                        <view class="bill-row__header">
-                            <view class="bill-row__title">优惠券:</view>
-                        </view>
-                        <view class="bill-row__tail">
-                            <view>￥10.00</view>
-                            <view class="icon icon-chevron-right"></view>
-                        </view>
-                    </view>
-                    <view class="bill-row">
-                        <view class="bill-row__header">
-                            <view class="bill-row__title">快递运费：</view>
-                            <view class="bill-row__desc">全国包邮</view>
-                        </view>
-                        <view class="bill-row__tail">￥0.00</view>
-                    </view>
-                    <view class="bill-row">
-                        <view class="bill-row__header">
-                            <view class="bill-row__title">小计：</view>
-                        </view>
-                        <view class="bill-row__tail">￥124.00</view>
-                    </view>
-                    <view class="bill-row">
-                        <view class="bill-row__header">
-                            <view class="bill-row__title">备注：</view>
-                        </view>
-                        <view class="bill-row__tail bill-row__tail__full">
-                            <input
-                                placeholder="选填，请先和卖家协商一致"
-                                placeholder-class="input__placeholder"
-                            />
-                        </view>
-                    </view>
+<no-records wx:if="{{trade.items.length < 1}}" />
+<view
+    class="trades white-back"
+    wx:else
+>
+    <view class="check-all">
+        <checkbox-item
+            bind:change="handleCheckAll"
+            checked="{{checkedSkuIds.length == cartList.length}}"
+        ></checkbox-item>
+        <image src="/assets/images/shop.png" />
+        <view class="title f-cn f-base">{{shop.name}}</view>
+    </view>
+    <view
+        class="{{skuIdx == trade.items.length-1 ? '' : 'border-b'}}"
+        wx:for="{{trade.items}}"
+        wx:for-index="skuIdx"
+        wx:for-item="sku"
+        wx:key="id"
+    >
+        <item
+            bind:change="handleItemChange"
+            sku="{{sku}}"
+        ></item>
+    </view>
+</view>
+
+<view wx:if="{{trade.items.length > 0}}">
+    <view
+        class="cell m-t-lg cell--no-border"
+        data-id="{{trade.shop.id}}"
+        wx:if="{{payment.discount > 0}}"
+    >
+        <view class="cell__header">
+            <view class="cell__title">内购券</view>
+        </view>
+        <view class="cell__tail">
+            <view>内购通道已优惠{{priceFormat.accurate(payment.discount)}}元</view>
+            <view class="icon icon-chevron-right"></view>
+        </view>
+    </view>
+
+    <view class="cell__group m-t-lg white-back">
+        <view class="cell cell--sub">
+            <view class="cell__header">
+                <view class="cell__title">配送方式</view>
+            </view>
+            <view class="cell__tail">
+                <view class="cell__detail non-flex">快递 免运费</view>
+            </view>
+        </view>
+        <view class="cell cell--sub">
+            <view class="cell__header">
+                <view class="cell__title">买家留言</view>
+                <view class="m-l-lg">
+                    <input
+                        placeholder="建议留言前先与商家沟通确认"
+                        placeholder-class="input__placeholder"
+                        style="width: 500rpx;"
+                        value="{{trade.remark}}"
+                        bindblur="onRemarkBlur"
+                    />
                 </view>
             </view>
         </view>
     </view>
 
-    <action-bar
-        catch:confirm="handleConfirm"
-        slot="footer"
-        total="{{24500}}"
-    ></action-bar>
-</popup>
+    <view class="bill__group m-t-lg p-t-md">
+        <view class="bill__row p-b-sm p-h-md">
+            <view class="bill__title">商品金额</view>
+            <view class="bill__tail">￥ {{priceFormat.accurate(payment.total)}}</view>
+        </view>
+        <view class="bill__row p-b-sm p-h-md">
+            <view class="bill__title">运费</view>
+            <view class="bill__tail">+￥0.00</view>
+        </view>
+        <view
+            class="bill__row p-b-md p-h-md"
+            wx:if="{{payment.discount > 0}}"
+        >
+            <view class="bill__title">内购券</view>
+            <view class="bill__tail">-￥{{priceFormat.accurate(payment.discount)}}</view>
+        </view>
+        <view class="cell hairline-t">
+            <view class="cell__header total-tag f-cn">合计</view>
+            <view class="cell__tail">
+                <view class="cell__detail non-flex price f-nu">
+                    <text>￥</text>
+                    {{priceFormat.accurate(payment.final)}}
+                    <!-- <price
+                        color="#FE2C54"
+                        price="{{payment.final}}"
+                        title="合计"
+                    ></price>-->
+                </view>
+            </view>
+        </view>
+    </view>
+
+    <view class="cell m-t-lg">
+        <view class="cell__header">
+            <image
+                class="cell__img"
+                mode="aspectFill"
+                src="/assets/images/wechat.png"
+            />
+            <view class="cell__title">微信支付</view>
+        </view>
+    </view>
+</view>
+
+<view class="placeholder"></view>
+
+<action-bar
+    bind:check="handleCheckAll"
+    catch:confirm="handleConfirm"
+    checked="{{checkedSkuIds.length == cartList.length}}"
+    quantity="{{totalQuantity}}"
+    total="{{payment.final}}"
+></action-bar>

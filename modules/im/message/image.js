@@ -20,10 +20,16 @@ export class IMImage {
  * 图片消息
  */
 export default class IMImageMessage extends IMMessage {
-	// 图片ID
-	imageId = ""
-	// 格式
-	format = ""
-	// 图片数据列表
-	images = []
+
+	messageType() {
+		return "IMImageMessage"
+	}
+
+	constructor(payload = {}) {
+		super(payload)
+
+		this.imageId = payload.imageId || ""
+		this.format = payload.format || ""
+		this.images = payload.images || []
+	}
 }

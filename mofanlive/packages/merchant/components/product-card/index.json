@@ -1,0 +1,7 @@
+{
+    "component": true,
+    "usingComponents": {
+        "mf-modal": "/ui-kit/components/modal/index",
+        "checkbox-item": "/ui-kit/components/checkbox/index"
+    }
+}

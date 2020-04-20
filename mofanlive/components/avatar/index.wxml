@@ -1,7 +1,7 @@
-<navigator url="{{live ? '/pages/live/index?id=' + liveid : '/pages/my/index?id=' + userid}}" class="avatar" hover-class="navigator-hover">
-  <view class="avatar-border-outside {{live ? 'border-ani' : ''}}"></view>
-  <view class="avatar-img">
-    <image class="{{live ? 'img-ani' : ''}}" src="{{url}}" />
-  </view>
-  <view wx:if="{{live}}" class="avatar-live">直播中</view>
-</navigator>
+<view 
+  bind:tap="onTapAvatar"
+  class="avatar-wrap" 
+  style="{{ size ? 'width:' + size + ';height:' + size + ';' : '' }}{{ border ? 'border:' + border + ';' : '' }}{{ circle ? 'border-radius: 9999px;' : '' }}"
+>
+  <image class="avatar-img" src="{{ url || defaultAvatar[type] || './assets/avatar-default-' + type + '.png' }}" style="{{ circle ? 'border-radius: 9999px;' : '' }}" />
+</view>

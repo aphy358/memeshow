@@ -1,2 +1,5 @@
 <!--components/index.wxml-->
-<rich-text nodes="{{nodes}}"></rich-text>
+<view class="detail-container">
+    <view class="detail-title f-cn f-base">商品详情</view>
+    <rich-text nodes="{{nodes}}"></rich-text>
+</view>

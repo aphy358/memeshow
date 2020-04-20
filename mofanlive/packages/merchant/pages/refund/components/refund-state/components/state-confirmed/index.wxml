@@ -1,0 +1,7 @@
+<!-- confirmed:卖家同意申请,等待买家发货或者直接退款 -->
+<view class="refund-state-wrap">
+  <view class="refund-state-block">
+    <view class="title">您已同意退款，等待买家退货</view>
+    <view class="refund-state-note">若买家在 {{ countDown }} 内未填写退货运单号，则自动关闭退款申请</view>
+  </view>
+</view>

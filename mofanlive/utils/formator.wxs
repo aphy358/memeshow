@@ -1,16 +1,114 @@
+/**
+ * 计算当前到目标时间戳的距离
+ *
+ * @param timeStamp - 目标时间戳
+ * @returns {string}
+ */
 
-var formatDuaration = (function(num) {
-  return num / 1000 << 1 >> 1
-});
+function fromNow(timeStamp) {
+  if (!timeStamp)  return ""
+  if (typeof timeStamp !== "number") {
+    timeStamp = Number(timeStamp)
+    if (isNaN(timeStamp)) return ""
+  }
+
+  const nowTime = Date.now()
+  let diff = timeStamp - nowTime
+  let isPast
+  let result
+  if (diff < 0) {
+    isPast = true
+    result = unitConversion(Math.abs(diff))
+  } else {
+    isPast = false
+    result = unitConversion(diff)
+  }
+  if (isPast) {
+    return Math.floor(result) > 0 ? Math.floor(result) : "半" + "天前"
+  } else {
+    return Math.ceil(result) + "天内"
+  }
+}
+
+/**
+ * 毫秒转天数
+ *
+ * @param {number} ms - 毫秒数字
+ * @returns {string}
+ */
+
+function unitConversion(ms) {
+  return ms / 1000 / 60 / 60 / 24
+}
+
+var twoBit = function(num) {
+  if (num < 10) return "0" + num
+  return num
+}
+
+/**
+ * 返回格式为 '2020-01-02 10:23:43' 的时间字符串
+ *
+ * @param timeStamp 时间戳 - 单位秒
+ */
+var getTimeStr = function(timeStamp = 0) {
+  var date = getDate(timeStamp)
+  var year = date.getFullYear()
+  var month = twoBit(date.getMonth() + 1)
+  var day = twoBit(date.getDate())
+
+  var h = twoBit(date.getHours())
+  var m = twoBit(date.getMinutes())
+  var s = twoBit(date.getSeconds())
+
+  return year + "-" + month + "-" + day + " " + h + ":" + m + ":" + s
+  // return date.toLocaleString()
+}
+
+var formatDuaration = function(num) {
+  return ((num / 1000) << 1) >> 1
+}
 
 var getTimeDiff = t => {
   return Date.now() - t
 }
 
-var accurate2 = num => num.toFixed(2)
+function formatPrice(cents = 0) {
+  cents /= 100
+  return cents.toFixed(2)
+}
 
-module.exports = ({
+function formatPriceShort(cents = 0) {
+  cents = (cents / 100).toFixed(2) + ""
+  var cents_array = cents.split('.')
+  if (cents_array[1] && cents_array[1] == '00') {
+    cents_array.pop()
+  }
+  cents = cents_array.join('.')
+  return cents
+}
+
+/**
+ * @param timer 毫秒数
+ */
+
+function getTimeClock(timer) {
+  if (!timer || timer < 1000) return "00:00:00"
+  let second = (timer / 1000).toFixed(0)
+  let hour = Math.floor(second / 3600)
+  second -= hour * 3600
+  let min = Math.floor(second / 60)
+  second -= min * 60
+
+  return `${twoBit(hour)}:${twoBit(min)}:${twoBit(second)}`
+}
+
+module.exports = {
+  fromNow,
+  formatPrice,
+  formatPriceShort,
   formatDuaration,
   getTimeDiff,
-  accurate2,
-});
+  getTimeStr,
+  getTimeClock
+}

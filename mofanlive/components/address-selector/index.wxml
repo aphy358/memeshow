@@ -1,9 +1,11 @@
 <view class="container">
-    <block
-        wx:for="{{addr.list}}"
-        wx:key="id"
-    >
-        <view class="address">
+    <no-records wx:if="{{addr.list.length < 1}}" type="4" />
+    <view class="padding-bottom" wx:else>
+        <view
+            class="address"
+            wx:for="{{addr.list}}"
+            wx:key="id"
+        >
             <view
                 bind:tap="selectAddress"
                 class="address-header"
@@ -19,22 +21,30 @@
                 <view class="address-actions--item flex-1">
                     <checkbox-item
                         bindchange="setDefault"
-                        value="{{index}}"
-                        title="设为默认地址"
                         checked="{{item.isDefault}}"
+                        title="设为默认地址"
+                        value="{{index}}"
                     />
                 </view>
-                <view class="address-actions--item">
+                <view
+                    bind:tap="editAddress"
+                    class="address-actions--item"
+                    data-index="{{index}}"
+                >
                     <view class="icon icon-edit icon-color m-r-lg"></view>
                     <view class="f-base">编辑</view>
                 </view>
-                <view class="address-actions--item m-l-xxl">
+                <view
+                    bind:tap="deleteAddress"
+                    class="address-actions--item m-l-xxl"
+                    data-index="{{index}}"
+                >
                     <view class="icon icon-trash icon-color m-r-md"></view>
                     <view class="f-base">删除</view>
                 </view>
             </view>
         </view>
-    </block>
+    </view>
 
     <add-btn
         bind:add="addAddress"

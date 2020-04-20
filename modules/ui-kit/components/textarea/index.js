@@ -9,6 +9,11 @@
  */
 
 Component({
+  options: {
+    // 允许页面的样式影响到组件
+    styleIsolation: 'apply-shared'
+  },
+  
   properties: {
     name: {
       type: String,
@@ -46,6 +51,7 @@ Component({
       value: ""
     },
 
+    // 单位 rpx
     height: {
       type: Number,
       value: 300

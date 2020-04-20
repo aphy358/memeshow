@@ -1,0 +1,10 @@
+{
+  "component": true,
+  "usingComponents": {
+    "state-wait-receive": "./components/state-wait-receive/index",
+    "state-wait-pay": "./components/state-wait-pay/index",
+    "state-wait-delivery": "./components/state-wait-delivery/index",
+    "state-complete": "./components/state-complete/index",
+    "state-close": "./components/state-close/index"
+  }
+}

@@ -1,0 +1,78 @@
+@import "@/theme";
+
+.refund-info-item {
+  @include flex-row-nowrap;
+  @include hairline-top;
+  background: white;
+  padding: 30rpx;
+  width: 100%;
+  align-items: flex-start;
+  margin-bottom: 16rpx;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  @at-root .rii-thumbnail {
+    flex: 0 0 auto;
+    width: 176rpx;
+    height: 176rpx;
+    margin-right: 24rpx;
+    border-radius: 8rpx;
+    overflow: hidden;
+
+    image {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  @at-root .rii-detail {
+    position: relative;
+    flex: 1;
+    height: 176rpx;
+
+    @at-root .rii-detail-title {
+      font-size: 28rpx;
+      font-family: $font-cn;
+      color: $color-text-base;
+      line-height: 34rpx;
+      width: 100%;
+      @include line(2);
+    }
+
+    @at-root .rii-detail-specs {
+      font-size: 24rpx;
+      font-family: $font-cn;
+      color: #999999;
+      margin-top: 4rpx;
+    }
+
+    @at-root .rii-bill {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      @include flex-row-nowrap;
+      align-items: flex-end;
+      font-size: 24rpx;
+
+      @at-root .rii-bill-price {
+        color: #333333;
+      }
+
+      @at-root .rii-bill-original-price {
+        margin-left: 10rpx;
+        color: #969799;
+        text-decoration: line-through;
+      }
+
+      @at-root .rii-bill-quantity {
+        flex-grow: 1;
+        color: #969799;
+        font-size: 24rpx;
+        text-align: right;
+      }
+    }
+  }
+}

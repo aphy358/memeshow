@@ -1,0 +1,40 @@
+<view class="certification-index-wrap">
+  <tabs 
+    class="tabs" 
+    bind:change="onTabChange" 
+    default="{{ currentType }}"
+  >
+    <tab key="{{ 1 }}">个人认证</tab>
+    <tab key="{{ 2 }}">企业认证</tab>
+  </tabs>
+
+  <view class="certification-content">
+    <view class="certification-note">
+      <view class="row-one">身份认证</view>
+      <view class="row-two">请正确填写你的身份证信息（仅支持大陆身份证）</view>
+    </view>
+  </view>
+
+  <form bindsubmit="handleSubmit">
+    <view class="form">
+      <view class="form__item">
+        <view class="form__item__label">姓名</view>
+        <view class="form__item__content">
+          <input type="text" class="input" name="name" placeholder="请填写真实姓名" placeholder-class="form__placeholder"></input>
+        </view>
+      </view>
+      <view class="form__item">
+        <view class="form__item__label">身份证号</view>
+        <view class="form__item__content">
+          <input type="text" class="input" name="id" placeholder="请填写大陆身份证号" placeholder-class="form__placeholder"></input>
+        </view>
+      </view>
+    </view>
+
+    <view class="page-fixed-bottom-actions">
+      <view class="to-artificial">无法自动认证，<text class="red">点击进入人工审核</text></view>
+      <button class="button--primary button--circle" form-type="submit">下一步</button>
+      <view class="iphoneX-holder"></view>
+    </view>
+  </form>
+</view>

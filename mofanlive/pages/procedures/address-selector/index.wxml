@@ -1,0 +1,5 @@
+<address-selector
+  id="selector"
+  bind:change="onSelectAddress"
+  bind:openeditor="onOpenEditor"
+></address-selector>

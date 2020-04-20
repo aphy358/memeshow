@@ -1,0 +1,165 @@
+@import "@/theme";
+
+.refund-info-wrap {
+  margin-top: 16rpx;
+  background: white; 
+
+  @at-root .refund-info-title {
+    display: flex;
+    align-items: center;
+    padding: 24rpx 30rpx;
+    font-size: 28rpx;
+    color: #2B2B2B;
+  }
+
+  @at-root .refund-info-items {
+
+    @at-root .refund-info-item {
+      @include flex-row-nowrap;
+      background: #FBFBFB;
+      padding: 30rpx;
+      width: 100%;
+      align-items: flex-start;
+      margin-bottom: 16rpx;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      @at-root .rii-thumbnail {
+        flex: 0 0 auto;
+        width: 176rpx;
+        height: 176rpx;
+        margin-right: 24rpx;
+        border-radius: 8rpx;
+        overflow: hidden;
+
+        image {
+          width: 100%;
+          height: 100%;
+        }
+      }
+
+      @at-root .rii-detail {
+        position: relative;
+        flex: 1;
+        height: 176rpx;
+
+        @at-root .rii-detail-title {
+          font-size: 28rpx;
+          font-family: $font-cn;
+          color: $color-text-base;
+          line-height: 34rpx;
+          width: 100%;
+          @include line(2);
+        }
+
+        @at-root .rii-detail-specs {
+          font-size: 24rpx;
+          font-family: $font-cn;
+          color: #999999;
+          margin-top: 4rpx;
+        }
+
+        @at-root .rii-bill {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          @include flex-row-nowrap;
+          align-items: flex-end;
+          font-size: 24rpx;
+
+          @at-root .rii-bill-price {
+            color: #333333;
+          }
+
+          @at-root .rii-bill-original-price {
+            margin-left: 10rpx;
+            color: #969799;
+            text-decoration: line-through;
+          }
+
+          @at-root .rii-bill-quantity {
+            flex-grow: 1;
+            color: #969799;
+            font-size: 24rpx;
+            text-align: right;
+          }
+        }
+      }
+    }
+  }
+
+  @at-root .refund-brief-list {
+    padding: 16rpx 30rpx;
+    color: #969799;
+    font-size: 24rpx;
+
+    @at-root .refund-brief-item {
+      line-height: 44rpx;
+
+      .label {
+
+      }
+
+      .red {
+        color: #F94959;
+      }
+    }
+  }
+
+  @at-root .refund-info-actions {
+    @include hairline-top;
+
+    @at-root .od-tail-btns {
+      @include flex-row-nowrap;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+    
+      &::after {
+        content: "";
+        position: absolute;
+        transform-origin: center;
+        box-sizing: border-box;
+        pointer-events: none;
+        top: 0;
+        left: 50%;
+        transform: scale(.5);
+        border: solid #e8e8e8;
+        border-width: 0 1px 0 0;
+        width: 1px;
+        height: 100%;
+      }
+    
+      @at-root .od-tail-btn {
+        width: 50%;
+        display: flex;
+        justify-content: center;
+        padding: 24rpx;
+    
+        @at-root .od-tail-btn-inner {
+          @include flex-row-nowrap;
+          align-items: center;
+    
+          image {
+            width: 56rpx;
+            height: 56rpx;
+            margin-right: 20rpx;
+          }
+    
+          text {
+            color: #232032;
+            font-size: 28rpx;
+          }
+        }
+      }
+    }
+  }
+}
+
+.price-big {
+  font-size: 32rpx;
+  color: #141415;
+}

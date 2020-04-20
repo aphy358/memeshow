@@ -1,0 +1,92 @@
+<view class="mc-categories">
+    <view
+        class="mc-categories-add"
+        bindtap="onAdd"
+    >+ 添加分类</view>
+
+    <block wx:if="{{ categories.length }}">
+        <view class="mc-categories_list">
+            <view
+                wx:for="{{ categories }}"
+                wx:key="id"
+                class="mc-categories_list-item"
+            >
+                <view
+                    class="mc-categories_list-item-left"
+                    data-id="{{ item.id }}"
+                    data-ischecked="{{ !!item.checked }}"
+                    bindtap="onChange"
+                >
+                    <image
+                        wx:if="{{ item.checked }}"
+                        class="category-checked"
+                        src="./assets/checked.png"
+                    ></image>
+                    <view
+                        wx:else
+                        class="category-uncheck"
+                    ></view>
+                    <view class="category-name">{{ item.name }}</view>
+                </view>
+                <view class="mc-categories_list-item-right">
+                    <image
+                        class="category-operator"
+                        src="./assets/top.png"
+                        data-index="{{index}}"
+                        bindtap="onSetTop"
+                    ></image>
+                    <image
+                        class="category-operator"
+                        src="./assets/edit.png"
+                        data-index="{{index}}"
+                        bindtap="onEdit"
+                    ></image>
+                    <image
+                        class="category-operator"
+                        src="./assets/delete.png"
+                        data-index="{{index}}"
+                        bindtap="onDelete"
+                    ></image>
+                </view>
+            </view>
+        </view>
+    </block>
+
+    <block wx:else>
+        <view class="mc-categories_empty">暂无分类</view>
+    </block>
+</view>
+
+<view class="fixed-bottom-actions">
+    <button
+        class="button--primary button--circle"
+        bindtap="onConfirm"
+    >
+        确认
+    </button>
+</view>
+
+<mf-modal
+    open="{{ categoryModal.show }}"
+    title="{{ categoryModal.title }}"
+    bindcomplete="onCloseCategoryModal"
+    closable="{{false}}"
+    headerbg
+    contentstyle="transform:translateY(-50%)"
+>
+    <view class="new-category">
+        <view class="new-category-content">
+            <input
+                type="text"
+                value="{{ categoryModal.value }}"
+                placeholder="请输入店铺分类，8个字以内"
+                placeholder-class="placeholder"
+                bindinput="onChangeCategoryModal"
+            ></input>
+        </view>
+        <view class="new-category-buttons">
+            <view class="new-category-buttons--cancel" bindtap="onCancelCategoryModal">取消</view>
+            <view class="new-category-buttons--confirm" bindtap="onConfirmCategoryModal">确定</view>
+        </view>
+    </view>
+</mf-modal>

@@ -1,0 +1,36 @@
+<view class="menu-button-outer">
+    <view class="menu-button-inner">
+        <view
+            bindtap="clickShop"
+            class="menu-button"
+        >
+            <image
+                src="./assets/tabbar/home_default.png"
+                class="{{ current === 'profile' ? 'menu-button--active' : 'menu-button--hidden'}}"
+            />
+            <image
+                src="./assets/tabbar/home_active.png"
+                class="{{ current !== 'profile' ? 'menu-button--active' : 'menu-button--hidden'}}"
+            />
+            <text class="menu-button__{{current == 'profile' ? 'silent' : 'current' }}">店铺</text>
+        </view>
+        <view
+            bindtap="clickMine"
+            class="menu-button"
+        >
+            <image
+                src="./assets/tabbar/user_active.png"
+                class="{{ current === 'profile' ? 'menu-button--active' : 'menu-button--hidden'}}"
+            />
+            <image
+                src="./assets/tabbar/user_default.png"
+                class="{{ current !== 'profile' ? 'menu-button--active' : 'menu-button--hidden'}}"
+            />
+            <text class="menu-button__{{current == 'profile' ? 'current' : 'silent' }}">我的</text>
+        </view>
+    </view>
+</view>
+<view class="bottom-mask-half1"></view>
+<view class="bottom-mask-half2"></view>
+
+<ticketButton></ticketButton>

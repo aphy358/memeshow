@@ -1,0 +1,19 @@
+.card__extra {
+  display: flex;
+  align-items: center;
+  color: #969799;
+  
+  .img {
+    width: 32rpx;
+    height: 24rpx;
+  }
+}
+
+.card__header {
+  height: auto;
+  padding: 30rpx;
+}
+
+.card__title {
+  font-size: 28rpx;
+}

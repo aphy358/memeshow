@@ -1,0 +1,91 @@
+@import "@/theme";
+
+$padding-v: 20rpx;
+$padding-h: 20rpx;
+
+.explaining {
+  width: 100%;
+  padding: $padding-v $padding-h;
+  @include flex-row-nowrap;
+  position: relative;
+  border-bottom: 16rpx solid #f4f4f4;
+
+  &--img {
+    border-radius: 8rpx;
+    width: 160rpx;
+    height: 160rpx;
+    margin-right: 24rpx;
+  }
+
+  &--order {
+    position: absolute;
+    top: $padding-v;
+    left: $padding-h;
+    border-top-left-radius: 8rpx;
+    border-bottom-right-radius: 8rpx;
+    background: rgba($color: #000000, $alpha: .5);
+    width: 32rpx;
+    height: 32rpx;
+    line-height: 32rpx;
+    font-size: 24rpx;
+    text-align: center;
+    color: #fff;
+  }
+
+  &--hint {
+    position: absolute;
+    bottom: $padding-v;
+    left: $padding-h;
+    border-bottom-left-radius: 8rpx;
+    border-bottom-right-radius: 8rpx;
+    background-color: $color-brand;
+    width: 160rpx;
+    height: 36rpx;
+    overflow: hidden;
+    @include flex-row-nowrap;
+    justify-content: center;
+    align-items: center;
+
+    &__dot {
+      width: 12rpx;
+      height: 12rpx;
+      margin-right: 10rpx;
+      border-radius: 50%;
+      background-color: white;
+      display: block;
+    }
+
+    &__text {
+      color: white;
+      font-size: 24rpx;
+    }
+  }
+
+  &--detail {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+  }
+
+  &--title {
+    font-size: 32rpx;
+    @include line(2);
+  }
+
+  &--sold {
+    font-size: 24rpx;
+    color: #999;
+  }
+
+  &--price {
+    font-size: 32rpx;
+  }
+
+  &--buy {
+    width: 136rpx;
+    height: 56rpx;
+    position: absolute;
+    bottom: $padding-v;
+    right: $padding-h;
+  }
+}

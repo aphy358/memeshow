@@ -1,0 +1,39 @@
+.certification-content {
+  padding-top: 88rpx;
+
+  @at-root .certification-note {
+    padding: 80rpx 0;
+    text-align: center;
+    color: #333;
+  
+    .row-one {
+      font-size: 32rpx;
+      margin-bottom: 12rpx;
+    }
+  
+    .row-two {
+      font-size: 24rpx;
+    }
+  }
+}
+
+.form {
+  background: white;
+}
+
+.page-fixed-bottom-actions {
+  background: transparent;
+  box-shadow: none;
+
+  @at-root .to-artificial {
+    color: #999999;
+    text-align: center;
+    font-size: 24rpx;
+    margin-bottom: 50rpx;
+    font-size: 24rpx;
+
+    .red {
+      color: #F32953;
+    }
+  }
+}

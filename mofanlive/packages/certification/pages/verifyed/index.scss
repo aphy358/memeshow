@@ -1,0 +1,21 @@
+@import "@/theme";
+
+.white-back {
+  background: white;
+}
+
+.cell__detail {
+  color: #999999;
+  text-align: right;
+}
+
+.verifyed-note {
+  color: #999999;
+  font-size: 24rpx;
+  margin-top: 30rpx;
+  text-align: center;
+
+  .red {
+    color: #F32953;
+  }
+}

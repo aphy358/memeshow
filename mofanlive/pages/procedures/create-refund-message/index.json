@@ -1,7 +1,0 @@
-{
-  "component": true,
-  "navigationBarTitleText": "留言",
-  "usingComponents": {
-    "image-selector": "./components/image-selector/index"
-  }
-}

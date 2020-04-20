@@ -1,0 +1,64 @@
+@import "ui-kit/style/variables/default.scss";
+@import "ui-kit/style/mixins/index.scss";
+
+$card-shadow: 0 6px 10px 0 #e3e8f3;
+
+.my-order-outline {
+  background: white;
+  margin: 0 24rpx 24rpx;
+  border-radius: 12rpx;
+  color: #333;
+  box-shadow: $card-shadow;
+
+  .order-outline-header {
+    display: flex;
+    align-items: center;
+    padding: 20rpx 30rpx;
+    justify-content: space-between;
+    // @include hairline-bottom($color: #ddd);
+
+    .title {
+      font-size: 32rpx;
+      font-family: PingFangSC-Medium;
+    }
+
+    .check-more-order {
+      display: flex;
+      align-items: center;
+      font-size: 28rpx;
+      color: #979DA5;
+    }
+  }
+
+  @at-root .order-outline-body {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 20rpx 10rpx;
+
+    @at-root .order-outline-item {
+      width: 25%;
+
+      @at-root .order-outline-inner {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+
+        .img {
+          width: 56rpx;
+          height: 56rpx;
+        }
+  
+        .text {
+          font-size: 28rpx;
+          color: #666;
+          margin-top: 10rpx;
+        }
+      }
+    }
+  }
+}
+
+.navigator-hover {
+  background: transparent;
+}

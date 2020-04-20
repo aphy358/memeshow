@@ -1,0 +1,88 @@
+<wxs module="formator" src="/utils/formator.wxs"></wxs>
+<wxs module="domHelper" src="./index.wxs"></wxs>
+<wxs module="priceFormat" src="/components/common/wxs/accurate.wxs"></wxs>
+
+<view class="audits-records-list">
+  <view 
+    class="audits-records-item"
+    wx:for="{{ audits }}"
+    wx:key="index"
+  >
+    <view class="ari-avatar">
+      <avatar
+        wx:if="{{ item.operatorType !== 'buyer' }}"
+        type="3"
+        circle
+        size="68rpx"
+        url="{{ item.userInfo.avatar }}"
+      />
+    </view>
+
+    <view class="ari-card {{ item.operatorType === 'buyer' ? 'right' : 'left' }}">
+      <view class="ari-title">
+        <view class="ari-operator">{{ item.operatorType === 'buyer' ? '买家' : item.operatorType === 'seller' ? '商家' : '平台' }}</view>
+        <view class="ari-ctime">{{ formator.getTimeStr(item.ctime) }}</view>
+      </view>
+
+      <view class="ari-content">
+        <view class="ari-sub-title">{{ domHelper.getAuditSubTitle(item.action, refundDetail.type) }}</view>
+
+        <block wx:if="{{ item.content }}">
+          <view  class="ari-contents">
+            <view wx:if="{{ item.content.type !== undefined }}" class="ari-content-row">
+              <text class="ari-content-label">退款方式：</text>{{ item.content.type == 2 ? '仅退款' : '退款退货' }}
+            </view>
+            <view wx:if="{{ item.content.reason !== undefined }}" class="ari-content-row">
+              <text class="ari-content-label">退款原因：</text>{{ item.content.reason }}
+            </view>
+            <view wx:if="{{ item.content.amount !== undefined }}" class="ari-content-row">
+              <text class="ari-content-label">退款金额：</text><text class="red">{{ priceFormat.accurate(item.content.amount) }}元</text>
+            </view>
+            <view wx:if="{{ item.content.remark !== undefined }}" class="ari-content-row">
+              <text class="ari-content-label">{{ domHelper.getRemarkLable(item) }}：</text>{{ item.content.remark || '未填写' }}<view wx:if="{{ item.action !== 'remark' }}"></view>
+            </view>
+            <view wx:if="{{ item.content.type == 1 }}" class="ari-content-row">
+              <text class="ari-content-label">退货数量：</text>{{ refundDetail.itemNum }}
+            </view>
+            <view wx:if="{{ item.content.express !== undefined }}" class="ari-content-row">
+              <text class="ari-content-label">物流公司：</text>{{ item.content.express }}
+            </view>
+            <view wx:if="{{ item.content.expressNo !== undefined }}" class="ari-content-row">
+              <text class="ari-content-label">物流单号：</text>{{ item.content.expressNo }}
+            </view>
+            <view wx:if="{{ item.content.expressRemark !== undefined }}" class="ari-content-row">
+              <text class="ari-content-label">物流说明：</text>{{ item.content.expressRemark }}
+            </view>
+            <view wx:if="{{ item.content.tel !== undefined }}" class="ari-content-row">
+              <text class="ari-content-label">联系电话：</text>{{ item.content.tel }}
+            </view>
+          </view>
+        </block>
+
+        <view wx:if="{{ (item.content.expressMetadata && item.content.expressMetadata.length) || (item.content.enclosures && item.content.enclosures.length) }}" class="ari-enclosures">
+          <view class="label">凭证</view>
+          <view class="enclosures">
+            <image 
+              wx:for="{{ item.content.expressMetadata || item.content.enclosures }}"
+              wx:for-item="enclosure"
+              wx:key="index"
+              src="{{ enclosure }}" 
+            />
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="ari-avatar">
+      <avatar
+        wx:if="{{ item.operatorType === 'buyer' }}"
+        type="2"
+        circle
+        size="68rpx"
+        url="{{ item.userInfo.avatar }}"
+      />
+    </view>
+  </view>
+</view>
+
+<view style="height: 100rpx;"></view>

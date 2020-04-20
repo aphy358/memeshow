@@ -23,7 +23,7 @@ Component({
       value: false
     },
 
-    stickable: {
+    sticky: {
       type: Boolean,
       value: false
     },
@@ -40,7 +40,7 @@ Component({
     }
   },
 
-  externalClasses: ["tabs-class"],
+  externalClasses: ["tabs-class", "tabs-content-class"],
 
   relations: {
     "../tab/index": {
@@ -62,7 +62,7 @@ Component({
 
   data: {
     current: 0,
-    sticky: false
+    stickable: false
   },
 
   observers: {
@@ -76,9 +76,13 @@ Component({
       this.setData({
         current: this.data.default
       })
-      if (this.data.stickable) {
+      if (this.data.sticky) {
         this.setIntersectionObserver()
       }
+    },
+
+    detached() {
+      this._observer && this._observer.disconnect()
     }
   },
 
@@ -111,14 +115,19 @@ Component({
 
     setIntersectionObserver() {
       if (this._observer) this._observer.disconnect()
-      this._observer = this.createIntersectionObserver()
-        .relativeToViewport({
-          top: this.data.offset
-        })
-        .observe(".tabs__observer__placeholder", res => {
-          if (res.intersectionRatio < 1) this.setData({ sticky: true })
-          else if (res.intersectionRatio >=1) this.setData({ sticky: false })
-        })
+      this._observer = this.createIntersectionObserver().relativeToViewport({
+        top: -this.data.offset
+      })
+
+      this._observer.observe(".tabs__observer__placeholder", res => {
+        if (res.intersectionRatio < 1) {
+          this.setData({ stickable: true })
+          this.triggerEvent("changesticky", { sticky: true })
+        } else if (res.intersectionRatio >= 1) {
+          this.setData({ stickable: false })
+          this.triggerEvent("changesticky", { sticky: false })
+        }
+      })
     }
   },
 

@@ -1,0 +1,25 @@
+<view class="refund-info-actions">
+  <view class="od-tail-btns">
+    <view class="od-tail-btn" bind:tap="showContactSellerPopup">
+      <view class="od-tail-btn-inner">
+        <image src="/assets/images/orders/wechat.png" />
+        <text>联系商家</text>
+      </view>
+    </view>
+
+    <view class="od-tail-btn" bind:tap="navToLeaveMessage">
+      <view class="od-tail-btn-inner">
+        <image src="/assets/images/orders/leave-message.png" />
+        <text>发表留言</text>
+      </view>
+    </view>
+  </view>
+  <view class="iphoneX-holder"></view>
+</view>
+
+<!-- 联系商家 -->
+<contact-seller 
+  bind:hideContactSellerPopup="onHideContactSellerPopup" 
+  show="{{ contactSellerPopupVisible }}"
+  shopInfo="{{ shopInfo }}"
+/>

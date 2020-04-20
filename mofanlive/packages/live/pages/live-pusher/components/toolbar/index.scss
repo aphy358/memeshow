@@ -1,0 +1,255 @@
+@import "@/theme";
+
+@mixin popover($left: 0, $right: 0, $width: auto, $bg: rgba(0, 0, 0, 0.7)) {
+    position: absolute;
+    top: 0;
+    left: $left;
+    right: $right;
+    width: $width;
+    transform: translateY(calc(-100% - 10px));
+    background: $bg;
+
+    &:after {
+        content: "";
+        position: absolute;
+        display: block;
+        border: 8px solid transparent;
+        border-top-color: $bg;
+
+        // 自定义箭头偏移量
+        @content;
+    }
+}
+
+button.reset {
+    padding: unset;
+    padding-left: unset;
+    padding-right: unset;
+    padding-top: unset;
+    padding-bottom: unset;
+    background-color: unset;
+    background: unset;
+    border-radius: unset;
+    margin: unset;
+    font-size: unset;
+    line-height: unset;
+}
+
+.live-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.tool-icons {
+    display: flex;
+    align-items: center;
+
+    .tool-icon {
+        position: relative;
+        width: 80rpx;
+        height: 80rpx;
+        background: rgba(0, 0, 0, 0.25);
+        border-radius: 100%;
+        margin-right: 24rpx;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &-btn {
+            display: flex;
+            justify-content: center;
+            align-items: center
+        }
+
+        &-image {
+            width: 44rpx;
+            height: 44rpx;
+        }
+    }
+}
+
+.tool-entries {
+    display: flex;
+    align-items: flex-end;
+
+    .tool-entry {
+        margin-right: 30rpx;
+
+        &:last-child {
+            margin-right: 0;
+        }
+
+        image {
+            display: block;
+        }
+
+        &_bag {
+            width: 76rpx;
+            height: 76rpx;
+        }
+
+        &_shop {
+            width: 100rpx;
+            height: 100rpx;
+        }
+    }
+}
+
+.tool-container {
+    position: relative;
+    font-family: "SFUIDisplay-Semibold" $font-nu;
+    line-height: 1;
+
+    > text {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 14rpx;
+        text-align: center;
+        color: #fff;
+    }
+
+    .tool-shop-add {
+        font-size: 44rpx;
+    }
+
+    .tool-shop-num {
+        font-size: 40rpx;
+    }
+
+    .tool-tips {
+        @include popover(-100rpx) {
+            right: 0;
+            transform: translateX(-100%);
+        }
+
+        border-radius: 8rpx;
+        font-family: $font-cn;
+        font-size: $font-size-base;
+        color: #fff;
+        line-height: 1.3;
+
+        &-shop {
+            padding: 20rpx 30rpx;
+
+            image {
+                width: 20rpx;
+                height: 20rpx;
+                margin-left: 5rpx;
+            }
+        }
+    }
+}
+
+.tool-share {
+    @include popover($width: 240rpx){
+        transform: translateX(70%);
+    };
+    border-radius: 12rpx;
+
+    &-wrap {
+        padding: 20rpx 30rpx;
+    }
+
+    &-image {
+        width: 20rpx;
+        height: 20rpx;
+        margin-left: 5rpx;
+    }
+
+    &-text {
+        font-family: "PingFangSC-Regular";
+        color: #fff;
+        font-size: $font-size-base;
+        line-height: 1;
+    }
+}
+
+.tool-settings {
+    @include popover(unset, unset, 120px) {
+        transform: translateX(35px);
+    }
+
+    padding: 0 30rpx;
+    border-radius: 12rpx;
+    font-family: "PingFangSC-Regular";
+    color: #fff;
+    font-size: $font-size-base;
+    line-height: 1;
+
+    &-item {
+        @include hairline-bottom($color: #444);
+        padding: 26rpx 0;
+        display: flex;
+        align-items: center;
+
+        &:last-child {
+            &:after {
+                display: none;
+            }
+        }
+    }
+
+    &-icon {
+        display: inline-block;
+        width: 28rpx;
+        height: 28rpx;
+    }
+
+    &-desc {
+        display: inline-block;
+        margin-left: 12rpx;
+    }
+}
+
+.recommend-wrap {
+    position: absolute;
+    top: -200rpx;
+    right: 0;
+    width: 132rpx;
+
+    &::after {
+        content: "";
+        position: absolute;
+        bottom: -14rpx;
+        right: 35rpx;
+        display: block;
+        width: 0;
+        height: 0;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-top: 8px solid white;
+    }
+
+    @at-root .recommend-inner {
+        width: 100%;
+        height: 100%;
+        border-radius: 12rpx;
+        overflow: hidden;
+
+        @at-root .recommend-title {
+            color: white;
+            background: #ef4551;
+            height: 36rpx;
+            line-height: 36rpx;
+            font-size: 20rpx;
+            text-align: center;
+        }
+
+        @at-root .recommend-body {
+            display: flex;
+            height: 130rpx;
+            justify-content: center;
+            align-items: center;
+            background: white;
+
+            @at-root .recommend-img {
+                width: 120rpx;
+                height: 120rpx;
+                border-radius: 4rpx;
+                overflow: hidden;
+            }
+        }
+    }
+}

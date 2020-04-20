@@ -1,0 +1,43 @@
+<wxs
+    module="formator"
+    src="/utils/formator.wxs"
+></wxs>
+
+<view class="card card--no-border white-back margin-top">
+    <view class="card__content info">
+        <view
+            bind:tap="copy"
+            class="info-copy"
+        >复制</view>
+
+        <view class="card__info">
+            <text class="card-info-label">订单编号: </text>
+            <text>{{ orderDetail.id }}</text>
+        </view>
+
+        <view wx:if="{{ !!orderDetail.payMethod && orderDetail.state !== OAK.Close }}" class="card__info">
+            <text class="card-info-label">支付方式: </text>
+            <text>{{ PaymentTypeMapping[orderDetail.payMethod] }}</text>
+        </view>
+
+        <view wx:if="{{ !!orderDetail.ctime }}" class="card__info">
+            <text class="card-info-label">创建时间: </text>
+            <text>{{ formator.getTimeStr(orderDetail.ctime) }}</text>
+        </view>
+
+        <view wx:if="{{ !!orderDetail.payTime }}" class="card__info">
+            <text class="card-info-label">付款时间: </text>
+            <text>{{ formator.getTimeStr(orderDetail.payTime) }}</text>
+        </view>
+
+        <view wx:if="{{ !!orderDetail.deliveryTime }}" class="card__info">
+            <text class="card-info-label">发货时间: </text>
+            <text>{{ formator.getTimeStr(orderDetail.deliveryTime) }}</text>
+        </view>
+
+        <view wx:if="{{ !!orderDetail.deliveredTime && orderDetail.state !== OAK.Close }}" class="card__info">
+            <text class="card-info-label">完成时间: </text>
+            <text>{{ formator.getTimeStr(orderDetail.deliveredTime) }}</text>
+        </view>
+    </view>
+</view>

@@ -1,0 +1,22 @@
+// 卖家留言
+var getMerchantRemark = function(remarks) {
+  if (remarks && remarks.length) {
+    return remarks.filter(n => n.creatorType === 'seller').map(n => n.content).join('，')
+  }
+
+  return ''
+}
+
+// 买家留言
+var getCustomerRemark = function(remarks) {
+  if (remarks && remarks.length) {
+    return remarks.filter(n => n.creatorType !== 'seller').map(n => n.content).join('，')
+  }
+
+  return ''
+}
+
+module.exports = {
+  getMerchantRemark,
+  getCustomerRemark
+}

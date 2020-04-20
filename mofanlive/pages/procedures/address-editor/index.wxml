@@ -1,0 +1,4 @@
+<address-editor
+    bind:cancel="exitEditor"
+    id="editor"
+></address-editor>

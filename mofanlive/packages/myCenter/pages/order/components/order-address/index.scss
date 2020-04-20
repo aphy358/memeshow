@@ -1,0 +1,39 @@
+@import "@/theme";
+
+.icon  {
+  font-size: 75rpx;
+  color: $color-brand;
+}
+
+.address {
+  width: 100%;
+  position: relative;
+  font-size: $font-size-base;
+  font-family: $font-cn;
+  color: $color-text-base;
+
+  &__name,
+  &__tel {
+    display: inline;
+  }
+
+  &__item {
+    line-height: 38rpx;
+    margin-top: 4rpx;
+  }
+}
+
+.card__info {
+  align-items: center;
+}
+
+.location-icon {
+  width: 56rpx;
+  height: 56rpx;
+  margin-right: 20rpx;
+
+  .img {
+    width: 56rpx;
+    height: 56rpx;
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "badge": "/ui-kit/components/badge/index"
+  }
+}

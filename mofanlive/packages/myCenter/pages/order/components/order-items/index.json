@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "contact-seller": "/components/contact-seller/index"
+  }
+}

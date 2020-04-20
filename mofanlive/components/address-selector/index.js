@@ -1,5 +1,9 @@
-import address from '@/data/address'
+const Api = wx.X.Api
 
+/**
+ * @event change
+ * @event openeditor
+ */
 Component({
   data: {
     addr: {
@@ -8,8 +12,11 @@ Component({
     needAuth: false,
   },
 
-  lifetimes: {
-    ready() {
+  methods: {
+    /**
+     * 初始化地址列表
+     */
+    init() {
       wx.getSetting({
         success: res => {
           if (!res.authSetting['scope.address']) {
@@ -19,24 +26,26 @@ Component({
           }
         }
       })
-
-      this.init()
+      this.updateAddressList()
     },
-  },
 
-  methods: {
-
-    /**
-     * 初始化地址列表
-     */
-    init() {
-      // TODO use real data
+    async updateAddressList() {
+      const addressRsp = await Api.UserProfile.listAddress()
       this.setData({
-        "addr.list": address
+        "addr.list": addressRsp
       })
     },
 
-    wechatAddress() {
+    async wechatAddress() {
+      const res = await this.chooseAddress()
+      if (!!res) {
+        const rsp = await Api.UserProfile.createAddress(res)
+        if (!!rsp) {
+          rsp.isDefault = true
+          await Api.UserProfile.updateAddress(rsp)
+          this.updateAddressList()
+        }
+      }
       if (this.data.needAuth) {
         wx.showModal({
           title: "需要打开小程序的设置重新授权",
@@ -57,10 +66,15 @@ Component({
             }
           }
         })
-      } else {
+      }
+    },
+
+    chooseAddress() {
+      return new Promise((resolve, reject) => {
         wx.chooseAddress({
           success: res => {
-            this.emitAddress({
+            this.data.needAuth = false
+            resolve({
               name: res.userName,
               tel: res.telNumber,
               province: res.provinceName,
@@ -71,23 +85,40 @@ Component({
           },
           fail: err => {
             this.setData({
-              needAuth: true
+              needAuth: err.errMsg != "chooseAddress:fail cancel"
+            }, () => {
+              resolve(false)
             })
           }
         })
-      }
+      })
     },
 
     editAddress(e) {
       const index = e.currentTarget.dataset.index
-    },
-
-    emitAddress(data) {
+      this.triggerEvent('openeditor', {
+        preset: this.data.addr.list[index]
+      })
     },
 
     addAddress() {
-      console.log('add')
-      this.triggerEvent('add')
+      this.triggerEvent('openeditor')
+    },
+
+    async deleteAddress(e) {
+      const index = e.currentTarget.dataset.index
+      const rsp = await Api.UserProfile.deleteAddress(this.data.addr.list[index].id)
+      if (!!rsp) {
+        this.updateAddressList()
+        wx.showToast({
+          title: "删除成功",
+        })
+      } else {
+        wx.showToast({
+          title: "删除失败，请稍后重试",
+          icon: "none"
+        })
+      }
     },
 
     /**
@@ -99,12 +130,27 @@ Component({
       this.triggerEvent('change', this.data.addr.list[index])
     },
 
-    setDefault(e) {
-      const length = this.data.addr.list.length
+    async setDefault(e) {
+      const list = this.data.addr.list
+      const length = list.length
       const index = e.detail.value
-      for (let i = 0; i < length; i++) {
-        this.setData({
-          [`addr.list[${i}].isDefault`]: i === index && e.detail.checked
+
+      const address = list[index]
+      address.isDefault = true
+
+      wx.showLoading()
+      const rsp = await Api.UserProfile.updateAddress(address)
+      wx.hideLoading()
+      if (!!rsp) {
+        for (let i = 0; i < length; i++) {
+          this.setData({
+            [`addr.list[${i}].isDefault`]: i === index && e.detail.checked
+          })
+        }
+      } else {
+        wx.showToast({
+          title: "设置默认地址失败",
+          icon: "none",
         })
       }
     },

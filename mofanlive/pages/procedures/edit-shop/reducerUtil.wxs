@@ -1,0 +1,13 @@
+module.exports = {
+  "location": function (a) {
+    if (!!a && a.province) return a.province + " " + a.city + " " + a.district + " " + a.address
+    return "未设置地址"
+  },
+  "categories": function (categories) {
+    var result = ""
+    for (var i = 0; i < categories.length; i++) {
+      result = result + categories[i].name
+    }
+    return result
+  }
+}

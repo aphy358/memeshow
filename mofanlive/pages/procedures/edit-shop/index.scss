@@ -1,0 +1,84 @@
+@import "@/theme";
+
+.form {
+  background: white;
+
+  &__item__content {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+}
+
+.avatar {
+  width: 100rpx;
+  height: 100rpx;
+
+  image {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.form__placeholder {
+  color: #999 !important;
+}
+
+.large-line {
+  height: 140rpx;
+}
+
+.shop-preview {
+  background-color: white;
+  padding: 30rpx;
+  width: 100%;
+  position: relative;
+
+  .shop {
+    &-bg {
+      width: 690rpx;
+      height: 447rpx;
+
+      &--mask {
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, .5));
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    &-avatar {
+      width: 120rpx;
+      height: 120rpx;
+      border-radius: 50%;
+      border: 4rpx white solid;
+      background-color: white;
+      overflow: hidden;
+      box-sizing: content-box;
+      position: absolute;
+      left: 50%;
+      transform: translate(-50%, -50%);
+
+      image {
+        width: 120rpx;
+        height: 120rpx;
+      }
+    }
+
+    &-hint {
+      margin-top: 100rpx;
+      width: 100%;
+      text-align: center;
+      font-size: 24rpx;
+      color: #999;
+    }
+  }
+}
+
+.bottom-btn {
+  position: fixed;
+  bottom: 0;
+  padding: 24rpx 30rpx;
+  width: 100%;
+  background: white;
+  box-shadow: 0 0 16rpx 0 rgba($color: #999, $alpha: 0.2);
+}

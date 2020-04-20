@@ -1,0 +1,11 @@
+{
+  "component": true,
+  "usingComponents": {
+    "popup": "ui-kit/components/popup/index",
+    "tabs": "ui-kit/components/tabs/index",
+    "tab": "ui-kit/components/tab/index",
+    "product-list": "./components/product-list/index",
+    "introducing-product": "./components/introducing-product/index",
+    "coupon": "/components/coupon/index"
+  }
+}

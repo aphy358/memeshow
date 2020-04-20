@@ -1,0 +1,22 @@
+<wxs
+    module="priceFormat"
+    src="/components/common/wxs/accurate.wxs"
+></wxs>
+
+<wxs
+    module="formator"
+    src="/utils/delivery.wxs"
+></wxs>
+
+<view class="card card--no-border white-back margin-top">
+  <view wx:if="{{ formator.getDeliverable(order.deliveryOrders) }}" class="card__header" bind:tap="navToDeliveryDetail">
+    <view class="card__title">物流信息（快递费：¥ {{ priceFormat.accurate(order.postage) }}）</view>
+    <view class="card__extra">
+      <text>{{ formator.getLogistics(order.deliveryOrders) }}</text>
+      <image class="img" mode="aspectFit" src="/assets/images/arrow.png" />
+    </view>
+  </view>
+  <view wx:else class="card__header">
+    <view class="card__title">无需物流</view>
+  </view>
+</view>

@@ -1,0 +1,25 @@
+
+<!-- 待付款 -->
+<block wx:if="{{ order.state === OAK.WaitPay }}">
+  <state-wait-pay order="{{ order }}" />
+</block>
+
+<!-- 待发货 -->
+<block wx:if="{{ order.state === OAK.WaitDelivery }}">
+  <state-wait-delivery order="{{ order }}" />
+</block>
+
+<!-- 待收货 -->
+<block wx:if="{{ order.state === OAK.WaitReceive }}">
+  <state-wait-receive order="{{ order }}" />
+</block>
+
+<!-- 交易完成 -->
+<block wx:if="{{ order.state === OAK.Complete }}">
+  <state-complete order="{{ order }}" />
+</block>
+
+<!-- 交易关闭 -->
+<block wx:if="{{ order.state === OAK.Close }}">
+  <state-close order="{{ order }}" />
+</block>

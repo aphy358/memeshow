@@ -1,0 +1,134 @@
+@import "@/theme";
+
+.mc-categories {
+    &_list {
+        background: #fff;
+        padding: 0 24rpx;
+
+        &-item {
+            @include hairline-bottom();
+            height: 90rpx;
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: space-between;
+
+            &-right,
+            &-left {
+                display: flex;
+                flex-flow: row nowrap;
+                align-items: center;
+            }
+
+            &-left {
+                flex: 1;
+            }
+
+            &-right {
+                flex: 0 0 auto;
+            }
+        }
+    }
+
+    &_empty {
+        margin: 30rpx auto;
+        color: #999;
+        text-align: center;
+    }
+
+    &-add {
+        margin: 40rpx 30rpx;
+        font-family: "PingFangSC-Medium"sans-serif;
+        font-size: 16px;
+        color: #f32953;
+        line-height: 16px;
+    }
+}
+
+.fixed-bottom-actions {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 16rpx 24rpx;
+    z-index: 100;
+    bottom: 0;
+    bottom: calc(constant(safe-area-inset-bottom));
+    bottom: calc(env(safe-area-inset-bottom));
+    background-color: rgba($color:#999999, $alpha: .2);
+}
+
+.new-category {
+    &-content {
+        padding: 40rpx 30rpx;
+
+        >input {
+            height: 34px;
+            border: 1rpx solid #f2f2f2;
+            border-radius: 8rpx;
+            padding: 0 20rpx;
+            font-family: "PingFangSC-Regular";
+            font-size: 14px;
+            color: #333;
+            line-height: 34px;
+        }
+    }
+
+    &-buttons {
+        @include hairline-top();
+        height: 88rpx;
+        display: flex;
+
+        &--confirm,
+        &--cancel {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-family: PingFangSC-Regular;
+            font-size: 16px;
+            color: #333333;
+            line-height: 16px;
+        }
+
+        &--confirm {
+            @include hairline-left();
+        }
+    }
+}
+
+.category-name {
+    margin-left: 18rpx;
+    font-family: "PingFangSC-Regular";
+    font-size: 16px;
+    color: #333333;
+}
+
+.category-uncheck {
+    box-sizing: border-box;
+    width: 32rpx;
+    height: 32rpx;
+    border-radius: 100%;
+    border: 2rpx solid #999;
+}
+
+.category-checked {
+    display: inline-block;
+    width: 32rpx;
+    height: 32rpx;
+}
+
+.category-operator {
+    display: inline-block;
+    width: 32rpx;
+    height: 32rpx;
+    margin-left: 48rpx;
+    padding: 6rpx;
+}
+
+.placeholder {
+    font-family: PingFangSC-Regular;
+    font-size: 14px;
+    color: #999999;
+    line-height: 28px;
+}

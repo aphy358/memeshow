@@ -1,0 +1,59 @@
+@import "ui-kit/style/index";
+
+.list-card {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    padding: 20rpx 0;
+    background-color: #fff;
+
+    &__image {
+        flex: 0 0 auto;
+        width: 92rpx;
+        height: 92rpx;
+        border-radius: 12rpx;
+    }
+
+    &__detail {
+        flex: 1 1 auto;
+        margin: 0 20rpx;
+        overflow: hidden;
+
+        &-title {
+            @include line();
+            margin-bottom: 20rpx;
+            font-family: "PingFangSC-Regular" "Microsoft YaHei" sans-serif;
+            font-size: 32rpx;
+            color: #333;
+            line-height: 1;
+        }
+
+        &-time {
+            font-family: "SFUIDisplay-Regular" "Microsoft YaHei" sans-serif;
+            font-size: 24rpx;
+            color: #999;
+            line-height: 1;
+        }
+    }
+
+    &__right {
+        flex: 0 0 auto;
+    }
+
+    &__price {
+        margin-bottom: 20rpx;
+        font-family: "SFUIDisplay-Regular" "Microsoft YaHei" sans-serif;
+        font-size: 32rpx;
+        color: #333;
+        text-align: right;
+        line-height: 1;
+    }
+
+    &__status {
+        font-family: "PingFangSC-Regular" "Microsoft YaHei" sans-serif;
+        font-size: 24rpx;
+        color: #999;
+        text-align: right;
+        line-height: 1;
+    }
+}

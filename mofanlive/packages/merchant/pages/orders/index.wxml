@@ -1,0 +1,42 @@
+<view class="merchant-orders-wrap">
+    
+    <!-- 搜索栏 -->
+    <search-bar />
+
+    <view class="merchant-tab-wrap">
+        <tabs
+            class="tabs"
+            bind:change="onTabChange"
+            default="{{ currentType }}"
+        >
+            <block
+                wx:for="{{ types }}"
+                wx:key="key"
+            >
+                <tab key="{{ item.Key }}">{{ item.Title }}</tab>
+            </block>
+        </tabs>
+    </view>
+
+    <view class="orders p-sm">
+        <block
+            wx:for="{{ orders.content }}"
+            wx:key="{{ index }}"
+        >
+            <order 
+                order="{{ item }}" 
+                bind:orderStatusChange="onOrderStatusChange"
+                bind:refreshOrder="onRefreshOrder"
+            ></order>
+        </block>
+    </view>
+
+    <!-- 正在加载中... -->
+    <view class="loading" wx:if="{{ isLoading }}">正在加载中...</view>
+
+    <!-- 没有更多了 -->
+    <no-more wx:if="{{ !orders.hasMore && orders.content.length > 0 }}" />
+
+    <!-- 无相关订单 -->
+    <no-records type="2" wx:if="{{ !orders.hasMore && orders.content.length === 0 }}" />
+</view>

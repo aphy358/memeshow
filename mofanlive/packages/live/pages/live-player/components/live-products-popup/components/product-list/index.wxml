@@ -1,0 +1,32 @@
+<wxs
+    module="priceFormat"
+    src="/components/common/wxs/accurate.wxs"
+></wxs>
+
+<view class="product-list">
+    <block
+        wx:for="{{products}}"
+        wx:key="id"
+    >
+        <view
+            class="product"
+            data-id="{{item.id}}"
+        >
+            <image
+                class="product-img"
+                src="{{item.image.medium}}"
+            />
+            <view class="product-order-num">{{index+1}}</view>
+            <view class="product-desc">
+                <view class="product-desc-title">{{item.title}}</view>
+                <view class="product-desc-sold">{{item.soldCount}}人付款</view>
+                <view class="product-desc-price f-price">￥{{priceFormat.accurate(item.price)}}</view>
+            </view>
+            <button
+                catch:tap="handleTapBuy"
+                class="product-desc-buy button--secondary button--mini button--circle"
+                data-id="{{item.id}}"
+            >购买</button>
+        </view>
+    </block>
+</view>

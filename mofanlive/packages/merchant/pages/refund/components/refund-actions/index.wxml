@@ -1,0 +1,13 @@
+<view
+  wx:if="{{ RefundDetailActions[refundDetail.type][refundDetail.state].length > 0 }}"
+  class="actions actions-shadow"
+  style="{{isIPhoneX ? 'padding-bottom: 68rpx': ''}}"
+>
+  <button
+    wx:for="{{ RefundDetailActions[refundDetail.type][refundDetail.state] }}"
+    wx:key="index"
+    bindtap="actionClick"
+    class="button--{{ item.Class }} button--circle button--mini"
+    data-key="{{ item.Title }}"
+  >{{ item.Title }}</button>
+</view>

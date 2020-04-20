@@ -1,6 +1,6 @@
 
 /**
- * 参考 CursorDataDelegate 接口结构
+ * video 游标管理
  */
 class VideoCursorDataDelegator {
 

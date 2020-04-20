@@ -1,0 +1,16 @@
+<view class="card card--no-border white-back margin-top">
+    <view class="card__content">
+        <view class="card__info row">
+            <view class="location-icon">
+                <image class="img" src="/assets/images/orders/location.png" />
+            </view>
+            <view class="address">
+                <view class="address__name m-r-md">{{address.name}}</view>
+                <view class="address__tel">{{address.tel}}</view>
+                <view class="address__item">{{address.province+address.city+address.district+address.address}}</view>
+
+                <view bind:tap="copy" class="info-copy">复制</view>
+            </view>
+        </view>
+    </view>
+</view>

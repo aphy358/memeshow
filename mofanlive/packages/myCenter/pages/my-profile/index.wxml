@@ -1,0 +1,15 @@
+
+<view class="m-v-xl">
+  <mf-textarea 
+    height="{{ 300 }}" 
+    placeholder="请输入简介" 
+    placeholder-class="form__placeholder"
+    bind:input="bindinput"
+    counter
+    maxlength="{{ 100 }}"
+  />
+
+  <view class="m-v-xl m-h-xl">
+    <button class="button--primary button--circle" hover-class="button--actived" bind:tap="saveProfile">保存</button>
+  </view>
+</view>

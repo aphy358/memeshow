@@ -10,13 +10,15 @@
     </view>
     <view class="menu">
         <view
-            class="menu-item"
             bind:tap="clickMenu"
+            class="menu-item f-cn f-md"
             data-index="{{index}}"
+            style="background-color: {{item.bg}}; color: {{item.color}};"
             wx:for="{{menu}}"
             wx:key="key"
-            style="background-color: {{item.color}};"
         >
-        <view class="f-cn f-md">{{item.title}}</view></view>
+            {{item.title}}
+            <!-- <view class="f-cn f-md">{{item.title}}</view> -->
+        </view>
     </view>
 </view>

@@ -1,0 +1,24 @@
+
+<view class="live-follow-wrap">
+  <hpopup
+    show="{{ show }}"
+    duration="{{ 100 }}"
+    bind:touchendMask="hidePopup"
+    position="center"
+  >
+    <view class="live-follow-inner">
+      <image class="live-follow-close-button" bind:tap="hidePopup" src="../../../../assets/close-black.png" />
+      <view class="live-follow-title">谢谢你关注我</view>
+      <view class="live-follow-sub-title">送你10张内购券，邀请你来看我的下场直播</view>
+      <image class="live-follow-img" src="../../../../assets/invite-live.png" />
+      <view class="live-follow-button">领直播内购券</view>
+      <!-- <view class="live-follow-check">开启提醒</view> -->
+      <checkbox-item
+        class="live-follow-check"
+        bindchange="switchRemind"
+        checked="{{ remindCheck }}"
+        title="开启提醒"
+      />
+    </view>
+  </hpopup>
+</view>

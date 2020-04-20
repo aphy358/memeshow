@@ -1,0 +1,13 @@
+
+<view class="card card--no-border white-back margin-top">
+    <view class="card__content">
+        <view class="order-detail-state">
+            <view class="od-icon green">
+                <image class="img" src="/assets/images/orders/complete.png" />
+            </view>
+            <view class="od-content">
+                <view class="od-content-title">交易完成</view>
+            </view>
+        </view>
+    </view>
+</view>

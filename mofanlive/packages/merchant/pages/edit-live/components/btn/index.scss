@@ -1,0 +1,57 @@
+.btns {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 30rpx;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+
+  .one-click {
+    box-sizing: content-box;
+    margin-bottom: 60rpx;
+    position: relative;
+
+    &--hint {
+      font-size: 28rpx;
+      color: white;
+    }
+
+    .icon {
+      position: absolute;
+      left: 100%;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+
+  .confirm-btn {
+    width: 100%;
+  }
+}
+
+.navigator {
+  position: fixed;
+  left: 0;
+  right: 0;
+  padding: 14rpx 32rpx 0;
+  top: constant(safe-area-inset-top);
+  top: env(safe-area-inset-top);
+
+  .back {
+    font-size: 56rpx;
+    color: white;
+    margin: 0;
+    position: absolute;
+  }
+
+  &--title {
+    font-size: 36rpx;
+    color: white;
+    width: 100%;
+    text-align: center;
+  }
+}

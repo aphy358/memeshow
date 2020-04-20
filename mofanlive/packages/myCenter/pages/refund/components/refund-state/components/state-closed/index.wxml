@@ -1,0 +1,9 @@
+<!-- closed:关闭、申请已撤销 -->
+<view class="refund-state-wrap">
+  <view class="refund-state-block">
+    <view class="title">申请已撤销</view>
+  </view>
+  <view class="refund-state-block">
+    <view class="refund-state-note">您已撤销此次退货退款申请，若您的问题未解决，可以在有效期（确认收货后15天）内再次申请。</view>
+  </view>
+</view>

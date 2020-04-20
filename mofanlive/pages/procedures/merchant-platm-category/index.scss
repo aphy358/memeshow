@@ -1,0 +1,11 @@
+@import "@/theme";
+
+.mc-categories {
+    background: #fff;
+
+    &_empty {
+        margin: 30rpx auto;
+        color: #999;
+        text-align: center;
+    }
+}

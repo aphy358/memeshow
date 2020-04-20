@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "order": "./components/order/index"
+  },
+  "navigationBarTitleText": "关闭订单"
+}

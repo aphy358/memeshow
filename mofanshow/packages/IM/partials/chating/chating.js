@@ -1031,7 +1031,7 @@ let pageConfig = {
    * 切换到个人介绍页
    */
   switchToMyTab() {
-    wx.switchTab({
+    wx.navigateTo({
       url: '../../pages/setting/setting',
     })
   },

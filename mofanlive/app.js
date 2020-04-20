@@ -1,22 +1,25 @@
-import promisify from 'wx-promisify'
+import promisify from "wx-promisify"
 
-import { createStore, applyMiddleware } from 'redux'
-import thunk from 'redux-thunk'
-import { Provider } from 'wx-redux'
-import reducer from './redux/reducer'
-import state from './redux/state'
-import Action from './redux/action'
+import { createStore, applyMiddleware } from "redux"
+import thunk from "redux-thunk"
+import { Provider } from "wx-redux"
+import reducer from "./redux/reducer"
+import state from "./redux/state"
+import Events from "events"
 
-import IM from './im'
-import { IMPlatforms } from 'im'
+import XIM from "@/im"
+import { IMPlatforms } from "im"
 
-import procedures from 'procedures'
+// 引入配置，打包时会resolve为指定环境的配置，配置文件位于 ./configs
+import Config from "config"
 
-import Api from './api'
+import Pages from "./constants/router"
+import Router from "wx-router"
 
-import timer from './components/common/timer'
+// TODO @fioman
+import Procedures from "procedures-old"
 
-import Config from 'config'
+import Api from "./api"
 
 // 扩展wx的回调接口为promise，以支持await/async
 promisify(wx)
@@ -24,48 +27,44 @@ promisify(wx)
 // 应用全局命名空间
 wx.X = wx.X || {}
 
+// 全局事件中心
+wx.X.events = wx.X.events || new Events()
+
 // redux store
 const store = createStore(reducer, state, applyMiddleware(thunk))
 wx.X.store = wx.X.store || store
 
+wx.X.procedures = Procedures
+
 // IM系统
-wx.X.IM = wx.X.IM || new IM(IMPlatforms.Tim, Config.tim)
+wx.X.IM = wx.X.IM || new XIM(IMPlatforms.Tim, Config.tim)
 
-wx.X.procedures = wx.X.procedures || procedures
-wx.X.timer = timer
-
-// 初始化API 
+// 初始化API
 Api.BaseApi.init({
   async onFailed(response) {
     wx.showToastAsync({
       title: `请求服务错误(${response.data.code}): ${response.data.msg}`,
-      icon: 'none',
+      icon: "none",
       duration: 2000
     })
   },
   async onError(error) {
     wx.showToastAsync({
       title: `网络错误: ${error.message}`,
-      icon: 'none',
+      icon: "none",
       duration: 2000
     })
   }
 })
 wx.X.Api = wx.X.Api || Api
 
+// 引入路由 API
+wx.X.router = new Router(Pages)
+
 App(
   Provider(store)({
 
-    onLaunch: async function (e) {
-      const res = await wx.loginAsync()
-      if (res && res.code) {
-        const userProfile = await Api.auth.loginByCode(res.code)
-        if (!!userProfile) {
-          // 已注册用户直接登录成功
-          store.dispatch(Action.userProfile.update(userProfile))
-        }
-      }
-    },
+    onLaunch: async function (e) { },
 
     onShow: function (e) { },
 
@@ -73,7 +72,7 @@ App(
 
     onPageNotFound() {
       wx.redirectTo({
-        url: "pages/index/index"
+        url: "/pages/index/index"
       })
     },
 

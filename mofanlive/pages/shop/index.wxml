@@ -1,23 +1,102 @@
-<view class="header-placeholder"></view>
+<homeTitle navBarOpacity="{{ navBarOpacity }}"></homeTitle>
 
-<list list="{{list}}"></list>
-
-<view class="header">
-    <view class="header-user">
-            <avatar url="{{seller.avatar}}" live="{{seller.live}}"></avatar>
-        <view class="header-user--info">
-            <view class="header-user--name f-cn f-base f-lg f-bold">美丽的韩美娟</view>
-            <view class="header-user--followers f-cn f-sm">9021人关注</view>
+<view class="index-page {{ systemInfo&&systemInfo.platform }}">
+    <view>
+        <view
+            class="page-header"
+            style="background-image:url({{ shopInfo.background || 'https://mofanshow-avatar-1252461817.cos.ap-guangzhou.myqcloud.com/5d91a419-fe16-3c0f-5929-8b8cf7bf495a.png' }});background-size:100% 100%;"
+        >
+            <view
+                class="page-header--mask {{!!shopInfo.background ? 'page-header--mask__dark' : ''}}"
+                style="padding-top:{{ systemInfo.windowWidth * 0.15 + statusBarHeight }}px"
+            >
+                <view class="shop-info">
+                    <view class="shop-info--avatar">
+                        <avatar-live
+                            live="{{ shopInfo.live }}"
+                            reverse
+                            style="float:left;margin-right:30rpx;"
+                            url="{{ shopInfo.avatar }}"
+                        />
+                    </view>
+                    <view class="shop-info--profile">
+                        <view class="page-header__title">{{ shopInfo.name}}</view>
+                        <view class="page-header__desc">{{ shopInfo.description }}</view>
+                    </view>
+                </view>
+                <view
+                    class="index-page-desc"
+                    wx:if="{{ shareRelations.ancestorCount }}"
+                >由内部员工，经过{{ shareRelations.ancestorCount }}位好友分享给我：</view>
+                <view
+                    class="index-page-desc"
+                    wx:else
+                >由内部员工分享给我：</view>
+                <shareLink relations="{{shareRelations}}" bindclickEmployee="onContact"></shareLink>
+            </view>
         </view>
-        <!-- <view class="header-user--service icon icon-message">
-            <button class="contact-btn" open-type="contact"></button>
-        </view> -->
+        <employeeInfo
+            wx:if="{{showEmployeeInfo}}"
+            employee="{{ shareRelations.initiator }}"
+            bindclick="onCloseContact"
+            bindcompletemessage="onCompleteMessage"
+        ></employeeInfo>
     </view>
-    <actions
-        catch:search="search"
-        class="actions"
-    ></actions>
+
+    <view class="goods-card" id="scroll-id">
+        <view style="margin-bottom: 32rpx;">
+            <tabs
+                bindchange="onChangeTab"
+                bindchangesticky="onChangeSticky"
+                scroll="{{ shopInfo.shopCategories.length >= 3 }}"
+                default="{{ shopInfo.shopCategories.length === 1 ? shopInfo.shopCategories[0].id : productType}}"
+                offset="{{ titleHeight }}"
+                sticky
+                wx:if="{{ shopInfo.shopCategories.length }}"
+                tabs-content-class="{{ shopInfo.shopCategories.length ? 'tabs-scroll' : '' }}"
+            >
+                <tab
+                    key="{{ 0 }}"
+                    wx:if="{{ shopInfo.shopCategories.length > 1 }}"
+                    tab-class="{{ shopInfo.shopCategories.length >= 3  ? 'tab-scroll first-tab' : ''}}"
+                    tab-content-class="{{ shopInfo.shopCategories.length >= 3 ? 'tab-scroll-content' : '' }}"
+                >全部</tab>
+                <tab
+                    key="{{ category.id }}"
+                    wx:for="{{ shopInfo.shopCategories }}"
+                    wx:for-item="category"
+                    wx:key="id"
+                    tab-class="{{ shopInfo.shopCategories.length >= 3 ? 'tab-scroll' : ''}}"
+                    tab-content-class="{{ shopInfo.shopCategories.length >= 3 ? 'tab-scroll-content' : '' }}"
+                >{{ category.name }}</tab>
+            </tabs>
+        </view>
+        <feeds
+            is-loading="{{ isLoading }}"
+            list="{{ products }}"
+            no-more="{{!!products.length && noMore}}"
+            marginBottom="{{16}}"
+            bindclickProduct="onClickProduct"
+        ></feeds>
+    </view>
 </view>
 
-<!-- 客服 -->
-<customer-service />
+<shareToFriends
+    bindclose="onCloseProductCard"
+    needs="{{ clickProduct.neigou.couponCount - neigou.count }}"
+    product="{{ clickProduct }}"
+    wx:if="{{ showProductCard }}"
+></shareToFriends>
+
+<!-- <hpopup
+    show="{{ showLivePlayer }}"
+    position="center"
+>
+    <live-player-custom
+        wx:if="{{ showLivePlayer }}"
+        my-style="position:fixed;width:80%;height:60%;top:50%;left:50%;transform: translate(-50%, -50%);z-index:9999;"
+        closeable
+        bindclose="onLiveClose"
+        bindclick="onLivePlay"
+    />
+</hpopup>-->

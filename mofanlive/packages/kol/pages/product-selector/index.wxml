@@ -1,0 +1,27 @@
+<view class="tabs-container">
+    <tabs
+        bind:change="onTabsChange"
+        default="{{tabs.current}}"
+        sticky="{{true}}"
+        tab-content-class="tab-conent"
+        tabs-class="tabs"
+        tabs-content-class="tabs-content"
+    >
+        <tab
+            key="{{item.id}}"
+            tab-class="tab"
+            wx:for="{{tabs.list}}"
+            wx:key="id"
+        >{{item.name}}</tab>
+    </tabs>
+</view>
+
+<list
+    bind:change="onSelectProduct"
+    list="{{list}}"
+    default="{{selected}}"
+></list>
+
+<view style="width:100%; height: 200rpx;"></view>
+
+<fixed-btns bind:confirm="submit" number="{{selected.length}}"></fixed-btns>

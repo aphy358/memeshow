@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "no-more": "/components/no-more/index",
+    "item": "../list-item/index"
+  },
+  "component": true
+}

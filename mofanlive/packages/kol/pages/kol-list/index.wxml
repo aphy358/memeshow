@@ -1,0 +1,48 @@
+<view class="banner">
+    <view
+        class="banner__placeholder"
+        wx:if="{{!banner}}"
+    ></view>
+    <image
+        src="{{banner}}"
+        wx:else
+    />
+</view>
+
+<view class="tabs-container">
+    <tabs
+        default="{{tabs.current}}"
+        sticky="{{true}}"
+        tabs-class="tabs"
+        tabs-content-class="tabs-content"
+        bind:change="changeCategory"
+        tab-content-class="tab-conent"
+    >
+        <tab
+            key="{{item.id}}"
+            tab-class="tab"
+            wx:for="{{tabs.list}}"
+            wx:key="id"
+        >{{item.name}}</tab>
+        <view
+            bind:tap="openFilter"
+            class="tab__more-btn"
+            slot="after"
+        >
+            <image src="./assets/arrow.png" />
+        </view>
+    </tabs>
+</view>
+
+<list content="{{kol.list}}"></list>
+
+<view class="bottom-placeholder"></view>
+
+<fixed-btns></fixed-btns>
+
+<filter-menu
+    bind:close="closeFilter"
+    open="{{filterOpen}}"
+    filters="{{filters}}"
+    bind:change="onFilterChange"
+></filter-menu>

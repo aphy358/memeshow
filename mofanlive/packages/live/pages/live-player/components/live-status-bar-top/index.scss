@@ -1,0 +1,50 @@
+@import "@/theme";
+
+.status-bar-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  position: absolute;
+  left: 90rpx;
+
+  @at-root .status-bar-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 8rpx;
+    font-size: 24rpx;
+    color: white;
+    border-radius: 9999px;
+    overflow: hidden;
+
+    .sb-anchor-wrap {
+      margin: 10rpx;
+      
+      .row-one {
+        max-width: 160rpx;
+        @include line(1);
+        line-height: 24rpx;
+      }
+
+      .row-two {
+        max-width: 160rpx;
+        @include line(1);
+        font-size: 20rpx;
+        line-height: 20rpx;
+        margin-top: 4rpx;
+      }
+    }
+
+    @at-root .sb-follow-wrap {
+      height: 56rpx;
+      line-height: 56rpx;
+      margin-left: 20rpx;
+      color: #fff;
+      font-size: 24rpx;
+      background: #F32953;
+      width: 120rpx;
+      text-align: center;
+      border-radius: 9999px;
+    }
+  }
+}

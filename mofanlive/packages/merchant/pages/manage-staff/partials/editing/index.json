@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "checkbox-item": "ui-kit/components/checkbox/index"
+  },
+  "navigationBarTitleText": "编辑员工信息"
+}

@@ -1,0 +1,60 @@
+.tabbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  overflow: visible;
+  background-color: #fff;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+
+  &--item {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    width: 80rpx;
+    height: 80rpx;
+    position: relative;
+    overflow: visible;
+
+    &__round {
+      $round-btn-size: 108rpx;
+      width: 108rpx;
+      height: 108rpx;
+      border-radius: 50%;
+      box-shadow: 0 2px 6px 0 rgba(203, 210, 232, 0.40);
+      background-color: #fff;
+      position: absolute;
+      top: -20rpx;
+      display: flex;
+      flex-flow: column nowrap;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  &--image {
+    margin-top: 10rpx;
+    $img-size: 48rpx;
+    width: $img-size;
+    height: $img-size;
+
+    &__live {
+      $img-size: 74rpx;
+      width: $img-size;
+      height: $img-size;
+    }
+  }
+
+  &--text {
+    color: #666;
+    font-size: 20rpx;
+  }
+}
+
+.selected {
+  color: #F32953 !important;
+}

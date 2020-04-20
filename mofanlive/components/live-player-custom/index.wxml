@@ -1,0 +1,23 @@
+<view
+  class="live-player-wrap"
+  style="{{ exStyle }}"
+>
+  <live-player
+    class="live-player"
+    id="player"
+    src="{{ src }}"
+    object-fit="{{ objectFit }}"
+    mode="{{ mode }}"
+    bindtap="onClick"
+    bindstatechange="statechange"
+    bindnetstatus="netstatus"
+    capture-catch:touchstart="touchstart"
+    capture-catch:touchmove="touchmove"
+    capture-catch:touchend="touchend"
+    capture-catch:touchcancel="touchcancel"
+  >
+    <text wx:if="{{ showLiveHolder }}" class="live-holder">正在连接...</text>
+  </live-player>
+
+  <view wx:if="{{ closeable }}" class="close-btn" catchtap="onClose">+</view>
+</view>

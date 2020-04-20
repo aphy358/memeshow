@@ -1,0 +1,12 @@
+{
+  "usingComponents": {
+    "state": "./components/order-state/index",
+    "order-merchant-remark": "./components/order-merchant-remark/index",
+    "items": "./components/order-items/index",
+    "address": "./components/order-address/index",
+    "delivery": "./components/order-delivery/index",
+    "info": "./components/order-info/index",
+    "actions": "./components/order-actions/index"
+  },
+  "navigationBarTitleText": "订单详情"
+}

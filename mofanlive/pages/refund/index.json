@@ -1,8 +1,0 @@
-{
-  "usingComponents": {
-    "state": "./components/state/index",
-    "info": "./components/info/index",
-    "actions": "./components/actions/index"
-  },
-  "navigationBarTitleText": "售后详情"
-}

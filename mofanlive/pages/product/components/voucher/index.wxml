@@ -1,0 +1,24 @@
+<view class="voucher">
+    <view class="voucher__staff">
+        <image
+            mode="aspectFit"
+            src="{{employee.avatar}}"
+            class="voucher__staff__avatar"
+        ></image>
+        <view class="voucher__staff__detail">
+            <view class="voucher__staff__detail__name f-cn">{{employee.name}} 正在发起内购</view>
+            <view class="voucher__staff__detail__count">{{customerNum}}人正在抢，剩余名额紧张</view>
+        </view>
+    </view>
+    <view class="voucher__chain">
+        <view class="voucher__chain__row">
+            <image
+                src="{{item.avatar}}"
+                class="voucher__chain__node"
+                mode="aspectFit"
+                wx:for="{{customers}}"
+                wx:key="id"
+            ></image>
+        </view>
+    </view>
+</view>

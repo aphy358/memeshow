@@ -1,0 +1,33 @@
+<view
+    class="status-bar-wrap"
+    style="width: {{ menuBtn.left - 50 }}px;height: {{ menuBtn.height }}px;top: {{ menuBtn.top }}px;"
+>
+    <view
+        class="status-bar-inner"
+        hover-class="navigator-hover"
+        bind:tap="switchToShop"
+        wx:if="{{ roomInfo && roomInfo.owner }}"
+    >
+        <!-- 主播头像 -->
+        <avatar
+            type="3"
+            circle
+            size="60rpx"
+            url="{{ roomInfo.owner.avatarUrl || roomInfo.owner.avatar }}"
+            border="1rpx solid white"
+            bind:tapAvatar="onTapAvatar"
+        />
+
+        <!-- 主播信息 -->
+        <view class="sb-anchor-wrap">
+            <view class="row-one">{{ roomInfo.owner.nickname }}</view>
+            <view class="row-two">3456 观看</view>
+        </view>
+    </view>
+
+    <!-- 关注按钮 -->
+    <view
+        bind:tap="followAnchor"
+        class="sb-follow-wrap"
+    >关注</view>
+</view>

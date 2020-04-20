@@ -26,7 +26,7 @@ Component({
     // 动画的持续时间，单位 ms
     duration: {
       type: Number,
-      value: 500
+      value: 300
     },
 
     title: {
@@ -46,7 +46,18 @@ Component({
   externalClasses: ["popup-content", "popup-body"],
 
   data: {
+    show: false,
+
     _progress: false
+  },
+
+  observers: {
+    open(value) {
+      if (this.data.show !== value) {
+        this.setData({ show: value })
+        if (!value) wx.nextTick(() => this.triggerEvent("close"))
+      }
+    }
   },
 
   methods: {
@@ -58,7 +69,6 @@ Component({
     onClose() {
       if (this.data._progress) return
       this.data._progress = true
-      this.triggerEvent("close")
       this.setData({ open: false }, () => {
         setTimeout(() => (this.data._progress = false), this.data.duration)
       })

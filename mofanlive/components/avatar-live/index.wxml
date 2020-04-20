@@ -1,0 +1,12 @@
+<!-- todo 根据角色跳转 -->
+<view
+  bind:tap="onTap"
+  class="avatar"
+  hover-class="navigator-hover"
+>
+  <!-- <view class="{{ reverse ? 'avatar-border-outside--reverse' : 'avatar-border-outside' }} {{live ? 'border-ani' : ''}}"></view> -->
+  <view class="avatar-img {{ reverse ? 'avatar-img--reverse' : '' }}">
+    <image class="{{live ? 'img-ani' : ''}}" src="{{url || '/assets/images/default-icon.png'}}" />
+  </view>
+  <view wx:if="{{live}}" class="avatar-live {{ reverse ? 'avatar-live--reverse' : '' }}">直播中</view>
+</view>

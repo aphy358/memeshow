@@ -4,8 +4,6 @@
 export default class IMGroupMember {
 	// 用户ID
 	userId = ""
-	// 群组ID
-	groupId = ""
 	// 群昵称
 	nickname = ""
 	// 头像

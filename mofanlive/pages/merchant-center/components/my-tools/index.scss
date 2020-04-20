@@ -1,0 +1,70 @@
+@import "@/theme";
+
+.order-outline-header {
+  display: flex;
+  align-items: center;
+  padding: 20rpx 30rpx;
+  justify-content: space-between;
+
+  .title {
+    font-size: 32rpx;
+    font-family: PingFangSC-Medium;
+  }
+
+  .check-more-order {
+    display: flex;
+    align-items: center;
+    font-size: 28rpx;
+    color: #979DA5;
+  }
+}
+
+.card {
+  border-radius: 12rpx;
+  box-shadow: 0 6px 10px 0 #e3e8f3;
+
+  &__content {
+    padding: 0 30rpx;
+  }
+}
+
+.card__title {
+  font-size: 32rpx;
+  color: #333333;
+  font-family: PingFangSC-Medium,sans-serif;
+}
+
+.card__info {
+  display: flex;
+  flex-flow: row wrap;
+
+  .item {
+    width: 25%;
+    text-align: center;
+    padding: 20rpx 0;
+
+    image {
+      $icon-size: 80rpx;
+      width: $icon-size;
+      height: $icon-size;
+    }
+
+    view {
+      font-size: 28rpx;
+      color: #666;
+    }
+  }
+}
+
+.contact-btn {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+}
+
+.h-b {
+  @include hairline-bottom;
+}

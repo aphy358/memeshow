@@ -1,0 +1,19 @@
+.fixed-btns {
+  width: 100%;
+  padding: 24rpx 30rpx;
+  background: #222;
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+.tasks {
+  width: 160rpx;
+  height: 88rpx;
+  border-radius: 88rpx;
+  margin-right: 12rpx;
+  border: none;
+  font-size: 32rpx;
+  font-family: PingFangSC-Medium;
+}

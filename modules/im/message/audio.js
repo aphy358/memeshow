@@ -4,13 +4,18 @@ import IMMessage from './base'
  * 语音消息
  */
 export default class IMAudioMessage extends IMMessage {
-	// 语音ID
-	audioId = ""
-	// 语音链接
-	url = ""
-	// 大小
-	size = 0
-	// 时长(s)
-	duration = 0
+
+	messageType() {
+		return "IMAudioMessage"
+	}
+
+	constructor(payload = {}) {
+		super(payload)
+
+		this.audioId = payload.audioId || ""
+		this.url = payload.url || ""
+		this.size = payload.size || 0
+		this.duration = payload.duration || 0
+	}
 }
 

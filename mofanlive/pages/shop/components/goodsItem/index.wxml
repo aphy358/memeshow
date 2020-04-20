@@ -1,0 +1,116 @@
+<wxs module="formator" src="/utils/formator.wxs"></wxs>
+
+<view
+    bindtap="onTap"
+    class="goods-item big-card {{ className }}"
+    style="{{ marginBottom ? 'margin-bottom:'+marginBottom+'px' : ''}}"
+>
+
+    <!-- 以下两个是商品标签 -->
+    <!-- <image
+        class="super-welfare-tag"
+        src="{{superWelfareTag}}"
+        width="{{104}}"
+        wx:if="{{goods.welfare_mode===3}}"
+    ></image>
+    <image
+        class="super-welfare-tag"
+        src="{{secretGoodsTag}}"
+        width="{{104}}"
+        wx:if="{{goods.welfare_mode===2}}"
+    ></image> -->
+
+    <view class="top-half">
+        <view class="goods-img-area">
+            <image
+                class="goods-item-img"
+                lazyLoad="{{true}}"
+                src="{{ product.image.medium }}"
+                width="220"
+            ></image>
+            <!-- 售罄的蒙层 -->
+            <block wx:if="{{ saleOut }}">
+                <view class="no-goods-mask" ></view>
+                <image
+                    class="sell-all-img"
+                    src="../../assets/saleout.png"
+                    width="160"
+                ></image>
+            </block>
+        </view>
+
+        <view class="goods-item-content">
+            <view>
+                <view class="goods-name">{{ product.title }}</view>
+                <view class="progress-bar-area">
+                    <!-- 购买列表 -->
+                    <!-- <text
+                        class="price-soldout-sm"
+                        wx:if="{{ saleOut }}"
+                    >已抢光</text>
+                    <block wx:else> -->
+                        <!-- <friendsBuy
+                            wx:if="{{ product.neigou }}"
+                            list="{{ product.neigou.buyers }}"
+                            total="{{ product.neigou.soldCount }}"
+                            initiator="{{ product.neigou.initiator }}"
+                        ></friendsBuy> -->
+                        <friendsBuy
+                            list="{{ product.neigou.buyers }}"
+                            total="{{ product.neigou.soldCount }}"
+                            initiator="{{ product.neigou.initiator }}"
+                        ></friendsBuy>
+                    <!-- </block> -->
+                </view>
+            </view>
+
+            <view class="goods-price-area ">
+                <view class="activity-price">
+                    <view class="price-text">内购价：</view>
+                    <text class="price-value">
+                        <text class="price-soldout" wx:if="{{ saleOut }}">已抢光</text>
+                        <block wx:else>
+                            <text>￥</text>
+                            <text class="price-num">{{ formator.formatPriceShort(product.neigou.price) }}</text>
+                        </block>
+                    </text>
+                </view>
+                <view class="origin-price">
+                    <view class="price-text">单买价:</view>
+                    <text class="price-value">
+                        <text>￥</text>
+                        <text class="price-num">{{ formator.formatPriceShort(product.price) }}</text>
+                    </text>
+                </view>
+            </view>
+        </view>
+    </view>
+
+    <view class="save-tag">
+        <view class="save-tag-left">
+            <block wx:if="{{ product.neigou }}">
+                <block wx:if="{{ product.neigou.couponCount > 0 }}">
+                    <image class="save-tag-img" src="../../assets/coupon.png" width="32"></image>
+                    <text class="save-tag-detail">需<text class="save-tag-num">{{ product.neigou.couponCount }}张内购券</text><text>，节省{{ formator.formatPriceShort(product.price - product.neigou.price) }}元</text></text>
+                </block>
+                <block wx:else>
+                    <image class="save-tag-img" src="../../assets/coupon.png" width="32"></image>
+                    <text class="save-tag-detail">无需内购券<text>，节省{{ formator.formatPriceShort(product.price - product.neigou.price) }}元</text></text>
+                </block>
+            </block>
+            <!-- <block wx:else>
+                <image class="save-tag-img" src="../../assets/coupon.png" width="32"></image>
+                <text class="save-tag-detail">需<text class="save-tag-num">10张内购券</text><text> ，节省23.00元</text></text>
+            </block> -->
+        </view>
+        <button
+            catchtap="shareToFriends"
+            class="share-to-others"
+            openType="share"
+            data-id="{{ product.id }}"
+        >
+            <image class="share-to-friends-img" src="../../assets/wechat.png"></image>
+            <text class="share-to-friends-text">分享</text>
+        </button>
+    </view>
+</view>

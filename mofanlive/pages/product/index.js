@@ -1,202 +1,263 @@
-// import apis from "../../api/index"
+import { connectPage } from "wx-redux"
+import share from "../../utils/share.js"
+
 const procedures = wx.X.procedures
+const Api = wx.X.Api
 
-import { productList, product } from "@/data/product"
+Page(
+  connectPage(
+    state => ({
+      context: state.context,
+      neigou: state.neigou,
+      userProfile: state.userProfile,
+      sellerProfile: state.sellerProfile
+    }),
+    dispatch => ({})
+  )({
+    /**
+     * 以下字段将通过请求异步获取
+     * @param {string} title
+     * @param {integer} price - 分为单位
+     * @param {integer} originPrice - 分为单位
+     * @param {array} medias - 头图
+     * @param {integer} soldCount
+     * @param {string} desc - 商品详情 富文本
+     * @param {array} skus - 商品规格列表
+     * @param {array} skusImages - 商品不同规格对应的图片
+     * @param {object} shop - { id, name, avatar }
+     */
+    data: {
+      id: "",
+      voucherDialog: false,
+      product: null,
 
-Page({
+      neigouPrice: 0,
+      selector: {
+        // 标记当前弹出规格选项窗是否内购
+        isNeigou: true,
 
-  /**
-   * 以下字段将通过请求异步获取
-   * @param {string} title
-   * @param {integer} price - 分为单位
-   * @param {integer} originPrice - 分为单位
-   * @param {array} medias - 头图
-   * @param {integer} soldCount
-   * @param {string} desc - 商品详情 富文本
-   * @param {array} skus - 商品规格列表
-   * @param {array} skusImages - 商品不同规格对应的图片
-   * @param {object} shop - { id, name, avatar }
-   */
-  data: {
-    id: "",
-
-    recommend: {
-      shop: {
-        avatar: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1577450822914&di=44b4e3df9b107ca7b1c3d4297de2bf68&imgtype=0&src=http%3A%2F%2Fpics5.baidu.com%2Ffeed%2F9825bc315c6034a8d0d8b3b3a93b2751092376f3.png%3Ftoken%3D45f963d33a1ad7a88e263b0ba3b73aee%26s%3DC3A8BB47323A279A5808C9B00300F053",
-        name: "美丽的韩美娟",
-        desc: "天道好轮回",
-        productsCount: 124,
-        followers: 2847,
-        rates: [
-          {
-            title: '用户口碑',
-            rate: 4.47,
-            level: '高',
-          },
-          {
-            title: '服务态度',
-            rate: 4.47,
-            level: '高',
-          },
-          {
-            title: '发货速度',
-            rate: 4.47,
-            level: '高',
-          },
-        ]
+        // 标记是否弹出
+        open: false,
+        selection: {
+          sku: null,
+          quantity: 0
+        }
       },
-      list: productList, // TODO use real Data
-    },
-    selector: {
-      // 标记当前弹出规格选项窗是否直接购买
-      isBuying: false,
 
-      // 标记是否弹出
-      open: false,
-      selection: {
-        sku: null,
-        quantity: 0,
+      sreenHeight: 0,
+      goTopVisibility: false,
+    },
+
+    onLoad(options) {
+      this.data.id = options.id
+    },
+
+    onReady() {
+      this.init()
+
+      wx.getSystemInfo({
+        success: (res) => {
+          const { screenHeight } = res
+          if (screenHeight) {
+            this.setData({ screenHeight })
+          }
+        }
+      })
+    },
+
+    onPageScroll(e) {
+      const { scrollTop } = e
+      const { screenHeight, goTopVisibility } = this.data
+      if (scrollTop > screenHeight ^ goTopVisibility) {
+        this.setData({
+          goTopVisibility: scrollTop > screenHeight
+        })
       }
     },
-    actions: [
-      {
-        type: 'sold',
-        content: {
-          title: '全国包邮',
-          sold: '已售' + 8 + '件'
+
+    async init() {
+      const product = await wx.X.Api.Product.retrieve(this.data.id)
+      this.setData({ product })
+      console.log(product)
+      const data = Object.assign(
+        this.data,
+        _.pick(product, [
+          "title",
+          "price",
+          "originPrice",
+          "soldCount",
+          "medias",
+          "desc",
+          "skus",
+          "skuImages",
+          "image",
+          "shop"
+        ])
+      )
+      _.forEach(product.skus, it => {
+        if (
+          !!it.neigou &&
+          (data.neigouPrice == 0 || data.neigouPrice > it.neigou.price)
+        ) {
+          data.neigouPrice = it.neigou.price
         }
-      },
-      {
-        type: 'coupon',
-        content: {
-          tag: "店铺券",
-          coupons: ['满99减3', '满100减10'],
-        }
-      },
-      {
-        type: 'service',
-        content: ['假一赔三', '7天退货', '消费者保障服务']
-      },
-      {
-        type: 'spec',
-      },
-    ]
-  },
+      })
+      // const index = _.findIndex(data.actions, it => it.type === "shop")
+      // data.actions[index] = {
+      //   type: "shop",
+      //   ...product.shop
+      // }
 
-  onLoad(options) {
-    this.data.id = options.id
-    console.log(this.data.id)
-  },
+      this.setData(data)
+    },
 
-  onReady() {
-    this.init()
-  },
+    handleAction(e) {
+      const type = e.detail.type
 
-  async init() {
-    // const product = await apis.product.getProduct(this.data.id)
-    const p = product.data
-    console.log(p)
-    const data = Object.assign(this.data, _.pick(p, [
-      "title",
-      "price",
-      "originPrice",
-      "soldCount",
-      "medias",
-      "desc",
-      "skus",
-      "skuImages",
-      "avatar",
-      "shop",
-    ]))
-    const index = _.findIndex(data.actions, it => it.type === 'shop')
-    data.actions[index] = {
-      type: 'shop',
-      ...(p.shop)
+      switch (type) {
+        case "spec":
+          this.toggleSelector(true)
+          break
+        case "shop":
+          this.navToShop()
+          break
+      }
+    },
+
+    /**
+     * 跳转到商店页面
+     */
+    navToShop() { },
+
+    /**
+     * 点击购买按钮
+     */
+    handleBuy(e) {
+      const type = e.detail.type // 0-normal; 1-neigou
+      this.toggleSelector(type)
+    },
+
+    /**
+     * 选择器
+     *
+     * @param {boolean} type - 是否内购商品
+     */
+    toggleSelector(type = 1) {
+      this.data.selector.isNeigou = type == 1
+
+      this.setData({
+        "selector.open": !this.data.selector.open,
+        "selector.isNeigou": type == 1
+      })
+    },
+
+    // 关闭规格选择弹窗
+    onCloseSelector() {
+      this.setData({ "selector.open": false })
+    },
+
+    /**
+     * 点击规格选择窗口的确认按钮
+     */
+    async handleSelectorConfirm() {
+      const { selector, neigou, product, userProfile } = this.data
+      const selection = this.data.selector.selection
+
+      if (selection.sku) {
+        // 内购的情况，判断内购券是否足够
+        if (
+          selector.isNeigou &&
+          selection.sku.neigou &&
+          selection.sku.neigou.couponCount > neigou.count
+        )
+          return this.setData({
+            voucherDialog: true,
+            voucherDialogcount: selection.sku.neigou.couponCount,
+            "selector.open": false
+          })
+
+        await this.addToCart(selection)
+      }
+    },
+
+    // 内购券不足
+    handleCloseDialog() {
+      this.setData({ voucherDialog: false })
+    },
+
+    /**
+     * 将选择的sku添加到购物车
+     */
+    async addToCart(selection) {
+      wx.showLoading()
+      const isNeigou = this.data.selector.isNeigou
+      const rsp = await wx.X.Api.Cart.addItem({
+        skuId: selection.sku.id,
+        quantity: selection.quantity,
+        productId: selection.sku.productId,
+        type: isNeigou && selection.sku.neigou ? 1 : 0 // 内购
+      })
+      wx.hideLoading()
+      this.setData({
+        "selector.open": false
+      })
+      procedures.open("cashier")
+    },
+
+    /**
+     * 选择 sku 的时候
+     * @param {*} e
+     */
+    handleSelectSku(e) {
+      this.setData({
+        "selector.selection": e.detail
+      })
+    },
+
+    collect() {
+      this.setData({
+        collected: !this.data.collected
+      })
+    },
+
+    onShareAppMessage(e) {
+      const {
+        context,
+        userProfile,
+        currentShop,
+        sellerProfile,
+        product,
+        selector
+      } = this.data
+      const isMerchant = context.isMerchant
+      const shop = sellerProfile.shop
+
+      let shareSku = {}
+      if (selector.selection.sku) {
+        shareSku = selector.selection.sku
+      } else {
+        shareSku = product.skus.reduce((minSku, sku) => {
+          if (sku.neigou) {
+            return sku.neigou.price < minSku.neigou.price ? sku : minSku
+          } else {
+            return sku.price < minSku.price ? sku : minSku
+          }
+        })
+      }
+
+      // todo 使用 sku image ，但是目前没有这个逻辑
+      const shareProduct = {
+        ...shareSku,
+        id: product.id,
+        image: product.image
+      }
+      return share.shareProduct(shareProduct, this.data.context.referrerId, this.data.context.shopId)
+    },
+
+    goTop() {
+      wx.pageScrollTo({
+        scrollTop: 0,
+      })
     }
-
-    this.setData(data)
-  },
-
-  handleAction(e) {
-    console.log(e)
-    const type = e.detail.type
-
-    switch (type) {
-      case 'spec': this.toggleSelector(true); break;
-      case 'shop': this.navToShop(); break;
-    }
-  },
-
-  /**
-   * 跳转到商店页面
-   */
-  navToShop() {
-
-  },
-
-  /**
-   * 点击购买按钮
-   */
-  handleBuy() {
-    this.toggleSelector(true)
-  },
-
-  /**
-   * 选择器
-   */
-  toggleSelector(isBuying = false) {
-    this.setData({
-      "selector.open": !this.data.selector.open
-    })
-    this.data.selector.isBuying = typeof isBuying === 'boolean' && isBuying
-  },
-
-  /**
-   * 点击规格选择窗口的确认按钮
-   */
-  handleSelectorConfirm() {
-    const isBuying = this.data.selector.isBuying
-
-    // do somthing
-    isBuying ? this.navToCashier() : this.addToCart()
-
-    this.toggleSelector()
-  },
-
-  /**
-   * 跳转到结算页面
-   */
-  navToCashier() {
-    const instance = procedures.open('cashier')
-    const emitter = instance.asCaller()
-
-    const selection = this.data.selector.selection
-
-    emitter.emit('init', {
-      [this.data.shop.id]: [
-        {
-          skuId: selection.sku.id,
-          quantity: selection.quantity,
-        }
-      ]
-    })
-  },
-
-  /**
-   * 将选择的sku添加到购物车
-   */
-  addToCart() {
-
-  },
-
-  /**
-   * 选择 sku 的时候
-   * @param {*} e 
-   */
-  handleSelectSku(e) {
-    console.log(e.detail)
-    this.setData({
-      "selector.selection": e.detail
-    })
-  }
-})
+  })
+)

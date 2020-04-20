@@ -14,19 +14,20 @@ Component({
 
   data: {
     counter: 1,
-    type: 'img', // img, video
+    type: 1, // 1-img, 2-video
   },
 
   methods: {
     handleShowImgPreview(e) {
       const id = e.currentTarget.id
+      const current = (_.find(this.data.posters, it => it.id == id)).url
       wx.previewImage({
-        current: (_.find(this.data.posters, it => it.id === id)).url,
-        urls: _.map(_.filter(this.data.posters, it => it.type === 'IMG'), it => it.url)
+        current,
+        urls: _.map(_.filter(this.data.posters, it => it.type === 1), it => it.url)
       })
     },
 
-    switchToVideo () {
+    switchToVideo() {
       this.setData({
         type: 'video'
       })
@@ -37,7 +38,7 @@ Component({
       })
     },
     swiperChange(e) {
-      const counter = e.detail.current +1
+      const counter = e.detail.current + 1
       this.setData({
         counter
       })

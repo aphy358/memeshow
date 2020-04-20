@@ -1,13 +1,13 @@
 <!-- Tabs Component -->
 <view
-    wx:if="{{ stickable }}"
+    wx:if="{{ sticky }}"
     class="tabs__observer__placeholder"
     style="height: 1rpx"
 ></view>
 
 <view
-    class="tabs {{ sticky ? 'tabs__sticky' : '' }} ' tabs-class'"
-    style="{{ sticky ? ('top:' + offset + 'px') : '' }}"
+    class="tabs {{ stickable ? 'tabs__sticky' : '' }} ' tabs-class'"
+    style="{{ stickable ? ('top:' + offset + 'px') : '' }}"
 >
     <view class="tabs-left">
         <slot name="before"></slot>
@@ -18,13 +18,11 @@
         scroll-x
         scroll-into-view="{{ 'tab-' + current }}"
         scroll-with-animation
-        class="tabs-content__scroll"
+        class="tabs-content__scroll tabs-content-class"
     >
         <slot></slot>
     </scroll-view>
-    <view
-        wx:else
-        class="tabs-content"
+    <view wx:else class="tabs-content tabs-content-class"
     >
         <slot></slot>
     </view>
@@ -33,8 +31,4 @@
     </view>
 </view>
 
-<view
-    wx:if="{{ sticky }}"
-    class="tabs__placeholder"
->
-</view>
+<view wx:if="{{ stickable }}" class="tabs__placeholder"></view>

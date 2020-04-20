@@ -1,0 +1,90 @@
+.certification-index-wrap {
+  padding-bottom: 200rpx;
+}
+
+.certification-content {
+  padding-top: 88rpx;
+
+  @at-root .certification-note {
+    padding: 30rpx;
+    color: #999999;
+    font-size: 24rpx;
+  }
+}
+
+.certification-img-block {
+  padding: 0 30rpx;
+
+  @at-root .certification-img-title {
+    font-size: 28rpx;
+    color: #333333;
+    text-align: center;
+    padding: 40rpx 0;
+  }
+
+  @at-root .certification-img-inner {
+    display: flex;
+    justify-content: space-between;
+
+    @at-root .certification-img-item {
+      width: 332rpx;
+      height: 200rpx;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: white;
+      border-radius: 8rpx;
+      overflow: hidden;
+
+      &.dashed {
+        border: 1rpx dashed #999999;
+      }
+
+      .icon {
+        width: 72rpx;
+        height: 72rpx;
+        margin-bottom: 20rpx;
+      }
+
+      .text {
+        font-size: 24rpx;
+        color: #999999;
+      }
+    }
+  }
+}
+
+.white-back {
+  background: white;
+}
+
+.page-fixed-bottom-actions {
+
+  @at-root .to-artificial {
+    color: #999999;
+    text-align: center;
+    font-size: 24rpx;
+    margin-bottom: 50rpx;
+    font-size: 24rpx;
+
+    .red {
+      color: #F32953;
+    }
+  }
+}
+
+// checkbox 覆盖样式
+.certification-radio-group {
+  display: flex;
+  padding: 0;
+}
+
+.checkbox {
+  margin-right: 40rpx!important;
+  padding: 0!important;
+}
+
+.checkbox__left {
+  margin-right: 10rpx!important;
+}

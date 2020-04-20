@@ -1,0 +1,12 @@
+<view class="search-bar-wrap" slot="title-content">
+    <input
+        bindtap="handleTitleInput"
+        class="title-input"
+        disabled="true"
+        focus="false"
+        placeholder="输入商品/收货人姓名/手机号"
+        placeholderClass="title-input-placeholder"
+    >
+        <view class="title-search-icon"></view>
+    </input>
+</view>

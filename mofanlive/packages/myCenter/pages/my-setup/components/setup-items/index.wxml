@@ -1,0 +1,60 @@
+<wxs module="formatter" src="./index.wxs" ></wxs>
+
+<view class="setup-items">
+  <view class="form bg-white">
+    <navigator url="/packages/myCenter/pages/my-nickname/index" class="form__item">
+      <view class="form__item__label">昵称</view>
+      <view class="form__item__content">
+        <view class="form__item__picker">{{ userProfile.nickname }}</view>
+      </view>
+    </navigator>
+
+    <view class="form__item">
+      <view class="form__item__label">用户ID</view>
+      <view class="form__item__content">{{ userProfile.shortId }}</view>
+    </view>
+
+    <navigator url="/packages/myCenter/pages/my-profile/index" class="form__item">
+      <view class="form__item__label">简介</view>
+      <view class="form__item__content">
+        <view class="form__item__picker">{{ userProfile.signature || '未设置' }}</view>
+      </view>
+    </navigator>
+  
+    <view class="form__item" bind:tap="onShowGenderPopup">
+      <view class="form__item__label">性别</view>
+      <view class="form__item__content">
+        <view class="form__item__picker">{{ formatter.getGenderText(userProfile.gender) }}</view>
+      </view>
+    </view>
+
+    <view class="form__item">
+      <view class="form__item__label">生日</view>
+      <view class="form__item__content">
+        <picker mode="date" value="{{ userProfile.birthday }}" bindchange="onSetBirthday">
+          <view class="form__item__picker">{{ userProfile.birthday }}</view>
+        </picker>
+      </view>
+    </view>
+
+    <view class="form__item">
+      <view class="form__item__label">地区</view>
+      <view class="form__item__content">
+        <picker mode="region" bindchange="onSetRegion" value="{{ formatter.getRegionArr(userProfile) }}">
+          <view class="form__item__picker">{{ formatter.getRegionText(userProfile) }}</view>
+        </picker>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class="form bg-white" style="margin-top: 40rpx">
+  <view class="form__item">
+    <view class="form__item__label">手机号</view>
+    <view class="form__item__content">
+      <view class="form__item__picker">{{ formatter.getPhoneText(userProfile) }}</view>
+      <view wx:if="{{ formatter.getPhoneText(userProfile) !== '未设置' }}" class="phone-picker" bind:tap="wantToChangeMobile"></view>
+      <button wx:else class="phone-picker" open-type="getPhoneNumber" bindgetphonenumber="onGetPhoneNumber"></button>
+    </view>
+  </view>
+</view>

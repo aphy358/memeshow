@@ -14,12 +14,12 @@ const instance = procedures.open(type, args, onComplete, onError)
 ```
 3. 监听抛出的事件
 ```
-const emitter = instance.asCaller()
+const emitter = instance.asProcedure()
 emitter.on('toCaller', data => { /* do sth */ })
 ```
 4. 传递消息到 procedure
 ```
-const emitter = instance.asProcedure()
+const emitter = instance.asCaller()
 emitter.emit('toProcedure', data)
 ```
 5. procedures 流程结束时要抛出结束事件

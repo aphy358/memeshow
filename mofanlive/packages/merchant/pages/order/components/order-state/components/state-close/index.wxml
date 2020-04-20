@@ -1,0 +1,16 @@
+
+<view class="card card--no-border white-back margin-top">
+    <view class="card__content">
+        <view class="order-detail-state">
+            <view class="od-icon gray">
+                <image class="img" src="/assets/images/orders/close.png" />
+            </view>
+            <view class="od-content">
+                <view class="od-content-title">交易关闭</view>
+                <view wx:if="{{ order.stateDesc }}" class="od-content-detail">
+                    <text>{{ order.stateDesc }}</text>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>

@@ -1,4 +1,5 @@
 @import "ui-kit/style/index";
+@import "@/theme";
 
 page {
   color: #000;
@@ -31,10 +32,137 @@ button[disabled]:not([type]) {
   color: #fff;
 }
 
+button.reset {
+  padding : unset;
+  padding-left: unset;
+  padding-right: unset;
+  padding-top: unset;
+  padding-bottom: unset;
+  background-color: unset;
+  background: unset;
+  border-radius: unset;
+  margin: unset;
+  font-size: unset;
+  line-height: unset;
+}
+
 cover-view {
   position: absolute;
 }
 
 .navigator-hover {
   background: transparent;
+}
+
+// 针对 iphoneX 占位元素
+.iphoneX-holder {
+  height: constant(safe-area-inset-bottom);
+  height: env(safe-area-inset-bottom);
+}
+
+// 正在加载中。。。
+.loading {
+  margin-top: 30rpx;
+  font-size: 30rpx;
+  color: #cccccc;
+  font-family: PingFangSC-Regular;
+  text-align: center;
+}
+
+.hidden {
+  display: none;
+}
+
+/* Custom Variables */
+.card {
+  border-radius: 12rpx;
+}
+
+.card__title {
+  font-size: 32rpx;
+  color: #333333;
+  font-family: PingFangSC-Medium,sans-serif;
+}
+
+.card__header {
+  height: 80rpx;
+}
+
+// 底部操作按钮栏阴影
+.actions-shadow {
+  box-shadow: 0 0 20rpx rgba(0, 0, 0, 0.1);
+}
+
+// cell
+.cell__group {
+  margin-bottom: 24rpx;
+}
+
+.cell__addon {
+  position: relative;
+  margin-top: -1rpx;
+  background: white;
+}
+
+.cell__title {
+  font-size: 28rpx;
+}
+
+.cell__detail {
+  flex: 1;
+  color: #333333;
+
+  &.pholder {
+    color: #969799;
+  }
+}
+
+.cell__note {
+  position: relative;
+  font-size: 24rpx;
+  color: #888888;
+  line-height: 32rpx;
+  padding: 16rpx 30rpx;
+  background: #FAFAFA;
+  margin-top: -1rpx;
+}
+
+.cell__head__rated {
+  @include flex-row-nowrap;
+  align-items: center;
+  width: 120rpx;
+}
+
+.cell__tail__rated {
+  flex-grow: 1;
+  margin-left: 30rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.picker-mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  color: transparent;
+  z-index: 99;
+}
+
+.page-fixed-bottom-actions {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: white;
+  padding: 16rpx 24rpx;
+  box-shadow: 0 0 10rpx rgba(0, 0, 0, 0.1);
+  z-index: 100;
+
+  .button--primary {
+    background: #f94959!important;
+  }
 }

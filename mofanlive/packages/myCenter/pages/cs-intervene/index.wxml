@@ -1,0 +1,28 @@
+<form bindsubmit="handleSubmit">
+  <view class="form bg-white">
+    <view class="form__item">
+      <view class="form__item__label">申请理由</view>
+      <view class="form__item__content">
+        <input class="input" name="reason" placeholder="请详细填写申请理由" placeholder-class="form__placeholder" />
+      </view>
+    </view>
+
+    <view class="form__item">
+      <view class="form__item__label">图片举证</view>
+      <view class="form__item__content pholder">
+        可上传5张图片
+      </view>
+    </view>
+    <view class="form__item cell__addon">
+      <view class="form__item__label"></view>
+      <view class="form__item__content">
+        <image-uploader bind:change="handleProofChange"></image-uploader>
+      </view>
+    </view>
+  </view>
+
+  <view class="page-fixed-bottom-actions">
+    <button class="button--primary button--circle" form-type="submit">提交</button>
+    <view class="iphoneX-holder"></view>
+  </view>
+</form>

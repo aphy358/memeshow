@@ -1,0 +1,27 @@
+<view class="mc-categories">
+    <block wx:if="{{ categories.length }}">
+        <view class="cell__group">
+            <view
+                class="cell"
+                wx:for="{{ categories }}"
+                wx:for-item="cate"
+                wx:key="id"
+                bindtap="onClickCategory"
+                data-index="{{ index }}"
+            >
+                <view class="cell__header">
+                    <view class="cell__title">{{ cate.name }}</view>
+                </view>
+                <view class="cell__tail">
+                    <view
+                        wx:if="{{ cate.children.length }}"
+                        class="icon icon-chevron-right cell__icon-link"
+                    ></view>
+                </view>
+            </view>
+        </view>
+    </block>
+    <block wx:else>
+        <view class="mc-categories_empty">暂无分类</view>
+    </block>
+</view>

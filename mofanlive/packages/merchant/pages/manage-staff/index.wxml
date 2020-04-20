@@ -1,0 +1,67 @@
+<view class="form">
+    <view class="form__item">
+        <view class="form__item__label">{{type == 1 ? "个人" : "企业"}}微信号</view>
+        <view
+            class="form__item__content {{wechat ? '': 'form__placeholder'}}"
+        >{{wechat ? wechat : "未设置"}}</view>
+    </view>
+    <view
+        class="form__item"
+        wx:if="{{wechatCode}}"
+    >
+        <view class="form__item__label">二维码图片</view>
+        <view class="form__item__content">
+            <view class="avatar m-v-md">
+                <image src="{{wechatCode}}" />
+            </view>
+        </view>
+    </view>
+    <view class="form__item">
+        <view class="form__item__label">员工名称</view>
+        <view
+            class="form__item__content {{name ? '' : 'form__placeholder'}}"
+        >{{name ? name : "未填写"}}</view>
+    </view>
+    <view class="form__item">
+        <view class="form__item__label">员工职位</view>
+        <view
+            class="form__item__content {{role ? '' : 'form__placeholder'}}"
+        >{{role ? role : "未填写"}}</view>
+    </view>
+    <view class="form__item">
+        <view class="form__item__label">员工工号</view>
+        <view
+            class="form__item__content {{sn ? '' : 'form__placeholder'}}"
+        >{{sn ? sn : "未填写"}}</view>
+    </view>
+    <view class="form__item">
+        <view class="form__item__label">员工部门</view>
+        <view
+            class="form__item__content {{department ? '' : 'form__placeholder'}}"
+        >{{department ? department : "未填写"}}</view>
+    </view>
+    <view class="form__item">
+        <view class="form__item__label">员工头像</view>
+        <view class="form__item__content">
+            <view class="m-v-md">
+                <avatar
+                    type="1"
+                    circle
+                    size="100rpx"
+                    url="{{ avatar }}"
+                />
+            </view>
+        </view>
+    </view>
+</view>
+
+<view class="btn">
+    <button
+        bind:tap="delete"
+        class="button--secondary button--circle m-r-lg"
+    >删除</button>
+    <button
+        bind:tap="edit"
+        class="button--primary button--circle"
+    >编辑</button>
+</view>

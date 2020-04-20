@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "address-selector": "/components/address-selector/index"
+  },
+  "navigationBarTitleText": "地址"
+}

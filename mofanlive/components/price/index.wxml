@@ -1,0 +1,18 @@
+<view class="price">
+    <view
+        class="title f-cn"
+        wx:if="{{title}}"
+    >{{title}}:</view>
+    <view
+        class="tag"
+        style="color: {{color}};"
+    >￥</view>
+    <view
+        class="integer"
+        style="color: {{color}};font-size: {{size}}rpx;"
+    >{{integer}}</view>
+    <view
+        class="decimal"
+        style="color: {{color}};"
+    >.{{decimal}}</view>
+</view>

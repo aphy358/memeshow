@@ -1,0 +1,253 @@
+.goods-item {
+    position: relative;
+    /* height: 374rpx; */
+    margin-bottom: 20rpx;
+    padding: 30rpx;
+    padding-bottom: 0;
+    border-radius: 12rpx;
+    align-items: flex-start;
+    overflow: hidden;
+    white-space: nowrap;
+    background-color: #fff;
+    box-sizing: border-box;
+    box-shadow: 0 6px 10px 0 rgba(227,232,243,1);
+}
+
+.top-half {
+    position: relative;
+    /* height: 244rpx; */
+    display: flex;
+    padding-bottom: 30rpx;
+    box-sizing: border-box;
+}
+
+.big-card .top-half::after {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: rgba(33,33,33,0.1);
+    transform: scaleY(0.5);
+    content: ' ';
+}
+
+.goods-img-area {
+    position: relative;
+    margin-right: 24rpx;
+}
+
+.super-welfare-tag {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 104rpx;
+    height: 36rpx;
+    z-index: 2;
+}
+
+.no-goods-mask {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 210rpx;
+    height: 210rpx;
+    background: rgba(255,255,255,1);
+    opacity: 0.8;
+}
+
+.sell-all-img {
+    position: absolute;
+    top: 30rpx;
+    left: 30rpx;
+    width: 150rpx;
+    height: 150rpx;
+    opacity: 1;
+}
+
+.goods-item-img {
+    display: inline-block;
+    vertical-align: top;
+    width: 210rpx;
+    height: 210rpx;
+    border-radius: 8rpx;
+}
+
+.goods-item-content {
+    flex: 1 1 auto;
+    overflow: hidden;
+    position: relative;
+    /* height: 230rpx; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.goods-name {
+    position: relative;
+    font-family: "PingFangSC-Medium" "Microsoft YaHei" sans-serif;
+    font-size: 32rpx;
+    color: #333;
+    line-height: 1;
+    height: 44rpx;
+    /* word-break: break-all;
+    white-space: pre-wrap; */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /* vertical-align: top; */
+    margin-bottom: 20rpx;
+}
+
+.progress-bar-area {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.goods-sell-status {
+    margin-left: 16rpx;
+}
+
+.save-tag {
+    display: flex;
+    position: relative;
+    height: 88rpx;
+    box-sizing: border-box;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.save-tag-left {
+    display: inline-flex;
+    position: relative;
+    height: 40rpx;
+    margin-top: 23rpx;
+    padding: 0 4rpx;
+    box-sizing: border-box;
+    align-items: center;
+}
+
+.save-tag-img {
+    width: 40rpx;
+    height: 40rpx;
+}
+
+.save-tag-detail {
+    display: inline-block;
+    line-height: 40rpx;
+    margin-left: 8rpx;
+    font-size: 28rpx;
+    color: #999999;
+}
+
+.share-to-others {
+    padding: 0;
+    margin: 0;
+    width: 110rpx;
+    height: 88rpx;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* z-index: 3; */
+}
+
+.share-to-friends-img {
+    display: inline-block;
+    width: 40rpx;
+    height: 40rpx;
+    margin-right: 10rpx;
+}
+
+.share-to-friends-text {
+    font-family: PingFangSC-Regular;
+    font-size: 28rpx;
+    color: #999;
+}
+
+.share-to-others::after {
+    display: none;
+}
+
+.goods-price-area {
+    position: relative;
+    overflow: hidden;
+    white-space: nowrap;
+    /* height: 92rpx; */
+    color: #999;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.activity-price {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    width: 156rpx;
+}
+
+.activity-price::after {
+    position: absolute;
+    top: 10rpx;
+    right: 0;
+    height: 60rpx;
+    width: 1px;
+    background: rgba(33,33,33,0.1);
+    transform: scaleX(0.5);
+    content: ' ';
+}
+
+.origin-price {
+    padding-left: 40rpx;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.price-text {
+    font-size: 24rpx;
+    line-height: 34rpx;
+    font-family: PingFangSC-Regular;
+    vertical-align: bottom;
+    color: #999;
+}
+
+.price-value {
+    margin-top: -6rpx;
+    display: inline-block;
+    font-size: 28rpx;
+    line-height: 40rpx;
+    height: 48rpx;
+    vertical-align: bottom;
+    font-family: PingFangSC-Semibold;
+}
+
+.activity-price .price-value {
+    color: #F32953;
+}
+
+.origin-price .price-value {
+    color: #838383;
+}
+
+.price-num {
+    font-family: 'DINAlternate-Bold';
+    font-size: 40rpx;
+    line-height: 64rpx;
+    vertical-align: bottom;
+}
+
+.price-soldout-sm {
+    font-family: PingFangSC-Regular;
+    font-size: 26rpx;
+    line-height: 40rpx;
+    color: #f00;
+}
+
+.price-soldout {
+    font-family: PingFangSC-Semibold;
+    font-size: 32rpx;
+    line-height: 64rpx;
+}

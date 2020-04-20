@@ -2,7 +2,7 @@ import { moreComment, moreChildComment } from './mockComment'
 
 
 /**
- * 参考 CursorDataDelegate 接口结构
+ * 评论游标管理
  */
 class CommentCursorDataDelegator {
 

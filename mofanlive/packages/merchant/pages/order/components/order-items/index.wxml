@@ -1,0 +1,98 @@
+<wxs
+    module="priceFormat"
+    src="/components/common/wxs/accurate.wxs"
+></wxs>
+
+<wxs
+    module="remarkFormat"
+    src="/utils/remarkFormator.wxs"
+></wxs>
+
+<view class="card card--no-border white-back margin-top">
+    <view class="card__header">
+        <image class="icon-shop" mode="aspectFit" src="/assets/images/orders/user-card.png" />
+        <view class="card__title shop-name">{{ orderDetail.user.nickname }}</view>
+    </view>
+
+    <view class="card__content">
+        <view class="card__info">
+            <view class="items card__content__items">
+                <view
+                    class="item"
+                    wx:for="{{items}}"
+                    wx:key="skuId"
+                >
+                    <view class="item-inner">
+                        <view class="item-img">
+                            <image mode="aspectFill" src="{{item.picture}}" />
+                        </view>
+                        <view class="item-detail">
+                            <view class="item-detail__title">{{item.title}}</view>
+                            <view class="item-detail__specs">
+                                <text >{{item.specs}}</text>
+                                <text class="item-detail-bill__quantity">x{{item.num}}</text>
+                            </view>
+                            
+                            <view class="item-detail-bill">
+                                <view >
+                                    <text class="item-detail-bill__price">￥<text class="price-big">{{priceFormat.priceStr1((item.finalPrice))}}</text>.{{priceFormat.priceStr2((item.finalPrice))}}</text>
+                                    <text class="ocib-original-price">￥{{priceFormat.accurate(item.price)}}</text>
+                                </view>
+                                <button
+                                    wx:if="{{ item.actions.length > 0 || !!item.refund }}"
+                                    bind:tap="emitRefund"
+                                    class="item-refund-btn button--tertiary button--mini button--circle"
+                                    data-item="{{item}}"
+                                    data-order="{{orderDetail}}"
+                                >{{ RefundDetailRefundText[orderDetail.type][item.state] }}</button>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+            <view class="od-price-detail">
+                <view class="od-price-detail-item">
+                    <text class="label">商品金额</text>
+                    <text class="price">¥{{ priceFormat.accurate(orderDetail.totalAmount) }}</text>
+                </view>
+                <view class="od-price-detail-item">
+                    <text class="label">快递费</text>
+                    <text class="price">+ ¥{{ priceFormat.accurate(orderDetail.postage) }}</text>
+                </view>
+                <view class="od-price-detail-item">
+                    <text class="label">内购券</text>
+                    <text class="price">- ¥{{ priceFormat.accurate(orderDetail.discountAmount) }}</text>
+                </view>
+            </view>
+            <view class="od-tail-row">
+                <text class="label">实付款</text>
+                <text class="content red">￥<text class="price-big">{{priceFormat.priceStr1((orderDetail.finalAmount))}}</text>.{{priceFormat.priceStr2((orderDetail.finalAmount))}}</text>
+            </view>
+            <view class="od-tail-row">
+                <text class="label">买家留言</text>
+                <text class="content">{{ remarkFormat.getCustomerRemark(orderDetail.remarks) }}</text>
+            </view>
+            <view class="od-tail-btns">
+                <view class="od-tail-btn" bind:tap="showContactSellerPopup">
+                    <view class="od-tail-btn-inner">
+                        <image src="/assets/images/orders/wechat.png" />
+                        <text>联系买家</text>
+                    </view>
+                </view>
+                <view class="od-tail-btn" bind:tap="makePhoneCall">
+                    <view class="od-tail-btn-inner">
+                        <image src="/assets/images/orders/phone.png" />
+                        <text>拨打电话</text>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
+
+<!-- 联系买家 -->
+<!-- <contact-seller 
+  bind:hideContactSellerPopup="onHideContactSellerPopup" 
+  show="{{ contactSellerPopupVisible }}"
+  shopInfo="{{ shopInfo }}"
+/> -->

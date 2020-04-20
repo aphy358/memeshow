@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "refund-info": "./components/refund-info/index",
+    "audits-actions": "./components/audits-actions/index",
+    "audits-records": "./components/audits-records/index"
+  },
+  "navigationBarTitleText": "协商记录"
+}

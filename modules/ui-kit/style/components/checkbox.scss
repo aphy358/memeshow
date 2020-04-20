@@ -3,6 +3,7 @@
 
 .checkbox {
     @include display-flex();
+    padding: $checkbox-padding-h 0;
 
     &__left {
         flex: 0 0 auto;
@@ -54,5 +55,17 @@
 
     &--disabled {
         opacity: $opacity-disabled;
+    }
+}
+
+.checkbox-group {
+    @include hairline-top-bottom($color: $cell-color-border);
+    padding: 0 $checkbox-padding-h;
+
+    &--no-border {
+        &::after,
+        &::before {
+            display: none;
+        }
     }
 }

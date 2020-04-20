@@ -1,0 +1,13 @@
+
+<view class="certification-img-inner">
+    <view class="certification-img-item">
+        <image class="tmp-path" src="{{ image.tmpPath || defaultImg }}" />
+        <view wx:if="{{ upLoading }}" class="img-loading-wrap">
+            <image src="/assets/images/loading.png" />
+        </view>
+    </view>
+    <view class="certification-img-item dashed" bind:tap="add">
+        <image class="icon" src="/assets/images/camera.png" />
+        <text class="text">点击上传</text>
+    </view>
+</view>

@@ -1,0 +1,9 @@
+<view
+    class="fixed-btns"
+    style="{{isIPhoneX ? 'padding-bottom: 68rpx;' : ''}}"
+>
+    <button
+        bind:tap="onTap"
+        class="button--primary button--circle"
+    >删除任务</button>
+</view>

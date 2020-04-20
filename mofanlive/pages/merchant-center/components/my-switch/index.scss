@@ -1,0 +1,20 @@
+@import "@/theme";
+.card {
+  border-radius: 12rpx;
+  box-shadow: 0 6px 10px 0 #e3e8f3;
+}
+
+.card__info {
+  @include flex-row-nowrap;
+  justify-content: space-between;
+  align-items: center;
+
+  .f-cn {
+    font-family: PingFangSC-Medium;
+    font-size: 32rpx;
+  }
+}
+
+.card__content {
+  padding: 20rpx 30rpx;
+}

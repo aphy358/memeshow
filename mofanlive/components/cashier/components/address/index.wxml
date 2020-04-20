@@ -1,26 +1,24 @@
 <view
-    bind:tap="selectAddress"
-    class="cell white-background margin-top-bottom"
-    wx:if="{{!addr.name}}"
+    bind:tap="openAddressSelector"
+    class="cell margin-top-bottom"
+    wx:if="{{!addr.id}}"
 >
     <view class="cell__thumb icon icon-map-pin"></view>
     <view class="cell__header">
-        <view class="cell__title">一键获取微信地址</view>
+        <view class="cell__title">请填写收货地址</view>
     </view>
     <view class="cell__tail">
         <view class="icon icon-chevron-right cell__icon-link"></view>
     </view>
 </view>
 <view
-    catch:tap="selectAddress"
-    class="address white-background margin-top-bottom"
+    class="address margin-top-bottom"
     wx:else
 >
     <view class="icon icon-map-pin big-icon m-r-lg"></view>
     <view
-        bind:tap="selectAddress"
+        bind:tap="openAddressSelector"
         class="address-header"
-        data-index="{{index}}"
     >
         <view class="address-header--name m-r-md bold f-base">{{addr.name}}</view>
         <view class="address-header--name f-base">{{addr.tel}}</view>
@@ -28,6 +26,6 @@
             class="address-header--address f-base"
         >{{addr.province + addr.city + addr.district + addr.address}}</view>
     </view>
-    <view class="f-base grey">修改</view>
     <view class="icon icon-chevron-right grey"></view>
 </view>
+<image class="border" src="/assets/images/line.png" mode="scaleToFill" />

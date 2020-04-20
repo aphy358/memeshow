@@ -1,3 +1,0 @@
-<block wx:if="{{state == 0}}">
-  <unpaid></unpaid>
-</block>

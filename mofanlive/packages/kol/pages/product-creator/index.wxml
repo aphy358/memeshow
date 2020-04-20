@@ -1,0 +1,51 @@
+<view
+    class="message"
+    wx:if="{{emptyShop}}"
+>
+    <image
+        class="message__icon"
+        src="./assets/msg.png"
+    />
+    <view class="message__text f-cn">您的店铺没有商品哦~快发布一个吧</view>
+</view>
+
+<view class="form">
+    <view class="form__item">
+        <view class="form__item__label">商品名称</view>
+        <view class="form__item__content">
+            <input
+                bindinput="onInputTitle"
+                class="input"
+                placeholder="输入商品名称"
+                placeholder-class="form__placeholder"
+                value="{{title}}"
+            />
+        </view>
+    </view>
+    <view class="form__item">
+        <view class="form__item__label">商品价格</view>
+        <view class="form__item__content">
+            <input
+                bindinput="onInputPrice"
+                class="input"
+                placeholder="输入价格"
+                placeholder-class="form__placeholder"
+                type="number"
+                value="{{price}}"
+            />
+        </view>
+    </view>
+    <view class="form__item wrap">
+        <view class="form__item__label">商品图片</view>
+        <view class="form__item__tail">{{images.length}}/9</view>
+        <view class="image-uploader">
+            <image-uploader
+                maxlength="{{9}}"
+                count="{{9}}"
+                bind:change="onImageUpload"
+            ></image-uploader>
+        </view>
+    </view>
+</view>
+
+<fixed-btns bind:confirm="createProduct"></fixed-btns>

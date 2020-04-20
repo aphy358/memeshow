@@ -1,5 +1,5 @@
 <wxs
-    module="accurate2"
+    module="priceFormat"
     src="/components/common/wxs/accurate.wxs"
 ></wxs>
 
@@ -52,7 +52,7 @@
                 src="{{item.imgUrl}}"
             />
             <view class="recommend-item__title f-cn f-base m-v-md">{{item.name}}</view>
-            <view class="f-price">￥{{accurate2(item.price/100)}}</view>
+            <view class="f-price">￥{{priceFormat.accurate(item.price/100)}}</view>
         </view>
     </view>
 </view>

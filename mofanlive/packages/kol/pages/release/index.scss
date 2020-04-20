@@ -1,0 +1,102 @@
+@import "../../kol.scss";
+
+.checkbox {
+  padding: 0 !important;
+
+  &__icon {
+    border-color: white !important;
+    background: rgba(0, 0, 0, 0.10);
+
+    &--checked {
+      border-color: #fe2c54 !important;
+    }
+  }
+}
+
+.checkbox__title {
+  color: #ffffff !important;
+  font-size: 28rpx !important;
+  line-height: 38rpx !important;
+}
+
+.border-t {
+  border: 1rpx solid #222222;
+}
+
+.m-b {
+  margin-bottom: 16rpx;
+}
+
+.input {
+  color: white;
+}
+
+.form__item {
+  min-height: 88rpx !important;
+  background-color: #1D1D1D;
+  padding: 0 30rpx !important;
+
+  &::after {
+    display: none;
+  }
+
+  &__label {
+    color: #fff;
+    font-family: PingFangSC-Regular;
+    font-size: 32rpx;
+  }
+
+  &__picker {
+    &::before {
+      display: none;
+    }
+
+    &__value {
+      font-family: PingFangSC-Regular;
+      font-size: 28rpx;
+      color: #FFFFFF;
+    }
+  }
+}
+
+.form__placeholder {
+  font-size: 28rpx !important;
+}
+
+.budget-hint {
+  padding: 18rpx 30rpx;
+  font-family: PingFangSC-Regular;
+  font-size: 24rpx;
+  color: #999999;
+}
+
+.products {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: space-between;
+
+  &__count {
+    font-family: PingFangSC-Regular;
+    font-size: 28rpx;
+    color: #FFFFFF;
+    margin-right: 12rpx;
+  }
+
+  &__count--placeholder {
+    color: #999;
+  }
+
+  &__preview {
+    width: 100%;
+  }
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.demand {
+  display: flex;
+  flex-flow: row nowrap;
+}

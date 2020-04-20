@@ -1,0 +1,13 @@
+
+<view class="logistics-address-wrap">
+  <view class="la-left">
+    <view class="la-contact-person">
+      <view class="name">{{ refundDetail.returnAddress.name }}</view>
+      <view class="mobile">{{ refundDetail.returnAddress.tel }}</view>
+    </view>
+  
+    <view class="la-contact-address">{{ refundDetail.returnAddress.province + refundDetail.returnAddress.city + refundDetail.returnAddress.district + refundDetail.returnAddress.address }}</view>
+  </view>
+
+  <button class="button--tertiary button--mini btn" bind:tap="copyAdress">复制</button>
+</view>

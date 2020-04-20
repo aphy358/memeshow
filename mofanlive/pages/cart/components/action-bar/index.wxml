@@ -1,5 +1,5 @@
 <wxs
-    module="accurate2"
+    module="priceFormat"
     src="/components/common/wxs/accurate.wxs"
 ></wxs>
 
@@ -12,11 +12,11 @@
         ></checkbox-item>
         <view class="total">
             <view class="f-cn f-md f-base m-r-md">总计</view>
-            <view class="f-price f-md">￥{{accurate2(total/100)}}</view>
+            <view class="f-price f-md">￥{{priceFormat.accurate(total/100)}}</view>
         </view>
     </view>
     <button
         bind:tap="emitSubmit"
-        class="button--primary button--mini button--full"
+        class="button--primary button--mini button--circle"
     >结算</button>
 </view>

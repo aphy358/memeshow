@@ -1,0 +1,32 @@
+<wxs module="formator" src="/utils/formator.wxs"></wxs>
+
+<view
+    class="status_bar"
+    style="padding-top:{{statusBarHeight}}px"
+>
+    <view
+        class="status_bar-general"
+        style="height:{{menuBtn.height}}px;width:{{menuBtn.left - safeArea.left - marginRight}}px;margin:{{marginVertical}}px 0px;"
+    >
+        <view class="status_bar-back" bindtap="onCloseLive">
+            <text class="icon icon-chevron-left"></text>
+        </view>
+        <view class="status_bar-tabs">
+            <view class="status_bar-tab">
+                <view class="live_status">
+                    <text class="live_status-desc">直播中</text>
+                    <text class="live_status-timer">{{ formator.getTimeClock(timer * 1000) }}</text>
+                </view>
+            </view>
+            <view class="status_bar-tab">
+                <view class="network">网络:
+                    <image class="network_icon" src="../../../../assets/signal.png"></image>优
+                </view>
+            </view>
+        </view>
+    </view>
+
+    <view class="status_bar-extra">
+        <slot></slot>
+    </view>
+</view>

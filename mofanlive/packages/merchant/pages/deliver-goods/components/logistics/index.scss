@@ -1,0 +1,49 @@
+@import "@/theme";
+
+.logistics-wrap {
+  margin-top: 20rpx;
+
+  @at-root .logistics-tab-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 98rpx;
+    width: 100%;
+
+    @at-root .logistics-tab-item {
+      width: 50%;
+      font-size: 28rpx;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #FE2C54;
+      border: 1rpx solid #FE2C54;
+      height: 56rpx;
+
+      &.active {
+        color: white;
+        background: #FE2C54;
+      }
+
+      &.left {
+        border-top-left-radius: 4rpx;
+        border-bottom-left-radius: 4rpx;
+      }
+
+      &.right {
+        border-top-right-radius: 4rpx;
+        border-bottom-right-radius: 4rpx;
+      }
+    }
+
+    @at-root .logistics-unnecessary {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 98rpx;
+      width: 100%;
+      color: #969799;
+      font-size: 28rpx;
+    }
+  }
+}

@@ -1,0 +1,76 @@
+@import "../../../../kol.scss";
+
+.drawer-container {
+  background-color: #222222;
+  width: 560rpx;
+}
+
+.drawer {
+  padding: 44rpx 30rpx 24rpx;
+  display: flex;
+  flex-flow: column nowrap;
+  height: 100%;
+  width: 100%;
+
+  &__filters {
+    width: 100%;
+    flex: 1;
+    overflow-y: scroll;
+    overflow-x: unset;
+  }
+
+  &__filter {
+    width: 100%;
+    margin-bottom: 32rpx;
+  }
+
+  &__btns {
+    margin-top: 40rpx;
+    display: flex;
+    flex-flow: row nowrap;
+
+    &--reset {
+      border-color: white;
+      margin-right: 16rpx;
+    }
+  }
+}
+
+.filter {
+  &__title {
+    font-size: 28rpx;
+    color: #FFFFFF;
+    margin-bottom: 30rpx;
+  }
+
+  &__items {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+  }
+
+  &__item {
+    width: 160rpx;
+    height: 56rpx;
+    border-radius: 56rpx;
+    border: 1rpx solid #1D1D1D;
+    background-color: #1D1D1D;
+    line-height: 56rpx;
+    box-sizing: border-box;
+    text-align: center;
+    color: #999;
+    font-size: 24rpx;
+    margin-right: 10rpx;
+    margin-bottom: 10rpx;
+
+    &:nth-child(3n) {
+      margin-right: 0;
+    }
+
+    &--selected {
+      border-color: #F32953;
+      background-color: #111111;
+      color: white;
+    }
+  }
+}

@@ -1,0 +1,97 @@
+@import "@/theme";
+
+.order {
+  width: 100%;
+  margin: 0;
+  background-color: $color-white;
+  margin-bottom: 24rpx;
+
+  &-content {
+    width: 100%;
+    box-sizing: border-box;
+
+    &__item {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 30rpx;
+      @include flex-row-nowrap;
+      background-color: white;
+      align-items: flex-start;
+      margin-bottom: 24rpx;
+      @include hairline-top();
+
+      &-thumbnail {
+        flex: 0 0 auto;
+        $thumbnail-size: 176rpx;
+
+        width: $thumbnail-size;
+        height: $thumbnail-size;
+        margin-right: $spacing-h-lg;
+        border-radius: $border-radius-md;
+        overflow: hidden;
+
+        image {
+          width: 100%;
+          height: 100%;
+        }
+      }
+
+      &-detail {
+        flex: 1;
+        height: 176rpx;
+        position: relative;
+
+        &__title {
+          font-size: 28rpx;
+          font-family: $font-cn;
+          color: $color-text-base;
+          line-height: 34rpx;
+          width: 100%;
+          max-height: 2 * $line-height-base; // todo
+          @include line(2);
+        }
+
+        &__specs {
+          font-size: 24rpx;
+          font-family: $font-cn;
+          color: #999999;
+          margin-top: 4rpx;
+        }
+      }
+
+      &-bill {
+        position: absolute;
+        bottom: -8rpx;
+        left: 0;
+        width: 100%;
+        @include flex-row-nowrap;
+        align-items: flex-end;
+        font-size: 24rpx;
+
+        &__price {
+          color: #333333;
+          font-size: 28rpx;
+          margin-bottom: -2rpx;
+        }
+
+        @at-root .ocib-original-price {
+          margin-left: 10rpx;
+          color: #969799;
+          text-decoration: line-through;
+        }
+
+        &__quantity {
+          flex-grow: 1;
+          color: #969799;
+          font-size: 24rpx;
+          text-align: right;
+        }
+      }
+    }
+  }
+}
+
+.price-big {
+  font-size: 32rpx;
+  color: #141415;
+}

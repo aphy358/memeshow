@@ -1,0 +1,16 @@
+<view class="verify-wrap">
+  <view class="verify-icon">
+    <image src="../../assets/audit-failure.png" />
+  </view>
+
+  <view class="verify-title">审核失败</view>
+
+  <view class="verify-note">
+    对不起！您提交的认证审核失败，失败原因是：身份证照片模糊，请重新提交。
+  </view>
+</view>
+
+<view class="page-fixed-bottom-actions">
+  <button class="button--primary button--circle" form-type="submit">重新提交</button>
+  <view class="iphoneX-holder"></view>
+</view>

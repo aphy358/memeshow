@@ -1,0 +1,10 @@
+<view class="getmore-ticket-item">
+    <image class="ticket-item-avatar" src="{{icon}}"></image>
+    <view class="ticket-item-content">
+        <view class="inviter-name-line invite-friend">{{title}}</view>
+        <view class="ticket-item-detail">{{desc}}</view>
+    </view>
+    <view class="getmore-btn">
+        <slot></slot>
+    </view>
+</view>

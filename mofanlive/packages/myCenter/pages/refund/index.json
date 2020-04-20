@@ -1,0 +1,10 @@
+{
+  "usingComponents": {
+    "refund-state": "./components/refund-state/index",
+    "refund-info": "./components/refund-info/index",
+    "refund-actions": "./components/refund-actions/index",
+    "refund-negotiation": "./components/refund-negotiation/index",
+    "logistics-address": "./components/logistics-address/index"
+  },
+  "navigationBarTitleText": "售后详情"
+}

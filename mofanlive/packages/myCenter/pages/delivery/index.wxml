@@ -1,0 +1,39 @@
+<wxs module="formator" src="/utils/formator.wxs"></wxs>
+
+
+<view class="delivery-outer">
+  <tabs wx:if="{{ deliveryTabs.length > 1 }}" class="tabs" bind:change="onTabChange" default="{{ currentTab }}">
+    <tab wx:for="{{ deliveryTabs }}" key="{{ item.key }}" data-value="{{ item.value }}">包裹{{ item.key }}</tab>
+  </tabs>
+
+  <view class="delivery-brief-wrap">
+    <view class="db-image">
+      <image wx:if="{{ order.items[0] }}" src="{{ order.items[0].picture }}" />
+    </view>
+    <view class="db-content">
+      <view class="db-state">{{ ExpressState[currentExpress.status] }}</view>
+      <view class="db-express">承运来源：{{ currentExpress.express }}</view>
+      <view class="db-express-no">运单编号：{{ currentExpress.expressNo }}</view>
+    </view>
+  </view>
+
+  <view wx:if="{{ currentExpress.traces && currentExpress.traces.length > 0 }}" class="delivery-steps-outer">
+    <view class="delivery-steps-inner">
+      <view 
+        wx:for="{{ currentExpress.traces }}"
+        wx:key="index"
+        class="delivery-step {{ index === 0 ? 'active' : '' }}"
+      >
+        <view class="delivery-step-text">{{ item.description }}</view>
+        <view class="delivery-step-time">{{ formator.getTimeStr(item.timestamp * 1000) }}</view>
+        <view wx:if="{{ index === 0 }}" class="delivery-step-active-icon"></view>
+      </view>
+    </view>
+  </view>
+
+  <no-records wx:if="{{ !isLoading && (!currentExpress.traces || currentExpress.traces.length < 1) }}" type="5"></no-records>
+
+  <!-- 正在加载中... -->
+  <view class="loading" wx:if="{{ isLoading }}">正在加载中...</view>
+
+</view>

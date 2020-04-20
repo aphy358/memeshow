@@ -1,0 +1,25 @@
+<form bindsubmit="handleSubmit">
+  <!-- <view class="cell__note">建议您与买家协商后，再确定是否拒绝退款，如您拒绝退款后，买家可修改退款申请重新发起退款。也可直接发起维权申请，将会由魔范秀客服介入处理。</view> -->
+
+  <view class="cell__group bg-white">
+    <view class="cell">
+      <view class="cell__tail__rated" style="margin-left: 0;">
+        <view class="cell__detail">
+          <mf-textarea 
+            height="{{ 200 }}" 
+            placeholder="请填写备注" 
+            placeholder-class="form__placeholder"
+            bind:input="onInputTextArea"
+            counter
+            maxlength="{{ 100 }}"
+          />
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="page-fixed-bottom-actions">
+    <button class="button--primary button--circle" form-type="submit">保存</button>
+    <view class="iphoneX-holder"></view>
+  </view>
+</form>

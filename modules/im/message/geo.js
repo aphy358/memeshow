@@ -4,10 +4,16 @@ import IMMessage from './base'
  * 位置消息
  */
 export default class IMGeoMessage extends IMMessage {
-	// 位置描述
-	location = ""
-	// 纬度
-	latitude = 0
-	// 经度
-	longitude = 0
+
+	messageType() {
+		return "IMGeoMessage"
+	}
+
+	constructor(payload = {}) {
+		super(payload)
+
+		this.location = payload.location || ""
+		this.latitude = payload.latitude || 0
+		this.longitude = payload.longitude || 0
+	}
 }

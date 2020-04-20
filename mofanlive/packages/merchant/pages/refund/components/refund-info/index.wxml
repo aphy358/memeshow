@@ -1,0 +1,92 @@
+<wxs
+  module="priceFormat"
+  src="/components/common/wxs/accurate.wxs"
+></wxs>
+
+<wxs
+  module="formator"
+  src="/utils/formator.wxs"
+></wxs>
+
+<view class="refund-info-wrap">
+  <view class="refund-info-title">退款信息</view>
+
+  <view class="refund-info-items">
+    <view 
+      class="refund-info-item"
+      wx:for="{{ refundDetail.items }}"
+      wx:key="index"
+    >
+      <view class="rii-thumbnail">
+        <image src="{{ item.picture }}" />
+      </view>
+      <view class="rii-detail">
+        <view class="rii-detail-title">{{ item.title }}</view>
+        <view class="rii-detail-specs">{{ item.specs }}</view>
+        
+        <view class="rii-bill">
+          <text class="rii-bill-price">￥<text class="price-big">{{ priceFormat.priceStr1((item.finalPrice)) }}</text>.{{ priceFormat.priceStr2((item.finalPrice)) }}</text>
+          <text class="rii-bill-original-price">￥{{ priceFormat.accurate(item.price) }}</text>
+          <text class="rii-bill-quantity">x{{ item.num }}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="refund-brief-list">
+    <view class="refund-brief-item">
+      <text class="label">退款方式：</text>
+      <text>{{ RefundTypeText[refundDetail.type] }}</text>
+    </view>
+
+    <view class="refund-brief-item">
+      <text class="label">退款原因：</text>
+      <text>{{ refundDetail.reason }}</text>
+    </view>
+
+    <view class="refund-brief-item">
+      <text class="label">退款金额：</text>
+      <text><text class="red">¥{{ priceFormat.accurate(refundDetail.amount) }}元</text>（含运费 ¥{{ priceFormat.accurate(refundDetail.postage) }}）</text>
+    </view>
+
+    <view class="refund-brief-item">
+      <text class="label">退款编号：</text>
+      <text>{{ refundDetail.id }}</text>
+    </view>
+
+    <view class="refund-brief-item">
+      <text class="label">申请时间：</text>
+      <text>{{ formator.getTimeStr(refundDetail.ctime) }}</text>
+    </view>
+
+    <view wx:if="{{ refundDetail.type === 1 }}" class="refund-brief-item">
+      <text class="label">退货数量：</text>
+      <text>{{ refundDetail.itemNum }}</text>
+    </view>
+  </view>
+
+  <view class="refund-info-actions">
+    <view class="od-tail-btns">
+      <view class="od-tail-btn" bind:tap="showContactSellerPopup">
+        <view class="od-tail-btn-inner">
+          <image src="/assets/images/orders/wechat.png" />
+          <text>联系买家</text>
+        </view>
+      </view>
+
+      <view class="od-tail-btn" bind:tap="makePhoneCall">
+        <view class="od-tail-btn-inner">
+          <image src="/assets/images/orders/phone.png" />
+          <text>拨打电话</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<!-- 联系买家 -->
+<contact-seller 
+  bind:hideContactSellerPopup="onHideContactSellerPopup" 
+  show="{{ contactSellerPopupVisible }}"
+  shopInfo="{{ shopInfo }}"
+/>

@@ -1,0 +1,10 @@
+<!-- rejected:卖家拒绝申请,买家可重新编辑再次提交或关闭申请 -->
+<view class="refund-state-wrap">
+  <view class="refund-state-block">
+    <view class="title">您不同意退款申请</view>
+    <view class="refund-state-note">若买家在 {{ countDown }} 内未处理，则本次退款申请将关闭</view>
+  </view>
+  <view class="refund-state-block">
+    <view class="refund-state-note">拒绝理由：虚拟商品不能退款退货</view>
+  </view>
+</view>

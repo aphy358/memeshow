@@ -1,0 +1,10 @@
+<view class="authorized-button-wrap">
+  <slot></slot>
+
+  <button 
+    wx:if="{{ !userProfile || !userProfile.id }}"
+    class="authorized-button"
+    open-type="getUserInfo" 
+    bindgetuserinfo="login"
+  />
+</view>

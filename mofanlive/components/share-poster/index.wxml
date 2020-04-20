@@ -1,0 +1,21 @@
+<view wx:if="{{ show }}">
+  <view
+      bindtap="close"
+      catchtouchmove="move"
+      class="dialog-mask"
+  ></view>
+  
+  <view class="share-img-cmp">
+      <image
+          class="share-img-cmp-bg"
+          mode="widthFix"
+          src='{{ tmpImagePath }}'
+          bindlongtap='saveImageToPhotos'
+      ></image>
+  
+      <view
+          bindtap="saveImageToPhotos"
+          class="share-img-cmp-opt"
+      >保存图片</view>
+  </view>
+</view>

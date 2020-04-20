@@ -1,0 +1,69 @@
+@import "../../kol.scss";
+
+.cell {
+  background-color: #1D1D1D;
+  padding: 0 30rpx !important;
+
+  &__title {
+    font-family: PingFangSC-Regular;
+    font-size: 32rpx;
+    color: #FFFFFF;
+  }
+
+  &__detail {
+    font-family: PingFangSC-Regular;
+    font-size: 28rpx;
+    color: #999;
+    text-align: right;
+  }
+}
+
+.budget-hint {
+  padding: 18rpx 30rpx;
+  font-family: PingFangSC-Regular;
+  font-size: 24rpx;
+  color: #999999;
+}
+
+
+.form__item {
+  min-height: 88rpx !important;
+  background-color: #1D1D1D;
+  padding: 0 30rpx !important;
+
+  &::after {
+    display: none;
+  }
+
+  &__label {
+    color: #fff;
+    font-family: PingFangSC-Regular;
+    font-size: 32rpx;
+  }
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.products {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: flex-end;
+
+  &__count {
+    font-family: PingFangSC-Regular;
+    font-size: 28rpx;
+    color: #999;
+    margin-right: 12rpx;
+  }
+
+  &__preview {
+    width: 100%;
+  }
+}
+
+.m-b {
+  margin-bottom: 16rpx;
+}

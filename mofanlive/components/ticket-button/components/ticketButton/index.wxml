@@ -1,0 +1,40 @@
+<wxs module="formator" src="../../../../utils/formator.wxs"></wxs>
+
+<view class="ticket-button">
+    <authorized-button>
+        <view
+            bindtap="tuneUpMoreTicket"
+            catchtouchmove="true"
+            class="ticket-button-inner"
+        >
+            <view class="left-button-area">
+                <view
+                    class="big-text"
+                    style="{{ !expireText ? 'line-height: 80rpx' : ''}}"
+                >{{ count }} 张内购券</view>
+                <view class="small-text" wx:if="{{expireText}}">
+                    <text class="bottom-time" >{{ formator.fromNow(expireText) }}过期</text>
+                </view>
+            </view>
+            <view class="right-button-area">
+                <text class="get-more">获取更多</text>
+                <text class="right-arrow"></text>
+            </view>
+        </view>
+    </authorized-button>
+</view>
+
+<share-poster
+    wx:if="{{ showShareImage }}"
+    image="{{ shareImage }}"
+    bindclose="closeShareImage"
+></share-poster>
+
+<moreTicket
+    count="{{ count }}"
+    expire="{{ expire }}"
+    isShow="{{ showMoreTicket }}"
+    bindclosemoreticket="closeMoreTicket"
+    bindshareImage="onShareImage"
+    catchtouchmove="true"
+></moreTicket>

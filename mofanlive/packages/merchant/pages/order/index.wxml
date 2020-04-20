@@ -1,0 +1,26 @@
+<wxs
+    module="formator"
+    src="/utils/delivery.wxs"
+></wxs>
+
+<view wx:if="{{ !!orderDetail }}">
+    <order-merchant-remark wx:if="{{ orderDetail.remarks && orderDetail.remarks.length > 0 }}" orderDetail="{{ orderDetail }}" />
+
+    <state order="{{ orderDetail }}"></state>
+
+    <address address="{{ orderDetail.address }}"></address>
+
+    <delivery order="{{ orderDetail }}" wx:if="{{ orderDetail.deliveryOrders && (orderDetail.state === OAK.WaitReceive || orderDetail.state === OAK.Complete) }}" />
+
+    <items
+        items="{{ orderDetail.items }}"
+        orderDetail="{{ orderDetail }}"
+        bind:refund="handleRefund"
+    ></items>
+
+    <info orderDetail="{{ orderDetail }}" wx:if="{{ orderDetail.state !== OAK.WaitPay }}"></info>
+
+    <actions orderDetail="{{ orderDetail }}" bind:refreshOrder="onRefreshOrder"></actions>
+
+    <view style="width: 100%; height: 180rpx;"></view>
+</view>

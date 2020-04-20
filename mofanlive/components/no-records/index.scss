@@ -1,0 +1,14 @@
+
+.no-records-wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 150rpx;
+
+  .text {
+    font-size: 32rpx;
+    color: #ccc;
+    margin-top: 32rpx;
+  }
+}

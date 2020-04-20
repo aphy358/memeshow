@@ -73,6 +73,9 @@
 .f-paragraph {
     color: $color-text-paragraph;
 }
+.f-link {
+    color: $color-link;
+}
 
 // 粗细
 .f-w-b {
@@ -116,4 +119,9 @@
 .pa-xxl {
     font-size: $font-size-xxl;
     line-height: $line-height-xxl;
+}
+
+// 表单颜色
+.form__placeholder {
+    color: $color-text-placeholder;
 }

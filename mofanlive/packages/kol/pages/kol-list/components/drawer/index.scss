@@ -1,0 +1,32 @@
+@import "../../../../kol.scss";
+
+.drawer {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  visibility: hidden;
+  z-index: 99;
+
+  &--actived {
+    visibility: visible;
+
+    .popup__overlay {
+      opacity: 1;
+    }
+
+    .content {
+      transform: translate(0, 0);
+    }
+  }
+}
+
+.content {
+  position: absolute;
+  right: 0;
+  width: 70%;
+  height: 100vh;
+  transform: translate(100%, 0);
+  background-color: $color-white;
+}

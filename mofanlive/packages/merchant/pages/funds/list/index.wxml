@@ -1,0 +1,21 @@
+<view class="fund-list">
+    <view
+        wx:if="{{ type === 'unsettled' }}"
+        class="cell fund-list_total"
+    >
+        <view class="cell__header">
+            <view class="cell__title">待结算收入</view>
+        </view>
+        <view class="cell__tail">
+            <view class="cell__detail fund-list_total-amount">¥ 418.50</view>
+        </view>
+    </view>
+
+    <view
+        wx:if="{{ list.length }}"
+        class="fund-list__content"
+    >
+        <list-card></list-card>
+    </view>
+    <view class="fund-list__empty">暂无数据</view>
+</view>

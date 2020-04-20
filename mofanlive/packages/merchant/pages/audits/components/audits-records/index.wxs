@@ -1,0 +1,52 @@
+
+var getAuditSubTitle = function(action, type) {
+  switch (action) {
+    case 'create': {
+      return '发起了退款申请，等待商家处理'
+    }
+    case 'confirm': {
+      return type == 2 
+        ? '同意退款给买家，退款成功'
+        : '已同意退款申请，等待买家退货'
+    }
+    case 'update': {
+      return '修改退款申请，等待商家处理'
+    }
+    case 'return': {
+      return '已提交退货物流信息，等待商家处理'
+    }
+    case 'close': {
+      return '撤销退款申请，退款关闭'
+    }
+    case 'reject': {
+      return '拒绝退款申请，需买家修改退款申请'
+    }
+    case 'confirm_returned': {
+      return '同意退款给买家，退款成功'
+    }
+    case 'reject_return': {
+      return '拒绝收货，需要买家修改退货物流'
+    }
+    case 'admin_involve': {
+      return '申请客服介入，等待魔范秀客服处理'
+    }
+    default: {
+      return ''
+    }
+  }
+}
+
+var getRemarkLable = function(audit) {
+  var action = audit.action
+  var isAdminInvolved = audit.content.isAdminInvolved
+
+  if (isAdminInvolved)  return '申请理由'
+  if (action === 'reject' || action === 'reject_return')  return '拒绝理由'
+  if (action === 'remark')  return '留言'
+  return '退款说明'
+}
+
+module.exports = {
+  getAuditSubTitle,
+  getRemarkLable,
+}

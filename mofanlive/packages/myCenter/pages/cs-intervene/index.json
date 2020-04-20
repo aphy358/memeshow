@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "申请客服介入",
+  "usingComponents": {
+    "image-uploader": "/components/image-uploader/index"
+  }
+}

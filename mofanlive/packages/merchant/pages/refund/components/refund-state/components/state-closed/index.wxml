@@ -1,0 +1,6 @@
+<!-- closed:关闭、申请已撤销 -->
+<view class="refund-state-wrap">
+  <view class="refund-state-block">
+    <view class="title">退款关闭</view>
+  </view>
+</view>

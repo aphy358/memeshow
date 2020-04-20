@@ -1,0 +1,48 @@
+<view class="products">
+    <tabs
+        sticky
+        default="{{ listData.type }}"
+        bindchange="onChangeType"
+    >
+        <tab key="listing">出售中</tab>
+        <tab key="delisting">已下架</tab>
+    </tabs>
+    <block wx:if="{{ listData.list.length }}">
+        <view
+            wx:for="{{ listData.list }}"
+            wx:key="id"
+            wx:for-item="product"
+            class="products-item"
+            bindlisting="onShelves"
+            binddelisting="offShelves"
+            bindmore="onActionOpen"
+            binddelete="onUpdate"
+            bindupdate="onUpdate"
+            bindedit="onUpdate"
+        >
+            <product-card
+                product="{{ product }}"
+                on-sale="{{ listData.type === 'listing' }}"
+            ></product-card>
+        </view>
+    </block>
+    <no-records type="1" wx:else />
+</view>
+
+<view class="fixed-bottom-actions">
+    <button
+        class="button--primary button--circle"
+        bindtap="onAddProduct"
+    >
+        + 添加商品
+    </button>
+</view>
+
+<action-sheet
+    action-show="{{ actionField.show }}"
+    bindactionHide="onActionClose"
+>
+    <button bindtap="setPreSale">设置/取消预售</button>
+    <button bindtap="setProductSticky">置顶</button>
+    <button bindtap="offShelves">下架</button>
+</action-sheet>

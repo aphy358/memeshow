@@ -1,0 +1,42 @@
+<view class="friends-buy">
+    <view class="friends-buy-avatars">
+        <block wx:if="{{ showAvatar }}">
+            <!-- <image
+                mode="aspectFit"
+                src="{{ buyer.avatar }}"
+                class="friends-item"
+                wx:for="{{ list }}"
+                wx:for-item="buyer"
+                wx:key="id"
+            ></image> -->
+            <avatar
+                type="2"
+                circle
+                size="32rpx"
+                url="{{ buyer.avatar }}"
+                border="2rpx solid white"
+                wx:for="{{ list }}"
+                wx:for-item="buyer"
+                wx:key="id"
+            />
+        </block>
+        <!-- <image
+            wx:else
+            mode="aspectFit"
+            src="{{ initiator.avatar }}"
+            class="friends-item"
+        ></image> -->
+        <avatar
+            wx:else
+            type="2"
+            circle
+            size="32rpx"
+            url="{{ initiator.avatar }}"
+            border="2rpx solid white"
+        />
+    </view>
+    <text class="employee-buy-description" wx:if="{{ !showAvatar }}">
+        <text class="normalPinText">已有99+人抢券</text>
+    </text>
+    <text wx:else class="friends-buy-description">{{ total }}人正在团购</text>
+</view>

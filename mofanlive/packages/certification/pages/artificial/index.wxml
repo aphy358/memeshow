@@ -1,0 +1,107 @@
+<view class="certification-index-wrap">
+  <tabs 
+    class="tabs" 
+    bind:change="onTabChange" 
+    default="{{ currentType }}"
+  >
+    <tab key="{{ 1 }}">个人认证</tab>
+    <tab key="{{ 2 }}">企业认证</tab>
+  </tabs>
+
+  <form bindsubmit="handleSubmit" wx:if="{{ currentType == 1 }}">
+    <view class="certification-content">
+      <view class="certification-note">
+        适用于没有营业执照的微商、网商、工作室等
+      </view>
+    </view>
+    
+    <view class="form white-back">
+      <view class="form__item">
+        <view class="form__item__label">姓名</view>
+        <view class="form__item__content">
+          <input type="text" class="input" name="name" placeholder="请填写真实姓名" placeholder-class="form__placeholder"></input>
+        </view>
+      </view>
+      <view class="form__item">
+        <view class="form__item__label">身份证号</view>
+        <view class="form__item__content">
+          <input type="text" class="input" name="id" placeholder="请填写大陆身份证号" placeholder-class="form__placeholder"></input>
+        </view>
+      </view>
+    </view>
+
+    <view class="certification-img-block">
+      <view class="certification-img-title">- 身份证正面照 -</view>
+      <credentials-uploader defaultImg="../../assets/front.png" bind:uploaded="uploadedFront" />
+
+      <view class="certification-img-title">- 身份证背面照 -</view>
+      <credentials-uploader defaultImg="../../assets/reverse.png" bind:uploaded="uploadedReverse" />
+
+      <view class="certification-img-title">- 手持身份证照 -</view>
+      <credentials-uploader defaultImg="../../assets/in-hand.png" bind:uploaded="uploadedInHand" />
+    </view>
+
+    <view class="page-fixed-bottom-actions">
+      <button class="button--primary button--circle" form-type="submit">提交认证</button>
+      <view class="iphoneX-holder"></view>
+    </view>
+  </form>
+
+  <form bindsubmit="handleSubmit" wx:else>
+    <view class="certification-content">
+      <view class="certification-note">
+        适用于有营业执照的公司企业、个体商户等
+      </view>
+    </view>
+    
+    <view class="form white-back">
+      <view class="form__item">
+        <view class="form__item__label">企业类型</view>
+        <view class="form__item__content">
+          <view class="certification-radio-group">
+            <checkbox-item title="公司企业" value="{{ 1 }}" checked="{{ radioOneChecked }}" bindchange="setCorpType" />
+            <checkbox-item title="个体工商户" value="{{ 2 }}" checked="{{ radioTwoChecked }}" bindchange="setCorpType" />
+          </view>
+        </view>
+      </view>
+      <view class="form__item">
+        <view class="form__item__label">主体名称</view>
+        <view class="form__item__content">
+          <input type="text" class="input" name="license" placeholder="请填写营业执照上的名称" placeholder-class="form__placeholder"></input>
+        </view>
+      </view>
+      <view class="form__item">
+        <view class="form__item__label">法人姓名</view>
+        <view class="form__item__content">
+          <input type="text" class="input" name="name" placeholder="请填写企业法人姓名" placeholder-class="form__placeholder"></input>
+        </view>
+      </view>
+      <view class="form__item">
+        <view class="form__item__label">身份证号</view>
+        <view class="form__item__content">
+          <input type="text" class="input" name="id" placeholder="请填写大陆身份证号" placeholder-class="form__placeholder"></input>
+        </view>
+      </view>
+    </view>
+
+    <view class="certification-img-block">
+      <view class="certification-img-title">- 营业执照副本照片 -</view>
+      <credentials-uploader defaultImg="../../assets/license.png" bind:uploaded="uploadedLicense" />
+
+      <view class="certification-img-title">- 法人身份证正面照 -</view>
+      <credentials-uploader defaultImg="../../assets/front.png" bind:uploaded="uploadedFront" />
+
+
+      <view class="certification-img-title">- 法人身份证背面照 -</view>
+      <credentials-uploader defaultImg="../../assets/reverse.png" bind:uploaded="uploadedReverse" />
+
+      <view class="certification-img-title">- 手持身份证照 -</view>
+      <credentials-uploader defaultImg="../../assets/in-hand.png" bind:uploaded="uploadedInHand" />
+    </view>
+
+    <view class="page-fixed-bottom-actions">
+      <button class="button--primary button--circle" form-type="submit">提交认证</button>
+      <view class="iphoneX-holder"></view>
+    </view>
+  </form>
+</view>

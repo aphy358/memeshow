@@ -1,0 +1,40 @@
+.search-bar-wrap {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 12px;
+    height: 112rpx;
+    background: #f3f4f6;
+    z-index: 99;
+}
+
+.title-input {
+    display: flex;
+    position: relative;
+    align-items: center;
+    height: 64rpx;
+    background-color: #fff;
+    border-radius: 32rpx;
+}
+
+.title-input-placeholder {
+    width: 198rpx;
+    height: 40px;
+    line-height: 40rpx;
+    font-size: 28rpx;
+    color: #999999;
+    margin-left: 72rpx;
+    text-align: left;
+}
+
+.title-search-icon {
+    position: absolute;
+    left: 24rpx;
+    top: 16rpx;
+    width: 32rpx;
+    height: 32rpx;
+    background-image: url('https://pinduoduoimg.yangkeduo.com/wxappimg/2019-11-10/9276c3619c542cdd392fc443954a80c8.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+}

@@ -1,0 +1,30 @@
+<wxs
+    module="formate"
+    src="../../../../utils/format.wxs"
+></wxs>
+<view class="item">
+    <view class="item__avatar">
+        <image src="{{kol.avatar}}" />
+    </view>
+    <view class="item__detail">
+        <view class="detail__content">
+            <view class="detail__name f-cn">{{kol.name}}</view>
+            <view class="detail__fan-num-and-rate f-cn">
+                粉丝{{formate.approximately(kol.fanNum)}} |
+                匹配度
+                <text class="f-nu detail__fan-num-and-rate--highlight">{{kol.matchRate}}%</text>
+            </view>
+            <view class="detail__tags">
+                <view
+                    class="detail__tag f-cn"
+                    wx:for="{{kol.tags}}"
+                    wx:key="this"
+                >{{item}}</view>
+            </view>
+        </view>
+        <view class="invite-btn">
+            <image src="../../assets/invite.png" />
+            <view class="invite-btn__text">发送合作邀请</view>
+        </view>
+    </view>
+</view>

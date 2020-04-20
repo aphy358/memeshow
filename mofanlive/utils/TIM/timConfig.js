@@ -1,8 +1,0 @@
-
-const SDKAPPID = 1400300102;
-const USERSIG = 'eJwtzF0LgjAYhuH-stNCXqdzKXRUUVgULTvwcLlVL324nEgZ-fdkevhcNzxfkm0OXqMrkhDqARm7jUo-azyjY2mun4BNhmTVTRqDiiR*CBAA*ED7ot8GK905Y4wCQK81PpxxHkEc0UEtXrrnrDV8tLjXTMyLHNMi3e6PIs1nS2l3AsrX2i9XbRSe4gam5PcHWAsxPQ__'
-
-export {
-  SDKAPPID,
-  USERSIG
-}

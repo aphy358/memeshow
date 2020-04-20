@@ -1,0 +1,19 @@
+<view class="fund-deposit">
+    <view class="fund-deposit_header">
+        <view class="cell__group">
+            <view class="cell">
+                <view class="cell__header">
+                    <view>
+                        <view>供应商保证金(元)</view>
+                        <view>0.00</view>
+                    </view>
+                </view>
+                <view class="cell__tail">
+                    <view class="cell__detail">
+                        <button class="fund-deposit_header-btn">充值</button>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>

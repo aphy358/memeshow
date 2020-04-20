@@ -85,6 +85,23 @@
         }
     }
 
+    &__item--column {
+        @include display-flex();
+        @include flex-direction(column);
+        @include align-items(stretch);
+
+        .form__item__label,
+        .form__item__content,
+        .form__item__tail {
+            flex: 1 1 auto;
+            max-width: unset;
+        }
+
+        .form__item__label {
+            margin-right: 0;
+        }
+    }
+
     &__item__picker {
         @include display-flex();
         @include align-items(center);
@@ -119,6 +136,13 @@
 
         &__placeholder {
             color: $color-text-placeholder;
+        }
+    }
+
+
+    &__item--no-border {
+        &::after {
+            display: none;
         }
     }
 

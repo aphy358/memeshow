@@ -1,0 +1,345 @@
+.more-ticket-top {
+    display: block;
+    position: relative;
+}
+
+.more-ticket-title {
+    position: relative;
+    height: 10.7%;
+    padding: 0 32rpx 0 40rpx;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.scroll_view {
+    height: 89.3%;
+}
+
+.more-ticket-title::after {
+    content: "";
+    display: block;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 1px;
+    transform: scaleY(0.5);
+    background: rgba(33,33,33,0.1);
+}
+
+.title-text {
+    line-height: 130rpx;
+    font-family: PingFangSC-Medium;
+    font-size: 36rpx;
+    color: #212121;
+    letter-spacing: 0;
+}
+
+.ticket-area {
+    position: relative;
+    height: 304rpx;
+    padding: 32rpx 36rpx 32rpx 40rpx;
+    box-sizing: border-box;
+}
+
+.ticket-area::after {
+    position: absolute;
+    content: "";
+    display: block;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 1px;
+    transform: scaleY(0.5);
+    background: rgba(33,33,33,0.1);
+}
+
+.ticket-remain {
+    position: relative;
+    width: 670rpx;
+    color: #9D5D2F;
+}
+
+.ticket-img {
+    width: 670rpx;
+    height: 240rpx;
+    display: inline-block;
+}
+
+.ticket-left {
+    font-family: PingFangSC-Medium;
+    position: absolute;
+    top: 22rpx;
+    left: 36rpx;
+    font-size: 38rpx;
+    height: 140rpx;
+}
+
+.ticket-right {
+    position: absolute;
+    top: 18rpx;
+    right: 42rpx;
+    font-size: 28rpx;
+    line-height: 140rpx;
+    height: 140rpx;
+}
+
+.ticket-bottom-desc {
+    position: absolute;
+    top: 175rpx;
+    left: 36rpx;
+    font-size: 26rpx;
+}
+
+.ticket-bottom {
+    position: absolute;
+    top: 96rpx;
+    left: 36rpx;
+    font-family: PingFangSC-Regular;
+    font-size: 28rpx;
+    line-height: 40rpx;
+    height: 40rpx;
+    color: #9D5D2F;
+}
+
+.time-detail {
+    display: inline-block;
+    width: 40rpx;
+    height: 40rpx;
+    text-align: center;
+    background-color: #fff;
+    border-radius: 6rpx;
+    color: #fff;
+    font-family: 'DINAlternate-Bold';
+    font-size: 28rpx;
+    line-height: 40rpx;
+}
+
+.ticket-right-num {
+    font-size: 100rpx;
+    font-family: 'DINAlternate-Bold';
+    line-height: 140rpx;
+    margin-right: 15rpx;
+}
+
+.ticket-list-wrapper {
+    box-sizing: border-box;
+    padding: 0 40rpx;
+    white-space: nowrap;
+}
+
+.getmore-ticket-item {
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    margin-top: 24rpx;
+    height: 164rpx;
+    background: #f5f7fb;
+    border-radius: 20rpx;
+    padding: 0 26rpx;
+}
+
+.ticket-item-avatar {
+    display: inline-block;
+    width: 100rpx;
+    height: 100rpx;
+    margin-right: 20rpx;
+    border-radius: 50rpx;
+    overflow: hidden;
+}
+
+.ticket-item-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 360rpx;
+    height: 164rpx;
+}
+
+.inviter-name-line {
+    max-width: 360rpx;
+    height: 44rpx;
+    display: flex;
+    align-items: center;
+}
+
+.inviter-name {
+    display: inline-block;
+    max-width: 240rpx;
+    height: 44rpx;
+    font-family: PingFangSC-Medium;
+    font-size: 32rpx;
+    color: #212121;
+    letter-spacing: 0;
+}
+
+.inviter-name-line.invite-friend {
+    font-family: PingFangSC-Medium;
+    font-size: 32rpx;
+    color: #41464a;
+    letter-spacing: 0;
+}
+
+.ticket-item-detail {
+    max-width: 360rpx;
+    height: 34rpx;
+    margin-top: 4rpx;
+    font-family: PingFangSC-Regular;
+    font-size: 24rpx;
+    color: #9c9c9c;
+    letter-spacing: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.getmore-btn {
+    width: 158rpx;
+    height: 60rpx;
+    border-radius: 30rpx;
+    font-family: PingFangSC-Medium;
+    font-size: 26rpx;
+    color: #fff;
+    letter-spacing: 0;
+    line-height: 60rpx;
+    text-align: center;
+}
+
+.getmore-btn::after {
+    border: none;
+}
+
+.getmore-btn.btn-light {
+    background-image: url('https://pinduoduoimg.yangkeduo.com/wxappimg/neigou3/smallbutton.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.getmore-btn.btn-grey {
+    background: #ccc;
+}
+
+.ticket-log-title-wrapper {
+    position: relative;
+    margin-top: 32rpx;
+    box-sizing: border-box;
+    height: 104rpx;
+}
+
+.ticket-log-title-wrapper::before {
+    content: "";
+    display: block;
+    position: relative;
+    top: 52rpx;
+    width: 100%;
+    height: 1px;
+    transform: scaleY(0.5);
+    background: rgba(33,33,33,0.1);
+}
+
+.ticket-log-title {
+    position: absolute;
+    padding: 0 34rpx;
+    left: 50%;
+    transform: translate(-50%);
+    top: 32rpx;
+    font-family: PingFangSC-Medium;
+    font-size: 28rpx;
+    color: #212121;
+    letter-spacing: 0;
+    background: #fff;
+}
+
+.ticket-log-item {
+    display: flex;
+    height: 158rpx;
+    position: relative;
+    justify-content: space-between;
+}
+
+.ticket-log-item::after {
+    content: "";
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    transform: scaleY(0.5);
+    background: rgba(33,33,33,0.1);
+}
+
+.icon {
+    width: 78rpx;
+    height: 78rpx;
+    margin-top: auto;
+    margin-bottom: auto;
+    border-radius: 50%;
+    background-color: rgba(245,245,245,0.97);
+    color: rgba(33,33,33,0.3);
+    font-size: 40rpx;
+    line-height: 78rpx;
+    text-align: center;
+}
+
+.ticket-log-left {
+    flex: 1;
+    height: 142rpx;
+    display: flex;
+    flex-direction: column;
+    max-width: 366rpx;
+}
+
+.reason-nick-name {
+    margin-top: 40rpx;
+}
+
+.reason-nick-name text {
+    display: inline-block;
+    height: 40rpx;
+    line-height: 40rpx;
+    width: 320rpx;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    font-family: PingFangSC-Regular;
+    font-size: 28rpx;
+    color: #212121;
+}
+
+.ticket-log-time {
+    margin-top: 4rpx;
+    margin-bottom: 32rpx;
+    height: 34rpx;
+    font-family: PingFangSC-Regular;
+    font-size: 24rpx;
+    color: rgba(33,33,33,0.3);
+    letter-spacing: 0;
+}
+
+.ticket-get-count {
+    justify-self: flex-end;
+    height: 1rpx;
+    line-height: 158rpx;
+    font-family: PingFangSC-Regular;
+    font-size: 28rpx;
+    color: #e62600;
+    letter-spacing: 0;
+}
+
+.ticket-get-count.gray-font {
+    color: #9c9c9c;
+}
+
+.has-more {
+    margin-right: 32rpx;
+    height: 170rpx;
+    line-height: 170rpx;
+    text-align: center;
+    font-family: PingFangSC-Regular;
+    font-size: 24rpx;
+    color: rgba(33,33,33,0.3);
+    letter-spacing: 0;
+}

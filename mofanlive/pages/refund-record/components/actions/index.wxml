@@ -1,9 +1,0 @@
-<view
-    class="actions"
-    style="{{isIPhoneX ? 'padding-bottom: 68rpx;' : ''}}"
->
-    <button
-        bind:tap="createMessage"
-        class="button--primary button--circle button--mini"
-    >留言</button>
-</view>

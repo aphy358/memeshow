@@ -1,0 +1,166 @@
+<wxs module="formator" src="../../../../utils/formator.wxs"></wxs>
+
+<view class="product-card">
+    <view
+        class="product-card-info"
+        bindtap="goToProductDetail"
+    >
+        <image
+            mode="aspectFill"
+            src="{{ product.image.medium }}"
+            class="product-card__image"
+        ></image>
+        <view class="product-card__detail">
+            <view class="product-card__detail__title">{{ product.title }}</view>
+            <view class="product-card__detail__number">
+                <view class="product-card__detail__price">¥ {{ formator.formatPrice(product.price) }}</view>
+                <view class="product-card__detail__count">
+                    <view class="product-card__detail__stock">库存：{{ product.stock }}</view>
+                    <view class="product-card__detail__sales">销量：{{ product.soldCount }}</view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="product-card-actions">
+        <view
+            wx:if="{{ onSale }}"
+            class="product-card-actions__more"
+            bindtap="onMoreActions"
+        >更多</view>
+        <view class="product-card-actions__btns">
+            <button
+                wx:if="{{ onSale }}"
+                class="button--tertiary button--mini button--circle"
+                bindtap="showInternalBuy"
+            >
+                内购券
+            </button>
+            <button
+                open-type="share"
+                wx:if="{{ onSale }}"
+                data-id="{{ product.id }}"
+                class="button--tertiary button--mini button--circle"
+            >
+                分享
+            </button>
+            <button
+                wx:if="{{ !onSale }}"
+                class="button--tertiary button--mini button--circle"
+                bindtap="onDeleteProduct"
+            >删除</button>
+            <button
+                wx:if="{{ !onSale }}"
+                class="button--tertiary button--mini button--circle"
+                bindtap="onShelves"
+            >
+                上架
+            </button>
+            <button
+                class="button--tertiary button--mini button--circle"
+                bindtap="onEditProduct"
+            >编辑</button>
+        </view>
+    </view>
+</view>
+
+<mf-modal
+    open="{{ internalBuy.show }}"
+    title="设置内购券"
+>
+    <view class="product-card_modal">
+        <view class="product-card_modal-switch">
+            <view class="product-card_modal-switch-title">是否需要内购券</view>
+            <view class="product-card_modal-switch-content">
+                <view class="product-card_modal-switch-item">
+                    <checkbox-item
+                        title="需要"
+                        value="1"
+                        checked="{{ internalBuy.setted }}"
+                        bindchange="onSetInternalBuy"
+                    />
+                </view>
+                <view class="product-card_modal-switch-item">
+                    <checkbox-item
+                        title="不需要"
+                        value="0"
+                        checked="{{ !internalBuy.setted }}"
+                        bindchange="onSetInternalBuy"
+                    />
+                </view>
+            </view>
+        </view>
+        <view class="product-card_modal-wrap">
+            <view
+                wx:if="{{ internalBuy.setted }}"
+                class="product-card_modal-content form"
+            >
+                <view class="product-card_modal-item form__item">
+                    <view class="form__item__content">
+                        <input
+                            value="{{ internalBuy.couponCount }}"
+                            type="number"
+                            class="input"
+                            placeholder-class="form__placeholder"
+                            placeholder="请输入内购券数量"
+                            bindinput="onChangeInternalBuyCost"
+                        ></input>
+                    </view>
+                </view>
+                <view class="product-card_modal-item form__item">
+                    <view class="form__item__content">
+                        <picker
+                            mode="date"
+                            bindchange="onChangeInternalBuyStartTime"
+                        >
+                            <view class="form__item__picker">
+                                <view
+                                    wx:if="{{ internalBuy.startTimeDesc }}"
+                                    class="form__item__picker__value"
+                                >{{ internalBuy.startTimeDesc }}</view>
+                                <view
+                                    wx:else
+                                    class="form__item__picker__placeholder"
+                                >请选择开始日期</view>
+                            </view>
+                        </picker>
+                    </view>
+                </view>
+                <view class="product-card_modal-item form__item">
+                    <view class="form__item__content">
+                        <picker
+                            mode="date"
+                            bindchange="onChangeInternalBuyEndTime"
+                        >
+                            <view class="form__item__picker">
+                                <view
+                                    wx:if="{{ internalBuy.endTimeDesc }}"
+                                    class="form__item__picker__value"
+                                >{{ internalBuy.endTimeDesc }}</view>
+                                <view
+                                    wx:else
+                                    class="form__item__picker__placeholder"
+                                >请选择结束日期</view>
+                            </view>
+                        </picker>
+                    </view>
+                </view>
+            </view>
+            <view
+                wx:if="{{ internalBuy.setted }}"
+                class="product-card_modal-tips"
+            >
+                <view class="product-card_modal-desc">用户购买该商品所需内购券数量</view>
+                <view class="product-card_modal-help" bindtap="onShowInternalbuyHelp">
+                    什么是内购券
+                    <text class="icon icon-help"></text>
+                </view>
+            </view>
+        </view>
+        <view class="product-card_modal-submit">
+            <button
+                class="button--primary button--circle"
+                bindtap="onConfirmInternalBuy"
+            >设置</button>
+        </view>
+    </view>
+</mf-modal>

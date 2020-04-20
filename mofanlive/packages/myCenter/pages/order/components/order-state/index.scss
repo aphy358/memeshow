@@ -1,0 +1,49 @@
+@import "@/theme";
+
+// 状态栏
+.order-detail-state {
+  width: 100%;
+  @include flex-row-nowrap;
+  align-items: center;
+
+  @at-root .od-icon {
+    @include flex-row-nowrap;
+    justify-content: center;
+    align-items: center;
+    width: 84rpx;
+    height: 84rpx;
+    margin-right: 20rpx;
+    border-radius: 8rpx;
+
+    // &.gray {
+    //   background: #8B8B8B;
+    // }
+
+    // &.green {
+    //   background-image: linear-gradient(to right, #55B837 , #4AA033);
+    // }
+    
+    .img {
+      width: 80rpx;
+      height: 80rpx;
+    }
+  }
+
+  @at-root .od-content {
+
+    @at-root .od-content-title {
+      color: #333333;
+      font-size: 32rpx;
+      font-weight: bold;
+    }
+
+    @at-root .od-content-detail {
+      color: #878787;
+      font-size: 24rpx;
+
+      @at-root .count-down {
+        color: #F32953;
+      }
+    }
+  }
+}

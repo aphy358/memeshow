@@ -1,0 +1,101 @@
+<wxs module="reasonMap" src="./index.wxs"></wxs>
+<wxs module="formator" src="/utils/formator.wxs"></wxs>
+
+<scrollDialog
+    isShowClose
+    bindclosedialog="closeMoreTicket"
+    dialogHeight="74%"
+    dialogRaduis="32rpx"
+    isShow="{{ isShow }}"
+>
+    <view class="more-ticket-top">
+        <view class="more-ticket-title">
+            <text class="title-text">获取更多内购券</text>
+        </view>
+    </view>
+    <scroll-view scrollY class="scroll_view">
+        <view class="ticket-area">
+            <view class="ticket-remain">
+                <image
+                    class="ticket-img"
+                    lazyLoad="{{true}}"
+                    mode="widthFix"
+                    src="../../assets/coupon_bg.png"
+                ></image>
+                <view class="ticket-left">店铺内购券</view>
+                <view class="ticket-right">
+                    <text class="ticket-right-num">{{ count }}</text>张
+                </view>
+                <view class="ticket-bottom-desc">内购券时效有限，请尽快使用</view>
+                <view class="ticket-bottom">
+                    <block wx:if="{{ countTime }}">
+                        <text class="time-detail">12</text>
+                        <text> : </text>
+                        <text class="time-detail">29</text>
+                        <text> : </text>
+                        <text class="time-detail">50</text>
+                        <text> 后过期</text>
+                    </block>
+                    <text>{{ formator.fromNow(expireText) }}过期</text>
+                </view>
+            </view>
+        </view>
+        <view
+            class="ticket-list-wrapper"
+            style="margin-top:30rpx;"
+        >
+            <taskItem
+                desc="随机抽1-5张"
+                icon="../../assets/employeetag.png"
+                title="每日签到领内购券"
+            >
+                <button
+                    bindtap="tapCustomerBtn"
+                    class="getmore-btn btn-light"
+                >立即领取</button>
+            </taskItem>
+
+            <taskItem
+                desc="好友助力后,各得1-5张"
+                icon="../../assets/wx.png"
+                title="好友助力"
+            >
+                <button bindtap="inviteFriend" class="getmore-btn btn-light" openType="share">邀请助力</button>
+            </taskItem>
+
+            <taskItem
+                desc="生成海报，邀请好友助力"
+                icon="../../assets/share.png"
+                title="助力海报"
+            >
+                <button bindtap="onShareImg" class="getmore-btn btn-light">生成海报</button>
+            </taskItem>
+
+            <view class="ticket-log-title-wrapper">
+                <view class="ticket-log-title">亲友内购券记录</view>
+            </view>
+            <view
+                class="ticket-log-item"
+                wx:for="{{ voucherHistory }}"
+                wx:key="id"
+            >
+                <view
+                    class="icon"
+                    wx:if="{{ item.reason }}"
+                >{{ reasonMap.getType(item.reason) }}</view>
+                <view class="ticket-log-left">
+                    <view class="reason-nick-name">
+                        <text decode="{{ true }}" space="{{ true }}">{{item.desc}}&nbsp;</text>
+                    </view>
+                    <view class="ticket-log-time">{{ formator.getTimeStr(item.timestamp) }}</view>
+                </view>
+                <view class="ticket-get-count {{item.type==1?'gray-font':''}}">{{item.type==0?'+':''}}{{item.type==1?'-':''}}{{item.count}}张内购券</view>
+            </view>
+            <view class="has-more">
+                <text wx:if="{{ hasMore }}">仅显示最近30条记录</text>
+                <text wx:elif="{{ !voucherHistory || !voucherHistory.length }}">你还没有内购券，快去分享领券吧</text>
+                <text wx:else>已显示全部</text>
+            </view>
+        </view>
+    </scroll-view>
+</scrollDialog>

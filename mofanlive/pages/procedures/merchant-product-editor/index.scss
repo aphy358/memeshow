@@ -1,0 +1,201 @@
+@import "@/theme";
+
+.form__item--column {
+    padding-bottom: 20rpx;
+    padding-top: 20rpx;
+}
+
+.form__item--custom {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: stretch;
+
+    .form__item--wrap {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-between;
+        align-items: center;
+    }
+}
+
+.form {
+    padding-right: 30rpx;
+}
+
+.form__item__tips {
+    font-family: PingFangSC-Regular;
+    font-size: 24rpx;
+    color: #999;
+    line-height: 1;
+    padding: 8rpx 0;
+}
+
+.product {
+    padding-bottom: 180rpx;
+}
+
+.placehold {
+    color: #999;
+}
+
+.product-presale,
+.product-internalbuy,
+.product-profile,
+.product-single,
+.product-spec {
+    background-color: #fff;
+    margin-bottom: 16rpx;
+}
+
+.product-single {
+    padding-right: 20rpx;
+}
+
+.product-profile {
+    &-title,
+    &-images {
+        width: 100%;
+        padding: 20rpx 0;
+        display: flex;
+        justify-content: space-between;
+
+        &-header {
+            margin: 20rpx 0;
+            line-height: 1;
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        &-counter {
+            font-size: 26rpx;
+            color: #999999;
+            font-family: "PingFangSC-Regular";
+        }
+    }
+
+    // &-title {
+    //     &-text {
+    //         width: 100%;
+    //         margin-bottom: 10rpx;
+    //     }
+    // }
+}
+
+.product-spec {
+    &_more {
+        padding: 0 $form-spacing-h;
+        margin: 24rpx;
+        color: #F32953;
+        font-size: $font-size-base;
+    }
+
+    &__multi {
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: center;
+
+        .form {
+            flex: 1;
+        }
+
+        &-delete {
+            flex: 0 0 auto;
+            margin: 0 20rpx;
+        }
+    }
+
+    &-price {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-between;
+
+        &-half {
+            width: 50%;
+            flex: 1 1 auto;
+            display: flex;
+            flex-flow: row nowrap;
+            align-items: center;
+        }
+
+        &-title--neigou {
+            min-width: 130rpx;
+        }
+
+        &-text {
+            display: flex;
+            flex-flow: row nowrap;
+            align-items: center;
+
+            >input {
+                margin-left: 10rpx;
+            }
+        }
+
+        &-text--neigou {
+            color: #F32953;
+        }
+    }
+
+}
+
+.product-internalbuy--switch {
+    padding: 0;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+
+    &-item {
+        margin-right: 30rpx;
+    }
+}
+
+.product-internalbuy--tips {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+    margin: 30rpx 50rpx;
+    font-size: 12px;
+    font-family: PingFangSC-Regular;
+    line-height: 1;
+
+    &-left {
+        color: #999;
+    }
+
+    &-right {
+        color: #333;
+    }
+}
+
+.product-spec_multi-delete-icon {
+    font-size: 40rpx;
+    color: #F32953;
+}
+
+.fixed-bottom-actions {
+    width: 100%;
+    padding: 16rpx 24rpx;
+    z-index: 100;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    padding-bottom: calc(16rpx + constant(safe-area-inset-bottom));
+    padding-bottom: calc(16rpx + env(safe-area-inset-bottom));
+    background: white;
+    box-shadow: 0 0 16rpx 0 rgba($color: #999, $alpha: 0.2);
+}
+
+.warning-tips {
+    font-family: PingFangSC-Regular;
+    font-size: 24rpx;
+    color: #F32953;
+    padding-bottom: 28rpx;
+}
+
+.form-chevron-right {
+    color: #ccc;
+}

@@ -1,0 +1,64 @@
+<view class="selector">
+    <view
+        bind:tap="add"
+        class="add"
+        wx:if="{{ (values.length + initImages.length) < maxlength }}"
+    >
+        <image
+            mode="aspectFill"
+            src="/assets/images/camera.png"
+        />
+    </view>
+
+    <block
+        wx:for="{{ initImages }}"
+        wx:key="*this"
+    >
+        <view class="img">
+            <image
+                bind:tap="deleteInit"
+                class="delete"
+                data-index="{{ index }}"
+                src="/assets/images/close.png"
+            />
+            <image
+                class="path-img"
+                mode="aspectFill"
+                src="{{ item }}"
+            />
+            <view
+                class="img-tag"
+                wx:if="{{ !index && tag }}"
+            >{{ tagText }}</view>
+        </view>
+    </block>
+
+    <block
+        wx:for="{{ values }}"
+        wx:key="tmpPath"
+    >
+        <view class="img">
+            <image
+                bind:tap="delete"
+                class="delete"
+                data-index="{{ index }}"
+                src="/assets/images/close.png"
+            />
+            <image
+                class="path-img"
+                mode="aspectFill"
+                src="{{ item.tmpPath }}"
+            />
+            <view
+                class="img-loading-wrap"
+                wx:if="{{ !item.finalPath }}"
+            >
+                <image src="/assets/images/loading.png" />
+            </view>
+            <view
+                class="img-tag"
+                wx:if="{{ !initImages.length && !index && tag }}"
+            >{{ tagText }}</view>
+        </view>
+    </block>
+</view>

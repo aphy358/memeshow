@@ -7,6 +7,7 @@
   adjust-position="{{ adjustPosition }}" 
   value="{{ inputContent }}"
   placeholder="{{ inputPlaceholder }}" 
+  placeholder-class="form__placeholder"
 
   bindkeyboardheightchange="keyboardheightchange" 
   bindinput="bindinput"

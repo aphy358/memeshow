@@ -1,0 +1,67 @@
+
+.live-follow-wrap {
+
+  @at-root .live-follow-inner {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 600rpx;
+    height: 700rpx;
+    border-radius: 12rpx;
+    background: white;
+    padding: 70rpx 48rpx 48rpx;
+
+    @at-root .live-follow-close-button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 48rpx;
+      height: 48rpx;
+      padding: 30rpx;
+    }
+
+    @at-root .live-follow-title {
+      font-family: PingFangSC-Medium;
+      font-size: 36rpx;
+      color: #333333;
+      line-height: 54rpx;
+    }
+
+    @at-root .live-follow-sub-title {
+      font-size: 28rpx;
+      color: #999999;
+      text-align: center;
+      width: 360rpx;
+      line-height: 36rpx;
+      margin-top: -20rpx;
+    }
+
+    @at-root .live-follow-img {
+      width: 160rpx;
+      height: 160rpx;
+      margin: 30rpx 0;
+    }
+
+    @at-root .live-follow-button {
+      font-family: PingFangSC-Medium;
+      font-size: 32rpx;
+      color: #FFFFFF;
+      letter-spacing: 0.72rpx;
+      text-align: center;
+      line-height: 88rpx;
+      height: 88rpx;
+      width: 100%;
+      background: linear-gradient(to right, #FA538B, #F32953);
+      border-radius: 9999px;
+    }
+
+    @at-root .live-follow-check {
+      font-size: 32rpx;
+      color: #333333;
+      line-height: 48rpx;
+      margin: -30rpx 0;
+    }
+  }
+}

@@ -9,10 +9,13 @@
     "debug": "sudo node-nightly --inspect-brk ./webpack.config.js",
     "lint": "eslint ./src --ext .js",
     "dev:ui": "npm run dev -- --proj ui-guide",
+    "build:ui": "npm run build -- --proj ui-guide",
     "dev:live": "npm run dev -- --proj mofanlive",
     "build:live": "npm run build -- --proj mofanlive",
     "dev:show": "npm run dev -- --proj mofanshow",
-    "build:show": "npm run build -- --proj mofanshow"
+    "build:show": "npm run build -- --proj mofanshow",
+    "dev:shop": "npm run dev -- --proj mofanshop",
+    "build:shop": "npm run build -- --proj mofanshop"
   },
   "repository": {
     "type": "git",
@@ -58,6 +61,7 @@
     "colors": "^1.4.0",
     "cos-wx-sdk-v5": "^0.7.8",
     "dateformat": "^3.0.3",
+    "events": "^3.0.0",
     "iview-weapp": "^2.0.0",
     "lodash": "^4.17.11",
     "miniprogram-computed": "^2.1.1",

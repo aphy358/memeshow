@@ -1,0 +1,54 @@
+@import "@/theme";
+
+.refund-info-actions {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: white;
+
+  @at-root .od-tail-btns {
+    @include flex-row-nowrap;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+  
+    &::after {
+      content: "";
+      position: absolute;
+      transform-origin: center;
+      box-sizing: border-box;
+      pointer-events: none;
+      top: 0;
+      left: 50%;
+      transform: scale(.5);
+      border: solid #e8e8e8;
+      border-width: 0 1px 0 0;
+      width: 1px;
+      height: 100%;
+    }
+  
+    @at-root .od-tail-btn {
+      width: 50%;
+      display: flex;
+      justify-content: center;
+      padding: 24rpx;
+  
+      @at-root .od-tail-btn-inner {
+        @include flex-row-nowrap;
+        align-items: center;
+        height: 72rpx;
+  
+        image {
+          width: 56rpx;
+          height: 56rpx;
+          margin-right: 20rpx;
+        }
+  
+        text {
+          color: #232032;
+          font-size: 28rpx;
+        }
+      }
+    }
+  }
+}

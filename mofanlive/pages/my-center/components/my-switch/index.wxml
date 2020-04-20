@@ -1,0 +1,13 @@
+<authorized-button>
+    <view
+        class="card card--no-border m-t-lg"
+        bindtap="switchToMerchant"
+    >
+        <view class="card__content">
+            <view class="card__info">
+                <view class="f-cn">切换到卖家</view>
+                <view class="icon icon-chevron-right cell__icon-link"></view>
+            </view>
+        </view>
+    </view>
+</authorized-button>

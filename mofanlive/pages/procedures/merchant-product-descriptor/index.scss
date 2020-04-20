@@ -1,0 +1,32 @@
+.mc-product-descriptor {
+    background-color: #fff;
+    overflow: hidden;
+}
+
+.title {
+    font-family: "PingFangSC-Regular";
+    font-size: 32rpx;
+    color: #333;
+    letter-spacing: 0;
+    line-height: 1;
+    margin-bottom: 20rpx;
+}
+
+.module {
+    padding: 0 30rpx;
+    margin: 30rpx 0;
+}
+
+.fixed-bottom-actions {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 16rpx 24rpx;
+    z-index: 100;
+    bottom: 0;
+    bottom: calc(constant(safe-area-inset-bottom));
+    bottom: calc(env(safe-area-inset-bottom));
+    background: white;
+    box-shadow: 0 0 16rpx 0 rgba($color: #999, $alpha: 0.2);
+}

@@ -1,0 +1,174 @@
+@import "@/theme";
+
+.refund-card {
+  width: 100%;
+  margin: 0;
+  background-color: $color-white;
+  margin-bottom: 24rpx;
+
+  @at-root .refund-header {
+    @include flex-row-nowrap;
+    justify-content: space-between;
+
+    @at-root .refund-header-title {
+      color: #666666;
+      line-height: $line-height-base;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+
+      .icon-shop {
+        float: left;
+        width: 32rpx;
+        height: 32rpx;
+        margin-right: 16rpx;
+        opacity: .7;
+      }
+      
+      .shop-name {
+        float: left;
+        line-height: 36rpx;
+        max-width: 320rpx;
+        font-family: PingFangSC-Regular;
+        font-size: 28rpx;
+      }
+
+      .icon-right {
+        float: left;
+        width: 32rpx;
+        height: 24rpx;
+        margin-top: 6rpx;
+        margin-left: 4rpx;
+      }
+    }
+
+    @at-root .refund-header-state {
+      font-size: 28rpx;
+      font-family: $font-cn;
+      padding-left: 40rpx;
+      color: #FE2C54;
+    }
+  }
+
+  @at-root .refund-content {
+
+    @at-root .refund-content-item {
+      width: 100%;
+      box-sizing: border-box;
+      padding: $spacing-v-lg;
+      @include flex-row-nowrap;
+      background-color: $color-grey-7;
+      align-items: flex-start;
+      margin-bottom: 16rpx;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      @at-root .rci-thumbnail {
+        flex: 0 0 auto;
+        $thumbnail-size: 140rpx;
+
+        width: $thumbnail-size;
+        height: $thumbnail-size;
+        margin-right: $spacing-h-lg;
+        border-radius: $border-radius-md;
+        overflow: hidden;
+
+        image {
+          width: 100%;
+          height: 100%;
+        }
+      }
+
+      @at-root .rci-detail {
+        position: relative;
+        flex: 1;
+        height: 140rpx;
+
+        @at-root .rci-detail-title {
+          font-size: 28rpx;
+          font-family: $font-cn;
+          color: $color-text-base;
+          line-height: 34rpx;
+          width: 100%;
+          max-height: 2 * $line-height-base; // todo
+          @include line(2);
+        }
+
+        @at-root .rci-detail-specs {
+          font-size: 24rpx;
+          font-family: $font-cn;
+          color: #646566;
+          margin-top: 4rpx;
+        }
+
+        @at-root .rci-bill {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          @include flex-row-nowrap;
+          align-items: flex-end;
+          font-size: 24rpx;
+
+          @at-root .rci-bill-price {
+            color: #333333;
+          }
+
+          @at-root .rci-original-price {
+            margin-left: 10rpx;
+            color: #969799;
+            text-decoration: line-through;
+          }
+
+          @at-root .rci-bill-quantity {
+            flex-grow: 1;
+            color: #969799;
+            font-size: 24rpx;
+            text-align: right;
+          }
+        }
+      }
+    }
+  }
+
+  @at-root .refund-tail {
+
+    @at-root .refund-tail-bill {
+      position: relative;
+      @include flex-row-nowrap;
+      align-items: center;
+      justify-content: flex-end;
+      width: 100%;
+      height: 90rpx;
+      padding: $spacing-v-md $spacing-v-lg;
+
+      @at-root .refund-total-bill {
+        color: #969799;
+        font-size: 28rpx;
+        margin-right: 40rpx;
+
+        .gray {
+          font-size: 24rpx;
+        }
+      }
+
+      @at-root .refund-tail-bill-item {
+        font-size: 28rpx;
+        color: #232032;
+        font-family: PingFangSC-Medium $font-cn;
+        text-align: right;
+
+        .red {
+          font-size: 24rpx;
+          color: #FE2C54;
+        }
+      }
+    }
+  }
+}
+
+.price-big {
+  font-size: 32rpx;
+}

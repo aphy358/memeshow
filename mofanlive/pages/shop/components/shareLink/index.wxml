@@ -1,0 +1,57 @@
+<view class="share-link {{ list.length>3 ? 'between' : '' }}">
+    <view
+        bindtap="onclick"
+        class="share-link-employee"
+        wx:if="{{ initiator }}"
+    >
+        <avatar
+            class="share-link-employee-img"
+            type="1"
+            circle
+            size="60rpx"
+            url="{{ initiator.avatar }}"
+        />
+        <view class="share-link-employee-text">咨询员工</view>
+    </view>
+    <image
+        class="share-link-link-tag"
+        mode="aspectFit"
+        src="../../assets/arrow_right.png"
+    ></image>
+    <block wx:if="{{ count > 1 }}">
+        <view class="share-link-item" >
+            <image class="share-link-item-img" src="../../assets/group.png"></image>
+        </view>
+        <image
+            class="share-link-link-tag"
+            mode="aspectFit"
+            src="../../assets/arrow_right.png"
+        ></image>
+    </block>
+    <block wx:for="{{ referrers }}" wx:key="avatar">
+        <view class="share-link-item" data-idx="{{ index }}">
+            <avatar
+                class="share-link-item-img"
+                type="2"
+                circle
+                size="60rpx"
+                url="{{ item.avatar }}"
+            />
+        </view>
+        <image
+            class="share-link-link-tag"
+            mode="aspectFit"
+            src="../../assets/arrow_right.png"
+        ></image>
+    </block>
+    <view class="share-link-item" >
+        <image class="share-link-item-img" src="../../assets/share.png"></image>
+        <form>
+            <button
+                bindtap="share"
+                formType="submit"
+                openType="share"
+            >分享</button>
+        </form>
+    </view>
+</view>

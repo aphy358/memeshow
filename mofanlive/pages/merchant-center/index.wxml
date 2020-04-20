@@ -1,0 +1,54 @@
+<view class="merchant-center-wrap">
+    <my-header></my-header>
+
+    <image
+        class="background"
+        src="./assets/background.png"
+    />
+
+    <view class="card card--no-border mc--stat">
+        <authorized-button class="mc--stat__item">
+            <view class="mc--stat__item--inner">
+                <view class="f-nu f-base mc--stat__item--num">128</view>
+                <view class="f-cn f-base mc--stat__item--text">今日访客数</view>
+            </view>
+        </authorized-button>
+        <authorized-button class="mc--stat__item">
+            <navigator
+                class="mc--stat__item--inner"
+                url="/packages/merchant/pages/orders/index"
+            >
+                <view class="f-nu f-base mc--stat__item--num">200</view>
+                <view class="f-cn f-base mc--stat__item--text">今日订单数</view>
+            </navigator>
+        </authorized-button>
+        <authorized-button class="mc--stat__item">
+            <navigator
+                class="mc--stat__item--inner"
+                url="/packages/merchant/pages/funds/index"
+            >
+                <view class="f-nu f-base mc--stat__item--num">200</view>
+                <view class="f-cn f-base mc--stat__item--text">今日订单金额</view>
+            </navigator>
+        </authorized-button>
+        <authorized-button class="mc--stat__item">
+            <button
+                class="mc--stat__item--inner reset mc--stat__item--btn"
+                open-type="share"
+            >
+                <image
+                    class="mc--stat__item--icon"
+                    src="./assets/share_shop2.png"
+                />
+                <view class="f-cn f-base mc--stat__item--text">分享店铺</view>
+            </button>
+        </authorized-button>
+    </view>
+
+    <my-order-outline id="my-order-outline"></my-order-outline>
+
+    <my-tools></my-tools>
+
+    <my-switch bindswitchrole="onSwitchRole"></my-switch>
+
+</view>

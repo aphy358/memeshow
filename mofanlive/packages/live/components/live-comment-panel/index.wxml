@@ -1,0 +1,39 @@
+<wxs module="formatter" src="./index.wxs" ></wxs>
+
+<view wx:if="{{ userTrend }}" class="user-trend-tip">
+  <view class="user-trend-tip-inner">
+    <image class="user-trend-avatar" src="{{ userTrend.avatar }}" />
+    <view class="user-trend-name">{{ userTrend.name }}</view>
+    <view class="user-trend-text">{{ formatter.getFloatTagText(userTrend.type) }}</view>
+    <image wx:if="{{ userTrend.type === 7 }}" class="user-trend-icon" mode="aspectFit" src="../../assets/shop-cart-1.png" />
+    <image wx:if="{{ userTrend.type === 1 }}" class="user-trend-icon" mode="aspectFit" src="../../assets/wx.png" />
+  </view>
+</view>
+
+<view class="comment-panel-wrap">
+  <scroll-view 
+    class="comment-panel-inner"
+    scroll-into-view="{{ toView }}"
+    scroll-y
+    bindscroll="scrollComment"
+  >
+    <view class="comment-items">
+      <view 
+        class="comment-item"
+        wx:for="{{ comments }}"
+        wx:key="index"
+        wx:if="{{ !item.hide }}"
+        data-iterator="{{ item.iterator }}"
+      >
+        <view class="comment-item-inner">
+          <image class="comment-avatar" src="{{ item.fromAvatar }}" />
+          <text class="comment-author">{{ item.fromName }}</text>
+          <text class="comment-text">{{ item.text }}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 滚动锚点 -->
+    <view id="listBottom" style="margin-top: 100px;"></view>
+  </scroll-view>
+</view>

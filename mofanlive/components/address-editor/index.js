@@ -1,22 +1,28 @@
 import { safeArea } from 'ui-kit/behaviors/safeArea'
 
+const Api = wx.X.Api
+
 Component({
   data: {
     name: "",
     tel: "",
     region: ['', '', ''],
     address: "",
-    postCode: ''
+    postCode: '',
+    id: '',
+    isDefault: false,
   },
 
   methods: {
     init(addr) {
-      console.log(addr)
       this.setData({
         name: addr.name,
         tel: addr.tel,
         address: addr.address,
-        region: [addr.province, addr.city, addr.district]
+        region: [addr.province, addr.city, addr.district],
+        postCode: addr.postCode,
+        id: addr.id,
+        isDefault: addr.isDefault || false,
       })
     },
 
@@ -36,11 +42,15 @@ Component({
       if (!this.canSubmit(formData)) {
         wx.showToast({
           title: '请填写完整信息', //提示的内容,
-          icon: 'none', //图标,
-          duration: 1000, //延迟时间,
-          mask: false, //显示透明蒙层，防止触摸穿透,
-          success: res => { }
+          icon: 'none',
+          mask: false,
         });
+      } else {
+        if (!!this.data.id) {
+          this.update(formData)
+        } else {
+          this.create(formData)
+        }
       }
     },
 
@@ -51,7 +61,39 @@ Component({
     },
 
     cancel() {
+      this.setData({
+        name: '',
+        tel: '',
+        address: '',
+        region: ['', '', ''],
+        postCode: '',
+        id: '',
+        isDefault: false,
+      })
       this.triggerEvent('cancel')
+    },
+
+    async update(data) {
+      const rsp = await Api.UserProfile.updateAddress({
+        ...data,
+        id: this.data.id,
+      })
+      if (!!rsp) {
+        this.cancel()
+      }
+    },
+
+    async create(data) {
+      const rsp = await Api.UserProfile.createAddress(data)
+      if (data.isDefault) {
+        await Api.UserProfile.updateAddress({
+          ...rsp,
+          isDefault: true,
+        })
+      }
+      if (!!rsp) {
+        this.cancel()
+      }
     }
   },
 
@@ -59,30 +101,4 @@ Component({
   options: {
     addGlobalClass: true
   },
-
-  // chooseWechatAddress() {
-  //   wx.getSetting({
-  //     success: (res) => {
-  //       if (!res.authSetting['scope.address']) {
-  //         wx.authorize({
-  //           scope: 'scope.address',
-  //           success: () => {
-  //             this.chooseWechatAddress()
-  //           }
-  //         })
-  //       } else {
-  //         wx.chooseAddress({
-  //           success: (res) => {
-  //             this.setData({
-  //               name: res.userName,
-  //               tel: res.telNumber,
-  //               region: [res.provinceName, res.cityName, res.countyName],
-  //               address: res.detailInfo
-  //             })
-  //           }
-  //         })
-  //       }
-  //     }
-  //   })
-  // },
 })

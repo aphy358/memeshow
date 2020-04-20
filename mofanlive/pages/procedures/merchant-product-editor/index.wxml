@@ -1,0 +1,371 @@
+<wxs module="formator" src="./index.wxs"></wxs>
+
+<view class="product">
+    <view class="product-profile">
+        <view class="form">
+            <view class="form__item form__item--column">
+                <view class="form__item__label product-profile-title">
+                    <view>标题</view>
+                    <view class="product-profile-title-counter">{{ formData.title.length }}/60</view>
+                </view>
+                <view class="form__item__content">
+                    <input
+                        type="text"
+                        value="{{ formData.title }}"
+                        class="product-profile-title-text"
+                        placeholder="例如：【五双装】韩版复古女袜，五种颜色各一双"
+                        maxlength="60"
+                        bindinput="onChangeTitle"
+                    ></input>
+                </view>
+            </view>
+            <view class="form__item form__item--column">
+                <view class="form__item__label product-profile-images">
+                    <view>商品图</view>
+                    <view class="product-profile-images-counter">{{ formData.media.length }}/9</view>
+                </view>
+                <view class="form__item__content">
+                    <image-uploader
+                        tag
+                        tag-text="主图"
+                        init-images="{{ initImages || [] }}"
+                        bindchange="onChangeMedia"
+                        maxlength="{{9}}"
+                        count="{{9}}"
+                    ></image-uploader>
+                </view>
+                <view class="form__item__tips">精美商品封面让商品脱颖而出，长按图片可拖曳调整顺序</view>
+            </view>
+            <view class="form__item">
+                <view class="form__item__label">商品详情</view>
+                <view
+                    bindtap="onChangeDescription"
+                    class="form__item__content {{ description.desc.length ? '' : 'placehold' }}"
+                >
+                    {{description.desc.length ? '已编辑' : '未编辑（选填）'}}
+                </view>
+                <view class="form__item__tail" bindtap="onChangeDescription">
+                    <view class="icon icon-chevron-right form-chevron-right"></view>
+                </view>
+            </view>
+            <view class="form__item">
+                <view class="form__item__label">商品类目</view>
+                <view
+                    class="form__item__content {{ platformCategory.desc.length ? '' : 'placehold'}}"
+                    bindtap="onChangePlatmCategory"
+                >
+                    {{platformCategory.desc.length ? platformCategory.desc : '请选择商品类目'}}
+                </view>
+                <view class="form__item__tail" bindtap="onChangePlatmCategory" >
+                    <view class="icon icon-chevron-right form-chevron-right"></view>
+                </view>
+            </view>
+            <view class="form__item">
+                <view class="form__item__label">商品分类</view>
+                <view
+                    class="form__item__content {{ shopCategory.desc.length ? '' : 'placehold' }}"
+                    bindtap="onChangeShopCategory"
+                >
+                    {{ shopCategory.desc.length ? shopCategory.desc : '请选择商品分类（选填）'}}
+                </view>
+                <view class="form__item__tail" bindtap="onChangeShopCategory" >
+                    <view class="icon icon-chevron-right form-chevron-right"></view>
+                </view>
+            </view>
+        </view>
+    </view>
+
+    <view class="product-internalbuy">
+       <view class="form">
+            <view class="form__item">
+                <view class="form__item__label" style="max-width: 250rpx">是否需要内购券</view>
+                <view class="form__item__content">
+                    <view class="product-internalbuy--switch">
+                        <view class="product-internalbuy--switch-item">
+                            <checkbox-item title="需要" value="{{ true }}" checked="{{ neigou.show }}" bindchange="setInternalBuy" />
+                        </view>
+                        <view class="product-internalbuy--switch-item">
+                            <checkbox-item title="不需要" value="{{ false }}" checked="{{ !neigou.show }}" bindchange="setInternalBuy" />
+                        </view>
+                    </view>
+                </view>
+            </view>
+            <block wx:if="{{ neigou.show }}">
+                <view class="form__item">
+                    <view class="form__item__label">内购券数量</view>
+                    <view class="form__item__content">
+                        <input
+                            type="number"
+                            value="{{ neigou.couponCount || ''}}"
+                            placeholder-class="form__placeholder"
+                            placeholder-style="color:#999;"
+                            placeholder="请输入内购券数量"
+                            bindinput="setInternalBuyVouchers"
+                        ></input>
+                    </view>
+                </view>
+                <view class="form__item">
+                    <view class="form__item__label">开始时间</view>
+                    <view class="form__item__content">
+                        <picker
+                            mode="date"
+                            bindchange="setInternalBuyStartTime"
+                            start="{{ neigou.startTimeDesc  }}"
+                            value="{{ neigou.startTimeDesc }}"
+                        >
+                            <view class="form__item__picker {{ neigou.startTimeDesc ? '' : 'placehold' }}">{{ neigou.startTimeDesc ? neigou.startTimeDesc : "请选择"}}</view>
+                        </picker>
+                    </view>
+                </view>
+                <view class="form__item">
+                    <view class="form__item__label">结束时间</view>
+                    <view class="form__item__content">
+                        <picker
+                            mode="date"
+                            bindchange="setInternalBuyEndTime"
+                            start="{{ neigou.startTimeDesc }}"
+                            value="{{ neigou.endTimeDesc }}"
+                        >
+                            <view class="form__item__picker {{ neigou.endTimeDesc ? '' : 'placehold' }}">{{ neigou.endTimeDesc ? neigou.endTimeDesc : "请选择"}}</view>
+                        </picker>
+                    </view>
+                </view>
+            </block>
+        </view>
+    </view>
+    <view class="product-internalbuy--tips">
+        <view class="product-internalbuy--tips-left">用户购买该商品所需内购券数量</view>
+        <view
+            class="product-internalbuy--tips-right"
+            bindtap="onShowInternalbuyHelp"
+        >
+            什么是内购券
+            <text class="icon icon-help product-internalbuy--tips-help"></text>
+        </view>
+    </view>
+
+
+   <block wx:if="{{ !skus.length }}">
+        <view class="product-spec">
+            <view class="form">
+                <view class="form__item form__item--custom">
+                    <view class="form__item--wrap">
+                        <view class="product-spec-price-half">
+                            <view class="form__item__label {{ neigou.show ? 'product-spec-price-title--neigou' : '' }}">单买价</view>
+                            <view class="form__item__content product-spec-price-text">
+                                <text>¥</text>
+                                <input
+                                    value="{{ formator.formatPrice(formData.price) }}"
+                                    type="digit"
+                                    placeholder="0.00"
+                                    placeholder-style="font-size:32rpx;color:#999;"
+                                    bindinput="onChangeSinglePrice"
+                                    bindblur="onConfirmSinglePrice"
+                                    bindconfirm="onConfirmSinglePrice"
+                                ></input>
+                            </view>
+                        </view>
+                        <view class="product-spec-price-half" wx:if="{{neigou.show}}">
+                            <view class="form__item__label {{ neigou.show ? 'product-spec-price-title--neigou' : '' }}">内购价</view>
+                            <view class="form__item__content product-spec-price-text product-spec-price-text--neigou">
+                                <text>¥</text>
+                                <input
+                                    value="{{ formator.formatPrice(singleNeigouPrice) || '' }}"
+                                    class="product-spec-price--input"
+                                    type="digit"
+                                    placeholder="0.00"
+                                    placeholder-style="font-size:32rpx;color:#999;"
+                                    bindinput="onChangeSingleInternalBuyPrice"
+                                    bindblur="onConfirmsingleInternalBuyPrice"
+                                    bindconfirm="onConfirmsingleInternalBuyPrice"
+                                ></input>
+                            </view>
+                        </view>
+                    </view>
+                    <view class="warning-tips" wx:if="{{ neigou.show && warning.show }}">{{ warning.text }}</view>
+                </view>
+                <view class="form__item">
+                    <view class="form__item__label">库存</view>
+                    <view class="form__item__content">
+                        <input
+                            value="{{ formData.stock || '' }}"
+                            type="number"
+                            placeholder-class="form__placeholder"
+                            placeholder="请输入库存数量"
+                            placeholder-style="color:#999;"
+                            bindinput="onChangeSingleStock"
+                        ></input>
+                    </view>
+                </view>
+                <!-- <view class="form__item">
+                    <view class="form__item__label">市场价</view>
+                    <view class="form__item__content product-spec-price-text">
+                        <text>¥</text>
+                        <input
+                            value="{{ formator.formatPrice(formData.originPrice) }}"
+                            type="digit"
+                            placeholder-class="form__placeholder"
+                            placeholder="需高于单买价（选填）"
+                            placeholder-style="color:#999;"
+                            bindinput="onChangeSingleMarketPrice"
+                            bindblur="onConfirmSingleMarketPrice"
+                            bindconfirm="onConfirmSingleMarketPrice"
+                        ></input>
+                    </view>
+                </view> -->
+            </view>
+        </view>
+    </block>
+    <block wx:else>
+        <view
+            class="product-spec"
+            wx:for="{{ skus }}"
+            wx:key="tempId"
+        >
+            <view class="product-spec__multi">
+                <view class="form">
+                    <view class="form__item">
+                        <view class="form__item__label">规格</view>
+                        <view class="form__item__content">
+                            <input
+                                type="text"
+                                value="{{ item.specValue }}"
+                                placeholder-class="form__placeholder"
+                                placeholder-style="color:#999;"
+                                placeholder="请输入商品规格，如颜色、尺码"
+                                data-id="{{ item.tempId }}"
+                                bindinput="onChangeSkuSpec"
+                            ></input>
+                        </view>
+                    </view>
+                    <view class="form__item form__item--custom">
+                        <view class="form__item--wrap">
+                            <view class="product-spec-price-half">
+                                <view class="form__item__label {{ neigou.show ? 'product-spec-price-title--neigou' : '' }}">单买价</view>
+                                <view class="form__item__content product-spec-price-text">
+                                    <text>¥</text>
+                                    <input
+                                        type="digit"
+                                        value="{{ formator.formatPrice(item.price) }}"
+                                        placeholder="0.00"
+                                        placeholder-style="font-size:32rpx;color:#999;"
+                                        data-id="{{ item.tempId }}"
+                                        bindinput="onChangeSkuPrice"
+                                        bindconfirm="onConfirmSkuPrice"
+                                        bindblur="onConfirmSkuPrice"
+                                    ></input>
+                                </view>
+                            </view>
+                            <view class="product-spec-price-half" wx:if="{{ neigou.show }}">
+                                <view class="form__item__label {{ neigou.show ? 'product-spec-price-title--neigou' : '' }}">内购价</view>
+                                <view class="form__item__content product-spec-price-text product-spec-price-text--neigou">
+                                    <text>¥</text>
+                                    <input
+                                        class="product-spec-price--input"
+                                        type="digit"
+                                        value="{{ item.neigou ? formator.formatPrice(item.neigou.price) : ''}}"
+                                        placeholder="0.00"
+                                        placeholder-style="font-size:32rpx;color:#999;"
+                                        data-id="{{ item.tempId }}"
+                                        bindinput="onChangeSkuInternalBuyPrice"
+                                        bindconfirm="onConfirmSkuInternalBuyPrice"
+                                        bindblur="onConfirmSkuInternalBuyPrice"
+                                    ></input>
+                                </view>
+                            </view>
+                        </view>
+                        <view class="warning-tips" wx:if="{{ neigou.show && item.warning }}">{{ item.warning }}</view>
+                    </view>
+                    <view class="form__item">
+                        <view class="form__item__label">库存</view>
+                        <view class="form__item__content">
+                            <input
+                                type="number"
+                                value="{{ item.stock || ''}}"
+                                placeholder-class="form__placeholder"
+                                placeholder-style="color:#999;"
+                                placeholder="请输入库存数量"
+                                data-id="{{ item.tempId }}"
+                                bindinput="onChangeSkuStock"
+                            ></input>
+                        </view>
+                    </view>
+                    <!-- <view class="form__item">
+                        <view class="form__item__label">市场价</view>
+                        <view class="form__item__content product-spec-price-text">
+                            <text>¥</text>
+                            <input
+                                type="digit"
+                                value="{{ formator.formatPrice(item.originPrice) }}"
+                                placeholder-class="form__placeholder"
+                                placeholder-style="color:#999;"
+                                placeholder="请输入价格"
+                                data-id="{{ item.tempId }}"
+                                bindinput="onChangeSkuMarketPrice"
+                            ></input>
+                        </view>
+                    </view> -->
+                </view>
+                <view class="product-spec__multi-delete">
+                    <view
+                        bindtap="onDeleteSpec"
+                        data-tempid="{{ item.tempId }}"
+                        class="icon icon-close-circle product-spec_multi-delete-icon"
+                    ></view>
+                </view>
+            </view>
+        </view>
+    </block>
+
+    <view class="product-spec_more">
+        <text bindtap="onAddSpec">+ 添加商品规格</text>
+    </view>
+
+    <view class="product-single">
+        <view class="form__item">
+            <view class="form__item__label">运费</view>
+            <view class="form__item__content">包邮</view>
+        </view>
+    </view>
+
+    <view class="product-presale">
+       <view class="form">
+            <view class="form__item">
+                <view class="form__item__label" style="max-width: 250rpx">是否预售</view>
+                <view class="form__item__content">
+                    <view class="product-internalbuy--switch">
+                        <view class="product-internalbuy--switch-item">
+                            <checkbox-item title="预售" value="{{ true }}" checked="{{ presale.show }}" bindchange="setPresale" />
+                        </view>
+                        <view class="product-internalbuy--switch-item">
+                            <checkbox-item title="非预售" value="{{ false }}" checked="{{ !presale.show }}" bindchange="setPresale" />
+                        </view>
+                    </view>
+                </view>
+            </view>
+            <block wx:if="{{ presale.show }}">
+                <view class="form__item">
+                    <view class="form__item__label">预售时间</view>
+                    <view class="form__item__content">
+                        <picker
+                            mode="date"
+                            bindchange="setInternalBuyStartTime"
+                            value="{{ presale.timeDesc }}"
+                        >
+                            <view class="form__item__picker {{ presale.timeDesc ? '' : 'placehold' }}">{{ presale.timeDesc ? presale.timeDesc : "请选择"}}</view>
+                        </picker>
+                    </view>
+                </view>
+            </block>
+        </view>
+    </view>
+</view>
+
+<view class="fixed-bottom-actions">
+    <button
+        class="button--primary button--circle"
+        bindtap="onSubmit"
+    >
+        {{ isUpdate ? '更新' : '创建' }}
+    </button>
+</view>

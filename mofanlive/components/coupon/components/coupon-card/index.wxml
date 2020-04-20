@@ -1,7 +1,7 @@
 <!-- todo -->
 
 <wxs
-    module="accurate2"
+    module="priceFormat"
     src="/components/common/wxs/accurate.wxs"
 ></wxs>
 
@@ -25,7 +25,7 @@
 <!-- <view class="coupon-body">
             <view
                 class="coupon-price {{coupon.disabled ? 'coupon-price__disabled' : ''}}"
-            >{{accurate2(coupon.price/100)}}</view>
+            >{{priceFormat.accurate(coupon.price/100)}}</view>
             <view
                 class="coupon-title {{coupon.disabled ? 'coupon-title__disabled' : ''}}"
             >{{coupon.name}}</view>

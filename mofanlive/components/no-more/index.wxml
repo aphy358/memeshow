@@ -1,0 +1,14 @@
+<view class="no-more">
+    <view
+        class="no-more-line"
+        style="background: {{color}};"
+    ></view>
+    <text
+        class="no-more-text"
+        style="color: {{color}}; font-size: {{fontSize}}rpx;"
+    >已经到底了</text>
+    <view
+        class="no-more-line"
+        style="background: {{color}};"
+    ></view>
+</view>

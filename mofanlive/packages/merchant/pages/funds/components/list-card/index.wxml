@@ -1,0 +1,19 @@
+<view class="list-card">
+    <image
+        wx:if="{{ avatar }}"
+        class="list-card__image"
+        src=""
+    ></image>
+    <view class="list-card__detail">
+        <view class="list-card__detail-title">
+            款怪味少女无袖t恤款怪味少女无袖t恤
+        </view>
+        <view class="list-card__detail-time">
+            2019-07-18 20:29:54
+        </view>
+    </view>
+    <view class="list-card__right">
+        <view class="list-card__price">¥ 59.00</view>
+        <view class="list-card__status">待结算</view>
+    </view>
+</view>

@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "选择商品",
+  "usingComponents": {
+    "tabs": "ui-kit/components/tabs/index",
+    "tab": "ui-kit/components/tab/index"
+  }
+}

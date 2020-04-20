@@ -1,0 +1,58 @@
+<wxs module="priceFormat" src="/components/common/wxs/accurate.wxs" />
+
+<view class="refund-card card card--no-border" bind:tap="navToRefundDetail">
+
+  <view class="refund-header card__header" bind:tap="navToShop">
+    <view class="refund-header-title card__title">
+      <image class="icon-shop" mode="aspectFit" src="/assets/images/orders/shop.png" />
+      <view class="card__title shop-name">{{ refund.shop.name }}</view>
+      <image class="icon-right" mode="aspectFit" src="/assets/images/arrow.png" />
+    </view>
+    <view class="refund-header-state state-red">
+      {{ refund.isAdminInvolved ? RST.CSProcessing : RefundStateText[refund.type][refund.state].Title }}
+    </view>
+  </view>
+
+  <view class="refund-content card-content-items">
+    <view class="refund-content-item" wx:for="{{ refund.items }}" wx:key="skuId">
+      <view class="rci-thumbnail">
+        <image src="{{ item.picture }}" />
+      </view>
+      <view class="rci-detail">
+        <view class="rci-detail-title">{{ item.title }}</view>
+        <!-- <view class="rci-detail-specs">{{ item.specs }}</view> -->
+        <view class="rci-bill">
+          <text class="rci-bill-price">
+            <text>￥</text>
+            <text class="price-big">{{ priceFormat.priceStr1((item.finalPrice)) }}</text>
+            <text>.{{ priceFormat.priceStr2((item.finalPrice)) }}</text>
+          </text>
+          <text class="rci-original-price">￥{{ priceFormat.accurate(item.price) }}</text>
+          <text class="rci-bill-quantity">x{{ item.num }}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="refund-tail">
+    <view class="refund-tail-bill">
+      <view class="refund-total-bill">
+        <text>实付：</text>
+        <text class="gray">
+          <text>￥</text>
+          <text class="price-big">{{ priceFormat.priceStr1((refund.finalAmount)) }}</text>
+          <text>.{{ priceFormat.priceStr2((refund.finalAmount)) }}</text>
+        </text>
+      </view>
+      <view class="refund-tail-bill-item">
+        <text>退款金额：</text>
+        <text class="red">
+          <text>￥</text>
+          <text class="price-big">{{ priceFormat.priceStr1((refund.finalAmount)) }}</text>
+          <text>.{{ priceFormat.priceStr2((refund.finalAmount)) }}</text>
+        </text>
+      </view>
+    </view>
+  </view>
+
+</view>

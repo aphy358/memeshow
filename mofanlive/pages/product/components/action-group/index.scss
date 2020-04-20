@@ -4,16 +4,27 @@
   background-color: $color-white;
 }
 
+.cell__group {
+  margin-bottom: 16rpx !important;
+}
+
 .cell__content {
   margin-left: $spacing-h-lg;
 }
 
-.cell__title, .cell__detail {
+.cell__title {
+  font-size: 32rpx;
+}
+
+.cell__detail {
+  text-align: right;
   color: $color-grey-2;
 }
 
 .coupon {
-  &__tag, &__content {
+
+  &__tag,
+  &__content {
     display: inline-block;
     vertical-align: middle;
   }

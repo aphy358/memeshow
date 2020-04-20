@@ -1,0 +1,71 @@
+@import "@/theme";
+
+.icon  {
+  font-size: 75rpx;
+  color: $color-brand;
+}
+
+.address {
+  width: 100%;
+  position: relative;
+  font-size: $font-size-base;
+  font-family: $font-cn;
+  color: $color-text-base;
+
+  &__name,
+  &__tel {
+    display: inline;
+  }
+
+  &__item {
+    line-height: 38rpx;
+    margin-top: 4rpx;
+    padding-right: 130rpx;
+  }
+}
+
+.card__info {
+  align-items: center;
+}
+
+.location-icon {
+  width: 56rpx;
+  height: 56rpx;
+  margin-right: 20rpx;
+
+  .img {
+    width: 56rpx;
+    height: 56rpx;
+  }
+}
+
+.info-copy {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  right: 0;
+  top: 50%;
+  transform: translate(0, -50%);
+  width: 104rpx;
+  height: 44rpx;
+  padding: 0;
+  color: #232032;
+  border: 1rpx solid #CACBCC;
+  font-size: 20rpx;
+  border-radius: $border-radius-md;
+
+  &:before {
+    content: "";
+    position: absolute;
+    box-sizing: border-box;
+    pointer-events: none;
+    top: 50%;
+    left: -30rpx;
+    width: 2rpx;
+    height: 120rpx;
+    transform: translate(0, -50%) scale(.5);
+    border: solid #e8e8e8;
+    border-width: 0 0 0 1px;
+  }
+}

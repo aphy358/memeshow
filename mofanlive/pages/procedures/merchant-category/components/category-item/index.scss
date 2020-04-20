@@ -1,0 +1,14 @@
+.category-item {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+
+    &_name {
+        flex: 1;
+    }
+
+    &_actions {
+        flex: 0 0 auto;
+    }
+}

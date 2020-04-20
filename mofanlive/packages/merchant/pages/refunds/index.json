@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "refund": "./components/refund/index",
+    "tabs": "ui-kit/components/tabs/index",
+    "tab": "ui-kit/components/tab/index"
+  },
+  "navigationBarTitleText": "退款/售后"
+}

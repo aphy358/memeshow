@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "btn": "./components/btn/index"
+  },
+  "navigationStyle": "custom",
+  "disableScroll": true
+}

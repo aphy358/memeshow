@@ -1,5 +1,13 @@
 <view class="badge">
     <slot></slot>
-    <view wx:if="{{ dot }}" class="badge--dot"></view>
-    <view wx:else class="badge--num">{{ value }}</view>
+    <view
+        class="badge--dot"
+        style="{{visibility ? '' : 'visibility: hidden'}};"
+        wx:if="{{ dot }}"
+    ></view>
+    <view
+        class="badge--num"
+        style="{{visibility ? '' : 'visibility: hidden'}};"
+        wx:else
+    >{{ value }}</view>
 </view>

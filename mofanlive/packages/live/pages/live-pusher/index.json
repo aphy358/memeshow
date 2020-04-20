@@ -1,0 +1,13 @@
+{
+  "navigationStyle": "custom",
+  "navigationBarTextStyle": "white",
+  "usingComponents": {
+      "tabs": "ui-kit/components/tabs/index",
+      "tab": "ui-kit/components/tab/index",
+      "toolbar": "./components/toolbar/index",
+      "popup": "ui-kit/components/popup/index",
+      "statusbar": "./components/statusbar/index",
+      "live-comment-panel": "../../components/live-comment-panel/index",
+      "live-join-order": "../../components/live-join-order/index"
+    }
+}

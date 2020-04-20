@@ -1,0 +1,61 @@
+@import "../../../../kol.scss";
+
+.products {
+  width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: stretch;
+  padding-bottom: 28rpx;
+
+  &__more {
+    width: 114rpx;
+    background-color: #333333;
+    border-radius: 8rpx;
+    text-align: center;
+    vertical-align: center;
+    position: relative;
+
+    &__text {
+      width: 58rpx;
+      font-size: 28rpx;
+      color: #999999;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+}
+
+.product {
+  $product-size: 180rpx;
+
+  width: $product-size;
+  background-color: #333333;
+  border-radius: 8rpx;
+  overflow: hidden;
+  margin-right: 12rpx;
+
+  &__avatar {
+    width: $product-size;
+    height: $product-size;
+  }
+
+  &__detail {
+    width: 100%;
+    padding: 6rpx;
+  }
+
+  &__title {
+    @include line(1);
+    width: 100%;
+  }
+
+  &__title,
+  &__price {
+    font-size: 24rpx;
+    color: #999;
+    line-height: 32rpx;
+  }
+}

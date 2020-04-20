@@ -1,0 +1,61 @@
+<wxs module="formator" src="/utils/formator.wxs"></wxs>
+
+<view style="padding-bottom:100rpx">
+  <view class="selector-tabs">
+    <tabs
+      sticky
+      default="{{1}}"
+    >
+      <tab key="{{1}}">播过的商品</tab>
+      <tab key="{{2}}">我的店铺</tab>
+      <tab key="{{3}}">付费推广</tab>
+    </tabs>
+  </view>
+
+  <view
+    class="selector-group product-selector"
+    bindtap="onSelect"
+  >
+    <block wx:if="{{products.length}}">
+      <view
+        wx:for="{{products}}"
+        wx:key="id"
+        wx:for-item="product"
+        class="selector-item product-item"
+        mark:index="{{index}}"
+      >
+        <view class="selector-item--icon">
+          <image
+            wx:if="{{ product.ischecked }}"
+            class="selector-item--icon-image"
+            src="/assets/images/checked.png"
+          ></image>
+          <view wx:else class="selector-item--icon-circle"></view>
+        </view>
+        <image
+          class="selector-item--image"
+          src="{{product.image.medium}}"
+        ></image>
+        <view class="selector-item--info">
+          <view class="product-name">{{product.title}}</view>
+          <view class="product-price">¥{{formator.formatPrice(product.price)}}</view>
+        </view>
+      </view>
+    </block>
+    <no-records wx:else type="1" />
+  </view>
+</view>
+
+<view class="fixed-bottom-actions">
+  <button
+    class="button--primary button--circle {{checked.length ? '' : 'button--disabled' }}"
+    bindtap="onConfirm"
+  >
+    <block wx:if="{{!checked.length}}">
+      确认
+    </block>
+    <block wx:else>
+      确认({{checked.length}})
+    </block>
+  </button>
+</view>

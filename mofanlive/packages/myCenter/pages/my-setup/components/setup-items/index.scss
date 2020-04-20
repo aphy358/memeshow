@@ -1,0 +1,13 @@
+.form__item__content {
+  position: relative;
+}
+
+.phone-picker {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 99;
+  opacity: 0;
+}

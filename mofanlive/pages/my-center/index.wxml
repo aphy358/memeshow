@@ -1,0 +1,18 @@
+<view class="my-wrap">
+    <!-- 头像、登录口、操作按钮 -->
+    <my-header />
+
+    <image
+        class="background"
+        src="./assets/background.png"
+    />
+
+    <!-- 订单概要 -->
+    <my-order-outline id="my-order-outline" />
+
+    <!-- 购物车、优惠券、联系客服等链接 -->
+    <my-links />
+
+    <!-- 切换卖家端 -->
+    <my-switch bindswitchrole="onSwitchRole"/>
+</view>

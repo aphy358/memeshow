@@ -1,0 +1,22 @@
+<view
+    bindtap="closeDialog"
+    catchtouchmove="emptyFn"
+    class="mask"
+    style="{{maskExtStyle}}"
+    wx:if="{{isShow}}"
+></view>
+
+<view
+    catchtouchmove="true"
+    class="content {{hideAnimation?'':'content-transition'}} {{isShow?'content-in':''}}"
+    style="height:{{dialogHeight}};border-top-left-radius:{{dialogRaduis}};border-top-right-radius:{{dialogRaduis}};"
+>
+    <view
+        bindtap="closeDialog"
+        class="close-area"
+        wx:if="{{isShowClose}}"
+    >
+        <image class="close-img" src="../../assets/close.png"></image>
+    </view>
+    <slot></slot>
+</view>

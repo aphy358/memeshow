@@ -1,0 +1,250 @@
+@import "@/theme";
+
+.card__extra {
+  flex: 0 0 50% !important;
+  max-width: 750rpx !important;
+
+  view {
+    display: inline;
+  }
+
+  &__label {
+    color: $color-text-placeholder;
+  }
+}
+
+.card__content {
+  padding: 0;
+}
+
+.shop-name {
+  float: left;
+  line-height: 36rpx;
+  max-width: 320rpx;
+  font-family: PingFangSC-Regular;
+  font-size: 28rpx;
+}
+
+.items {
+  width: 100%;
+  
+  .item {
+    @include hairline-bottom;
+
+    &:last-child {
+      &::after {
+        content: none;
+      }
+    }
+
+    &-inner {
+      width: 100%;
+      padding: $spacing-v-lg;
+      @include flex-row-nowrap;
+      background-color: $color-grey-7;
+      align-items: flex-start;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    &-img {
+      $img-size: 176rpx;
+
+      width: $img-size;
+      height: $img-size;
+      margin-right: $spacing-h-lg;
+      border-radius: $border-radius-md;
+      overflow: hidden;
+
+      image {
+        width: $img-size;
+        height: $img-size;
+      }
+    }
+
+    &-detail {
+      position: relative;
+      flex: 1;
+      height: 176rpx;
+
+      &__title {
+        font-size: 28rpx;
+        font-family: $font-cn;
+        color: $color-text-base;
+        line-height: 34rpx;
+        width: 100%;
+        max-height: 2 * $line-height-base; // todo
+        @include line(2);
+      }
+
+      &__specs {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 24rpx;
+        font-family: $font-cn;
+        color: #999999;
+        margin-top: 4rpx;
+      }
+
+      &-bill {
+        position: absolute;
+        bottom: -8rpx;
+        left: 0;
+        width: 100%;
+        @include flex-row-nowrap;
+        justify-content: space-between;
+        font-size: 24rpx;
+
+        &__price {
+          color: #333333;
+          font-size: 28rpx;
+          margin-bottom: -2rpx;
+        }
+
+        @at-root .ocib-original-price {
+          margin-left: 10rpx;
+          color: #969799;
+          text-decoration: line-through;
+        }
+
+        &__quantity {
+          flex-grow: 1;
+          color: #969799;
+          font-size: 24rpx;
+          text-align: right;
+        }
+      }
+
+      .refund-btn {
+        float: right;
+        background-color: $color-grey-7;
+        border-radius: $border-radius-md;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 104rpx;
+        height: 44rpx;
+        padding: 0;
+        margin-top: 10rpx;
+        color: #A8A8A8;
+        border: 1rpx solid #A8A8A8;
+        font-size: 20rpx;
+      }
+    }
+
+    @at-root .item-refund-btn-wrap {
+      background-color: $color-grey-7;
+      padding: 0 24rpx 16rpx;
+      margin-top: -8rpx;
+      text-align: right;
+    }
+
+    &-refund-btn {
+      font-size: 24rpx;
+      padding: 0;
+      height: 50rpx;
+      width: 128rpx;
+      margin: 0;
+    }
+  }
+}
+
+.od-price-detail {
+  padding: 16rpx 24rpx;
+  @include hairline-bottom();
+
+  @at-root .od-price-detail-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 24rpx;
+    color: #969799;
+    line-height: 50rpx;
+  }
+}
+
+.od-tail-row {
+  padding: 24rpx;
+  @include flex-row-nowrap;
+  align-items: center;
+  justify-content: space-between;
+  @include hairline-bottom();
+  height: 90rpx;
+
+  .label {
+    color: #232032;
+    font-size: 28rpx;
+  }
+
+  .content {
+    font-size: 28rpx;
+    color: #969799;
+    max-width: 420rpx;
+    @include line(1);
+
+    &.red {
+      color: #E93B3D;
+      font-size: 24rpx;
+    }
+  }
+}
+
+.od-tail-btns {
+  @include flex-row-nowrap;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    transform-origin: center;
+    box-sizing: border-box;
+    pointer-events: none;
+    top: 0;
+    left: 50%;
+    transform: scale(.5);
+    border: solid #e8e8e8;
+    border-width: 0 1px 0 0;
+    width: 1px;
+    height: 100%;
+  }
+
+  @at-root .od-tail-btn {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    padding: 24rpx;
+
+    @at-root .od-tail-btn-inner {
+      @include flex-row-nowrap;
+      align-items: center;
+
+      image {
+        width: 56rpx;
+        height: 56rpx;
+        margin-right: 20rpx;
+      }
+
+      text {
+        color: #232032;
+        font-size: 28rpx;
+      }
+    }
+  }
+}
+
+
+.icon-shop {
+  width: 32rpx;
+  height: 32rpx;
+  margin-right: 16rpx;
+}
+
+.price-big {
+  font-size: 32rpx;
+}

@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "order-info": "./components/order-info/index",
+    "logistics": "./components/logistics/index",
+    "buyer-address": "./components/buyer-address/index"
+  },
+  "navigationBarTitleText": "发货"
+}

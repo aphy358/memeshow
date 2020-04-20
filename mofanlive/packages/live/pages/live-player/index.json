@@ -1,0 +1,28 @@
+{
+  "navigationStyle": "custom",
+  "navigationBarTextStyle": "white",
+  "usingComponents": {
+    "live-coupon": "./components/live-coupon/index",
+    "live-status-bar-top": "./components/live-status-bar-top/index",
+    "live-comment-panel": "../../components/live-comment-panel/index",
+    "live-promotion": "./components/live-promotion/index",
+    "live-announcement": "./components/live-announcement/index",
+    "live-popup": "./components/live-popup/index",
+    "live-operate-bar": "./components/live-operate-bar/index",
+    "popup": "ui-kit/components/popup/index",
+    "tabs": "ui-kit/components/tabs/index",
+    "tab": "ui-kit/components/tab/index",
+    "sku-selector": "/components/sku-selector/index",
+    "cashier": "/components/cashier/index",
+    "coupon": "/components/coupon/index",
+    "address-editor": "/components/address-editor/index",
+    "live-bullet": "./components/live-bullet/index",
+    "comment-input-popup": "ui-kit/components/comment/comment-input-popup/index",
+    "live-comment-input-area": "./components/live-comment-input-area/index",
+    "live-player-custom": "/components/live-player-custom/index",
+    "live-products": "./components/live-products-popup/index",
+    "live-fudai": "./components/live-fudai/index",
+    "live-follow": "./components/live-follow/index",
+    "live-join-order": "../../components/live-join-order/index"
+  }
+}

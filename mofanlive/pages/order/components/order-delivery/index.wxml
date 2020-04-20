@@ -1,6 +1,0 @@
-<view class="card card--no-border white-back margin-top">
-  <view class="card__header" bind:tap="navToDeliveryDetail">
-    <view class="card__title">物流信息</view>
-    <view class="card__extra">{{deliveryName}} ></view>
-  </view>
-</view>

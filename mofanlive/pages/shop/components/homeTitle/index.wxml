@@ -1,0 +1,17 @@
+<title
+    bgColor="rgba(246,248,255,{{navBarOpacity}});"
+    style="position:fixed;top:0;z-index:90">
+    <view class="contain-title" slot="title-content" style="height:{{titleBarHeight}}px">
+        <input
+            bindtap="handleTitleInput"
+            class="title-input"
+            disabled="true"
+            focus="false"
+            placeholder="搜索内部价商品"
+            placeholderClass="title-input-placeholder"
+            style="height:{{menuButtonData.height}}px;margin-top:{{inputMargin}}px;"
+        >
+            <view class="title-search-icon"></view>
+        </input>
+    </view>
+</title>

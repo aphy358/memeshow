@@ -1,0 +1,12 @@
+<!-- returning:退货中,等待卖家签收或拒签 -->
+<view class="refund-state-wrap">
+  <view class="refund-state-block">
+    <view class="title">等待商家确认收货并退款</view>
+    <view class="refund-state-note">您已退货，商家将在 {{ countDown }} 内处理</view>
+  </view>
+  <view class="refund-state-block">
+    <view class="refund-state-note">如果商家确认收货，将会退款给您</view>
+    <view class="refund-state-note">如果商家拒绝收货，您可以修改退货物流信息或申请客服介入</view>
+    <view class="refund-state-note">如果商家逾期未处理，系统将自动确认收货并退款给您</view>
+  </view>
+</view>

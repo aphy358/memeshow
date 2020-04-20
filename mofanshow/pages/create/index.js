@@ -106,7 +106,7 @@ Page({
   closePageHandle: function (e) {
     // wx.showTabBar({
     //   success: function () {
-    wx.switchTab({
+    wx.navigateTo({
       url: "../index/index",
     })
     //   }
@@ -119,6 +119,6 @@ Page({
   onUnload: function () {
   },
   onHide: function () {
-    // wx.showTabBar()    
+    // wx.showTabBar()
   }
 });

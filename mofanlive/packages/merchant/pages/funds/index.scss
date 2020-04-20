@@ -1,0 +1,56 @@
+.mc-funds__acounting,
+.mc-funds__entire {
+    background-color: #ffffff;
+    margin: 24rpx;
+}
+
+.mc-funds__acounting {
+    padding: 0 24rpx;
+    box-shadow: 0 0 8px 0 rgba(153,153,153,0.08);
+    border-radius: 18rpx;
+
+    .cell__detail {
+        text-align: right;
+    }
+
+    &--title {
+        height: 49px;
+        font-family: "PingFangSC-Medium" "Microsoft YaHei" sans-serif;
+        font-size: 32rpx;
+        color: #333;
+        line-height: 1;
+        padding: 0 0;
+
+        display: flex;
+        align-items: center;
+    }
+
+    &--amount {
+        font-family: "SFUIDisplay-Medium" "PingFangSC-Medium" "Microsoft YaHei" sans-serif;
+        font-size: 32rpx;
+        color: #F32953;
+        line-height: 1;
+    }
+}
+
+
+
+.mc-funds__tips {
+    margin: 30rpx 24rpx;
+    font-family: "PingFangSC-Regular" "Microsoft YaHei" sans-serif;
+    font-size: 24rpx;
+    line-height: 1;
+
+    &--desc {
+        margin-bottom: 20rpx;
+        color: #999;
+    }
+
+    &--link {
+        color: #F32953;
+
+        > text {
+            margin-right: 40rpx;
+        }
+    }
+}

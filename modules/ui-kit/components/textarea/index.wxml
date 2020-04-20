@@ -21,12 +21,12 @@
         selection-end="{{ selectionEnd }}"
         adjust-position="{{ adjustPosition }}"
         hold-keyboard="{{ holdKeyboard }}"
+        style="width: 100%;{{ height ? 'height:' + height + 'rpx' : '' }}"
         bindblur="onBlur"
         bindfocus="onFocus"
         bindinput="onInput"
         bindconfirm="onConfirm"
         bindlinechange="onLineChange"
-        style="width: 100%;{{ height ? 'height:' + height + 'rpx' : '' }}"
     ></textarea>
     <view wx:if="{{ counter }}" class="textarea__counter">
         <text>{{ length }}</text>

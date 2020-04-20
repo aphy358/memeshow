@@ -1,0 +1,94 @@
+<view class="live-toolbar">
+    <view class="tool-icons">
+        <!-- <view class="tool-icon" bindtap="onCloseLive">
+            <image src="../../../../assets/close.png"></image>
+        </view> -->
+        <view class="tool-icon" bindtap="onTapShare">
+            <button class="reset tool-icon-btn" open-type="share">
+                <image class="tool-icon-image" src="../../../../assets/share.png"></image>
+            </button>
+            <view class="tool-share" wx:if="{{ showShareTips }}">
+                <view class="tool-share-wrap">
+                    <view
+                        class="tool-share-text"
+                        style="margin-bottom:5px"
+                    >直播开始了<image class="tool-share-image" src="../../../../assets/love.png"></image></view>
+                    <view class="tool-share-text">快喊粉丝来看</view>
+                </view>
+            </view>
+        </view>
+        <view
+            class="tool-icon icon-container"
+            bindtap="onChangeSettings"
+        >
+            <image class="tool-icon-image" src="../../../../assets/setting.png"></image>
+            <view
+                wx:if="{{ popover == 'setting' }}"
+                class="tool-settings"
+            >
+                <view class="tool-settings-item" catchtap="onChangeCamera">
+                    <image class="tool-settings-icon" src="../../../../assets/camera.png"></image>
+                    <view class="tool-settings-desc">切换摄像头</view>
+                </view>
+                <view class="tool-settings-item" catchtap="onChangeMirror">
+                    <image class="tool-settings-icon" src="../../../../assets/frame.png"></image>
+                    <view class="tool-settings-desc">{{ settings.mirror ? '关闭镜像' : '开启镜像'}}</view>
+                </view>
+                <view class="tool-settings-item" catchtap="onChangeBeauty">
+                    <image class="tool-settings-icon" src="../../../../assets/makeup.png"></image>
+                    <view class="tool-settings-desc">调整美颜</view>
+                </view>
+                <!-- <view class="tool-settings-item" catchtap="onChangeMode">
+                    <image class="tool-settings-icon" src="../../../../assets/flash.png"></image>
+                    <text class="tool-settings-desc">切换清晰度</text>
+                </view> -->
+                <view class="tool-settings-item" catchtap="onChangeMic">
+                    <image class="tool-settings-icon" src="../../../../assets/phone.png"></image>
+                    <view class="tool-settings-desc">{{ settings.enableMic ? '关闭麦克风' : '开启麦克风' }}</view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="tool-entries">
+        <view
+            class="tool-entry"
+            bindtap="onClickBag"
+        >
+            <image class="tool-entry_bag" src="../../../../assets/bag.png"></image>
+        </view>
+        <view
+            class="tool-entry tool-container"
+            bindtap="onClickShop"
+        >
+            <image class="tool-entry_shop" src="../../../../assets/shop.png"></image>
+            <view
+                wx:if="{{!productCount}}"
+                class="tool-tips"
+            >
+                <view class="tool-tips-shop">
+                    <view style="display:flex;align-items:center;">可在这里 <image src="../../../../assets/love.png"></image></view>
+                    <view>添加商品哦</view>
+                </view>
+            </view>
+            <view
+                wx:if="{{ currentProduct }}"
+                class="recommend-wrap"
+            >
+                <view class="recommend-inner">
+                    <view class="recommend-title">讲解中</view>
+                    <view class="recommend-body">
+                        <image class="recommend-img" src="{{currentProduct.image['medium']}}"></image>
+                    </view>
+                </view>
+            </view>
+            <text
+                wx:if="{{!productCount}}"
+                class="tool-shop-add"
+            >+</text>
+            <text
+                wx:else
+                class="tool-shop-num"
+            >{{ productCount > 99 ? '99+' : productCount }}</text>
+        </view>
+    </view>
+</view>

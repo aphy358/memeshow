@@ -1,0 +1,9 @@
+{
+    "navigationBarTitleText": "商品管理",
+    "usingComponents": {
+        "tab": "/ui-kit/components/tab/index",
+        "tabs": "/ui-kit/components/tabs/index",
+        "product-card": "/packages/merchant/components/product-card/index",
+        "action-sheet": "/ui-kit/components/action-sheet/index"
+    }
+}

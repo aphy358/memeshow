@@ -1,0 +1,59 @@
+@import "@/theme";
+
+.voucher {
+    padding: 0 30rpx;
+    background-color: $color-white;
+    margin: 16rpx 0;
+
+    &__staff {
+        @include display-flex();
+        @include hairline-bottom($color: #e2e2e2);
+        align-items: center;
+        padding: $spacing-v-lg 0;
+
+        &__avatar {
+            width: 80rpx;
+            height: 80rpx;
+            border-radius: 100%;
+        }
+
+        &__detail {
+            margin-left: $spacing-h-lg;
+
+            &__name {
+                font-size: 28rpx;
+                color: #333;
+                line-height: 1;
+                margin-bottom: $spacing-text-base;
+
+                > text {
+                    color: $color-brand;
+                }
+            }
+
+            &__count {
+                font-family: $font-cn;
+                color: #999;
+                font-size: $font-size-sm;
+            }
+        }
+    }
+
+    &__chain {
+        width: 100%;
+        padding-bottom: $spacing-v-lg;
+
+        &__row {
+            margin-top: $spacing-v-lg;
+            display: flex;
+            flex-flow: row wrap;
+            justify-content: space-between;
+        }
+
+        &__node {
+            width: 60rpx;
+            height: 60rpx;
+            border-radius: 100%;
+        }
+    }
+}

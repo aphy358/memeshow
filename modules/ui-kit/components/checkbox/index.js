@@ -3,6 +3,11 @@
  */
 
 Component({
+  options: {
+    // 允许页面的样式影响到组件
+    styleIsolation: 'apply-shared'
+  },
+  
   properties: {
     name: String,
 
@@ -50,6 +55,8 @@ Component({
           )
         } else {
           // todo
+          const parent = this.getRelationNodes("../checkbox-group/index")[0]
+          parent.$emitChange(this.data.value)
         }
       }
     },
@@ -64,6 +71,12 @@ Component({
 
     emitDisabled() {
       this.triggerEvent("disabled")
+    },
+
+    $emitSwitch(tag) {
+      this.setData({
+        checked: tag
+      })
     },
 
     hasParent() {

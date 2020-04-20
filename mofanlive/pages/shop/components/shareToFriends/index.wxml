@@ -1,0 +1,67 @@
+<wxs module="formator" src="/utils/formator.wxs" ></wxs>
+
+<view
+    catchtouchmove="true"
+    class="share-to-friends-cmp"
+    hidden="{{false}}"
+>
+    <view>
+        <view
+            bindtap="onClose"
+            class="close-area"
+        >
+            <image
+                class="close-img"
+                src="https://pinduoduoimg.yangkeduo.com/wxappimg/neigou3/closeicon.png"
+            ></image>
+        </view>
+        <view class="share-to-friends-cmp-title">购买还需<text> {{ needs }} </text>张内购券</view>
+        <view class="share-to-friends-cmp-desc">请好友助力，好友助力后各得1-5张</view>
+    </view>
+
+    <view class="thumbnail">
+        <image src="{{ product.image }}"></image>
+    </view>
+
+    <view class="price-info">
+        <text>内购价：</text>
+        <text class="price-sign">￥</text>
+        <text class="discount-price">{{ formator.formatPrice(product.neigou.price) }}</text>
+    </view>
+
+    <button
+        class="share-btn"
+        data-id="{{ product.id }}"
+        openType="share"
+    >请好友助力，都得内购券</button>
+
+    <!-- <button
+        class="share-img-btn"
+        openType="contact"
+        sendMessageImg="https://wwj-products.mofanbaby.com/6387ab92d7cb4d3e801361ffd5fc512e.jpeg"
+        sendMessagePath="/{{ shareInfo }}"
+        showMessageCard="{{true}}"
+    >
+        找内部员工领内购券
+    </button> -->
+
+    <button
+        class="share-img-btn"
+        bindtap="gobuy"
+    >
+        查看商品
+    </button>
+
+    <!-- <view bindtap="gobuy" class="show-poster">
+        <text class="show-poster-text">
+            <text>查看商品</text>
+        </text>
+        <text class="right-arrow"></text>
+    </view> -->
+</view>
+
+<view
+    bindtap="onClose"
+    catchtouchmove="move"
+    class="employee-info-mask"
+></view>

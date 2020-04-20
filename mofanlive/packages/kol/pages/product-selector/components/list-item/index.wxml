@@ -1,0 +1,25 @@
+<wxs
+    module="format"
+    src="../../../../utils/format.wxs"
+></wxs>
+<view class="item">
+    <view class="image-container">
+        <view class="bonus f-cn">佣金10% / 赚￥4.0</view>
+        <view class="check">
+            <checkbox-item
+                bind:change="onChecked"
+                checked="{{checked}}"
+                value="1"
+            ></checkbox-item>
+        </view>
+        <image
+            mode="aspectFill"
+            src="{{content.avatar.thumbnail}}"
+        />
+    </view>
+    <view class="detail">
+        <view class="detail__title f-cn f-base">{{content.title}}</view>
+        <view class="detail__price f-nu">￥{{format.price(content.price)}}</view>
+        <view class="detail__sold f-cn">销量{{format.approximately(content.sold)}}</view>
+    </view>
+</view>

@@ -1,0 +1,11 @@
+<!-- rejected:卖家拒绝申请,买家可重新编辑再次提交或关闭申请 -->
+<view class="refund-state-wrap">
+  <view class="refund-state-block">
+    <view class="title">商家已拒绝退款申请</view>
+    <view class="refund-state-note">您需在 {{ countDown }} 内响应，否则本次申请将自动撤销</view>
+  </view>
+  <view class="refund-state-block">
+    <view class="refund-state-note">您可以修改申请后再次发起，商家会重新处理</view>
+    <view class="refund-state-note">如果您无法与商家协商一致，可以申请客服介入</view>
+  </view>
+</view>

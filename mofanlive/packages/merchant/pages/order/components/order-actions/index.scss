@@ -1,0 +1,37 @@
+@import "@/theme";
+
+.actions {
+  @include flex-row-nowrap;
+  justify-content: flex-end;
+  align-items: center;
+  background-color: $color-white;
+  padding: 22rpx $spacing-h-lg;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  button {
+    margin-left: 12rpx;
+    margin-right: 0;
+    height: 56rpx;
+    width: 150rpx;
+    padding: 0;
+  }
+
+  @at-root .final-text {
+    font-size: 28rpx;
+    color: #2D2D2D;
+  }
+  
+  @at-root .final-amount {
+    font-size: 24rpx;
+    color: #FE2C54;
+    font-weight: bold;
+    margin-right: 2rpx;
+  }
+}
+
+.price-big {
+  font-size: 40rpx;
+}

@@ -1,0 +1,24 @@
+<wxs
+  module="priceFormat"
+  src="/components/common/wxs/accurate.wxs"
+></wxs>
+
+<view 
+  class="refund-info-item"
+  wx:for="{{ refundDetail.items }}"
+  wx:key="index"
+>
+  <view class="rii-thumbnail">
+    <image src="{{ item.picture }}" />
+  </view>
+  <view class="rii-detail">
+    <view class="rii-detail-title">{{ item.title }}</view>
+    <view class="rii-detail-specs">{{ item.specs }}</view>
+    
+    <view class="rii-bill">
+      <text class="rii-bill-price">￥<text class="price-big">{{ priceFormat.priceStr1((item.finalPrice)) }}</text>.{{ priceFormat.priceStr2((item.finalPrice)) }}</text>
+      <text class="rii-bill-original-price">￥{{ priceFormat.accurate(item.price) }}</text>
+      <text class="rii-bill-quantity">x{{ item.num }}</text>
+    </view>
+  </view>
+</view>

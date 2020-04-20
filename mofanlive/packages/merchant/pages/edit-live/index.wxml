@@ -1,0 +1,40 @@
+<image
+    class="background"
+    src="{{bg}}"
+/>
+
+<view class="cover-layout">
+    <view class="title">
+        <input
+            bind:input="onInputTitle"
+            class="f-cn"
+            placeholder="输入标题更吸引粉丝哦~"
+            placeholder-class="form__placeholder"
+            value="{{title}}"
+        />
+    </view>
+    <view
+        bind:tap="selectImage"
+        class="cover"
+    >
+        <view class="cover--label f-cn">直播封面</view>
+        <view class="cover--image">
+            <view
+                class="cover--hint"
+                wx:if="{{!cover}}"
+            >
+                <image src="/assets/images/camera.png" />
+                <view class="cover--hint--label f-cn">图片比例1:1</view>
+            </view>
+            <image
+                src="{{cover}}"
+                wx:else
+            />
+        </view>
+    </view>
+</view>
+
+<btn
+    bind:create="confirm"
+    bind:one="oneClickCreateLive"
+></btn>

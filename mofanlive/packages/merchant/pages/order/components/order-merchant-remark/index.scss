@@ -1,0 +1,22 @@
+@import "@/theme";
+
+.merchant-remark-wrap {
+  display: flex;
+  align-items: center;
+  height: 88rpx;
+  padding: 24rpx;
+  background: #FFDDE3;
+  color: #F32953;
+
+  image {
+    width: 40rpx;
+    height: auto;
+    margin-right: 12rpx;
+    flex-shrink: 0;
+  }
+
+  .remark {
+    font-size: 28rpx;
+    @include line(1);
+  }
+}

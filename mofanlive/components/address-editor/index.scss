@@ -6,24 +6,10 @@
 
 .btn {
   width: 100%;
-  padding: $spacing-v-lg $spacing-h-lg;
+  padding: 24rpx;
   box-sizing: border-box;
-  @include flex-row-nowrap;
-  justify-content: flex-end;
-  align-items: center;
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
-
-  button {
-    margin: 0;
-    width: 210rpx;
-    margin-left: 40rpx;
-    height: 72rpx;
-  }
-}
-
-.padding-large {
-  padding-bottom: 200rpx;
 }

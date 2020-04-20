@@ -1,5 +1,6 @@
 {
   "usingComponents": {
     "coupon": "/components/coupon/index"
-  }
+  },
+  "navigationBarTitleText": "优惠券"
 }

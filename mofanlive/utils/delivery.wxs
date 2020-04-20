@@ -1,0 +1,27 @@
+// 当一个订单的 deliveryOrders 下所有项的 dist 字段为空时，则不需要显示查看物流按钮，反之需要
+var getDeliverable = function(deliveryOrders) {
+  if (deliveryOrders && deliveryOrders.length) {
+    for (let i = 0; i < deliveryOrders.length; i++) {
+      if (deliveryOrders[i].dist) return true
+    }
+  }
+
+  return false
+}
+
+// 获取 deliveryOrders 下第一个有效的物流公司名称
+var getLogistics = function(deliveryOrders) {
+  if (deliveryOrders && deliveryOrders.length) {
+    for (let i = 0; i < deliveryOrders.length; i++) {
+      if (deliveryOrders[i].dist) return deliveryOrders[i].dist.express
+    }
+  }
+
+  return ''
+}
+
+
+module.exports = {
+  getDeliverable,
+  getLogistics,
+}

@@ -1,0 +1,45 @@
+<!-- pages/modal/modal.wxml -->
+<view
+  animation="{{animationData}}"
+  class="wx-modal_mask"
+  hidden="{{!open}}"
+  catch:touchmove="onPrevent"
+>
+  <view class="wx-modal_dialog" style="{{contentstyle}}">
+    <view
+      wx:if="{{title !== ''}}"
+      class="wx-modal_title"
+      style="{{ headerbg ? 'background-color: #F4F4F4' : ''}}"
+    >
+      {{title}}
+      <view wx:if="{{closable}}" class="wx-modal_close">
+        <text class="icon icon-close" bindtap="cancelFunc"></text>
+      </view>
+    </view>
+    <view  wx:if="{{content !==  ''}}" class="wx-modal_content">
+        <text>{{content}}</text>
+    </view>
+    <view wx:else class="wx-modal_content--slot">
+      <slot></slot>
+    </view>
+
+    <view wx:if="{{ content !== ''}}" class="wx-modal_diaBtn">
+      <block wx:if="{{showCancel}}">
+        <button
+          class="wx-modal_btn wx-modal_celbtn"
+          hover-class="wx-modal_btnHover"
+          bindtap="cancelFunc"
+        >
+          {{cancelText}}
+        </button>
+      </block>
+      <button
+        class="wx-modal_btn wx-modal_cfirbtn"
+        hover-class="wx-modal_btnHover"
+        bindtap="confirmFunc"
+      >
+        {{confirmText}}
+      </button>
+    </view>
+  </view>
+</view>

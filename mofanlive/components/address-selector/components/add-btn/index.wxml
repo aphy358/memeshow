@@ -3,11 +3,11 @@
     style=" {{isIPhoneX ? 'padding-bottom:68rpx;': ''}}"
 >
     <button
-        bind:tap="emitWechat"
-        class="button--mini button--primary button--green button--circle"
-    >使用微信地址</button>
-    <button
         bind:tap="emitAdd"
-        class="button--primary button--mini button--circle"
+        class="button--secondary button--circle m-r-lg"
     >添加地址</button>
+    <button
+        bind:tap="emitWechat"
+        class="button--primary button--circle button--green"
+    >使用微信地址</button>
 </view>

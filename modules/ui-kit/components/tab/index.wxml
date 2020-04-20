@@ -3,9 +3,9 @@
 <view
     id="tab-{{ index }}"
     bindtap="onTap"
-    class="tab {{ disabled ? 'tab__disabled' : '' }} {{ activation ? 'tab__on' : '' }}"
+    class="tab {{ disabled ? 'tab__disabled' : '' }} {{ activation ? 'tab__on' : '' }} tab-class"
 >
-    <view class="tab_content">
+    <view class="tab_content tab-content-class">
         <slot></slot>
     </view>
     <view class="tab_dash" wx:if="{{ activation }}"></view>

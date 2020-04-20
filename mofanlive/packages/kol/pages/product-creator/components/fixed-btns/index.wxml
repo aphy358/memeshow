@@ -1,0 +1,9 @@
+<view
+    class="fixed-btns"
+    style="{{isIPhoneX ? 'padding-bottom: 84rpx;' : ''}}"
+>
+    <button
+        bind:tap="onTap"
+        class="button--primary button--circle"
+    >极速发布</button>
+</view>

@@ -1,0 +1,88 @@
+<view class="live-wrap">
+    <live-player-custom
+        wx:if="{{ roomInfo && roomInfo.streamUrl }}"
+        object-fit="fillCrop"
+        src="{{ roomInfo.streamUrl.rtmpPullUrl }}"
+    />
+  
+    <!-- 覆盖在 live-player 上，可通过滑动切换显示与隐藏的一层 -->
+    <swiper
+        class="live-cover-wrap"
+        current="{{ 1 }}"
+        duration="{{ 300 }}"
+    >
+        <swiper-item></swiper-item>
+
+        <swiper-item>
+            <!-- 顶部状态栏 -->
+            <live-status-bar-top roomInfo="{{ roomInfo }}" bind:showFollow="onShowFollow" />
+
+            <!-- 关注主播 -->
+            <live-follow show="{{ showFollow }}" bind:hideFollow="onHideFollow" />
+
+            <!-- 福袋 -->
+            <live-fudai />
+
+            <!-- 拼单动态 -->
+            <live-join-order catch:buy="buyProduct" />
+
+            <!-- 直播评论列表面板 -->
+            <live-comment-panel textMessage="{{ textMessage }}" />
+
+            <!-- 底部操作栏 -->
+            <live-operate-bar
+                bind:onShowCommentInputPopup="onShowCommentInputPopup"
+                bind:openCouponPopup="openCouponPopup"
+                bind:openProductsPopup="openProductsPopup"
+                catch:orders="openOrders"
+                catch:buy="buyProduct"
+            />
+
+            <!-- 评论输入弹出框 -->
+            <comment-input-popup
+                bind:createNewComment="createNewComment"
+                bind:hideCommentInputPopup="hideCommentInputPopup"
+                generic:comment-input-area="live-comment-input-area"
+                show="{{ ifShowCommentInputPopup }}"
+            />
+
+            <live-products
+                bind:buy="buyProduct"
+                id="products"
+            ></live-products>
+
+            <!-- 选择商品弹框 -->
+            <sku-selector
+                avatar="{{shopping.skuSelector.product.image}}"
+                bind:cancel="closeSkuSelector"
+                bind:change="changeSelectedSku"
+                images="{{shopping.skuSelector.product.skuImages}}"
+                open="{{shopping.skuSelector.visibility}}"
+                skus="{{shopping.skuSelector.product.skus}}"
+                title="{{shopping.skuSelector.product.title}}"
+                is-neigou="{{!!shopping.skuSelector.product.skus[0].neigou}}"
+            >
+                <authorized-button>
+                    <button
+                        bind:tap="openCashier"
+                        class="button--primary button--circle sku-selector__buy {{shopping.skuSelector.selection.sku == null ? 'button--disabled' : '' }}"
+                        disabled="{{shopping.skuSelector.selection.sku == null}}"
+                    >立即购买</button>
+                </authorized-button>
+            </sku-selector>
+        </swiper-item>
+
+        <swiper-item></swiper-item>
+    </swiper>
+
+    <view
+        class="exit-img"
+        bind:tap="exitLiveRoom"
+        style="top:{{ menuBtn.top }}px;width:{{ menuBtn.height }}px;height:{{ menuBtn.height }}px;"
+    >
+        <image
+            class="img"
+            src="../../assets/exit2.png"
+        />
+    </view>
+</view>

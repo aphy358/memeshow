@@ -9,13 +9,13 @@
         <view class="icon icon-chevron-right cell__icon-link"></view>
     </view>
 </view>-->
-<view class="white-back padding-large">
+<view class="white-back">
     <form
         bindsubmit="submit"
         class="form"
     >
         <view class="form__item">
-            <view class="form__item__label">收货人姓名</view>
+            <view class="form__item__label">联系人</view>
             <view class="form__item__content">
                 <input
                     class="input"
@@ -51,7 +51,7 @@
                     <view class="form__item__picker">
                         <view
                             class="form__item__picker__{{region[0] == '' ? 'placeholder' : 'value'}}"
-                        >{{region[0] == '' ? '请选择' : region[0]+' '+region[1]+' '+region[2]}}</view>
+                        >{{region[0] == '' ? '省，市，区' : region[0]+' '+region[1]+' '+region[2]}}</view>
                     </view>
                 </picker>
             </view>
@@ -71,17 +71,11 @@
             </view>
         </view>
         <view class="form__item">
-            <view class="form__item__label">邮政编码</view>
-            <view class="form__item__content">
-                <input
-                    auto-height="true"
-                    class="input"
-                    maxlength="36"
-                    type="number"
-                    name="postCode"
-                    placeholder="邮政编码"
-                    placeholder-class="form__placeholder"
-                    value="{{postCode}}"
+            <view class="form__item__label">设为默认</view>
+            <view class="form__item__tail">
+                <switch
+                    checked="{{isDefault}}"
+                    name="isDefault"
                 />
             </view>
         </view>
@@ -91,15 +85,11 @@
             style="{{isIPhoneX ? 'padding-bottom: 68rpx;' : ''}}"
         >
             <button
-                catch:tap="cancel"
-                class="button--secondary button--mini button--circle"
-            >取消</button>
-            <button
-                class="button--primary button--mini button--circle"
+                class="button--primary button--circle"
                 disabled="{{disabled}}"
                 form-type="submit"
                 loading="{{loading}}"
-            >保存</button>
+            >保存地址</button>
         </view>
     </form>
 </view>

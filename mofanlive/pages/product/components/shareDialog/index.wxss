@@ -1,0 +1,135 @@
+.dialog-mask {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    opacity: 0.8;
+    z-index: 99;
+}
+
+.container {
+    position: fixed;
+    width: 580rpx;
+    height: 400rpx;
+    border-radius: 16rpx;
+    top: 360rpx;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #fff;
+    z-index: 101;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.close-img {
+    position: absolute;
+    top: -28rpx;
+    right: -28rpx;
+    width: 58rpx;
+    height: 58rpx;
+    z-index: 102;
+}
+
+.close-area {
+    position: absolute;
+    top: -50rpx;
+    right: -50rpx;
+    width: 100rpx;
+    height: 100rpx;
+    z-index: 103;
+}
+
+.title {
+    margin-top: 64rpx;
+    font-size: 34rpx;
+    font-family: PingFangSC-Semibold;
+    line-height: 34rpx;
+    color: #151516;
+    text-align: center;
+}
+
+.num {
+    color: #ff5668;
+}
+
+.desc {
+    margin-top: 24rpx;
+    font-size: 26rpx;
+    text-align: center;
+    color: #7b869a;
+    line-height: 26rpx;
+}
+
+.progress-unit {
+    position: relative;
+    margin-top: 40rpx;
+    width: 100%;
+    height: 58rpx;
+}
+
+.line-progress-container {
+    margin-left: 86rpx;
+    position: relative;
+    width: 408rpx;
+    height: 12rpx;
+    border-radius: 20rpx;
+    background-color: #ebf2ff;
+}
+
+.line-progress {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 12rpx;
+    border-radius: 20rpx;
+    background: linear-gradient(270deg,rgba(30,117,255,1) 0%,rgba(54,205,255,1) 100%);
+}
+
+.need-count-tag {
+    position: absolute;
+    top: 26rpx;
+    padding: 0 14rpx;
+    display: inline;
+    color: #fff;
+    font-size: 20rpx;
+    line-height: 38rpx;
+    border-radius: 8rpx;
+    background-color: #1e75ff;
+}
+
+.need-count-tag::before {
+    content: "";
+    width: 6rpx;
+    height: 6rpx;
+    background-color: #1e75ff;
+    border: 1px solid transparent;
+    position: absolute;
+    top: -4rpx;
+    left: 50%;
+    margin-left: -4rpx;
+    transform: rotate(45deg);
+}
+
+.button-area {
+    margin-top: 24rpx;
+    height: 90rpx;
+}
+
+.share-btn {
+    height: 90rpx;
+    border-radius: 8rpx;
+    color: #fff;
+    background-color: #e02e24;
+    font-family: PingFangSC-Medium;
+    font-size: 34rpx;
+    line-height: 34rpx;
+    padding-top: 28rpx;
+    box-sizing: border-box;
+}
+
+button::after {
+    border: none;
+}

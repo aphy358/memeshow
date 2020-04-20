@@ -9,18 +9,18 @@
     padding: 0 $cell-spacing-h;
 
     &__header {
-        @include flex(1, 1, auto);
+        @include flex(1, 0, auto);
         @include display-flex();
         @include align-items(center);
         overflow: hidden;
     }
 
     &__tail {
-        @include flex(0, 0, auto);
+        @include flex(1, 1, auto);
         @include display-flex();
         @include align-items(center);
         @include justify-content(flex-end);
-        max-width: 50%;
+        // max-width: 50%;
         margin-left: $spacing-h-lg;
         overflow: hidden;
     }
@@ -104,6 +104,12 @@
         }
 
         &:last-child::after {
+            display: none;
+        }
+    }
+
+    &--no-border {
+        &::after {
             display: none;
         }
     }

@@ -65,7 +65,7 @@ $color-text-base-inverse: #fff !default; // 反色
 $color-text-secondary: #36d57d !default; // 辅助色
 $color-text-title: #2b2b2b !default; // 文章标题
 $color-text-paragraph: #3f536e !default; // 文章段落
-$color-text-placeholder: #cfcfcf !default;
+$color-text-placeholder: #999 !default;
 $color-text-disabled: #ccc !default;
 
 /* Link */
@@ -100,11 +100,11 @@ $opacity-active: 0.6 !default; // Button 等组件点击态额透明度
 $opacity-disabled: 0.3 !default; // Button 等组件禁用态的透明度
 
 /* Font */
-$font-en: "-apple-system-font", "Microsoft YaHei", "Helvetica Neue"; // 英文
+$font-en: "SF UI Display", "Microsoft YaHei", "Helvetica Neue"; // 英文
 $font-cn: "PingFangSC-Regular", "Microsoft YaHei", "Hiragino Sans GB"; // 中文
-$font-nu: "Helvetica Neue"; // 阿拉伯数字的字体
+$font-nu: "SF UI Display"; // 阿拉伯数字的字体
+$font-price: "SF UI Display"; // 价格
 $font-bold: "PingFangSC-Semibold"; // 加粗
-$font-price: "DINAlternate-Bold"; // 价格
 $font-sans: sans-serif; // 默认
 $font-default: $font-cn, $font-en, $font-sans;
 
@@ -251,7 +251,7 @@ $button-mini-font-family: $font-cn !default;
 /* Popup */
 $popup-height-min: size(300) !default;
 // $popup-height-max: size(450) !default;
-$popup-height-max: 66vh !default;
+$popup-height-max: 80vh !default;
 $popup-content-padding: size(15) !default;
 
 /* Input */
@@ -277,6 +277,7 @@ $textarea-counter-color: $color-text-placeholder !default;
 $textarea-counter-size: $font-size-base !default;
 
 /* Checkbox */
+$checkbox-padding-h: size(15) !default;
 $checkbox-icon-size: size(10) !default;
 $checkbox-icon-color: $color-brand !default;
 $checkbox-icon-color-checked: $color-white !default;
@@ -296,21 +297,33 @@ $avatar-size-lg: size(60) !default;
 
 /* Tabs */
 $tabs-width-min: size(50) !default;
-$tabs-height: size(40) !default;
-$tabs-height-dash: size(2) !default;
-$tabs-width-dash: size(30) !default;
+$tabs-height: size(44) !default;
+$tabs-height-dash: size(3) !default;
+$tabs-width-dash: size(45) !default;
 $tabs-color-active: $color-text-base !default;
+$tabs-font-size-active: size(16) !default;
 $tabs-color-normal: #a6a6a6 !default;
 $tabs-color-dash: $color-brand !default;
 $tabs-font-family: $font-bold !default;
-$tabs-font-size: $font-size-lg !default;
+$tabs-font-size: $font-size-base !default;
 
 /* Badge */
 $badge-color-bg: $color-error !default;
 $badge-color-text: $color-white !default;
 $badge-dot-size: size(10) !default;
 $badge-font-size: $font-size-xs !default;
-$badge-border-radius: $border-radius-md !default;
+$badge-border-radius: 50% !default;
+
+/* Modal */
+$modal-width: size(285) !default;
+$modal-header-padding-middle: size(10) !default;
+$modal-header-padding-large: size(16) !default;
+$modal-border-radius: size(6) !default;
+$modal-header-text-color: $color-text-base !default;
+$modal-content-text-color: $color-grey-2 !default;
+$modal-btn-default-color: $color-text-base !default;
+$modal-btn-confirm-color: $color-text-base!default;
+$modal-bg-color: $color-white !default;
 
 // /* Activity Indicator */
 // $at-activity-indicator-font-size: 28px !default;
@@ -377,13 +390,7 @@ $badge-border-radius: $border-radius-md !default;
 // $at-message-font-size: $font-size-base !default;
 // $at-message-bg-color: $color-info !default;
 
-// /* Modal */
-// $at-modal-width: 540px !default;
-// $at-modal-header-text-color: $color-text-base !default;
-// $at-modal-content-text-color: $color-text-base !default;
-// $at-modal-btn-default-color: $color-text-base !default;
-// $at-modal-btn-confirm-color: $color-brand !default;
-// $at-modal-bg-color: $color-white !default;
+
 
 // /* NavBar */
 // $at-nav-bar-title-color: $color-text-base !default;

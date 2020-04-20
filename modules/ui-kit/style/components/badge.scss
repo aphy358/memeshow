@@ -21,12 +21,13 @@
     &--num {
         position: absolute;
         top: -$badge-dot-size / 2;
-        right: -$badge-dot-size / 2;
+        right: 0;
         overflow: hidden;
-        background: $badge-color-bg;
+        background: white;
         padding: 0 $spacing-h-sm;
         border-radius: $badge-border-radius;
-        color: $badge-color-text;
+        color: $badge-color-bg;
+        border: 2rpx solid $badge-color-bg;
         font-size: $badge-font-size;
         line-height: 1.4;
         transform: translate(50%, 0);

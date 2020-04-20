@@ -1,0 +1,5 @@
+
+<view class="refund-negotiation-wrap" bind:tap="navToAudits">
+  <view class="">查看协商记录</view>
+  <image src="/assets/images/arrow.png" />
+</view>

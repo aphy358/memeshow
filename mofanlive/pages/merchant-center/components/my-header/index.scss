@@ -1,0 +1,59 @@
+@import "ui-kit/style/variables/default.scss";
+@import "ui-kit/style/mixins/index.scss";
+
+.my-header-wrap {
+  background: #F32953;
+  padding: 40rpx 30rpx 40rpx;
+
+  @at-root .my-header-inner {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    @at-root .my-header-btns {
+      flex-grow: 1;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-left: 20rpx;
+
+      @at-root .my-header-btn {
+        position: relative;
+        font-size: 36rpx;
+        color: #fff;
+
+        @at-root .navigator-hover {
+          background: transparent;
+        }
+
+        &.mid-item {
+          width: calc(100% - 100rpx);
+          @include line(2);
+        }
+
+        .color-white {
+          display: flex;
+          align-items: center;
+          font-weight: bold;
+
+          @at-root .my-header-update-btn {
+            position: relative;
+            top: 4rpx;
+            width: 128rpx;
+            height: 32rpx;
+            margin-left: 10rpx;
+          }
+        }
+      }
+    }
+  }
+}
+
+.authorized-button {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}

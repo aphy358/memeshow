@@ -1,0 +1,49 @@
+<wxs
+    module="priceFormat"
+    src="/components/common/wxs/accurate.wxs"
+></wxs>
+
+<wxs
+    module="formator"
+    src="/utils/formator.wxs"
+></wxs>
+
+<!-- refunding:退款中,等待银行将退款打给买家 -->
+<view class="refund-state-wrap">
+  <view class="refund-state-block">
+    <view class="title">退款成功</view>
+    <view class="refund-state-note">{{ formator.getTimeStr(refundDetail.compeleteTime) }}</view>
+  </view>
+  
+  <view class="refund-state-block">
+    <view class="refund-state-note">退款金额：¥{{ priceFormat.accurate(refundDetail.amount) }}</view>
+    <view class="refund-state-note">退款将返还您实际支付的金额</view>
+  </view>
+
+  <view class="refund-state-block">
+    <view class="refunding-status-bar-wrap">
+      <view class="rsb-dot active"></view>
+      <view class="rsb-line active"></view>
+      <view class="rsb-state-now"></view>
+      <view class="rsb-line"></view>
+      <view class="rsb-dot"></view>
+    </view>
+
+    <view class="refunding-status-note-wrap">
+      <view class="note-active">
+        <view class="note-row-one">商家同意退款</view>
+        <view class="note-row-two">{{ formator.getTimeStr(refundDetail.compeleteTime) }}</view>
+      </view>
+
+      <view class="note-active align-center">
+        <view class="note-row-one">银行受理</view>
+        <view class="note-row-two">{{ formator.getTimeStr(refundDetail.compeleteTime) }}</view>
+      </view>
+
+      <view class="align-right">
+        <view class="note-row-one">退款到账</view>
+        <view class="note-row-two">预计1-15个工作日</view>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,1 +1,22 @@
-module.exports = (num, accurate = 2) => num.toFixed(accurate)
+var accurate = function (num = 0, accurate = 2) {
+  num = num / 100
+  return num.toFixed(accurate)
+}
+
+// 取价格的整数部分
+var priceStr1 = function(num) {
+  var price = accurate(num) + ''
+  return price.split('.')[0]
+}
+
+// 取价格的小数部分
+var priceStr2 = function(num) {
+  var price = accurate(num) + ''
+  return price.split('.')[1]
+}
+
+module.exports = {
+  accurate,
+  priceStr1,
+  priceStr2
+}

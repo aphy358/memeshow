@@ -1,0 +1,53 @@
+@import "../../kol.scss";
+
+.tabs {
+  background-color: #1d1d1d !important;
+  align-items: center;
+  padding-left: 30rpx;
+  position: relative;
+
+  &::after {
+    display: none;
+  }
+
+  &-container {
+    border-bottom: 2rpx solid #444;
+  }
+}
+
+.tabs-content {
+  white-space: nowrap;
+  overflow-x: scroll;
+  overflow-y: hidden;
+
+  &::-webkit-scrollbar {
+    display: none;
+    /* Chrome Safari */
+  }
+}
+
+.tab_content {
+  font-family: PingFangSC-Regular !important;
+  color: #999 !important;
+  background: #1d1d1d;
+  font-size: 28rpx;
+}
+
+.tab__on .tab_content {
+  font-family: PingFangSC-Semibold !important;
+  color: white !important;
+  font-size: 28rpx !important;
+}
+
+.checkbox {
+  padding-top: 0 !important;
+
+  &__icon {
+    border-color: white !important;
+    background: rgba(0, 0, 0, 0.10);
+
+    &--checked {
+      border-color: #fe2c54 !important;
+    }
+  }
+}

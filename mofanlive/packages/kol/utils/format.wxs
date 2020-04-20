@@ -1,0 +1,16 @@
+function approximately(num) {
+  if (num > 10000) {
+    return (num / 10000).toFixed(1) + '万'
+  }
+  return num
+}
+
+function price(cents = 0) {
+  cents /= 100
+  return cents.toFixed(2)
+}
+
+module.exports = {
+  approximately,
+  price,
+}

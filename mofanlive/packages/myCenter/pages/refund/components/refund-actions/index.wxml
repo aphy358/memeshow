@@ -1,0 +1,23 @@
+<view
+  wx:if="{{ RefundDetailActions[refundDetail.type][refundDetail.state].length > 0 }}"
+  class="actions actions-shadow"
+  style="{{isIPhoneX ? 'padding-bottom: 68rpx': ''}}"
+>
+  <block wx:if="{{ refundDetail.isAdminInvolved }}">
+    <!-- 如果是客服介入，则固定只有一个按钮 ‘撤销申请’ -->
+    <button
+      bindtap="actionClick"
+      class="button--secondary button--circle button--mini"
+      data-key="{{ RAT.CancelRefund }}"
+    >{{ RAT.CancelRefund }}</button>
+  </block>
+  <block wx:else>
+    <button
+      wx:for="{{ RefundDetailActions[refundDetail.type][refundDetail.state] }}"
+      wx:key="index"
+      bindtap="actionClick"
+      class="button--{{ item.Class }} button--circle button--mini"
+      data-key="{{ item.Title }}"
+    >{{ item.Title }}</button>
+  </block>
+</view>

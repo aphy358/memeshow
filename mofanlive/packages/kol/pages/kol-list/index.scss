@@ -1,0 +1,82 @@
+@import "../../kol";
+
+.banner {
+  width: 100%;
+  padding: 24rpx;
+  background-color: #111;
+
+  &__placeholder {
+    background: #333333;
+    border-radius: 8rpx;
+  }
+
+  image,
+  &__placeholder {
+    width: 100%;
+    height: 180rpx;
+  }
+}
+
+.tab__more-btn {
+  height: 32rpx;
+  padding: 0 22rpx;
+  margin-left: 20rpx;
+  border-left: 1rpx solid #444;
+  width: 44rpx;
+  box-sizing: content-box;
+  position: relative;
+
+  image {
+    $icon-size: 44rpx;
+    width: $icon-size;
+    height: $icon-size;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.tabs {
+  background-color: #1d1d1d !important;
+  align-items: center;
+  padding-left: 30rpx;
+  position: relative;
+
+  &::after {
+    display: none;
+  }
+
+  &-container {
+    border-bottom: 2rpx solid #444;
+  }
+}
+
+.tabs-content {
+  white-space: nowrap;
+  overflow-x: scroll;
+  overflow-y: hidden;
+
+  &::-webkit-scrollbar {
+    display: none;
+    /* Chrome Safari */
+  }
+}
+
+.tab_content {
+  font-family: PingFangSC-Regular !important;
+  color: #999 !important;
+  background: #1d1d1d;
+  font-size: 28rpx;
+}
+
+.tab__on .tab_content {
+  font-family: PingFangSC-Semibold !important;
+  color: white !important;
+  font-size: 28rpx !important;
+}
+
+.bottom-placeholder {
+  width: 100%;
+  height: 200rpx;
+}

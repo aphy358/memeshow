@@ -1,0 +1,17 @@
+<view
+    catchscroll="onPreventDefault"
+    class="drawer {{ open ? 'drawer--actived' : '' }}"
+    style="transition:visibility {{ duration }}ms cubic-bezier(0.36, 0.66, 0.04, 1);"
+>
+    <view
+        catchtap="onTapMask"
+        catchtouchmove="onPreventDefault"
+        class="{{mask ? 'popup__overlay' : 'popup__overlay--opacity'}}"
+    ></view>
+    <view
+        class="content drawer-class"
+        style="transition: transform {{ duration }}ms cubic-bezier(0.36, 0.66, 0.04, 1);"
+    >
+        <slot></slot>
+    </view>
+</view>

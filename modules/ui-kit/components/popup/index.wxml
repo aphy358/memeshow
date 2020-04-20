@@ -1,6 +1,7 @@
 <view
-    class="popup {{ open ? 'popup--actived' : '' }}"
+    class="popup {{ show ? 'popup--actived' : '' }}"
     style="transition:visibility {{ duration }}ms cubic-bezier(0.36, 0.66, 0.04, 1);"
+    catchscroll="onPreventDefault"
 >
     <view
         class="{{ mask ? 'popup__overlay' : 'popup__overlay--opacity' }}"
@@ -9,7 +10,7 @@
     ></view>
     <view
         class="popup__content popup-content"
-        style="transition: transform {{ duration }}ms cubic-bezier(0.36, 0.66, 0.04, 1);{{ height ? 'height:' + height : '' }};{{ contentStyle }}"
+        style="transition: transform {{ duration }}ms cubic-bezier(0.36, 0.66, 0.04, 1);{{ height ? ('height:' + height) : '' }};{{ contentStyle }}"
     >
         <view class="popup__header">
             <view
@@ -25,9 +26,9 @@
                 catchtap="onClose"
             ></view>
         </view>
-        <view class="popup__body popup-body">
+        <scroll-view scroll-y class="popup__body popup-body">
             <slot></slot>
-        </view>
+        </scroll-view>
         <view class="popup__footer">
             <slot name="footer"></slot>
         </view>

@@ -1,0 +1,12 @@
+
+<view class="my-setup-avatar">
+  <view class="header-inner" bind:tap="chooseImg">
+    <avatar
+      type="2"
+      circle
+      size="140rpx"
+      url="{{ userProfile.avatarMedium }}"
+    />
+    <text class="text">点击更换头像</text>
+  </view>
+</view>

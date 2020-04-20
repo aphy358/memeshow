@@ -1,0 +1,30 @@
+<wxs
+    module="format"
+    src="../../../../utils/format.wxs"
+></wxs>
+
+<view class="products">
+    <view
+        class="product"
+        wx:for="{{products}}"
+        wx:for-item="product"
+        wx:if="{{index < 3}}"
+        wx:key="id"
+    >
+        <image
+            class="product__avatar"
+            src="{{product.avatar.thumbnail}}"
+        />
+        <view class="product__detail">
+            <view class="product__title">{{product.title}}</view>
+            <view class="product__price">￥{{format.price(product.price)}}</view>
+        </view>
+    </view>
+    <view
+        class="products__more"
+        wx:if="{{products.length > 3}}"
+        bind:tap="onMoreTap"
+    >
+        <view class="products__more__text">查看更多</view>
+    </view>
+</view>

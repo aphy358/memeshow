@@ -1,0 +1,70 @@
+<wxs module="format" src="../../utils/format.wxs"></wxs>
+
+<view class="cell cell--no-border m-b">
+  <view class="cell__header">
+    <view class="cell__title">需求内容</view>
+  </view>
+  <view class="cell__tail">
+    <view class="cell__detail">{{demand == "video" ? "定制短视频" : "定制直播卖货"}}</view>
+  </view>
+</view>
+<view class="cell cell--no-border">
+  <view class="cell__header">
+    <view class="cell__title">预算金额</view>
+  </view>
+  <view class="cell__tail">
+    <view class="cell__detail">
+      ￥{{format.price(budget)}}
+    </view>
+  </view>
+</view>
+<view class="budget-hint">预算包含制作短视频与发布</view>
+
+<view class="form__item m-b flex-wrap">
+    <view class="form__item__label">选择商品</view>
+    <view
+        bind:tap="onSelectProductTap"
+        class="form__item__content products"
+    >
+        <view
+            class="products__count"
+        >{{products.length + "个"}}</view>
+        <view class="icon icon-chevron-right cell__icon-link"></view>
+    </view>
+    <view
+        class="products__preview"
+        wx:if="{{products.length > 0}}"
+    >
+        <products
+            bind:more="onSelectProductTap"
+            products="{{products}}"
+        ></products>
+    </view>
+</view>
+
+<view class="cell cell--no-border m-b">
+  <view class="cell__header">
+    <view class="cell__title">分润空间</view>
+  </view>
+  <view class="cell__tail">
+    <view class="cell__detail">{{bonusRate}}%</view>
+  </view>
+</view>
+<view class="cell cell--no-border m-b">
+  <view class="cell__header">
+    <view class="cell__title">期望时间</view>
+  </view>
+  <view class="cell__tail">
+    <view class="cell__detail">{{date}}</view>
+  </view>
+</view>
+<view class="cell cell--no-border m-b">
+  <view class="cell__header">
+    <view class="cell__title">样品体验</view>
+  </view>
+  <view class="cell__tail">
+    <view class="cell__detail">{{sample ? "是" : "否"}}</view>
+  </view>
+</view>
+
+<fixed-btns></fixed-btns>

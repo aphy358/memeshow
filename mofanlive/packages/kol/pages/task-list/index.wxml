@@ -1,0 +1,34 @@
+<wxs
+    module="format"
+    src="../../utils/format.wxs"
+></wxs>
+
+<no-records wx:if="{{task.length == 0}}"></no-records>
+<view
+    class="tasks"
+    wx:else
+>
+    <view
+        class="task"
+        wx:for="{{list}}"
+        wx:key="id"
+        bind:tap="onTaskTap"
+        data-id="{{item.id}}"
+    >
+        <view class="task__avatar">
+            <image src="{{item.products[0].avatar.thumbnail}}" />
+            <view class="task__avatar__demand">{{item.demand == "video" ? "拍视频" : "直播"}}</view>
+            <view class="task__avatar__num">共{{item.products.length}}件商品</view>
+        </view>
+        <view class="task__detail">
+            <view class="task__title f-cn">{{item.products[0].title}}</view>
+            <view class="task__price">￥{{format.price(item.products[0].price)}}</view>
+            <view class="task__budget f-cn">预算:￥{{item.budget/ 100}}</view>
+            <view class="task__share">
+                <button class="reset task__share__btn">
+                    <image src="../../assets/share.png" />
+                </button>
+            </view>
+        </view>
+    </view>
+</view>

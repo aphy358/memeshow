@@ -1,0 +1,338 @@
+@import "@/theme";
+// @import "ui-kit/style/index";
+
+.live-page {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+}
+
+.live_status {
+    display: flex;
+    padding: 20rpx 28rpx 0;
+    color: #fff;
+
+    &-item {
+        flex: 0 0 auto;
+        margin: 0 0 0 12rpx;
+        line-height: 1;
+        text-align: center;
+
+        &-num {
+            margin-bottom: 12rpx;
+            padding-right: 24rpx;
+            font-family: "SFUIDisplay-Medium" $font-nu;
+            font-size: $font-size-xxl;
+        }
+
+        &-desc {
+            padding-right: 24rpx;
+            font-family: $font-cn;
+            font-size: $font-size-sm;
+        }
+
+        &-link {
+            position: relative;
+            &:after {
+                position: absolute;
+                right: 0;
+                display: inline-block;
+                content: "\e913";
+                font: {
+                    family: iconfont;
+                    style: normal;
+                    weight: 400;
+                    variant: normal;
+                }
+
+                text-transform: none;
+                text-rendering: auto;
+                line-height: 1;
+                -webkit-font-smoothing: antialiased;
+                vertical-align: middle;
+            }
+        }
+    }
+}
+
+.live-tools {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 24rpx;
+    z-index: 100;
+}
+
+.product-popup-header {
+    @include hairline-bottom();
+    position: relative;
+
+    &-title {
+        padding: 30rpx 0;
+        font-family: "PingFangSC-Medium";
+        font-size: 16px;
+        color: #333;
+        line-height: 1;
+        text-align: center;
+    }
+
+    &-tab {
+        @include hairline-top();
+    }
+
+    &-button {
+        position: absolute;
+        left: 30rpx;
+        top: 22rpx;
+        padding: 10rpx 20rpx;
+        border: 1rpx solid #B2B2B2;
+        border-radius: 4px;
+        font-family: $font-cn;
+        font-size: 14px;
+        line-height: 1;
+    }
+
+    .product-selector-header-button {
+        box-sizing: border-box;
+        position: absolute;
+        top: 16rpx;
+        right: 30rpx;
+        display: inline-block;
+        min-width: 140rpx;
+        height: 56rpx;
+        padding: 0 20rpx;
+        background: #F32953;
+        border-radius: 8rpx;
+
+        font-family: $font-cn;
+        font-size: 32rpx;
+        color: #FFFFFF;
+        text-align: center;
+        line-height: 56rpx;
+    }
+}
+
+.product-alive-list {
+    &--empty {
+        margin: 50rpx;
+        font-family: $font-cn;
+        font-size: 28rpx;
+        color: #999;
+        text-align: center;
+    }
+}
+
+.product-alive-item {
+    position: relative;
+    padding: 20rpx;
+    display: flex;
+    background: #fff;
+}
+
+.product-add {
+    position: absolute;
+    right: 30rpx;
+    top: 16rpx;
+    min-width: 140rpx;
+    padding: 0 20rpx;
+    border: 1rpx solid #B2B2B2;
+    border-radius: 8rpx;
+    line-height: 56rpx;
+    font-family: $font-cn;
+    font-size: 28rpx;
+    color: #333333;
+    text-align: center;
+}
+
+.product-tag {
+    position: absolute;
+    top: 20rpx;
+    left: 20rpx;
+
+    width: 13px;
+    border-bottom-right-radius: 4px;
+    background: rgba(0,0,0,0.50);
+    font-family: "SFUIDisplay-Medium";
+    font-size: 10px;
+    color: #FFF;
+    text-align: center;
+    line-height: 13px;
+}
+
+.product-image {
+    flex: 0 0 auto;
+    width: 160rpx;
+    height: 160rpx;
+    border-radius: 6rpx;
+}
+
+.product-info {
+    flex: 1 1 auto;
+    overflow: hidden;
+    margin-left: 24rpx;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+
+    .product-name {
+        font-family: $font-cn;
+        font-size: 14px;
+        color: #333333;
+        line-height: 18px;
+    }
+
+    .product-extra {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .product-price {
+            font-family: "SFUIDisplay-Medium";
+            font-size: 14px;
+            color: #333333;
+            line-height: 14px;
+        }
+    }
+}
+
+.selector-group {
+    .selector-item {
+        display: flex;
+        flex-flow: row nowrap;
+
+        &--icon {
+            flex: 0 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 30rpx;
+
+            &-circle {
+                width: 32rpx;
+                height: 32rpx;
+                background: #fff;
+                border: 4rpx solid #999;
+                border-radius: 100%;
+            }
+
+            &-image {
+                width: 32rpx;
+                height: 32rpx;
+            }
+        }
+
+        &--image {
+            flex: 0 0 auto;
+            width: 200rpx;
+            height: 200rpx;
+            border-radius: 6rpx;
+        }
+
+        &--info {
+            flex: 1;
+            overflow: hidden;
+            margin: 0 30rpx 0 20rpx;
+        }
+    }
+
+    &--empty {
+        margin: 40rpx auto;
+        color: #999;
+        font-size: 28rpx;
+        text-align: center;
+    }
+}
+
+.product-selector {
+    background: #fff;
+
+    .product-item {
+        padding: 30rpx 0 12rpx;
+        @include hairline-bottom-relative($left: 300rpx);
+    }
+
+    .product-name {
+        @include line(2);
+        max-height: 88rpx;
+        margin-bottom: 15rpx;
+        font-family: $font-cn;
+        font-size: 32rpx;
+        color: #333;
+        line-height: 44rpx;
+    }
+
+    .product-price {
+        font-family:  "SFUIDisplay-Medium" $font-price;
+        color: $color-price;
+        font-size: 32rpx;
+        line-height: 1;
+    }
+}
+
+button.product-button {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.product-current {
+    background: #F4F4F4;
+    padding-bottom: 16rpx;
+}
+
+.product-popup {
+    border-top-left-radius: 20rpx;
+    border-top-right-radius: 20rpx;
+}
+
+.popup-close {
+    position: absolute;
+    left: 0;
+    box-sizing: border-box;
+    padding: $padding-md;
+    color: $color-grey-2;
+    font-size: size(20);
+    line-height: 1;
+}
+
+.no-padding {
+    padding: 0 !important;
+}
+
+.tab-dash {
+    width: 160rpx;
+}
+
+.touch-move-wrap {
+    @include hairline-bottom();
+    display: flex;
+    justify-content: space-between;
+    transition: transform 0.4s;
+    transform: translateX(0);
+
+    &--content {
+        flex: 0 0 auto;
+        width: 100%;
+    }
+
+    &--tail {
+        @include hairline-bottom();
+        flex: 0 0 auto;
+        width: 90px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #F32953;
+
+        font-family: "PingFangSC-Medium";
+        font-size: 14px;
+        color: #FFFFFF;
+        line-height: 14px;
+    }
+
+    &--active {
+        transform: translateX(-90px);
+    }
+}
